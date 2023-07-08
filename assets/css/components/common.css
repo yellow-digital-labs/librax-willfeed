@@ -257,6 +257,12 @@
         }
     }
 
+    @media (min-width: 1440px) {
+        .uk-container {
+            max-width: 1400px;
+        }
+    }
+
     @media (max-width:  767.98px) {
         .uk-container {
             max-width: 100%;
