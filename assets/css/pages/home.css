@@ -1,0 +1,81 @@
+/* Hero Starts */
+
+.hero {
+    padding-top: 140px;
+    position: relative;
+    overflow-x: hidden;
+    padding-bottom: 140px;
+}
+
+.hero__title {
+    font-size: 32px;
+    color: #26BBFB;
+    line-height: 1.5;
+    margin-top: 32px;
+    margin-bottom: 35px;
+}
+
+.hero__logo {
+    width: 327px;
+    max-width: 100%;
+    margin-bottom: 32px;
+}
+
+.hero__text {
+    margin-bottom: 31px;
+    color: #26BBFB;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 36px;
+    letter-spacing: 0.2px;
+}
+
+.hero:after {
+    content: '';
+    width: 270px;
+    height: 270px;
+    border-radius: 270px;
+    background: #FFC941;
+    display: block;
+    position: absolute;
+    left: -130px;
+    top: 90px;
+    z-index: -1;
+}
+
+.hero:before {
+    content: '';
+    width: 455px;
+    height: 455px;
+    border-radius: 455px;
+    background: #FE0500;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -100px;
+    top: -100px;
+    z-index: -1;
+}
+
+.hero__media {
+    position: relative;
+    text-align: center;
+    background: transparent;
+    z-index: 3;
+    padding-left: 100px;
+}
+
+.hero__media:after {
+    content: '';
+    width: 339px;
+    height: 339px;
+    border-radius: 339px;
+    background: #334FFB;
+    display: block;
+    position: absolute;
+    bottom: -120px;
+    left: 0;
+    z-index: -1;
+}
+
+/* Hero Ends */
