@@ -1,0 +1,20 @@
+/*Variable Declaration*/
+:root {
+    --title-fonts: 'Montserrat', sans-serif;
+    --text-fonts: 'Montserrat', sans-serif;
+    --icon-fonts: "wf-icon", sans-serif;
+    --primary-color: #26BBFB;
+    --secondary-color: #334FFB;
+    --highlight-color: #334FFB;
+    --text-color: #000000;
+    --bg-header: #000;
+    --header-color: #fff;
+    --bg-footer: #B3275A;
+    --footer-color: #FFFFFF;
+    --bg-body: #fff;
+    --bg-alt-1: #FF8200;
+    --bg-alt-2: #FFC941;
+    --bg-alt-3: #FE0500;
+}
+
+/*Variable Declaration Ends*/
