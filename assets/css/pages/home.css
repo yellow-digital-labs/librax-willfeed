@@ -580,8 +580,9 @@ h3.title.platform__sectitle {
 /* Reviews Starts */
 .reviews {
     position: relative;
-    padding-top: 300px;
+    padding-top: 270px;
     overflow-x: hidden;
+    padding-bottom: 135px;
 }
 
 .reviews:after {
@@ -620,7 +621,197 @@ h3.title.platform__sectitle {
     background: #FE0500;
     left: -174px;
     z-index: -1;
-    bottom: 0;
+    bottom: 270px;
+}
+
+.reviews__container {
+    text-align: center;
+}
+
+.reviews__title {
+    color: #26BBFB;
+    font-size: 40px;
+    letter-spacing: 4.8px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.reviews__about {
+    font-size: 28px;
+    text-align: center;
+    max-width: 675px;
+    font-weight: 500;
+    letter-spacing: 0.28px;
+    margin: 0 auto 60px !important;
+}
+
+.reviews__about-highlight {
+    color: #334FFB;
+}
+
+.reviews__item {
+    border-radius: 18px;
+    background: #DFF5FF;
+    padding: 40px 30px;
+}
+
+.reviews__rating {
+    color: #FFB800;
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+.reviews__text {
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0.48px;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.reviews__grid {
+    margin-left: -45px;
+}
+
+.reviews__grid > * {
+    padding-left: 45px;
+    width: 30%;
+}
+
+.reviews__author {
+    display: flex;
+    align-items: center;
+}
+
+.reviews__author-img {
+    width: 64.48px;
+    height: 64.48px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.reviews__author-data {
+    padding-left: 15px;
+}
+
+.reviews__author-name {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin-bottom: 0;
+}
+
+.reviews__author-dest {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.16px;
+    text-transform: uppercase;
+    color: #A8A8A8;
+}
+
+.reviews__footer {
+    text-align: center;
+    margin: 100px auto  0;
+}
+
+.reviews__dotnav {
+    align-items: center;
+}
+
+.reviews__dotnav > * {
+    flex-grow: 1;
+    padding: 0;
+}
+
+.reviews__dotnav > * > * {
+    width: 100%;
+    height: 1px;
+    border-radius: 0;
+    background: #B0B0B0;
+    border-color: #B0B0B0;
+    border: 0;
+}
+
+.reviews__dotnav > .uk-active > * {
+    height: 4px;
+    background: #26BBFB !important;
+    border-color: #26BBFB !important;
 }
 
 /* Reviews Ends */
+
+/* Help Starts */
+
+.help__title {
+    letter-spacing: 4.2px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.help {
+    background: url("../../images/shapes/footer-contact.svg");
+    background-position: center bottom;
+    padding: 80px 0 0;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-size: cover;
+}
+
+.help__media {
+    width: 676px;
+    height: 676px;
+    max-width: 100%;
+    text-align: center;
+    border-radius: 676px;
+    background: #334FFB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: -100px !important;
+    color: #fff;
+}
+
+.help__desc {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 46px;
+    letter-spacing: 0.32px;
+}
+
+.help__desc p:not(:last-child) {
+    margin: 0 0 40px 0;
+}
+
+.help__icon {
+    font-size: 75px;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.help__call > a {
+    font-size: 37px;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.37px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+}
+
+.help__call {
+    margin-bottom: 25px;
+}
+
+.help__action {
+    padding: 5px 42px;
+    border-radius: 6px;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(165, 163, 174, 0.30);
+    color: #334FFB;
+    font-weight: 500;
+    letter-spacing: 0.43px;
+}
+
+/* Help Ends */
