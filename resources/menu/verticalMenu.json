@@ -2,7 +2,7 @@
     "menu": [
     {
         "url": "/",
-        "name": "Home",
+        "name": "Dashboard",
         "icon": "menu-icon tf-icons ti ti-smart-home",
         "slug": "pages-home"
     },
@@ -10,7 +10,14 @@
         "url": "unverified-users",
         "name": "Unverified Users",
         "icon": "menu-icon tf-icons ti ti-user-exclamation",
-        "slug": "pages-unverified-users"
+        "slug": "pages-unverified-users",
+        "submenu": [
+            {
+                "url": "users-details",
+                "name": "User Details",
+                "slug": "pages-users-details"
+            }
+        ]
     },
     {
         "url": "orders",

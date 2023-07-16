@@ -8,14 +8,21 @@ $configData = Helper::appClasses();
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/rateyo/rateyo.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/flatpickr/flatpickr.css')}}" />
 @endsection
 
 @section('vendor-script')
 <script src="{{asset('assets/vendor/libs/rateyo/rateyo.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/moment/moment.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/flatpickr/flatpickr.js')}}"></script>
 @endsection
 
 @section('page-script')
 <script src="{{asset('assets/js/extended-ui-star-ratings.js')}}"></script>
+<script src="{{asset('assets/js/custom/simple-search-datatable.js')}}"></script>
 @endsection
 
 @section('content')
@@ -24,9 +31,9 @@ $configData = Helper::appClasses();
 
 <div class="card">
     <!-- <h5 class="card-header">Light Table head</h5> -->
-    <div class="table-responsive ">
-        <table class="table">
-            <thead class="table-light text-nowrap">
+    <div class="card-datatable">
+        <table class="dt-column-search table has-actions-td">
+            <thead class="text-nowrap">
                 <tr>
                     <th>Name</th>
                     <th>Star Rating</th>

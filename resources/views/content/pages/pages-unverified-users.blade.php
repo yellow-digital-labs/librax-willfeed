@@ -1,16 +1,37 @@
 @php
 $configData = Helper::appClasses();
 @endphp
+
 @extends('layouts/layoutMaster')
+
 @section('title', 'Unverified Users')
+
+@section('vendor-style')
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/flatpickr/flatpickr.css')}}" />
+@endsection
+
+@section('vendor-script')
+<script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
+<!-- Flat Picker -->
+<script src="{{asset('assets/vendor/libs/moment/moment.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/flatpickr/flatpickr.js')}}"></script>
+
+@endsection
+
+@section('page-script')
+<script src="{{asset('assets/js/custom/simple-search-datatable.js')}}"></script>
+@endsection
+
 @section('content')
 <h4>Unverified Users</h4>
 
 <div class="card">
     <!-- <h5 class="card-header">Light Table head</h5> -->
-    <div class="table-responsive text-nowrap">
-        <table class="table">
-            <thead class="table-light">
+    <div class="card-datatable text-nowrap">
+        <table class="dt-column-search table has-actions-td">
+            <thead>
                 <tr>
                     <th>Name</th>
                     <th>Lorem Field</th>
@@ -28,8 +49,8 @@ $configData = Helper::appClasses();
                     <td>Lorem come here</td>
                     <td>Lorem come here</td>
                     <td>
-                        <a href="/unverified-users-details" role="button" class="btn btn-primary waves-effect waves-light me-sm-2 me-1"> View More </a>
-                        <button type="button" class="btn btn-label-secondary waves-effect" data-bs-toggle="modal" data-bs-target="#RejectUser1"> Reject </button>
+                        <a href="/users-details" role="button" class="btn btn-sm btn-icon item-edit me-sm-2 me-1"> <i class="text-primary ti ti-pencil"> </i></a>
+                        <button type="button" class="btn btn-sm btn-icon item-edit" data-bs-toggle="modal" data-bs-target="#RejectUser1"> <i class="text-danger ti ti-user-off"> </i> </button>
                         <!-- Reject User Modal -->
                         <div class="modal fade" id="RejectUser1" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-lg modal-simple modal-edit-user">
