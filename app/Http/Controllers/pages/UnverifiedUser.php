@@ -11,4 +11,8 @@ class UnverifiedUser extends Controller
   {
     return view('content.pages.pages-unverified-users');
   }
+  public function details()
+  {
+    return view('content.pages.pages-unverified-users-details');
+  }
 }

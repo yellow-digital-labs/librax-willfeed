@@ -6,12 +6,9 @@ $configData = Helper::appClasses();
 
   <!-- ! Hide app brand if navbar-full -->
   @if(!isset($navbarFull))
-  <div class="app-brand demo">
+  <div class="app-brand demo mt-2 mb-2">
     <a href="{{url('/')}}" class="app-brand-link">
-      <span class="app-brand-logo demo">
-        @include('_partials.macros',["height"=>20])
-      </span>
-      <span class="app-brand-text demo menu-text fw-bold">{{config('variables.templateName')}}</span>
+        <img src="assets/img/weelfeed-brand-logo.svg" width="124" height="68" class="img-fluid">
     </a>
 
     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">

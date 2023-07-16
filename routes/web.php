@@ -18,6 +18,7 @@ $controller_path = 'App\Http\Controllers';
 // Main Page Route
 Route::get('/', $controller_path . '\pages\HomePage@index')->name('pages-home');
 Route::get('/unverified-users', $controller_path . '\pages\UnverifiedUser@index')->name('unverified-users');
+Route::get('/unverified-users-details', $controller_path . '\pages\UnverifiedUser@details')->name('unverified-users-details');
 Route::get('/orders', $controller_path . '\pages\Orders@index')->name('orders');
 Route::get('/subscription-plan-management', $controller_path . '\pages\SubscriptionPlanManagement@index')->name('subscription-plan-management');
 Route::get('/reports', $controller_path . '\pages\Reports@index')->name('reports');

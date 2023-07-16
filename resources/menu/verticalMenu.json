@@ -9,31 +9,37 @@
     {
         "url": "unverified-users",
         "name": "Unverified Users",
+        "icon": "menu-icon tf-icons ti ti-user-exclamation",
         "slug": "pages-unverified-users"
     },
     {
         "url": "orders",
         "name": "Orders",
+        "icon": "menu-icon tf-icons ti ti-basket",
         "slug": "pages-orders"
     },
     {
         "url": "subscription-plan-management",
-        "name": "Subscription Plan management",
+        "name": "Subscription Plan Management",
+        "icon": "menu-icon tf-icons ti ti-repeat",
         "slug": "pages-subscription-plan-management"
     },
     {
         "url": "reports",
         "name": "Reports",
+        "icon": "menu-icon tf-icons ti ti-chart-bar",
         "slug": "pages-reports"
     },
     {
         "url": "email-template-management",
         "name": "Email Template Management",
+        "icon": "menu-icon tf-icons ti ti-at",
         "slug": "pages-email-template-management"
     },
     {
         "url": "pages-management",
         "name": "Pages Management",
+        "icon": "menu-icon tf-icons ti ti-layout-dashboard",
         "slug": "pages-management",
         "submenu": [
             {
@@ -51,6 +57,7 @@
     {
         "url": "feedback-management",
         "name": "Feedback management",
+        "icon": "menu-icon tf-icons ti ti-quote",
         "slug": "pages-feedback-management"
     },
     {
