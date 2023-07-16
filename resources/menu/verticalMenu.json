@@ -1,37 +1,77 @@
 {
-  "menu": [
+    "menu": [
     {
-      "url": "/",
-      "name": "Home",
-      "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "pages-home"
+        "url": "/",
+        "name": "Home",
+        "icon": "menu-icon tf-icons ti ti-smart-home",
+        "slug": "pages-home"
     },
     {
-      "url": "page-2",
-      "icon": "menu-icon tf-icons ti ti-file",
-      "name": "Page 2",
-      "slug": "pages-page-2"
+        "url": "unverified-users",
+        "name": "Unverified Users",
+        "slug": "pages-unverified-users"
     },
     {
-      "url": "pages/misc-error",
-      "name": "Error",
-      "icon": "menu-icon tf-icons ti ti-alert-triangle",
-      "slug": "pages-misc-error",
-      "target": "_blank"
+        "url": "orders",
+        "name": "Orders",
+        "slug": "pages-orders"
     },
     {
-      "url": "auth/login-basic",
-      "name": "Login",
-      "icon": "menu-icon tf-icons ti ti-login",
-      "slug": "auth-login-basic",
-      "target": "_blank"
+        "url": "subscription-plan-management",
+        "name": "Subscription Plan management",
+        "slug": "pages-subscription-plan-management"
     },
     {
-      "url": "auth/register-basic",
-      "name": "Register",
-      "icon": "menu-icon tf-icons ti ti-user",
-      "slug": "auth-register-basic",
-      "target": "_blank"
-    }
-  ]
+        "url": "reports",
+        "name": "Reports",
+        "slug": "pages-reports"
+    },
+    {
+        "url": "email-template-management",
+        "name": "Email Template Management",
+        "slug": "pages-email-template-management"
+    },
+    {
+        "url": "pages-management",
+        "name": "Pages Management",
+        "slug": "pages-management",
+        "submenu": [
+            {
+                "url": "privacy-policy-management",
+                "name": "Privacy policy management",
+                "slug": "pages-privacy-policy-management"
+            },
+            {
+                "url": "terms-management",
+                "name": "Terms Management",
+                "slug": "pages-terms-management"
+            }
+        ]
+    },
+    {
+        "url": "feedback-management",
+        "name": "Feedback management",
+        "slug": "pages-feedback-management"
+    },
+    {
+        "url": "pages/misc-error",
+        "name": "Error",
+        "icon": "menu-icon tf-icons ti ti-alert-triangle",
+        "slug": "pages-misc-error",
+        "target": "_blank"
+    },
+    {
+        "url": "auth/login-basic",
+        "name": "Login",
+        "icon": "menu-icon tf-icons ti ti-login",
+        "slug": "auth-login-basic",
+        "target": "_blank"
+    },
+    {
+        "url": "auth/register-basic",
+        "name": "Register",
+        "icon": "menu-icon tf-icons ti ti-user",
+        "slug": "auth-register-basic",
+        "target": "_blank"
+    }]
 }
