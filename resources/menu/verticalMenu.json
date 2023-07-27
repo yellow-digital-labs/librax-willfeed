@@ -87,5 +87,38 @@
         "icon": "menu-icon tf-icons ti ti-user",
         "slug": "auth-register-basic",
         "target": "_blank"
+    },
+    {
+        "url": "signup",
+        "name": "Signup",
+        "icon": "menu-icon tf-icons ti ti-layout-dashboard",
+        "slug": "signup",
+        "submenu": [
+            {
+                "url": "signup",
+                "name": "Sign Up",
+                "slug": "pages-signup"
+            },
+            {
+                "url": "signup/registry",
+                "name": "Sign Up Registry",
+                "slug": "pages-signup-registry"
+            },
+            {
+                "url": "signup/destination",
+                "name": "Sign Up Destination",
+                "slug": "pages-signup-destination"
+            },
+            {
+                "url": "signup/billing",
+                "name": "Sign Up Billing",
+                "slug": "pages-signup-billing"
+            },
+            {
+                "url": "signup/profile",
+                "name": "Sign Up Profile",
+                "slug": "pages-signup-profile"
+            }
+        ]
     }]
 }

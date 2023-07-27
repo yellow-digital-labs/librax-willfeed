@@ -8,7 +8,7 @@ $configData = Helper::appClasses();
   @if(!isset($navbarFull))
   <div class="app-brand demo mt-2 mb-2">
     <a href="{{url('/')}}" class="app-brand-link">
-        <img src="assets/img/weelfeed-brand-logo.svg" width="170" height="93" class="img-fluid">
+        <img src="/assets/img/weelfeed-brand-logo.svg" width="170" height="93" class="img-fluid">
     </a>
 
     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
