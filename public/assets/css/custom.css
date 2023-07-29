@@ -13,6 +13,27 @@
     border-color: #000;
 }
 
+.select2-results__option[role=option][aria-selected=true] {
+    background-color: #000;
+    color: #fff;
+}
+
+.select2-container--default .select2-results__option--highlighted:not([aria-selected=true]) {
+    background-color: rgba(115, 103, 240, 0.08) !important;
+    color: #000 !important;
+}
+
+.form-check-input:checked, .form-check-input[type=checkbox]:indeterminate {
+    background-color: #000;
+    border-color: #000;
+}
+
+.menu-inner-shadow {
+    height: 120px;
+    top: 0;
+    background: transparent !important;
+}
+
 /* Auth pages Header Starts */
 
 .auth-header {
@@ -115,12 +136,13 @@
 
 .light-style .signup-wiz__stepper .signup-wiz__header .bs-stepper-title, 
 .light-style .signup-wiz__stepper .signup-wiz__header .bs-stepper-label {
-    color: #4B465C;
+    color: #4B465C !important;
 }
 
 .signup-wiz__name {
     font-weight: 500;
     font-size: 20px;
+    margin-bottom: 25px;
 }
 
 .signup-wiz__footer {

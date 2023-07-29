@@ -94,7 +94,7 @@ $configData = Helper::appClasses();
                         <!-- Registry -->
                         <div id="SignupStepRegistry" class="content active dstepper-block fv-plugins-bootstrap5 fv-plugins-framework">
                             <div class="content-header mb-4">
-                                <h3 class="signup-wiz__name">Informazioni societarie</h3>
+                                <h3 class="signup-wiz__name text-center">Informazioni societarie</h3>
                             </div>
                             <div class="row g-3">
 
@@ -133,7 +133,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Attività principale *</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona attività principale</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -153,7 +153,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Comune *</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona comune</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -163,7 +163,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Provincia *</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona provincia</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -188,13 +188,13 @@ $configData = Helper::appClasses();
                         <!-- Destination -->
                         <div id="SignupStepDestination" class="content fv-plugins-bootstrap5 fv-plugins-framework">
                             <div class="content-header mb-4">
-                                <h3 class="signup-wiz__name">Informazioni destinazione</h3>
+                                <h3 class="signup-wiz__name text-center">Informazioni destinazione</h3>
                             </div>
                             <div class="row g-3">
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Facilità di accesso *</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona facilità di accesso</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -222,7 +222,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Comune</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona comune</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -232,7 +232,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Provincia</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona provincia</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -257,14 +257,14 @@ $configData = Helper::appClasses();
                         <!-- Billing -->
                         <div id="SignupStepBilling" class="content fv-plugins-bootstrap5 fv-plugins-framework">
                             <div class="content-header">
-                                <h3 class="signup-wiz__name">Informazioni fatturazione</h3>
+                                <h3 class="signup-wiz__name text-center">Informazioni fatturazione</h3>
                             </div>
 
                             <div class="row g-3">
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Dilazione di pagamento preferita *</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona dilazione</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -274,7 +274,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Modalità di pagamento * </label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -309,26 +309,17 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Esenzione IVA </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">Carica </span>
-                                        <input type="text"  name="" id="" class="form-control" placeholder="Nessun file caricato">
-                                    </div>
+                                    <input class="form-control" type="file">
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Esenzione IVA </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">Carica </span>
-                                        <input type="text"  name="" id="" class="form-control" placeholder="Nessun file caricato">
-                                    </div>
+                                    <input class="form-control" type="file">
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Esenzione IVA </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">Carica </span>
-                                        <input type="text"  name="" id="" class="form-control" placeholder="Nessun file caricato">
-                                    </div>
+                                    <input class="form-control" type="file">
                                 </div>
 
                                 <div class="col-12 d-flex justify-content-between mt-4">
@@ -345,14 +336,14 @@ $configData = Helper::appClasses();
                         <!-- Profile -->
                         <div id="SignupStepProfile" class="content fv-plugins-bootstrap5 fv-plugins-framework">
                             <div class="content-header">
-                                <h3 class="signup-wiz__name">Final Step: Profilo Cliente</h3>
+                                <h3 class="signup-wiz__name text-center">Final Step: Profilo Cliente</h3>
                             </div>
 
                             <div class="row g-3">
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Tipologia di prodotti consumati *</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona dilazione</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -362,7 +353,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Consumi medi mensili *</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -372,7 +363,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Sei un distributore privato? *</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Si o no</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>

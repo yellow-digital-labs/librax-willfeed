@@ -12,6 +12,10 @@ $configData = Helper::appClasses();
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/flatpickr/flatpickr.css')}}" />
 @endsection
+@section('page-style')
+<!-- Custom css -->
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+@endsection
 
 @section('vendor-script')
 <script src="{{asset('assets/vendor/libs/rateyo/rateyo.js')}}"></script>

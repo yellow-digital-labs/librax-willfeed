@@ -3,6 +3,10 @@ $configData = Helper::appClasses();
 @endphp
 @extends('layouts/layoutMaster')
 @section('title', 'Home')
+@section('page-style')
+<!-- Custom css -->
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+@endsection
 @section('content')
 <div class="row">
     <!-- <div class="col-lg-8 mb-4 col-md-12">

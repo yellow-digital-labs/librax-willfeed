@@ -90,7 +90,7 @@
     },
     {
         "url": "signup",
-        "name": "Signup",
+        "name": "Auth Pages",
         "icon": "menu-icon tf-icons ti ti-layout-dashboard",
         "slug": "signup",
         "submenu": [
@@ -108,6 +108,26 @@
                 "url": "signup/seller",
                 "name": "Sign Up Seller",
                 "slug": "pages-signup-seller"
+            },
+            {
+                "url": "login",
+                "name": "Login",
+                "slug": "pages-login"
+            },
+            {
+                "url": "forget-password",
+                "name": "Forget Password",
+                "slug": "pages-forget-password"
+            },
+            {
+                "url": "reset-password",
+                "name": "Reset Password",
+                "slug": "pages-reset-password"
+            },
+            {
+                "url": "verify-email",
+                "name": "Verify Email",
+                "slug": "pages-verify-email"
             }
         ]
     }]

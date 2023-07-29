@@ -122,7 +122,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Attività principale *</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona attività principale</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -142,7 +142,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Comune *</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona comune</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -152,7 +152,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Provincia *</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona provincia</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -183,7 +183,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Capacità di stoccaggio *</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona facilità di accesso</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -193,7 +193,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Limiti di capacità ordini *</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona i limiti</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -203,7 +203,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Prodotti disponibili *</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona prodotti </option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -213,7 +213,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Copertura geografica regioni</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona le regioni coperte</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -223,7 +223,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Copertura geografica province</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona prodotti </option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -233,7 +233,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="">Tempo limite ordine giornaliero</label>
-                                    <select name="" id="" class="form-select">
+                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option>Seleziona limite</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>

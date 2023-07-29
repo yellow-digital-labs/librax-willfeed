@@ -9,6 +9,8 @@ $configData = Helper::appClasses();
 @section('page-style')
 <!-- Page -->
 <link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-misc.css')}}">
+<!-- Custom css -->
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 @endsection
 
 
