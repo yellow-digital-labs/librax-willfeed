@@ -103,6 +103,11 @@
                 "url": "signup/client",
                 "name": "Sign Up Client",
                 "slug": "pages-signup-client"
+            },
+            {
+                "url": "signup/seller",
+                "name": "Sign Up Seller",
+                "slug": "pages-signup-seller"
             }
         ]
     }]

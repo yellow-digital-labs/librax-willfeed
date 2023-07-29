@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                             multiSteps3.validate();
                             break;
 
-                        case 2:
+                        case 3:
                             multiSteps4.validate();
                             break;
 

@@ -40,3 +40,4 @@ Route::get('/auth/register-basic', $controller_path . '\authentications\Register
 // Signup pages
 Route::get('/signup', $controller_path . '\pages\Signup@index')->name('signup');
 Route::get('/signup/client', $controller_path . '\pages\SignupClient@index')->name('signup-client');
+Route::get('/signup/seller', $controller_path . '\pages\SignupSeller@index')->name('signup-seller');
