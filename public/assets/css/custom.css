@@ -11,6 +11,7 @@
     color: #fff;
     background-color: #000;
     border-color: #000;
+    font-weight: 400;
 }
 
 .select2-results__option[role=option][aria-selected=true] {
@@ -84,6 +85,22 @@
 
 .singup__footer a:hover {
     text-decoration: underline;
+}
+
+.singup__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.singup__title > img {
+    width: 25px;
+    height: auto;
+    margin-left: 5px;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    margin-top: -8px;
 }
 
 /* Signup page Ends */

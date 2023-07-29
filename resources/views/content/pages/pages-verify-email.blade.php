@@ -39,7 +39,7 @@ $customizerHidden = 'customizer-hide';
             <div class="card singup__card">
                 <div class="card-body singup__cardbody ">
 
-                    <h4 class="mb-1 pt-2 text-center singup__title">Verify your email ✉️</h4>
+                    <h4 class="mb-1 pt-2 text-center singup__title">Verify your email <img src="/assets/img/icons/email.png" width="20" height="20"></h4>
                     <p class="mb-5 text-center singup__text">Account activation link sent to your email address: hello@example.com Please follow the link inside to continue.</p>
 
                     <form id="formAuthentication" class="mb-3 singup__form" action="{{url('/')}}" method="POST">
