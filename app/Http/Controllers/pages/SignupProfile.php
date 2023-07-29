@@ -9,6 +9,9 @@ class SignupProfile extends Controller
 {
   public function index()
   {
-    return view('content.pages.pages-signup-profile');
+    $pageConfigs = ['myLayout' => 'blank'];
+    return view('content.pages.pages-signup-profile', [
+      'pageConfigs' => $pageConfigs
+    ]);
   }
 }

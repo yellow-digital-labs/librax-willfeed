@@ -9,6 +9,9 @@ class SignupDestination extends Controller
 {
   public function index()
   {
-    return view('content.pages.pages-signup-destination');
+    $pageConfigs = ['myLayout' => 'blank'];
+    return view('content.pages.pages-signup-destination', [
+      'pageConfigs' => $pageConfigs
+    ]);
   }
 }

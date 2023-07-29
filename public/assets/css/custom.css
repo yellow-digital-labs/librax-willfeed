@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@700&family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --bs-body-font-family: 'Montserrat';
+    --bs-black-rgb: 0, 0, 0;
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+}
+
+/* Auth pages Header Starts */
+
+.auth-header {
+    height: 100px;
+    background: #000;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-header__logo {
+    display: block;
+}
+
+/* Auth pages Header Ends */
+
+
+
+/* Signup page Starts */
+
+.singup__card {
+    padding: 60px;
+}
+
+.singup__form {
+    padding: 0 60px;
+}
+
+.singup__wrapper .singup__inner {
+    max-width: 550px;
+    margin: auto;
+}
+
+.singup__wrapper .singup__cardbody {
+    padding: 0;
+}
+
+.singup__footer {
+    margin-top: 10px;
+    color: #4B465C;
+}
+
+.singup__footer a {
+    color: #000;
+    font-weight: 500;
+}
+
+.singup__footer a:hover {
+    text-decoration: underline;
+}
+
+/* Signup page Ends */
