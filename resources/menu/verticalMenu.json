@@ -100,24 +100,9 @@
                 "slug": "pages-signup"
             },
             {
-                "url": "signup/registry",
-                "name": "Sign Up Registry",
-                "slug": "pages-signup-registry"
-            },
-            {
-                "url": "signup/destination",
-                "name": "Sign Up Destination",
-                "slug": "pages-signup-destination"
-            },
-            {
-                "url": "signup/billing",
-                "name": "Sign Up Billing",
-                "slug": "pages-signup-billing"
-            },
-            {
-                "url": "signup/profile",
-                "name": "Sign Up Profile",
-                "slug": "pages-signup-profile"
+                "url": "signup/client",
+                "name": "Sign Up Client",
+                "slug": "pages-signup-client"
             }
         ]
     }]

@@ -25,7 +25,7 @@ $customizerHidden = 'customizer-hide';
     
 <header class="auth-header">
     <a href="/" class="auth-header__logo">
-        <img src="assets/img/weelfeed-brand-logo-white.svg">
+        <img src="/assets/img/weelfeed-brand-logo-white.svg">
     </a>
 </header>
 

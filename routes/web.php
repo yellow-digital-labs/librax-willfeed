@@ -39,7 +39,4 @@ Route::get('/auth/register-basic', $controller_path . '\authentications\Register
 
 // Signup pages
 Route::get('/signup', $controller_path . '\pages\Signup@index')->name('signup');
-Route::get('/signup/registry', $controller_path . '\pages\SignupRegistry@index')->name('signup-registry');
-Route::get('/signup/destination', $controller_path . '\pages\SignupDestination@index')->name('signup-destination');
-Route::get('/signup/billing', $controller_path . '\pages\SignupBilling@index')->name('signup-billing');
-Route::get('/signup/profile', $controller_path . '\pages\SignupProfile@index')->name('signup-profile');
+Route::get('/signup/client', $controller_path . '\pages\SignupClient@index')->name('signup-client');
