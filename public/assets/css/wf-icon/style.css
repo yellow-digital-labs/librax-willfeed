@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'wf-icon';
-  src:  url('fonts/wf-icon.eot?2qp8i5');
-  src:  url('fonts/wf-icon.eot?2qp8i5#iefix') format('embedded-opentype'),
-    url('fonts/wf-icon.ttf?2qp8i5') format('truetype'),
-    url('fonts/wf-icon.woff?2qp8i5') format('woff'),
-    url('fonts/wf-icon.svg?2qp8i5#wf-icon') format('svg');
+  src:  url('fonts/wf-icon.eot?rbycex');
+  src:  url('fonts/wf-icon.eot?rbycex#iefix') format('embedded-opentype'),
+    url('fonts/wf-icon.ttf?rbycex') format('truetype'),
+    url('fonts/wf-icon.woff?rbycex') format('woff'),
+    url('fonts/wf-icon.svg?rbycex#wf-icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,21 +25,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.wf-icon-arrow-left:before {
-  content: "\e913";
-}
-.wf-icon-arrow-right:before {
-  content: "\e914";
-}
-.wf-icon-file-text:before {
-  content: "\e915";
-}
-.wf-icon-user:before {
-  content: "\e916";
-}
-.wf-icon-location:before {
-  content: "\e918";
-}
 .wf-icon-search:before {
   content: "\e900";
 }
@@ -105,4 +90,22 @@
 }
 .wf-icon-youtube:before {
   content: "\e912";
+}
+.wf-icon-arrow-left:before {
+  content: "\e913";
+}
+.wf-icon-arrow-right:before {
+  content: "\e914";
+}
+.wf-icon-file-text:before {
+  content: "\e915";
+}
+.wf-icon-user:before {
+  content: "\e916";
+}
+.wf-icon-align-left:before {
+  content: "\e917";
+}
+.wf-icon-location:before {
+  content: "\e918";
 }

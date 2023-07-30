@@ -5,21 +5,6 @@ $configData = Helper::appClasses();
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
 
   <!-- ! Hide app brand if navbar-full -->
-  @if(!isset($navbarFull))
-  <div class="app-brand demo mt-2 mb-2">
-    <a href="{{url('/')}}" class="app-brand-link">
-        <img src="/assets/img/weelfeed-brand-logo.svg" width="170" height="93" class="img-fluid">
-    </a>
-
-    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
-      <i class="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
-      <i class="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
-    </a>
-  </div>
-  @endif
-
-
-  <div class="menu-inner-shadow"></div>
 
   <ul class="menu-inner py-1">
     @foreach ($menuData[0]->menu as $menu)
