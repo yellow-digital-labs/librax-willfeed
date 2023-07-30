@@ -343,7 +343,7 @@ html:not([dir=rtl]) .daterangepicker .drp-calendar.right {
 }
 .light-style .daterangepicker .ranges li:hover {
   background-color: rgba(115, 103, 240, 0.08);
-  color: #7367f0;
+  color: #000;
 }
 .light-style .daterangepicker .calendar-table .next,
 .light-style .daterangepicker .calendar-table .prev {
@@ -465,7 +465,7 @@ html:not([dir=rtl]) .daterangepicker .drp-calendar.right {
 }
 .dark-style .daterangepicker .ranges li:hover {
   background-color: rgba(115, 103, 240, 0.08);
-  color: #7367f0;
+  color: #000;
 }
 .dark-style .daterangepicker .calendar-table .next,
 .dark-style .daterangepicker .calendar-table .prev {
