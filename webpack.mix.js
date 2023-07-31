@@ -68,6 +68,9 @@ mix.webpackConfig({
     './blueimp-helper': 'jQuery',
     './blueimp-gallery': 'blueimpGallery',
     './blueimp-gallery-video': 'blueimpGallery'
+  },
+  stats: {
+    children: true
   }
 });
 
@@ -127,6 +130,8 @@ mixAssetsDir('js/**/*.js', (src, dest) => mix.scripts(src, dest));
 mixAssetsDir('css/**/*.css', (src, dest) => mix.copy(src, dest));
 // laravel working crud app related js
 mix.js('resources/js/laravel-user-management.js', 'public/js/');
+mix.copy('node_modules/katex/dist/fonts/*', 'public/assets/vendor/libs/quill/fonts');
+mix.js('resources/js/app.js', 'public/js/alpine.js');
 
 mix.copy('node_modules/@fortawesome/fontawesome-free/webfonts/*', 'public/assets/vendor/fonts/fontawesome');
 mix.copy('node_modules/katex/dist/fonts/*', 'public/assets/vendor/libs/quill/fonts');
@@ -141,7 +146,7 @@ mix.version();
  | BrowserSync can automatically monitor your files for changes, and inject your changes into the browser without requiring a manual refresh.
  | You may enable support for this by calling the mix.browserSync() method:
  | Make Sure to run `php artisan serve` and `yarn watch` command to run Browser Sync functionality
- | Refer official documentation for more information: https://laravel.com/docs/10.x/mix#browsersync-reloading
+ | Refer official documentation for more information: https://laravel.com/docs/9.x/mix#browsersync-reloading
  */
 
 mix.browserSync('http://127.0.0.1:8000/');

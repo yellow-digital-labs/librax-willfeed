@@ -123,7 +123,7 @@ if (document.getElementById('layout-menu')) {
     }
   } else {
     // Removed style switcher element if not using template customizer
-    // styleSwitcherToggleEl.parentElement.remove(); - Commented by Sanket as it is causing JS error
+    styleSwitcherToggleEl.parentElement.remove();
   }
 
   // Update light/dark image based on current style
