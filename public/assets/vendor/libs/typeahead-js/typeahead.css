@@ -58,8 +58,8 @@
 }
 .light-style .twitter-typeahead .tt-suggestion:hover, .light-style .twitter-typeahead .tt-suggestion:focus {
   text-decoration: none;
-  color: #7367f0;
-  background-color: rgba(115, 103, 240, 0.08);
+  color: #000;
+  background-color: rgba(0, 0, 0, 0.08);
 }
 
 .dark-style .twitter-typeahead .tt-menu {
