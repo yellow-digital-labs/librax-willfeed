@@ -29,6 +29,35 @@
     border-color: #000;
 }
 
+
+.list-disc {
+    list-style: none;
+}
+
+.list-disc > li {
+    position: relative;
+    padding-left: 25px;
+}
+
+.list-disc > li:after {
+    content: '';
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgb(75 70 92 / 50%);
+    display: block;
+    border-radius: 50%;
+    left: 0;
+    top: 5px;
+    position: absolute;
+}
+
+.badge--primary {
+    background: #DBE0FF !important;
+    color: #334FFB !important;
+    font-size: 13px;
+    font-weight: 500;
+}
+
 /* Navigation + Sidebar Starts */
 
 /* Navigation + Sidebar Ends */
@@ -255,3 +284,32 @@
 }
 
 /* Signup Wizard page Ends */
+/* Profile Page CSS Starts */
+.about-iconlist {
+}
+
+.about-iconlist__item {
+    position: relative;
+    padding-left: 30px;
+}
+
+.about-iconlist__icon {
+    position: absolute;
+    left: 0;
+    top: 0px;
+    color: #000;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.about-iconlist__item + .about-iconlist__item {
+    margin-top: 12px;
+}
+
+.about-iconlist__name {
+    color: #000;
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+/* Profile Page CSS Ends */
