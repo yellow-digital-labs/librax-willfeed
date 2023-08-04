@@ -130,5 +130,11 @@
                 "slug": "pages-verify-email"
             }
         ]
+    },
+    {
+        "url": "prodotti",
+        "name": "Prodotti",
+        "icon": "menu-icon tf-icons ti ti-droplet",
+        "slug": "prodotti"
     }]
 }

@@ -147,6 +147,8 @@
     position: sticky;
     top: 100px;
     box-shadow: unset;
+    height: calc(100vh - 100px);
+    padding-bottom: 20px;
 }
 
 .layout-container {
@@ -157,6 +159,7 @@
 .layout-content-navbar .layout-page {
     border-left: 1px solid #DBDADE;
     padding-left: 0 !important;
+    min-height: 100vh;
 }
 
 /* Auth pages Header Starts */

@@ -48,6 +48,9 @@ Route::get('/privacy-policy-management', $controller_path . '\pages\PrivacyPolic
 Route::get('/terms-management', $controller_path . '\pages\TermsManagement@index')->name('terms-management');
 Route::get('/feedback-management', $controller_path . '\pages\FeedbackManagement@index')->name('feedback-management');
 
+
+Route::get('/prodotti', $controller_path . '\pages\Prodotti@index')->name('prodotti');
+
 //Authentication required
 Route::middleware([
     'auth:sanctum',
