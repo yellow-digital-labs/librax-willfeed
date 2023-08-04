@@ -39,6 +39,10 @@
     padding-left: 25px;
 }
 
+.list-disc > li + li {
+    margin-top: 10px;
+}
+
 .list-disc > li:after {
     content: '';
     width: 14px;
@@ -47,7 +51,8 @@
     display: block;
     border-radius: 50%;
     left: 0;
-    top: 5px;
+    top: 50%;
+    transform: translateY(-50%);
     position: absolute;
 }
 
@@ -286,7 +291,7 @@
 /* Signup Wizard page Ends */
 /* Profile Page CSS Starts */
 .about-iconlist {
-    
+
 }
 
 .about-iconlist__item {
