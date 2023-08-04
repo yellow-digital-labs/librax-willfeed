@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'wf-icon';
-  src:  url('fonts/wf-icon.eot?rbycex');
-  src:  url('fonts/wf-icon.eot?rbycex#iefix') format('embedded-opentype'),
-    url('fonts/wf-icon.ttf?rbycex') format('truetype'),
-    url('fonts/wf-icon.woff?rbycex') format('woff'),
-    url('fonts/wf-icon.svg?rbycex#wf-icon') format('svg');
+  src:  url('fonts/wf-icon.eot?b60sne');
+  src:  url('fonts/wf-icon.eot?b60sne#iefix') format('embedded-opentype'),
+    url('fonts/wf-icon.ttf?b60sne') format('truetype'),
+    url('fonts/wf-icon.woff?b60sne') format('woff'),
+    url('fonts/wf-icon.svg?b60sne#wf-icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -108,4 +108,25 @@
 }
 .wf-icon-location:before {
   content: "\e918";
+}
+.wf-icon-check:before {
+  content: "\e919";
+}
+.wf-icon-crown:before {
+  content: "\e91a";
+}
+.wf-icon-file-text1:before {
+  content: "\e91b";
+}
+.wf-icon-mail:before {
+  content: "\e91c";
+}
+.wf-icon-phone-call1:before {
+  content: "\e91d";
+}
+.wf-icon-User-Info:before {
+  content: "\e91e";
+}
+.wf-icon-calendar:before {
+  content: "\e91f";
 }

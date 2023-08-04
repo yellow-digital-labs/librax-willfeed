@@ -286,6 +286,7 @@
 /* Signup Wizard page Ends */
 /* Profile Page CSS Starts */
 .about-iconlist {
+    
 }
 
 .about-iconlist__item {
@@ -296,9 +297,10 @@
 .about-iconlist__icon {
     position: absolute;
     left: 0;
-    top: 0px;
+    top: 50%;
+    transform: translateY(-50%);
     color: #000;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1;
 }
 
@@ -310,6 +312,7 @@
     color: #000;
     font-size: 15px;
     margin-right: 5px;
+    font-weight: 500;
 }
 
 /* Profile Page CSS Ends */

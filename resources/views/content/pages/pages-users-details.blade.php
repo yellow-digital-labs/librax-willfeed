@@ -11,83 +11,82 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('content')
-<h4>Profilo</h4>
 <div class="row">
     <!-- User Sidebar -->
     <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
-        <!-- User Card -->
+        
+        <h1 class="h3 text-black mb-4">Profilo</h4>
+        
         <div class="card mb-4">
             <div class="card-body">
                 <div class="user-avatar-section">
                     <div class=" d-flex align-items-center flex-column">
                         <img class="img-fluid rounded mb-3 pt-1 mt-4" src="{{ asset('assets/img/avatars/15.png') }}" height="100" width="100" alt="User avatar" />
                         <div class="user-info text-center">
-                            <h4 class="mb-2">Violet Mendoza</h4>
-                            <span class="badge bg-label-secondary mt-1">Author</span>
+                            <h4 class="text-black mt-3">Italia Trasporti</h4>
                         </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-around flex-wrap mt-3 pt-3 pb-4 border-bottom">
-                    <div class="d-flex align-items-start me-4 mt-3 gap-2">
-                        <span class="badge bg-label-primary p-2 rounded"><i class='ti ti-checkbox ti-sm'></i></span>
+                <div class="d-flex justify-content-around flex-wrap  pb-4 border-bottom">
+                    <div class="d-flex align-items-start me-4 mt-1 gap-2">
+                        <i class='wf-icon-location ti-sm text-black'></i>
                         <div>
-                            <p class="mb-0 fw-semibold">1.23k</p>
-                            <small>Tasks Done</small>
+                            Napoli
                         </div>
                     </div>
-                    <div class="d-flex align-items-start mt-3 gap-2">
-                        <span class="badge bg-label-primary p-2 rounded"><i class='ti ti-briefcase ti-sm'></i></span>
+                    <div class="d-flex align-items-start mt-1 gap-2">
+                        <i class='wf-icon-calendar ti-sm text-black'></i>
                         <div>
-                            <p class="mb-0 fw-semibold">568</p>
-                            <small>Projects Done</small>
+                            Da Marzo 2023
                         </div>
                     </div>
                 </div>
-                <p class="mt-4 small text-uppercase text-muted">Details</p>
-                <div class="info-container">
-                    <ul class="list-unstyled">
-                        <li class="mb-2">
-                            <span class="fw-semibold me-1">Username:</span>
-                            <span>violet.dev</span>
-                        </li>
-                        <li class="mb-2 pt-1">
-                            <span class="fw-semibold me-1">Email:</span>
-                            <span>vafgot@vultukir.org</span>
-                        </li>
-                        <li class="mb-2 pt-1">
-                            <span class="fw-semibold me-1">Status:</span>
-                            <span class="badge bg-label-success">Active</span>
-                        </li>
-                        <li class="mb-2 pt-1">
-                            <span class="fw-semibold me-1">Role:</span>
-                            <span>Author</span>
-                        </li>
-                        <li class="mb-2 pt-1">
-                            <span class="fw-semibold me-1">Tax id:</span>
-                            <span>Tax-8965</span>
-                        </li>
-                        <li class="mb-2 pt-1">
-                            <span class="fw-semibold me-1">Contact:</span>
-                            <span>(123) 456-7890</span>
-                        </li>
-                        <li class="mb-2 pt-1">
-                            <span class="fw-semibold me-1">Languages:</span>
-                            <span>French</span>
-                        </li>
-                        <li class="pt-1">
-                            <span class="fw-semibold me-1">Country:</span>
-                            <span>England</span>
-                        </li>
-                    </ul>
-                    <div class="d-flex justify-content-center">
-                        <a href="javascript:;" class="btn btn-primary me-3" data-bs-target="#editUser" data-bs-toggle="modal">Edit</a>
-                        <a href="javascript:;" class="btn btn-label-danger suspend-user">Suspended</a>
+                <div class="px-3">
+                    <p class="mt-4 text-uppercase text-black fw-semibold">ABOUT</p>
+                    <div class="info-container">
+                        <ul class="list-unstyled about-iconlist">
+                            <li class="about-iconlist__item">
+                                <span class="about-iconlist__icon wf-icon-user"></span>
+                                <span class="about-iconlist__name">Ragione sociale:</span>
+                                <span class="about-iconlist__val">John Doe</span>
+                            </li>
+                            <li class="about-iconlist__item">
+                                <span class="about-iconlist__icon wf-icon-location"></span>
+                                <span class="about-iconlist__name">Sede:</span>
+                                <span class="about-iconlist__val">Via Francesco Del Giudice 41, Fibbiana</span>
+                            </li>
+                            <li class="about-iconlist__item">
+                                <span class="about-iconlist__icon wf-icon-check"></span>
+                                <span class="about-iconlist__name">Status:</span>
+                                <span class="about-iconlist__val">Active</span>
+                            </li>
+                            <li class="about-iconlist__item">
+                                <span class="about-iconlist__icon wf-icon-crown"></span>
+                                <span class="about-iconlist__name">Role:</span>
+                                <span class="about-iconlist__val">Deposito diretto</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="mt-4 text-uppercase text-black fw-semibold">CONTATTI</p>
+                    <div class="info-container">
+                        <ul class="list-unstyled about-iconlist">
+                            <li class="about-iconlist__item">
+                            <li class="about-iconlist__item">
+                                <span class="about-iconlist__icon wf-icon-phone-call1"></span>
+                                <span class="about-iconlist__name">Cellulare:</span>
+                                <span class="about-iconlist__val">333 565 7677</span>
+                            </li>
+                            <li class="about-iconlist__item">
+                                <span class="about-iconlist__icon wf-icon-mail"></span>
+                                <span class="about-iconlist__name">Pec:</span>
+                                <span class="about-iconlist__val">italiatrasporti@pec.it</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /User Card -->
-        <!-- Plan Card -->
+
         <div class="card mb-4">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start">
@@ -116,10 +115,9 @@ $configData = Helper::appClasses();
                 </div>
             </div>
         </div>
-        <!-- /Plan Card -->
+
     </div>
-    <!--/ User Sidebar -->
-    <!-- User Content -->
+
     <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
         <!-- User Pills -->
         <ul class="nav nav-pills flex-column flex-md-row mb-4">
@@ -130,6 +128,162 @@ $configData = Helper::appClasses();
             <li class="nav-item"><a class="nav-link" href="{{url('app/user/view/connections')}}"><i class="ti ti-link ti-xs me-1"></i>Connections</a></li>
         </ul>
         <!--/ User Pills -->
+
+        <div class="card">
+            <div class="card-header border-bottom">
+                <h4 class="text-black m-0">Anagrafica</h4>
+            </div>
+            <div class="card-body pt-4">
+                <div class="row g-4">
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Ragione sociale</h6>
+                        <p class="mb-0">Italia Trasporti S.p.A.</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Partita IVA</h6>
+                        <p class="mb-0">183293203023</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Cellulare referente</h6>
+                        <p class="mb-0"><span class="text-black">+39</span> 2526965</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">PEC</h6>
+                        <p class="mb-0">italiatrasporti@pec.it</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Codice fiscale</h6>
+                        <p class="mb-0">SYBWD878JSK9DSM9</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Nominativo Amministratore</h6>
+                        <p class="mb-0">Mario Rossi</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Attività principale </h6>
+                        <p class="mb-0">Deposito diretto Raffineria</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Indirizzo</h6>
+                        <p class="mb-0">Via Battisti</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Numero civico</h6>
+                        <p class="mb-0">23</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Comune</h6>
+                        <p class="mb-0">Napoli</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Provincia</h6>
+                        <p class="mb-0">NA</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">CAP</h6>
+                        <p class="mb-0">80020</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header border-bottom">
+                <h4 class="text-black m-0">Operatività</h4>
+            </div>
+            <div class="card-body pt-4">
+                <div class="row g-4">
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Capacità di stoccaggio</h6>
+                        <p class="mb-0">Motrice a 2 assi</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Limiti di capacità ordini</h6>
+                        <p class="mb-0">1.000 - 18.000</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Prodotti disponibili</h6>
+                        <p class="mb-0">Gasolio, Adblue</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Copertura geografica regioni</h6>
+                        <p class="mb-0">Campania</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Copertura geografica province</h6>
+                        <p class="mb-0">NA, CE</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Tempo limite ordine giornaliero</h6>
+                        <p class="mb-0">11:00</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">CAP</h6>
+                        <p class="mb-0">80020</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">CAP</h6>
+                        <p class="mb-0">80020</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">CAP</h6>
+                        <p class="mb-0">80020</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header border-bottom">
+                <h4 class="text-black m-0">Fatturazione</h4>
+            </div>
+            <div class="card-body pt-4">
+                <div class="row g-4">
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Bonifico Bancario</h6>
+                        <p class="mb-0">IBAN: IT17128739239820398832 <br>
+                        Banca: Intesa San Paolo</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">Assegno Bancario</h6>
+                        <p class="mb-0">Italia Trasporti S.p.A.</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">RIBA</h6>
+                        <p class="mb-0">Si</p>
+                    </div>
+
+                    <div class="col-sm-6 col-12">
+                        <h6 class="text-black mb-2">RID</h6>
+                        <p class="mb-0">Si</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         
     </div>
     <!--/ User Content -->
