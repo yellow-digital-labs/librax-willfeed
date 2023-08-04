@@ -89,10 +89,6 @@
     padding-top: 100px;
 }
 
-.layout-menu {
-    padding-top: 115px;
-}
-
 .bg-menu-theme.menu-vertical .menu-item.active > .menu-link:not(.menu-toggle) {
     background: #000;
     box-shadow: unset;
@@ -144,6 +140,23 @@
 
 .layout-menu-toggle .nav-link {
     font-size: 28px;
+}
+
+.layout-menu-fixed .layout-menu {
+    padding-top: 0;
+    position: sticky;
+    top: 100px;
+    box-shadow: unset;
+}
+
+.layout-container {
+    align-items: flex-start;
+    border-bottom: 1px solid #DBDADE;
+}
+
+.layout-content-navbar .layout-page {
+    border-left: 1px solid #DBDADE;
+    padding-left: 0 !important;
 }
 
 /* Auth pages Header Starts */

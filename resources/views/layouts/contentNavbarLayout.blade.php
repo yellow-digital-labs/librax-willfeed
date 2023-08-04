@@ -71,18 +71,15 @@ $container = ($container ?? 'container-xxl');
 
           </div>
           <!-- / Content -->
-
-          <!-- Footer -->
-          @if ($isFooter)
-          @include('layouts/sections/footer/footer')
-          @endif
-          <!-- / Footer -->
           <div class="content-backdrop fade"></div>
         </div>
         <!--/ Content wrapper -->
       </div>
       <!-- / Layout page -->
     </div>
+
+
+
 
     @if ($isMenu)
     <!-- Overlay -->
@@ -92,4 +89,9 @@ $container = ($container ?? 'container-xxl');
     <div class="drag-target"></div>
   </div>
   <!-- / Layout wrapper -->
+    <!-- Footer -->
+    @if ($isFooter)
+        @include('layouts/sections/footer/footer')
+    @endif
+    <!-- / Footer -->
   @endsection
