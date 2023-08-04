@@ -13,9 +13,16 @@ return new class extends Migration
     {
         Schema::create('product_seller_inventory_histories', function (Blueprint $table) {
             $table->id();
+            $table->integer('product_sellers_id')->index();
+            $table->integer('seller_id')->index();
+            $table->integer('product_id')->index();
+            $table->float('qty', 8, 2);
+            $table->string('note')->nullable();
             $table->timestamps();
             $table->string('created_by', 50)->nullable();
             $table->string('updated_by', 50)->nullable();
+
+            $table->index(['created_at']);
         });
     }
 

@@ -17,6 +17,7 @@ $customizerHidden = 'customizer-hide';
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
 @endsection
 @section('page-script')
 <script src="{{asset('assets/js/pages-auth.js')}}"></script>
@@ -42,13 +43,15 @@ $customizerHidden = 'customizer-hide';
                     <h4 class="mb-1 pt-2 text-center singup__title">Crea il tuo account <img src="/assets/img/icons/handshake.png" width="20" height="20"></h4>
                     <p class="mb-5 text-center singup__text">Inizia ad usare la piattaforma Willfeed in un lampo</p>
 
-                    <form id="formAuthentication" class="mb-3 singup__form" action="{{url('/')}}" method="POST">
-
+                    <form id="formAuthentication" class="mb-3 singup__form" action="{{ route('register') }}" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label for="account-type" class="form-label">Tipo Account</label>
-                            <select class="form-select" id="account-type" name="accountType">
+                            <select class="form-select select2" id="account-type" name="accountType">
                                 <option value="" selected>Please select</option>
-                                <option value="Cliente">Cliente</option>
+                            @foreach($accountType as $_accountType)
+                                <option value="{{$_accountType->id}}">{{$_accountType->name}}</option>
+                            @endforeach
                             </select>
                         </div>
 

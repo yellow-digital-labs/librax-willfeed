@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('main_activities', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100)->unique();
+            $table->string('name', 100)->unique()->index();
             $table->timestamps();
             $table->string('created_by', 50)->nullable();
             $table->string('updated_by', 50)->nullable();
 
-            $table->index(['created_at', 'name']);
+            $table->index(['created_at']);
         });
     }
 

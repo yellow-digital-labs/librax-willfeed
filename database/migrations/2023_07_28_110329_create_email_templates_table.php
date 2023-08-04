@@ -13,9 +13,15 @@ return new class extends Migration
     {
         Schema::create('email_templates', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->string('slug')->unique()->index();
+            $table->text('html');
+            $table->text('tags')->nullable();
             $table->timestamps();
             $table->string('created_by', 50)->nullable();
             $table->string('updated_by', 50)->nullable();
+
+            $table->index(['created_at']);
         });
     }
 

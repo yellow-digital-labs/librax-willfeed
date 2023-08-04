@@ -11,6 +11,13 @@ document.addEventListener('DOMContentLoaded', function (e) {
     if (formAuthentication) {
       const fv = FormValidation.formValidation(formAuthentication, {
         fields: {
+          accountType: {
+            validators: {
+              notEmpty: {
+                message: 'Please select account type'
+              }
+            }
+          },
           username: {
             validators: {
               notEmpty: {
@@ -57,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
           'confirm-password': {
             validators: {
               notEmpty: {
-                message: 'Please confirm password'
+                message: 'Please enter confirm password'
               },
               identical: {
                 compare: function () {

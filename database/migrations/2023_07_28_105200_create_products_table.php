@@ -13,14 +13,17 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name')->unique()->index();
             $table->string('description')->nullable();
-            $table->enum('active', ['yes', 'no'])->default('yes');
+            $table->enum('active', ['yes', 'no'])->default('yes')->index();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_keywords')->nullable();
+            $table->string('meta_description')->nullable();
             $table->timestamps();
             $table->string('created_by', 50)->nullable();
             $table->string('updated_by', 50)->nullable();
             
-            $table->index(['active', 'created_at', 'name']);
+            $table->index(['created_at']);
         });
     }
 

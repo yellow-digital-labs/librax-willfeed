@@ -13,9 +13,20 @@ return new class extends Migration
     {
         Schema::create('product_sellers', function (Blueprint $table) {
             $table->id();
+            $table->integer('seller_id')->index();
+            $table->string('seller_name');
+            $table->integer('product_id')->index();
+            $table->string('product_name');
+            $table->float('amount_before_tax', 8, 2);
+            $table->float('tax', 8, 2);
+            $table->float('amount', 8, 2);
+            $table->float('current_stock', 8, 2);
+            $table->enum('status', ['active', 'inactive'])->default('active')->index();
             $table->timestamps();
             $table->string('created_by', 50)->nullable();
             $table->string('updated_by', 50)->nullable();
+
+            $table->index(['created_at']);
         });
     }
 

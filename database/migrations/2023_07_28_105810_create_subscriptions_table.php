@@ -13,9 +13,15 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique()->index();
+            $table->float('amount', 8, 2);
+            $table->text('description');
+            $table->enum('status', ['active', 'inactive'])->default('active')->index();
             $table->timestamps();
             $table->string('created_by', 50)->nullable();
             $table->string('updated_by', 50)->nullable();
+
+            $table->index(['created_at']);
         });
     }
 

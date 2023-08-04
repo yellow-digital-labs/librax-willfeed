@@ -13,9 +13,17 @@ return new class extends Migration
     {
         Schema::create('order_payments', function (Blueprint $table) {
             $table->id();
+            $table->integer('order_id')->index();
+            $table->integer('user_id')->index();
+            $table->float('payment_amount', 8, 2);
+            $table->string('description')->nullable();
+            $table->integer('payment_type_id')->index();
+            $table->string('payment_type_name')->nullable();
             $table->timestamps();
             $table->string('created_by', 50)->nullable();
             $table->string('updated_by', 50)->nullable();
+
+            $table->index(['created_at']);
         });
     }
 

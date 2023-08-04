@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('consume_capacities', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique()->index();
             $table->timestamps();
             $table->string('created_by', 50)->nullable();
             $table->string('updated_by', 50)->nullable();
+
+            $table->index(['created_at']);
         });
     }
 
