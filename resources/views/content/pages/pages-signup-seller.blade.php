@@ -88,87 +88,83 @@ $configData = Helper::appClasses();
                             <div class="row g-3">
 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Ragione sociale *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci ragione sociale" />
+                                    <label class="form-label" for="business_name">Ragione sociale *</label>
+                                    <input type="text" name="business_name" id="business_name" class="form-control" placeholder="Inserisci ragione sociale" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Partita IVA *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci numero di partita IVA" />
+                                    <label class="form-label" for="vat_number">Partita IVA *</label>
+                                    <input type="text" name="vat_number" id="vat_number" class="form-control" placeholder="Inserisci numero di partita IVA" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Cellulare referente *</label>
+                                    <label class="form-label" for="contact_person">Cellulare referente *</label>
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text" id="basic-addon-search31">+39 </span>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="contact_person" id="contact_person">
                                     </div>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">PEC *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="latuaemail@pec.it" />
+                                    <label class="form-label" for="pec">PEC *</label>
+                                    <input type="text" name="pec" id="pec" class="form-control" placeholder="latuaemail@pec.it" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Codice fiscale *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci il codice fiscale" />
+                                    <label class="form-label" for="tax_id_code">Codice fiscale *</label>
+                                    <input type="text" name="tax_id_code" id="tax_id_code" class="form-control" placeholder="Inserisci il codice fiscale" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Nominativo Amministratore *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Mario Rossi" />
+                                    <label class="form-label" for="administrator_name">Nominativo amministratore *</label>
+                                    <input type="text" name="administrator_name" id="administrator_name" class="form-control" placeholder="Mario Rossi" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Attività principale *</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona attività principale</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="main_activity_ids">Attività principale *</label>
+                                    <select name="main_activity_ids" id="main_activity_ids" class="form-select select2" placeholder="Seleziona attività principale" multiple>
+                                    @foreach($main_activity as $_main_activity)
+                                        <option value="{{$_main_activity->name}}">{{$_main_activity->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Indirizzo *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Via Battisti " />
+                                    <label class="form-label" for="address">Indirizzo *</label>
+                                    <input type="text" name="address" id="address" class="form-control" placeholder="Via Battisti " />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Numero civico *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci il numero civico" />
+                                    <label class="form-label" for="house_no">Numero civico *</label>
+                                    <input type="text" name="house_no" id="house_no" class="form-control" placeholder="Inserisci il numero civico" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Comune *</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona comune</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="common">Comune *</label>
+                                    <select name="common" id="common" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                    @foreach($common as $_common)
+                                        <option value="{{$_common->name}}">{{$_common->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Provincia *</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona provincia</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="province">Provincia *</label>
+                                    <select name="province" id="province" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                    @foreach($province as $_province)
+                                        <option value="{{$_province->name}}">{{$_province->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">CAP *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci il CAP" />
+                                    <label class="form-label" for="pincode">CAP *</label>
+                                    <input type="text" name="pincode" id="pincode" class="form-control" placeholder="Inserisci il CAP" />
                                 </div>
 
                                 <div class="col-12 d-flex justify-content-end mt-4">
-                                    <!-- <button class="btn btn-label-secondary btn-prev" disabled> <i class="ti ti-arrow-left ti-xs me-sm-1 me-0"></i>
-                                        <span class="align-middle d-sm-inline-block d-none">Indietro</span>
-                                    </button> -->
                                     <button class="btn btn-dark btn-next"> <span class="align-middle d-sm-inline-block d-none me-sm-1 me-0">Avanti</span> <i class="ti ti-arrow-right ti-xs"></i></button>
                                 </div>
                             </div>
@@ -182,63 +178,58 @@ $configData = Helper::appClasses();
                             <div class="row g-3">
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Capacità di stoccaggio *</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona facilità di accesso</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="storage_capacity">Capacità di stoccaggio *</label>
+                                    <select name="storage_capacity" id="storage_capacity" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                    <option value="">Seleziona facilità di accesso</option>
+                                    @foreach($storage_capacity as $_storage_capacity)
+                                        <option value="{{$_storage_capacity->name}}">{{$_storage_capacity->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Limiti di capacità ordini *</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona i limiti</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="order_capacity_limits">Limiti di capacità ordini *</label>
+                                    <select name="order_capacity_limits" id="order_capacity_limits" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value="">Seleziona i limiti</option>
+                                    @foreach($order_capacity as $_order_capacity)
+                                        <option value="{{$_order_capacity->name}}">{{$_order_capacity->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Prodotti disponibili *</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona prodotti </option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="available_products">Prodotti disponibili *</label>
+                                    <select name="available_products" id="available_products" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
+                                        <option value="">Seleziona prodotti</option>
+                                    @foreach($product as $_product)
+                                        <option value="{{$_product->name}}">{{$_product->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Copertura geografica regioni</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona le regioni coperte</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="geographical_coverage_regions">Copertura geografica regioni *</label>
+                                    <select name="geographical_coverage_regions" id="geographical_coverage_regions" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value="">Seleziona le regioni coperte</option>
+                                    @foreach($region as $_region)
+                                        <option value="{{$_region->name}}">{{$_region->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Copertura geografica province</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona prodotti </option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="geographical_coverage_provinces">Copertura geografica province *</label>
+                                    <select name="geographical_coverage_provinces" id="geographical_coverage_provinces" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value="">Seleziona prodotti </option>
+                                    @foreach($province as $_province)
+                                        <option value="{{$_province->name}}">{{$_province->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Tempo limite ordine giornaliero</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona limite</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
+                                    <label class="form-label" for="time_limit_daily_order">Tempo limite ordine giornaliero *</label>
+                                    <input type="time" name="time_limit_daily_order" id="time_limit_daily_order" class="form-control" placeholder="Seleziona limite" />
                                 </div>
 
                                 <div class="col-12 d-flex justify-content-between mt-4">
@@ -259,17 +250,17 @@ $configData = Helper::appClasses();
                             <div class="row g-3">
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Bonifico Bancario *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="IBAN" />
+                                    <label class="form-label" for="bank_transfer">Bonifico bancario *</label>
+                                    <input type="text" name="bank_transfer" id="bank_transfer" class="form-control" placeholder="IBAN" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Assegno Bancario *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Intestazione assegno" />
+                                    <label class="form-label" for="bank_check">Assegno bancario *</label>
+                                    <input type="text" name="bank_check" id="bank_check" class="form-control" placeholder="Intestazione assegno" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <input type="text" name="" id="" class="form-control" placeholder="Banca" />
+                                    <input type="text" name="bank" id="bank" class="form-control" placeholder="Banca" />
                                 </div>
                             </div>
 
@@ -280,10 +271,24 @@ $configData = Helper::appClasses();
                                     <label class="form-label" for="">RIBA *</label>
                                     <div class="row g-3">
                                         <div class="col-sm-6">
-                                            <input type="text" name="" id="" class="form-control" placeholder="Si" />
+                                            <div class="form-check custom-option custom-option-basic checked">
+                                                <label class="form-check-label custom-option-content" for="rib-si">
+                                                  <input name="rib" class="form-check-input" type="radio" value="Si" id="rib-si" checked="">
+                                                  <span class="custom-option-header">
+                                                    <span class="h6 mb-0">Si</span>
+                                                  </span>
+                                                </label>
+                                            </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" name="" id="" class="form-control" placeholder="No" />
+                                            <div class="form-check custom-option custom-option-basic">
+                                                <label class="form-check-label custom-option-content" for="rib-no">
+                                                  <input name="rib" class="form-check-input" type="radio" value="No" id="rib-no">
+                                                  <span class="custom-option-header">
+                                                    <span class="h6 mb-0">No</span>
+                                                  </span>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -292,10 +297,24 @@ $configData = Helper::appClasses();
                                     <label class="form-label" for="">RID *</label>
                                     <div class="row g-3">
                                         <div class="col-sm-6">
-                                            <input type="text" name="" id="" class="form-control" placeholder="Si" />
+                                            <div class="form-check custom-option custom-option-basic checked">
+                                                <label class="form-check-label custom-option-content" for="rid-si">
+                                                  <input name="rid" class="form-check-input" type="radio" value="Si" id="rid-si" checked="">
+                                                  <span class="custom-option-header">
+                                                    <span class="h6 mb-0">Si</span>
+                                                  </span>
+                                                </label>
+                                            </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" name="" id="" class="form-control" placeholder="No" />
+                                            <div class="form-check custom-option custom-option-basic">
+                                                <label class="form-check-label custom-option-content" for="rid-no">
+                                                  <input name="rid" class="form-check-input" type="radio" value="No" id="rid-no">
+                                                  <span class="custom-option-header">
+                                                    <span class="h6 mb-0">No</span>
+                                                  </span>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

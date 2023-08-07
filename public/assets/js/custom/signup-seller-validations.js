@@ -14,7 +14,7 @@ $(function() {
             var $this = $(this);
             $this.wrap('<div class="position-relative"></div>');
             $this.select2({
-                placeholder: 'Select an country',
+                placeholder: 'Seleziona attività principale',
                 dropdownParent: $this.parent()
             });
         });
@@ -44,13 +44,90 @@ document.addEventListener('DOMContentLoaded', function(e) {
             // Registry details
             const multiSteps1 = FormValidation.formValidation(stepsValidationFormStep1, {
                 fields: {
-                    multiStepsUsername: {
+                    business_name: {
                         validators: {
                             notEmpty: {
-                                message: 'Please enter username'
+                                message: 'Please enter ragione sociale'
                             }
                         }
-                    }
+                    },
+                    vat_number: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter partita IVA'
+                            }
+                        }
+                    },
+                    contact_person: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter cellulare referente'
+                            }
+                        }
+                    },
+                    pec: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter PEC'
+                            }
+                        }
+                    },
+                    tax_id_code: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter codice fiscale'
+                            }
+                        }
+                    },
+                    administrator_name: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter nominativo amministratore'
+                            }
+                        }
+                    },
+                    main_activity_ids: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter attività principale'
+                            }
+                        }
+                    },
+                    address: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter indirizzo'
+                            }
+                        }
+                    },
+                    house_no: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter numero civico'
+                            }
+                        }
+                    },
+                    common: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter comune'
+                            }
+                        }
+                    },
+                    province: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter provincia'
+                            }
+                        }
+                    },
+                    pincode: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter CAP'
+                            }
+                        }
+                    },
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
@@ -78,10 +155,45 @@ document.addEventListener('DOMContentLoaded', function(e) {
             // Destination details
             const multiSteps2 = FormValidation.formValidation(stepsValidationFormStep2, {
                 fields: {
-                    multiStepsUsername: {
+                    storage_capacity: {
                         validators: {
                             notEmpty: {
-                                message: 'Please enter username'
+                                message: 'Please enter capacità di stoccaggio'
+                            }
+                        }
+                    },
+                    order_capacity_limits: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter limiti di capacità ordini'
+                            }
+                        }
+                    },
+                    available_products: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter prodotti disponibili'
+                            }
+                        }
+                    },
+                    geographical_coverage_regions: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter copertura geografica regioni'
+                            }
+                        }
+                    },
+                    geographical_coverage_provinces: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter copertura geografica province'
+                            }
+                        }
+                    },
+                    time_limit_daily_order: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter tempo limite ordine giornaliero'
                             }
                         }
                     }
@@ -112,10 +224,31 @@ document.addEventListener('DOMContentLoaded', function(e) {
             // Billing details
             const multiSteps3 = FormValidation.formValidation(stepsValidationFormStep3, {
                 fields: {
-                    multiStepsUsername: {
+                    bank_transfer: {
                         validators: {
                             notEmpty: {
-                                message: 'Please enter username'
+                                message: 'Please enter bonifico bancario'
+                            }
+                        }
+                    },
+                    bank_check: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter assegno bancario'
+                            }
+                        }
+                    },
+                    rib: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter RIBA'
+                            }
+                        }
+                    },
+                    rid: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter RID'
                             }
                         }
                     }
@@ -140,6 +273,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                 }
             }).on('core.form.valid', function() {
                 // Jump to the next step when all fields in the current step are valid
+                console.log("submit form");
                 validationStepper.next();
             });
 
