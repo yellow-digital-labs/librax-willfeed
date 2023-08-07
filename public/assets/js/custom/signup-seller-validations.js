@@ -274,6 +274,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
             }).on('core.form.valid', function() {
                 // Jump to the next step when all fields in the current step are valid
                 console.log("submit form");
+                stepsValidationForm.submit();
                 validationStepper.next();
             });
 

@@ -79,7 +79,8 @@ $configData = Helper::appClasses();
                 </div>
 
                 <div class="bs-stepper-content signup-wiz__body">
-                    <form id="multiStepsForm" onsubmit="return false" class="signup-wiz__form">
+                    <form id="multiStepsForm" onsubmit="return false" class="signup-wiz__form" method="POST">
+                        @csrf
                         <!-- Registry -->
                         <div id="SignupStepRegistry" class="content active dstepper-block fv-plugins-bootstrap5 fv-plugins-framework">
                             <div class="content-header mb-4">
