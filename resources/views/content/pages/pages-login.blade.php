@@ -63,7 +63,7 @@ $customizerHidden = 'customizer-hide';
                         </div>
 
                         <button class="btn btn-dark d-grid w-100">
-                            Crea Account
+                            Accedi all'account
                         </button>
                     </form>
 
@@ -74,7 +74,7 @@ $customizerHidden = 'customizer-hide';
             <div class="singup__footer">
                 <p class="text-center">
                     <span>Hai già un account?</span>
-                    <a href="#">
+                    <a href="{{route('signup')}}">
                         <span>Entra</span>
                     </a>
                 </p>

@@ -654,7 +654,7 @@ $configData = Helper::appClasses();
             </div>
 
             <div class="signup-wiz__footer">
-                <p>Hai già un account? <a href="#">Entra</a></p>    
+                <p>Hai già un account? <a href="{{route('signup')}}">Entra</a></p>    
             </div>
 
         </div>

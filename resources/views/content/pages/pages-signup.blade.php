@@ -30,6 +30,16 @@ $customizerHidden = 'customizer-hide';
     </a>
 </header>
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="container-xxl singup">
     <div class="authentication-wrapper container-p-y singup__wrapper">
         <div class="authentication-inner py-4 singup__inner">
@@ -46,7 +56,7 @@ $customizerHidden = 'customizer-hide';
                     <form id="formAuthentication" class="mb-3 singup__form" action="{{ route('register') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="account-type" class="form-label">Tipo Account</label>
+                            <label for="account-type" class="form-label" for="account-type">Tipo Account</label>
                             <select class="form-select select2" id="account-type" name="accountType">
                                 <option value="" selected>Please select</option>
                             @foreach($accountType as $_accountType)
@@ -82,7 +92,7 @@ $customizerHidden = 'customizer-hide';
             <div class="singup__footer">
                 <p class="text-center">
                     <span>Hai già un account?</span>
-                    <a href="#">
+                    <a href="{{route('login')}}">
                         <span>Entra</span>
                     </a>
                 </p>
