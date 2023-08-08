@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('commons', function (Blueprint $table) {
             $table->id();
+            $table->integer('provinces_id')->index();
             $table->string('name')->nullable();
             $table->timestamps();
             $table->string('created_by', 50)->nullable();
