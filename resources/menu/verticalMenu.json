@@ -4,137 +4,56 @@
         "url": "/",
         "name": "Dashboard",
         "icon": "menu-icon tf-icons ti ti-smart-home",
-        "slug": "pages-home"
+        "slug": "pages-home",
+        "section": ["seller"]
     },
     {
-        "url": "unverified-users",
-        "name": "Unverified Users",
+        "url": "/profile",
+        "name": "Profilo",
         "icon": "menu-icon tf-icons ti ti-user-exclamation",
-        "slug": "pages-unverified-users",
-        "submenu": [
-            {
-                "url": "users-details",
-                "name": "User Details",
-                "slug": "pages-users-details"
-            }
-        ]
+        "slug": "profile",
+        "section": ["seller"]
     },
     {
-        "url": "orders",
-        "name": "Orders",
+        "url": "/customer/approved",
+        "name": "Approved customer",
+        "icon": "menu-icon tf-icons ti ti-user-exclamation",
+        "slug": "customer-approved",
+        "section": ["seller"]
+    },
+    {
+        "url": "/orders",
+        "name": "Ordini",
         "icon": "menu-icon tf-icons ti ti-basket",
-        "slug": "pages-orders"
+        "slug": "pages-orders",
+        "section": ["seller"]
     },
     {
-        "url": "subscription-plan-management",
-        "name": "Subscription Plan Management",
-        "icon": "menu-icon tf-icons ti ti-repeat",
-        "slug": "pages-subscription-plan-management"
+        "url": "/payments",
+        "name": "Fatturazione",
+        "icon": "menu-icon tf-icons ti ti-basket",
+        "slug": "pages-payments",
+        "section": ["seller"]
     },
     {
-        "url": "reports",
-        "name": "Reports",
-        "icon": "menu-icon tf-icons ti ti-chart-bar",
-        "slug": "pages-reports"
-    },
-    {
-        "url": "email-template-management",
-        "name": "Email Template Management",
-        "icon": "menu-icon tf-icons ti ti-at",
-        "slug": "pages-email-template-management"
-    },
-    {
-        "url": "pages-management",
-        "name": "Pages Management",
-        "icon": "menu-icon tf-icons ti ti-layout-dashboard",
-        "slug": "pages-management",
-        "submenu": [
-            {
-                "url": "privacy-policy-management",
-                "name": "Privacy policy management",
-                "slug": "pages-privacy-policy-management"
-            },
-            {
-                "url": "terms-management",
-                "name": "Terms Management",
-                "slug": "pages-terms-management"
-            }
-        ]
-    },
-    {
-        "url": "feedback-management",
-        "name": "Feedback management",
-        "icon": "menu-icon tf-icons ti ti-quote",
-        "slug": "pages-feedback-management"
-    },
-    {
-        "url": "pages/misc-error",
-        "name": "Error",
-        "icon": "menu-icon tf-icons ti ti-alert-triangle",
-        "slug": "pages-misc-error",
-        "target": "_blank"
-    },
-    {
-        "url": "auth/login-basic",
-        "name": "Login",
-        "icon": "menu-icon tf-icons ti ti-login",
-        "slug": "auth-login-basic",
-        "target": "_blank"
-    },
-    {
-        "url": "auth/register-basic",
-        "name": "Register",
-        "icon": "menu-icon tf-icons ti ti-user",
-        "slug": "auth-register-basic",
-        "target": "_blank"
-    },
-    {
-        "url": "signup",
-        "name": "Auth Pages",
-        "icon": "menu-icon tf-icons ti ti-layout-dashboard",
-        "slug": "signup",
-        "submenu": [
-            {
-                "url": "signup",
-                "name": "Sign Up",
-                "slug": "pages-signup"
-            },
-            {
-                "url": "signup/client",
-                "name": "Sign Up Client",
-                "slug": "pages-signup-client"
-            },
-            {
-                "url": "signup/seller",
-                "name": "Sign Up Seller",
-                "slug": "pages-signup-seller"
-            },
-            {
-                "url": "login",
-                "name": "Login",
-                "slug": "pages-login"
-            },
-            {
-                "url": "forget-password",
-                "name": "Forget Password",
-                "slug": "pages-forget-password"
-            },
-            {
-                "url": "reset-password",
-                "name": "Reset Password",
-                "slug": "pages-reset-password"
-            },
-            {
-                "url": "verify-email",
-                "name": "Verify Email",
-                "slug": "pages-verify-email"
-            }
-        ]
-    },
-    {
-        "url": "prodotti",
+        "url": "/products",
         "name": "Prodotti",
         "icon": "menu-icon tf-icons ti ti-droplet",
-        "slug": "prodotti"
+        "slug": "products",
+        "section": ["seller"]
+    },
+    {
+        "url": "/settings",
+        "name": "Settings",
+        "icon": "menu-icon tf-icons ti ti-gear",
+        "slug": "settings",
+        "section": ["seller"]
+    },
+    {
+        "url": "logout",
+        "name": "Esci",
+        "icon": "menu-icon tf-icons ti ti-droplet",
+        "slug": "logout",
+        "section": ["seller"]
     }]
 }

@@ -29,6 +29,16 @@ $customizerHidden = 'customizer-hide';
     </a>
 </header>
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="container-xxl singup">
     <div class="authentication-wrapper container-p-y singup__wrapper">
         <div class="authentication-inner py-4 singup__inner">
@@ -42,16 +52,8 @@ $customizerHidden = 'customizer-hide';
                     <h4 class="mb-1 pt-2 text-center singup__title">Crea il tuo account <img src="/assets/img/icons/handshake.png" width="20" height="20"></h4>
                     <p class="mb-5 text-center singup__text">Inizia ad usare la piattaforma Willfeed in un lampo</p>
 
-                    <form id="formAuthentication" class="mb-3 singup__form" action="{{url('/')}}" method="POST">
-
-                        <div class="mb-3">
-                            <label for="account-type" class="form-label">Tipo Account</label>
-                            <select class="form-select" id="account-type" name="accountType">
-                                <option value="" selected>Please select</option>
-                                <option value="Cliente">Cliente</option>
-                            </select>
-                        </div>
-
+                    <form id="formAuthentication" class="mb-3 singup__form" action="{{url('/login')}}" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email">
@@ -74,7 +76,7 @@ $customizerHidden = 'customizer-hide';
             <div class="singup__footer">
                 <p class="text-center">
                     <span>Hai già un account?</span>
-                    <a href="{{route('signup')}}">
+                    <a href="{{route('register')}}">
                         <span>Entra</span>
                     </a>
                 </p>
