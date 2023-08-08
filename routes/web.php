@@ -31,19 +31,30 @@ Route::get('logout', [ App\Http\Controllers\ClientController::class, 'logout'])-
 
 //Authentication required
 Route::middleware([
+    'auth',
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
     $controller_path = 'App\Http\Controllers';
-
+    
     Route::get('/signup/client', $controller_path . '\pages\SignupClient@index')->name('signup-client');
     Route::get('/signup/seller', $controller_path . '\pages\SignupSeller@index')->name('signup-seller');
     Route::post('/signup/seller', $controller_path . '\pages\SignupSeller@store')->name('signup-seller-store');
 
-    Route::get('/dashboard', $controller_path . '\pages\Dashboard@index')->name('dashboard');
-
     Route::get('/thankyou/signup', $controller_path . '\pages\Dashboard@index')->name('thankyou-signup');
+});
+
+Route::middleware([
+    'auth',
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    'access'
+])->group(function () {
+    $controller_path = 'App\Http\Controllers';
+
+    Route::get('/dashboard', $controller_path . '\pages\Dashboard@index')->name('dashboard');
 
     //
     Route::get('/unverified-users', $controller_path . '\pages\UnverifiedUser@index')->name('unverified-users');

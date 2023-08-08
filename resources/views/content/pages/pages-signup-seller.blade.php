@@ -37,6 +37,16 @@ $configData = Helper::appClasses();
     </a>
 </header>
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="signup-wiz">
     <div class="authentication-wrapper signup-wiz__wrapper">
         <div class="authentication-inner signup-wiz__inner">
@@ -336,7 +346,7 @@ $configData = Helper::appClasses();
             </div>
 
             <div class="signup-wiz__footer">
-                <p>Hai già un account? <a href="{{route('signup')}}">Entra</a></p>    
+                <p>Hai già un account? <a href="{{route('register')}}">Entra</a></p>    
             </div>
 
         </div>

@@ -19,9 +19,9 @@ class SignupSeller extends Controller
 {
   public function index()
   {
-    $authUser = Auth::user();
+    $user = Auth::user();
 
-    $user = User::find($authUser->id);
+    // $user = User::find($authUser->id);
     if ($user->accountType != 2 || $user->profile_completed != "No") {
       //if not seller or profile already completed
       //redirect to home page
