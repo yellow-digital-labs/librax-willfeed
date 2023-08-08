@@ -1,5 +1,14 @@
 @php
 $configData = Helper::appClasses();
+$accountType = Auth::user()->accountType;
+$loggedInUserType = "";
+if($accountType=='0') {
+  $loggedInUserType = "admin";
+} elseif ($accountType=='1') {
+  $loggedInUserType = "buyer";
+} elseif ($accountType=='2') {
+  $loggedInUserType = "seller";
+}
 @endphp
 
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
@@ -45,6 +54,7 @@ $configData = Helper::appClasses();
     @endphp
 
     {{-- main menu --}}
+    @if (in_array($loggedInUserType, $menu->section))
     <li class="menu-item {{$activeClass}}">
       <a href="{{ isset($menu->url) ? url($menu->url) : 'javascript:void(0);' }}" class="{{ isset($menu->submenu) ? 'menu-link menu-toggle' : 'menu-link' }}" @if (isset($menu->target) and !empty($menu->target)) target="_blank" @endif>
         @isset($menu->icon)
@@ -62,6 +72,7 @@ $configData = Helper::appClasses();
       @include('layouts.sections.menu.submenu',['menu' => $menu->submenu])
       @endisset
     </li>
+    @endif
     @endif
     @endforeach
   </ul>

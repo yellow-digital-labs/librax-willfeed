@@ -5,7 +5,14 @@
         "name": "Dashboard",
         "icon": "menu-icon tf-icons ti ti-smart-home",
         "slug": "pages-home",
-        "section": ["seller"]
+        "section": ["seller", "admin"]
+    },
+    {
+        "url": "/customer",
+        "name": "Customer",
+        "icon": "menu-icon tf-icons ti ti-user-exclamation",
+        "slug": "customer-approved",
+        "section": ["admin"]
     },
     {
         "url": "/profile",
@@ -26,34 +33,34 @@
         "name": "Ordini",
         "icon": "menu-icon tf-icons ti ti-basket",
         "slug": "pages-orders",
-        "section": ["seller"]
+        "section": ["seller", "admin"]
     },
     {
         "url": "/payments",
         "name": "Fatturazione",
         "icon": "menu-icon tf-icons ti ti-basket",
         "slug": "pages-payments",
-        "section": ["seller"]
+        "section": ["seller", "admin"]
     },
     {
         "url": "/products",
         "name": "Prodotti",
         "icon": "menu-icon tf-icons ti ti-droplet",
         "slug": "products",
-        "section": ["seller"]
+        "section": ["seller", "admin"]
     },
     {
         "url": "/settings",
         "name": "Settings",
         "icon": "menu-icon tf-icons ti ti-gear",
         "slug": "settings",
-        "section": ["seller"]
+        "section": ["seller", "admin"]
     },
     {
         "url": "logout",
         "name": "Esci",
         "icon": "menu-icon tf-icons ti ti-droplet",
         "slug": "logout",
-        "section": ["seller"]
+        "section": ["seller", "admin"]
     }]
 }
