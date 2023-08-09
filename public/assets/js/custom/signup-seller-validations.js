@@ -194,51 +194,52 @@ document.addEventListener('DOMContentLoaded', function(e) {
             });
 
             // Destination details
-            const multiSteps2 = FormValidation.formValidation(stepsValidationFormStep2, {
-                fields: {
-                    storage_capacity: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please enter capacità di stoccaggio'
-                            }
-                        }
-                    },
-                    order_capacity_limits: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please enter limiti di capacità ordini'
-                            }
-                        }
-                    },
-                    available_products: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please enter prodotti disponibili'
-                            }
-                        }
-                    },
-                    geographical_coverage_regions: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please enter copertura geografica regioni'
-                            }
-                        }
-                    },
-                    geographical_coverage_provinces: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please enter copertura geografica province'
-                            }
-                        }
-                    },
-                    time_limit_daily_order: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please enter tempo limite ordine giornaliero'
-                            }
+            let formTwoValidationFields = {
+                storage_capacity: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter capacità di stoccaggio'
                         }
                     }
                 },
+                order_capacity_limits: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter limiti di capacità ordini'
+                        }
+                    }
+                },
+                available_products: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter prodotti disponibili'
+                        }
+                    }
+                },
+                geographical_coverage_regions: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter copertura geografica regioni'
+                        }
+                    }
+                },
+                geographical_coverage_provinces: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter copertura geografica province'
+                        }
+                    }
+                },
+                time_limit_daily_order: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter tempo limite ordine giornaliero'
+                        }
+                    }
+                }
+            };
+            const multiSteps2 = FormValidation.formValidation(stepsValidationFormStep2, {
+                fields: formTwoValidationFields,
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
                     bootstrap5: new FormValidation.plugins.Bootstrap5({
@@ -325,6 +326,20 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     switch (validationStepper._currentIndex) {
                         case 0:
                             multiSteps1.validate();
+                            let main_activity_ids = $("#main_activity_ids").find(":selected").val();
+                            delete formTwoValidationFields.order_capacity_limits;
+                            if(main_activity_ids=="Agenzia"){
+                                $(".order_capacity_limits_container").hide();
+                            } else {
+                                $(".order_capacity_limits_container").show();
+                                formTwoValidationFields["order_capacity_limits"] = {
+                                    validators: {
+                                        notEmpty: {
+                                            message: 'Please enter limiti di capacità ordini'
+                                        }
+                                    }
+                                };
+                            }
                             break;
 
                         case 1:

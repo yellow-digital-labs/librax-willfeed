@@ -134,6 +134,7 @@ $configData = Helper::appClasses();
                                 <div class="col-sm-6">
                                     <label class="form-label" for="main_activity_ids">Attività principale *</label>
                                     <select name="main_activity_ids" id="main_activity_ids" class="form-select select2" placeholder="Seleziona attività principale">
+                                        <option value=""></option>
                                     @foreach($main_activity as $_main_activity)
                                         <option value="{{$_main_activity->name}}">{{$_main_activity->name}}</option>
                                     @endforeach
@@ -208,7 +209,7 @@ $configData = Helper::appClasses();
                                     </select>
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 order_capacity_limits_container">
                                     <label class="form-label" for="order_capacity_limits">Limiti di capacità ordini *</label>
                                     <select name="order_capacity_limits" id="order_capacity_limits" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value="">Seleziona i limiti</option>
