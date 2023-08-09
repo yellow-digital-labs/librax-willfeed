@@ -17,6 +17,7 @@ $controller_path = 'App\Http\Controllers';
 
 // Main Page Route
 Route::get('/', $controller_path . '\pages\HomePage@index')->name('pages-home');
+Route::get('/approved-customer', $controller_path . '\pages\ApprovedCustomer@index')->name('pages-approved-customer');
 
 // pages
 Route::get('/pages/misc-error', $controller_path . '\pages\MiscError@index')->name('pages-misc-error');
@@ -28,6 +29,7 @@ Route::get('/forget-password', $controller_path . '\pages\ForgetPassword@index')
 Route::get('/reset-password', $controller_path . '\pages\ResetPassword@index')->name('reset-password');
 Route::get('/verify-email', $controller_path . '\pages\VerifyEmail@index')->name('verify-email');
 Route::get('logout', [ App\Http\Controllers\ClientController::class, 'logout'])->name('logout');
+
 
 //Authentication required
 Route::middleware([
