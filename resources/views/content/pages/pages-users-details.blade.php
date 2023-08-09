@@ -48,7 +48,7 @@ $configData = Helper::appClasses();
                     <div class=" d-flex align-items-center flex-column">
                         <img class="img-fluid rounded mb-3 pt-1 mt-4" src="{{ asset('assets/img/81160511660785db8768a15358306893.jpg') }}" height="100" width="100" alt="User avatar" />
                         <div class="user-info text-center">
-                            <h4 class="text-black mt-3">Italia Trasporti</h4>
+                            <h4 class="text-black mt-3">{{$user_detail->business_name}}</h4>
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@ $configData = Helper::appClasses();
                     <div class="d-flex align-items-start mt-1 gap-2">
                         <i class='wf-icon-calendar ti-sm text-black'></i>
                         <div>
-                            Da Marzo 2023
+                            Da {{$user->created_at}}
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@ $configData = Helper::appClasses();
                             <li class="about-iconlist__item">
                                 <span class="about-iconlist__icon wf-icon-user"></span>
                                 <span class="about-iconlist__name">Ragione sociale:</span>
-                                <span class="about-iconlist__val">John Doe</span>
+                                <span class="about-iconlist__val">{{$user_detail->administrator_name}}</span>
                             </li>
                             <li class="about-iconlist__item">
                                 <span class="about-iconlist__icon wf-icon-location"></span>
@@ -99,37 +99,18 @@ $configData = Helper::appClasses();
                             <li class="about-iconlist__item">
                                 <span class="about-iconlist__icon wf-icon-phone-call1"></span>
                                 <span class="about-iconlist__name">Cellulare:</span>
-                                <span class="about-iconlist__val">333 565 7677</span>
+                                <span class="about-iconlist__val">+39 {{$user_detail->contact_person}}</span>
                             </li>
                             <li class="about-iconlist__item">
                                 <span class="about-iconlist__icon wf-icon-mail"></span>
                                 <span class="about-iconlist__name">Pec:</span>
-                                <span class="about-iconlist__val">italiatrasporti@pec.it</span>
+                                <span class="about-iconlist__val">{{$user_detail->pec}}</span>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="card mb-4">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start">
-                    <span class="badge bg-label-primary">Standard</span>
-                    <div class="d-flex justify-content-center">
-                        <sup class="h6 pricing-currency mt-3 mb-0 me-1 text-primary fw-normal">$</sup>
-                        <h1 class="fw-semibold mb-0 text-primary">99</h1>
-                        <sub class="h6 pricing-duration mt-auto mb-2 text-muted fw-normal">/month</sub>
-                    </div>
-                </div>
-                <ul class="ps-3 g-2 my-3">
-                    <li class="mb-2">10 Users</li>
-                    <li class="mb-2">Up to 10 GB storage</li>
-                    <li>Basic Support</li>
-                </ul>
-            </div>
-        </div>
-
     </div>
 
     <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
@@ -151,62 +132,62 @@ $configData = Helper::appClasses();
                         <div class="row g-4">
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Ragione sociale</h6>
-                                <p class="mb-0">Italia Trasporti S.p.A.</p>
+                                <p class="mb-0">{{$user_detail->business_name}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Partita IVA</h6>
-                                <p class="mb-0">183293203023</p>
+                                <p class="mb-0">{{$user_detail->vat_number}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Cellulare referente</h6>
-                                <p class="mb-0"><span class="text-black">+39</span> 2526965</p>
+                                <p class="mb-0"><span class="text-black">+39</span> {{$user_detail->contact_person}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">PEC</h6>
-                                <p class="mb-0">italiatrasporti@pec.it</p>
+                                <p class="mb-0">{{$user_detail->pec}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Codice fiscale</h6>
-                                <p class="mb-0">SYBWD878JSK9DSM9</p>
+                                <p class="mb-0">{{$user_detail->tax_id_code}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Nominativo Amministratore</h6>
-                                <p class="mb-0">Mario Rossi</p>
+                                <p class="mb-0">{{$user_detail->administrator_name}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Attività principale </h6>
-                                <p class="mb-0">Deposito diretto Raffineria</p>
+                                <p class="mb-0">{{$user_detail->main_activity_ids}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Indirizzo</h6>
-                                <p class="mb-0">Via Battisti</p>
+                                <p class="mb-0">{{$user_detail->address}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Numero civico</h6>
-                                <p class="mb-0">23</p>
+                                <p class="mb-0">{{$user_detail->house_no}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Comune</h6>
-                                <p class="mb-0">Napoli</p>
+                                <p class="mb-0">{{$user_detail->common}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Provincia</h6>
-                                <p class="mb-0">NA</p>
+                                <p class="mb-0">{{$user_detail->province}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">CAP</h6>
-                                <p class="mb-0">80020</p>
+                                <p class="mb-0">{{$user_detail->pincode}}</p>
                             </div>
 
                         </div>
@@ -222,32 +203,32 @@ $configData = Helper::appClasses();
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Capacità di stoccaggio</h6>
-                                <p class="mb-0">Motrice a 2 assi</p>
+                                <p class="mb-0">{{$user_detail->storage_capacity}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Limiti di capacità ordini</h6>
-                                <p class="mb-0">1.000 - 18.000</p>
+                                <p class="mb-0">{{$user_detail->order_capacity_limits}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Prodotti disponibili</h6>
-                                <p class="mb-0">Gasolio, Adblue</p>
+                                <p class="mb-0">{{$user_detail->available_products}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Copertura geografica regioni</h6>
-                                <p class="mb-0">Campania</p>
+                                <p class="mb-0">{{$user_detail->geographical_coverage_regions}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Copertura geografica province</h6>
-                                <p class="mb-0">NA, CE</p>
+                                <p class="mb-0">{{$user_detail->geographical_coverage_provinces}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Tempo limite ordine giornaliero</h6>
-                                <p class="mb-0">11:00</p>
+                                <p class="mb-0">{{$user_detail->time_limit_daily_order}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
@@ -277,23 +258,23 @@ $configData = Helper::appClasses();
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Bonifico Bancario</h6>
-                                <p class="mb-0">IBAN: IT17128739239820398832 <br>
+                                <p class="mb-0">IBAN: {{$user_detail->bank_transfer}} <br>
                                 Banca: Intesa San Paolo</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Assegno Bancario</h6>
-                                <p class="mb-0">Italia Trasporti S.p.A.</p>
+                                <p class="mb-0">{{$user_detail->bank_check}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">RIBA</h6>
-                                <p class="mb-0">Si</p>
+                                <p class="mb-0">{{$user_detail->rib}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">RID</h6>
-                                <p class="mb-0">Si</p>
+                                <p class="mb-0">{{$user_detail->rid}}</p>
                             </div>
                         </div>
                     </div>

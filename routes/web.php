@@ -37,7 +37,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     $controller_path = 'App\Http\Controllers';
-    
+
     Route::get('/signup/client', $controller_path . '\pages\SignupClient@index')->name('signup-client');
     Route::get('/signup/seller', $controller_path . '\pages\SignupSeller@index')->name('signup-seller');
     Route::post('/signup/seller', $controller_path . '\pages\SignupSeller@store')->name('signup-seller-store');
@@ -59,7 +59,7 @@ Route::middleware([
     //
     Route::get('/unverified-users', $controller_path . '\pages\UnverifiedUser@index')->name('unverified-users');
 
-    Route::get('/users-details', $controller_path . '\pages\UsersDetails@index')->name('users-details');
+    Route::get('/profile', $controller_path . '\pages\UsersDetails@index')->name('users-details');
 
     Route::get('/orders', $controller_path . '\pages\Orders@index')->name('orders');
     Route::get('/subscription-plan-management', $controller_path . '\pages\SubscriptionPlanManagement@index')->name('subscription-plan-management');

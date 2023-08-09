@@ -1,13 +1,16 @@
 @php
 $configData = Helper::appClasses();
-$accountType = Auth::user()->accountType;
+$user = Auth::user();
 $loggedInUserType = "";
-if($accountType=='0') {
-  $loggedInUserType = "admin";
-} elseif ($accountType=='1') {
-  $loggedInUserType = "buyer";
-} elseif ($accountType=='2') {
-  $loggedInUserType = "seller";
+if($user){
+  $accountType = $user->accountType;
+  if($accountType=='0') {
+    $loggedInUserType = "admin";
+  } elseif ($accountType=='1') {
+    $loggedInUserType = "buyer";
+  } elseif ($accountType=='2') {
+    $loggedInUserType = "seller";
+  }
 }
 @endphp
 
