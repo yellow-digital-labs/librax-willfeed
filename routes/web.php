@@ -71,5 +71,9 @@ Route::middleware([
     Route::get('/feedback-management', $controller_path . '\pages\FeedbackManagement@index')->name('feedback-management');
 
 
-    Route::get('/prodotti', $controller_path . '\pages\Prodotti@index')->name('product');
+    //products
+    //general
+    Route::get('/products', $controller_path . '\pages\Product@index')->name('product'); //product list view
+    Route::get('/products/list', $controller_path . '\pages\Product@list')->name('product-list'); //product list data ajax
+    Route::get('/product/create', $controller_path . '\pages\Product@create')->name('product-create'); //product create view
 });

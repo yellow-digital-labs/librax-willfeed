@@ -23,7 +23,11 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('page-script')
-<script src="{{asset('assets/js/app-ecommerce-product-list.js')}}"></script>
+<script>
+    var urlCreateProductView = {!! "'".$urlCreateProductView."'" !!};
+    var urlListProductData = {!! "'".$urlListProductData."'" !!};
+</script>
+<script src="{{asset('assets/js/seller-product-list.js')}}"></script>
 @endsection
 
 @section('content')
@@ -91,32 +95,21 @@ $configData = Helper::appClasses();
 
 <!-- Product List Table -->
 <div class="card">
-  <div class="card-header">
-    <h5 class="card-title mb-0">Filter</h5>
-    <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
-      <div class="col-md-4 product_status"></div>
-      <div class="col-md-4 product_category"></div>
-      <div class="col-md-4 product_stock"></div>
+    <div class="card-header">
+        <h5 class="card-title mb-0">Lista prodotti</h5>
     </div>
-  </div>
-  <div class="card-datatable table-responsive">
-    <table class="datatables-products table">
-      <thead class="border-top">
-        <tr>
-          <th></th>
-          <th></th>
-          <th>product</th>
-          <th>category</th>
-          <th>stock</th>
-          <th>sku</th>
-          <th>price</th>
-          <th>qty</th>
-          <th>status</th>
-          <th>actions</th>
-        </tr>
-      </thead>
-    </table>
-  </div>
+    <div class="card-datatable table-responsive">
+        <table class="datatables-products table dt-column-search">
+            <thead class="border-top">
+                <tr>
+                    <th>Prodotto</th>
+                    <th>prezzo / litro</th>
+                    <th>status</th>
+                    <th>Azione</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
 
 @endsection
