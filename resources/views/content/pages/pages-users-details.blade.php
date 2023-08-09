@@ -48,7 +48,7 @@ $configData = Helper::appClasses();
                     <div class=" d-flex align-items-center flex-column">
                         <img class="img-fluid rounded mb-3 pt-1 mt-4" src="{{ asset('assets/img/81160511660785db8768a15358306893.jpg') }}" height="100" width="100" alt="User avatar" />
                         <div class="user-info text-center">
-                            <h4 class="text-black mt-3">{{$user_detail->business_name}}</h4>
+                            <h4 class="text-black mt-3">{{$user_detail->business_name?$user_detail->business_name:'NA'}}</h4>
                         </div>
                     </div>
                 </div>
@@ -56,13 +56,13 @@ $configData = Helper::appClasses();
                     <div class="d-flex align-items-start me-4 mt-1 gap-2">
                         <i class='wf-icon-location ti-sm text-black'></i>
                         <div>
-                            Napoli
+                            {{$user_detail->region?$user_detail->region:'NA'}}
                         </div>
                     </div>
                     <div class="d-flex align-items-start mt-1 gap-2">
                         <i class='wf-icon-calendar ti-sm text-black'></i>
                         <div>
-                            Da {{$user->created_at}}
+                            Da {{$user->created_at?date('F Y', strtotime($user->created_at)):'NA'}}
                         </div>
                     </div>
                 </div>
@@ -73,22 +73,22 @@ $configData = Helper::appClasses();
                             <li class="about-iconlist__item">
                                 <span class="about-iconlist__icon wf-icon-user"></span>
                                 <span class="about-iconlist__name">Ragione sociale:</span>
-                                <span class="about-iconlist__val">{{$user_detail->administrator_name}}</span>
+                                <span class="about-iconlist__val">{{$user_detail->administrator_name?$user_detail->administrator_name:'NA'}}</span>
                             </li>
                             <li class="about-iconlist__item">
                                 <span class="about-iconlist__icon wf-icon-location"></span>
                                 <span class="about-iconlist__name">Sede:</span>
-                                <span class="about-iconlist__val">Via Francesco Del Giudice 41, Fibbiana</span>
+                                <span class="about-iconlist__val">{{$user_detail->address}} {{$user_detail->house_no}}, {{$user_detail->region}}</span>
                             </li>
                             <li class="about-iconlist__item">
                                 <span class="about-iconlist__icon wf-icon-check"></span>
                                 <span class="about-iconlist__name">Status:</span>
-                                <span class="about-iconlist__val">Active</span>
+                                <span class="about-iconlist__val">{{$user->approved_by_admin=='Yes'?'Varified':'Unvarified'}}</span>
                             </li>
                             <li class="about-iconlist__item">
                                 <span class="about-iconlist__icon wf-icon-crown"></span>
                                 <span class="about-iconlist__name">Role:</span>
-                                <span class="about-iconlist__val">Deposito diretto</span>
+                                <span class="about-iconlist__val">{{$user_detail->main_activity_ids?$user_detail->main_activity_ids:'NA'}}</span>
                             </li>
                         </ul>
                     </div>
@@ -132,62 +132,67 @@ $configData = Helper::appClasses();
                         <div class="row g-4">
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Ragione sociale</h6>
-                                <p class="mb-0">{{$user_detail->business_name}}</p>
+                                <p class="mb-0">{{$user_detail->business_name?$user_detail->business_name:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Partita IVA</h6>
-                                <p class="mb-0">{{$user_detail->vat_number}}</p>
+                                <p class="mb-0">{{$user_detail->vat_number?$user_detail->vat_number:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Cellulare referente</h6>
-                                <p class="mb-0"><span class="text-black">+39</span> {{$user_detail->contact_person}}</p>
+                                <p class="mb-0"><span class="text-black">+39</span> {{$user_detail->contact_person?$user_detail->contact_person:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">PEC</h6>
-                                <p class="mb-0">{{$user_detail->pec}}</p>
+                                <p class="mb-0">{{$user_detail->pec?$user_detail->pec:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Codice fiscale</h6>
-                                <p class="mb-0">{{$user_detail->tax_id_code}}</p>
+                                <p class="mb-0">{{$user_detail->tax_id_code?$user_detail->tax_id_code:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Nominativo Amministratore</h6>
-                                <p class="mb-0">{{$user_detail->administrator_name}}</p>
+                                <p class="mb-0">{{$user_detail->administrator_name?$user_detail->administrator_name:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Attività principale </h6>
-                                <p class="mb-0">{{$user_detail->main_activity_ids}}</p>
+                                <p class="mb-0">{{$user_detail->main_activity_ids?$user_detail->main_activity_ids:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Indirizzo</h6>
-                                <p class="mb-0">{{$user_detail->address}}</p>
+                                <p class="mb-0">{{$user_detail->address?$user_detail->address:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Numero civico</h6>
-                                <p class="mb-0">{{$user_detail->house_no}}</p>
+                                <p class="mb-0">{{$user_detail->house_no?$user_detail->house_no:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
-                                <h6 class="text-black mb-2">Comune</h6>
-                                <p class="mb-0">{{$user_detail->common}}</p>
+                                <h6 class="text-black mb-2">Regione</h6>
+                                <p class="mb-0">{{$user_detail->region?$user_detail->region:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Provincia</h6>
-                                <p class="mb-0">{{$user_detail->province}}</p>
+                                <p class="mb-0">{{$user_detail->province?$user_detail->province:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Comune</h6>
+                                <p class="mb-0">{{$user_detail->common?$user_detail->common:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">CAP</h6>
-                                <p class="mb-0">{{$user_detail->pincode}}</p>
+                                <p class="mb-0">{{$user_detail->pincode?$user_detail->pincode:'NA'}}</p>
                             </div>
 
                         </div>
@@ -203,46 +208,36 @@ $configData = Helper::appClasses();
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Capacità di stoccaggio</h6>
-                                <p class="mb-0">{{$user_detail->storage_capacity}}</p>
+                                <p class="mb-0">{{$user_detail->storage_capacity?$user_detail->storage_capacity:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Limiti di capacità ordini</h6>
-                                <p class="mb-0">{{$user_detail->order_capacity_limits}}</p>
+                                <p class="mb-0">{{$user_detail->order_capacity_limits?$user_detail->order_capacity_limits:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Prodotti disponibili</h6>
-                                <p class="mb-0">{{$user_detail->available_products}}</p>
+                                <p class="mb-0">{{$user_detail->available_products?$user_detail->available_products:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Copertura geografica regioni</h6>
-                                <p class="mb-0">{{$user_detail->geographical_coverage_regions}}</p>
+                                <p class="mb-0">{{$user_detail->geographical_coverage_regions?$user_detail->geographical_coverage_regions:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Copertura geografica province</h6>
-                                <p class="mb-0">{{$user_detail->geographical_coverage_provinces}}</p>
+                                <p class="mb-0">{{$user_detail->geographical_coverage_provinces?$user_detail->geographical_coverage_provinces:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Tempo limite ordine giornaliero</h6>
-                                <p class="mb-0">{{$user_detail->time_limit_daily_order}}</p>
+                                <p class="mb-0">{{$user_detail->time_limit_daily_order?$user_detail->time_limit_daily_order:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
-                                <h6 class="text-black mb-2">CAP</h6>
-                                <p class="mb-0">80020</p>
-                            </div>
-
-                            <div class="col-sm-6 col-12">
-                                <h6 class="text-black mb-2">CAP</h6>
-                                <p class="mb-0">80020</p>
-                            </div>
-
-                            <div class="col-sm-6 col-12">
-                                <h6 class="text-black mb-2">CAP</h6>
+                                <h6 class="text-black mb-2">Licenza di esercizio</h6>
                                 <p class="mb-0">80020</p>
                             </div>
                         </div>
@@ -258,23 +253,23 @@ $configData = Helper::appClasses();
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Bonifico Bancario</h6>
-                                <p class="mb-0">IBAN: {{$user_detail->bank_transfer}} <br>
-                                Banca: Intesa San Paolo</p>
+                                <p class="mb-0">IBAN: {{$user_detail->bank_transfer?$user_detail->bank_transfer:'NA'}} <br>
+                                Banca: {{$user_detail->bank?$user_detail->bank:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Assegno Bancario</h6>
-                                <p class="mb-0">{{$user_detail->bank_check}}</p>
+                                <p class="mb-0">{{$user_detail->bank_check?$user_detail->bank_check:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">RIBA</h6>
-                                <p class="mb-0">{{$user_detail->rib}}</p>
+                                <p class="mb-0">{{$user_detail->rib?$user_detail->rib:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">RID</h6>
-                                <p class="mb-0">{{$user_detail->rid}}</p>
+                                <p class="mb-0">{{$user_detail->rid?$user_detail->rid:'NA'}}</p>
                             </div>
                         </div>
                     </div>

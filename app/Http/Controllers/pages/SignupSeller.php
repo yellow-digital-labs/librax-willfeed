@@ -65,8 +65,9 @@ class SignupSeller extends Controller
         'main_activity_ids' => $request->main_activity_ids,
         'address' => $request->address,
         'house_no' => $request->house_no,
-        'common' => $request->common,
+        'region' => $request->region,
         'province' => $request->province,
+        'common' => $request->common,
         'pincode' => $request->pincode,
         'storage_capacity' => $request->storage_capacity,
         'order_capacity_limits' => $request->order_capacity_limits,
@@ -76,6 +77,7 @@ class SignupSeller extends Controller
         'time_limit_daily_order' => $request->time_limit_daily_order,
         'bank_transfer' => $request->bank_transfer,
         'bank_check' => $request->bank_check,
+        'bank' => $request->bank,
         'rib' => $request->rib,
         'rid' => $request->rid,
         'updated_by' => $authUser->email
