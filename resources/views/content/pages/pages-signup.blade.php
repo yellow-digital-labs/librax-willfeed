@@ -30,16 +30,6 @@ $customizerHidden = 'customizer-hide';
     </a>
 </header>
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 <div class="container-xxl singup">
     <div class="authentication-wrapper container-p-y singup__wrapper">
         <div class="authentication-inner py-4 singup__inner">
@@ -53,6 +43,14 @@ $customizerHidden = 'customizer-hide';
                     <h4 class="mb-1 pt-2 text-center singup__title">Crea il tuo account <img src="/assets/img/icons/handshake.png" width="20" height="20"></h4>
                     <p class="mb-5 text-center singup__text">Inizia ad usare la piattaforma Willfeed in un lampo</p>
 
+                    @if ($errors->any())
+                    <p class="text-danger text-center" role="alert">
+                        @foreach ($errors->all() as $error)
+                        {{ $error }}
+                        @endforeach
+                    </p>
+                    @endif
+                    
                     <form id="formAuthentication" class="mb-3 singup__form" action="{{ route('register') }}" method="POST">
                         @csrf
                         <div class="mb-3">

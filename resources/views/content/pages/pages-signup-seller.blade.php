@@ -122,7 +122,7 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="tax_id_code">Codice fiscale *</label>
+                                    <label class="form-label" for="tax_id_code">Codice fiscale</label>
                                     <input type="text" name="tax_id_code" id="tax_id_code" class="form-control" placeholder="Inserisci il codice fiscale" />
                                 </div>
                                 
@@ -133,7 +133,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="main_activity_ids">Attività principale *</label>
-                                    <select name="main_activity_ids" id="main_activity_ids" class="form-select select2" placeholder="Seleziona attività principale" multiple>
+                                    <select name="main_activity_ids" id="main_activity_ids" class="form-select select2" placeholder="Seleziona attività principale">
                                     @foreach($main_activity as $_main_activity)
                                         <option value="{{$_main_activity->name}}">{{$_main_activity->name}}</option>
                                     @endforeach
@@ -149,23 +149,33 @@ $configData = Helper::appClasses();
                                     <label class="form-label" for="house_no">Numero civico *</label>
                                     <input type="text" name="house_no" id="house_no" class="form-control" placeholder="Inserisci il numero civico" />
                                 </div>
+
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="region">Regione *</label>
+                                    <select name="region" id="region" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                    @foreach($region as $_region)
+                                        <option value="{{$_region->name}}" data-id="{{$_region->id}}">{{$_region->name}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="province">Provincia *</label>
+                                    <select name="province" id="province" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                    @foreach($province as $_province)
+                                        <option value="{{$_province->name}}" data-id="{{$_province->id}}" data-region="{{$_province->regions_id}}">{{$_province->name}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="common">Comune *</label>
                                     <select name="common" id="common" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
                                     @foreach($common as $_common)
-                                        <option value="{{$_common->name}}">{{$_common->name}}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                                
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="province">Provincia *</label>
-                                    <select name="province" id="province" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option value=""></option>
-                                    @foreach($province as $_province)
-                                        <option value="{{$_province->name}}">{{$_province->name}}</option>
+                                        <option value="{{$_common->name}}" data-id="{{$_common->id}}" data-province="{{$_common->provinces_id}}">{{$_common->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>

@@ -19,6 +19,34 @@ $(function() {
             });
         });
     }
+
+    $("#region").on("change", function(){
+        let select_id = $(this).find(":selected").data("id");
+        
+        $("#province").select2("destroy").select2({
+            templateResult: function(option, container) {
+                if ($(option.element).attr("data-region") != select_id){ 
+                  $(container).css("display","none");
+                }
+        
+                return option.text;
+            }
+        });
+    });
+
+    $("#province").on("change", function(){
+        let select_id = $(this).find(":selected").data("id");
+        
+        $("#common").select2("destroy").select2({
+            templateResult: function(option, container) {
+                if ($(option.element).attr("data-province") != select_id){ 
+                  $(container).css("display","none");
+                }
+        
+                return option.text;
+            }
+        });
+    });
 });
 
 // Multi Steps Validation
@@ -62,6 +90,15 @@ document.addEventListener('DOMContentLoaded', function(e) {
                         validators: {
                             notEmpty: {
                                 message: 'Please enter cellulare referente'
+                            },
+                            stringLength: {
+                              min: 10,
+                              max: 10,
+                              message: 'cellulare referente should be 10 digit long'
+                            },
+                            regexp: {
+                              regexp: /^[0-9]+$/,
+                              message: 'cellulare referente can only consist of number'
                             }
                         }
                     },
@@ -69,13 +106,17 @@ document.addEventListener('DOMContentLoaded', function(e) {
                         validators: {
                             notEmpty: {
                                 message: 'Please enter PEC'
+                            },
+                            emailAddress: {
+                              message: 'The value is not a valid PEC'
                             }
                         }
                     },
                     tax_id_code: {
                         validators: {
-                            notEmpty: {
-                                message: 'Please enter codice fiscale'
+                            regexp: {
+                              regexp: /^[A-Z]+$/,
+                              message: 'Codice fiscale can only consist of capital alphabets'
                             }
                         }
                     },
