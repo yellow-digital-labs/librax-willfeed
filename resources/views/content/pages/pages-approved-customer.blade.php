@@ -42,24 +42,14 @@ $configData = Helper::appClasses();
         <table class="dt-column-search table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Post</th>
-                    <th>City</th>
-                    <th>Date</th>
-                    <th>Salary</th>
+                    <th class="js-add-search">Customer name</th>
+                    <th class="js-add-search">City</th>
+                    <th>verified since</th>
+                    <th>Since on platform</th>
+                    <th>Is verified</th>
+                    <th>Action</th>
                 </tr>
             </thead>
-            <tfoot>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Post</th>
-                    <th>City</th>
-                    <th>Date</th>
-                    <th>Salary</th>
-                </tr>
-            </tfoot>
         </table>
     </div>
 </div>

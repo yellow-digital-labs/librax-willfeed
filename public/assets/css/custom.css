@@ -63,6 +63,11 @@
     font-weight: 500;
 }
 
+.bg-label-primary {
+    background: #DBE0FF !important;
+    color: #334FFB !important;
+}
+
 .avatar--prodotti {
     width: 35px;
     height: 35px;
