@@ -17,14 +17,14 @@
     {
         "url": "/profile",
         "name": "Profilo",
-        "icon": "menu-icon tf-icons ti ti-user-exclamation",
+        "icon": "menu-icon tf-icons ti ti-users",
         "slug": "profile",
         "section": ["seller"]
     },
     {
         "url": "/customer/approved",
         "name": "Approved customer",
-        "icon": "menu-icon tf-icons ti ti-user-exclamation",
+        "icon": "menu-icon tf-icons ti ti-user-check",
         "slug": "customer-approved",
         "section": ["seller"]
     },
@@ -38,7 +38,7 @@
     {
         "url": "/payments",
         "name": "Fatturazione",
-        "icon": "menu-icon tf-icons ti ti-basket",
+        "icon": "menu-icon tf-icons ti ti-cash-banknote",
         "slug": "pages-payments",
         "section": ["seller", "admin"]
     },
@@ -52,14 +52,14 @@
     {
         "url": "/settings",
         "name": "Settings",
-        "icon": "menu-icon tf-icons ti ti-gear",
+        "icon": "menu-icon tf-icons ti ti-settings",
         "slug": "settings",
         "section": ["seller", "admin"]
     },
     {
         "url": "logout",
         "name": "Esci",
-        "icon": "menu-icon tf-icons ti ti-droplet",
+        "icon": "menu-icon tf-icons ti ti-logout-2",
         "slug": "logout",
         "section": ["seller", "admin"]
     }]

@@ -19,6 +19,7 @@ $controller_path = 'App\Http\Controllers';
 Route::get('/', $controller_path . '\pages\HomePage@index')->name('pages-home');
 Route::get('/approved-customer', $controller_path . '\pages\ApprovedCustomer@index')->name('pages-approved-customer');
 Route::get('/payments', $controller_path . '\pages\Payments@index')->name('pages-payments');
+Route::get('/settings', $controller_path . '\pages\Settings@index')->name('pages-settings');
 
 // pages
 Route::get('/pages/misc-error', $controller_path . '\pages\MiscError@index')->name('pages-misc-error');
