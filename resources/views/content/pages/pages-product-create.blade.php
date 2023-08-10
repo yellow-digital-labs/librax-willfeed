@@ -41,7 +41,7 @@ $configData = Helper::appClasses();
                         <h5 class="mb-0 text-black">Scegli prodotto</h5>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body pt-4">
                     <div class="row g-3">
                         <div class="col-12">
                             <label class="form-label" for="product_id">Prodotto</label>
@@ -58,7 +58,7 @@ $configData = Helper::appClasses();
                         @endif
                         </div>
                         <div class="col-12">
-                            <label for="product-details-container">Descrizione</label>
+                            <label for="product-details-container" class="fw-semibold">Descrizione</label>
                             <div id="product-details-container"></div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@ $configData = Helper::appClasses();
                         <h5 class="mb-0 text-black">Prezzo</h5>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body pt-4">
                     <div class="row g-3">
                         <div class="col-12">
                             <label class="form-label" for="amount_before_tax">Prezzo a vista</label>
@@ -112,8 +112,8 @@ $configData = Helper::appClasses();
                         </div>
 
                         <div class="col-12">
-                            <p>IVA: 22%</p>
-                            <p>Prezzo incluso iva: {{$product_detail?number_format($product_detail->amount, 2, ',', '.'):'0,00'}}</p>
+                            <p class="small mb-0">IVA: 22%</p>
+                            <p class="small">Prezzo incluso iva: {{$product_detail?number_format($product_detail->amount, 2, ',', '.'):'0,00'}}</p>
                         </div>
 
                         <div class="form-check mt-3">
@@ -141,16 +141,23 @@ $configData = Helper::appClasses();
                         <h5 class="mb-0 text-black">Inventory</h5>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body pt-4">
+                    <h5 class="fw-normal">Restock</h5>
                     <div class="row">
                         <div class="col-12">
-                            <div class="col">
-                                <label class="form-label" for="business_name">Add to stock</label>
-                                <input type="text" name="business_name" id="business_name" class="form-control" placeholder="Quantity" />
+                            <label class="form-label" for="business_name">Add to stock</label>
+                            <div class="row g-3 mb-4">
+                                <div class="col">
+                                    <input type="text" name="business_name" id="business_name" class="form-control" placeholder="Quantity" />
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-dark btn-next btn-submit waves-effect waves-light"><i class="ti ti-check me-2"></i> Confirm</button>
+                                </div>
                             </div>
-                            <div class="col">
-                                <button type="button" class="btn btn-dark btn-next btn-submit waves-effect waves-light">Confirm</button>
-                            </div>
+                            <p><span class="fw-semibold me-2">Product in stock now:</span> 54</p>
+                            <p><span class="fw-semibold me-2">Product in transit:</span> 905</p>
+                            <p><span class="fw-semibold me-2">Last time restocked:</span> 24th June, 2023</p>
+                            <p><span class="fw-semibold me-2">Total stock over lifetime:</span> 2430</p>
                         </div>
                     </div>
                 </div>
