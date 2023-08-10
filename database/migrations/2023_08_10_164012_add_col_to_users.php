@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->integer('accountType')->after('name');
             $table->string('accountTypeName')->after('accountType')->nullable();
+            $table->string('name')->nullable()->change();
         });
     }
 
@@ -24,6 +25,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn(['accountType', 'accountTypeName']);
+            $table->string('name')->change();
         });
     }
 };
