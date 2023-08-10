@@ -20,6 +20,7 @@ Route::get('/', $controller_path . '\pages\HomePage@index')->name('pages-home');
 Route::get('/approved-customer', $controller_path . '\pages\ApprovedCustomer@index')->name('pages-approved-customer');
 Route::get('/payments', $controller_path . '\pages\Payments@index')->name('pages-payments');
 Route::get('/settings', $controller_path . '\pages\Settings@index')->name('pages-settings');
+Route::get('/order-details', $controller_path . '\pages\OrderDetails@index')->name('pages-order-details');
 
 // pages
 Route::get('/pages/misc-error', $controller_path . '\pages\MiscError@index')->name('pages-misc-error');

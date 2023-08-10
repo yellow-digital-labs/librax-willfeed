@@ -73,6 +73,11 @@
     height: 35px;
 }
 
+.timeline .timeline-point-primary {
+    background-color: #7367F0 !important;
+    box-shadow: 0 0 0 0.1875rem rgba(0, 0, 0, 0.16);
+}
+
 /* Navigation + Sidebar Starts */
 
 /* Navigation + Sidebar Ends */
