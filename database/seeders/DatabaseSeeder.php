@@ -57,22 +57,27 @@ class DatabaseSeeder extends Seeder
         \App\Models\Product::truncate();
         DB::table('products')->insert([
             'name' => 'Gasolio',
+            'description' => 'Gasolio Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'active' => 'yes'
         ]);
         DB::table('products')->insert([
             'name' => 'SSP',
+            'description' => 'SSP Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut placerat orci nulla pellentesque dignissim. Et ligula ullamcorper malesuada proin libero nunc. Velit euismod in pellentesque massa placerat duis ultricies lacus. Et odio pellentesque diam volutpat commodo sed. Ac felis donec et odio. Sed faucibus turpis in eu. Aliquam id diam maecenas ultricies mi. Consequat semper viverra nam libero. Volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque in. Nisl nisi scelerisque eu ultrices. Pulvinar mattis nunc sed blandit libero volutpat sed cras. Sed vulputate mi sit amet mauris commodo quis imperdiet. Ultricies lacus sed turpis tincidunt id aliquet. Nec sagittis aliquam malesuada bibendum arcu vitae. Facilisis gravida neque convallis a.',
             'active' => 'yes'
         ]);
         DB::table('products')->insert([
             'name' => 'ADblue',
+            'description' => 'ADblue Description Mauris sit amet massa vitae tortor condimentum lacinia quis. Eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque. Pretium vulputate sapien nec sagittis aliquam. Amet consectetur adipiscing elit ut. Id nibh tortor id aliquet lectus. Tellus orci ac auctor augue mauris augue. Eget mi proin sed libero enim sed faucibus. Blandit massa enim nec dui nunc mattis enim. Vulputate ut pharetra sit amet aliquam. Mi quis hendrerit dolor magna. Ac ut consequat semper viverra nam libero justo laoreet sit. Placerat duis ultricies lacus sed.',
             'active' => 'yes'
         ]);
         DB::table('products')->insert([
             'name' => 'Gasolio Agricolo',
+            'description' => 'Gasolio Agricolo description Arcu non odio euismod lacinia at quis risus sed. Arcu cursus vitae congue mauris rhoncus aenean. Metus aliquam eleifend mi in nulla posuere sollicitudin. Laoreet suspendisse interdum consectetur libero id faucibus. Non quam lacus suspendisse faucibus interdum posuere lorem. Curabitur gravida arcu ac tortor dignissim convallis aenean et. Sed libero enim sed faucibus turpis in. Tristique sollicitudin nibh sit amet. Consequat ac felis donec et odio pellentesque. Dignissim cras tincidunt lobortis feugiat vivamus.',
             'active' => 'yes'
         ]);
         DB::table('products')->insert([
             'name' => 'OCD BTZ',
+            'description' => 'OCD BTZ description Convallis a cras semper auctor neque vitae tempus. Orci sagittis eu volutpat odio facilisis. Arcu ac tortor dignissim convallis aenean et. Tortor at risus viverra adipiscing. Ullamcorper eget nulla facilisi etiam dignissim. Consectetur adipiscing elit ut aliquam purus sit amet. Aliquam id diam maecenas ultricies mi eget mauris pharetra. Nunc sed id semper risus in. Sed elementum tempus egestas sed. Ut eu sem integer vitae justo eget. Tincidunt eget nullam non nisi est. Arcu risus quis varius quam quisque id diam. Nulla porttitor massa id neque aliquam vestibulum morbi. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Proin libero nunc consequat interdum varius. Venenatis a condimentum vitae sapien. Morbi non arcu risus quis varius quam. Nisl purus in mollis nunc sed. Tellus molestie nunc non blandit massa enim nec dui nunc. Tempus urna et pharetra pharetra massa.',
             'active' => 'yes'
         ]);
 
@@ -81,7 +86,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Piemonte'
         ]);
         DB::table('regions')->insert([
-            'name' => "Valle d\'Aosta"
+            'name' => "Valle d'Aosta"
         ]);
         DB::table('regions')->insert([
             'name' => 'Lombardia'

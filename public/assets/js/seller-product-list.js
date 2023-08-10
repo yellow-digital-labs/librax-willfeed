@@ -170,7 +170,7 @@
                         {
                             data: 'product_name'
                         }, {
-                            data: 'amount'
+                            data: 'amount_before_tax'
                         }, {
                             data: 'status'
                         }, {
@@ -182,7 +182,7 @@
                         searchable: false,
                         orderable: false,
                         render: function render(data, type, full, meta) {
-                            return '<div class="d-inline-block text-nowrap">' + "<a href=\"/farmer-list/" + full['id'] + "/edit\" class=\"btn btn-sm btn-icon\" target=\"_blank\" data-id=\"".concat(full['id'], "\"><i class=\"ti ti-edit\"></i></a>") + "<button class=\"btn btn-sm btn-icon delete-record\" data-id=\"".concat(full['id'], "\"><i class=\"ti ti-trash\"></i></button>") + '<div class="dropdown-menu dropdown-menu-end m-0">' + '<a href="' + userView + '" class="dropdown-item">View</a>' + '<a href="javascript:;" class="dropdown-item">Suspend</a>' + '</div>' + '</div>';
+                            return '<div class="d-inline-block text-nowrap">' + "<a href=\"/product/" + full['product_id'] + "/edit\" class=\"btn btn-sm btn-icon\" data-id=\"".concat(full['product_id'], "\"><i class=\"ti ti-edit\"></i></a>") + "<button class=\"btn btn-sm btn-icon delete-record\" data-id=\"".concat(full['product_id'], "\"><i class=\"ti ti-trash\"></i></button>") + '<div class="dropdown-menu dropdown-menu-end m-0">' + '<a href="' + userView + '" class="dropdown-item">View</a>' + '<a href="javascript:;" class="dropdown-item">Suspend</a>' + '</div>' + '</div>';
                         }
                     }, {
                         // product_name
@@ -196,15 +196,15 @@
                             return '<span class="user-product_name">' + $product_name + '</span>';
                         }
                     }, {
-                        // amount
+                        // amount_before_tax
                         targets: 1,
                         // visible: false,
                         searchable: true,
                         orderable: true,
                         responsivePriority: 4,
                         render: function render(data, type, full, meta) {
-                            var $amount = full['amount'] ? full['amount'] : '';
-                            return '<span class="user-amount">' + $amount + '</span>';
+                            var $amount_before_tax = full['amount_before_tax'] ? full['amount_before_tax'] : '';
+                            return '<span class="user-amount_before_tax">' + $amount_before_tax + '</span>';
                         }
                     }, {
                         // status
@@ -215,7 +215,7 @@
                         responsivePriority: 4,
                         render: function render(data, type, full, meta) {
                             var $status = full['status'] ? full['status'] : '';
-                            return '<span class="user-status">' + $status + '</span>';
+                            return '<span class="badge text-uppercase bg-label-'+($status=='active'?'success':'danger')+'">' + $status + '</span>';
                         }
                     }],
                     order: [[2, 'desc']],

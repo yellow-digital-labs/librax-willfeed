@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique()->index();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->enum('active', ['yes', 'no'])->default('yes')->index();
             $table->string('meta_title')->nullable();
             $table->string('meta_keywords')->nullable();

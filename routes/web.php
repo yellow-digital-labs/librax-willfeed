@@ -76,4 +76,7 @@ Route::middleware([
     Route::get('/products', $controller_path . '\pages\Product@index')->name('product'); //product list view
     Route::get('/products/list', $controller_path . '\pages\Product@list')->name('product-list'); //product list data ajax
     Route::get('/product/create', $controller_path . '\pages\Product@create')->name('product-create'); //product create view
+    Route::post('/product/create', $controller_path . '\pages\Product@store')->name('product-store'); //product save
+    Route::get('/product/{id}/edit', $controller_path . '\pages\Product@edit')->name('product-edit'); //product edit
+    Route::post('/product/{id}/edit', $controller_path . '\pages\Product@update')->name('product-update'); //product update
 });
