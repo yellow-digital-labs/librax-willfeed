@@ -23,8 +23,6 @@ Route::get('/approved-customer', $controller_path . '\pages\ApprovedCustomer@ind
 Route::get('/pages/misc-error', $controller_path . '\pages\MiscError@index')->name('pages-misc-error');
 
 // Auth pages
-// Route::get('/signup', $controller_path . '\pages\Signup@index')->name('signup');
-// Route::get('/login', $controller_path . '\pages\Login@index')->name('login');
 Route::get('/forget-password', $controller_path . '\pages\ForgetPassword@index')->name('forget-password');
 Route::get('/reset-password', $controller_path . '\pages\ResetPassword@index')->name('reset-password');
 Route::get('/verify-email', $controller_path . '\pages\VerifyEmail@index')->name('verify-email');
@@ -44,7 +42,7 @@ Route::middleware([
     Route::get('/signup/seller', $controller_path . '\pages\SignupSeller@index')->name('signup-seller');
     Route::post('/signup/seller', $controller_path . '\pages\SignupSeller@store')->name('signup-seller-store');
 
-    Route::get('/thankyou/signup', $controller_path . '\pages\Dashboard@index')->name('thankyou-signup');
+    Route::get('/thankyou/signup', $controller_path . '\Thankyou@signup')->name('thankyou-signup');
 });
 
 Route::middleware([

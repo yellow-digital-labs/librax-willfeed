@@ -236,6 +236,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
                             message: 'Please enter tempo limite ordine giornaliero'
                         }
                     }
+                },
+                file_operating_license: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter Licenza di esercizio'
+                        }
+                    }
                 }
             };
             const multiSteps2 = FormValidation.formValidation(stepsValidationFormStep2, {

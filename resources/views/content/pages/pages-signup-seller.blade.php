@@ -89,7 +89,7 @@ $configData = Helper::appClasses();
                 </div>
 
                 <div class="bs-stepper-content signup-wiz__body">
-                    <form id="multiStepsForm" onsubmit="return false" class="signup-wiz__form" method="POST">
+                    <form id="multiStepsForm" onsubmit="return false" class="signup-wiz__form" method="POST" enctype="multipart/form-data">
                         @csrf
                         <!-- Registry -->
                         <div id="SignupStepRegistry" class="content active dstepper-block fv-plugins-bootstrap5 fv-plugins-framework">
@@ -100,35 +100,35 @@ $configData = Helper::appClasses();
 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="business_name">Ragione sociale *</label>
-                                    <input type="text" name="business_name" id="business_name" class="form-control" placeholder="Inserisci ragione sociale" />
+                                    <input type="text" name="business_name" id="business_name" class="form-control" placeholder="Inserisci ragione sociale" value="{{$user_detail?$user_detail->business_name:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="vat_number">Partita IVA *</label>
-                                    <input type="text" name="vat_number" id="vat_number" class="form-control" placeholder="Inserisci numero di partita IVA" />
+                                    <input type="text" name="vat_number" id="vat_number" class="form-control" placeholder="Inserisci numero di partita IVA" value="{{$user_detail?$user_detail->vat_number:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="contact_person">Cellulare referente *</label>
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text" id="basic-addon-search31">+39 </span>
-                                        <input type="text" class="form-control" name="contact_person" id="contact_person">
+                                        <input type="text" class="form-control" name="contact_person" id="contact_person" value="{{$user_detail?$user_detail->contact_person:''}}">
                                     </div>
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="pec">PEC *</label>
-                                    <input type="text" name="pec" id="pec" class="form-control" placeholder="latuaemail@pec.it" />
+                                    <input type="text" name="pec" id="pec" class="form-control" placeholder="latuaemail@pec.it" value="{{$user_detail?$user_detail->pec:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="tax_id_code">Codice fiscale</label>
-                                    <input type="text" name="tax_id_code" id="tax_id_code" class="form-control" placeholder="Inserisci il codice fiscale" />
+                                    <input type="text" name="tax_id_code" id="tax_id_code" class="form-control" placeholder="Inserisci il codice fiscale" value="{{$user_detail?$user_detail->tax_id_code:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="administrator_name">Nominativo amministratore *</label>
-                                    <input type="text" name="administrator_name" id="administrator_name" class="form-control" placeholder="Mario Rossi" />
+                                    <input type="text" name="administrator_name" id="administrator_name" class="form-control" placeholder="Mario Rossi" value="{{$user_detail?$user_detail->administrator_name:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
@@ -136,19 +136,19 @@ $configData = Helper::appClasses();
                                     <select name="main_activity_ids" id="main_activity_ids" class="form-select select2" placeholder="Seleziona attività principale">
                                         <option value=""></option>
                                     @foreach($main_activity as $_main_activity)
-                                        <option value="{{$_main_activity->name}}">{{$_main_activity->name}}</option>
+                                        <option value="{{$_main_activity->name}}" {{$user_detail?($user_detail->main_activity_ids==$_main_activity->name?'selected':''):''}}>{{$_main_activity->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="address">Indirizzo *</label>
-                                    <input type="text" name="address" id="address" class="form-control" placeholder="Via Battisti " />
+                                    <input type="text" name="address" id="address" class="form-control" placeholder="Via Battisti " value="{{$user_detail?$user_detail->address:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="house_no">Numero civico *</label>
-                                    <input type="text" name="house_no" id="house_no" class="form-control" placeholder="Inserisci il numero civico" />
+                                    <input type="text" name="house_no" id="house_no" class="form-control" placeholder="Inserisci il numero civico" value="{{$user_detail?$user_detail->house_no:''}}" />
                                 </div>
 
                                 <div class="col-sm-6">
@@ -156,7 +156,7 @@ $configData = Helper::appClasses();
                                     <select name="region" id="region" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
                                     @foreach($region as $_region)
-                                        <option value="{{$_region->name}}" data-id="{{$_region->id}}">{{$_region->name}}</option>
+                                        <option value="{{$_region->name}}" data-id="{{$_region->id}}" {{$user_detail?($user_detail->region==$_region->name?'selected':''):''}}>{{$_region->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
@@ -166,7 +166,7 @@ $configData = Helper::appClasses();
                                     <select name="province" id="province" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
                                     @foreach($province as $_province)
-                                        <option value="{{$_province->name}}" data-id="{{$_province->id}}" data-region="{{$_province->regions_id}}">{{$_province->name}}</option>
+                                        <option value="{{$_province->name}}" data-id="{{$_province->id}}" data-region="{{$_province->regions_id}}" {{$user_detail?($user_detail->province==$_province->name?'selected':''):''}}>{{$_province->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
@@ -176,14 +176,14 @@ $configData = Helper::appClasses();
                                     <select name="common" id="common" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
                                     @foreach($common as $_common)
-                                        <option value="{{$_common->name}}" data-id="{{$_common->id}}" data-province="{{$_common->provinces_id}}">{{$_common->name}}</option>
+                                        <option value="{{$_common->name}}" data-id="{{$_common->id}}" data-province="{{$_common->provinces_id}}" {{$user_detail?($user_detail->common==$_common->name?'selected':''):''}}>{{$_common->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="pincode">CAP *</label>
-                                    <input type="text" name="pincode" id="pincode" class="form-control" placeholder="Inserisci il CAP" />
+                                    <input type="text" name="pincode" id="pincode" class="form-control" placeholder="Inserisci il CAP" value="{{$user_detail?$user_detail->pincode:''}}" />
                                 </div>
 
                                 <div class="col-12 d-flex justify-content-end mt-4">
@@ -204,7 +204,7 @@ $configData = Helper::appClasses();
                                     <select name="storage_capacity" id="storage_capacity" class="form-select select2" data-minimum-results-for-search="Infinity">
                                     <option value="">Seleziona facilità di accesso</option>
                                     @foreach($storage_capacity as $_storage_capacity)
-                                        <option value="{{$_storage_capacity->name}}">{{$_storage_capacity->name}}</option>
+                                        <option value="{{$_storage_capacity->name}}" {{$user_detail?($user_detail->storage_capacity==$_storage_capacity->name?'selected':''):''}}>{{$_storage_capacity->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
@@ -214,17 +214,17 @@ $configData = Helper::appClasses();
                                     <select name="order_capacity_limits" id="order_capacity_limits" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value="">Seleziona i limiti</option>
                                     @foreach($order_capacity as $_order_capacity)
-                                        <option value="{{$_order_capacity->name}}">{{$_order_capacity->name}}</option>
+                                        <option value="{{$_order_capacity->name}}" {{$user_detail?($user_detail->order_capacity_limits==$_order_capacity->name?'selected':''):''}}>{{$_order_capacity->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="available_products">Prodotti disponibili *</label>
-                                    <select name="available_products" id="available_products" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
+                                    <select name="available_products[]" id="available_products" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                                         <option value="">Seleziona prodotti</option>
                                     @foreach($product as $_product)
-                                        <option value="{{$_product->name}}">{{$_product->name}}</option>
+                                        <option value="{{$_product->name}}" {{$user_detail?(in_array($_product->name, explode(",",$user_detail->available_products))?'selected':''):''}}>{{$_product->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
@@ -234,7 +234,7 @@ $configData = Helper::appClasses();
                                     <select name="geographical_coverage_regions" id="geographical_coverage_regions" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value="">Seleziona le regioni coperte</option>
                                     @foreach($region as $_region)
-                                        <option value="{{$_region->name}}">{{$_region->name}}</option>
+                                        <option value="{{$_region->name}}" {{$user_detail?($user_detail->geographical_coverage_regions==$_region->name?'selected':''):''}}>{{$_region->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
@@ -244,14 +244,19 @@ $configData = Helper::appClasses();
                                     <select name="geographical_coverage_provinces" id="geographical_coverage_provinces" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value="">Seleziona prodotti </option>
                                     @foreach($province as $_province)
-                                        <option value="{{$_province->name}}">{{$_province->name}}</option>
+                                        <option value="{{$_province->name}}" {{$user_detail?($user_detail->geographical_coverage_provinces==$_province->name?'selected':''):''}}>{{$_province->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="time_limit_daily_order">Tempo limite ordine giornaliero *</label>
-                                    <input type="time" name="time_limit_daily_order" id="time_limit_daily_order" class="form-control" placeholder="Seleziona limite" />
+                                    <input type="time" name="time_limit_daily_order" id="time_limit_daily_order" class="form-control" placeholder="Seleziona limite" value="{{$user_detail?$user_detail->time_limit_daily_order:''}}" />
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="file_operating_license">Licenza di esercizio *</label>
+                                    <input type="file" name="file_operating_license" id="file_operating_license" class="form-control" placeholder="Nessun file caricato" accept="application/pdf" value="{{$user_detail?$user_detail->file_operating_license:''}}" />
                                 </div>
 
                                 <div class="col-12 d-flex justify-content-between mt-4">
@@ -273,16 +278,16 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="bank_transfer">Bonifico bancario *</label>
-                                    <input type="text" name="bank_transfer" id="bank_transfer" class="form-control" placeholder="IBAN" />
+                                    <input type="text" name="bank_transfer" id="bank_transfer" class="form-control" placeholder="IBAN" value="{{$user_detail?$user_detail->bank_transfer:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="bank_check">Assegno bancario *</label>
-                                    <input type="text" name="bank_check" id="bank_check" class="form-control" placeholder="Intestazione assegno" />
+                                    <input type="text" name="bank_check" id="bank_check" class="form-control" placeholder="Intestazione assegno" value="{{$user_detail?$user_detail->bank_check:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <input type="text" name="bank" id="bank" class="form-control" placeholder="Banca" />
+                                    <input type="text" name="bank" id="bank" class="form-control" placeholder="Banca" value="{{$user_detail?$user_detail->bank:''}}" />
                                 </div>
                             </div>
 
@@ -293,9 +298,9 @@ $configData = Helper::appClasses();
                                     <label class="form-label" for="">RIBA *</label>
                                     <div class="row g-3">
                                         <div class="col-sm-6">
-                                            <div class="form-check custom-option custom-option-basic checked">
+                                            <div class="form-check custom-option custom-option-basic">
                                                 <label class="form-check-label custom-option-content" for="rib-si">
-                                                  <input name="rib" class="form-check-input" type="radio" value="Si" id="rib-si" checked="">
+                                                  <input name="rib" class="form-check-input" type="radio" value="Si" id="rib-si" {{$user_detail?($user_detail->rib=='Si'?'checked=""':''):'checked=""'}}>
                                                   <span class="custom-option-header">
                                                     <span class="h6 mb-0">Si</span>
                                                   </span>
@@ -305,7 +310,7 @@ $configData = Helper::appClasses();
                                         <div class="col-sm-6">
                                             <div class="form-check custom-option custom-option-basic">
                                                 <label class="form-check-label custom-option-content" for="rib-no">
-                                                  <input name="rib" class="form-check-input" type="radio" value="No" id="rib-no">
+                                                  <input name="rib" class="form-check-input" type="radio" value="No" id="rib-no" {{$user_detail?($user_detail->rib=='No'?'checked=""':''):''}}>
                                                   <span class="custom-option-header">
                                                     <span class="h6 mb-0">No</span>
                                                   </span>
@@ -319,9 +324,9 @@ $configData = Helper::appClasses();
                                     <label class="form-label" for="">RID *</label>
                                     <div class="row g-3">
                                         <div class="col-sm-6">
-                                            <div class="form-check custom-option custom-option-basic checked">
+                                            <div class="form-check custom-option custom-option-basic">
                                                 <label class="form-check-label custom-option-content" for="rid-si">
-                                                  <input name="rid" class="form-check-input" type="radio" value="Si" id="rid-si" checked="">
+                                                  <input name="rid" class="form-check-input" type="radio" value="Si" id="rid-si" {{$user_detail?($user_detail->rid=='Si'?'checked=""':''):'checked=""'}}>
                                                   <span class="custom-option-header">
                                                     <span class="h6 mb-0">Si</span>
                                                   </span>
@@ -331,7 +336,7 @@ $configData = Helper::appClasses();
                                         <div class="col-sm-6">
                                             <div class="form-check custom-option custom-option-basic">
                                                 <label class="form-check-label custom-option-content" for="rid-no">
-                                                  <input name="rid" class="form-check-input" type="radio" value="No" id="rid-no">
+                                                  <input name="rid" class="form-check-input" type="radio" value="No" id="rid-no" {{$user_detail?($user_detail->rid=='No'?'checked=""':''):''}}>
                                                   <span class="custom-option-header">
                                                     <span class="h6 mb-0">No</span>
                                                   </span>

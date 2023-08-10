@@ -1,10 +1,10 @@
 {
     "menu": [
     {
-        "url": "/",
+        "url": "/dashboard",
         "name": "Dashboard",
         "icon": "menu-icon tf-icons ti ti-smart-home",
-        "slug": "pages-home",
+        "slug": "dashboard",
         "section": ["seller", "admin"]
     },
     {

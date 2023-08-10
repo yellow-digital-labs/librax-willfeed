@@ -5,6 +5,7 @@ namespace App\Http\Controllers\pages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\MainActivity;
 use App\Models\Common;
@@ -36,6 +37,8 @@ class SignupSeller extends Controller
     $product = Product::all();
     $region = Region::all();
 
+    $user_detail = UserDetail::where(['user_id' => $user->id])->first();
+
     $pageConfigs = ["myLayout" => "blank"];
     return view("content.pages.pages-signup-seller", [
       "pageConfigs" => $pageConfigs,
@@ -46,12 +49,15 @@ class SignupSeller extends Controller
       "order_capacity" => $order_capacity,
       "product" => $product,
       "region" => $region,
+      "user_detail" => $user_detail,
     ]);
   }
 
   public function store(Request $request)
   {
     $authUser = Auth::user();
+
+    $file_operating_license_path = $request->file('file_operating_license')->store('storage');
 
     $users = UserDetail::updateOrCreate(
       ['user_id' => $authUser->id],
@@ -71,7 +77,7 @@ class SignupSeller extends Controller
         'pincode' => $request->pincode,
         'storage_capacity' => $request->storage_capacity,
         'order_capacity_limits' => $request->order_capacity_limits,
-        'available_products' => $request->available_products,
+        'available_products' => implode(",",$request->available_products),
         'geographical_coverage_regions' => $request->geographical_coverage_regions,
         'geographical_coverage_provinces' => $request->geographical_coverage_provinces,
         'time_limit_daily_order' => $request->time_limit_daily_order,
@@ -80,6 +86,7 @@ class SignupSeller extends Controller
         'bank' => $request->bank,
         'rib' => $request->rib,
         'rid' => $request->rid,
+        'file_operating_license' => $file_operating_license_path,
         'updated_by' => $authUser->email
       ]
     );

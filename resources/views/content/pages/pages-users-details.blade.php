@@ -238,7 +238,7 @@ $configData = Helper::appClasses();
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Licenza di esercizio</h6>
-                                <p class="mb-0">80020</p>
+                                <p class="mb-0"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_operating_license)}}" target="_blank">View Document</a></p>
                             </div>
                         </div>
                     </div>
