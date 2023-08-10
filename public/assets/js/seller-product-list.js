@@ -228,7 +228,7 @@
                     // Buttons with Dropdown
                     buttons: [{
                         text: '<i class="ti ti-plus me-0 me-sm-1"></i><span class="d-none d-sm-inline-block">Aggiungi prodotto</span>',
-                        className: 'add-new btn btn-primary',
+                        className: 'add-new btn btn-primary ms-3',
                         action: function action(e, dt, node, config) {
                             window.location.href = urlCreateProductView;
                         }
