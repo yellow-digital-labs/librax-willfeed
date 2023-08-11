@@ -29,6 +29,13 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#amount_before_tax").on("change", function(){
+        let amount_before_tax = $(this).val();
+        let amount = Number(+amount_before_tax + (amount_before_tax*22/100)).toLocaleString("es-ES", {minimumFractionDigits: 2});
+
+        $("#amount").text(amount);
+    })
 });
 
 document.addEventListener('DOMContentLoaded', function (e) {
