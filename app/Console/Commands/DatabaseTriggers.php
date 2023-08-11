@@ -52,6 +52,10 @@ class DatabaseTriggers extends Command
                     IF NEW.amount_before_tax <> OLD.amount_before_tax THEN
                         SET NEW.amount = NEW.amount_before_tax + (NEW.amount_before_tax*NEW.tax/100);
                     END IF;
+
+                    IF NEW.stock_lifetime <> OLD.stock_lifetime OR NEW.stock_in_transit <> OLD.stock_in_transit THEN
+                        SET NEW.current_stock = NEW.stock_lifetime - NEW.stock_in_transit;
+                    END IF;
                 END');
 
         DB::unprepared('DROP TRIGGER IF EXISTS `product_seller_inventory_histories_before_insert`');
@@ -63,7 +67,19 @@ class DatabaseTriggers extends Command
         DB::unprepared('DROP TRIGGER IF EXISTS `product_seller_inventory_histories_after_insert`');
         DB::unprepared('CREATE TRIGGER product_seller_inventory_histories_after_insert AFTER INSERT ON `product_seller_inventory_histories` FOR EACH ROW
                 BEGIN
-                    
+                    SET @stock_lifetime = (SELECT COALESCE(SUM(qty), 0) FROM product_seller_inventory_histories WHERE seller_id=NEW.seller_id AND product_id=NEW.product_id);
+
+                    UPDATE product_sellers SET stock_lifetime=@stock_lifetime, stock_updated_at=NEW.created_at WHERE id=NEW.product_sellers_id;
+                END');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS `orders_after_update`');
+        DB::unprepared('CREATE TRIGGER orders_after_update AFTER UPDATE ON `orders` FOR EACH ROW
+                BEGIN
+                    IF NEW.order_status_id <> OLD.order_status_id THEN
+                        SET @stock_in_transit = (SELECT NEW.product_qty FROM orders WHERE seller_id=NEW.seller_id AND product_id=NEW.product_id AND order_status_id=2);
+
+                        UPDATE product_sellers SET stock_in_transit=@stock_in_transit WHERE seller_id=NEW.seller_id AND product_id=NEW.product_id;
+                    END IF;
                 END');
     }
 }

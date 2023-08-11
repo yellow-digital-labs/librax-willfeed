@@ -42,8 +42,8 @@ $configData = Helper::appClasses();
                     <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
                         <div>
                             <h6 class="mb-2 fw-normal">Totale prodotti</h6>
-                            <h4 class="mb-2">5,000</h4>
-                            <p class="mb-0"><span class="badge bg-label-success fw-normal">100.00%</span></p>
+                            <h4 class="mb-2">{{$total_products}}</h4>
+                            <p class="mb-0"><span class="badge bg-label-success fw-normal">100,00%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti me-sm-4">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
@@ -55,8 +55,8 @@ $configData = Helper::appClasses();
                     <div class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
                         <div>
                             <h6 class="mb-2 fw-normal">Prodotti attivi</h6>
-                            <h4 class="mb-2">4,000</h4>
-                            <p class="mb-0"><span class="badge bg-label-success fw-normal">80.00%</span></p>
+                            <h4 class="mb-2">{{$active_products}}</h4>
+                            <p class="mb-0"><span class="badge bg-label-success fw-normal">{{number_format($active_products*100/$total_products, 2, ',', '.')}}%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti me-sm-4">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
@@ -68,8 +68,8 @@ $configData = Helper::appClasses();
                     <div class="d-flex justify-content-between align-items-start border-end pb-3 pb-sm-0 card-widget-3">
                         <div>
                             <h6 class="mb-2">Prodotti inattivi</h6>
-                            <h4 class="mb-2">1,000</h4>
-                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">20.00%</span></p>
+                            <h4 class="mb-2">{{$inactive_products}}</h4>
+                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{number_format($inactive_products*100/$total_products, 2, ',', '.')}}%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti p-2 me-sm-4">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>

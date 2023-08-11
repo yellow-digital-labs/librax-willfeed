@@ -46,8 +46,8 @@ $configData = Helper::appClasses();
                         <div class="col-12">
                             <label class="form-label" for="product_id">Prodotto</label>
                         @if($product_detail)
-                            <input type="hidden" name="product_id" value="{{$product_detail?$product_detail->product_id:''}}" />
-                            <input type="text" id="amount_before_tax" class="form-control" value="{{$product_detail?$product_detail->product_name:''}}" readonly />
+                            <input type="hidden" id="product_id" name="product_id" value="{{$product_detail?$product_detail->product_id:''}}" />
+                            <input type="text" id="product_id_val" class="form-control" value="{{$product_detail?$product_detail->product_name:''}}" readonly />
                         @else
                             <select name="product_id" id="product_id" class="form-select select2" data-minimum-results-for-search="Infinity">
                                 <option value="">Seleziona prodotti </option>
@@ -113,7 +113,7 @@ $configData = Helper::appClasses();
 
                         <div class="col-12">
                             <p class="small mb-0">IVA: 22%</p>
-                            <p class="small">Prezzo incluso iva: {{$product_detail?number_format($product_detail->amount, 2, ',', '.'):'0,00'}}</p>
+                            <p class="small">Prezzo incluso iva: €<span id="amount">{{$product_detail?number_format($product_detail->amount, 2, ',', '.'):'0,00'}}</span></p>
                         </div>
 
                         <div class="form-check mt-3">
@@ -145,19 +145,22 @@ $configData = Helper::appClasses();
                     <h5 class="fw-normal">Restock</h5>
                     <div class="row">
                         <div class="col-12">
-                            <label class="form-label" for="business_name">Add to stock</label>
+                            <label class="form-label" for="qty">Add to stock</label>
                             <div class="row g-3 mb-4">
                                 <div class="col">
-                                    <input type="text" name="business_name" id="business_name" class="form-control" placeholder="Quantity" />
+                                    <div class="input-group">
+                                        <input type="text" id="qty" class="form-control" placeholder="Quantity" />
+                                        <span class="input-group-text">litri</span>
+                                    </div>
                                 </div>
                                 <div class="col-auto">
-                                    <button type="button" class="btn btn-dark btn-next btn-submit waves-effect waves-light"><i class="ti ti-check me-2"></i> Confirm</button>
+                                    <button type="button" class="btn btn-dark btn-next btn-submit waves-effect waves-light" id="inventory-submit"><i class="ti ti-check me-2"></i> Confirm</button>
                                 </div>
                             </div>
-                            <p><span class="fw-semibold me-2">Product in stock now:</span> 54</p>
-                            <p><span class="fw-semibold me-2">Product in transit:</span> 905</p>
-                            <p><span class="fw-semibold me-2">Last time restocked:</span> 24th June, 2023</p>
-                            <p><span class="fw-semibold me-2">Total stock over lifetime:</span> 2430</p>
+                            <p><span class="fw-semibold me-2">Product in stock now:</span> <span id="current_stock">{{$product_detail?number_format($product_detail->current_stock, 0, ',', '.'):'NA'}}</span> litri</p>
+                            <p><span class="fw-semibold me-2">Product in transit:</span> <span id="stock_in_transit">{{$product_detail?number_format($product_detail->stock_in_transit, 0, ',', '.'):'NA'}}</span> litri</p>
+                            <p><span class="fw-semibold me-2">Last time restocked:</span> <span id="stock_updated_at">{{$product_detail?date('dS F, Y', strtotime($product_detail->stock_updated_at)):'NA'}}</span></p>
+                            <p><span class="fw-semibold me-2">Total stock over lifetime:</span> <span id="stock_lifetime">{{$product_detail?number_format($product_detail->stock_lifetime, 0, ',', '.'):'NA'}}</span> litri</p>
                         </div>
                     </div>
                 </div>

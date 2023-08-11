@@ -14,12 +14,21 @@ class Product extends Controller
 {
   public function index()
   {
+    $user_id = Auth::user()->id;
+
     $urlCreateProductView = route("product-create");
     $urlListProductData = route("product-list");
+
+    $total_products = ProductSeller::where(['seller_id' => $user_id])->count();
+    $active_products = ProductSeller::where(['seller_id' => $user_id, "status" => "active"])->count();
+    $inactive_products = ProductSeller::where(['seller_id' => $user_id, "status" => "inactive"])->count();
 
     return view("content.pages.pages-product", [
       "urlCreateProductView" => $urlCreateProductView,
       "urlListProductData" => $urlListProductData,
+      "total_products" => $total_products,
+      "active_products" => $active_products,
+      "inactive_products" => $inactive_products,
     ]);
   }
 
@@ -250,10 +259,19 @@ class Product extends Controller
       "qty" => $request->qty
     ]);
 
+    $seller_product = ProductSeller::where(['seller_id' => $user_id, "product_id" => $id])->first();
+
+    $data = [
+      'current_stock' => number_format($seller_product->current_stock, 0, ',', '.'),
+      'stock_in_transit' => number_format($seller_product->stock_in_transit, 0, ',', '.'),
+      'stock_lifetime' => number_format($seller_product->stock_lifetime, 0, ',', '.'),
+      'stock_updated_at' => date('dS F, Y', strtotime($seller_product->stock_updated_at))
+    ];
+
     return response()->json([
       "message" => "Product inventory added successfully",
       "code" => 200,
-      "data" => [],
+      "data" => $data,
     ]);
   }
 }
