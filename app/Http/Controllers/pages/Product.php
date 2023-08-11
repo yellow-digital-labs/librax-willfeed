@@ -151,10 +151,13 @@ class Product extends Controller
       "seller_id" => $user_id,
     ])->first();
 
+    $_product = Products::where(['id' => $id])->first();
+
     if ($product_detail) {
       return view("content.pages.pages-product-create", [
         "products" => $products,
         "product_detail" => $product_detail,
+        "_product" => $_product,
       ]);
     } else {
       return Redirect::back()->withErrors([
@@ -201,6 +204,7 @@ class Product extends Controller
     return view("content.pages.pages-product-create", [
       "products" => $products,
       "product_detail" => [],
+      "_product" => [],
     ]);
   }
 
@@ -272,6 +276,17 @@ class Product extends Controller
       "message" => "Product inventory added successfully",
       "code" => 200,
       "data" => $data,
+    ]);
+  }
+
+  public function detail(Request $request, $id){
+
+    $product = Products::where(["id" => $id])->first();
+
+    return response()->json([
+      "message" => "Product details fetched successfully",
+      "code" => 200,
+      "data" => $product->description,
     ]);
   }
 }

@@ -59,7 +59,9 @@ $configData = Helper::appClasses();
                         </div>
                         <div class="col-12">
                             <label for="product-details-container" class="fw-semibold">Descrizione</label>
-                            <div id="product-details-container"></div>
+                            <div id="product-details-container">
+                                {{$_product?$_product->description:''}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -79,7 +81,7 @@ $configData = Helper::appClasses();
                             <label class="form-label" for="amount_before_tax">Prezzo a vista</label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
-                                <input type="number" name="amount_before_tax" id="amount_before_tax" class="form-control" placeholder="0,00" value="{{$product_detail?$product_detail->amount_before_tax:''}}" />
+                                <input type="number" name="amount_before_tax" id="amount_before_tax" class="form-control" placeholder="0,00" value="{{$product_detail?$product_detail->amount_before_tax:''}}" lang="es-ES" />
                                 <span class="input-group-text">/litri</span>
                             </div>
                         </div>

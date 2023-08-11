@@ -36,6 +36,21 @@ $(document).ready(function () {
 
         $("#amount").text(amount);
     })
+
+    $("#product_id").on("change", function(){
+        let product_id = $("#product_id").find(":selected").val();
+        $.ajax({
+            type: 'POST',
+            url: "".concat(baseUrl, "product/").concat(product_id, "/detail"),
+            success: function success(res) {
+                let data = res.data;
+                $("#product-details-container").text(data);
+            },
+            error: function error(_error) {
+                console.log(_error);
+            }
+        });
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function (e) {
