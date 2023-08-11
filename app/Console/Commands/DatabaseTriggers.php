@@ -53,5 +53,17 @@ class DatabaseTriggers extends Command
                         SET NEW.amount = NEW.amount_before_tax + (NEW.amount_before_tax*NEW.tax/100);
                     END IF;
                 END');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS `product_seller_inventory_histories_before_insert`');
+        DB::unprepared('CREATE TRIGGER product_seller_inventory_histories_before_insert BEFORE INSERT ON `product_seller_inventory_histories` FOR EACH ROW
+                BEGIN
+                    SET NEW.product_sellers_id = (SELECT id FROM product_sellers WHERE seller_id=NEW.seller_id AND product_id=NEW.product_id);
+                END');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS `product_seller_inventory_histories_after_insert`');
+        DB::unprepared('CREATE TRIGGER product_seller_inventory_histories_after_insert AFTER INSERT ON `product_seller_inventory_histories` FOR EACH ROW
+                BEGIN
+                    
+                END');
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProductSeller;
 use App\Models\Product as Products;
+use App\Models\ProductSellerInventoryHistory;
 use Auth;
 use Redirect;
 
@@ -106,7 +107,8 @@ class Product extends Controller
         $nestedData["id"] = $product->id;
         $nestedData["fake_id"] = ++$ids;
         $nestedData["product_name"] = $product->product_name;
-        $nestedData["amount_before_tax"] = "€".$product->amount_before_tax."/LITERS";
+        $nestedData["amount_before_tax"] =
+          "€" . $product->amount_before_tax . "/LITERS";
         $nestedData["status"] = $product->status;
         $nestedData["product_id"] = $product->product_id;
 
@@ -135,15 +137,20 @@ class Product extends Controller
   {
     $user_id = Auth::user()->id;
     $products = Products::where(["active" => "yes"])->get();
-    $product_detail = ProductSeller::where(["product_id" => $id, "seller_id" => $user_id])->first();
+    $product_detail = ProductSeller::where([
+      "product_id" => $id,
+      "seller_id" => $user_id,
+    ])->first();
 
-    if($product_detail){
+    if ($product_detail) {
       return view("content.pages.pages-product-create", [
         "products" => $products,
-        "product_detail" => $product_detail
+        "product_detail" => $product_detail,
       ]);
     } else {
-      return Redirect::back()->withErrors(["msg" => "Invalid product edit request"]);
+      return Redirect::back()->withErrors([
+        "msg" => "Invalid product edit request",
+      ]);
     }
   }
 
@@ -151,23 +158,28 @@ class Product extends Controller
   {
     $user_id = Auth::user()->id;
 
-    $product_avail = ProductSeller::where(["product_id" => $id])->count();
+    $product_avail = ProductSeller::where([
+      "product_id" => $id,
+      "seller_id" => $user_id
+    ])->count();
 
-    if($product_avail==0){
-      return redirect::back()->withErrors(["msg" => "This product is not available"]);
+    if ($product_avail == 0) {
+      return redirect::back()->withErrors([
+        "msg" => "This product is not available",
+      ]);
     }
 
     ProductSeller::updateOrCreate(
       [
-        'seller_id' => $user_id,
-        'product_id' => $request->product_id
+        "seller_id" => $user_id,
+        "product_id" => $request->product_id,
       ],
       [
-        'amount_before_tax' => $request->amount_before_tax,
-        'amount_30gg' => $request->amount_30gg,
-        'amount_60gg' => $request->amount_60gg,
-        'amount_90gg' => $request->amount_90gg,
-        'status' => $request->status?$request->status:'inactive'
+        "amount_before_tax" => $request->amount_before_tax,
+        "amount_30gg" => $request->amount_30gg,
+        "amount_60gg" => $request->amount_60gg,
+        "amount_90gg" => $request->amount_90gg,
+        "status" => $request->status ? $request->status : "inactive",
       ]
     );
 
@@ -187,26 +199,61 @@ class Product extends Controller
   {
     $user_id = Auth::user()->id;
 
-    $product_avail = ProductSeller::where(["product_id" => $request->product_id])->count();
+    $product_avail = ProductSeller::where([
+      "product_id" => $request->product_id,
+      "seller_id" => $user_id
+    ])->count();
 
-    if($product_avail>0){
-      return redirect::back()->withErrors(["msg" => "This product is already added"]);
+    if ($product_avail > 0) {
+      return redirect::back()->withErrors([
+        "msg" => "This product is already added",
+      ]);
     }
 
     ProductSeller::updateOrCreate(
       [
-        'seller_id' => $user_id,
-        'product_id' => $request->product_id
+        "seller_id" => $user_id,
+        "product_id" => $request->product_id,
       ],
       [
-        'amount_before_tax' => $request->amount_before_tax,
-        'amount_30gg' => $request->amount_30gg,
-        'amount_60gg' => $request->amount_60gg,
-        'amount_90gg' => $request->amount_90gg,
-        'status' => $request->status?$request->status:'inactive'
+        "amount_before_tax" => $request->amount_before_tax,
+        "amount_30gg" => $request->amount_30gg,
+        "amount_60gg" => $request->amount_60gg,
+        "amount_90gg" => $request->amount_90gg,
+        "status" => $request->status ? $request->status : "inactive",
       ]
     );
 
     return redirect()->route("product");
+  }
+
+  public function stock(Request $request, $id)
+  {
+    $user_id = Auth::user()->id;
+
+    $product_avail = ProductSeller::where([
+      "product_id" => $id,
+      "seller_id" => $user_id
+    ])->count();
+
+    if ($product_avail == 0) {
+      return response()->json([
+        "message" => "Product is not available",
+        "code" => 400,
+        "data" => [],
+      ]);
+    }
+
+    ProductSellerInventoryHistory::create([
+      "seller_id" => $user_id,
+      "product_id" => $id,
+      "qty" => $request->qty
+    ]);
+
+    return response()->json([
+      "message" => "Product inventory added successfully",
+      "code" => 200,
+      "data" => [],
+    ]);
   }
 }
