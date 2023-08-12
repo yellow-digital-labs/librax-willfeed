@@ -1,0 +1,158 @@
+.footer {
+    background: #000;
+    color: #fff;
+    padding-top: 50px;
+}
+
+.foolter-upper {
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgb(255 255 255 / 50%);
+}
+
+.footer-contact__item {
+    display: flex;
+    align-items: center;
+}
+
+.footer-contact__icon {
+    color: #26BBFB;
+    font-size: 60px;
+}
+
+.footer-contact__name {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.22px;
+    margin-bottom: 6px;
+}
+
+.footer-contact__data {
+    padding-left: 15px;
+}
+
+.footer-contact__href {
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    font-size: 17px;
+    letter-spacing: 0.17px;
+    text-transform: uppercase;
+}
+
+.footer-main {
+    padding-top: 70px;
+    padding-bottom: 135px;
+}
+
+.footer-main__title {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.22px;
+    margin-bottom: 30px;
+}
+
+.footer-main__text {
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.36px;
+    margin-bottom: 60px;
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+}
+
+.footer-social__link {
+    display: flex;
+    font-size: 25px;
+    align-items: center;
+    color: #26BBFB;
+}
+
+.footer-social__link + .footer-social__link {
+    margin-left: 40px;
+}
+
+.footer-main__grid {
+    margin-left: -120px;
+}
+
+.footer-main__grid > * {
+    padding-left: 120px;
+}
+
+.footer-main__col--about {
+    width: 28%;
+}
+
+.footer-main__col--links {
+    width: 17%;
+}
+
+.footer-main__col--support {
+    width: 19%;
+}
+
+.footer-main__col--products {
+    width: 36%;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links__action {
+    display: inline-flex;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.36px;
+    text-decoration-line: underline;
+    text-transform: uppercase;
+}
+
+.footer-links__item + .footer-links__item {
+    margin-top: 20px;
+}
+
+.footer-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-menu__link {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.36px;
+}
+
+.footer-menu__item + .footer-menu__item {
+}
+
+.footer-menu {
+    display: grid;
+    grid-template-columns: auto;
+    align-items: flex-start;
+    column-gap: 30px;
+    row-gap: 20px;
+}
+
+.footer-menu--grid {
+    grid-template-columns: repeat(2,calc(100%/2));
+}
+
+.footer-copyright {    
+    background: #26BBFB;    
+    text-align: center;
+    font-size: 20px;    
+    font-weight: 500;    
+    line-height: 35px;    
+    padding: 13px 15px;
+}

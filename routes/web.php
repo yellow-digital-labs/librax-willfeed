@@ -32,6 +32,9 @@ Route::get('/verify-email', $controller_path . '\pages\VerifyEmail@index')->name
 Route::get('logout', [ App\Http\Controllers\ClientController::class, 'logout'])->name('logout');
 
 
+Route::get('/home', $controller_path . '\pages\MainHome@index')->name('pages-main-home');
+
+
 //Authentication required
 Route::middleware([
     'auth',
