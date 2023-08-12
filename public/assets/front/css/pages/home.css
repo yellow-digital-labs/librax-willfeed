@@ -88,10 +88,16 @@
 /* Dash charts starts */
 
 .dash-charts {
-    
-padding-top: 70px;
-    
-padding-bottom: 60px;
+    padding-top: 70px;
+    padding-bottom: 60px;
+}
+
+.dash-charts__maintitle {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 0.48px;
+    text-align: center;
+    margin-bottom: 45px;
 }
 
 .dash-charts.uk-slider {}
@@ -99,7 +105,9 @@ padding-bottom: 60px;
 .dash-charts__item {
     border-radius: 12px;
     background: #FFF;
-    box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.08);
+    /* box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.08); */
+    border-radius: 12px;
+    border: 1px solid #DBDADE;
 }
 
 .dash-charts__container {
@@ -110,12 +118,12 @@ padding-bottom: 60px;
 .dash-charts__upper {
     display: flex;
     align-items: center;
-    padding: 15px 15px 25px;
+    padding: 15px 15px 15px;
 }
 
 .dash-charts__icon {
-    width: 50px;
-    height: 50px;
+    width: 42px;
+    height: 42px;
     display: flex;
     background: #F5F5F5;
     font-size: 32px;
@@ -124,14 +132,16 @@ padding-bottom: 60px;
     line-height: 1;
     align-items: center;
     justify-content: center;
+    flex-grow: unset !important;
+    padding: 8px;
 }
 
 h2.dash-charts__title {
     color: #000;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 600;
     letter-spacing: 0.18px;
-    margin-bottom: 3px;
+    margin-bottom: 1px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -144,7 +154,7 @@ h2.dash-charts__title {
 }
 
 .dash-charts__about {
-    font-size: 16px;
+    font-size: 13px;
     color: #B7B7B7;
     font-weight: 400;
     letter-spacing: 0.16px;
@@ -165,13 +175,13 @@ h2.dash-charts__title {
 }
 
 .dash-charts__down {
-    padding: 25px 15px 15px;
+    padding: 15px 15px 15px;
     display: flex;
     justify-content: space-between;
 }
 
 .dash-charts__price-text {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.2px;
     line-height: 1;
@@ -182,19 +192,40 @@ h2.dash-charts__title {
 
 .dash-charts__price-type {
     color: #BCBCBC;
-    font-size: 15px;
-    letter-spacing: 0.15px;
+    font-size: 13px;
     text-transform: capitalize;
     font-weight: 400;
     line-height: 1;
+    letter-spacing: 0.13px;
+}
+
+.dash-charts__perc-arrow {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+}
+
+.dash-charts__perc-arrow:after {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 10px solid;
+    position: absolute;
+    content: '';
+    color: inherit;
 }
 
 .dash-charts__perc-count {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
-    letter-spacing: 0.18px;
     line-height: 1;
     margin-bottom: 8px;
+    letter-spacing: 0.16px;
 }
 
 .dash-charts__perc {
@@ -211,11 +242,11 @@ h2.dash-charts__title {
 }
 
 .dash-charts__grid {
-    margin-left: -30px;
+    margin-left: -16px;
 }
 
 .dash-charts__grid > * {
-    padding-left: 30px;
+    padding-left: 16px;
 }
 
 /* Dash charts Ends */
@@ -815,3 +846,301 @@ h3.title.platform__sectitle {
 }
 
 /* Help Ends */
+
+/* Landing Page Hero Starts */
+
+.landing-hero {
+    padding: 100px 40px 60px;
+    text-align: center;
+}
+
+.landing-hero__maintitle {
+    font-size: 62px;
+    font-weight: 900;
+    letter-spacing: 0.62px;
+    margin-bottom: 50px;
+}
+
+.landing-hero__desc {
+    font-size: 20px;
+    letter-spacing: 0.2px;
+    color: #686868;
+    margin-bottom: 30px;
+}
+
+.landing-hero__bolddesc {
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    max-width: 736px;
+    margin: auto;
+}
+/* Landing Page Hero Starts */
+
+/* Landing Video Starts */
+
+.landing-video {
+    padding: 60px 40px 100px;
+}
+
+.landing-video__wrapper {
+    width: 1340px;
+    max-width: 100%;
+    height: 0;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 35%;
+    border-radius: 38px;
+    border: 7px solid #000;
+    margin: auto;
+}
+
+.landing-video__action {
+    padding: 0;
+    width: 82px;
+    height: 82px;
+    background: transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Landing Video Starts */
+
+/* Landing Colored Blocks Starts */
+
+.landing-clrblock__container {
+    padding: 140px 60px;
+    border-radius: 38px;
+    background: #FFE000;
+}
+
+.landing-clrblock__title {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 0.48px;
+    margin-bottom: 30px;
+    line-height: 1.1;
+}
+
+.landing-clrblock__text {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    max-width: 520px;
+    margin-bottom: 35px;
+}
+
+.landing-clrblock__action {
+    color: #000;
+    border-color: #000;
+}
+
+.landing-clrblock {
+    padding: 25px 40px;
+}
+
+.landing-clrblock__container--buy {
+    background: #FF9300;
+}
+
+.landing-clrblock__container--safe {
+    background: #941100;
+    color: #fff;
+}
+
+.landing-clrblock__container--safe > * {
+    color: #fff;
+}
+
+.landing-clrblock__container--community {
+    background: #0433FF;
+    color: #fff;
+}
+
+.landing-clrblock__container--community > * {
+    color: #fff;
+}
+
+/* Landing Colored Blocks Ends */
+
+/* Landing Reviews Starts */
+
+.landing-reviews {
+    background: #000;
+    padding-top: 80px;
+    padding-bottom: 50px;
+}
+
+.landing-reviews {}
+
+.landing-reviews__title {
+    color: #FFF;
+    text-align: center;
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 0.48px;
+}
+
+.landing-reviews__about {
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    max-width: 512px;
+    margin: auto;
+}
+
+.landing-reviews__slider {
+    margin-top: 50px;
+}
+
+.landing-reviews__grid {
+    margin-left: -30px;
+}
+
+.landing-reviews__grid > * {
+    padding-left: 30px;
+}
+
+.landing-reviews__item {
+    background: #fff;
+    border-radius: 18px;
+    border: 1px solid #DBDADE;
+    padding: 30px 20px 25px;
+}
+
+.landing-reviews__rating {
+    color: #FFB800;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.landing-reviews__text {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.48px;
+}
+
+.landing-reviews__author {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.landing-reviews__author-img {
+    width: 64.48px;
+    height: 64.48px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.landing-reviews__author-data {
+    padding-left: 15px;
+}
+
+.landing-reviews__author-name {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin-bottom: 0;
+}
+
+.landing-reviews__author-dest {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.16px;
+    text-transform: uppercase;
+    color: #A8A8A8;
+}
+
+.landing-reviews__dotnav > * > * {
+    width: 32px;
+    height: 3px;
+    border-radius: 0;
+    border-color: #fff;
+    background: #fff;
+}
+
+.landing-reviews__dotnav > .uk-active > * {
+    background: #ffe000 !important;
+    opacity: 1;
+    border-color: #ffe000 !important;
+}
+
+.landing-reviews__dotnav > * > *:hover {
+    background-color: var(--primary-color);
+}
+
+.landing-reviews__dotnav {
+    justify-content: center;
+    margin-top: 80px;
+}
+
+/* Landing Reviews Ends */
+
+/* Blog Starts */
+
+.blog {
+    background: #000;
+    padding: 50px 40px 50px;
+}
+
+.blog__maintitle {
+    text-align: center;
+    color: #fff;
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 0.48px;
+    margin-bottom: 15px;
+}
+
+.blog__maintext {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    margin-bottom: 45px;
+    color: #fff;
+    text-align: center;
+}
+
+.blog__item {
+    border-radius: 18px;
+    background: #FFF;
+    padding: 15px;
+}
+
+.blog__container {
+    max-width: 1190px;
+}
+
+.blog__title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.32px;
+    margin: 0 0 12px;
+}
+
+.blog__media {
+    border-radius: 18px;
+    overflow: hidden;
+    height: 0;
+    padding-bottom: 75%;
+    position: relative;
+}
+
+.blog__media > * {
+    width: 100%;
+    border-radius: 18px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Blog Ends */
