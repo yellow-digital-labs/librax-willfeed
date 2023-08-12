@@ -21,7 +21,9 @@
 <!-- Vendor Styles -->
 @yield('vendor-style')
 
-
+<link rel="stylesheet" href="{{asset('assets/front/css/layout/uikit-footer.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/front/css/components/common-footer.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/front/css/layout/footer.css')}}" />
 <!-- Page Styles -->
 @yield('page-style')
 

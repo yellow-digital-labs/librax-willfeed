@@ -34,8 +34,8 @@
                         </form>
                     </div>
                 </div>
-                <a href="#" class="navmenu__left-link">Entra</a>
-                <a href="#" class="uk-button uk-button-light navmenu__left-link navmenu__left-link--button">Crea Account</a>
+                <a href="/login" class="navmenu__left-link">Entra</a>
+                <a href="/register" class="uk-button uk-button-light navmenu__left-link navmenu__left-link--button">Crea Account</a>
             </div>
         </div>
 
