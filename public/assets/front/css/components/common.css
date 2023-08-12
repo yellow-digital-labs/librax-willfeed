@@ -141,7 +141,7 @@
     }
 
     .uk-button-light:after {
-        background: #D53F76;
+        background: inherit;
     }
 
 

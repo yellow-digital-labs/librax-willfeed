@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'wf-icon';
-  src:  url('fonts/wf-icon.eot?b60sne');
-  src:  url('fonts/wf-icon.eot?b60sne#iefix') format('embedded-opentype'),
-    url('fonts/wf-icon.ttf?b60sne') format('truetype'),
-    url('fonts/wf-icon.woff?b60sne') format('woff'),
-    url('fonts/wf-icon.svg?b60sne#wf-icon') format('svg');
+  src:  url('fonts/wf-icon.eot?4ltvhi');
+  src:  url('fonts/wf-icon.eot?4ltvhi#iefix') format('embedded-opentype'),
+    url('fonts/wf-icon.ttf?4ltvhi') format('truetype'),
+    url('fonts/wf-icon.woff?4ltvhi') format('woff'),
+    url('fonts/wf-icon.svg?4ltvhi#wf-icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -129,4 +129,10 @@
 }
 .wf-icon-calendar:before {
   content: "\e91f";
+}
+.wf-icon-bag:before {
+  content: "\e920";
+}
+.wf-icon-search1:before {
+  content: "\e921";
 }

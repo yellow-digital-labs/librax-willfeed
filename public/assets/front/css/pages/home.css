@@ -938,6 +938,12 @@ h3.title.platform__sectitle {
     border-color: #000;
 }
 
+.landing-clrblock__action:hover, .landing-clrblock__action:focus, .landing-clrblock__action:focus-visible {
+    color: #fff;
+    border-color: #000;
+    background: #000;
+}
+
 .landing-clrblock {
     padding: 25px 40px;
 }
@@ -962,6 +968,37 @@ h3.title.platform__sectitle {
 
 .landing-clrblock__container--community > * {
     color: #fff;
+}
+
+.landing-clrblock.is-active {}
+
+.landing-clrblock.is-active .landing-clrblock__action {
+    display: none;
+}
+
+.landing-clrblock.is-active .landing-clrblock__grid {
+    display: flex !important;
+}
+
+.landing-clrblock__icon {
+    font-size: 50px;
+}
+
+.landing-clrblock__grid {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.landing-clrblock__name {
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 0.3px;
+    margin-top: 20px;
+}
+
+.landing-clrblock__desc {
+    max-width: 320px;
+    margin: auto;
 }
 
 /* Landing Colored Blocks Ends */

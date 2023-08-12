@@ -15,7 +15,7 @@ $configData = Helper::appClasses();
 
 <!-- CSS: Fonts Declaration -->
 <link rel="stylesheet" href="{{asset('assets/front/css/components/fonts.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/front/css/components/wf-icon.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/css/wf-icon/style.css')}}" />
 
 <!-- CSS: Layout Setup -->
 <link rel="stylesheet" href="{{asset('assets/front/css/layout/var.css')}}" />
@@ -330,7 +330,7 @@ $configData = Helper::appClasses();
         </div>
     </div>
 
-    <div class="landing-clrblock">
+    <div class="landing-clrblock" id="comprare">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--buy">
             <h2 class="title landing-clrblock__title">Come comprare su <br> willfeed?</h2>
             <div class="landing-clrblock__text">
@@ -338,7 +338,32 @@ $configData = Helper::appClasses();
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus, nisi at tempor convallis.
                 </p>
             </div>
-            <a href="#" class="uk-button uk-button-default landing-clrblock__action">SCOPRI DI PIU’</a>
+            <button type="button" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #comprare; cls: is-active">SCOPRI DI PIU’</button>
+
+            <div class="landing-clrblock__grid uk-grid gutter-xxl" data-uk-grid hidden>
+                <div class="uk-width-1-3@l landing-clrblock__col">
+                    <div class="landing-clrblock__icon wf-icon wf-icon-bag"></div>
+                    <h3 class="landing-clrblock__name">Ordina</h3>
+                    <div class="landing-clrblock__desc">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                    </div>
+                </div>
+                <div class="uk-width-1-3@l landing-clrblock__col">
+                    <div class="landing-clrblock__icon wf-icon wf-icon-analytics"></div>
+                    <h3 class="landing-clrblock__name">Traccia</h3>
+                    <div class="landing-clrblock__desc">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                    </div>
+                </div>
+                <div class="uk-width-1-3@l landing-clrblock__col">
+                    <div class="landing-clrblock__icon wf-icon wf-icon-search1"></div>
+                    <h3 class="landing-clrblock__name">Trova</h3>
+                    <div class="landing-clrblock__desc">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
