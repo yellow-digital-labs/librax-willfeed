@@ -34,6 +34,9 @@ Route::get('logout', [ App\Http\Controllers\ClientController::class, 'logout'])-
 
 Route::get('/home', $controller_path . '\pages\MainHome@index')->name('pages-main-home');
 
+// Admin Pages
+Route::get('/product-add', $controller_path . '\pages\ProductAdd@index')->name('pages-product-add');
+
 
 //Authentication required
 Route::middleware([

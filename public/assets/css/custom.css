@@ -158,7 +158,7 @@
 }
 
 .layout-menu-fixed .layout-menu {
-    padding-top: 0;
+    padding-top: 10px;
     position: sticky;
     top: 100px;
     box-shadow: unset;
