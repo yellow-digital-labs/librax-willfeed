@@ -60,6 +60,7 @@ $configData = Helper::appClasses();
                 
             </div>
         </div>
+        
     </div>
 </div>
 

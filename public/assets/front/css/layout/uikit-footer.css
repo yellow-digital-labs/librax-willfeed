@@ -30,15 +30,6 @@ body {
 /*
  * Style
  */
-a {
-  color: #1e87f0;
-  text-decoration: none;
-  cursor: pointer;
-}
-a:hover {
-  color: #0f6ecd;
-  text-decoration: underline;
-}
 /* Text-level semantics
  ========================================================================== */
 /*
