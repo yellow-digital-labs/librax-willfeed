@@ -39,6 +39,7 @@ Route::get('/product-add', $controller_path . '\pages\ProductAdd@index')->name('
 Route::get('/static-pages-terms', $controller_path . '\pages\StaticPagesTerms@index')->name('pages-static-pages-terms');
 Route::get('/static-pages-privacy', $controller_path . '\pages\StaticPagesPrivacy@index')->name('pages-static-pages-privacy');
 Route::get('/customer-rating', $controller_path . '\pages\CustomerRating@index')->name('pages-customer-rating');
+Route::get('/email-management', $controller_path . '\pages\EmailManagement@index')->name('pages-email-management');
 
 
 //Authentication required

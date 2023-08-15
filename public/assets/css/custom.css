@@ -82,6 +82,10 @@
     fill: #000;
 }
 
+.app-email .app-email-view {
+    width: 100%;
+}
+
 /* Navigation + Sidebar Starts */
 
 /* Navigation + Sidebar Ends */
