@@ -30,12 +30,12 @@ $configData = Helper::appClasses();
 
 @section('content')
 
-<h1 class="h3 text-black mb-4">Approved customer</h4>
+<h1 class="h3 text-black mb-4">Customer</h4>
 
 <div class="card">
     <div class="card-header d-flex justify-content-between border-bottom">
         <div class="card-title mb-0">
-            <h5 class="mb-0 text-black">Approved customer list</h5>
+            <h5 class="mb-0 text-black">Customer list</h5>
         </div>
     </div>
     <div class="card-datatable text-nowrap">

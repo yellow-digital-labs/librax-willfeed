@@ -17,10 +17,6 @@ $controller_path = 'App\Http\Controllers';
 
 // Main Page Route
 Route::get('/', $controller_path . '\pages\HomePage@index')->name('pages-home');
-Route::get('/approved-customer', $controller_path . '\pages\ApprovedCustomer@index')->name('pages-approved-customer');
-Route::get('/payments', $controller_path . '\pages\Payments@index')->name('pages-payments');
-Route::get('/settings', $controller_path . '\pages\Settings@index')->name('pages-settings');
-Route::get('/order-details', $controller_path . '\pages\OrderDetails@index')->name('pages-order-details');
 
 // pages
 Route::get('/pages/misc-error', $controller_path . '\pages\MiscError@index')->name('pages-misc-error');
@@ -72,9 +68,8 @@ Route::middleware([
     //
     Route::get('/unverified-users', $controller_path . '\pages\UnverifiedUser@index')->name('unverified-users');
 
-    Route::get('/profile', $controller_path . '\pages\UsersDetails@index')->name('users-details');
+    Route::get('/profile', $controller_path . '\pages\UsersDetails@index')->name('profile');
 
-    Route::get('/orders', $controller_path . '\pages\Orders@index')->name('orders');
     Route::get('/subscription-plan-management', $controller_path . '\pages\SubscriptionPlanManagement@index')->name('subscription-plan-management');
     Route::get('/reports', $controller_path . '\pages\Reports@index')->name('reports');
     Route::get('/email-template-management', $controller_path . '\pages\EmailTemplateManagement@index')->name('email-template-management');
@@ -94,4 +89,17 @@ Route::middleware([
     Route::post('/product/{id}/edit', $controller_path . '\pages\Product@update')->name('product-update'); //product update
     Route::post('/product/{id}/stock', $controller_path . '\pages\Product@stock')->name('product-update-stock'); //product update stock
     Route::post('/product/{id}/detail', $controller_path . '\pages\Product@detail')->name('product-detail'); //product detail ajax
+
+    //customer
+    Route::get('/customer/approved', $controller_path . '\pages\ApprovedCustomer@index')->name('customer-approved');
+
+    //orders
+    Route::get('/orders', $controller_path . '\pages\Orders@index')->name('orders');
+    Route::get('/order-details', $controller_path . '\pages\OrderDetails@index')->name('pages-order-details');
+
+    Route::get('/payments', $controller_path . '\pages\Payments@index')->name('pages-payments');
+
+    //settings
+    Route::get('/settings', $controller_path . '\pages\Settings@index')->name('settings'); //settings view
+    Route::post('/settings', $controller_path . '\pages\Settings@store')->name('settings-store'); //settings view
 });

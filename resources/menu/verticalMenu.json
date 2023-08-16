@@ -23,7 +23,7 @@
     },
     {
         "url": "/customer/approved",
-        "name": "Approved customer",
+        "name": "Customer",
         "icon": "menu-icon tf-icons ti ti-user-check",
         "slug": "customer-approved",
         "section": ["seller"]
@@ -32,7 +32,7 @@
         "url": "/orders",
         "name": "Ordini",
         "icon": "menu-icon tf-icons ti ti-basket",
-        "slug": "pages-orders",
+        "slug": "orders",
         "section": ["seller", "admin"]
     },
     {
@@ -46,7 +46,7 @@
         "url": "/products",
         "name": "Prodotti",
         "icon": "menu-icon tf-icons ti ti-droplet",
-        "slug": "products",
+        "slug": "product",
         "section": ["seller", "admin"]
     },
     {
