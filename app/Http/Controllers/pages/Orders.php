@@ -148,8 +148,44 @@ class Orders extends Controller
     }
   }
 
-  public function detail()
+  public function detail(Request $request, $id)
   {
-    return view("content.pages.pages-order-details");
+    $user_id = Auth::user()->id;
+
+    $order = Order::where("id", "=", $id)
+      ->where("seller_id", "=", $user_id)
+      ->first();
+
+    if($order){
+      $customer_total_orders = Order::where("user_id", "=", $order->user_id)
+        ->where("seller_id", "=", $user_id)
+        ->count();
+
+      return view("content.pages.pages-order-details", [
+        'id' => $id,
+        'order' => $order,
+        'customer_total_orders' => $customer_total_orders,
+      ]);
+    } else {
+      return redirect()->route('orders')->withErrors(['msg' => 'Invalid request']);
+    }
+  }
+
+  public function status(Request $request, $id, $status){
+    $user_id = Auth::user()->id;
+
+    $order = Order::where("id", "=", $id)
+      ->where("seller_id", "=", $user_id)
+      ->first();
+
+    if($order){
+      $order->update([
+        'order_status_id' => $status
+      ]);
+      
+      return redirect()->route('order-details', ['id' => $id]);
+    } else {
+      return redirect()->route('orders')->withErrors(['msg' => 'Invalid request']);
+    }
   }
 }

@@ -17,12 +17,18 @@ $configData = Helper::appClasses();
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3">
     <div class="d-flex flex-column justify-content-center gap-2 gap-sm-0">
-        <h5 class="mb-1 mt-3 d-flex flex-wrap gap-2 align-items-end">Order #32543 <span class="badge bg-label-success fw-normal">Paid</span></h5>
-        <p class="text-body">Aug 17, <span id="orderYear">2023</span>, 5:48 (ET)</p>
+        <h5 class="mb-1 mt-3 d-flex flex-wrap gap-2 align-items-end">Order #{{$id}} 
+            <span class="badge bg-label-{{$order->order_status_id == '3'?'danger':($order->order_status_id == '1'?'warning':'success')}} fw-normal">{{$order->order_status}}</span>
+            <span class="badge bg-label-success fw-normal">{{$order->order_status}}</span></h5>
+        <p class="text-body">{{date('F d, Y, H:i', strtotime($order->order_date))}} (ET)</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-3">
-        <button class="btn btn-outline-dark waves-effect">Reject order</button>
-        <button class="btn btn-primary delete-order waves-effect">Accept order </button>
+    @if ($order->order_status_id == '1' || $order->order_status_id == '2')
+        <a href="{{route('order-status', ['id' => $id, 'status' => '3'])}}" class="btn btn-outline-dark waves-effect">Reject order</a>
+    @endif
+    @if ($order->order_status_id == '1' || $order->order_status_id == '3')
+        <a href="{{route('order-status', ['id' => $id, 'status' => '2'])}}" class="btn btn-primary delete-order waves-effect">Accept order </a>
+    @endif
     </div>
 </div>
 
@@ -32,7 +38,7 @@ $configData = Helper::appClasses();
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5 class="card-title m-0 text-black">Order details</h5>
-                <h6 class="m-0"><a href=" javascript:void(0)">Edit</a></h6>
+                {{-- <h6 class="m-0"><a href=" javascript:void(0)">Edit</a></h6> --}}
             </div>
             <div class="card-datatable table-responsive">
                 <table class="table border-top">
@@ -49,17 +55,17 @@ $configData = Helper::appClasses();
                             <td class="sorting_1">
                                 <div class="d-flex justify-content-start align-items-center text-nowrap">
                                     <div class="avatar-wrapper">
-                                        <div class="avatar me-2"><img src="../../assets/img/products/oneplus.png" alt="product-Wooden Chair" class="rounded-2"></div>
+                                        {{-- <div class="avatar me-2"><img src="../../assets/img/products/oneplus.png" alt="product-Wooden Chair" class="rounded-2"></div> --}}
                                     </div>
                                     <div class="d-flex flex-column">
-                                        <h6 class="text-body mb-0">Ethylene</h6><small class="text-muted">Company name</small>
+                                        <h6 class="text-body mb-0">{{$order->product_name}}</h6><small class="text-muted">{{$order->seller_name}}</small>
                                     </div>
                                 </div>
                             </td>
-                            <td><span>$841</span></td>
-                            <td><span class="text-body">3,000 liters</span></td>
+                            <td><span>€{{$order->product_amount}}</span></td>
+                            <td><span class="text-body">{{$order->product_qty}} liters</span></td>
                             <td>
-                                <h6 class="mb-0">€17550.18</h6>
+                                <h6 class="mb-0">€{{$order->total_payable_amount}}</h6>
                             </td>
                         </tr>
                     </tbody>
@@ -68,7 +74,7 @@ $configData = Helper::appClasses();
                     <div class="order-calculations">
                         <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Subtotal:</span>
-                            <h6 class="mb-0">$6398</h6>
+                            <h6 class="mb-0">€{{$order->total_payable_amount}}</h6>
                         </div>
                         <!-- <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Discount:</span>
@@ -76,11 +82,11 @@ $configData = Helper::appClasses();
                         </div> -->
                         <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Tax:</span>
-                            <h6 class="mb-0">$30</h6>
+                            <h6 class="mb-0">€0</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="w-px-100 mb-0">Total:</h6>
-                            <h6 class="mb-0">$6450</h6>
+                            <h6 class="mb-0">€{{$order->total_payable_amount}}</h6>
                         </div>
                     </div>
                 </div>
@@ -96,7 +102,7 @@ $configData = Helper::appClasses();
                         <span class="timeline-point timeline-point-warning"></span>
                         <div class="timeline-event">
                             <div class="timeline-header">
-                                <h6 class="mb-0">Order was placed (Order ID: #32543)</h6>
+                                <h6 class="mb-0">Order was placed (Order ID: #{{$id}})</h6>
                                 <span class="text-muted">22/06/2023, 11:29 AM</span>
                             </div>
                             <p class="mt-2">Your order has been placed successfully</p>
@@ -187,40 +193,40 @@ $configData = Helper::appClasses();
                     </div>
                     <div class="d-flex flex-column">
                         <a href="app-user-view-account.html" class="text-body text-nowrap">
-                            <h6 class="mb-0 text-black">Shamus Tuttle</h6>
+                            <h6 class="mb-0 text-black">{{$order->user_name}}</h6>
                         </a>
-                        <small class="text-muted">Customer ID: #58909</small></div>
+                        <small class="text-muted">Customer ID: #{{$order->user_id}}</small></div>
                 </div>
                 <div class="d-flex justify-content-start align-items-center mb-4">
                     <span class="avatar rounded-circle bg-label-success me-2 d-flex align-items-center justify-content-center"><i class="ti ti-shopping-cart ti-sm"></i></span>
-                    <h6 class="text-body text-nowrap mb-0 text-black">12 Orders</h6>
+                    <h6 class="text-body text-nowrap mb-0 text-black">{{$customer_total_orders}} Orders</h6>
                 </div>
                 <div class="d-flex justify-content-between">
                     <h6 class=" text-black">Contact info</h6>
-                    <h6><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editUser">Edit</a></h6>
+                    {{-- <h6><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editUser">Edit</a></h6> --}}
                 </div>
-                <p class=" mb-1">Email: Shamus889@yahoo.com</p>
-                <p class=" mb-0">Mobile: +1 (609) 972-22-22</p>
+                <p class=" mb-1">Email: {{$order->customer_email}}</p>
+                <p class=" mb-0">Mobile: +39 {{$order->customer_contact}}</p>
             </div>
         </div>
 
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between border-bottom">
                 <h5 class="card-title m-0 text-black">Shipping address</h5>
-                <h6 class="m-0"><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#addNewAddress">Edit</a></h6>
+                {{-- <h6 class="m-0"><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#addNewAddress">Edit</a></h6> --}}
             </div>
             <div class="card-body pt-4">
-                <p class="mb-0">45 Roker Terrace <br>Latheronwheel <br>KW5 8NW,London <br>UK</p>
+                <p class="mb-0">{{$order->shipping_address_line_1}} <br>{{$order->shipping_address_line_2}} <br>{{$order->shipping_city}} {{$order->shipping_state}}, {{$order->shipping_country}} <br>{{$order->shipping_zip}}</p>
             </div>
         </div>
 
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between border-bottom">
                 <h5 class="card-title m-0 text-black">Billing address</h5>
-                <h6 class="m-0"><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#addNewAddress">Edit</a></h6>
+                {{-- <h6 class="m-0"><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#addNewAddress">Edit</a></h6> --}}
             </div>
             <div class="card-body pt-4">
-                <p class="mb-0">45 Roker Terrace <br>Latheronwheel <br>KW5 8NW,London <br>UK</p>
+                <p class="mb-0">{{$order->billing_address_line_1}} <br>{{$order->billing_address_line_2}} <br>{{$order->billing_city}} {{$order->billing_state}}, {{$order->billing_country}} <br>{{$order->billing_zip}}</p>
             </div>
         </div>
         
@@ -230,9 +236,9 @@ $configData = Helper::appClasses();
                 <h6 class="m-0"><a href=" javascript:void(0)">Edit</a></h6>
             </div>
             <div class="card-body pt-4">
-                <p class="d-flex justify-content-between">Total payment <span class="fw-semibold">€1100</span></p>
-                <p class="d-flex justify-content-between">Payment till now <span class="fw-semibold text-success">€500</span></p>
-                <p class="d-flex justify-content-between">Pending payment <span class="fw-semibold text-danger">€600</span></p>
+                <p class="d-flex justify-content-between">Total payment <span class="fw-semibold">€{{$order->total_payable_amount}}</span></p>
+                <p class="d-flex justify-content-between">Payment till now <span class="fw-semibold text-success">€{{$order->total_paid_amount}}</span></p>
+                <p class="d-flex justify-content-between">Pending payment <span class="fw-semibold text-danger">€{{$order->total_pending_amount}}</span></p>
             </div>
         </div>
     </div>
