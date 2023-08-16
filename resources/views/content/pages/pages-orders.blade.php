@@ -21,8 +21,10 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('page-script')
-<!-- <script src="{{asset('assets/js/tables-datatables-advanced.js')}}"></script> -->
-<script src="{{asset('assets/js/approved-customer-datatables.js')}}"></script>
+<script>
+    var urlListOrderData = {!! "'".$urlListOrderData."'" !!};
+</script>
+<script src="{{asset('assets/js/approved-order-datatables.js')}}"></script>
 @endsection
 
 @section('page-style')
@@ -42,7 +44,7 @@ $configData = Helper::appClasses();
                     <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
                         <div>
                             <h6 class="mb-2 fw-normal">Ordini totali</h6>
-                            <h4 class="mb-2">5,000</h4>
+                            <h4 class="mb-2">{{$total_orders}}</h4>
                             <p class="mb-0"><span class="badge bg-label-success fw-normal">100.00%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti me-sm-4">
@@ -55,7 +57,7 @@ $configData = Helper::appClasses();
                     <div class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
                         <div>
                             <h6 class="mb-2 fw-normal">Ordini in Euro</h6>
-                            <h4 class="mb-2">€4,00,000</h4>
+                            <h4 class="mb-2">€{{$total_orders_euro}}</h4>
                             <p class="mb-0"><span class="badge bg-label-success fw-normal">80.00%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti me-sm-4">
@@ -68,7 +70,7 @@ $configData = Helper::appClasses();
                     <div class="d-flex justify-content-between align-items-start border-end pb-3 pb-sm-0 card-widget-3">
                         <div>
                             <h6 class="mb-2 fw-normal">Ordini Cancellati</h6>
-                            <h4 class="mb-2">1,000</h4>
+                            <h4 class="mb-2">{{$rejected_orders}}</h4>
                             <p class="mb-0"><span class="badge bg-label-danger fw-normal">20.00%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti p-2 me-sm-4">
@@ -80,7 +82,7 @@ $configData = Helper::appClasses();
                     <div class="d-flex justify-content-between align-items-start">
                         <div>
                             <h6 class="mb-2 fw-normal">Ordini completati</h6>
-                            <h4 class="mb-2">4,000</h4>
+                            <h4 class="mb-2">{{$completed_orders}}</h4>
                             <p class="mb-0"><span class="badge bg-label-danger">20.00%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti p-2">

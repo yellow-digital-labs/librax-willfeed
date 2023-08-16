@@ -13,17 +13,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::truncate();
-        DB::table('users')->insert([
-            'name' => 'Vendor',
-        ]);
-
         \App\Models\AccountType::truncate();
         DB::table('account_types')->insert([
             'name' => 'Cliente',
         ]);
         DB::table('account_types')->insert([
             'name' => 'Venditore/Agenzia',
+        ]);
+
+        \App\Models\OrderStatus::truncate();
+        DB::table('order_statuses')->insert([
+            'name' => 'Pending',
+        ]);
+        DB::table('order_statuses')->insert([
+            'name' => 'Approved',
+        ]);
+        DB::table('order_statuses')->insert([
+            'name' => 'Rejected',
+        ]);
+        DB::table('order_statuses')->insert([
+            'name' => 'Intransit',
+        ]);
+        DB::table('order_statuses')->insert([
+            'name' => 'Completed',
         ]);
 
         \App\Models\MainActivity::truncate();

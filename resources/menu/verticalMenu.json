@@ -8,18 +8,18 @@
         "section": ["seller", "admin"]
     },
     {
-        "url": "/customer",
-        "name": "Customer",
-        "icon": "menu-icon tf-icons ti ti-user-exclamation",
-        "slug": "customer",
-        "section": ["admin", "seller"]
-    },
-    {
         "url": "/profile",
         "name": "Profilo",
         "icon": "menu-icon tf-icons ti ti-users",
         "slug": "profile",
         "section": ["seller"]
+    },
+    {
+        "url": "/customer",
+        "name": "Customer",
+        "icon": "menu-icon tf-icons ti ti-user-exclamation",
+        "slug": "customer",
+        "section": ["admin", "seller"]
     },
     {
         "url": "/orders",

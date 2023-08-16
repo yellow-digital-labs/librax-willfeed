@@ -100,5 +100,36 @@ class DatabaseTriggers extends Command
                         SET NEW.status_on = NOW();
                     END IF;
                 END');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS `orders_before_insert`');
+        DB::unprepared('CREATE TRIGGER orders_before_insert BEFORE INSERT ON `orders` FOR EACH ROW
+                BEGIN
+                    (SELECT business_name, contact_person INTO @user_name, @customer_contact FROM user_details WHERE user_id=NEW.user_id);
+                    (SELECT business_name INTO @seller_name FROM user_details WHERE user_id=NEW.seller_id);
+                    (SELECT name INTO @product_name FROM products WHERE id=NEW.product_id);
+                    (SELECT amount INTO @product_amount FROM product_sellers WHERE product_id=NEW.product_id AND seller_id=NEW.seller_id);
+                    (SELECT name INTO @order_status FROM order_statuses WHERE id=NEW.order_status_id);
+                    (SELECT email INTO @customer_email FROM users WHERE id=NEW.user_id);
+
+                    SET NEW.user_name = @user_name;
+                    SET NEW.seller_name = @seller_name;
+                    SET NEW.product_name = @product_name;
+                    SET NEW.product_amount = @product_amount;
+                    SET NEW.total_payable_amount = @product_amount * NEW.product_qty;
+                    SET NEW.order_status = @order_status;
+                    SET NEW.order_date = NOW();
+                    SET NEW.customer_email = @customer_email;
+                    SET NEW.customer_contact = @customer_contact;
+                    SET NEW.payment_method_name = @payment_method_name;
+                END');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS `orders_before_update`');
+        DB::unprepared('CREATE TRIGGER orders_before_update BEFORE UPDATE ON `orders` FOR EACH ROW
+                BEGIN
+                    IF NEW.order_status <> OLD.order_status THEN
+                        (SELECT name INTO @order_status FROM order_statuses WHERE id=NEW.order_status_id);
+                        SET NEW.order_status = @order_status;
+                    END IF;
+                END');
     }
 }

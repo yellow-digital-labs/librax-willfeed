@@ -97,8 +97,9 @@ Route::middleware([
 
 
     //orders
-    Route::get('/orders', $controller_path . '\pages\Orders@index')->name('orders');
-    Route::get('/order-details', $controller_path . '\pages\OrderDetails@index')->name('pages-order-details');
+    Route::get('/orders', $controller_path . '\pages\Orders@index')->name('orders'); //order list view
+    Route::get('/orders/list', $controller_path . '\pages\Orders@list')->name('order-list'); //order list data ajax
+    Route::get('/order/details', $controller_path . '\pages\Orders@detail')->name('order-details'); //order detail page
 
     Route::get('/payments', $controller_path . '\pages\Payments@index')->name('pages-payments');
 
