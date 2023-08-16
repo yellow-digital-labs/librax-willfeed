@@ -2,7 +2,7 @@
 $configData = Helper::appClasses();
 @endphp
 @extends('layouts/layoutMaster')
-@section('title', 'Home')
+@section('title', 'Customer')
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">

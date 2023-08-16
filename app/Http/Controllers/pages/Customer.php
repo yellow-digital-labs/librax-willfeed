@@ -13,8 +13,8 @@ class Customer extends Controller
   {
     $urlListCustomerData = route("customer-list");
 
-    return view('content.pages.pages-approved-customer', [
-      'urlListCustomerData' => $urlListCustomerData
+    return view("content.pages.pages-approved-customer", [
+      "urlListCustomerData" => $urlListCustomerData,
     ]);
   }
 
@@ -51,7 +51,8 @@ class Customer extends Controller
 
     if (empty($request->input("search.value"))) {
       if (count($applied_filters) > 0) {
-        $customersObj = CustomerVerified::where("seller_id", "=", $user_id);
+        $customersObj = CustomerVerified::where("seller_id", "=", $user_id)
+          ->where('status', "<>", "rejected");
 
         foreach ($applied_filters as $field => $search) {
           $customersObj->where($field, "LIKE", "%{$search}%");
@@ -64,6 +65,7 @@ class Customer extends Controller
           ->get();
       } else {
         $customers = CustomerVerified::where("seller_id", "=", $user_id)
+          ->where('status', "<>", "rejected")
           ->offset($start)
           ->limit($limit)
           ->orderBy($order, $dir)
@@ -75,6 +77,7 @@ class Customer extends Controller
       $customers = CustomerVerified::where("seller_id", "=", $user_id)
         ->where(function ($query) {
           return $query
+          ->where('status', "<>", "rejected")
             ->where("customer_name", "LIKE", "%{$search}%")
             ->orWhere("customer_region", "LIKE", "%{$search}%")
             ->orWhere("status", "LIKE", "%{$search}%");
@@ -87,9 +90,10 @@ class Customer extends Controller
       $totalFiltered = CustomerVerified::where("seller_id", "=", $user_id)
         ->where(function ($query) {
           return $query
-          ->where("customer_name", "LIKE", "%{$search}%")
-          ->orWhere("customer_region", "LIKE", "%{$search}%")
-          ->orWhere("status", "LIKE", "%{$search}%");
+            ->where('status', "<>", "rejected")
+            ->where("customer_name", "LIKE", "%{$search}%")
+            ->orWhere("customer_region", "LIKE", "%{$search}%")
+            ->orWhere("status", "LIKE", "%{$search}%");
         })
         ->count();
     }
@@ -128,5 +132,22 @@ class Customer extends Controller
         "data" => [],
       ]);
     }
+  }
+
+  public function status(Request $request, $id, $status)
+  {
+    $user_id = Auth::user()->id;
+
+    CustomerVerified::where("seller_id", "=", $user_id)
+      ->where("id",  "=", $id)
+      ->update([
+        "status" => $status
+      ]);
+
+    return response()->json([
+      "message" => "Status updated successfully!",
+      "code" => 200,
+      "data" => [],
+    ]);
   }
 }

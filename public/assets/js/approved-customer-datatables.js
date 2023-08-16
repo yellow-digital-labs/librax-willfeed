@@ -5,6 +5,13 @@
 'use strict';
 
 $(function () {
+    // ajax setup
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     var dt_ajax_table = $('.datatables-ajax'),
         dt_filter_table = $('.dt-column-search'),
         dt_adv_filter_table = $('.dt-advanced-search'),
@@ -190,11 +197,9 @@ $(function () {
                 render: function (data, type, full, meta) {
                     var $status_number = full['status'];
                     var $status = {
-                        1: { title: 'Current', class: 'bg-label-primary' },
-                        2: { title: 'Professional', class: ' bg-label-success' },
-                        3: { title: 'Rejected', class: ' bg-label-danger' },
-                        4: { title: 'Resigned', class: ' bg-label-warning' },
-                        5: { title: 'Applied', class: ' bg-label-info' }
+                        'pending': { title: 'Pending', class: 'bg-label-primary' },
+                        'approved': { title: 'Approved', class: ' bg-label-success' },
+                        'rejected': { title: 'Rejected', class: ' bg-label-danger' }
                     };
                     if (typeof $status[$status_number] === 'undefined') {
                         return data;
@@ -211,17 +216,24 @@ $(function () {
                 searchable: false,
                 orderable: false,
                 render: function (data, type, full, meta) {
+                    var status_number = full['status'];
+                    var id = full['id'];
+                    let statusList = "";
+                    if(status_number != "pending") {
+                        statusList += `<a href="javascript:;" class="dropdown-item btn-pending" data-id="${id}">Pending</a>`;
+                    }
+                    if(status_number != "approved") {
+                        statusList += `<a href="javascript:;" class="dropdown-item btn-approve" data-id="${id}">Approve</a>`;
+                    }
+                    if(status_number != "rejected") {
+                        statusList += `<a href="javascript:;" class="dropdown-item btn-reject" data-id="${id}">Reject</a>`;
+                    }
                     return (
                         '<div class="d-inline-block">' +
                         '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
                         '<div class="dropdown-menu dropdown-menu-end m-0">' +
-                        '<a href="javascript:;" class="dropdown-item">Details</a>' +
-                        '<a href="javascript:;" class="dropdown-item">Archive</a>' +
-                        '<div class="dropdown-divider"></div>' +
-                        '<a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a>' +
-                        '</div>' +
-                        '</div>' +
-                        '<a href="javascript:;" class="item-edit text-body ms-3"><i class="text-primary ti ti-pencil"></i></a>'
+                        statusList +
+                        '</div>'
                     );
                 }
             }
@@ -234,6 +246,55 @@ $(function () {
                 searchPlaceholder: 'Search..'
             },
             dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>><"table-responsive"t><"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>'
+        });
+    }
+
+    $(document).on('click', '.btn-approve', function () {
+        var id = $(this).data('id');
+
+        updateStatus(id, 'approved');
+    });
+
+    $(document).on('click', '.btn-reject', function () {
+        var id = $(this).data('id');
+
+        updateStatus(id, 'rejected');
+    });
+
+    $(document).on('click', '.btn-pending', function () {
+        var id = $(this).data('id');
+
+        updateStatus(id, 'pending');
+    });
+
+    function updateStatus(id, status){
+        // sweetalert for confirmation of update status
+        // Swal.fire({
+        //     title: 'Are you sure?',
+        //     text: "You won't be able to revert this!",
+        //     icon: 'warning',
+        //     showCancelButton: true,
+        //     confirmButtonText: `Yes, ${status} it!`,
+        //     customClass: {
+        //         confirmButton: 'btn btn-primary me-3',
+        //         cancelButton: 'btn btn-label-secondary'
+        //     },
+        //     buttonsStyling: false
+        // }).then(function (result) {
+        //     if (result.value) {
+        //         // update the status
+                
+        //     }
+        // });
+        $.ajax({
+            type: 'POST',
+            url: "".concat(baseUrl, `customer/${id}/status/${status}`),
+            success: function success() {
+                dt_filter.draw();
+            },
+            error: function error(_error) {
+                console.log(_error);
+            }
         });
     }
 

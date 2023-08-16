@@ -81,5 +81,24 @@ class DatabaseTriggers extends Command
                         UPDATE product_sellers SET stock_in_transit=@stock_in_transit WHERE seller_id=NEW.seller_id AND product_id=NEW.product_id;
                     END IF;
                 END');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS `customer_verifieds_before_insert`');
+        DB::unprepared('CREATE TRIGGER customer_verifieds_before_insert BEFORE INSERT ON `customer_verifieds` FOR EACH ROW
+                BEGIN
+                    (SELECT business_name, region, created_at INTO @customer_name, @customer_region, @customer_since FROM user_details WHERE user_id=NEW.customer_id);
+
+                    SET NEW.customer_name = @customer_name;
+                    SET NEW.customer_region = @customer_region;
+                    SET NEW.customer_since = @customer_since;
+                    SET NEW.status_on = NOW();
+                END');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS `customer_verifieds_before_update`');
+        DB::unprepared('CREATE TRIGGER customer_verifieds_before_update BEFORE UPDATE ON `customer_verifieds` FOR EACH ROW
+                BEGIN
+                    IF NEW.status <> OLD.status THEN
+                        SET NEW.status_on = NOW();
+                    END IF;
+                END');
     }
 }
