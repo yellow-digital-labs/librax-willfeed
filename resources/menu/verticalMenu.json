@@ -11,21 +11,14 @@
         "url": "/customer",
         "name": "Customer",
         "icon": "menu-icon tf-icons ti ti-user-exclamation",
-        "slug": "customer-approved",
-        "section": ["admin"]
+        "slug": "customer",
+        "section": ["admin", "seller"]
     },
     {
         "url": "/profile",
         "name": "Profilo",
         "icon": "menu-icon tf-icons ti ti-users",
         "slug": "profile",
-        "section": ["seller"]
-    },
-    {
-        "url": "/customer/approved",
-        "name": "Customer",
-        "icon": "menu-icon tf-icons ti ti-user-check",
-        "slug": "customer-approved",
         "section": ["seller"]
     },
     {

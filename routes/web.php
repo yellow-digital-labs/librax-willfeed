@@ -91,7 +91,8 @@ Route::middleware([
     Route::post('/product/{id}/detail', $controller_path . '\pages\Product@detail')->name('product-detail'); //product detail ajax
 
     //customer
-    Route::get('/customer/approved', $controller_path . '\pages\ApprovedCustomer@index')->name('customer-approved');
+    Route::get('/customer', $controller_path . '\pages\Customer@index')->name('customer'); //customer list view
+    Route::get('/customers/list', $controller_path . '\pages\Customer@list')->name('customer-list'); //customer list data ajax
 
     //orders
     Route::get('/orders', $controller_path . '\pages\Orders@index')->name('orders');
@@ -101,5 +102,5 @@ Route::middleware([
 
     //settings
     Route::get('/settings', $controller_path . '\pages\Settings@index')->name('settings'); //settings view
-    Route::post('/settings', $controller_path . '\pages\Settings@store')->name('settings-store'); //settings view
+    Route::post('/settings', $controller_path . '\pages\Settings@store')->name('settings-store'); //settings update
 });

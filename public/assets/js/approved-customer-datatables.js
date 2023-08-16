@@ -4,7 +4,7 @@
 
 'use strict';
 
-$(function() {
+$(function () {
     var dt_ajax_table = $('.datatables-ajax'),
         dt_filter_table = $('.dt-column-search'),
         dt_adv_filter_table = $('.dt-advanced-search'),
@@ -27,7 +27,7 @@ $(function() {
             locale: {
                 format: dateFormat
             },
-            onClose: function(selectedDates, dateStr, instance) {
+            onClose: function (selectedDates, dateStr, instance) {
                 var startDate = '',
                     endDate = new Date();
                 if (selectedDates[0] != undefined) {
@@ -62,9 +62,9 @@ $(function() {
     // Advance filter function
     // We pass the column location, the start date, and the end date
     $.fn.dataTableExt.afnFiltering.length = 0;
-    var filterByDate = function(column, startDate, endDate) {
+    var filterByDate = function (column, startDate, endDate) {
         // Custom filter syntax requires pushing the new filter to the global filter array
-        $.fn.dataTableExt.afnFiltering.push(function(oSettings, aData, iDataIndex) {
+        $.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
             var rowDate = normalizeDate(aData[column]),
                 start = normalizeDate(startDate),
                 end = normalizeDate(endDate);
@@ -83,7 +83,7 @@ $(function() {
     };
 
     // converts date strings to a Date object, then normalized into a YYYYMMMDD format (ex: 20131220). Makes comparing dates easier. ex: 20131220 > 20121220
-    var normalizeDate = function(dateString) {
+    var normalizeDate = function (dateString) {
         var date = new Date(dateString);
         var normalized =
             date.getFullYear() + '' + ('0' + (date.getMonth() + 1)).slice(-2) + '' + ('0' + date.getDate()).slice(-2);
@@ -108,12 +108,12 @@ $(function() {
     if (dt_filter_table.length) {
         // Setup - add a text input to each footer cell
         $('.dt-column-search thead tr').clone(true).appendTo('.dt-column-search thead');
-        $('.dt-column-search thead tr:eq(1) th').each(function(i) {
+        $('.dt-column-search thead tr:eq(1) th').each(function (i) {
             var title = $(this).text();
             if ($(this).hasClass('js-add-search')) {
                 $(this).html('<input type="text" class="form-control" placeholder="Search ' + title + '" />');
 
-                $('input', this).on('keyup change', function() {
+                $('input', this).on('keyup change', function () {
                     if (dt_filter.column(i).search() !== this.value) {
                         dt_filter.column(i).search(this.value).draw();
                     }
@@ -125,216 +125,122 @@ $(function() {
         });
 
         var dt_filter = dt_filter_table.DataTable({
-            ajax: assetsPath + 'json/table-datatable.json',
+            processing: true,
+            serverSide: true,
+            orderCellsTop: true,
+            bLengthChange: true,
+            ajax: {
+                url: urlListCustomerData 
+            },
             columns: [
-                { data: 'full_name' },
-                { data: 'email' },
-                { data: 'post' },
-                { data: 'start_date' },
-                { data: '' },
+                { data: 'customer_name' },
+                { data: 'customer_region' },
+                { data: 'status_on' },
+                { data: 'customer_since' },
+                { data: 'status' },
                 { data: '' }
             ],
             columnDefs: [{
-                    // Label
-                    targets: -2,
-                    render: function(data, type, full, meta) {
-                        var $status_number = full['status'];
-                        var $status = {
-                            1: { title: 'Current', class: 'bg-label-primary' },
-                            2: { title: 'Professional', class: ' bg-label-success' },
-                            3: { title: 'Rejected', class: ' bg-label-danger' },
-                            4: { title: 'Resigned', class: ' bg-label-warning' },
-                            5: { title: 'Applied', class: ' bg-label-info' }
-                        };
-                        if (typeof $status[$status_number] === 'undefined') {
-                            return data;
-                        }
-                        return (
-                            '<span class="badge ' + $status[$status_number].class + '">' + $status[$status_number].title + '</span>'
-                        );
-                    }
-                },
-                {
-                    // Actions
-                    targets: -1,
-                    title: 'Actions',
-                    searchable: false,
-                    orderable: false,
-                    render: function(data, type, full, meta) {
-                        return (
-                            '<div class="d-inline-block">' +
-                            '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
-                            '<div class="dropdown-menu dropdown-menu-end m-0">' +
-                            '<a href="javascript:;" class="dropdown-item">Details</a>' +
-                            '<a href="javascript:;" class="dropdown-item">Archive</a>' +
-                            '<div class="dropdown-divider"></div>' +
-                            '<a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a>' +
-                            '</div>' +
-                            '</div>' +
-                            '<a href="javascript:;" class="item-edit text-body ms-3"><i class="text-primary ti ti-pencil"></i></a>'
-                        );
-                    }
+                // customer_name
+                targets: 0,
+                // visible: false,
+                searchable: true,
+                orderable: true,
+                responsivePriority: 4,
+                render: function render(data, type, full, meta) {
+                    var $customer_name = full['customer_name'] ? full['customer_name'] : '';
+                    return '<span class="user-customer_name">' + $customer_name + '</span>';
                 }
+            }, {
+                // customer_region
+                targets: 1,
+                // visible: false,
+                searchable: true,
+                orderable: true,
+                responsivePriority: 4,
+                render: function render(data, type, full, meta) {
+                    var $customer_region = full['customer_region'] ? full['customer_region'] : '';
+                    return '<span class="user-customer_region">' + $customer_region + '</span>';
+                }
+            }, {
+                // status_on
+                targets: 2,
+                // visible: false,
+                searchable: true,
+                orderable: true,
+                responsivePriority: 4,
+                render: function render(data, type, full, meta) {
+                    var $status_on = full['status_on'] ? full['status_on'] : '';
+                    return '<span class="user-status_on">' + $status_on + '</span>';
+                }
+            }, {
+                // customer_since
+                targets: 3,
+                // visible: false,
+                searchable: true,
+                orderable: true,
+                responsivePriority: 4,
+                render: function render(data, type, full, meta) {
+                    var $customer_since = full['customer_since'] ? full['customer_since'] : '';
+                    return '<span class="user-customer_since">' + $customer_since + '</span>';
+                }
+            }, {
+                // Label
+                targets: 4,
+                render: function (data, type, full, meta) {
+                    var $status_number = full['status'];
+                    var $status = {
+                        1: { title: 'Current', class: 'bg-label-primary' },
+                        2: { title: 'Professional', class: ' bg-label-success' },
+                        3: { title: 'Rejected', class: ' bg-label-danger' },
+                        4: { title: 'Resigned', class: ' bg-label-warning' },
+                        5: { title: 'Applied', class: ' bg-label-info' }
+                    };
+                    if (typeof $status[$status_number] === 'undefined') {
+                        return data;
+                    }
+                    return (
+                        '<span class="badge ' + $status[$status_number].class + '">' + $status[$status_number].title + '</span>'
+                    );
+                }
+            },
+            {
+                // Actions
+                targets: 5,
+                title: 'Actions',
+                searchable: false,
+                orderable: false,
+                render: function (data, type, full, meta) {
+                    return (
+                        '<div class="d-inline-block">' +
+                        '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
+                        '<div class="dropdown-menu dropdown-menu-end m-0">' +
+                        '<a href="javascript:;" class="dropdown-item">Details</a>' +
+                        '<a href="javascript:;" class="dropdown-item">Archive</a>' +
+                        '<div class="dropdown-divider"></div>' +
+                        '<a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a>' +
+                        '</div>' +
+                        '</div>' +
+                        '<a href="javascript:;" class="item-edit text-body ms-3"><i class="text-primary ti ti-pencil"></i></a>'
+                    );
+                }
+            }
             ],
-            orderCellsTop: true,
+            order: [[2, 'desc']],
+            // orderCellsTop: true,
+            language: {
+                sLengthMenu: '_MENU_',
+                search: 'Ricerca',
+                searchPlaceholder: 'Search..'
+            },
             dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>><"table-responsive"t><"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>'
         });
     }
 
-    // Advanced Search
-    // --------------------------------------------------------------------
-
-    // Advanced Filter table
-    if (dt_adv_filter_table.length) {
-        var dt_adv_filter = dt_adv_filter_table.DataTable({
-            dom: "<'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-6'i><'col-sm-12 col-md-6 dataTables_pager'p>>",
-            ajax: assetsPath + 'json/table-datatable.json',
-            columns: [
-                { data: '' },
-                { data: 'full_name' },
-                { data: 'email' },
-                { data: 'post' },
-                { data: 'city' },
-                { data: 'start_date' },
-                { data: 'salary' }
-            ],
-
-            columnDefs: [{
-                className: 'control',
-                orderable: false,
-                targets: 0,
-                render: function(data, type, full, meta) {
-                    return '';
-                }
-            }],
-            orderCellsTop: true,
-            responsive: {
-                details: {
-                    display: $.fn.dataTable.Responsive.display.modal({
-                        header: function(row) {
-                            var data = row.data();
-                            return 'Details of ' + data['full_name'];
-                        }
-                    }),
-                    type: 'column',
-                    renderer: function(api, rowIdx, columns) {
-                        var data = $.map(columns, function(col, i) {
-                            return col.title !== '' // ? Do not show row in modal popup if title is blank (for check box)
-                                ?
-                                '<tr data-dt-row="' +
-                                col.rowIndex +
-                                '" data-dt-column="' +
-                                col.columnIndex +
-                                '">' +
-                                '<td>' +
-                                col.title +
-                                ':' +
-                                '</td> ' +
-                                '<td>' +
-                                col.data +
-                                '</td>' +
-                                '</tr>' :
-                                '';
-                        }).join('');
-
-                        return data ? $('<table class="table"/><tbody />').append(data) : false;
-                    }
-                }
-            }
-        });
-    }
-
     // on key up from input field
-    $('input.dt-input').on('keyup', function() {
+    $('input.dt-input').on('keyup', function () {
         filterColumn($(this).attr('data-column'), $(this).val());
     });
-
-    // Responsive Table
-    // --------------------------------------------------------------------
-
-    if (dt_responsive_table.length) {
-        var dt_responsive = dt_responsive_table.DataTable({
-            ajax: assetsPath + 'json/table-datatable.json',
-            columns: [
-                { data: '' },
-                { data: 'full_name' },
-                { data: 'email' },
-                { data: 'post' },
-                { data: 'city' },
-                { data: 'start_date' },
-                { data: 'salary' },
-                { data: 'age' },
-                { data: 'experience' },
-                { data: 'status' }
-            ],
-            columnDefs: [{
-                    className: 'control',
-                    orderable: false,
-                    targets: 0,
-                    searchable: false,
-                    render: function(data, type, full, meta) {
-                        return '';
-                    }
-                },
-                {
-                    // Label
-                    targets: -1,
-                    render: function(data, type, full, meta) {
-                        var $status_number = full['status'];
-                        var $status = {
-                            1: { title: 'Current', class: 'bg-label-primary' },
-                            2: { title: 'Professional', class: ' bg-label-success' },
-                            3: { title: 'Rejected', class: ' bg-label-danger' },
-                            4: { title: 'Resigned', class: ' bg-label-warning' },
-                            5: { title: 'Applied', class: ' bg-label-info' }
-                        };
-                        if (typeof $status[$status_number] === 'undefined') {
-                            return data;
-                        }
-                        return (
-                            '<span class="badge ' + $status[$status_number].class + '">' + $status[$status_number].title + '</span>'
-                        );
-                    }
-                }
-            ],
-            // scrollX: true,
-            destroy: true,
-            dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
-            responsive: {
-                details: {
-                    display: $.fn.dataTable.Responsive.display.modal({
-                        header: function(row) {
-                            var data = row.data();
-                            return 'Details of ' + data['full_name'];
-                        }
-                    }),
-                    type: 'column',
-                    renderer: function(api, rowIdx, columns) {
-                        var data = $.map(columns, function(col, i) {
-                            return col.title !== '' // ? Do not show row in modal popup if title is blank (for check box)
-                                ?
-                                '<tr data-dt-row="' +
-                                col.rowIndex +
-                                '" data-dt-column="' +
-                                col.columnIndex +
-                                '">' +
-                                '<td>' +
-                                col.title +
-                                ':' +
-                                '</td> ' +
-                                '<td>' +
-                                col.data +
-                                '</td>' +
-                                '</tr>' :
-                                '';
-                        }).join('');
-
-                        return data ? $('<table class="table"/><tbody />').append(data) : false;
-                    }
-                }
-            }
-        });
-    }
 
     // Filter form control to default size
     // ? setTimeout used for multilingual table initialization

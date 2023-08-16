@@ -15,7 +15,11 @@ return new class extends Migration
             $table->id();
             $table->integer('seller_id')->index();
             $table->integer('customer_id')->index();
-            $table->datetime('verified_on')->index();
+            $table->string('customer_name')->index();
+            $table->string('customer_region')->index();
+            $table->string('customer_since');
+            $table->enum('status', ['pending', 'approved', 'rejected'])->index();
+            $table->datetime('status_on')->index();
             $table->timestamps();
             $table->string('created_by', 50)->nullable();
             $table->string('updated_by', 50)->nullable();
