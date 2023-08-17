@@ -25,6 +25,7 @@ Route::get('/pages/misc-error', $controller_path . '\pages\MiscError@index')->na
 Route::get('/forget-password', $controller_path . '\pages\ForgetPassword@index')->name('forget-password');
 Route::get('/reset-password', $controller_path . '\pages\ResetPassword@index')->name('reset-password');
 Route::get('/verify-email', $controller_path . '\pages\VerifyEmail@index')->name('verify-email');
+Route::get('/verify-email/{token}', $controller_path . '\pages\VerifyEmail@confirm')->name('verify-email-confirm');
 Route::get('logout', [ App\Http\Controllers\ClientController::class, 'logout'])->name('logout');
 
 
@@ -43,7 +44,8 @@ Route::middleware([
     'auth',
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'VerifiedUser'
 ])->group(function () {
     $controller_path = 'App\Http\Controllers';
 

@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserVerification;
+use Illuminate\Support\Str;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -25,10 +28,24 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        return User::create([
+        $verification_token = Str::random(80);
+
+        $res = User::create([
             'accountType' => $input['accountType'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'verification_token' => $verification_token,
+            'varification_valid_till' => date('Y-m-d H:i:s')
         ]);
+
+        $verificationUrl = route("verify-email-confirm", ["token" => $verification_token]);
+
+        //send email
+        Mail::to($input['email'])->send(new UserVerification([
+            "accountTypeName" => $input['accountType'],
+            "verificationUrl" => $verificationUrl
+        ]));
+
+        return $res;
     }
 }

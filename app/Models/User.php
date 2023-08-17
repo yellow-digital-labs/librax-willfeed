@@ -35,7 +35,9 @@ class User extends Authenticatable
         'remember_token',
         'subscription_id',
         'exp_datetime',
-        'profile_photo_path'
+        'profile_photo_path',
+        'verification_token',
+        'varification_valid_till',
     ];
 
     /**
