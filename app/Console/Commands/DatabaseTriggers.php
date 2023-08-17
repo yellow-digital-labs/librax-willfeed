@@ -100,6 +100,26 @@ class DatabaseTriggers extends Command
                     IF NEW.order_status_id <> OLD.order_status_id THEN
                         (SELECT name INTO @order_status FROM order_statuses WHERE id=NEW.order_status_id);
                         SET NEW.order_status = @order_status;
+
+                        INSERT INTO order_activity_histories SET order_id=NEW.id, status_title=CONCAT("Order ", @order_status), status_description=CONCAT("Order status successfully updated to ", @order_status), status_updated_at=NEW.updated_at;
+                    END IF;
+
+                    IF NEW.total_paid_amount <> OLD.total_paid_amount OR NEW.total_payable_amount <> OLD.total_payable_amount THEN
+                        SET NEW.total_pending_amount = NEW.total_payable_amount - NEW.total_paid_amount;
+
+                        IF NEW.total_pending_amount = 0 THEN
+                            SET NEW.payment_status = "paid";
+                        ELSE
+                            SET NEW.payment_status = "unpaid";
+                        END IF;
+                    END IF;
+
+                    IF NEW.payment_status <> OLD.payment_status THEN
+                        IF NEW.payment_status = "paid" THEN
+                            INSERT INTO order_activity_histories SET order_id=NEW.id, status_title="Paid", status_description="Order paid successfully", status_updated_at=NEW.updated_at;
+                        ELSE
+                            INSERT INTO order_activity_histories SET order_id=NEW.id, status_title="Unpaid", status_description="Order unpaid successfully", status_updated_at=NEW.updated_at;
+                        END IF;
                     END IF;
                 END');
 

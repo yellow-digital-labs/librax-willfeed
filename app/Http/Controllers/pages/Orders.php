@@ -5,6 +5,7 @@ namespace App\Http\Controllers\pages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\OrderActivityHistory;
 use Auth;
 use Redirect;
 
@@ -63,8 +64,7 @@ class Orders extends Controller
 
     if (empty($request->input("search.value"))) {
       if (count($applied_filters) > 0) {
-        $customersObj = Order::where("seller_id", "=", $user_id)
-          ->where('order_status_id', "<>", "3");
+        $customersObj = Order::where("seller_id", "=", $user_id);
 
         foreach ($applied_filters as $field => $search) {
           $customersObj->where($field, "LIKE", "%{$search}%");
@@ -77,7 +77,6 @@ class Orders extends Controller
           ->get();
       } else {
         $customers = Order::where("seller_id", "=", $user_id)
-          ->where('order_status_id', "<>", "3")
           ->offset($start)
           ->limit($limit)
           ->orderBy($order, $dir)
@@ -89,7 +88,6 @@ class Orders extends Controller
       $customers = Order::where("seller_id", "=", $user_id)
         ->where(function ($query) {
           return $query
-            ->where('order_status_id', "<>", "3")
             ->where("user_name", "LIKE", "%{$search}%")
             ->orWhere("customer_region", "LIKE", "%{$search}%")
             ->orWhere("order_status", "LIKE", "%{$search}%");
@@ -102,7 +100,6 @@ class Orders extends Controller
       $totalFiltered = Order::where("seller_id", "=", $user_id)
         ->where(function ($query) {
           return $query
-            ->where('order_status_id', "<>", "3")
             ->where("customer_name", "LIKE", "%{$search}%")
             ->orWhere("product_name", "LIKE", "%{$search}%")
             ->orWhere("product_qty", "LIKE", "%{$search}%")
@@ -161,10 +158,13 @@ class Orders extends Controller
         ->where("seller_id", "=", $user_id)
         ->count();
 
+      $order_activity = OrderActivityHistory::where("order_id", "=", $id)->get();
+
       return view("content.pages.pages-order-details", [
         'id' => $id,
         'order' => $order,
         'customer_total_orders' => $customer_total_orders,
+        'order_activity' => $order_activity,
       ]);
     } else {
       return redirect()->route('orders')->withErrors(['msg' => 'Invalid request']);

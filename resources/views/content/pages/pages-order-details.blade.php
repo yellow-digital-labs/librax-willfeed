@@ -19,7 +19,7 @@ $configData = Helper::appClasses();
     <div class="d-flex flex-column justify-content-center gap-2 gap-sm-0">
         <h5 class="mb-1 mt-3 d-flex flex-wrap gap-2 align-items-end">Order #{{$id}} 
             <span class="badge bg-label-{{$order->order_status_id == '3'?'danger':($order->order_status_id == '1'?'warning':'success')}} fw-normal">{{$order->order_status}}</span>
-            <span class="badge bg-label-success fw-normal">{{$order->order_status}}</span></h5>
+            <span class="badge bg-label-{{$order->payment_status == 'unpaid'?'danger':'success'}} fw-normal">{{Str::ucfirst($order->payment_status)}}</span></h5>
         <p class="text-body">{{date('F d, Y, H:i', strtotime($order->order_date))}} (ET)</p>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-3">
@@ -94,7 +94,7 @@ $configData = Helper::appClasses();
         </div>
         <div class="card mb-4">
             <div class="card-header border-bottom">
-                <h5 class="card-title m-0 text-black"><i class="ti ti-list-details me-2"></i> Shipping activity</h5>
+                <h5 class="card-title m-0 text-black"><i class="ti ti-list-details me-2"></i> Order activity</h5>
             </div>
             <div class="card-body pt-4">
                 <ul class="timeline pb-0 mb-0">
@@ -103,60 +103,23 @@ $configData = Helper::appClasses();
                         <div class="timeline-event">
                             <div class="timeline-header">
                                 <h6 class="mb-0">Order was placed (Order ID: #{{$id}})</h6>
-                                <span class="text-muted">22/06/2023, 11:29 AM</span>
+                                <span class="text-muted">{{date('F d, Y, H:i', strtotime($order->order_date))}}</span>
                             </div>
                             <p class="mt-2">Your order has been placed successfully</p>
                         </div>
                     </li>
-                    <li class="timeline-item timeline-item-transparent">
-                        <span class="timeline-point timeline-point-primary"></span>
+                    @foreach($order_activity as $num => $_order_activity)
+                    <li class="timeline-item timeline-item-transparent {{$num == (count($order_activity)-1)?'border-transparent pb-0':''}} ">
+                        <span class="timeline-point timeline-point-{{strpos(strtolower($_order_activity->status_title), 'approve') !== false ? "success" : "danger"}}"></span>
                         <div class="timeline-event">
                             <div class="timeline-header">
-                                <h6 class="mb-0">Pick-up</h6>
-                                <span class="text-muted">30/06/2023, 11:29 AM</span>
+                                <h6 class="mb-0">{{$_order_activity->status_title}}</h6>
+                                <span class="text-muted">{{date('F d, Y, H:i', strtotime($_order_activity->status_updated_at))}}</span>
                             </div>
-                            <p class="mt-2">Pick-up scheduled with courier</p>
+                            <p class="mt-2">{{$_order_activity->status_description}}</p>
                         </div>
                     </li>
-                    <li class="timeline-item timeline-item-transparent">
-                        <span class="timeline-point timeline-point-info"></span>
-                        <div class="timeline-event">
-                            <div class="timeline-header">
-                                <h6 class="mb-0">Dispatched</h6>
-                                <span class="text-muted">01/07/2023, 11:29 AM</span>
-                            </div>
-                            <p class="mt-2">Item has been picked up by courier</p>
-                        </div>
-                    </li>
-                    <li class="timeline-item timeline-item-transparent">
-                        <span class="timeline-point timeline-point-info"></span>
-                        <div class="timeline-event">
-                            <div class="timeline-header">
-                                <h6 class="mb-0">Package arrived</h6>
-                                <span class="text-muted">02/07/2023, 15:20 AM</span>
-                            </div>
-                            <p class="mt-2">Package arrived at an Amazon facility, NY</p>
-                        </div>
-                    </li>
-                    <li class="timeline-item timeline-item-transparent">
-                        <span class="timeline-point timeline-point-info"></span>
-                        <div class="timeline-event">
-                            <div class="timeline-header">
-                                <h6 class="mb-0">Dispatched for delivery</h6>
-                                <span class="text-muted">04/07/2023, 14:12 PM</span>
-                            </div>
-                            <p class="mt-2">Package has left an Amazon facility, NY</p>
-                        </div>
-                    </li>
-                    <li class="timeline-item timeline-item-transparent border-transparent pb-0">
-                        <span class="timeline-point timeline-point-secondary"></span>
-                        <div class="timeline-event pb-0">
-                            <div class="timeline-header">
-                                <h6 class="mb-0">Delivery</h6>
-                            </div>
-                            <p class="mt-2 mb-0">Package will be delivered by tomorrow</p>
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
