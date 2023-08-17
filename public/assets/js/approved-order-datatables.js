@@ -145,6 +145,7 @@ $(function () {
                 { data: 'product_qty' },
                 { data: 'order_date' },
                 { data: 'order_status' },
+                { data: 'payment_status' },
                 { data: '' }
             ],
             columnDefs: [{
@@ -196,10 +197,27 @@ $(function () {
                 targets: 4,
                 render: function (data, type, full, meta) {
                     var $status_number = full['order_status'];
+                    console.log("status_number", $status_number)
                     var $status = {
-                        'pending': { title: 'Pending', class: 'bg-label-primary' },
-                        'approved': { title: 'Approved', class: ' bg-label-success' },
-                        'rejected': { title: 'Rejected', class: ' bg-label-danger' }
+                        'Pending': { title: 'Pending', class: 'bg-label-primary' },
+                        'Approved': { title: 'Approved', class: ' bg-label-success' },
+                        'Rejected': { title: 'Rejected', class: ' bg-label-danger' }
+                    };
+                    if (typeof $status[$status_number] === 'undefined') {
+                        return data;
+                    }
+                    return (
+                        '<span class="badge ' + $status[$status_number].class + '">' + $status[$status_number].title + '</span>'
+                    );
+                }
+            }, {
+                // Payment Status
+                targets: 5,
+                render: function (data, type, full, meta) {
+                    var $status_number = full['payment_status'];
+                    var $status = {
+                        'unpaid': { title: 'Unpaid', class: 'bg-label-danger' },
+                        'paid': { title: 'Paid', class: ' bg-label-success' }
                     };
                     if (typeof $status[$status_number] === 'undefined') {
                         return data;
@@ -211,7 +229,7 @@ $(function () {
             },
             {
                 // Actions
-                targets: 5,
+                targets: 6,
                 title: 'Actions',
                 searchable: false,
                 orderable: false,

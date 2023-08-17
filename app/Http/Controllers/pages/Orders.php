@@ -41,6 +41,7 @@ class Orders extends Controller
       4 => "product_qty",
       5 => "order_date",
       6 => "order_status",
+      7 => "payment_status",
     ];
 
     $search = [];
@@ -90,7 +91,8 @@ class Orders extends Controller
           return $query
             ->where("user_name", "LIKE", "%{$search}%")
             ->orWhere("customer_region", "LIKE", "%{$search}%")
-            ->orWhere("order_status", "LIKE", "%{$search}%");
+            ->orWhere("order_status", "LIKE", "%{$search}%")
+            ->orWhere("payment_status", "LIKE", "%{$search}%");
         })
         ->offset($start)
         ->limit($limit)
@@ -104,7 +106,8 @@ class Orders extends Controller
             ->orWhere("product_name", "LIKE", "%{$search}%")
             ->orWhere("product_qty", "LIKE", "%{$search}%")
             ->orWhere("order_date", "LIKE", "%{$search}%")
-            ->orWhere("status", "LIKE", "%{$search}%");
+            ->orWhere("order_status", "LIKE", "%{$search}%")
+            ->orWhere("payment_status", "LIKE", "%{$search}%");
         })
         ->count();
     }
@@ -123,6 +126,7 @@ class Orders extends Controller
         $nestedData["product_qty"] = $customer->product_qty." litri";
         $nestedData["order_date"] = $customer->order_date;
         $nestedData["order_status"] = $customer->order_status;
+        $nestedData["payment_status"] = $customer->payment_status;
 
         $data[] = $nestedData;
       }

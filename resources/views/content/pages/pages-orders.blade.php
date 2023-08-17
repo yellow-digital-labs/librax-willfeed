@@ -58,7 +58,7 @@ $configData = Helper::appClasses();
                         <div>
                             <h6 class="mb-2 fw-normal">Ordini in Euro</h6>
                             <h4 class="mb-2">€{{$total_orders_euro}}</h4>
-                            <p class="mb-0"><span class="badge bg-label-success fw-normal">80.00%</span></p>
+                            <p class="mb-0"><span class="badge bg-label-success fw-normal">100.00%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti me-sm-4">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
@@ -71,7 +71,7 @@ $configData = Helper::appClasses();
                         <div>
                             <h6 class="mb-2 fw-normal">Ordini Cancellati</h6>
                             <h4 class="mb-2">{{$rejected_orders}}</h4>
-                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">20.00%</span></p>
+                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{100 * $rejected_orders / $total_orders}}%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti p-2 me-sm-4">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
@@ -83,7 +83,7 @@ $configData = Helper::appClasses();
                         <div>
                             <h6 class="mb-2 fw-normal">Ordini completati</h6>
                             <h4 class="mb-2">{{$completed_orders}}</h4>
-                            <p class="mb-0"><span class="badge bg-label-danger">20.00%</span></p>
+                            <p class="mb-0"><span class="badge bg-label-danger">{{100 * $completed_orders / $total_orders}}%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti p-2">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
@@ -110,6 +110,7 @@ $configData = Helper::appClasses();
                     <th>quantità</th>
                     <th>data</th>
                     <th>status</th>
+                    <th>payment</th>
                     <th>Azione</th>
                 </tr>
             </thead>
