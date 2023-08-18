@@ -277,7 +277,9 @@ $configData = Helper::appClasses();
              </div>
 
             <div class="tab-pane fade" id="navs-pills-top-Fatturazione" role="tabpanel">
-
+                @php
+                $remainingDays = App\Helpers\Helpers::getDaysBetweenDates(date('Y-m-d H:i:s', time()), $user->exp_datetime);
+                @endphp
                 <div class="card mb-4">
                     <div class="card-header border-bottom">
                         <h4 class="text-black m-0">Il tuo piano Willfeed</h4>
@@ -286,15 +288,15 @@ $configData = Helper::appClasses();
                         <div class="row g-4">
 
                             <div class="col-sm-6 col-12">
-                                <h2 class="text-black mb-2">Base</h2>
+                                <h2 class="text-black mb-2">{{$user->subscription_name}}</h2>
 
-                                <h6 class="mb-1">Scade il 30/12/2023</h6>
+                                <h6 class="mb-1">Scade il {{date('d F, Y', strtotime($user->exp_datetime))}}</h6>
                                 <p>Riceverai una notifica alla scadenza del piano</p>
 
-                                <h6 class="mb-1">$19 al mese <span class="badge bg-label-primary badge--primary">Popolare</span></h6>
+                                <h6 class="mb-1">{{$user->subscription_amount==0?'Free':'€'.$user->subscription_amount}} al mese <span class="badge bg-label-{{$remainingDays>0?'success':'danger'}} badge--{{$remainingDays>0?'success':'danger'}}">{{$remainingDays>0?'Active':'Expired'}}</span></h6>
                                 <p class="mb-3">Il piano standard per iniziare</p>
 
-                                <button type="button" class="btn btn-primary waves-effect waves-light me-2 mt-2">Salva</button>
+                                {{-- <button type="button" class="btn btn-primary waves-effect waves-light me-2 mt-2">Salva</button> --}}
 
                                 <button type="button" class="btn btn-outline-dark waves-effect mt-2">Indietro</button>
 
@@ -307,12 +309,12 @@ $configData = Helper::appClasses();
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mb-1 fw-semibold text-heading">
                                     <span>Giorni</span>
-                                    <span>6 giorni rimasti</span>
+                                    <span>{{$remainingDays}} giorni rimasti</span>
                                 </div>
                                 <div class="progress mb-1" style="height: 8px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar" role="progressbar" style="width: {{$remainingDays * 100 /30}}%;" aria-valuenow="{{$remainingDays * 100 /30}}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <span>6 giorni rimasti alla scadenza.</span>
+                                <span>{{$remainingDays}} giorni rimasti alla scadenza.</span>
                             </div>
                         </div>
                     </div>
@@ -324,90 +326,32 @@ $configData = Helper::appClasses();
                     </div>
                     <div class="card-body p-4">
                         <div class="row gy-3">
-                            <!-- Basic -->
+                        @foreach($subscriptions as $subscription)
                             <div class="col-lg mb-md-0 mb-4">
                                 <div class="card border rounded shadow-none">
                                     <div class="card-body">
                                         <div class="my-3 pt-2 text-center">
-                                            <img src="{{asset('assets/img/illustrations/page-pricing-basic.png')}}" alt="Basic Image" height="140">
+                                            <img src="{{asset($subscription->image)}}" alt="{{$subscription->name}} Image" height="140">
                                         </div>
-                                        <h3 class="card-title fw-semibold text-center text-capitalize mb-3 h5">Base</h3>
-                                        <p class="text-center">Per iniziare</p>
+                                        <h3 class="card-title fw-semibold text-center text-capitalize mb-3 h5">{{$subscription->name}}</h3>
+                                        <p class="text-center">{!!$subscription->tagline!!}</p>
                                         <div class="text-center">
                                             <div class="d-flex justify-content-center">
-                                                <sup class="h6 pricing-currency mt-3 mb-0 me-1 text-primary">$</sup>
-                                                <h1 class="fw-semibold display-4 mb-0 text-primary">0</h1>
+                                                <sup class="h6 pricing-currency mt-3 mb-0 me-1 text-primary">€</sup>
+                                                <h1 class="fw-semibold display-4 mb-0 text-primary">{{$subscription->amount}}</h1>
                                                 <sub class="h6 pricing-duration mt-auto mb-2 text-muted fw-normal">/mese</sub>
                                             </div>
                                         </div>
-                                        <ul class="ps-0 my-4 pt-2 list-disc">
-                                            <li>100 responses a month</li>
-                                            <li>Unlimited forms and surveys</li>
-                                            <li>Unlimited fields</li>
-                                            <li>Basic form creation tools</li>
-                                            <li>Up to 2 subdomains</li>
-                                        </ul>
-                                        <a href="{{url('auth/register-basic')}}" class="btn btn-label-success d-grid w-100">Your Current Plan</a>
+                                        {!!$subscription->description!!}
+                                        @if($subscription->id == $user->subscription_id && $remainingDays > 0)
+                                            <a class="btn btn-label-success d-grid w-100">Your Current Plan</a>
+                                        @else
+                                            <a href="{{url('auth/register-basic')}}" class="btn btn-primary d-grid w-100">Subscribe</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-                            <!-- Pro -->
-                            <div class="col-lg mb-md-0 mb-4">
-                                <div class="card border-primary border shadow-none">
-                                    <div class="card-body position-relative">
-                                        <div class="position-absolute end-0 me-4 top-0 mt-4">
-                                            <span class="badge bg-label-primary badge--primary">Popular</span>
-                                        </div>
-                                        <div class="my-3 pt-2 text-center">
-                                            <img src="{{asset('assets/img/illustrations/page-pricing-standard.png')}}" alt="Standard Image" height="140">
-                                        </div>
-                                        <h3 class="card-title fw-semibold text-center text-capitalize mb-3 h5">Standard</h3>
-                                        <p class="text-center">Per medie imprese</p>
-                                        <div class="text-center">
-                                            <div class="d-flex justify-content-center">
-                                                <sup class="h6 pricing-currency mt-3 mb-0 me-1 text-primary">$</sup>
-                                                <h1 class="price-toggle price-yearly fw-semibold display-4 text-primary mb-0">19</h1>
-                                                <sub class="h6 text-muted pricing-duration mt-auto mb-2 fw-normal">/mese</sub>
-                                            </div>
-                                        </div>
-                                        <ul class="ps-0 my-4 pt-2 list-disc">
-                                            <li>Unlimited responses</li>
-                                            <li>Unlimited forms and surveys</li>
-                                            <li>Instagram profile page</li>
-                                            <li>Google Docs integration</li>
-                                            <li>Custom “Thank you” page</li>
-                                        </ul>
-                                        <a href="{{url('auth/register-basic')}}" class="btn btn-primary d-grid w-100">Upgrade</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Enterprise -->
-                            <div class="col-lg">
-                                <div class="card border rounded shadow-none">
-                                    <div class="card-body">
-                                        <div class="my-3 pt-2 text-center">
-                                            <img src="{{asset('assets/img/illustrations/page-pricing-enterprise.png')}}" alt="Enterprise Image" height="140">
-                                        </div>
-                                        <h3 class="card-title fw-semibold text-center text-capitalize mb-3 h5">Enterprise</h3>
-                                        <p class="text-center">Per grandi <br> aziende</p>
-                                        <div class="text-center">
-                                            <div class="d-flex justify-content-center">
-                                                <sup class="h6 text-primary pricing-currency mt-3 mb-0 me-1">$</sup>
-                                                <h1 class="price-toggle price-yearly fw-semibold display-4 text-primary mb-0">29</h1>
-                                                <sub class="h6 pricing-duration mt-auto mb-2 fw-normal text-muted">/mese</sub>
-                                            </div>
-                                        </div>
-                                        <ul class="ps-0 my-4 pt-2 list-disc">
-                                            <li>PayPal payments</li>
-                                            <li>Logic Jumps</li>
-                                            <li>File upload with 5 GB storage</li>
-                                            <li>Monthly updates</li>
-                                            <li>Custom domain support</li>
-                                        </ul>
-                                        <a href="{{url('auth/register-basic')}}" class="btn btn-label-primary d-grid w-100">Upgrade</a>
-                                    </div>
-                                </div>
-                            </div>
+                        @endforeach
                         </div>
                     </div>
                 </div>

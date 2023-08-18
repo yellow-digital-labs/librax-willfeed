@@ -104,7 +104,10 @@ Route::middleware([
     Route::get('/order/detail/{id}', $controller_path . '\pages\Orders@detail')->name('order-details'); //order detail page
     Route::get('/order/{id}/status/{status}', $controller_path . '\pages\Orders@status')->name('order-status'); //order status update ajax
 
+    //payment
     Route::get('/payments', $controller_path . '\pages\Payments@index')->name('pages-payments');
+    Route::get('/payment', $controller_path . '\pages\Payments@view')->name('payment-index');
+    Route::post('/payment', $controller_path . '\pages\Payments@store')->name('payment-store');
 
     //settings
     Route::get('/settings', $controller_path . '\pages\Settings@index')->name('settings'); //settings view

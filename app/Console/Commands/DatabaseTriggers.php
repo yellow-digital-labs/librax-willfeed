@@ -26,6 +26,7 @@ class DatabaseTriggers extends Command
      */
     public function handle()
     {
+        //product_sellers
         DB::unprepared('DROP TRIGGER IF EXISTS `product_sellers_before_insert`');
         DB::unprepared('CREATE TRIGGER product_sellers_before_insert BEFORE INSERT ON `product_sellers` FOR EACH ROW
                 BEGIN
@@ -58,6 +59,7 @@ class DatabaseTriggers extends Command
                     END IF;
                 END');
 
+        //product_seller_inventory_histories
         DB::unprepared('DROP TRIGGER IF EXISTS `product_seller_inventory_histories_before_insert`');
         DB::unprepared('CREATE TRIGGER product_seller_inventory_histories_before_insert BEFORE INSERT ON `product_seller_inventory_histories` FOR EACH ROW
                 BEGIN
@@ -72,6 +74,7 @@ class DatabaseTriggers extends Command
                     UPDATE product_sellers SET stock_lifetime=@stock_lifetime, stock_updated_at=NEW.created_at WHERE id=NEW.product_sellers_id;
                 END');
 
+        //orders
         DB::unprepared('DROP TRIGGER IF EXISTS `orders_before_insert`');
         DB::unprepared('CREATE TRIGGER orders_before_insert BEFORE INSERT ON `orders` FOR EACH ROW
                 BEGIN
@@ -133,6 +136,7 @@ class DatabaseTriggers extends Command
                     END IF;
                 END');
 
+        //customer_verifieds
         DB::unprepared('DROP TRIGGER IF EXISTS `customer_verifieds_before_insert`');
         DB::unprepared('CREATE TRIGGER customer_verifieds_before_insert BEFORE INSERT ON `customer_verifieds` FOR EACH ROW
                 BEGIN
@@ -149,6 +153,30 @@ class DatabaseTriggers extends Command
                 BEGIN
                     IF NEW.status <> OLD.status THEN
                         SET NEW.status_on = NOW();
+                    END IF;
+                END');
+
+        //users
+        DB::unprepared('DROP TRIGGER IF EXISTS `users_before_insert`');
+        DB::unprepared('CREATE TRIGGER users_before_insert BEFORE INSERT ON `users` FOR EACH ROW
+                BEGIN
+                    SET NEW.subscription_id = 1;
+                    SET NEW.exp_datetime = DATE_ADD(CURDATE(), INTERVAL 30 DAY);
+
+                    SELECT name, amount INTO @subscription_name, @subscription_amount FROM subscriptions WHERE id=NEW.subscription_id;
+
+                    SET NEW.subscription_name = @subscription_name;
+                    SET NEW.subscription_amount = @subscription_amount;
+                END');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS `users_before_update`');
+        DB::unprepared('CREATE TRIGGER users_before_update BEFORE UPDATE ON `users` FOR EACH ROW
+                BEGIN
+                    IF NEW.subscription_id <> OLD.subscription_id THEN
+                        SELECT name, amount INTO @subscription_name, @subscription_amount FROM subscriptions WHERE id=NEW.subscription_id;
+
+                        SET NEW.subscription_name = @subscription_name;
+                        SET NEW.subscription_amount = @subscription_amount;
                     END IF;
                 END');
     }

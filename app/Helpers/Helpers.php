@@ -182,4 +182,13 @@ class Helpers
       }
     }
   }
+
+  public static function getDaysBetweenDates($startDate, $endDate){
+    $datetime1 = new \DateTime($startDate);
+    $datetime2 = new \DateTime($endDate);
+    $interval = $datetime1->diff($datetime2);
+    $days = $interval->format('%a');
+
+    return $days;
+  }
 }

@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique()->index();
+            $table->string('tagline')->nullable();
+            $table->string('image')->nullable();
             $table->float('amount', 8, 2);
             $table->text('description');
             $table->enum('status', ['active', 'inactive'])->default('active')->index();
