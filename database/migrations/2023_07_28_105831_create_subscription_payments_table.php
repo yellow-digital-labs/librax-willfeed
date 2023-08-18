@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('subscription_name');
             $table->float('subscription_amount', 8, 2);
             $table->string('transaction_no')->index();
+            $table->float('transaction_amount', 8, 2);
+            $table->string('card', 20);
+            $table->enum('status', ['pending', 'success', 'failed'])->default('pending');
             $table->text('request_data');
             $table->text('response_data')->nullable();
             $table->datetime('transaction_datetime')->index();

@@ -21,6 +21,40 @@ class DatabaseSeeder extends Seeder
             'name' => 'Venditore/Agenzia',
         ]);
 
+        \App\Models\SubscriptionPayment::truncate();
+        DB::table('subscription_payments')->insert([
+            'user_id' => 1,
+            'subscription_id' => 2,
+            'transaction_no' => "TRANS-STR-001",
+            'card' => "4421",
+            'request_data' => "",
+            'transaction_datetime' => '2023-03-02 12:37:00',
+        ]);
+        DB::table('subscription_payments')->insert([
+            'user_id' => 1,
+            'subscription_id' => 2,
+            'transaction_no' => "TRANS-STR-021",
+            'card' => "4421",
+            'request_data' => "",
+            'transaction_datetime' => '2023-04-02 12:39:00',
+        ]);
+        DB::table('subscription_payments')->insert([
+            'user_id' => 1,
+            'subscription_id' => 2,
+            'transaction_no' => "TRANS-STR-521",
+            'card' => "4421",
+            'request_data' => "",
+            'transaction_datetime' => '2023-05-02 13:39:00',
+        ]);
+        DB::table('subscription_payments')->insert([
+            'user_id' => 1,
+            'subscription_id' => 2,
+            'transaction_no' => "TRANS-STR-921",
+            'card' => "4421",
+            'request_data' => "",
+            'transaction_datetime' => '2023-06-02 13:38:00',
+        ]);
+
         \App\Models\Subscription::truncate();
         DB::table('subscriptions')->insert([
             'name' => 'Base',

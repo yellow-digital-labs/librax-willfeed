@@ -19,7 +19,9 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('page-script')
-<!-- <script src="{{asset('assets/js/tables-datatables-advanced.js')}}"></script> -->
+<script>
+    var urlListPaymentData = {!! "'".$urlListPaymentData."'" !!};
+</script>
 <script src="{{asset('assets/js/payments-datatables.js')}}"></script>
 @endsection
 

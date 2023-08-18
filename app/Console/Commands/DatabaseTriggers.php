@@ -179,5 +179,18 @@ class DatabaseTriggers extends Command
                         SET NEW.subscription_amount = @subscription_amount;
                     END IF;
                 END');
+
+        //subscription_payments
+        DB::unprepared('DROP TRIGGER IF EXISTS `subscription_payments_before_insert`');
+        DB::unprepared('CREATE TRIGGER subscription_payments_before_insert BEFORE INSERT ON `subscription_payments` FOR EACH ROW
+                BEGIN
+                    SELECT business_name INTO @user_name FROm user_details WHERE user_id=NEW.user_id;
+                    SELECT name, amount INTO @subscription_name, @subscription_amount FROM subscriptions WHERE id=NEW.subscription_id;
+
+                    SET NEW.user_name = @user_name;
+                    SET NEW.subscription_name = @subscription_name;
+                    SET NEW.subscription_amount = @subscription_amount;
+                    SET NEW.transaction_amount = @subscription_amount;
+                END');
     }
 }
