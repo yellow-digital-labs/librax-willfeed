@@ -25,8 +25,8 @@ $customizerHidden = 'customizer-hide';
 @section('content')
     
 <header class="auth-header">
-    <a href="/" class="auth-header__logo">
-        <img src="/assets/img/weelfeed-brand-logo-white.svg">
+    <a href="{{route("auth-header__logo")}}" class="auth-header__logo">
+        <img src="{{asset("/assets/img/weelfeed-brand-logo-white.svg")}}">
     </a>
 </header>
 
