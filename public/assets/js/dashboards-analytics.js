@@ -206,7 +206,7 @@
   // --------------------------------------------------------------------
   const supportTrackerEl = document.querySelector('#supportTracker'),
     supportTrackerOptions = {
-      series: [85],
+      series: [completed_orders],
       labels: ['Completed orders'],
       chart: {
         height: 360,

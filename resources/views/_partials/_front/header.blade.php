@@ -35,10 +35,10 @@
                     </div>
                 </div>
             @if(!Auth::user())
-                <a href="/login" class="navmenu__left-link">Entra</a>
-                <a href="/register" class="uk-button uk-button-light navmenu__left-link navmenu__left-link--button">Crea Account</a>
+                <a href="{{route("login")}}" class="navmenu__left-link">Entra</a>
+                <a href="{{route("register")}}" class="uk-button uk-button-light navmenu__left-link navmenu__left-link--button">Crea Account</a>
             @else
-                <a href="/logout" class="navmenu__left-link">Esci</a>
+                <a href="{{route("logout")}}" class="navmenu__left-link">Esci</a>
             @endif
             </div>
         </div>

@@ -26,6 +26,9 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('page-script')
+<script>
+    var completed_orders = {!! "'".$completed_orders."'" !!};
+</script>
 <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
 @endsection
 
@@ -47,22 +50,22 @@ $configData = Helper::appClasses();
                 <div class="row">
                     <div class="col-12 col-sm-4 col-md-12 col-lg-4">
                         <div class="mt-lg-4 mt-lg-2 mb-lg-4 mb-2 pt-1">
-                            <h1 class="mb-0 text-black">164</h1>
-                            <p class="mb-0 fw-light">Total Tickets</p>
+                            <h1 class="mb-0 text-black">{{$total_orders}}</h1>
+                            <p class="mb-0 fw-light">Total Orders</p>
                         </div>
                         <ul class="p-0 m-0">
                             <li class="d-flex gap-3 align-items-center mb-lg-3 pt-2 pb-1">
                                 <div class="badge rounded bg-label-primary p-1 badge--primary"><i class="ti ti-ticket ti-sm"></i></div>
                                 <div>
                                     <h6 class="mb-0 text-nowrap">Completed orders</h6>
-                                    <small class="text-muted">142</small>
+                                    <small class="text-muted">{{$completed_orders}}</small>
                                 </div>
                             </li>
                             <li class="d-flex gap-3 align-items-center mb-lg-3 pb-1">
                                 <div class="badge rounded bg-label-info p-1"><i class="ti ti-circle-check ti-sm"></i></div>
                                 <div>
                                     <h6 class="mb-0 text-nowrap">Pending orders</h6>
-                                    <small class="text-muted">28</small>
+                                    <small class="text-muted">{{$pending_orders}}</small>
                                 </div>
                             </li>
                         </ul>
