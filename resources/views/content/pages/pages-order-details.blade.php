@@ -152,7 +152,7 @@ $configData = Helper::appClasses();
             <div class="card-body pt-4">
                 <div class="d-flex justify-content-start align-items-center mb-4">
                     <div class="avatar me-2">
-                        <img src="../../assets/img/avatars/1.png" alt="Avatar" class="rounded-circle">
+                        <img src="{{asset('assets/img/avatars/1.png')}}" alt="Avatar" class="rounded-circle">
                     </div>
                     <div class="d-flex flex-column">
                         <a href="app-user-view-account.html" class="text-body text-nowrap">

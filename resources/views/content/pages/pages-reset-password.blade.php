@@ -39,7 +39,7 @@ $customizerHidden = 'customizer-hide';
             <div class="card singup__card">
                 <div class="card-body singup__cardbody ">
 
-                    <h4 class="mb-1 text-center singup__title">Reset Password <img src="/assets/img/icons/lock.png" width="20" height="20"></h4>
+                    <h4 class="mb-1 text-center singup__title">Reset Password <img src="{{asset('assets/img/icons/lock.png')}}" width="20" height="20"></h4>
                     <p class="mb-5 text-center singup__text">for john.doe@email.com</p>
 
                     <form id="formAuthentication" class="mb-3 singup__form" action="{{url('/')}}" method="POST">

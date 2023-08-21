@@ -21,7 +21,7 @@ $navbarDetached = ($navbarDetached ?? '');
 
             <div class="main-logo">
                 <a href="{{url('/')}}" class="main-logo__link">
-                    <img src="/assets/img/weelfeed-brand-logo-white.svg" width="170" height="93" class="img-fluid">
+                    <img src="{{asset('assets/img/weelfeed-brand-logo-white.svg')}}" width="170" height="93" class="img-fluid">
                 </a>
             </div>
 

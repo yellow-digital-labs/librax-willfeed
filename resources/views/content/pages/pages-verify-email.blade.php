@@ -38,7 +38,7 @@ $customizerHidden = 'customizer-hide';
             <!-- Register Card -->
             <div class="card singup__card">
                 <div class="card-body singup__cardbody ">
-                    <h4 class="mb-1 pt-2 text-center singup__title">Verify your email <img src="/assets/img/icons/email.png" width="20" height="20"></h4>
+                    <h4 class="mb-1 pt-2 text-center singup__title">Verify your email <img src="{{asset('assets/img/icons/email.png')}}" width="20" height="20"></h4>
 
                     @if ($errors->any())
                     <p class="text-danger text-center" role="alert">
