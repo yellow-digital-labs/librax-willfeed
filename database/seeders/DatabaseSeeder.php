@@ -14,6 +14,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        \App\Models\Subscription::truncate();
+        DB::table('subscriptions')->insert([
+            'name' => 'Base',
+            'tagline' => 'Per iniziare',
+            'image' => 'assets/img/illustrations/page-pricing-basic.png',
+            'amount' => 0,
+            'description' => '<ul class="ps-0 my-4 pt-2 list-disc">
+                <li>100 responses a month</li>
+                <li>Unlimited forms and surveys</li>
+                <li>Unlimited fields</li>
+                <li>Basic form creation tools</li>
+                <li>Up to 2 subdomains</li>
+            </ul>'
+        ]);
+        DB::table('subscriptions')->insert([
+            'name' => 'Standard',
+            'tagline' => 'Per medie imprese',
+            'image' => 'assets/img/illustrations/page-pricing-standard.png',
+            'amount' => 18.99,
+            'description' => '<ul class="ps-0 my-4 pt-2 list-disc">
+                <li>Unlimited responses</li>
+                <li>Unlimited forms and surveys</li>
+                <li>Instagram profile page</li>
+                <li>Google Docs integration</li>
+                <li>Custom “Thank you” page</li>
+            </ul>'
+        ]);
+        
         \App\Models\User::truncate();
         DB::table('users')->insert([ //id 1
             'email' => 'admin@willfeed.com',
@@ -371,34 +399,6 @@ class DatabaseSeeder extends Seeder
             'card' => "4421",
             'request_data' => "",
             'transaction_datetime' => '2023-06-02 13:38:00',
-        ]);
-
-        \App\Models\Subscription::truncate();
-        DB::table('subscriptions')->insert([
-            'name' => 'Base',
-            'tagline' => 'Per iniziare',
-            'image' => 'assets/img/illustrations/page-pricing-basic.png',
-            'amount' => 0,
-            'description' => '<ul class="ps-0 my-4 pt-2 list-disc">
-                <li>100 responses a month</li>
-                <li>Unlimited forms and surveys</li>
-                <li>Unlimited fields</li>
-                <li>Basic form creation tools</li>
-                <li>Up to 2 subdomains</li>
-            </ul>'
-        ]);
-        DB::table('subscriptions')->insert([
-            'name' => 'Standard',
-            'tagline' => 'Per medie imprese',
-            'image' => 'assets/img/illustrations/page-pricing-standard.png',
-            'amount' => 18.99,
-            'description' => '<ul class="ps-0 my-4 pt-2 list-disc">
-                <li>Unlimited responses</li>
-                <li>Unlimited forms and surveys</li>
-                <li>Instagram profile page</li>
-                <li>Google Docs integration</li>
-                <li>Custom “Thank you” page</li>
-            </ul>'
         ]);
 
         \App\Models\OrderStatus::truncate();
