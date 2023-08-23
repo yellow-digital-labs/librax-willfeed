@@ -203,6 +203,14 @@
     letter-spacing: 0.28px;
 }
 
+.footer-menu__link:hover,
+.footer-links__action:hover,
+.footer-social__link:hover,
+.footer-info__href:hover,
+.footer-contact__href:hover {
+    color: #FF8200;
+}
+
 .footer-menu__item + .footer-menu__item {
 }
 

@@ -30,7 +30,7 @@
                     <div class="uk-dropdown uk-drop navmenu-search__dropdown" data-uk-dropdown="mode: click; pos: bottom-right">
                         <form class="navmenu-search__form">
                             <input type="search" name="" class="uk-input navmenu-search__input">
-                            <button type="submit" class="uk-button uk-button-primary"><span class="wf-icon wf-icon-search"></span></button>
+                            <button type="submit" class="uk-button uk-button-primary navmenu-search__form-button"><span class="wf-icon wf-icon-search"></span></button>
                         </form>
                     </div>
                 </div>
@@ -38,7 +38,33 @@
                 <a href="{{route("login")}}" class="navmenu__left-link">Entra</a>
                 <a href="{{route("register")}}" class="uk-button uk-button-light navmenu__left-link navmenu__left-link--button">Crea Account</a>
             @else
-                <a href="{{route("logout")}}" class="navmenu__left-link">Esci</a>
+                <div class="d-flex align-items-center">
+                    <ul class="navbar-nav flex-row align-items-center ms-auto">
+                        <!-- User -->
+                        <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);">
+                                <div class="avatar avatar-online">
+                                    <img src="https://ui-avatars.com/api/?name=&amp;color=7F9CF5&amp;background=EBF4FF" alt="" class="rounded-circle">
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end show" data-uk-dropdown>
+                                <li>
+                                    <a class="dropdown-item" href="{{route("dashboard")}}">
+                                        <i class="wf-icon wf-icon-analytics"></i>
+                                        <span class="align-middle">Dashboard</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{route("logout")}}">
+                                        <i class="wf-icon wf-icon-signout"></i>
+                                        <span class="align-middle">Esci</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--/ User -->
+                    </ul>
+                </div>
             @endif
             </div>
         </div>

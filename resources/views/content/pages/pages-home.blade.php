@@ -61,7 +61,7 @@ $configData = Helper::appClasses();
         </div>
     </div>
 
-    <div class="dash-charts uk-slider uk-slider-container" data-uk-slider="center: true">
+    <div class="dash-charts uk-slider uk-slider-container" data-uk-slider="center: true; autoplay: true; pause-on-hover: true; autoplay-interval: 2000">
         <div class="uk-container">
             <div class="dash-charts__container">
 
@@ -389,9 +389,7 @@ $configData = Helper::appClasses();
         </div>
     </div>
 
-
-
-    <div class="landing-reviews uk-slider" data-uk-slider="center: true">
+    <div class="landing-reviews uk-slider" data-uk-slider="center: true; autoplay: true; pause-on-hover: true; autoplay-interval: 2000">
 
         <div class="uk-container landing-reviews__container">
             <h2 class="title landing-reviews__title">Esplora la nostra community</h2>
