@@ -27,7 +27,6 @@ return new class extends Migration
             $table->float('subscription_amount', 8, 2)->default(0);
             $table->string('subscription_name')->default('');
             $table->datetime('exp_datetime')->index();
-            $table->integer('account_type_id')->index();
             $table->integer('account_name');
             $table->string('profile_photo_path', 2048)->nullable();
             $table->enum('profile_completed', ['Yes', 'No'])->default('No')->index();
