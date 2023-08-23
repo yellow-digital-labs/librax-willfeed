@@ -41,7 +41,15 @@ class DatabaseSeeder extends Seeder
                 <li>Custom “Thank you” page</li>
             </ul>'
         ]);
-        
+
+        \App\Models\AccountType::truncate();
+        DB::table('account_types')->insert([
+            'name' => 'Cliente',
+        ]);
+        DB::table('account_types')->insert([
+            'name' => 'Venditore/Agenzia',
+        ]);
+
         \App\Models\User::truncate();
         DB::table('users')->insert([ //id 1
             'email' => 'admin@willfeed.com',
@@ -357,14 +365,6 @@ class DatabaseSeeder extends Seeder
             'bank' => 'ASDAASD',
             'rib' => 'Si',
             'rid' => 'Si',
-        ]);
-
-        \App\Models\AccountType::truncate();
-        DB::table('account_types')->insert([
-            'name' => 'Cliente',
-        ]);
-        DB::table('account_types')->insert([
-            'name' => 'Venditore/Agenzia',
         ]);
 
         \App\Models\SubscriptionPayment::truncate();
