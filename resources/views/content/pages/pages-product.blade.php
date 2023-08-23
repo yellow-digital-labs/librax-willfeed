@@ -56,7 +56,7 @@ $configData = Helper::appClasses();
                         <div>
                             <h6 class="mb-2 fw-normal">Prodotti attivi</h6>
                             <h4 class="mb-2">{{$active_products}}</h4>
-                            <p class="mb-0"><span class="badge bg-label-success fw-normal">{{number_format($active_products*100/$total_products, 2, ',', '.')}}%</span></p>
+                            <p class="mb-0"><span class="badge bg-label-success fw-normal">{{$total_products>0?number_format($active_products*100/$total_products, 2, ',', '.'):0}}%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti me-sm-4">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
@@ -69,7 +69,7 @@ $configData = Helper::appClasses();
                         <div>
                             <h6 class="mb-2">Prodotti inattivi</h6>
                             <h4 class="mb-2">{{$inactive_products}}</h4>
-                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{number_format($inactive_products*100/$total_products, 2, ',', '.')}}%</span></p>
+                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{$total_products>0?number_format($inactive_products*100/$total_products, 2, ',', '.'):0}}%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti p-2 me-sm-4">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
