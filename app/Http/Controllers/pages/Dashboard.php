@@ -13,11 +13,11 @@ class Dashboard extends Controller
   {
     $user_id = Auth::user()->id;
 
-    $total_orders = Order::where("user_id", "=", $user_id)->count();
-    $pending_orders = Order::where("user_id", "=", $user_id)
+    $total_orders = Order::where("seller_id", "=", $user_id)->count();
+    $pending_orders = Order::where("seller_id", "=", $user_id)
       ->where("order_status_id", "=", 1)
       ->count();
-    $completed_orders = Order::where("user_id", "=", $user_id)
+    $completed_orders = Order::where("seller_id", "=", $user_id)
       ->where("order_status_id", "=", 5)
       ->count();
 
