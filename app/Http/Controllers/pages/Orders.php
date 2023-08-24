@@ -179,15 +179,21 @@ class Orders extends Controller
 
   public function detail(Request $request, $id)
   {
+    $isAdmin = Helpers::isAdmin();
     $user_id = Auth::user()->id;
 
-    $order = Order::where("id", "=", $id)
-      ->where("seller_id", "=", $user_id)
-      ->first();
+    if($isAdmin){
+      $order = Order::where("id", "=", $id)
+        ->first();
+    } else {
+      $order = Order::where("id", "=", $id)
+        ->where("seller_id", "=", $user_id)
+        ->first();
+    }
 
     if($order){
       $customer_total_orders = Order::where("user_id", "=", $order->user_id)
-        ->where("seller_id", "=", $user_id)
+        ->where("seller_id", "=", $order->seller_id)
         ->count();
 
       $order_activity = OrderActivityHistory::where("order_id", "=", $id)->get();
@@ -197,6 +203,7 @@ class Orders extends Controller
         'order' => $order,
         'customer_total_orders' => $customer_total_orders,
         'order_activity' => $order_activity,
+        'isAdmin' => $isAdmin,
       ]);
     } else {
       return redirect()->route('orders')->withErrors(['msg' => 'Invalid request']);
