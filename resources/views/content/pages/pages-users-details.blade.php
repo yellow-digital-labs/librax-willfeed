@@ -41,8 +41,10 @@ $configData = Helper::appClasses();
     <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
         
         <h1 class="h3 text-black mb-4">
-        @if($isOnlyProfile)
+        @if($isOnlyProfile && $user->accountType==1)
             Buyer Profilo
+        @elseif($isOnlyProfile && $user->accountType==2)
+            Seller Profilo
         @else
             Profilo
         @endif

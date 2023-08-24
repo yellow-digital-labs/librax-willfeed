@@ -4,7 +4,7 @@ namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\CustomerVerified;
+use App\Models\User as UserModel;
 use Auth;
 
 class User extends Controller
@@ -13,7 +13,7 @@ class User extends Controller
   {
     $urlListCustomerData = route("user-list");
 
-    return view("content.pages.pages-approved-customer", [
+    return view("content.pages.pages-user", [
       "urlListCustomerData" => $urlListCustomerData,
     ]);
   }
@@ -23,16 +23,18 @@ class User extends Controller
     $user_id = Auth::user()->id;
     $columns = [
       1 => "id",
-      2 => "customer_name",
-      3 => "customer_region",
-      4 => "status_on",
-      5 => "customer_since",
-      6 => "status",
+      2 => "name",
+      3 => "email",
+      4 => "email_verified_at",
+      5 => "created_at",
+      6 => "approved_by_admin",
+      7 => "subscription_name",
     ];
 
     $search = [];
 
-    $f = CustomerVerified::where("seller_id", "=", $user_id);
+    $f = UserModel::where("accountType", "<>", 0)
+      ->where("profile_completed", "=", "Yes");
     $totalData = $f->count();
 
     $totalFiltered = $totalData;
@@ -51,8 +53,8 @@ class User extends Controller
 
     if (empty($request->input("search.value"))) {
       if (count($applied_filters) > 0) {
-        $customersObj = CustomerVerified::where("seller_id", "=", $user_id)
-          ->where('status', "<>", "rejected");
+        $customersObj = UserModel::where("accountType", "<>", 0)
+          ->where("profile_completed", "=", "Yes");
 
         foreach ($applied_filters as $field => $search) {
           $customersObj->where($field, "LIKE", "%{$search}%");
@@ -64,8 +66,8 @@ class User extends Controller
           ->orderBy($order, $dir)
           ->get();
       } else {
-        $customers = CustomerVerified::where("seller_id", "=", $user_id)
-          ->where('status', "<>", "rejected")
+        $customers = UserModel::where("accountType", "<>", 0)
+          ->where("profile_completed", "=", "Yes")
           ->offset($start)
           ->limit($limit)
           ->orderBy($order, $dir)
@@ -74,26 +76,32 @@ class User extends Controller
     } else {
       $search = $request->input("search.value");
 
-      $customers = CustomerVerified::where("seller_id", "=", $user_id)
+      $customers = UserModel::where("accountType", "<>", 0)
+        ->where("profile_completed", "=", "Yes")
         ->where(function ($query) {
           return $query
-          ->where('status', "<>", "rejected")
-            ->where("customer_name", "LIKE", "%{$search}%")
-            ->orWhere("customer_region", "LIKE", "%{$search}%")
-            ->orWhere("status", "LIKE", "%{$search}%");
+            ->where("name", "LIKE", "%{$search}%")
+            ->orWhere("email", "LIKE", "%{$search}%")
+            ->orWhere("email_verified_at", "LIKE", "%{$search}%")
+            ->orWhere("created_at", "LIKE", "%{$search}%")
+            ->orWhere("approved_by_admin", "LIKE", "%{$search}%")
+            ->orWhere("subscription_name", "LIKE", "%{$search}%");
         })
         ->offset($start)
         ->limit($limit)
         ->orderBy($order, $dir)
         ->get();
 
-      $totalFiltered = CustomerVerified::where("seller_id", "=", $user_id)
+      $totalFiltered = UserModel::where("accountType", "<>", 0)
+        ->where("profile_completed", "=", "Yes")
         ->where(function ($query) {
           return $query
-            ->where('status', "<>", "rejected")
-            ->where("customer_name", "LIKE", "%{$search}%")
-            ->orWhere("customer_region", "LIKE", "%{$search}%")
-            ->orWhere("status", "LIKE", "%{$search}%");
+            ->where("name", "LIKE", "%{$search}%")
+            ->orWhere("email", "LIKE", "%{$search}%")
+            ->orWhere("email_verified_at", "LIKE", "%{$search}%")
+            ->orWhere("created_at", "LIKE", "%{$search}%")
+            ->orWhere("approved_by_admin", "LIKE", "%{$search}%")
+            ->orWhere("subscription_name", "LIKE", "%{$search}%");
         })
         ->count();
     }
@@ -107,11 +115,12 @@ class User extends Controller
       foreach ($customers as $customer) {
         $nestedData["id"] = $customer->id;
         $nestedData["fake_id"] = ++$ids;
-        $nestedData["customer_name"] = $customer->customer_name;
-        $nestedData["customer_region"] = $customer->customer_region;
-        $nestedData["status"] = $customer->status;
-        $nestedData["customer_since"] = $customer->customer_since;
-        $nestedData["status_on"] = $customer->status_on;
+        $nestedData["name"] = $customer->name;
+        $nestedData["email"] = $customer->email;
+        $nestedData["email_verified_at"] = $customer->email_verified_at;
+        $nestedData["created_at"] = $customer->created_at;
+        $nestedData["approved_by_admin"] = $customer->approved_by_admin;
+        $nestedData["subscription_name"] = $customer->subscription_name;
 
         $data[] = $nestedData;
       }
