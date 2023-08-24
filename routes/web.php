@@ -69,6 +69,7 @@ Route::middleware([
     Route::get('/unverified-users', $controller_path . '\pages\UnverifiedUser@index')->name('unverified-users');
 
     Route::get('/profile', $controller_path . '\pages\UsersDetails@index')->name('profile');
+    Route::get('/profile/{id}/view', $controller_path . '\pages\UsersDetails@view')->name('profile-view'); //profile view
 
     Route::get('/subscription-plan-management', $controller_path . '\pages\SubscriptionPlanManagement@index')->name('subscription-plan-management');
     Route::get('/reports', $controller_path . '\pages\Reports@index')->name('reports');

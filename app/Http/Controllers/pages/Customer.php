@@ -28,6 +28,8 @@ class Customer extends Controller
       4 => "status_on",
       5 => "customer_since",
       6 => "status",
+      7 => "customer_id",
+      8 => "seller_id",
     ];
 
     $search = [];
@@ -112,6 +114,8 @@ class Customer extends Controller
         $nestedData["status"] = $customer->status;
         $nestedData["customer_since"] = $customer->customer_since;
         $nestedData["status_on"] = $customer->status_on;
+        $nestedData["customer_id"] = $customer->customer_id;
+        $nestedData["seller_id"] = $customer->seller_id;
 
         $data[] = $nestedData;
       }

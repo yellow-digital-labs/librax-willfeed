@@ -40,7 +40,13 @@ $configData = Helper::appClasses();
     <!-- User Sidebar -->
     <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
         
-        <h1 class="h3 text-black mb-4">Profilo</h4>
+        <h1 class="h3 text-black mb-4">
+        @if($isOnlyProfile)
+            Buyer Profilo
+        @else
+            Profilo
+        @endif
+        </h4>
         
         <div class="card mb-4">
             <div class="card-body">
@@ -115,11 +121,13 @@ $configData = Helper::appClasses();
 
     <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
         <!-- User Pills -->
+        @if(!$isOnlyProfile)
         <ul class="nav nav-pills flex-column flex-md-row mb-4 card-header-pills">
             <li class="nav-item"><a class="nav-link active" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Profilo" aria-controls="navs-pills-top-Profilo" aria-selected="true"><i class="wf-icon-User-Info ti-xs me-1"></i>Profilo</a></li>
 
             <li class="nav-item"><a class="nav-link" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Fatturazione" aria-controls="navs-pills-top-Fatturazione" aria-selected="true"><i class="wf-icon-file-text1 ti-xs me-1"></i>Fatturazione</a></li>
         </ul>
+        @endif
         <!--/ User Pills -->
         <div class="tab-content p-0">
             <div class="tab-pane fade show active" id="navs-pills-top-Profilo" role="tabpanel">
@@ -199,6 +207,7 @@ $configData = Helper::appClasses();
                     </div>
                 </div>
 
+                @if($user->accountType==2)
                 <div class="card mb-4">
                     <div class="card-header border-bottom">
                         <h4 class="text-black m-0">Operatività</h4>
@@ -274,8 +283,222 @@ $configData = Helper::appClasses();
                         </div>
                     </div>
                 </div>
-             </div>
+                @endif
 
+                @if($user->accountType==1)
+                <div class="card mb-4">
+                    <div class="card-header border-bottom">
+                        <h4 class="text-black m-0">Destinazione</h4>
+                    </div>
+                    <div class="card-body pt-4">
+                        <div class="row g-4">
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Facilità di accesso</h6>
+                                <p class="mb-0">{{$user_detail->ease_of_access?$user_detail->ease_of_access:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Cellulare referente di scarico</h6>
+                                <p class="mb-0">{{$user_detail->mobile_unloading?$user_detail->mobile_unloading:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Indirizzo destinazione (se diverso da anagrafica)</h6>
+                                <p class="mb-0">{{$user_detail->destination_address?$user_detail->destination_address:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Numero civico</h6>
+                                <p class="mb-0">{{$user_detail->destination_house_no?$user_detail->destination_house_no:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Comune</h6>
+                                <p class="mb-0">{{$user_detail->destination_common?$user_detail->destination_common:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Provincia</h6>
+                                <p class="mb-0">{{$user_detail->destination_province?$user_detail->destination_province:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">CAP</h6>
+                                <p class="mb-0">{{$user_detail->destination_pincode?$user_detail->destination_pincode:'NA'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header border-bottom">
+                        <h4 class="text-black m-0">Fatturazione</h4>
+                    </div>
+                    <div class="card-body pt-4">
+                        <div class="row g-4">
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Dilazione di pagamento preferita</h6>
+                                <p class="mb-0">IBAN: {{$user_detail->payment_extension?$user_detail->payment_extension:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Modalità di pagamento</h6>
+                                <p class="mb-0">{{$user_detail->payment_term?$user_detail->payment_term:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Banca di riferimento (RIBA e RID)</h6>
+                                <p class="mb-0">{{$user_detail->reference_bank?$user_detail->reference_bank:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">IBAN (RIBA e RID)</h6>
+                                <p class="mb-0">{{$user_detail->iban?$user_detail->iban:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">SDI</h6>
+                                <p class="mb-0">{{$user_detail->sdi?$user_detail->sdi:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">CIG</h6>
+                                <p class="mb-0">{{$user_detail->cig?$user_detail->cig:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">CUP</h6>
+                                <p class="mb-0">{{$user_detail->cup?$user_detail->cup:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Esenzione IVA</h6>
+                                <p class="mb-0"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_1)}}" target="_blank">View Document</a></p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Esenzione IVA</h6>
+                                <p class="mb-0"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_2)}}" target="_blank">View Document</a></p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Esenzione IVA</h6>
+                                <p class="mb-0"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_3)}}" target="_blank">View Document</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-4 mb-4">
+                    <div class="card-header border-bottom">
+                        <h4 class="text-black m-0">Profilo</h4>
+                    </div>
+                    <div class="card-body pt-4">
+                        <div class="row g-4">
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Tipologia di prodotti consumati</h6>
+                                <p class="mb-0">{{$user_detail->products?$user_detail->products:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Consumi medi mensili</h6>
+                                <p class="mb-0">{{$user_detail->monthly_consumption?$user_detail->monthly_consumption:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Sei un distributore privato?</h6>
+                                <p class="mb-0">{{$user_detail->is_private_distributer?$user_detail->is_private_distributer:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Numero di distributori</h6>
+                                <p class="mb-0">{{$user_detail->no_of_distributer?$user_detail->no_of_distributer:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Flotta</h6>
+                                <p class="mb-0">{{$user_detail->fleet?$user_detail->fleet:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Tipologia & Dimensione Flotta</h6>
+                                <p class="mb-0">{{$user_detail->type_of_flotta?$user_detail->type_of_flotta:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Camion Ribaltabili</h6>
+                                <p class="mb-0">{{$user_detail->folding_trucks?$user_detail->folding_trucks:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Camion Furgonati</h6>
+                                <p class="mb-0">{{$user_detail->van_trucks?$user_detail->van_trucks:'NA'}}</p>
+                            </div>
+                            
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Camion Centinato</h6>
+                                <p class="mb-0">{{$user_detail->hundred_trucks?$user_detail->hundred_trucks:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Camion a telaio</h6>
+                                <p class="mb-0">{{$user_detail->chassis_trucks?$user_detail->chassis_trucks:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Camion a cassone Fisso</h6>
+                                <p class="mb-0">{{$user_detail->fixed_cassone_truck?$user_detail->fixed_cassone_truck:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Camion Frigo</h6>
+                                <p class="mb-0">{{$user_detail->fridge_truck?$user_detail->fridge_truck:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Camion con Gru</h6>
+                                <p class="mb-0">{{$user_detail->truck_with_crane?$user_detail->truck_with_crane:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Camion Scarrabili</h6>
+                                <p class="mb-0">{{$user_detail->scarble_truck?$user_detail->scarble_truck:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Bitoniere</h6>
+                                <p class="mb-0">{{$user_detail->bitoniere?$user_detail->bitoniere:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Veicoli Comerciali & Bus</h6>
+                                <p class="mb-0">{{$user_detail->comircial_vehicle?$user_detail->comircial_vehicle:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Semirimorchio</h6>
+                                <p class="mb-0">{{$user_detail->semi_trailer?$user_detail->semi_trailer:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Rimorchi</h6>
+                                <p class="mb-0">{{$user_detail->trailers?$user_detail->trailers:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Trattori stradali</h6>
+                                <p class="mb-0">{{$user_detail->road_tractors?$user_detail->road_tractors:'NA'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+            </div>
+
+            @if(!$isOnlyProfile)
             <div class="tab-pane fade" id="navs-pills-top-Fatturazione" role="tabpanel">
                 @php
                 $remainingDays = App\Helpers\Helpers::getDaysBetweenDates(date('Y-m-d H:i:s', time()), $user->exp_datetime);
@@ -423,6 +646,7 @@ $configData = Helper::appClasses();
                 <!--/ Payment Methods -->
 
             </div>
+            @endif
         </div>
         
     </div>
