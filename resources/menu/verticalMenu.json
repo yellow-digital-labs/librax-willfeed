@@ -21,8 +21,8 @@
         },
         {
             "url": "/customer",
-            "name": "Customer",
-            "icon": "menu-icon tf-icons ti ti-user-exclamation",
+            "name": "Approved customer",
+            "icon": "menu-icon tf-icons ti ti-user-check",
             "slug": "customer",
             "section": [
                 "seller"
@@ -40,7 +40,7 @@
         {
             "url": "/orders",
             "name": "Ordini",
-            "icon": "menu-icon tf-icons ti ti-basket",
+            "icon": "menu-icon wf-icon-transaction-order",
             "slug": "orders",
             "section": [
                 "seller",
@@ -50,7 +50,7 @@
         {
             "url": "/payments",
             "name": "Fatturazione",
-            "icon": "menu-icon tf-icons ti ti-cash-banknote",
+            "icon": "menu-icon wf-icon-money",
             "slug": "payments",
             "section": [
                 "seller",

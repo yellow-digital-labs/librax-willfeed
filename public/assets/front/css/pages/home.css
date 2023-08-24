@@ -912,7 +912,7 @@ h3.title.platform__sectitle {
 /* Landing Colored Blocks Starts */
 
 .landing-clrblock__container {
-    padding: 140px 60px;
+    padding: 60px;
     border-radius: 38px;
     background: #FFE000;
 }
@@ -957,7 +957,7 @@ h3.title.platform__sectitle {
     color: #fff;
 }
 
-.landing-clrblock__container--safe > * {
+.landing-clrblock__container--safe * {
     color: #fff;
 }
 
@@ -966,7 +966,7 @@ h3.title.platform__sectitle {
     color: #fff;
 }
 
-.landing-clrblock__container--community > * {
+.landing-clrblock__container--community * {
     color: #fff;
 }
 
@@ -986,7 +986,7 @@ h3.title.platform__sectitle {
 
 .landing-clrblock__grid {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 80px !important;
 }
 
 .landing-clrblock__name {
@@ -999,6 +999,11 @@ h3.title.platform__sectitle {
 .landing-clrblock__desc {
     max-width: 320px;
     margin: auto;
+}
+
+.landing-clrblock__media {
+    border-radius: 38px;
+    overflow: hidden;
 }
 
 /* Landing Colored Blocks Ends */

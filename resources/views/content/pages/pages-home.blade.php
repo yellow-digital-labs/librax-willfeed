@@ -320,25 +320,43 @@ $configData = Helper::appClasses();
 
     <div class="landing-clrblock">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--sell">
-            <h2 class="title landing-clrblock__title">Come vendere su <br> willfeed?</h2>
-            <div class="landing-clrblock__text">
-                <p>
-                    Diversifica il tuo modo di vendere carburanti lubrificanti e affini
-                </p>
+            <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
+                <div class="uk-width-expand@l landing-clrblock__maincol landing-clrblock__maincol--content">
+                    <h2 class="title landing-clrblock__title">Come vendere su <br> willfeed?</h2>
+                    <div class="landing-clrblock__text">
+                        <p>
+                            Diversifica il tuo modo di vendere carburanti lubrificanti e affini
+                        </p>
+                    </div>
+                    <a href="#" class="uk-button uk-button-default landing-clrblock__action">SCOPRI DI PIU’</a>  
+                </div>
+                <div class="uk-width-auto@l landing-clrblock__maincol landing-clrblock__maincol--media">
+                    <div class="landing-clrblock__media">
+                        <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
+                    </div>
+                </div>
             </div>
-            <a href="#" class="uk-button uk-button-default landing-clrblock__action">SCOPRI DI PIU’</a>
         </div>
     </div>
 
     <div class="landing-clrblock" id="comprare">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--buy">
-            <h2 class="title landing-clrblock__title">Come comprare su <br> willfeed?</h2>
-            <div class="landing-clrblock__text">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus, nisi at tempor convallis.
-                </p>
+            <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
+                <div class="uk-width-expand@l landing-clrblock__maincol landing-clrblock__maincol--content">
+                    <h2 class="title landing-clrblock__title">Come comprare su <br> willfeed?</h2>
+                    <div class="landing-clrblock__text">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus, nisi at tempor convallis.
+                        </p>
+                    </div>
+                    <button type="button" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #comprare; cls: is-active">SCOPRI DI PIU’</button>
+                </div>
+                <div class="uk-width-auto@l landing-clrblock__maincol landing-clrblock__maincol--media">
+                    <div class="landing-clrblock__media">
+                        <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
+                    </div>
+                </div>
             </div>
-            <button type="button" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #comprare; cls: is-active">SCOPRI DI PIU’</button>
 
             <div class="landing-clrblock__grid uk-grid gutter-xxl" data-uk-grid hidden>
                 <div class="uk-width-1-3@l landing-clrblock__col">
@@ -369,22 +387,40 @@ $configData = Helper::appClasses();
 
     <div class="landing-clrblock">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--safe">
-            <h2 class="title landing-clrblock__title">Willfeed sicuro & <br> conveniente</h2>
-            <div class="landing-clrblock__text">
-                <p>
-                    La nostra visone è dare la possibilità a fornitori e clienti di relazionarsi in piena sicurezza e convenienza
-                </p>
+            <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
+                <div class="uk-width-expand@l landing-clrblock__maincol landing-clrblock__maincol--content">
+                    <h2 class="title landing-clrblock__title">Willfeed sicuro & <br> conveniente</h2>
+                    <div class="landing-clrblock__text">
+                        <p>
+                            La nostra visone è dare la possibilità a fornitori e clienti di relazionarsi in piena sicurezza e convenienza
+                        </p>
+                    </div>
+                </div>
+                <div class="uk-width-auto@l landing-clrblock__maincol landing-clrblock__maincol--media">
+                    <div class="landing-clrblock__media">
+                        <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="landing-clrblock">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--community">
-            <h2 class="title landing-clrblock__title">Willfeed una <br> community sostenibile</h2>
-            <div class="landing-clrblock__text">
-                <p>
-                    La nostra missione è aumentare il consumo di materie prime ecosostenibili dando così a tutte le attività l’opportunità di aumentare la propria quota green.
-                </p>
+            <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
+                <div class="uk-width-expand@l landing-clrblock__maincol landing-clrblock__maincol--content">
+                    <h2 class="title landing-clrblock__title">Willfeed una <br> community sostenibile</h2>
+                    <div class="landing-clrblock__text">
+                        <p>
+                            La nostra missione è aumentare il consumo di materie prime ecosostenibili dando così a tutte le attività l’opportunità di aumentare la propria quota green.
+                        </p>
+                    </div>
+                </div>
+                <div class="uk-width-auto@l landing-clrblock__maincol landing-clrblock__maincol--media">
+                    <div class="landing-clrblock__media">
+                        <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
+                    </div>
+                </div>
             </div>
         </div>
     </div>
