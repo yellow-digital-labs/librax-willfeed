@@ -24,7 +24,11 @@ $configData = Helper::appClasses();
 <script>
     var urlListOrderData = {!! "'".$urlListOrderData."'" !!};
 </script>
+@if($isAdmin)
+<script src="{{asset('assets/js/approved-order-datatables-admin.js')}}"></script>
+@else
 <script src="{{asset('assets/js/approved-order-datatables.js')}}"></script>
+@endif
 @endsection
 
 @section('page-style')
@@ -105,6 +109,9 @@ $configData = Helper::appClasses();
         <table class="dt-column-search table">
             <thead>
                 <tr>
+                @if($isAdmin)
+                    <th class="js-add-search">Venditore/Agenzia</th>
+                @endif
                     <th class="js-add-search">Cliente</th>
                     <th class="js-add-search">Prodotto</th>
                     <th>quantità</th>

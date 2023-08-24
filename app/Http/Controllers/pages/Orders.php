@@ -32,6 +32,7 @@ class Orders extends Controller
     $urlListOrderData = route("order-list");
     
     return view("content.pages.pages-orders", [
+      'isAdmin' => $isAdmin,
       'total_orders' => $total_orders,
       'total_orders_euro' => $total_orders_euro,
       'rejected_orders' => $rejected_orders,
@@ -44,15 +45,28 @@ class Orders extends Controller
   {
     $isAdmin = Helpers::isAdmin();
     $user_id = Auth::user()->id;
-    $columns = [
-      1 => "id",
-      2 => "user_name",
-      3 => "product_name",
-      4 => "product_qty",
-      5 => "order_date",
-      6 => "order_status",
-      7 => "payment_status",
-    ];
+    if($isAdmin){
+      $columns = [
+        1 => "id",
+        2 => "seller_name",
+        3 => "user_name",
+        4 => "product_name",
+        5 => "product_qty",
+        6 => "order_date",
+        7 => "order_status",
+        8 => "payment_status",
+      ];
+    } else {
+      $columns = [
+        1 => "id",
+        2 => "user_name",
+        3 => "product_name",
+        4 => "product_qty",
+        5 => "order_date",
+        6 => "order_status",
+        7 => "payment_status",
+      ];
+    }
 
     $search = [];
 
@@ -149,6 +163,7 @@ class Orders extends Controller
       foreach ($customers as $customer) {
         $nestedData["id"] = $customer->id;
         $nestedData["fake_id"] = ++$ids;
+        $nestedData["seller_name"] = $customer->seller_name;
         $nestedData["user_name"] = $customer->user_name;
         $nestedData["product_name"] = $customer->product_name;
         $nestedData["product_qty"] = $customer->product_qty." litri";
