@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderActivityHistory;
+use App\Helpers\Helpers;
 use Auth;
 use Redirect;
 
@@ -13,12 +14,20 @@ class Orders extends Controller
 {
   public function index()
   {
+    $isAdmin = Helpers::isAdmin();
     $user_id = Auth::user()->id;
 
-    $total_orders = Order::where(['seller_id' => $user_id])->count();
-    $total_orders_euro = Order::where(['seller_id' => $user_id])->sum('total_payable_amount');
-    $rejected_orders = Order::where(['seller_id' => $user_id, "order_status_id" => "3"])->count();
-    $completed_orders = Order::where(['seller_id' => $user_id, "order_status_id" => "5"])->count();
+    if($isAdmin){
+      $total_orders = Order::where([])->count();
+      $total_orders_euro = Order::where([])->sum('total_payable_amount');
+      $rejected_orders = Order::where(["order_status_id" => "3"])->count();
+      $completed_orders = Order::where(["order_status_id" => "5"])->count();
+    } else {
+      $total_orders = Order::where(['seller_id' => $user_id])->count();
+      $total_orders_euro = Order::where(['seller_id' => $user_id])->sum('total_payable_amount');
+      $rejected_orders = Order::where(['seller_id' => $user_id, "order_status_id" => "3"])->count();
+      $completed_orders = Order::where(['seller_id' => $user_id, "order_status_id" => "5"])->count();
+    }
 
     $urlListOrderData = route("order-list");
     
@@ -33,6 +42,7 @@ class Orders extends Controller
 
   public function list(Request $request)
   {
+    $isAdmin = Helpers::isAdmin();
     $user_id = Auth::user()->id;
     $columns = [
       1 => "id",
@@ -46,7 +56,11 @@ class Orders extends Controller
 
     $search = [];
 
-    $f = Order::where("seller_id", "=", $user_id);
+    if($isAdmin){
+      $f = Order::where([]);
+    } else {
+      $f = Order::where("seller_id", "=", $user_id);
+    }
     $totalData = $f->count();
 
     $totalFiltered = $totalData;
@@ -65,7 +79,11 @@ class Orders extends Controller
 
     if (empty($request->input("search.value"))) {
       if (count($applied_filters) > 0) {
-        $customersObj = Order::where("seller_id", "=", $user_id);
+        if($isAdmin){
+          $customersObj = Order::where([]);
+        } else {
+          $customersObj = Order::where("seller_id", "=", $user_id);
+        }
 
         foreach ($applied_filters as $field => $search) {
           $customersObj->where($field, "LIKE", "%{$search}%");
@@ -77,38 +95,48 @@ class Orders extends Controller
           ->orderBy($order, $dir)
           ->get();
       } else {
-        $customers = Order::where("seller_id", "=", $user_id)
-          ->offset($start)
-          ->limit($limit)
-          ->orderBy($order, $dir)
-          ->get();
+        if($isAdmin){
+          $customers = Order::where([])
+            ->offset($start)
+            ->limit($limit)
+            ->orderBy($order, $dir)
+            ->get();
+        } else {
+          $customers = Order::where("seller_id", "=", $user_id)
+            ->offset($start)
+            ->limit($limit)
+            ->orderBy($order, $dir)
+            ->get();
+        }
       }
     } else {
       $search = $request->input("search.value");
 
-      $customers = Order::where("seller_id", "=", $user_id)
+      if($isAdmin){
+        $q = Order::where(function ($query) {
+          return $query
+            ->where("user_name", "LIKE", "%{$search}%")
+            ->orWhere("customer_region", "LIKE", "%{$search}%")
+            ->orWhere("order_status", "LIKE", "%{$search}%")
+            ->orWhere("payment_status", "LIKE", "%{$search}%");
+        });
+      } else {
+        $q = Order::where("seller_id", "=", $user_id)
         ->where(function ($query) {
           return $query
             ->where("user_name", "LIKE", "%{$search}%")
             ->orWhere("customer_region", "LIKE", "%{$search}%")
             ->orWhere("order_status", "LIKE", "%{$search}%")
             ->orWhere("payment_status", "LIKE", "%{$search}%");
-        })
+        });
+      }
+      $customers = $q
         ->offset($start)
         ->limit($limit)
         ->orderBy($order, $dir)
         ->get();
 
-      $totalFiltered = Order::where("seller_id", "=", $user_id)
-        ->where(function ($query) {
-          return $query
-            ->where("customer_name", "LIKE", "%{$search}%")
-            ->orWhere("product_name", "LIKE", "%{$search}%")
-            ->orWhere("product_qty", "LIKE", "%{$search}%")
-            ->orWhere("order_date", "LIKE", "%{$search}%")
-            ->orWhere("order_status", "LIKE", "%{$search}%")
-            ->orWhere("payment_status", "LIKE", "%{$search}%");
-        })
+      $totalFiltered = $q
         ->count();
     }
 
