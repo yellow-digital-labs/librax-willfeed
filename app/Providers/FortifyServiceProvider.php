@@ -52,8 +52,10 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::loginView(function () {
             $pageConfigs = ['myLayout' => 'blank'];
+            $isAdmin = false;
             return view('content.pages.pages-login', [
-            'pageConfigs' => $pageConfigs
+            'pageConfigs' => $pageConfigs,
+            'isAdmin' => $isAdmin
             ]);
         });
 

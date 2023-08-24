@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use Config;
+use Auth;
 use Illuminate\Support\Str;
 
 class Helpers
@@ -190,5 +191,14 @@ class Helpers
     $days = $interval->format('%a');
 
     return $days;
+  }
+
+  public static function isAdmin(){
+    $accountType = Auth::user()->accountType;
+    if($accountType==0){
+      return true;
+    }
+
+    return false;
   }
 }

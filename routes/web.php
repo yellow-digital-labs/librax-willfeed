@@ -32,9 +32,7 @@ Route::get('logout', [ App\Http\Controllers\ClientController::class, 'logout'])-
 Route::get('/home', $controller_path . '\pages\MainHome@index')->name('pages-main-home');
 
 // Admin Pages
-Route::get('/product-add', $controller_path . '\pages\ProductAdd@index')->name('pages-product-add');
-Route::get('/static-pages-terms', $controller_path . '\pages\StaticPagesTerms@index')->name('pages-static-pages-terms');
-Route::get('/static-pages-privacy', $controller_path . '\pages\StaticPagesPrivacy@index')->name('pages-static-pages-privacy');
+Route::get('/admin', $controller_path . '\Admin@login')->name('admin-login');
 Route::get('/customer-rating', $controller_path . '\pages\CustomerRating@index')->name('pages-customer-rating');
 Route::get('/email-management', $controller_path . '\pages\EmailManagement@index')->name('pages-email-management');
 
@@ -76,8 +74,6 @@ Route::middleware([
     Route::get('/reports', $controller_path . '\pages\Reports@index')->name('reports');
     Route::get('/email-template-management', $controller_path . '\pages\EmailTemplateManagement@index')->name('email-template-management');
     Route::get('/management', $controller_path . '\pages\Management@index')->name('management');
-    Route::get('/privacy-policy-management', $controller_path . '\pages\PrivacyPolicyManagement@index')->name('privacy-policy-management');
-    Route::get('/terms-management', $controller_path . '\pages\TermsManagement@index')->name('terms-management');
     Route::get('/feedback-management', $controller_path . '\pages\FeedbackManagement@index')->name('feedback-management');
 
 
@@ -91,11 +87,18 @@ Route::middleware([
     Route::post('/product/{id}/edit', $controller_path . '\pages\Product@update')->name('product-update'); //product update
     Route::post('/product/{id}/stock', $controller_path . '\pages\Product@stock')->name('product-update-stock'); //product update stock
     Route::post('/product/{id}/detail', $controller_path . '\pages\Product@detail')->name('product-detail'); //product detail ajax
+    //admin
+    Route::get('/product/add', $controller_path . '\pages\ProductAdd@index')->name('product-add'); //admin add new product
 
     //customer
     Route::get('/customer', $controller_path . '\pages\Customer@index')->name('customer'); //customer list view
     Route::get('/customers/list', $controller_path . '\pages\Customer@list')->name('customer-list'); //customer list data ajax
     Route::post('/customer/{id}/status/{status}', $controller_path . '\pages\Customer@status')->name('customer-status'); //customer status update ajax
+
+    //user
+    Route::get('/user', $controller_path . '\pages\User@index')->name('user'); //user list view
+    Route::get('/users/list', $controller_path . '\pages\User@list')->name('user-list'); //user list data ajax
+    Route::post('/user/{id}/status/{status}', $controller_path . '\pages\User@status')->name('user-status'); //user status update ajax
 
 
     //orders
@@ -113,4 +116,8 @@ Route::middleware([
     //settings
     Route::get('/settings', $controller_path . '\pages\Settings@index')->name('settings'); //settings view
     Route::post('/settings', $controller_path . '\pages\Settings@store')->name('settings-store'); //settings update
+
+    //static pages
+    Route::get('/static/pages-terms', $controller_path . '\pages\StaticPagesTerms@index')->name('static-pages-terms');
+    Route::get('/static/pages-privacy', $controller_path . '\pages\StaticPagesPrivacy@index')->name('static-pages-privacy');
 });

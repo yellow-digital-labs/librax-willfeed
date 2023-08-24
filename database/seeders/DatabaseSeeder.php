@@ -59,6 +59,7 @@ class DatabaseSeeder extends Seeder
             'approved_by_admin' => 'Yes',
             'subscription_id' => 1,
             'email_verified_at' => '2023-08-18 07:10:10',
+            'created_at' => '2023-08-18 07:10:10',
         ]);
         DB::table('users')->insert([ //id 2
             'email' => 'seller@willfeed.com',
@@ -67,7 +68,8 @@ class DatabaseSeeder extends Seeder
             'profile_completed' => 'Yes',
             'approved_by_admin' => 'Yes',
             'subscription_id' => 1,
-            'email_verified_at' => '2023-08-18 07:10:10'
+            'email_verified_at' => '2023-08-18 07:10:10',
+            'created_at' => '2023-08-18 07:10:10',
         ]);
         DB::table('users')->insert([ //id 3
             'email' => 'buyer@willfeed.com',
@@ -76,7 +78,8 @@ class DatabaseSeeder extends Seeder
             'profile_completed' => 'Yes',
             'approved_by_admin' => 'Yes',
             'subscription_id' => 1,
-            'email_verified_at' => '2023-08-18 07:10:10'
+            'email_verified_at' => '2023-08-18 07:10:10',
+            'created_at' => '2023-08-18 07:10:10',
         ]);
         DB::table('users')->insert([ //id 4
             'email' => 'buyer+2@willfeed.com',
@@ -85,7 +88,8 @@ class DatabaseSeeder extends Seeder
             'profile_completed' => 'Yes',
             'approved_by_admin' => 'Yes',
             'subscription_id' => 1,
-            'email_verified_at' => '2023-08-18 07:10:10'
+            'email_verified_at' => '2023-08-18 07:10:10',
+            'created_at' => '2023-08-18 07:10:10',
         ]);
         DB::table('users')->insert([ //id 5
             'email' => 'buyer+3@willfeed.com',
@@ -94,7 +98,8 @@ class DatabaseSeeder extends Seeder
             'profile_completed' => 'Yes',
             'approved_by_admin' => 'Yes',
             'subscription_id' => 1,
-            'email_verified_at' => '2023-08-18 07:10:10'
+            'email_verified_at' => '2023-08-18 07:10:10',
+            'created_at' => '2023-08-18 07:10:10',
         ]);
         DB::table('users')->insert([ //id 6
             'email' => 'buyer+4@willfeed.com',
@@ -103,7 +108,8 @@ class DatabaseSeeder extends Seeder
             'profile_completed' => 'Yes',
             'approved_by_admin' => 'Yes',
             'subscription_id' => 1,
-            'email_verified_at' => '2023-08-18 07:10:10'
+            'email_verified_at' => '2023-08-18 07:10:10',
+            'created_at' => '2023-08-18 07:10:10',
         ]);
 
         \App\Models\UserDetail::truncate();
@@ -170,6 +176,7 @@ class DatabaseSeeder extends Seeder
             'bank' => 'ASDAASD',
             'rib' => 'Si',
             'rid' => 'Si',
+            'created_at' => '2023-08-18 07:10:10',
         ]);
 
         DB::table('user_details')->insert([ //user id 3 buyer
@@ -235,6 +242,7 @@ class DatabaseSeeder extends Seeder
             'bank' => 'ASDAASD',
             'rib' => 'Si',
             'rid' => 'Si',
+            'created_at' => '2023-08-18 07:10:10',
         ]);
 
         DB::table('user_details')->insert([ //user id 4 buyer
@@ -300,6 +308,7 @@ class DatabaseSeeder extends Seeder
             'bank' => 'ASDAASD',
             'rib' => 'Si',
             'rid' => 'Si',
+            'created_at' => '2023-08-18 07:10:10',
         ]);
 
         DB::table('user_details')->insert([ //user id 5 buyer
@@ -365,6 +374,25 @@ class DatabaseSeeder extends Seeder
             'bank' => 'ASDAASD',
             'rib' => 'Si',
             'rid' => 'Si',
+            'created_at' => '2023-08-18 07:10:10',
+        ]);
+
+        \App\Models\CustomerVerified::truncate();
+        DB::table('customer_verifieds')->insert([
+            'seller_id' => 2,
+            'customer_id' => 3,
+        ]);
+        DB::table('customer_verifieds')->insert([
+            'seller_id' => 2,
+            'customer_id' => 4,
+        ]);
+        DB::table('customer_verifieds')->insert([
+            'seller_id' => 2,
+            'customer_id' => 5,
+        ]);
+        DB::table('customer_verifieds')->insert([
+            'seller_id' => 2,
+            'customer_id' => 6,
         ]);
 
         \App\Models\SubscriptionPayment::truncate();
@@ -476,6 +504,56 @@ class DatabaseSeeder extends Seeder
             'name' => 'OCD BTZ',
             'description' => 'OCD BTZ description Convallis a cras semper auctor neque vitae tempus. Orci sagittis eu volutpat odio facilisis. Arcu ac tortor dignissim convallis aenean et. Tortor at risus viverra adipiscing. Ullamcorper eget nulla facilisi etiam dignissim. Consectetur adipiscing elit ut aliquam purus sit amet. Aliquam id diam maecenas ultricies mi eget mauris pharetra. Nunc sed id semper risus in. Sed elementum tempus egestas sed. Ut eu sem integer vitae justo eget. Tincidunt eget nullam non nisi est. Arcu risus quis varius quam quisque id diam. Nulla porttitor massa id neque aliquam vestibulum morbi. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Proin libero nunc consequat interdum varius. Venenatis a condimentum vitae sapien. Morbi non arcu risus quis varius quam. Nisl purus in mollis nunc sed. Tellus molestie nunc non blandit massa enim nec dui nunc. Tempus urna et pharetra pharetra massa.',
             'active' => 'yes'
+        ]);
+
+        //seller products
+        \App\Models\ProductSeller::truncate();
+        DB::table('product_sellers')->insert([
+            'seller_id' => 2,
+            'product_id' => 1,
+            'amount_before_tax' => 0.36,
+            'amount_30gg' => 0.40,
+            'amount_60gg' => 0.42,
+            'amount_90gg' => 0.45,
+        ]);
+
+        //customer orders
+        \App\Models\Order::truncate();
+        DB::table('orders')->insert([
+            'user_id' => 4,
+            'seller_id' => 2,
+            'product_id' => 1,
+            'product_qty' => 1000,
+            'shipping_address_line_1' => 'Address Line 1',
+            'shipping_address_line_2' => 'Address Line 2',
+            'shipping_city' => 'City',
+            'shipping_state' => 'Region',
+            'shipping_country' => 'IT',
+            'shipping_zip' => 002345,
+            'shipping_address_line_1' => 'Billing Address Line 1',
+            'shipping_address_line_2' => 'Billing Address Line 2',
+            'shipping_city' => 'City',
+            'shipping_state' => 'Region',
+            'shipping_country' => 'IT',
+            'shipping_zip' => 002345,
+        ]);
+        DB::table('orders')->insert([
+            'user_id' => 4,
+            'seller_id' => 2,
+            'product_id' => 1,
+            'product_qty' => 1200,
+            'shipping_address_line_1' => 'Address Line 1',
+            'shipping_address_line_2' => 'Address Line 2',
+            'shipping_city' => 'City',
+            'shipping_state' => 'Region',
+            'shipping_country' => 'IT',
+            'shipping_zip' => 002345,
+            'shipping_address_line_1' => 'Billing Address Line 1',
+            'shipping_address_line_2' => 'Billing Address Line 2',
+            'shipping_city' => 'City',
+            'shipping_state' => 'Region',
+            'shipping_country' => 'IT',
+            'shipping_zip' => 002345,
         ]);
 
         \App\Models\Region::truncate();

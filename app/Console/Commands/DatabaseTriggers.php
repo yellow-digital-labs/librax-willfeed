@@ -160,6 +160,13 @@ class DatabaseTriggers extends Command
         DB::unprepared('DROP TRIGGER IF EXISTS `users_before_insert`');
         DB::unprepared('CREATE TRIGGER users_before_insert BEFORE INSERT ON `users` FOR EACH ROW
                 BEGIN
+                    IF NEW.accountType <> 0 THEN
+                        SELECT name INTO @accountTypeName FROM account_types WHERE id=NEW.accountType;
+                        SET NEW.accountTypeName = @accountTypeName;
+                    ELSE
+                        SET NEW.accountTypeName = "Admin";
+                    END IF;
+
                     SET NEW.subscription_id = 1;
                     SET NEW.exp_datetime = DATE_ADD(CURDATE(), INTERVAL 30 DAY);
 
@@ -177,6 +184,21 @@ class DatabaseTriggers extends Command
 
                         SET NEW.subscription_name = @subscription_name;
                         SET NEW.subscription_amount = @subscription_amount;
+                    END IF;
+                END');
+
+        //user_details
+        DB::unprepared('DROP TRIGGER IF EXISTS `user_details_after_insert`');
+        DB::unprepared('CREATE TRIGGER user_details_after_insert AFTER INSERT ON `user_details` FOR EACH ROW
+                BEGIN
+                    UPDATE users SET name=NEW.business_name WHERE id=NEW.user_id;
+                END');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS `user_details_after_update`');
+        DB::unprepared('CREATE TRIGGER user_details_after_update AFTER UPDATE ON `user_details` FOR EACH ROW
+                BEGIN
+                    IF NEW.business_name<>OLD.business_name THEN
+                        UPDATE users SET name=NEW.business_name WHERE id=NEW.user_id;
                     END IF;
                 END');
 

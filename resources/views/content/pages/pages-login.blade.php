@@ -71,6 +71,7 @@ $customizerHidden = 'customizer-hide';
             </div>
             <!-- Register Card -->
 
+            @if (!$isAdmin)
             <div class="singup__footer">
                 <p class="text-center">
                     <span>Hai già un account?</span>
@@ -79,7 +80,7 @@ $customizerHidden = 'customizer-hide';
                     </a>
                 </p>
             </div>
-             
+            @endif
         </div>
     </div>
 </div>
