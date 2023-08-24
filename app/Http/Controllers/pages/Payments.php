@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\SubscriptionPayment;
 use Stripe\Exception\CardException;
 use Stripe\StripeClient;
+use App\Helpers\Helpers;
 use Exception;
 use Auth;
 
@@ -23,6 +24,7 @@ class Payments extends Controller
 
   public function list(Request $request)
   {
+    $isAdmin = Helpers::isAdmin();
     $user_id = Auth::user()->id;
     $columns = [
       1 => "id",
@@ -35,7 +37,11 @@ class Payments extends Controller
 
     $search = [];
 
-    $f = SubscriptionPayment::where("user_id", "=", $user_id);
+    if($isAdmin){
+      $f = SubscriptionPayment::where([]);
+    } else {
+      $f = SubscriptionPayment::where("user_id", "=", $user_id);
+    }
     $totalData = $f->count();
 
     $totalFiltered = $totalData;
@@ -54,7 +60,11 @@ class Payments extends Controller
 
     if (empty($request->input("search.value"))) {
       if (count($applied_filters) > 0) {
-        $customersObj = SubscriptionPayment::where("user_id", "=", $user_id);
+        if($isAdmin){
+          $customersObj = SubscriptionPayment::where([]);
+        } else {
+          $customersObj = SubscriptionPayment::where("user_id", "=", $user_id);
+        }
 
         foreach ($applied_filters as $field => $search) {
           $customersObj->where($field, "LIKE", "%{$search}%");
@@ -66,7 +76,12 @@ class Payments extends Controller
           ->orderBy($order, $dir)
           ->get();
       } else {
-        $customers = SubscriptionPayment::where("user_id", "=", $user_id)
+        if($isAdmin){
+          $q = SubscriptionPayment::where([]);
+        } else {
+          $q = SubscriptionPayment::where("user_id", "=", $user_id);
+        }
+        $customers = $q
           ->offset($start)
           ->limit($limit)
           ->orderBy($order, $dir)
@@ -75,29 +90,34 @@ class Payments extends Controller
     } else {
       $search = $request->input("search.value");
 
-      $customers = SubscriptionPayment::where("user_id", "=", $user_id)
-        ->where(function ($query) {
-          return $query
-            ->where("transaction_datetime", "LIKE", "%{$search}%")
-            ->orWhere("subscription_amount", "LIKE", "%{$search}%")
-            ->orWhere("card", "LIKE", "%{$search}%")
-            ->orWhere("transaction_no", "LIKE", "%{$search}%")
-            ->orWhere("status", "LIKE", "%{$search}%");
-        })
+      if($isAdmin){
+        $q = SubscriptionPayment::where(function ($query) {
+            return $query
+              ->where("transaction_datetime", "LIKE", "%{$search}%")
+              ->orWhere("subscription_amount", "LIKE", "%{$search}%")
+              ->orWhere("card", "LIKE", "%{$search}%")
+              ->orWhere("transaction_no", "LIKE", "%{$search}%")
+              ->orWhere("status", "LIKE", "%{$search}%");
+          });
+      } else {
+        $q = SubscriptionPayment::where("user_id", "=", $user_id)
+          ->where(function ($query) {
+            return $query
+              ->where("transaction_datetime", "LIKE", "%{$search}%")
+              ->orWhere("subscription_amount", "LIKE", "%{$search}%")
+              ->orWhere("card", "LIKE", "%{$search}%")
+              ->orWhere("transaction_no", "LIKE", "%{$search}%")
+              ->orWhere("status", "LIKE", "%{$search}%");
+          });
+      }
+
+      $customers = $q
         ->offset($start)
         ->limit($limit)
         ->orderBy($order, $dir)
         ->get();
 
-      $totalFiltered = SubscriptionPayment::where("user_id", "=", $user_id)
-        ->where(function ($query) {
-          return $query
-            ->where("transaction_datetime", "LIKE", "%{$search}%")
-            ->orWhere("subscription_amount", "LIKE", "%{$search}%")
-            ->orWhere("card", "LIKE", "%{$search}%")
-            ->orWhere("transaction_no", "LIKE", "%{$search}%")
-            ->orWhere("status", "LIKE", "%{$search}%");
-        })
+      $totalFiltered = $q
         ->count();
     }
 
@@ -111,7 +131,7 @@ class Payments extends Controller
         $nestedData["id"] = $customer->id;
         $nestedData["fake_id"] = ++$ids;
         $nestedData["transaction_datetime"] = $customer->transaction_datetime;
-        $nestedData["subscription_amount"] = $customer->subscription_amount;
+        $nestedData["subscription_amount"] = "€".$customer->subscription_amount;
         $nestedData["card"] = "xxxx xxxx xxxx ".$customer->card;
         $nestedData["transaction_no"] = $customer->transaction_no;
         $nestedData["status"] = $customer->status;
