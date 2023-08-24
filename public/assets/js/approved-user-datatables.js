@@ -228,25 +228,22 @@ $(function () {
                 searchable: false,
                 orderable: false,
                 render: function (data, type, full, meta) {
-                    var status_number = full['status'];
+                    var status_number = full['approved_by_admin'];
                     var id = full['id'];
                     let statusList = "";
-                    if(status_number != "pending") {
-                        statusList += `<a href="javascript:;" class="dropdown-item btn-pending" data-id="${id}">Pending</a>`;
-                    }
-                    if(status_number != "approved") {
+                    if(status_number != "Yes") {
                         statusList += `<a href="javascript:;" class="dropdown-item btn-approve" data-id="${id}">Approve</a>`;
                     }
-                    if(status_number != "rejected") {
+                    if(status_number != "No") {
                         statusList += `<a href="javascript:;" class="dropdown-item btn-reject" data-id="${id}">Reject</a>`;
                     }
                     return (
                         '<div class="d-inline-block">' +
                         '<a href="'+baseUrl+'profile/'+full['id']+'/view" class="btn btn-sm btn-icon" data-id="" target="_blank"><i class="ti ti-edit"></i></a>' +
-                        // '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
-                        // '<div class="dropdown-menu dropdown-menu-end m-0">' +
-                        // statusList +
-                        // '</div>' +
+                        '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
+                        '<div class="dropdown-menu dropdown-menu-end m-0">' +
+                        statusList +
+                        '</div>' +
                         '</div>'
                     );
                 }
@@ -266,19 +263,19 @@ $(function () {
     $(document).on('click', '.btn-approve', function () {
         var id = $(this).data('id');
 
-        updateStatus(id, 'approved');
+        updateStatus(id, 'Yes');
     });
 
     $(document).on('click', '.btn-reject', function () {
         var id = $(this).data('id');
 
-        updateStatus(id, 'rejected');
+        updateStatus(id, 'No');
     });
 
     $(document).on('click', '.btn-pending', function () {
         var id = $(this).data('id');
 
-        updateStatus(id, 'pending');
+        updateStatus(id, 'Pending');
     });
 
     function updateStatus(id, status){
@@ -302,7 +299,7 @@ $(function () {
         // });
         $.ajax({
             type: 'POST',
-            url: "".concat(baseUrl, `customer/${id}/status/${status}`),
+            url: "".concat(baseUrl, `user/${id}/status/${status}`),
             success: function success() {
                 dt_filter.draw();
             },

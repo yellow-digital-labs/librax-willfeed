@@ -145,12 +145,9 @@ class User extends Controller
 
   public function status(Request $request, $id, $status)
   {
-    $user_id = Auth::user()->id;
-
-    CustomerVerified::where("seller_id", "=", $user_id)
-      ->where("id",  "=", $id)
+    UserModel::where("id", "=", $id)
       ->update([
-        "status" => $status
+        "approved_by_admin" => $status
       ]);
 
     return response()->json([

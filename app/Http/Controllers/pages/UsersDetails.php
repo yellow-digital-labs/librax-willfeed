@@ -22,12 +22,14 @@ class UsersDetails extends Controller
       'user' => $user,
       'user_detail' => $user_detail,
       'subscriptions' => $subscriptions,
-      'isOnlyProfile' => $isOnlyProfile
+      'isOnlyProfile' => $isOnlyProfile,
+      'authUser' => $user,
     ]);
   }
 
   public function view($id)
   {
+    $authUser = Auth::user();
     $user_id = Auth::user()->id;
     $user = User::where(['id' => $id])->first();
     $user_detail = UserDetail::where(['user_id' => $id])->first();
@@ -45,7 +47,8 @@ class UsersDetails extends Controller
       'user' => $user,
       'user_detail' => $user_detail,
       'subscriptions' => $subscriptions,
-      'isOnlyProfile' => $isOnlyProfile
+      'isOnlyProfile' => $isOnlyProfile,
+      'authUser' => $authUser,
     ]);
   }
 }

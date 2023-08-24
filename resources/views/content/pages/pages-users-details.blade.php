@@ -130,6 +130,17 @@ $configData = Helper::appClasses();
             <li class="nav-item"><a class="nav-link" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Fatturazione" aria-controls="navs-pills-top-Fatturazione" aria-selected="true"><i class="wf-icon-file-text1 ti-xs me-1"></i>Fatturazione</a></li>
         </ul>
         @endif
+        @if($authUser->accountType==0)
+        <ul class="nav nav-pills flex-column flex-md-row mb-4 card-header-pills">
+            @if($user->approved_by_admin == "Pending" || $user->approved_by_admin == "No")
+            <li class="nav-item"><a href="" class="btn btn-primary" href="javascript:void(0);"><i class="wf-icon-check ti-xs me-1"></i>Verify</a></li>
+            @endif
+
+            @if($user->approved_by_admin == "Pending" || $user->approved_by_admin == "Yes")
+            <li class="nav-item"><a href="" class="btn btn-primary" href="javascript:void(0);"><i class="wf-icon-no ti-xs me-1"></i>Unverify</a></li>
+            @endif
+        </ul>
+        @endif
         <!--/ User Pills -->
         <div class="tab-content p-0">
             <div class="tab-pane fade show active" id="navs-pills-top-Profilo" role="tabpanel">
