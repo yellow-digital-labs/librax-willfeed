@@ -32,7 +32,7 @@ $configData = Helper::appClasses();
 
 @section('content')
 
-<h1 class="h3 text-black mb-4">Customer</h4>
+<h1 class="h3 text-black mb-4">Customer</h1>
 
 <div class="card">
     <div class="card-header d-flex justify-content-between border-bottom">
