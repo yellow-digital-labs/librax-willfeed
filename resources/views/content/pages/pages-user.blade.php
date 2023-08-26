@@ -1,5 +1,8 @@
-@php
+{{-- @php
 $configData = Helper::appClasses();
+@endphp --}}
+@php
+$customizerHidden = 'customizer-hide';
 @endphp
 @extends('layouts/layoutMaster')
 @section('title', 'Customer')

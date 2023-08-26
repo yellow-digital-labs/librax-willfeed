@@ -89,10 +89,12 @@ Route::middleware([
     Route::post('/product/create', $controller_path . '\pages\Product@store')->name('product-store'); //product save
     Route::get('/product/{id}/edit', $controller_path . '\pages\Product@edit')->name('product-edit'); //product edit
     Route::post('/product/{id}/edit', $controller_path . '\pages\Product@update')->name('product-update'); //product update
+    Route::get('/admin/product/{id}/edit', $controller_path . '\pages\Product@editAdmin')->name('product-edit'); //product edit admin
+    Route::post('/admin/product/{id}/edit', $controller_path . '\pages\Product@updateAdmin')->name('product-update'); //product update admin
     Route::post('/product/{id}/stock', $controller_path . '\pages\Product@stock')->name('product-update-stock'); //product update stock
     Route::post('/product/{id}/detail', $controller_path . '\pages\Product@detail')->name('product-detail'); //product detail ajax
     //admin
-    Route::get('/product/add', $controller_path . '\pages\ProductAdd@index')->name('product-add'); //admin add new product
+    Route::get('/product/add', $controller_path . '\pages\Product@add')->name('product-add'); //admin add new product
 
     //customer
     Route::get('/customer', $controller_path . '\pages\Customer@index')->name('customer'); //customer list view
