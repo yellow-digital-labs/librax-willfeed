@@ -53,3 +53,21 @@ $('.js-header-toggler').on('click', function(e){
 
     $(sel).toggleClass('is-active');
 });
+
+
+// Basic Ratings
+// --------------------------------------------------------------------
+if ($('.js-product-ratings').length > 0) {
+    $('.js-product-ratings').each(function () {
+        var sel = $(this);
+        var currentRating = $(sel).attr('data-rating');
+        $(sel).rateYo({
+            rating: currentRating,
+            spacing: '4px',
+            ratedFill: "#000",
+            starSvg: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">\
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9998 17.748L5.82784 20.993L7.00684 14.12L2.00684 9.253L8.90684 8.253L11.9928 2L15.0788 8.253L21.9788 9.253L16.9788 14.12L18.1578 20.993L11.9998 17.748Z" fill="inherit"/>\
+            </svg>'
+        });
+    });
+}

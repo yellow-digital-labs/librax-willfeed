@@ -36,6 +36,9 @@ Route::get('/admin', $controller_path . '\Admin@login')->name('admin-login');
 Route::get('/customer-rating', $controller_path . '\pages\CustomerRating@index')->name('pages-customer-rating');
 Route::get('/email-management', $controller_path . '\pages\EmailManagement@index')->name('pages-email-management');
 
+//Buyer Home screen
+Route::get('/buyer-home', $controller_path . '\pages\BuyerHome@index')->name('pages-buyer-home');
+
 
 //Authentication required
 Route::middleware([
