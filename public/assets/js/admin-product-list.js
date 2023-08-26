@@ -180,7 +180,7 @@
                         searchable: false,
                         orderable: false,
                         render: function render(data, type, full, meta) {
-                            return '<div class="d-inline-block text-nowrap">' + "<a href=\"/product/" + full['product_id'] + "/edit\" class=\"btn btn-sm btn-icon\" data-id=\"".concat(full['product_id'], "\"><i class=\"ti ti-edit\"></i></a>") + "<button class=\"btn btn-sm btn-icon delete-record\" data-id=\"".concat(full['product_id'], "\"><i class=\"ti ti-trash\"></i></button>") + '<div class="dropdown-menu dropdown-menu-end m-0">' + '<a href="' + userView + '" class="dropdown-item">View</a>' + '<a href="javascript:;" class="dropdown-item">Suspend</a>' + '</div>' + '</div>';
+                            return '<div class="d-inline-block text-nowrap">' + "<a href=\"/admin/product/" + full['id'] + "/edit\" class=\"btn btn-sm btn-icon\" data-id=\"".concat(full['id'], "\"><i class=\"ti ti-edit\"></i></a>") + "<button class=\"btn btn-sm btn-icon delete-record\" data-id=\"".concat(full['id'], "\"><i class=\"ti ti-trash\"></i></button>") + '<div class="dropdown-menu dropdown-menu-end m-0">' + '<a href="' + userView + '" class="dropdown-item">View</a>' + '<a href="javascript:;" class="dropdown-item">Suspend</a>' + '</div>' + '</div>';
                         }
                     }, {
                         // name

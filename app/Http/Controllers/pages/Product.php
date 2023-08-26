@@ -263,6 +263,57 @@ class Product extends Controller
     return redirect()->route("product");
   }
 
+  public function editAdmin($id)
+  {
+    $isAdmin = Helpers::isAdmin();
+    if($isAdmin){
+      $product = Products::where(['id' => $id])->first();
+
+      return view('content.pages.pages-product-add', [
+        'isEdit' => true,
+        'id' => $id,
+        'product' => $product
+      ]);
+    } else {
+      return Redirect::back()->withErrors([
+        "msg" => "Not authorized",
+      ]);
+    }
+  }
+
+  public function updateAdmin(Request $request, $id)
+  {
+    $isAdmin = Helpers::isAdmin();
+    if($isAdmin){
+      $product_avail = Products::where([
+        "id" => $id,
+      ])->count();
+  
+      if ($product_avail == 0) {
+        return redirect::back()->withErrors([
+          "msg" => "This product is not available",
+        ]);
+      }
+
+      Products::updateOrCreate(
+        [
+          "id" => $id,
+        ],
+        [
+          "name" => $request->name,
+          "description" => $request->description,
+          "active" => $request->active ? "yes" : "no",
+        ]
+      );
+  
+      return redirect()->route("product");
+    } else {
+      return Redirect::back()->withErrors([
+        "msg" => "Not authorized",
+      ]);
+    }
+  }
+
   public function create()
   {
     $products = Products::where(["active" => "yes"])->get();
@@ -357,6 +408,8 @@ class Product extends Controller
 
   public function add()
   {
-    return view('content.pages.pages-product-add');
+    return view('content.pages.pages-product-add', [
+      'isEdit' => false,
+    ]);
   }
 }

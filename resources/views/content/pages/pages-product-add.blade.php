@@ -20,6 +20,12 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('page-script')
+<script>
+    let description = "";
+    @if($isEdit)
+    description = "{!!$product->description!!}";
+    @endif
+</script>
 <script src="{{asset('assets/js/forms-editors.js')}}"></script>
 <script src="{{asset('assets/js/admin-product-add.js')}}"></script>
 @endsection
@@ -33,7 +39,7 @@ $configData = Helper::appClasses();
 
 <h1 class="h3 text-black mb-4">Aggiungi prodotto</h4>
 
-<form method="POST" onsubmit="return false" id="productAddForm">
+<form method="POST" {{-- onsubmit="return false" --}} id="productAddForm">
 @csrf
 <div class="card">
     <div class="card-header d-flex justify-content-between border-bottom">
@@ -46,12 +52,12 @@ $configData = Helper::appClasses();
 
         <div class="mb-3">
             <label class="form-label" for="Prodotto">Prodotto</label>
-            <input type="text" class="form-control" id="Prodotto" placeholder="Enter product name" name="name">
+            <input type="text" class="form-control" id="Prodotto" placeholder="Enter product name" name="name" value="{{$isEdit?$product->name:''}}">
         </div>
         <!-- Description -->
-        <div>
+        <div  class="mb-3">
             <label class="form-label">Descrizione</label>
-            <textarea name="description" style="display: none;" id="text_quill"></textarea>
+            <textarea name="description" style="display: none;" id="text_quill">{{$isEdit?$product->description:""}}</textarea>
             <div id="snow-toolbar">
                 <span class="ql-formats me-0">
                     <button class="ql-bold"></button>
@@ -66,6 +72,11 @@ $configData = Helper::appClasses();
             <div id="snow-editor">
                 
             </div>
+        </div>
+
+        <div class="form-check form-switch mb-3">
+            <label class="form-check-label" for="status">Disponibilità</label>
+            <input class="form-check-input" type="checkbox" name="active" id="status" value="active" {{$isEdit?($product->active=='yes'?'checked':''):'checked'}}>
         </div>
         
     </div>
