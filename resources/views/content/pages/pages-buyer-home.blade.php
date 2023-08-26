@@ -293,7 +293,7 @@ $configData = Helper::appClasses();
 
     <div class="dash-search">
         <div class="uk-container dash-search__container">
-            <h2 class="title dash-search__title">World’s first platform to buy more than 400+ petrochemical products online</h2>
+            <h2 class="title title--m dash-search__title">World’s first platform to buy more than 400+ petrochemical products online</h2>
             <div class="dash-search__box">
                 <input type="search" class="uk-input dash-search__input" name="" placeholder="Search products or sellers">
                 <button type="submit" class="uk-button dash-search__button"><span class="wf-icon wf-icon-search"></span> </button>
@@ -306,246 +306,488 @@ $configData = Helper::appClasses();
 
     <div class="product-filter">
         <div class="uk-container product-filter__container">
-            <div class="uk-width-auto product-filter__col  product-filter__col--sidebar">
-                <div class="filter">
-                    
-                    <div class="filter-heading">
-                        <h2 class="filter-heading__title">Filters</h2>
-                        <button type="button" class="uk-button filter-heading__clear">Clear</button>
+            <div class="uk-grid product-filter__grid" data-uk-grid>
+                <div class="uk-width-auto product-filter__col  product-filter__col--sidebar">
+                    <div class="filter">
+                        
+                        <div class="filter-heading">
+                            <h2 class="filter-heading__title">Filters</h2>
+                            <button type="button" class="uk-button filter-heading__clear">Clear</button>
+                        </div>
+
+                        <div class="filter__item">
+                            <h3 class="filter__name">Fuel type</h3>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">Fuel type-1</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">Fuel type-2</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">Fuel type-3</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="filter__item">
+                            <h3 class="filter__name">Price</h3>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">€0.10 to €10 /LITTER</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">€0.10 to €10 /LITTER</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">€0.10 to €10 /LITTER</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">€0.10 to €10 /LITTER</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="filter__item">
+                            <h3 class="filter__name">Payment method</h3>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">Assegno</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">Bonifico</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">XYZ</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="filter__item">
+                            <h3 class="filter__name">Geographic delivery limits</h3>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">50km to 100km</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">100km to 200km</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">200km to 400km</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">400km to 800km</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">XYZ</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="filter__item">
+                            <h3 class="filter__name">Payment time</h3>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">A vista</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">30gg</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">60gg</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="filter__item">
+                            <h3 class="filter__name">Delivery time range</h3>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">Same day</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">1 to 10 days</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">10 to 20 days</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
+                                <label class="filter-checkbox__label">
+                                    <span class="filter-checkbox__label-type">20 to 30 days</span>
+                                    <span class="filter-checkbox__label-count">5</span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="uk-width-expand product-filter__col product-filter__col--items">
+
+                    <div class="product__item">
+                        
+                        <div class="product__header">
+                            <div class="product-seller">
+                                <div class="product-seller__media">
+                                    <img src="/assets/img/avatars/1.png" width="48" height="48">
+                                </div>
+                                <div class="product-seller__body">
+                                    <h3 class="product-seller__name">Italia Trasporti</h3>
+                                    <p class="product-seller__type">Seller</p>
+                                </div>
+                            </div>
+                            <div class="product-rating">
+                                <div class="js-product-ratings" data-rating="4"></div>
+                            </div>
+                        </div>
+                        <div class="product__body uk-grid" data-uk-grid>
+                            <div class="uk-width-auto product__item-col product__item-col--names">
+                                <div class="product-data-chart uk-grid" data-uk-grid>
+                                    <div class="product-prdata">
+                                        <h2 class="product__name">Ethylene</h2>
+                                        <div class="product__fullprice">
+                                            €1100.00 + 20% TAX
+                                        </div>
+                                        <div class="product__price">
+                                            <span class="product__price-big">€468</span>/LITERS <span class="product__price-badge">+4.2%</span>
+                                        </div>
+                                        <div class="product__priceinfo">
+                                            ( Inclusive Of all Tax)
+                                        </div>
+                                        <div class="product__avail">
+                                            Availability: <span class="product__avail-type">IN STOCK</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-chart">
+                                        <div id="productItemChart"></div>
+                                    </div>
+                                </div>
+                                <div class="product-actions">
+                                    <a href="#" class="uk-button uk-button-default product-actions__view">View seller</a>
+                                    <a href="#" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
+                                </div>
+                            </div>
+                            <div class="uk-width-expand product__item-col product__item-col--desc">
+                                <div class="product__desc">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Donec massa sapien faucibus et molestie ac feugiat sed. Non tellus orci ac auctor augue mauris augue neque gravida.Non tellus orci ac auctor augue mauris augue neque gravida. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
 
-                    <div class="filter__item">
-                        <h3 class="filter__name">Fuel type</h3>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">Fuel type-1</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
+                    <div class="product__item">
+                        
+                        <div class="product__header">
+                            <div class="product-seller">
+                                <div class="product-seller__media">
+                                    <img src="/assets/img/avatars/1.png" width="48" height="48">
+                                </div>
+                                <div class="product-seller__body">
+                                    <h3 class="product-seller__name">Italia Trasporti</h3>
+                                    <p class="product-seller__type">Seller</p>
+                                </div>
+                            </div>
+                            <div class="product-rating">
+                                <div class="js-product-ratings" data-rating="4"></div>
+                            </div>
                         </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">Fuel type-2</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
-                        </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">Fuel type-3</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="filter__item">
-                        <h3 class="filter__name">Price</h3>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">€0.10 to €10 /LITTER</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
-                        </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">€0.10 to €10 /LITTER</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
-                        </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">€0.10 to €10 /LITTER</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
-                        </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">€0.10 to €10 /LITTER</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
+                        <div class="product__body uk-grid" data-uk-grid>
+                            <div class="uk-width-auto product__item-col product__item-col--names">
+                                <div class="product-data-chart uk-grid" data-uk-grid>
+                                    <div class="product-prdata">
+                                        <h2 class="product__name">Ethylene</h2>
+                                        <div class="product__fullprice">
+                                            €1100.00 + 20% TAX
+                                        </div>
+                                        <div class="product__price">
+                                            <span class="product__price-big">€468</span>/LITERS <span class="product__price-badge product__price-badge--negative">-4.2%</span>
+                                        </div>
+                                        <div class="product__priceinfo">
+                                            ( Inclusive Of all Tax)
+                                        </div>
+                                        <div class="product__avail">
+                                            Availability: <span class="product__avail-type product__avail-type--negative">Out of stock</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-chart">
+                                        <div id="productItemChart"></div>
+                                    </div>
+                                </div>
+                                <div class="product-actions">
+                                    <a href="#" class="uk-button uk-button-default product-actions__view">View seller</a>
+                                    <a href="#" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
+                                </div>
+                            </div>
+                            <div class="uk-width-expand product__item-col product__item-col--desc">
+                                <div class="product__desc">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Donec massa sapien faucibus et molestie ac feugiat sed. Non tellus orci ac auctor augue mauris augue neque gravida.Non tellus orci ac auctor augue mauris augue neque gravida. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.
+                                    </p>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
 
-                    <div class="filter__item">
-                        <h3 class="filter__name">Payment method</h3>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">Assegno</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
+                    <div class="product__item">
+                        
+                        <div class="product__header">
+                            <div class="product-seller">
+                                <div class="product-seller__media">
+                                    <img src="/assets/img/avatars/1.png" width="48" height="48">
+                                </div>
+                                <div class="product-seller__body">
+                                    <h3 class="product-seller__name">Italia Trasporti</h3>
+                                    <p class="product-seller__type">Seller</p>
+                                </div>
+                            </div>
+                            <div class="product-rating">
+                                <div class="js-product-ratings" data-rating="4"></div>
+                            </div>
                         </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">Bonifico</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
-                        </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">XYZ</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="filter__item">
-                        <h3 class="filter__name">Geographic delivery limits</h3>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">50km to 100km</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
-                        </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">100km to 200km</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
-                        </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">200km to 400km</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
-                        </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">400km to 800km</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
-                        </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">XYZ</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
+                        <div class="product__body uk-grid" data-uk-grid>
+                            <div class="uk-width-auto product__item-col product__item-col--names">
+                                <div class="product-data-chart uk-grid" data-uk-grid>
+                                    <div class="product-prdata">
+                                        <h2 class="product__name">Ethylene</h2>
+                                        <div class="product__fullprice">
+                                            €1100.00 + 20% TAX
+                                        </div>
+                                        <div class="product__price">
+                                            <span class="product__price-big">€468</span>/LITERS <span class="product__price-badge">+4.2%</span>
+                                        </div>
+                                        <div class="product__priceinfo">
+                                            ( Inclusive Of all Tax)
+                                        </div>
+                                        <div class="product__avail">
+                                            Availability: <span class="product__avail-type">IN STOCK</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-chart">
+                                        <div id="productItemChart"></div>
+                                    </div>
+                                </div>
+                                <div class="product-actions">
+                                    <a href="#" class="uk-button uk-button-default product-actions__view">View seller</a>
+                                    <a href="#" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
+                                </div>
+                            </div>
+                            <div class="uk-width-expand product__item-col product__item-col--desc">
+                                <div class="product__desc">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Donec massa sapien faucibus et molestie ac feugiat sed. Non tellus orci ac auctor augue mauris augue neque gravida.Non tellus orci ac auctor augue mauris augue neque gravida. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.
+                                    </p>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
 
-                    <div class="filter__item">
-                        <h3 class="filter__name">Payment time</h3>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">A vista</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
+                    <div class="product__item">
+                        
+                        <div class="product__header">
+                            <div class="product-seller">
+                                <div class="product-seller__media">
+                                    <img src="/assets/img/avatars/1.png" width="48" height="48">
+                                </div>
+                                <div class="product-seller__body">
+                                    <h3 class="product-seller__name">Italia Trasporti</h3>
+                                    <p class="product-seller__type">Seller</p>
+                                </div>
+                            </div>
+                            <div class="product-rating">
+                                <div class="js-product-ratings" data-rating="4"></div>
+                            </div>
                         </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">30gg</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
-                        </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">60gg</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
+                        <div class="product__body uk-grid" data-uk-grid>
+                            <div class="uk-width-auto product__item-col product__item-col--names">
+                                <div class="product-data-chart uk-grid" data-uk-grid>
+                                    <div class="product-prdata">
+                                        <h2 class="product__name">Ethylene</h2>
+                                        <div class="product__fullprice">
+                                            €1100.00 + 20% TAX
+                                        </div>
+                                        <div class="product__price">
+                                            <span class="product__price-big">€468</span>/LITERS <span class="product__price-badge">+4.2%</span>
+                                        </div>
+                                        <div class="product__priceinfo">
+                                            ( Inclusive Of all Tax)
+                                        </div>
+                                        <div class="product__avail">
+                                            Availability: <span class="product__avail-type">IN STOCK</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-chart">
+                                        <div id="productItemChart"></div>
+                                    </div>
+                                </div>
+                                <div class="product-actions">
+                                    <a href="#" class="uk-button uk-button-default product-actions__view">View seller</a>
+                                    <a href="#" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
+                                </div>
+                            </div>
+                            <div class="uk-width-expand product__item-col product__item-col--desc">
+                                <div class="product__desc">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Donec massa sapien faucibus et molestie ac feugiat sed. Non tellus orci ac auctor augue mauris augue neque gravida.Non tellus orci ac auctor augue mauris augue neque gravida. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.
+                                    </p>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
 
-                    <div class="filter__item">
-                        <h3 class="filter__name">Delivery time range</h3>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">Same day</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
+                    <div class="product__item">
+                        
+                        <div class="product__header">
+                            <div class="product-seller">
+                                <div class="product-seller__media">
+                                    <img src="/assets/img/avatars/1.png" width="48" height="48">
+                                </div>
+                                <div class="product-seller__body">
+                                    <h3 class="product-seller__name">Italia Trasporti</h3>
+                                    <p class="product-seller__type">Seller</p>
+                                </div>
+                            </div>
+                            <div class="product-rating">
+                                <div class="js-product-ratings" data-rating="4"></div>
+                            </div>
                         </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">1 to 10 days</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
+                        <div class="product__body uk-grid" data-uk-grid>
+                            <div class="uk-width-auto product__item-col product__item-col--names">
+                                <div class="product-data-chart uk-grid" data-uk-grid>
+                                    <div class="product-prdata">
+                                        <h2 class="product__name">Ethylene</h2>
+                                        <div class="product__fullprice">
+                                            €1100.00 + 20% TAX
+                                        </div>
+                                        <div class="product__price">
+                                            <span class="product__price-big">€468</span>/LITERS <span class="product__price-badge">+4.2%</span>
+                                        </div>
+                                        <div class="product__priceinfo">
+                                            ( Inclusive Of all Tax)
+                                        </div>
+                                        <div class="product__avail">
+                                            Availability: <span class="product__avail-type">IN STOCK</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-chart">
+                                        <div id="productItemChart"></div>
+                                    </div>
+                                </div>
+                                <div class="product-actions">
+                                    <a href="#" class="uk-button uk-button-default product-actions__view">View seller</a>
+                                    <a href="#" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
+                                </div>
+                            </div>
+                            <div class="uk-width-expand product__item-col product__item-col--desc">
+                                <div class="product__desc">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Donec massa sapien faucibus et molestie ac feugiat sed. Non tellus orci ac auctor augue mauris augue neque gravida.Non tellus orci ac auctor augue mauris augue neque gravida. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.
+                                    </p>
+                                </div>
+                            </div>
+                            
                         </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">10 to 20 days</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
+                    </div>
+
+                    <div class="product-filter__footer">
+                        <div class="product-filter__counter">
+                            5 di 10 mostrati
                         </div>
-                        <div class="filter-checkbox">
-                            <input type="checkbox" name="" class="filter-checkbox__input">
-                            <label class="filter-checkbox__label">
-                                <span class="filter-checkbox__label-type">20 to 30 days</span>
-                                <span class="filter-checkbox__label-count">5</span>
-                            </label>
+                        <div class="product-filter__pagination">
+                            <ul class="pagination">
+                                <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a tabindex="0" class="page-link">Previous</a></li>
+                                <li class="paginate_button page-item active"><a href="#" aria-current="page" tabindex="0" class="page-link">1</a></li>
+                                <li class="paginate_button page-item "><a href="#" tabindex="0" class="page-link">2</a></li>
+                                <li class="paginate_button page-item "><a href="#" tabindex="0" class="page-link">3</a></li>
+                                <li class="paginate_button page-item "><a href="#" tabindex="0" class="page-link">4</a></li>
+                                <li class="paginate_button page-item "><a href="#" tabindex="0" class="page-link">5</a></li>
+                                <li class="paginate_button page-item disabled" id="DataTables_Table_0_ellipsis"><a tabindex="0" class="page-link">…</a></li>
+                                <li class="paginate_button page-item "><a href="#" tabindex="0" class="page-link">15</a></li>
+                                <li class="paginate_button page-item next" id="DataTables_Table_0_next"><a href="#" tabindex="0" class="page-link">Next</a></li>
+                            </ul>
                         </div>
                     </div>
 
                 </div>
-            </div>
-            <div class="uk-width-expand product-filter__col product-filter__col--items">
-                <div class="product__item">
-                    <div class="product__item-col">
-                        <div class="product-data-chart">
-                            <div class="product__header uk-grid" data-uk-grid>
-                                <div class="product-seller">
-                                    <div class="product-seller__media">
-                                        <img src="/assets/img/avatars/1.png" width="48" height="48">
-                                    </div>
-                                    <div class="product-seller__body">
-                                        <h3>Italia Trasporti</h3>
-                                        <p>Seller</p>
-                                    </div>
-                                </div>
-                                <div class="product-rating">
-                                    <div class="js-product-ratings" data-rating="4"></div>
-                                </div>
-                            </div>
-                            <div class="product__body uk-grid" data-uk-grid>
-                                <div class="product-prdata">
-                                    <h2 class="product__name">Ethylene</h2>
-                                    <div class="product__fullprice">
-                                        €1100.00 + 20% TAX
-                                    </div>
-                                    <div class="product__price">
-                                        <span class="product__price-big">€468</span>/LITERS <span class="product__price-badge">+4.2%</span>
-                                    </div>
-                                    <div class="product__priceinfo">
-                                        ( Inclusive Of all Tax)
-                                    </div>
-                                    <div class="product__avail">
-                                        Availability: <span class="product__avail-type">IN STOCK</span>
-                                    </div>
-                                </div>
-                                <div class="product-chart">
-                                    <div id="productItemChart"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="#" class="uk-button uk-button-default product-actions__view">View seller</a>
-                            <a href="#" class="uk-button uk-button-primary product-actions__view">Buy now</a>
-                        </div>
-                    </div>
-                    <div class="product__item-col">
-                        <div class="product__desc">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Donec massa sapien faucibus et molestie ac feugiat sed. Non tellus orci ac auctor augue mauris augue neque gravida.Non tellus orci ac auctor augue mauris augue neque gravida. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
