@@ -318,22 +318,22 @@ $configData = Helper::appClasses();
                         <div class="filter__item">
                             <h3 class="filter__name">Fuel type</h3>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="FuelType-1">
+                                <label class="filter-checkbox__label" for="FuelType-1">
                                     <span class="filter-checkbox__label-type">Fuel type-1</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="FuelType-2">
+                                <label class="filter-checkbox__label" for="FuelType-2">
                                     <span class="filter-checkbox__label-type">Fuel type-2</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="FuelType-3">
+                                <label class="filter-checkbox__label" for="FuelType-3">
                                     <span class="filter-checkbox__label-type">Fuel type-3</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
@@ -343,29 +343,29 @@ $configData = Helper::appClasses();
                         <div class="filter__item">
                             <h3 class="filter__name">Price</h3>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="Price-1">
+                                <label class="filter-checkbox__label" for="Price-1">
                                     <span class="filter-checkbox__label-type">€0.10 to €10 /LITTER</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="Price-2">
+                                <label class="filter-checkbox__label" for="Price-2">
                                     <span class="filter-checkbox__label-type">€0.10 to €10 /LITTER</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="Price-3">
+                                <label class="filter-checkbox__label" for="Price-3">
                                     <span class="filter-checkbox__label-type">€0.10 to €10 /LITTER</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="Price-4">
+                                <label class="filter-checkbox__label" for="Price-4">
                                     <span class="filter-checkbox__label-type">€0.10 to €10 /LITTER</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
@@ -375,22 +375,22 @@ $configData = Helper::appClasses();
                         <div class="filter__item">
                             <h3 class="filter__name">Payment method</h3>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="PaymentMethod-1">
+                                <label class="filter-checkbox__label" for="PaymentMethod-1">
                                     <span class="filter-checkbox__label-type">Assegno</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="PaymentMethod-2">
+                                <label class="filter-checkbox__label" for="PaymentMethod-2">
                                     <span class="filter-checkbox__label-type">Bonifico</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="PaymentMethod-3">
+                                <label class="filter-checkbox__label" for="PaymentMethod-3">
                                     <span class="filter-checkbox__label-type">XYZ</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
@@ -400,36 +400,36 @@ $configData = Helper::appClasses();
                         <div class="filter__item">
                             <h3 class="filter__name">Geographic delivery limits</h3>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="Geographic-1">
+                                <label class="filter-checkbox__label" for="Geographic-1">
                                     <span class="filter-checkbox__label-type">50km to 100km</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="Geographic-2">
+                                <label class="filter-checkbox__label" for="Geographic-2">
                                     <span class="filter-checkbox__label-type">100km to 200km</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="Geographic-3">
+                                <label class="filter-checkbox__label" for="Geographic-3">
                                     <span class="filter-checkbox__label-type">200km to 400km</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="Geographic-4">
+                                <label class="filter-checkbox__label" for="Geographic-4">
                                     <span class="filter-checkbox__label-type">400km to 800km</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="Geographic-5">
+                                <label class="filter-checkbox__label" for="Geographic-5">
                                     <span class="filter-checkbox__label-type">XYZ</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
@@ -439,22 +439,22 @@ $configData = Helper::appClasses();
                         <div class="filter__item">
                             <h3 class="filter__name">Payment time</h3>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="PaymentTime-1">
+                                <label class="filter-checkbox__label" for="PaymentTime-1">
                                     <span class="filter-checkbox__label-type">A vista</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="PaymentTime-2">
+                                <label class="filter-checkbox__label" for="PaymentTime-2">
                                     <span class="filter-checkbox__label-type">30gg</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="PaymentTime-3">
+                                <label class="filter-checkbox__label" for="PaymentTime-3">
                                     <span class="filter-checkbox__label-type">60gg</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
@@ -464,29 +464,29 @@ $configData = Helper::appClasses();
                         <div class="filter__item">
                             <h3 class="filter__name">Delivery time range</h3>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="Delivery-1">
+                                <label class="filter-checkbox__label" for="Delivery-1">
                                     <span class="filter-checkbox__label-type">Same day</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="Delivery-2">
+                                <label class="filter-checkbox__label" for="Delivery-2">
                                     <span class="filter-checkbox__label-type">1 to 10 days</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="Delivery-3">
+                                <label class="filter-checkbox__label" for="Delivery-3">
                                     <span class="filter-checkbox__label-type">10 to 20 days</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
                             </div>
                             <div class="filter-checkbox">
-                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input">
-                                <label class="filter-checkbox__label">
+                                <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="Delivery-4">
+                                <label class="filter-checkbox__label" for="Delivery-4">
                                     <span class="filter-checkbox__label-type">20 to 30 days</span>
                                     <span class="filter-checkbox__label-count">5</span>
                                 </label>
