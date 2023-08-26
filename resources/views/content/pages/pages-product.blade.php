@@ -27,7 +27,11 @@ $configData = Helper::appClasses();
     var urlCreateProductView = {!! "'".$urlCreateProductView."'" !!};
     var urlListProductData = {!! "'".$urlListProductData."'" !!};
 </script>
+@if($isAdmin)
+<script src="{{asset('assets/js/admin-product-list.js')}}"></script>
+@else
 <script src="{{asset('assets/js/seller-product-list.js')}}"></script>
+@endif
 @endsection
 
 @section('content')
@@ -103,8 +107,14 @@ $configData = Helper::appClasses();
             <thead class="border-top">
                 <tr>
                     <th>Prodotto</th>
+                    @if(!$isAdmin)
                     <th>prezzo / litro</th>
+                    @endif
+                    @if(!$isAdmin)
                     <th>status</th>
+                    @else
+                    <th>active</th>
+                    @endif
                     <th>Azione</th>
                 </tr>
             </thead>

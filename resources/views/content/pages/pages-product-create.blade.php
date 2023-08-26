@@ -31,7 +31,7 @@ $configData = Helper::appClasses();
 @section('content')
 
 <h1 class="h3 text-black mb-4">Aggiungi prodotto</h4>
-<form id="productForm" {{-- onsubmit="return false" --}} method="POST">
+<form id="productForm" onsubmit="return false" method="POST">
     @csrf
     <div class="row align-items-start g-4">
         <div class="col-md-8">

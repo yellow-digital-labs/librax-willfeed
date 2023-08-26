@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductSeller;
 use App\Models\Product as Products;
 use App\Models\ProductSellerInventoryHistory;
+use App\Helpers\Helpers;
 use Auth;
 use Redirect;
 
@@ -14,14 +15,25 @@ class Product extends Controller
 {
   public function index()
   {
+    $isAdmin = Helpers::isAdmin();
     $user_id = Auth::user()->id;
 
-    $urlCreateProductView = route("product-create");
+    if($isAdmin){
+      $urlCreateProductView = route("product-add");
+    } else {
+      $urlCreateProductView = route("product-create");
+    }
     $urlListProductData = route("product-list");
 
-    $total_products = ProductSeller::where(['seller_id' => $user_id])->count();
-    $active_products = ProductSeller::where(['seller_id' => $user_id, "status" => "active"])->count();
-    $inactive_products = ProductSeller::where(['seller_id' => $user_id, "status" => "inactive"])->count();
+    if($isAdmin){
+      $total_products = Products::where([])->count();
+      $active_products = Products::where(["active" => "yes"])->count();
+      $inactive_products = Products::where(["active" => "no"])->count();
+    } else {
+      $total_products = ProductSeller::where(['seller_id' => $user_id])->count();
+      $active_products = ProductSeller::where(['seller_id' => $user_id, "status" => "active"])->count();
+      $inactive_products = ProductSeller::where(['seller_id' => $user_id, "status" => "inactive"])->count();
+    }
 
     return view("content.pages.pages-product", [
       "urlCreateProductView" => $urlCreateProductView,
@@ -29,22 +41,36 @@ class Product extends Controller
       "total_products" => $total_products,
       "active_products" => $active_products,
       "inactive_products" => $inactive_products,
+      "isAdmin" => $isAdmin,
     ]);
   }
 
   public function list(Request $request)
   {
+    $isAdmin = Helpers::isAdmin();
     $user_id = Auth::user()->id;
-    $columns = [
-      1 => "id",
-      2 => "product_name",
-      3 => "amount_before_tax",
-      4 => "status",
-    ];
+    if($isAdmin){
+      $columns = [
+        1 => "id",
+        2 => "name",
+        3 => "active",
+      ];
+    } else {
+      $columns = [
+        1 => "id",
+        2 => "product_name",
+        3 => "amount_before_tax",
+        4 => "status",
+      ];
+    }
 
     $search = [];
 
-    $f = ProductSeller::where("seller_id", "=", $user_id);
+    if($isAdmin){
+      $f = Products::where([]);
+    } else {
+      $f = ProductSeller::where("seller_id", "=", $user_id);
+    }
     $totalData = $f->count();
 
     $totalFiltered = $totalData;
@@ -63,7 +89,11 @@ class Product extends Controller
 
     if (empty($request->input("search.value"))) {
       if (count($applied_filters) > 0) {
-        $productsObj = ProductSeller::where("seller_id", "=", $user_id);
+        if($isAdmin){
+          $productsObj = Products::where([]);
+        } else {
+          $productsObj = ProductSeller::where("seller_id", "=", $user_id);
+        }
 
         foreach ($applied_filters as $field => $search) {
           $productsObj->where($field, "LIKE", "%{$search}%");
@@ -75,7 +105,12 @@ class Product extends Controller
           ->orderBy($order, $dir)
           ->get();
       } else {
-        $products = ProductSeller::where("seller_id", "=", $user_id)
+        if($isAdmin){
+          $q = Products::where([]);
+        } else {
+          $q = ProductSeller::where("seller_id", "=", $user_id);
+        }
+        $products = $q
           ->offset($start)
           ->limit($limit)
           ->orderBy($order, $dir)
@@ -84,26 +119,51 @@ class Product extends Controller
     } else {
       $search = $request->input("search.value");
 
-      $products = ProductSeller::where("seller_id", "=", $user_id)
-        ->where(function ($query) {
-          return $query
-            ->where("product_name", "LIKE", "%{$search}%")
-            ->orWhere("amount_before_tax", "LIKE", "%{$search}%")
-            ->orWhere("status", "LIKE", "%{$search}%");
-        })
-        ->offset($start)
-        ->limit($limit)
-        ->orderBy($order, $dir)
-        ->get();
+      if($isAdmin){
+        $q = Products::where([]);
 
-      $totalFiltered = ProductSeller::where("seller_id", "=", $user_id)
-        ->where(function ($query) {
-          return $query
-            ->where("product_name", "LIKE", "%{$search}%")
-            ->orWhere("amount_before_tax", "LIKE", "%{$search}%")
-            ->orWhere("status", "LIKE", "%{$search}%");
-        })
-        ->count();
+        $products = $q
+          ->where(function ($query) {
+            return $query
+              ->where("name", "LIKE", "%{$search}%")
+              ->orWhere("active", "LIKE", "%{$search}%");
+          })
+          ->offset($start)
+          ->limit($limit)
+          ->orderBy($order, $dir)
+          ->get();
+
+        $totalFiltered = $q
+          ->where(function ($query) {
+            return $query
+              ->where("name", "LIKE", "%{$search}%")
+              ->orWhere("active", "LIKE", "%{$search}%");
+          })
+          ->count();
+      } else {
+        $q = ProductSeller::where("seller_id", "=", $user_id);
+
+        $products = $q
+          ->where(function ($query) {
+            return $query
+              ->where("product_name", "LIKE", "%{$search}%")
+              ->orWhere("amount_before_tax", "LIKE", "%{$search}%")
+              ->orWhere("status", "LIKE", "%{$search}%");
+          })
+          ->offset($start)
+          ->limit($limit)
+          ->orderBy($order, $dir)
+          ->get();
+
+        $totalFiltered = $q
+          ->where(function ($query) {
+            return $query
+              ->where("product_name", "LIKE", "%{$search}%")
+              ->orWhere("amount_before_tax", "LIKE", "%{$search}%")
+              ->orWhere("status", "LIKE", "%{$search}%");
+          })
+          ->count();
+      }
     }
 
     $data = [];
@@ -115,11 +175,16 @@ class Product extends Controller
       foreach ($products as $product) {
         $nestedData["id"] = $product->id;
         $nestedData["fake_id"] = ++$ids;
-        $nestedData["product_name"] = $product->product_name;
-        $nestedData["amount_before_tax"] =
-          "€" . $product->amount_before_tax . "/LITERS";
-        $nestedData["status"] = $product->status;
-        $nestedData["product_id"] = $product->product_id;
+        if($isAdmin){
+          $nestedData["name"] = $product->name;
+          $nestedData["active"] = $product->active;
+        } else {
+          $nestedData["product_name"] = $product->product_name;
+          $nestedData["amount_before_tax"] =
+            "€" . $product->amount_before_tax . "/LITERS";
+          $nestedData["status"] = $product->status;
+          $nestedData["product_id"] = $product->product_id;
+        }
 
         $data[] = $nestedData;
       }
@@ -288,5 +353,10 @@ class Product extends Controller
       "code" => 200,
       "data" => $product->description,
     ]);
+  }
+
+  public function add()
+  {
+    return view('content.pages.pages-product-add');
   }
 }

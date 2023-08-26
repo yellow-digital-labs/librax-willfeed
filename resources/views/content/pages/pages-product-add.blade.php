@@ -8,15 +8,20 @@ $configData = Helper::appClasses();
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/typography.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/katex.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/editor.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
 @endsection
 
 @section('vendor-script')
 <script src="{{asset('assets/vendor/libs/quill/katex.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/quill/quill.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
 @endsection
 
 @section('page-script')
 <script src="{{asset('assets/js/forms-editors.js')}}"></script>
+<script src="{{asset('assets/js/admin-product-add.js')}}"></script>
 @endsection
 
 @section('page-style')
@@ -28,7 +33,8 @@ $configData = Helper::appClasses();
 
 <h1 class="h3 text-black mb-4">Aggiungi prodotto</h4>
 
-
+<form method="POST" onsubmit="return false" id="productAddForm">
+@csrf
 <div class="card">
     <div class="card-header d-flex justify-content-between border-bottom">
         <div class="card-title mb-0">
@@ -40,11 +46,12 @@ $configData = Helper::appClasses();
 
         <div class="mb-3">
             <label class="form-label" for="Prodotto">Prodotto</label>
-            <input type="text" class="form-control" id="Prodotto" placeholder="Enter product name" name="">
+            <input type="text" class="form-control" id="Prodotto" placeholder="Enter product name" name="name">
         </div>
         <!-- Description -->
         <div>
             <label class="form-label">Descrizione</label>
+            <textarea name="description" style="display: none;" id="text_quill"></textarea>
             <div id="snow-toolbar">
                 <span class="ql-formats me-0">
                     <button class="ql-bold"></button>
@@ -65,5 +72,7 @@ $configData = Helper::appClasses();
 </div>
 
 <button class="btn btn-primary px-5 mt-4" type="submit"><span class="px-5">Save</span></button>
+
+</form>
 
 @endsection
