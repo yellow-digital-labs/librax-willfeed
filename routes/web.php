@@ -38,6 +38,7 @@ Route::get('/email-management', $controller_path . '\pages\EmailManagement@index
 
 //Buyer Home screen
 Route::get('/buyer-home', $controller_path . '\pages\BuyerHome@index')->name('pages-buyer-home');
+Route::get('/buyer-checkout', $controller_path . '\pages\BuyerCheckout@index')->name('pages-buyer-checkout');
 
 
 //Authentication required
