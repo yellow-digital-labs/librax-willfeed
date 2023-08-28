@@ -25,11 +25,15 @@ class StaticPagesPrivacy extends Controller
     $staticPageTermsUrl = route('static-pages-terms');
 
     $slug = "privacy-policy";
+    $title = "Privacy policy";
+    $currentUrl = request()->route()->getName();
     return view('content.pages.pages-static-pages-privacy', [
       'staticPagePrivacyUrl' => $staticPagePrivacyUrl,
       'staticPageTermsUrl' => $staticPageTermsUrl,
       'page' => $page,
       'slug' => $slug,
+      'title' => $title,
+      'currentUrl' => $currentUrl,
     ]);
   }
 

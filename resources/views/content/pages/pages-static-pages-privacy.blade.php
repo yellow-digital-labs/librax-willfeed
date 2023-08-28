@@ -39,10 +39,10 @@ $configData = Helper::appClasses();
 <div class="nav-align-left mb-4">
     <ul class="nav nav-pills me-3 col-sm-3 card-header-pills" role="tablist">
         <li class="nav-item">
-            <a href="{{$staticPagePrivacyUrl}}" class="nav-link active">Privacy policy</a>
+            <a href="{{$staticPagePrivacyUrl}}" class="nav-link {{$currentUrl=='static-pages-privacy'?'active':''}}">Privacy policy</a>
         </li>
         <li class="nav-item">
-            <a href="{{$staticPageTermsUrl}}" class="nav-link">Terms & Conditions</a>
+            <a href="{{$staticPageTermsUrl}}" class="nav-link {{$currentUrl=='static-pages-terms'?'active':''}}">Terms & conditions</a>
         </li>
     </ul>
 
@@ -53,7 +53,7 @@ $configData = Helper::appClasses();
                 <input type="hidden" name="slug" value="{{$page?$page->slug:$slug}}" />
                 <div class="card mb-4">
                     <div class="card-header border-bottom">
-                        <h4 class="text-black m-0">Privacy policy</h4>
+                        <h4 class="text-black m-0">{{$title}}</h4>
                     </div>
                     <div class="card-body p-0 pb-1">
                         <div class="p-4 border-bottom">
