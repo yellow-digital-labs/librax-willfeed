@@ -142,9 +142,18 @@ class CustomerRating extends Controller
 
   public function status(Request $request, $id, $status)
   {
-    UserModel::where("id", "=", $id)
+    $isAdmin = Helpers::isAdmin();
+    if(!$isAdmin){
+      return response()->json([
+        "message" => "You are not authorized",
+        "code" => 500,
+        "data" => [],
+      ]);
+    }
+
+    Rating::where("id", "=", $id)
       ->update([
-        "approved_by_admin" => $status
+        "status" => $status
       ]);
 
     return response()->json([

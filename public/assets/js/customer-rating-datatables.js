@@ -5,6 +5,13 @@
 'use strict';
 
 $(function() {
+    // ajax setup
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     var dt_filter_table = $('.dt-column-search');
 
     // Column Search
@@ -108,15 +115,15 @@ $(function() {
                     if(status_number != "pending") {
                         statusList += `<a href="javascript:;" class="dropdown-item btn-pending" data-id="${id}">Pending</a>`;
                     }
-                    if(status_number != "approved") {
+                    if(status_number != "approve") {
                         statusList += `<a href="javascript:;" class="dropdown-item btn-approve" data-id="${id}">Approve</a>`;
                     }
-                    if(status_number != "rejected") {
+                    if(status_number != "reject") {
                         statusList += `<a href="javascript:;" class="dropdown-item btn-reject" data-id="${id}">Reject</a>`;
                     }
                     return (
                         '<div class="d-inline-block">' +
-                        '<a href="'+baseUrl+'profile/'+full['customer_id']+'/view" class="btn btn-sm btn-icon" data-id="" target="_blank"><i class="ti ti-edit"></i></a>' +
+                        '<a href="'+baseUrl+'customer-rating/'+full['customer_id']+'/view" class="btn btn-sm btn-icon" data-id="" target="_blank"><i class="ti ti-edit"></i></a>' +
                         '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
                         '<div class="dropdown-menu dropdown-menu-end m-0">' +
                         statusList +
@@ -125,7 +132,7 @@ $(function() {
                 }
             }
             ],
-            order: [[2, 'desc']],
+            order: [[1, 'desc']],
             // orderCellsTop: true,
             language: {
                 sLengthMenu: '_MENU_',
@@ -135,6 +142,58 @@ $(function() {
             dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>><"table-responsive"t><"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
             initComplete: function(settings, json){
                 $('.read-only-ratings').rateYo();
+            },
+            drawCallback: function(settings) {
+                $('.read-only-ratings').rateYo();
+            }
+        });
+    }
+
+    $(document).on('click', '.btn-approve', function () {
+        var id = $(this).data('id');
+
+        updateStatus(id, 'approve');
+    });
+
+    $(document).on('click', '.btn-reject', function () {
+        var id = $(this).data('id');
+
+        updateStatus(id, 'reject');
+    });
+
+    $(document).on('click', '.btn-pending', function () {
+        var id = $(this).data('id');
+
+        updateStatus(id, 'pending');
+    });
+
+    function updateStatus(id, status){
+        // sweetalert for confirmation of update status
+        // Swal.fire({
+        //     title: 'Are you sure?',
+        //     text: "You won't be able to revert this!",
+        //     icon: 'warning',
+        //     showCancelButton: true,
+        //     confirmButtonText: `Yes, ${status} it!`,
+        //     customClass: {
+        //         confirmButton: 'btn btn-primary me-3',
+        //         cancelButton: 'btn btn-label-secondary'
+        //     },
+        //     buttonsStyling: false
+        // }).then(function (result) {
+        //     if (result.value) {
+        //         // update the status
+                
+        //     }
+        // });
+        $.ajax({
+            type: 'POST',
+            url: "".concat(baseUrl, `customer-rating/${id}/status/${status}`),
+            success: function success() {
+                dt_filter.draw();
+            },
+            error: function error(_error) {
+                console.log(_error);
             }
         });
     }

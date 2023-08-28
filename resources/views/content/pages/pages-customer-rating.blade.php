@@ -48,7 +48,7 @@ $configData = Helper::appClasses();
                     <th class="js-add-search">Review for</th>
                     <th>Ratings</th>
                     <th class="js-add-search">Status</th>
-                    <th>Created at</th>
+                    <th>Action</th>
                 </tr>
             </thead>
         </table>

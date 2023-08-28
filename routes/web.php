@@ -130,7 +130,7 @@ Route::middleware([
     Route::get('/customer-ratings', $controller_path . '\pages\CustomerRating@index')->name('customer-rating');
     Route::get('/customer-ratings/list', $controller_path . '\pages\CustomerRating@list')->name('customer-rating-list'); //order list data ajax
     Route::get('/customer-rating/detail/{id}', $controller_path . '\pages\CustomerRating@detail')->name('customer-rating-details'); //order detail page
-    Route::get('/customer-rating/{id}/status/{status}', $controller_path . '\pages\CustomerRating@status')->name('customer-rating-status'); //order status update ajax
+    Route::post('/customer-rating/{id}/status/{status}', $controller_path . '\pages\CustomerRating@status')->name('customer-rating-status'); //order status update ajax
 
     //email history
     Route::get('/email-management', $controller_path . '\pages\EmailManagement@index')->name('pages-email-management');
