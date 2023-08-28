@@ -201,4 +201,8 @@ class Helpers
 
     return false;
   }
+
+  public static function generateSlug($string) {
+    return \Str::slug($string, "-");
+  }
 }

@@ -132,4 +132,5 @@ Route::middleware([
     //static pages
     Route::get('/static/pages-terms', $controller_path . '\pages\StaticPagesTerms@index')->name('static-pages-terms');
     Route::get('/static/pages-privacy', $controller_path . '\pages\StaticPagesPrivacy@index')->name('static-pages-privacy');
+    Route::post('/static/page/save', $controller_path . '\pages\StaticPagesPrivacy@save')->name('save-static-page');
 });
