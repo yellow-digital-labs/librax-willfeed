@@ -33,8 +33,6 @@ Route::get('/home', $controller_path . '\pages\MainHome@index')->name('pages-mai
 
 // Admin Pages
 Route::get('/admin', $controller_path . '\Admin@login')->name('admin-login');
-Route::get('/customer-rating', $controller_path . '\pages\CustomerRating@index')->name('pages-customer-rating');
-Route::get('/email-management', $controller_path . '\pages\EmailManagement@index')->name('pages-email-management');
 
 //Buyer Home screen
 Route::get('/buyer-home', $controller_path . '\pages\BuyerHome@index')->name('pages-buyer-home');
@@ -75,12 +73,6 @@ Route::middleware([
 
     Route::get('/profile', $controller_path . '\pages\UsersDetails@index')->name('profile');
     Route::get('/profile/{id}/view', $controller_path . '\pages\UsersDetails@view')->name('profile-view'); //profile view
-
-    Route::get('/reports', $controller_path . '\pages\Reports@index')->name('reports');
-    Route::get('/email-template-management', $controller_path . '\pages\EmailTemplateManagement@index')->name('email-template-management');
-    Route::get('/management', $controller_path . '\pages\Management@index')->name('management');
-    Route::get('/feedback-management', $controller_path . '\pages\FeedbackManagement@index')->name('feedback-management');
-
 
     //products
     //general
@@ -133,4 +125,13 @@ Route::middleware([
     Route::get('/static/pages-terms', $controller_path . '\pages\StaticPagesTerms@index')->name('static-pages-terms');
     Route::get('/static/pages-privacy', $controller_path . '\pages\StaticPagesPrivacy@index')->name('static-pages-privacy');
     Route::post('/static/page/save', $controller_path . '\pages\StaticPagesPrivacy@save')->name('save-static-page');
+
+    //customer rating
+    Route::get('/customer-ratings', $controller_path . '\pages\CustomerRating@index')->name('customer-rating');
+    Route::get('/customer-ratings/list', $controller_path . '\pages\CustomerRating@list')->name('customer-rating-list'); //order list data ajax
+    Route::get('/customer-rating/detail/{id}', $controller_path . '\pages\CustomerRating@detail')->name('customer-rating-details'); //order detail page
+    Route::get('/customer-rating/{id}/status/{status}', $controller_path . '\pages\CustomerRating@status')->name('customer-rating-status'); //order status update ajax
+
+    //email history
+    Route::get('/email-management', $controller_path . '\pages\EmailManagement@index')->name('pages-email-management');
 });

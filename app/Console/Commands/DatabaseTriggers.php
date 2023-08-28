@@ -214,5 +214,16 @@ class DatabaseTriggers extends Command
                     SET NEW.subscription_amount = @subscription_amount;
                     SET NEW.transaction_amount = @subscription_amount;
                 END');
+
+        //user ratings
+        DB::unprepared('DROP TRIGGER IF EXISTS `ratings_before_insert`');
+        DB::unprepared('CREATE TRIGGER ratings_before_insert BEFORE INSERT ON `ratings` FOR EACH ROW
+                BEGIN
+                    SELECT business_name INTO @review_by_name FROM user_details WHERE user_id=NEW.review_by_id;
+                    SELECT business_name INTO @review_for_name FROM user_details WHERE user_id=NEW.review_for_id;
+
+                    SET NEW.review_by_name = @review_by_name;
+                    SET NEW.review_for_name = @review_for_name;
+                END');
     }
 }

@@ -18,6 +18,9 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('page-script')
+<script>
+    var urlListRatingData = {!! "'".$urlListRatingData."'" !!};
+</script>
 <script src="{{asset('assets/js/extended-ui-star-ratings.js')}}"></script>
 <script src="{{asset('assets/js/customer-rating-datatables.js')}}"></script>
 @endsection
@@ -34,17 +37,18 @@ $configData = Helper::appClasses();
 <div class="card">
     <div class="card-header d-flex justify-content-between border-bottom align-items-center">
         <div class="card-title mb-0">
-            <h5 class="mb-0 text-black">Customer list</h5>
+            <h5 class="mb-0 text-black">Customer rating list</h5>
         </div>
     </div>
     <div class="card-datatable text-nowrap">
         <table class="dt-column-search table">
             <thead>
                 <tr>
-                    <th>Customer name</th>
-                    <th>Seller name</th>
+                    <th class="js-add-search">Review by</th>
+                    <th class="js-add-search">Review for</th>
                     <th>Ratings</th>
-                    <th>Azione</th>
+                    <th class="js-add-search">Status</th>
+                    <th>Created at</th>
                 </tr>
             </thead>
         </table>

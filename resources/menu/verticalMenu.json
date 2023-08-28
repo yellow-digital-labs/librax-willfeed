@@ -97,10 +97,10 @@
             ]
         },
         {
-            "url": "/feedback-management",
+            "url": "/customer-ratings",
             "name": "Customer rating",
             "icon": "menu-icon tf-icons ti ti-droplet",
-            "slug": "feedback-management",
+            "slug": "customer-rating",
             "section": [
                 "admin"
             ]
