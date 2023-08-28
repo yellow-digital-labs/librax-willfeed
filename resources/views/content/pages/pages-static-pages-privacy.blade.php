@@ -33,10 +33,10 @@ $configData = Helper::appClasses();
 <div class="nav-align-left mb-4">
     <ul class="nav nav-pills me-3 col-sm-3 card-header-pills" role="tablist">
         <li class="nav-item">
-            <a href="/static-pages-terms" class="nav-link">Terms & Conditions</a>
+            <a href="{{$staticPagePrivacyUrl}}" class="nav-link active">Privacy policy</a>
         </li>
         <li class="nav-item">
-            <a href="/static-pages-privacy" class="nav-link active">Privacy policy</a>
+            <a href="{{$staticPageTermsUrl}}" class="nav-link">Terms & Conditions</a>
         </li>
     </ul>
 

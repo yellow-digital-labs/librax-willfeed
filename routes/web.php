@@ -71,7 +71,6 @@ Route::middleware([
     Route::get('/profile', $controller_path . '\pages\UsersDetails@index')->name('profile');
     Route::get('/profile/{id}/view', $controller_path . '\pages\UsersDetails@view')->name('profile-view'); //profile view
 
-    Route::get('/subscription-plan-management', $controller_path . '\pages\SubscriptionPlanManagement@index')->name('subscription-plan-management');
     Route::get('/reports', $controller_path . '\pages\Reports@index')->name('reports');
     Route::get('/email-template-management', $controller_path . '\pages\EmailTemplateManagement@index')->name('email-template-management');
     Route::get('/management', $controller_path . '\pages\Management@index')->name('management');
@@ -115,6 +114,11 @@ Route::middleware([
     Route::get('/payments/list', $controller_path . '\pages\Payments@list')->name('payment-list'); //payment list data ajax
     Route::get('/payment', $controller_path . '\pages\Payments@view')->name('payment-index');
     Route::post('/payment', $controller_path . '\pages\Payments@store')->name('payment-store');
+
+    //subscription plan management
+    Route::get('/subscription-plan-management', $controller_path . '\pages\SubscriptionPlanManagement@index')->name('subscription-plan-management');
+    Route::get('/subscription-plan-managements/list', $controller_path . '\pages\SubscriptionPlanManagement@list')->name('subscription-plan-management-list'); //subscription list data ajax
+    Route::get('/subscription-plan-management/{id}/edit', $controller_path . '\pages\SubscriptionPlanManagement@edit')->name('subscription-plan-management-edit'); //subscription detail data ajax
 
     //settings
     Route::get('/settings', $controller_path . '\pages\Settings@index')->name('settings'); //settings view

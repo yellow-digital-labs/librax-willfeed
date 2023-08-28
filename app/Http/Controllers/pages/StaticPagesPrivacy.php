@@ -9,6 +9,12 @@ class StaticPagesPrivacy extends Controller
 {
   public function index()
   {
-    return view('content.pages.pages-static-pages-privacy');
+    $staticPagePrivacyUrl = route('static-pages-privacy');
+    $staticPageTermsUrl = route('static-pages-terms');
+
+    return view('content.pages.pages-static-pages-privacy', [
+      'staticPagePrivacyUrl' => $staticPagePrivacyUrl,
+      'staticPageTermsUrl' => $staticPageTermsUrl,
+    ]);
   }
 }
