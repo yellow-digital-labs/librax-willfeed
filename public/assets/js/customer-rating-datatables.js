@@ -123,7 +123,7 @@ $(function() {
                     }
                     return (
                         '<div class="d-inline-block">' +
-                        '<a href="'+baseUrl+'customer-rating/'+full['customer_id']+'/view" class="btn btn-sm btn-icon" data-id="" target="_blank"><i class="ti ti-edit"></i></a>' +
+                        '<a href="javascript:;" class="btn btn-sm btn-icon edit-record" data-id="'+full['id']+'" data-bs-toggle="offcanvas" data-bs-target="#add-new-record"><i class="ti ti-edit"></i></a>' +
                         '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
                         '<div class="dropdown-menu dropdown-menu-end m-0">' +
                         statusList +
@@ -167,7 +167,13 @@ $(function() {
         updateStatus(id, 'pending');
     });
 
-    function updateStatus(id, status){
+    $(document).on('click', '.data-submit', function(){
+        let id = $('#edit-id').val();
+        let status = $('#edit-status option:selected').val();
+        updateStatus(id, status, true);
+    });
+
+    function updateStatus(id, status, isModel = false){
         // sweetalert for confirmation of update status
         // Swal.fire({
         //     title: 'Are you sure?',
@@ -191,10 +197,44 @@ $(function() {
             url: "".concat(baseUrl, `customer-rating/${id}/status/${status}`),
             success: function success() {
                 dt_filter.draw();
+                if(isModel){
+                    bootstrap.Offcanvas.getInstance("#add-new-record").toggle();
+                }
             },
             error: function error(_error) {
                 console.log(_error);
             }
         });
     }
+});
+
+// edit record
+$(document).on('click', '.edit-record', function () {
+    var user_id = $(this).data('id'),
+      dtrModal = $('.dtr-bs-modal.show');
+
+    // hide responsive modal in small screen
+    if (dtrModal.length) {
+      dtrModal.modal('hide');
+    }
+
+    // get data
+    $.get("".concat(baseUrl, "customer-rating/").concat(user_id, "/edit"), function (data) {
+        if(data.code == 200){
+            $('#edit-id').val(data.data.id);
+            $('#edit-review_by_name').val(data.data.review_by_name);
+            $('#edit-review_for_name').val(data.data.review_for_name);
+            $('#edit-review_text').val(data.data.review_text);
+            $('#edit-status').val(data.data.status);
+            $('#edit-created_at').val(data.data.created_at);
+
+            // $('.edit-star').data("rateyo-rating", data.data.star);
+
+            var $instance = $('.edit-star').rateYo();
+
+            $instance.rateYo('rating', data.data.star);
+        } else {
+            
+        }
+    });
 });

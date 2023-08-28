@@ -162,4 +162,32 @@ class CustomerRating extends Controller
       "data" => [],
     ]);
   }
+
+  public function edit(Request $request, $id)
+  {
+    $isAdmin = Helpers::isAdmin();
+    if(!$isAdmin){
+      return response()->json([
+        "message" => "You are not authorized",
+        "code" => 500,
+        "data" => [],
+      ]);
+    }
+
+    $rating = Rating::where("id", "=", $id)->first();
+
+    if($rating){
+      return response()->json([
+        "message" => "Successfully fetched data",
+        "code" => 200,
+        "data" => $rating,
+      ]);
+    } else {
+      return response()->json([
+        "message" => "Data not found",
+        "code" => 500,
+        "data" => [],
+      ]);
+    }
+  }
 }
