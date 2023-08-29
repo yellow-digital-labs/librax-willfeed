@@ -106,10 +106,10 @@
             ]
         },
         {
-            "url": "/email-template-management",
+            "url": "/email-management",
             "name": "Email management",
             "icon": "menu-icon tf-icons ti ti-droplet",
-            "slug": "email-template-management",
+            "slug": "email-management",
             "section": [
                 "admin"
             ]

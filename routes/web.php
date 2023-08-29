@@ -133,5 +133,6 @@ Route::middleware([
     Route::post('/customer-rating/{id}/status/{status}', $controller_path . '\pages\CustomerRating@status')->name('customer-rating-status'); //customer rating status update ajax
 
     //email history
-    Route::get('/email-management', $controller_path . '\pages\EmailManagement@index')->name('pages-email-management');
+    Route::get('/email-management', $controller_path . '\pages\EmailManagement@index')->name('email-management');
+    Route::post('/email-management/{id}/detail', $controller_path . '\pages\EmailManagement@detail')->name('email-management-detail');
 });
