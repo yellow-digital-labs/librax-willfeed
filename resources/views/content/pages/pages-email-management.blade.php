@@ -52,18 +52,7 @@ $configData = Helper::appClasses();
                             </div>
                         </div>
                         <div class="d-flex align-items-center mb-0 mb-md-2">
-                            <i class="ti ti-rotate-clockwise rotate-180 scaleX-n1-rtl cursor-pointer email-refresh me-2 mt-1"></i>
-                            <div class="dropdown d-flex align-self-center">
-                                <button class="btn p-0" type="button" id="emailsActions" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="ti ti-dots-vertical"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="emailsActions">
-                                    <a class="dropdown-item" href="javascript:void(0)">Mark as read</a>
-                                    <a class="dropdown-item" href="javascript:void(0)">Mark as unread</a>
-                                    <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                                    <a class="dropdown-item" href="javascript:void(0)">Archive</a>
-                                </div>
-                            </div>
+                            <a href="{{route("email-management")}}" class="ti ti-rotate-clockwise rotate-180 scaleX-n1-rtl cursor-pointer email-refresh me-2 mt-1"></a>
                         </div>
                     </div>
                     <hr class="mx-n3 emails-list-header-hr">
@@ -109,88 +98,14 @@ $configData = Helper::appClasses();
                 <div class="d-flex justify-content-between align-items-center py-2">
                     <div class="d-flex align-items-center overflow-hidden">
                         <i class="ti ti-chevron-left ti-sm cursor-pointer me-2" data-bs-toggle="sidebar" data-target="#app-email-view"></i>
-                        <h6 class="text-truncate mb-0 me-2">Focused impactful open issues</h6>
-                        <span class="badge bg-label-danger rounded-pill">Private</span>
+                        <h6 class="text-truncate mb-0 me-2" id="email-display-subject"></h6>
                     </div>
                     <!-- Email View : Action  bar-->
-                    <div class="d-flex align-items-center">
-                        <i class='ti ti-printer mt-1 cursor-pointer d-sm-block d-none'></i>
-                        <div class="dropdown ms-3">
-                            <button class="btn p-0" type="button" id="dropdownMoreOptions" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti ti-dots-vertical"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMoreOptions">
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti ti-mail ti-xs me-1"></i>
-                                    <span class="align-middle">Mark as unread</span>
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti ti-mail-opened ti-xs me-1"></i>
-                                    <span class="align-middle">Mark as unread</span>
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti ti-star ti-xs me-1"></i>
-                                    <span class="align-middle">Add star</span>
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti ti-calendar ti-xs me-1"></i>
-                                    <span class="align-middle">Create Event</span>
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti ti-volume-off ti-xs me-1"></i>
-                                    <span class="align-middle">Mute</span>
-                                </a>
-                                <a class="dropdown-item d-sm-none d-block" href="javascript:void(0)">
-                                    <i class="ti ti-printer ti-xs me-1"></i>
-                                    <span class="align-middle">Print</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <hr class="app-email-view-hr mx-n3 mb-2">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center">
-                        <i class='ti ti-trash cursor-pointer me-3' data-bs-toggle="sidebar" data-target="#app-email-view"></i>
-                        <i class='ti ti-mail-opened cursor-pointer me-3'></i>
-                        <div class="dropdown me-3">
-                            <button class="btn p-0" type="button" id="dropdownMenuFolderTwo" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti ti-folder"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuFolderTwo">
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti ti-info-circle ti-xs me-1"></i>
-                                    <span class="align-middle">Spam</span>
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti ti-pencil ti-xs me-1"></i>
-                                    <span class="align-middle">Draft</span>
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti ti-trash ti-xs me-1"></i>
-                                    <span class="align-middle">Trash</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="dropdown me-3">
-                            <button class="btn p-0" type="button" id="dropdownLabelTwo" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti ti-tag"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLabelTwo">
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="badge badge-dot bg-success me-1"></i>
-                                    <span class="align-middle">Workshop</span>
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="badge badge-dot bg-primary me-1"></i>
-                                    <span class="align-middle">Company</span>
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="badge badge-dot bg-info me-1"></i>
-                                    <span class="align-middle">Important</span>
-                                </a>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="d-flex align-items-center flex-wrap justify-content-end">
                         <span class="d-sm-block d-none mx-3 text-muted">1-10 of 653</span>
@@ -202,128 +117,22 @@ $configData = Helper::appClasses();
             <hr class="m-0">
             <!-- Email View : Content-->
             <div class="app-email-view-content py-4">
-                <!-- Email View : Previous mails-->
-                <div class="card email-card-prev mx-sm-4 mx-3">
-                    <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
-                        <div class="d-flex align-items-center mb-sm-0 mb-3">
-                            <img src="{{ asset('assets/img/avatars/2.png') }}" alt="user-avatar" class="flex-shrink-0 rounded-circle me-3" height="40" width="40" />
-                            <div class="flex-grow-1 ms-1">
-                                <h6 class="m-0">Ross Geller</h6>
-                                <small class="text-muted">rossGeller@email.com</small>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <p class="mb-0 me-3 text-muted">June 20th 2020, 08:30 AM</p>
-                            <i class="ti ti-paperclip cursor-pointer me-2"></i>
-                            <i class="email-list-item-bookmark ti ti-star ti-xs cursor-pointer me-2"></i>
-                            <div class="dropdown me-3 d-flex align-self-center">
-                                <button class="btn p-0" type="button" id="dropdownEmailOne" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="ti ti-dots-vertical"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownEmailOne">
-                                    <a class="dropdown-item scroll-to-reply" href="javascript:void(0)">
-                                        <i class="ti ti-corner-up-left me-1"></i>
-                                        <span class="align-middle">Reply</span>
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="ti ti-corner-up-right me-1"></i>
-                                        <span class="align-middle">Forward</span>
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="ti ti-alert-octagon me-1"></i>
-                                        <span class="align-middle">Report</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="fw-bold">Greetings!</p>
-                        <p>
-                            It is a long established fact that a reader will be distracted by the readable content
-                            of a
-                            page when looking at its layout.The point of using Lorem Ipsum is that it has a
-                            more-or-less
-                            normal distribution of letters, as opposed to using 'Content here, content here',making
-                            it
-                            look like readable English.
-                        </p>
-                        <p>
-                            There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered alteration in some form, by injected humour, or randomised words which don't
-                            look
-                            even slightly believable.
-                        </p>
-                        <p class="mb-0">Sincerely yours,</p>
-                        <p class="fw-bold mb-0">Envato Design Team</p>
-                        <hr>
-                        <p class="email-attachment-title mb-2">Attachments</p>
-                        <div class="cursor-pointer">
-                            <i class="ti ti-file"></i>
-                            <span class="align-middle ms-1">report.xlsx</span>
-                        </div>
-                    </div>
-                </div>
                 <!-- Email View : Last mail-->
                 <div class="card email-card-last mx-sm-4 mx-3 mt-4">
                     <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
                         <div class="d-flex align-items-center mb-sm-0 mb-3">
                             <img src="{{ asset('assets/img/avatars/1.png') }}" alt="user-avatar" class="flex-shrink-0 rounded-circle me-3" height="40" width="40" />
                             <div class="flex-grow-1 ms-1">
-                                <h6 class="m-0">Chandler Bing</h6>
-                                <small class="text-muted">iAmAhoot@email.com</small>
+                                <h6 class="m-0" id="email-display-to"></h6>
+                                <small class="text-muted" id="email-display-from"></small>
                             </div>
                         </div>
                         <div class="d-flex align-items-center">
-                            <p class="mb-0 me-3 text-muted">June 20th 2020, 08:10 AM</p>
-                            <i class="ti ti-paperclip cursor-pointer me-2"></i>
-                            <i class="email-list-item-bookmark ti ti-star ti-xs cursor-pointer me-2"></i>
-                            <div class="dropdown me-3 d-flex align-self-center">
-                                <button class="btn p-0" type="button" id="dropdownEmailTwo" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="ti ti-dots-vertical"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownEmailTwo">
-                                    <a class="dropdown-item scroll-to-reply" href="javascript:void(0)">
-                                        <i class="ti ti-corner-up-left me-1"></i>
-                                        <span class="align-middle">Reply</span>
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="ti ti-corner-up-right me-1"></i>
-                                        <span class="align-middle">Forward</span>
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="ti ti-alert-octagon me-1"></i>
-                                        <span class="align-middle">Report</span>
-                                    </a>
-                                </div>
-                            </div>
+                            <p class="mb-0 me-3 text-muted" id="email-display-sent_at"></p>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <p class="fw-bold">Greetings!</p>
-                        <p>
-                            It is a long established fact that a reader will be distracted by the readable content
-                            of a
-                            page when looking at its layout.The point of using Lorem Ipsum is that it has a
-                            more-or-less
-                            normal distribution of letters, as opposed to using 'Content here, content here',making
-                            it
-                            look like readable English.
-                        </p>
-                        <p>
-                            There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered alteration in some form, by injected humour, or randomised words which don't
-                            look
-                            even slightly believable.
-                        </p>
-                        <p class="mb-0">Sincerely yours,</p>
-                        <p class="fw-bold mb-0">Envato Design Team</p>
-                        <hr>
-                        <p class="email-attachment-title mb-2">Attachments</p>
-                        <div class="cursor-pointer">
-                            <i class="ti ti-file"></i>
-                            <span class="align-middle ms-1">report.xlsx</span>
-                        </div>
+                    <div class="card-body" id="email-display-html">
+                        
                     </div>
                 </div>
             </div>

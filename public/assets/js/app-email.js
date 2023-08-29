@@ -6,6 +6,14 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   (function () {
+
+    // ajax setup
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+
     const emailList = document.querySelector('.email-list'),
       emailListItems = [].slice.call(document.querySelectorAll('.email-list-item')),
       emailListItemInputs = [].slice.call(document.querySelectorAll('.email-list-item-input')),
@@ -376,5 +384,30 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       });
     }
+
+    $(".email-list-item").on('click', function(){
+      console.log("checking...")
+      let id = $(this).data("id");
+      console.log("id", id);
+      $.ajax({
+          type: 'POST',
+          url: "".concat(baseUrl, `email-management/${id}/detail`),
+          success: function success(response) {
+              if(response.code == 200) {
+                let data = response.data;
+                $("#email-display-to").text(data.to);
+                $("#email-display-from").text(data.from);
+                $("#email-display-subject").text(data.subject);
+                $("#email-display-sent_at").text(data.sent_at);
+                $("#email-display-html").html(data.html);
+              } else {
+
+              }
+          },
+          error: function error(_error) {
+              console.log(_error);
+          }
+      });
+    });
   })();
 });
