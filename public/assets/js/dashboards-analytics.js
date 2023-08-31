@@ -5,19 +5,21 @@
 'use strict';
 
 (function () {
-  let cardColor, headingColor, labelColor, shadeColor, grayColor;
+  let cardColor, headingColor, labelColor, shadeColor, grayColor, borderColor;
   if (isDarkStyle) {
     cardColor = config.colors_dark.cardColor;
     labelColor = config.colors_dark.textMuted;
     headingColor = config.colors_dark.headingColor;
     shadeColor = 'dark';
     grayColor = '#5E6692'; // gray color is for stacked bar chart
+    borderColor = config.colors_dark.borderColor;
   } else {
     cardColor = config.colors.cardColor;
     labelColor = config.colors.textMuted;
     headingColor = config.colors.headingColor;
     shadeColor = '';
     grayColor = '#817D8D';
+    borderColor = config.colors.borderColor;
   }
 
   // swiper loop and autoplay
@@ -35,6 +37,68 @@
         el: '.swiper-pagination'
       }
     });
+  }
+
+  const budgetChartEl = document.querySelector('.budgetChart'),
+    budgetChartOptions = {
+      chart: {
+        height: 100,
+        toolbar: { show: false },
+        zoom: { enabled: false },
+        type: 'line'
+      },
+      series: [
+        {
+          name: 'Last Month',
+          data: [20, 10, 30, 16, 24, 5, 40, 23, 28, 5, 30]
+        },
+        {
+          name: 'This Month',
+          data: [50, 40, 60, 46, 54, 35, 70, 53, 58, 35, 60]
+        }
+      ],
+      stroke: {
+        curve: 'smooth',
+        dashArray: [5, 0],
+        width: [1, 2]
+      },
+      legend: {
+        show: false
+      },
+      colors: [borderColor, config.colors.primary],
+      grid: {
+        show: false,
+        borderColor: borderColor,
+        padding: {
+          top: -30,
+          bottom: -15,
+          left: 25
+        }
+      },
+      markers: {
+        size: 0
+      },
+      xaxis: {
+        labels: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        },
+        axisBorder: {
+          show: false
+        }
+      },
+      yaxis: {
+        show: false
+      },
+      tooltip: {
+        enabled: false
+      }
+    };
+  if (typeof budgetChartEl !== undefined && budgetChartEl !== null) {
+    const budgetChart = new ApexCharts(budgetChartEl, budgetChartOptions);
+    budgetChart.render();
   }
 
   // Revenue Generated Area Chart

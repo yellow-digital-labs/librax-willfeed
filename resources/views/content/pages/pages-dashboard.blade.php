@@ -83,71 +83,28 @@ $configData = Helper::appClasses();
             <div class="card-header d-flex justify-content-between border-bottom">
                 <div class="card-title mb-0">
                     <h5 class="mb-0 text-black">Most orders from cities</h5>
-                    <small class="fw-light">Monthly Sales Overview</small>
+                    <small class="fw-light">Sales Overview</small>
                 </div>
             </div>
             <div class="card-body pt-4">
                 <ul class="p-0 m-0">
+                @foreach($most_order_from_city as $_most_order_from_city)
                     <li class="d-flex align-items-center mb-4">
                         <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
                                 <div class="d-flex align-items-center">
-                                    <h6 class="mb-0 me-1">€8.45k</h6>
+                                    <h6 class="mb-0 me-1">€{{$_most_order_from_city->total_sales}} ({{$_most_order_from_city->total_orders}})</h6>
                                 </div>
-                                <small class="text-muted fw-light">Rome</small>
+                                <small class="text-muted fw-light">{{$_most_order_from_city->billing_city}}</small>
                             </div>
                             <div class="user-progress">
                                 <p class="text-success fw-semibold mb-0">
-                                    25.8%
+                                    {{$_most_order_from_city->total_orders*100/$total_orders}}%
                                 </p>
                             </div>
                         </div>
                     </li>
-                    <li class="d-flex align-items-center mb-4">
-                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                                <div class="d-flex align-items-center">
-                                    <h6 class="mb-0 me-1">€7.78k</h6>
-                                </div>
-                                <small class="text-muted fw-light">Rome</small>
-                            </div>
-                            <div class="user-progress">
-                                <p class="text-danger fw-semibold mb-0">
-                                    16.2%
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="d-flex align-items-center mb-4">
-                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                                <div class="d-flex align-items-center">
-                                    <h6 class="mb-0 me-1">€6.48k</h6>
-                                </div>
-                                <small class="text-muted fw-light">Rome</small>
-                            </div>
-                            <div class="user-progress">
-                                <p class="text-success fw-semibold mb-0">
-                                    12.3%
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="d-flex align-items-center mb-4">
-                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                                <div class="d-flex align-items-center">
-                                    <h6 class="mb-0 me-1">€5.12k</h6>
-                                </div>
-                                <small class="text-muted fw-light">Rome</small>
-                            </div>
-                            <div class="user-progress">
-                                <p class="text-danger fw-semibold mb-0">
-                                    11.9%
-                                </p>
-                            </div>
-                        </div>
-                    </li>
+                @endforeach
                 </ul>
             </div>
         </div>
@@ -162,7 +119,26 @@ $configData = Helper::appClasses();
                 </div>
             </div>
             <div class="card-body pt-4">
-
+                @foreach($top_selling_products as $_top_selling_products)
+                    <li class="d-flex align-items-center mb-4">
+                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                                <div class="d-flex align-items-center">
+                                    <h6 class="mb-0 me-1">{{$_top_selling_products->product_name}}</h6>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="budgetChart"></div>
+                            </div>
+                            <div class="d-flex">
+                                <p class="mb-0 fw-medium">€{{$_most_order_from_city->total_sales}}</p>
+                                <p class="ms-3 text-success mb-0">
+                                    {{$_top_selling_products->total_orders*100/$total_orders}}%
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                @endforeach
             </div>
         </div>
     </div>
@@ -177,33 +153,17 @@ $configData = Helper::appClasses();
             </div>
             <div class="card-body pt-4">
                 <ul class="p-0 m-0">
+                @foreach($payment_method_wise_income as $_payment_method_wise_income)
                     <li class="mb-4 pb-1 d-flex justify-content-between align-items-center">
                         <div class="d-flex justify-content-between w-100 flex-wrap">
-                            <h6 class="mb-0">Check payment</h6>
+                            <h6 class="mb-0">{{$_payment_method_wise_income->payment_method_name}}</h6>
                             <div class="d-flex">
-                                <p class="mb-0 fw-medium">12,346</p>
-                                <p class="ms-3 text-success mb-0">0.3%</p>
+                                <p class="mb-0 fw-medium">{{$_payment_method_wise_income->total_orders}}</p>
+                                <p class="ms-3 text-success mb-0">{{$_payment_method_wise_income->total_orders*100/$total_orders}}%</p>
                             </div>
                         </div>
                     </li>
-                    <li class="mb-4 pb-1 d-flex justify-content-between align-items-center">
-                        <div class="d-flex justify-content-between w-100 flex-wrap">
-                            <h6 class="mb-0">Bank transfer</h6>
-                            <div class="d-flex">
-                                <p class="mb-0 fw-medium">8,734</p>
-                                <p class="ms-3 text-success mb-0">2.1%</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="mb-4 pb-1 d-flex justify-content-between align-items-center">
-                        <div class="d-flex justify-content-between w-100 flex-wrap">
-                            <h6 class="mb-0">In person</h6>
-                            <div class="d-flex">
-                                <p class="mb-0 fw-medium">967</p>
-                                <p class="ms-3 text-danger mb-0">1.4%</p>
-                            </div>
-                        </div>
-                    </li>
+                @endforeach
                 </ul>
             </div>
         </div>

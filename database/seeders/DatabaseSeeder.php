@@ -479,6 +479,14 @@ class DatabaseSeeder extends Seeder
 //             'name' => 'Completed',
 //         ]);
 
+            \App\Models\PaymentOption::truncate();
+            DB::table('payment_options')->insert([
+                'name' => 'Bank Transfer',
+            ]);
+            DB::table('payment_options')->insert([
+                'name' => 'Cheque',
+            ]);
+
 //         \App\Models\MainActivity::truncate();
 //         DB::table('main_activities')->insert([
 //             'name' => 'Deposito diretto raffineria',
