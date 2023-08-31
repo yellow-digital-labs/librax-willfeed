@@ -199,7 +199,7 @@ $configData = Helper::appClasses();
             <div class="card-header d-flex justify-content-between border-bottom">
                 <h5 class="card-title m-0 text-black">Payment details</h5>
                 @if(!$isAdmin)
-                <h6 class="m-0"><a href=" javascript:void(0)">Edit</a></h6>
+                <h6 class="m-0"><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editPayment">Edit</a></h6>
                 @endif
             </div>
             <div class="card-body pt-4">
@@ -341,5 +341,36 @@ $configData = Helper::appClasses();
         </div>
     </div>
 </div>
+
+<!-- Add New Credit Card Modal -->
+<div class="modal fade editPaymentModal" id="editPayment" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-simple">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center mb-4">
+                    <h3 class="mb-2 text-black h4 text-start">Add new payment</h3>
+                </div>
+                <form class="row g-3" onsubmit="return false">
+                    <div class="col-12">
+                        <label class="form-label" for="modalAddCardName">Payment types</label>
+                        <select class="form-select">
+                            <option>Internet Banking</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="modalAddCardExpiryDate">Payment note</label>
+                        <textarea class="form-control" rows="4" placeholder="Enter text"></textarea>
+                    </div>
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
+                        <button type="reset" class="btn btn-outline-primary btn-reset" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ Add New Credit Card Modal -->
 
 @endsection

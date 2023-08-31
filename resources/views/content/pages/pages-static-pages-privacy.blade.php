@@ -56,14 +56,16 @@ $configData = Helper::appClasses();
                         <h4 class="text-black m-0">{{$title}}</h4>
                     </div>
                     <div class="card-body p-0 pb-1">
-                        <div class="p-4 border-bottom">
+                        
+                        <div class="p-4">
                             <label class="form-label" for="title">Page Title</label>
                             <input type="text" class="form-control" id="title" placeholder="Enter page title" name="page_name" value="{{$page?$page->page_name:''}}">
                         </div>
+
                         <!-- Description -->
                         <div>
                             <textarea name="description" style="display: none;" id="text_quill">{{$page?$page->description:""}}</textarea>
-                            <div id="snow-toolbar" class="p-4 border-bottom">
+                            <div id="snow-toolbar" class="p-4 border-bottom border-top border-0">
                                 <span class="ql-formats me-0">
                                     <button class="ql-bold"></button>
                                     <button class="ql-italic"></button>
@@ -84,12 +86,12 @@ $configData = Helper::appClasses();
                             <input type="text" class="form-control" id="meta_title" placeholder="Enter meta title" name="meta_title" value="{{$page?$page->meta_title:''}}">
                         </div>
 
-                        <div class="p-4">
+                        <div class="p-4 border-top">
                             <label class="form-label" for="meta_keyword">Meta keywords</label>
                             <input type="text" class="form-control" id="meta_keyword" placeholder="Enter meta keywords" name="meta_keyword" value="{{$page?$page->meta_keyword:''}}">
                         </div>
 
-                        <div class="p-4">
+                        <div class="p-4 border-top">
                             <label class="form-label" for="meta_description">Meta description</label>
                             <textarea class="form-control" name="meta_description" placeholder="Enter description" id="meta_description" rows="4">{{$page?$page->meta_description:''}}</textarea>
                         </div>
