@@ -131,7 +131,7 @@ $configData = Helper::appClasses();
                                 <div class="budgetChart"></div>
                             </div>
                             <div class="d-flex">
-                                <p class="mb-0 fw-medium">€{{$_most_order_from_city->total_sales}}</p>
+                                <p class="mb-0 fw-medium">€{{$_top_selling_products->total_sales}}</p>
                                 <p class="ms-3 text-success mb-0">
                                     {{$_top_selling_products->total_orders*100/$total_orders}}%
                                 </p>
