@@ -74,6 +74,11 @@ $configData = Helper::appClasses();
             </div>
         </div>
 
+        <div class="mb-3">
+            <label class="form-label" for="today_price">Price</label>
+            <input type="number" class="form-control" id="today_price" placeholder="Enter product price" name="today_price" value="{{$isEdit?$product->today_price:''}}" step=".01">
+        </div>
+
         <div class="form-check form-switch mb-3">
             <label class="form-check-label" for="status">Disponibilità</label>
             <input class="form-check-input" type="checkbox" name="active" id="status" value="active" {{$isEdit?($product->active=='yes'?'checked':''):'checked'}}>

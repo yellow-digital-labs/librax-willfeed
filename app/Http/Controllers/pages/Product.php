@@ -281,18 +281,22 @@ class Product extends Controller
     }
   }
 
-  public function updateAdmin(Request $request, $id)
+  public function updateAdmin(Request $request, $id = 0)
   {
     $isAdmin = Helpers::isAdmin();
     if($isAdmin){
-      $product_avail = Products::where([
-        "id" => $id,
-      ])->count();
-  
-      if ($product_avail == 0) {
-        return redirect::back()->withErrors([
-          "msg" => "This product is not available",
-        ]);
+      if($id != 0){
+        $product_avail = Products::where([
+          "id" => $id,
+        ])->count();
+    
+        if ($product_avail == 0) {
+          return redirect::back()->withErrors([
+            "msg" => "This product is not available",
+          ]);
+        }
+      } else {
+        $id = null;
       }
 
       Products::updateOrCreate(
@@ -303,6 +307,7 @@ class Product extends Controller
           "name" => $request->name,
           "description" => $request->description,
           "active" => $request->active ? "yes" : "no",
+          "today_price" => $request->today_price,
         ]
       );
   

@@ -87,7 +87,8 @@ Route::middleware([
     Route::post('/product/{id}/stock', $controller_path . '\pages\Product@stock')->name('product-update-stock'); //product update stock
     Route::post('/product/{id}/detail', $controller_path . '\pages\Product@detail')->name('product-detail'); //product detail ajax
     //admin
-    Route::get('/product/add', $controller_path . '\pages\Product@add')->name('product-add'); //admin add new product
+    Route::get('/product/add', $controller_path . '\pages\Product@add')->name('product-add'); //admin add new product page
+    Route::post('/product/add', $controller_path . '\pages\Product@updateAdmin')->name('product-add-form'); //admin add new product
 
     //customer
     Route::get('/customer', $controller_path . '\pages\Customer@index')->name('customer'); //customer list view

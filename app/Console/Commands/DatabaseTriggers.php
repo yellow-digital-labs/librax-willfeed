@@ -26,6 +26,46 @@ class DatabaseTriggers extends Command
      */
     public function handle()
     {
+        //products
+        DB::unprepared('DROP TRIGGER IF EXISTS `products_before_insert`');
+        DB::unprepared('CREATE TRIGGER products_before_insert BEFORE INSERT ON `products` FOR EACH ROW
+                BEGIN
+                    SET NEW.price_updated_at = CURDATE();
+                END');
+        
+        DB::unprepared('DROP TRIGGER IF EXISTS `products_before_update`');
+        DB::unprepared('CREATE TRIGGER products_before_update BEFORE UPDATE ON `products` FOR EACH ROW
+                BEGIN
+                    IF NEW.today_price<>OLD.today_price THEN
+                        SET NEW.price_updated_at = CURDATE();
+                    END IF;
+
+                    IF NEW.price_updated_at<>OLD.price_updated_at THEN
+                        SET NEW.old_price = OLD.today_price;
+                        SET NEW.old_price_updated_at = OLD.price_updated_at;
+                    END IF;
+                END');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS `products_after_insert`');
+        DB::unprepared('CREATE TRIGGER products_after_insert AFTER INSERT ON `products` FOR EACH ROW
+                BEGIN
+                    INSERT INTO product_price_histories SET product_id=NEW.id, product_name=NEW.name, date=NEW.price_updated_at, price=NEW.today_price, date_old=NEW.old_price_updated_at, price_old=NEW.old_price;
+                END');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS `products_after_update`');
+        DB::unprepared('CREATE TRIGGER products_after_update AFTER UPDATE ON `products` FOR EACH ROW
+                BEGIN
+                    IF NEW.today_price<>OLD.today_price THEN
+                        IF NEW.price_updated_at<>OLD.price_updated_at THEN
+                            -- INSERT
+                            INSERT INTO product_price_histories SET product_id=NEW.id, product_name=NEW.name, date=NEW.price_updated_at, price=NEW.today_price, date_old=NEW.old_price_updated_at, price_old=NEW.old_price;
+                        ELSE
+                            -- UPDATE
+                            UPDATE product_price_histories SET date=NEW.price_updated_at, price=NEW.today_price WHERE product_id=NEW.id AND date=NEW.price_updated_at;
+                        END IF;
+                    END IF;
+                END');
+
         //product_sellers
         DB::unprepared('DROP TRIGGER IF EXISTS `product_sellers_before_insert`');
         DB::unprepared('CREATE TRIGGER product_sellers_before_insert BEFORE INSERT ON `product_sellers` FOR EACH ROW
