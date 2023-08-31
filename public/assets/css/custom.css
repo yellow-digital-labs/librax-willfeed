@@ -364,3 +364,16 @@
 }
 
 /* Profile Page CSS Ends */
+
+.editPaymentModal  .modal-dialog {
+    max-width: 400px;
+}
+
+.editPaymentModal  .modal-content {
+    padding: 0;
+}
+
+.editPaymentModal  .btn-close {
+    top: 0.5rem;
+    right: 0.5rem;
+}
