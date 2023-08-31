@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\ProductSeller;
 use App\Models\Product as Products;
 use App\Models\ProductSellerInventoryHistory;
+use App\Models\Order;
 use App\Helpers\Helpers;
 use Auth;
+use DB;
 use Redirect;
 
 class Product extends Controller
@@ -29,10 +31,22 @@ class Product extends Controller
       $total_products = Products::where([])->count();
       $active_products = Products::where(["active" => "yes"])->count();
       $inactive_products = Products::where(["active" => "no"])->count();
+      $bestSeller = Order::where([])
+        ->select('product_name', DB::raw('COUNT(id) as total_orders'), DB::raw('SUM(total_payable_amount) as total_sales'))
+        ->groupBy('product_name')
+        ->orderBy('total_orders', 'DESC')
+        ->orderBy('total_sales', 'DESC')
+        ->first();
     } else {
       $total_products = ProductSeller::where(['seller_id' => $user_id])->count();
       $active_products = ProductSeller::where(['seller_id' => $user_id, "status" => "active"])->count();
       $inactive_products = ProductSeller::where(['seller_id' => $user_id, "status" => "inactive"])->count();
+      $bestSeller = Order::where(['seller_id' => $user_id])
+        ->select('product_name', DB::raw('COUNT(id) as total_orders'), DB::raw('SUM(total_payable_amount) as total_sales'))
+        ->groupBy('product_name')
+        ->orderBy('total_orders', 'DESC')
+        ->orderBy('total_sales', 'DESC')
+        ->first();
     }
 
     return view("content.pages.pages-product", [
@@ -41,6 +55,7 @@ class Product extends Controller
       "total_products" => $total_products,
       "active_products" => $active_products,
       "inactive_products" => $inactive_products,
+      "bestSeller" => $bestSeller,
       "isAdmin" => $isAdmin,
     ]);
   }
