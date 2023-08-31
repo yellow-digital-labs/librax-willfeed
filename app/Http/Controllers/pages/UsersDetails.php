@@ -41,9 +41,7 @@ class UsersDetails extends Controller
       $subscriptions = Subscription::where(['status' => 'active'])->get();
     }
 
-    $pageConfigs = ['myLayout' => 'layoutMaster2'];
     return view('content.pages.pages-users-details', [
-      'pageConfigs' => $pageConfigs,
       'user' => $user,
       'user_detail' => $user_detail,
       'subscriptions' => $subscriptions,
