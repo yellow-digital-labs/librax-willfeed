@@ -2,6 +2,8 @@
     background: #000;
     color: #fff;
     padding-top: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .footer .uk-container {
@@ -233,4 +235,96 @@
     font-weight: 500;
     line-height: 35px;
     padding: 10px 15px;
+}
+
+@media (min-width: 1200px) {
+
+}
+
+@media (max-width: 1399.98px) {
+
+}
+
+@media (max-width: 1199.98px) {
+    .footer-info__title {
+        font-size: 30px;
+    }
+    .footer-main__grid {
+        margin-left: -60px;
+    }
+    .footer-main__grid > * {
+        padding-left: 60px;
+    }
+    .footer-social__link {
+        font-size: 20px;
+    }
+    .footer-social__link + .footer-social__link {
+        margin-left: 25px;
+    }
+}
+
+@media (max-width: 1023.98px) {
+
+}
+
+@media (max-width: 959.98px) {
+    .footer {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .foolter-upper {
+        margin-top: 50px;
+    }
+    .footer-main__grid > * {
+        padding-left: 100px;
+    }
+
+    .footer-main__col--about {
+        width: 70%;
+    }
+
+    .footer-main__col--links {
+        width: 30%;
+    }
+
+    .footer-main__col--products {
+        width: 70%;
+    }
+
+    .footer-main__col--support {
+        width: 30%;
+    }
+
+    .footer-main__grid {
+        margin-left: -100px;
+    }
+
+    .footer-main__grid>.uk-grid-margin {
+        margin-top: 60px;
+    }
+
+    .footer-menu {
+        row-gap: 5px;
+    }
+    .footer-info__href {
+        font-size: 16px;
+    }
+    .footer-info__icon {
+        font-size: 40px;
+        margin-right: 25px;
+    }
+    .footer-menu--grid {
+        max-width: 390px;
+    }
+}
+
+@media (max-width: 767.98px) {
+
+}
+@media (max-width: 639.98px) {
+
+}
+
+@media (max-width: 575px) {
+
 }

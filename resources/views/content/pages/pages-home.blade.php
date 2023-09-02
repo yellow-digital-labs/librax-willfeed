@@ -4,7 +4,7 @@ $configData = Helper::appClasses();
 
 @extends('layouts/landing')
 
-@section('title', 'Landing Page 9')
+@section('title', 'Home')
 
 
 <!-- CSS Starts -->
@@ -321,7 +321,7 @@ $configData = Helper::appClasses();
     <div class="landing-clrblock">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--sell">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
-                <div class="uk-width-expand@l landing-clrblock__maincol landing-clrblock__maincol--content">
+                <div class="uk-width-expand@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--content">
                     <h2 class="title landing-clrblock__title">Come vendere su <br> willfeed?</h2>
                     <div class="landing-clrblock__text">
                         <p>
@@ -330,7 +330,7 @@ $configData = Helper::appClasses();
                     </div>
                     <a href="#" class="uk-button uk-button-default landing-clrblock__action">SCOPRI DI PIU’</a>  
                 </div>
-                <div class="uk-width-auto@l landing-clrblock__maincol landing-clrblock__maincol--media">
+                <div class="uk-width-auto@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
                         <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
                     </div>
@@ -342,7 +342,7 @@ $configData = Helper::appClasses();
     <div class="landing-clrblock" id="comprare">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--buy">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
-                <div class="uk-width-expand@l landing-clrblock__maincol landing-clrblock__maincol--content">
+                <div class="uk-width-expand@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--content">
                     <h2 class="title landing-clrblock__title">Come comprare su <br> willfeed?</h2>
                     <div class="landing-clrblock__text">
                         <p>
@@ -351,7 +351,7 @@ $configData = Helper::appClasses();
                     </div>
                     <button type="button" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #comprare; cls: is-active">SCOPRI DI PIU’</button>
                 </div>
-                <div class="uk-width-auto@l landing-clrblock__maincol landing-clrblock__maincol--media">
+                <div class="uk-width-auto@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
                         <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
                     </div>
@@ -359,21 +359,21 @@ $configData = Helper::appClasses();
             </div>
 
             <div class="landing-clrblock__grid uk-grid gutter-xxl" data-uk-grid hidden>
-                <div class="uk-width-1-3@l landing-clrblock__col">
+                <div class="uk-width-1-3@s landing-clrblock__col">
                     <div class="landing-clrblock__icon wf-icon wf-icon-bag"></div>
                     <h3 class="landing-clrblock__name">Ordina</h3>
                     <div class="landing-clrblock__desc">
                         Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
                     </div>
                 </div>
-                <div class="uk-width-1-3@l landing-clrblock__col">
+                <div class="uk-width-1-3@s landing-clrblock__col">
                     <div class="landing-clrblock__icon wf-icon wf-icon-analytics"></div>
                     <h3 class="landing-clrblock__name">Traccia</h3>
                     <div class="landing-clrblock__desc">
                         Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
                     </div>
                 </div>
-                <div class="uk-width-1-3@l landing-clrblock__col">
+                <div class="uk-width-1-3@s landing-clrblock__col">
                     <div class="landing-clrblock__icon wf-icon wf-icon-search1"></div>
                     <h3 class="landing-clrblock__name">Trova</h3>
                     <div class="landing-clrblock__desc">
@@ -388,7 +388,7 @@ $configData = Helper::appClasses();
     <div class="landing-clrblock">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--safe">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
-                <div class="uk-width-expand@l landing-clrblock__maincol landing-clrblock__maincol--content">
+                <div class="uk-width-expand@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--content">
                     <h2 class="title landing-clrblock__title">Willfeed sicuro & <br> conveniente</h2>
                     <div class="landing-clrblock__text">
                         <p>
@@ -396,7 +396,7 @@ $configData = Helper::appClasses();
                         </p>
                     </div>
                 </div>
-                <div class="uk-width-auto@l landing-clrblock__maincol landing-clrblock__maincol--media">
+                <div class="uk-width-auto@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
                         <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
                     </div>
@@ -408,7 +408,7 @@ $configData = Helper::appClasses();
     <div class="landing-clrblock">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--community">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
-                <div class="uk-width-expand@l landing-clrblock__maincol landing-clrblock__maincol--content">
+                <div class="uk-width-expand@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--content">
                     <h2 class="title landing-clrblock__title">Willfeed una <br> community sostenibile</h2>
                     <div class="landing-clrblock__text">
                         <p>
@@ -416,7 +416,7 @@ $configData = Helper::appClasses();
                         </p>
                     </div>
                 </div>
-                <div class="uk-width-auto@l landing-clrblock__maincol landing-clrblock__maincol--media">
+                <div class="uk-width-auto@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
                         <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
                     </div>
@@ -714,9 +714,9 @@ $configData = Helper::appClasses();
             <div class="blog__maintext">
                 <p>Costantemente aggiornato sulle ultime notizie di mercato</p>
             </div>
-            <div class="uk-grid blog__grid">
+            <div class="uk-grid blog__grid" data-uk-grid>
 
-                <div class="uk-width-1-3@l blog__col">
+                <div class="uk-width-1-3@s blog__col">
                     <div class="blog__item">
                         <h2 class="title blog__title">BIO DIESEL: Cos’è e quali sono i suoi benefici</h2>
                         <div class="blog__media">
@@ -725,7 +725,7 @@ $configData = Helper::appClasses();
                     </div>
                 </div>
 
-                <div class="uk-width-1-3@l blog__col">
+                <div class="uk-width-1-3@s blog__col">
                     <div class="blog__item">
                         <h2 class="title blog__title">BIO DIESEL: Cos’è e quali sono i suoi benefici</h2>
                         <div class="blog__media">
@@ -734,7 +734,7 @@ $configData = Helper::appClasses();
                     </div>
                 </div>
 
-                <div class="uk-width-1-3@l blog__col">
+                <div class="uk-width-1-3@s blog__col">
                     <div class="blog__item">
                         <h2 class="title blog__title">BIO DIESEL: Cos’è e quali sono i suoi benefici</h2>
                         <div class="blog__media">
