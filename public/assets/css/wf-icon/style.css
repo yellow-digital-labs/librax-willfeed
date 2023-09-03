@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'wf-icon';
-  src:  url('fonts/wf-icon.eot?6e848y');
-  src:  url('fonts/wf-icon.eot?6e848y#iefix') format('embedded-opentype'),
-    url('fonts/wf-icon.ttf?6e848y') format('truetype'),
-    url('fonts/wf-icon.woff?6e848y') format('woff'),
-    url('fonts/wf-icon.svg?6e848y#wf-icon') format('svg');
+  src:  url('fonts/wf-icon.eot?srasq9');
+  src:  url('fonts/wf-icon.eot?srasq9#iefix') format('embedded-opentype'),
+    url('fonts/wf-icon.ttf?srasq9') format('truetype'),
+    url('fonts/wf-icon.woff?srasq9') format('woff'),
+    url('fonts/wf-icon.svg?srasq9#wf-icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -174,4 +174,7 @@
 }
 .wf-icon-phone-contact:before {
   content: "\e92e";
+}
+.wf-icon-chevron-right:before {
+  content: "\e92f";
 }

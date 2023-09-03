@@ -271,16 +271,20 @@
         }
     }
 
-    .uk-accordion > :nth-child(n+2) {
-        margin-top: 40px;
-        border-top: 1px solid #CDD7BF;
-        padding-top: 40px;
+    .uk-accordion > * {
+        padding: 12.5px 18px;
+        border-radius: 6px;
+        border: 1px solid #DBDADE;
+    }
+
+    .uk-accordion>:nth-child(n+2) {
+        margin-top: 20px;
     }
 
     .uk-accordion-title {
-        font-size: 16px;
+        font-size: 15px;
         line-height: 1.5;
-        color: var(--text-color);
+        color: #4B465C;
         font-weight: 600;
         position: relative;
         display: block;
@@ -293,7 +297,7 @@
     }
 
     .uk-accordion-title::before {
-        content: '\e96c';
+        content: '\e92f';
         position: absolute;
         right: 0;
         top: 50%;
@@ -304,7 +308,7 @@
         transition: all .4s ease;
         background-image: none !important;
         font-family: var(--icon-fonts);
-        font-size: 16px;
+        font-size: 12px;
         font-weight: normal;
         line-height: 1;
         color: inherit;
@@ -316,7 +320,7 @@
     }
 
     .uk-open > .uk-accordion-title::before {
-        transform: translateY(-50%) rotate(180deg);
+        transform: translateY(-50%) rotate(90deg);
     }
 
     .uk-accordion-content {
