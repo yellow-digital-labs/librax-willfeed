@@ -201,12 +201,12 @@ body {
 
 @media (max-width: 767.98px) {
     .header {
-        height: 60px;
+        /* height: 60px; */
     }
 
     .header__container {
-        border-bottom: 1px solid #e1e1e1;
-        background: #fff;
+        /* border-bottom: 1px solid #e1e1e1; */
+        /* background: #fff; */
     }
 
     .navmenu, .header__collapsible, .header-bookstay {
@@ -256,7 +256,7 @@ body {
         font-size: 14px;
         line-height: 1;
         font-family: var(--text-fonts);
-        color: var(--text-color);
+        color: #fff;
         padding: 0;
         margin: 0;
         display: inline-flex;
@@ -266,9 +266,9 @@ body {
         letter-spacing: 1.4px;
         cursor: pointer;
         transition: all .4s ease;
-        flex-direction: row-reverse;
         min-width: 75px;
         justify-content: space-between;
+        flex-direction: row-reverse;
     }
 
     .header-toggler__btn:hover, 
@@ -283,21 +283,20 @@ body {
         height: auto;
         font-size: 22px;
         margin: 0 0 0 7px;
+        transform: rotate(180deg);
     }
 
-    .header__toggler-icon:after {
+    .header__toggler-icon:before {
         font-family: var(--icon-fonts);
-        color: var(--primary-color);
+        color: #fff;
         font-weight: normal;
-        content: '\e98c';
+        content: '\e917';
         font-size: 22px;
         line-height: 1;
     }
 
-    .is-header-active .header__toggler-btn .header__toggler-icon:after {
-        content: '\e951';
-        content: '\e98b';
-        font-size: 10px;
+    .is-header-active .header__toggler-btn .header__toggler-icon:before {
+        content: '\e917';
     }
 
     .header__toggler-text {
@@ -313,7 +312,8 @@ body {
     }
 
     .header__logo {
-        max-width: 125px;
+        max-width: 130px;
+        height: 70px;
     }
 
     .navmenu.mobile-menu-active {
@@ -327,39 +327,30 @@ body {
     .navmenu {
         position: fixed;
         width: 100%;
-        top: 120px;
+        top: 90px;
         bottom: 0;
         left: 0;
         overflow-y: auto;
         margin: 0;
-        padding: 10px 0 80px;
-        background: url(https://sbhotels-new.web4cms.milestoneinternet.info/images_noindex/ibh-wide-angle-exterior.png);
-        background-blend-mode: luminosity;
+        padding: 110px 0 20px;
         background-size: cover;
         background-position: center bottom;
-        background-color: var(--bg-alt-2);
+        background-color: var(--bg-header);
+        border-top: 1px solid #fff;
     }
 
     .navmenu__list {
         display: block;
         position: relative;
         z-index: 10;
+        border-bottom: 1px solid #fff;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
     }
 
     .navmenu__list-link {
-        letter-spacing: 0;
-        font-size: 16px;
-        line-height: 1.2;
-        display: flex;
-        justify-content: space-between;
-        color: var(--text-color)!important;
         padding: 10px 20px;
-        font-size: 28px;
-        letter-spacing: .84px;
-        font-family: var(--title-fonts);
-        color: var(--text-color);
-        font-weight: normal;
-        text-transform: unset;
+        font-size: 18px;
     }
 
     .navmenu__list-link.navON, .navmenu__more-link.navON {
@@ -578,7 +569,36 @@ body {
 }
 
 @media (max-width: 767.98px) {
-
+    .navmenu__left {
+        justify-content: center;
+        padding-top: 15px;
+    }
+    
+    .navmenu-search__dropdown {
+        display: block !important;
+        background: transparent;
+        padding: 0;
+        position: fixed;
+        top: 95px !important;
+        left: 0 !important;
+        right: 0 !important;
+        border-bottom: 1px solid #fff;
+        padding: 20px;
+        background: var(--bg-header);
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .navmenu-search__button {
+        display: none;
+    }
+    .navmenu__left-link {
+        font-size: 18px;
+    }
+    
+    .navmenu__left-link--button {
+        margin-left: 40px;
+    }
 }
 @media (max-width: 639.98px) {
 

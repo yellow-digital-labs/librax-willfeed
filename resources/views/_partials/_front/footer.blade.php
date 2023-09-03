@@ -17,14 +17,14 @@
     <div class="foolter-upper">
         <div class="uk-container foolter-upper__container">
             <div class="uk-grid uk-flex-middle foolter-upper__grid" data-uk-grid>
-                <div class="uk-width-1-2 foolter-upper__col">
+                <div class="uk-width-1-2@s foolter-upper__col">
                     <div class="footer-logo">
                         <img src="{{asset('/assets/front/images/weelfeed-brand-logo.svg')}}" width= "170" height= "105">
                     </div>
                 </div>
-                <div class="uk-width-1-2 foolter-upper__col">
+                <div class="uk-width-1-2@s foolter-upper__col">
                     <div class="uk-grid footer-contact" data-uk-grid>
-                        <div class="uk-width-1-2 footer-contact__col">
+                        <div class="uk-width-1-2@s footer-contact__col">
                             <div class="footer-contact__item">
                                 <span class="wf-icon wf-icon-email footer-contact__icon"></span>
                                 <div class="footer-contact__data">

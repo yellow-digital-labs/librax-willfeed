@@ -321,7 +321,7 @@ $configData = Helper::appClasses();
     <div class="landing-clrblock">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--sell">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
-                <div class="uk-width-expand@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--content">
+                <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
                     <h2 class="title landing-clrblock__title">Come vendere su <br> willfeed?</h2>
                     <div class="landing-clrblock__text">
                         <p>
@@ -330,7 +330,7 @@ $configData = Helper::appClasses();
                     </div>
                     <a href="#" class="uk-button uk-button-default landing-clrblock__action">SCOPRI DI PIU’</a>  
                 </div>
-                <div class="uk-width-auto@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--media">
+                <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
                         <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
                     </div>
@@ -342,7 +342,7 @@ $configData = Helper::appClasses();
     <div class="landing-clrblock" id="comprare">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--buy">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
-                <div class="uk-width-expand@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--content">
+                <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
                     <h2 class="title landing-clrblock__title">Come comprare su <br> willfeed?</h2>
                     <div class="landing-clrblock__text">
                         <p>
@@ -351,7 +351,7 @@ $configData = Helper::appClasses();
                     </div>
                     <button type="button" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #comprare; cls: is-active">SCOPRI DI PIU’</button>
                 </div>
-                <div class="uk-width-auto@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--media">
+                <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
                         <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
                     </div>
@@ -388,7 +388,7 @@ $configData = Helper::appClasses();
     <div class="landing-clrblock">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--safe">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
-                <div class="uk-width-expand@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--content">
+                <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
                     <h2 class="title landing-clrblock__title">Willfeed sicuro & <br> conveniente</h2>
                     <div class="landing-clrblock__text">
                         <p>
@@ -396,7 +396,7 @@ $configData = Helper::appClasses();
                         </p>
                     </div>
                 </div>
-                <div class="uk-width-auto@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--media">
+                <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
                         <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
                     </div>
@@ -408,7 +408,7 @@ $configData = Helper::appClasses();
     <div class="landing-clrblock">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--community">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
-                <div class="uk-width-expand@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--content">
+                <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
                     <h2 class="title landing-clrblock__title">Willfeed una <br> community sostenibile</h2>
                     <div class="landing-clrblock__text">
                         <p>
@@ -416,7 +416,7 @@ $configData = Helper::appClasses();
                         </p>
                     </div>
                 </div>
-                <div class="uk-width-auto@l uk-width-1-2 landing-clrblock__maincol landing-clrblock__maincol--media">
+                <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
                         <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
                     </div>

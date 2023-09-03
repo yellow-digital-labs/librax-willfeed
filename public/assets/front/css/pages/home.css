@@ -305,7 +305,9 @@ marquee.dash-charts__marquee {
 }
 
 @media (max-width: 575px) {
-
+    .dash-charts__maintitle {
+        font-size: 26px;
+    }
 }
 /* Dash charts Ends */
 
@@ -1134,7 +1136,14 @@ marquee.dash-charts__marquee {
 }
 
 @media (max-width: 575px) {
+    .landing-hero {
+        text-align: left;
+        padding: 20px 10px;
+    }
 
+    .landing-hero__desc, .landing-hero__bolddesc {
+        font-size: 14px;
+    }
 }
 /* Landing Page Hero Starts */
 
@@ -1196,7 +1205,10 @@ marquee.dash-charts__marquee {
 }
 
 @media (max-width: 575px) {
-
+    .landing-video__action {
+        width: 60px;
+        height: 60px;
+    }
 }
 /* Landing Video Starts */
 
@@ -1345,10 +1357,14 @@ marquee.dash-charts__marquee {
 }
 
 @media (max-width: 767.98px) {
-
+    .landing-clrblock__title {
+        font-size: 26px;
+    }
 }
 @media (max-width: 639.98px) {
-
+    .landing-clrblock__maingrid {
+        flex-direction: column-reverse;
+    }
 }
 
 @media (max-width: 575px) {
@@ -1517,7 +1533,12 @@ marquee.dash-charts__marquee {
 }
 
 @media (max-width: 767.98px) {
-
+    .landing-reviews__grid > * {
+        width: 80%;
+    }
+    .landing-reviews__footer {
+        display: none;
+    }
 }
 @media (max-width: 639.98px) {
 
