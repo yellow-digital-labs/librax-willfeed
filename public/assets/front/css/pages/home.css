@@ -272,7 +272,11 @@
 
 .dash-charts__grid > * {
     padding-left: 16px;
-    width: 285px;
+    width: 300px;
+}
+
+marquee.dash-charts__marquee {
+    margin: 0 -20px;
 }
 
 @media (max-width: 1399.98px) {
