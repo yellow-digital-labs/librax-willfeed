@@ -342,10 +342,6 @@
         .uk-accordion-title {
             font-size: 16px;
         }
-        .uk-accordion>:nth-child(n+2) {
-            margin-top: 20px;
-            padding-top: 20px;
-        }
     }
 
     /* Slider Fade Effect Starts */
