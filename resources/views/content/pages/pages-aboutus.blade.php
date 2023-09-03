@@ -67,11 +67,11 @@ $configData = Helper::appClasses();
                             </p>
                         </div>
                         <div class="about-build">
-                            <div class="uk-grid gutter-xl about-build__grid">
-                                <div class="uk-width-2-3">
+                            <div class="uk-grid gutter-xl about-build__grid" data-uk-grid>
+                                <div class="uk-width-2-3@s">
                                     <h2 class="title title--l about-build__title">We build bridges between customer and seller</h2>
                                 </div>
-                                <div class="uk-width-1-3">
+                                <div class="uk-width-1-3@s">
                                     <div class="about-build__icon">
                                         <img src="/assets/front/images/icons/communication.svg" width="176" height="176">
                                     </div>
