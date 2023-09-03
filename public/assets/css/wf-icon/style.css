@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'wf-icon';
-  src:  url('fonts/wf-icon.eot?237rsi');
-  src:  url('fonts/wf-icon.eot?237rsi#iefix') format('embedded-opentype'),
-    url('fonts/wf-icon.ttf?237rsi') format('truetype'),
-    url('fonts/wf-icon.woff?237rsi') format('woff'),
-    url('fonts/wf-icon.svg?237rsi#wf-icon') format('svg');
+  src:  url('fonts/wf-icon.eot?6e848y');
+  src:  url('fonts/wf-icon.eot?6e848y#iefix') format('embedded-opentype'),
+    url('fonts/wf-icon.ttf?6e848y') format('truetype'),
+    url('fonts/wf-icon.woff?6e848y') format('woff'),
+    url('fonts/wf-icon.svg?6e848y#wf-icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -168,4 +168,10 @@
 }
 .wf-icon-rotate-clockwise:before {
   content: "\e92c";
+}
+.wf-icon-headquarters:before {
+  content: "\e92d";
+}
+.wf-icon-phone-contact:before {
+  content: "\e92e";
 }

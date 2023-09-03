@@ -31,6 +31,7 @@ Route::get('logout', [ App\Http\Controllers\ClientController::class, 'logout'])-
 
 Route::get('/home', $controller_path . '\pages\MainHome@index')->name('pages-main-home');
 Route::get('/about-us', $controller_path . '\pages\PageAboutus@index')->name('pages-aboutus');
+Route::get('/contact-us', $controller_path . '\pages\PageContactus@index')->name('pages-contactus');
 
 // Admin Pages
 Route::get('/admin', $controller_path . '\Admin@login')->name('admin-login');
