@@ -421,6 +421,7 @@ body {
     height: 48px;
     margin-right: 15px;
     border-radius: 6px;
+    background: #fff !important;
 }
 
 .navmenu-search__form-button {
@@ -572,6 +573,7 @@ body {
     .navmenu__left {
         justify-content: center;
         padding-top: 15px;
+        margin: 0;
     }
     
     .navmenu-search__dropdown {
@@ -593,7 +595,7 @@ body {
         display: none;
     }
     .navmenu__left-link {
-        font-size: 18px;
+        font-size: 16px;
     }
     
     .navmenu__left-link--button {
