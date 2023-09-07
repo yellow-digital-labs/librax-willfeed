@@ -31,7 +31,7 @@
         {
             "url": "/user",
             "name": "Customer",
-            "icon": "menu-icon tf-icons ti ti-user-exclamation",
+            "icon": "menu-icon tf-icons ti ti-user",
             "slug": "user",
             "section": [
                 "admin"
@@ -69,8 +69,8 @@
         },
         {
             "url": "/subscription-plan-management",
-            "name": "Subscription plan",
-            "icon": "menu-icon tf-icons ti ti-droplet",
+            "name": "Subscription plans",
+            "icon": "menu-icon tf-icons ti ti-color-swatch",
             "slug": "subscription-plan-management",
             "section": [
                 "admin"
@@ -78,7 +78,7 @@
         },
         {
             "name": "Static pages",
-            "icon": "menu-icon tf-icons ti ti-droplet",
+            "icon": "menu-icon tf-icons ti ti-files",
             "slug": "static",
             "section": [
                 "admin"
@@ -99,7 +99,7 @@
         {
             "url": "/customer-ratings",
             "name": "Customer rating",
-            "icon": "menu-icon tf-icons ti ti-droplet",
+            "icon": "menu-icon tf-icons ti ti-star",
             "slug": "customer-rating",
             "section": [
                 "admin"
@@ -108,7 +108,7 @@
         {
             "url": "/email-management",
             "name": "Email management",
-            "icon": "menu-icon tf-icons ti ti-droplet",
+            "icon": "menu-icon tf-icons ti ti-id",
             "slug": "email-management",
             "section": [
                 "admin"
