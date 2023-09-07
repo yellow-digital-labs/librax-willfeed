@@ -40,7 +40,7 @@ $navbarHideToggle = false;
 @section('content')
 <div class="row">
     <!-- User Sidebar -->
-    <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
+    <div class="col-xl-4 col-lg-5 col-md-5">
         
         <h1 class="h3 text-black mb-4">
         @if($isOnlyProfile && $user->accountType==1)
@@ -123,17 +123,17 @@ $navbarHideToggle = false;
         </div>
     </div>
 
-    <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
+    <div class="col-xl-8 col-lg-7 col-md-7">
         <!-- User Pills -->
         @if(!$isOnlyProfile)
-        <ul class="nav nav-pills flex-column flex-md-row mb-4 card-header-pills">
+        <ul class="nav nav-pills flex-row mb-4 card-header-pills">
             <li class="nav-item"><a class="nav-link active" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Profilo" aria-controls="navs-pills-top-Profilo" aria-selected="true"><i class="wf-icon-User-Info ti-xs me-1"></i>Profilo</a></li>
 
             <li class="nav-item"><a class="nav-link" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Fatturazione" aria-controls="navs-pills-top-Fatturazione" aria-selected="true"><i class="wf-icon-file-text1 ti-xs me-1"></i>Fatturazione</a></li>
         </ul>
         @endif
         @if($authUser->accountType==0)
-        <ul class="nav nav-pills flex-column flex-md-row mb-4 card-header-pills">
+        <ul class="nav nav-pills flex-row mb-4 card-header-pills">
             @if($user->approved_by_admin == "Pending" || $user->approved_by_admin == "No")
             <li class="nav-item"><a href="" class="btn btn-primary" href="javascript:void(0);"><i class="wf-icon-check ti-xs me-1"></i>Verify</a></li>
             @endif
@@ -605,23 +605,23 @@ $navbarHideToggle = false;
                     <div class="card-body">
                         <div class="added-cards">
                             <div class="cardMaster border p-3 rounded mb-3">
-                                <div class="d-flex justify-content-between flex-sm-row flex-column">
+                                <div class="d-flex justify-content-between flex-lg-row flex-column">
                                     <div class="card-information">
                                         <img class="mb-3 img-fluid" src="{{asset('assets/img/icons/payments/mastercard.png')}}" alt="Master Card">
                                         <h6 class="mb-2 pt-1">Kaith Morrison</h6>
                                         <span class="card-number">&#8727;&#8727;&#8727;&#8727; &#8727;&#8727;&#8727;&#8727; &#8727;&#8727;&#8727;&#8727; 9856</span>
                                     </div>
                                     <div class="d-flex flex-column text-start text-lg-end">
-                                        <div class="d-flex order-sm-0 order-1 mt-3">
+                                        <div class="d-flex order-lg-0 order-1 mt-3">
                                             <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#editCCModal">Modifica</button>
                                             <button class="btn btn-outline-dark">Elimina</button>
                                         </div>
-                                        <small class="mt-sm-auto mt-2 order-sm-1 order-0">Scadenza 03/2024</small>
+                                        <small class="mt-lg-auto mt-2 order-lg-1 order-0">Scadenza 03/2024</small>
                                     </div>
                                 </div>
                             </div>
                             <div class="cardMaster border p-3 rounded mb-3">
-                                <div class="d-flex justify-content-between flex-sm-row flex-column">
+                                <div class="d-flex justify-content-between flex-lg-row flex-column">
                                     <div class="card-information">
                                         <img class="mb-3 img-fluid" src="{{asset('assets/img/icons/payments/visa.png')}}" alt="Master Card">
                                         <div class="d-flex align-items-center mb-2 pt-1">
@@ -631,27 +631,27 @@ $navbarHideToggle = false;
                                         <span class="card-number">&#8727;&#8727;&#8727;&#8727; &#8727;&#8727;&#8727;&#8727; &#8727;&#8727;&#8727;&#8727; 6542</span>
                                     </div>
                                     <div class="d-flex flex-column text-start text-lg-end">
-                                        <div class="d-flex order-sm-0 order-1 mt-3">
+                                        <div class="d-flex order-lg-0 order-1 mt-3">
                                             <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#editCCModal">Modifica</button>
                                             <button class="btn btn-outline-dark">Elimina</button>
                                         </div>
-                                        <small class="mt-sm-auto mt-2 order-sm-1 order-0">Scadenza 05/2025</small>
+                                        <small class="mt-lg-auto mt-2 order-lg-1 order-0">Scadenza 05/2025</small>
                                     </div>
                                 </div>
                             </div>
                             <div class="cardMaster border p-3 rounded">
-                                <div class="d-flex justify-content-between flex-sm-row flex-column">
+                                <div class="d-flex justify-content-between flex-lg-row flex-column">
                                     <div class="card-information">
                                         <img class="mb-3 img-fluid" src="{{asset('assets/img/icons/payments/american-ex.png')}}" alt="Visa Card">
                                         <h6 class="mb-2 pt-1">Mildred Wagner</h6>
                                         <span class="card-number">&#8727;&#8727;&#8727;&#8727; &#8727;&#8727;&#8727;&#8727; &#8727;&#8727;&#8727;&#8727; 5896</span>
                                     </div>
                                     <div class="d-flex flex-column text-start text-lg-end">
-                                        <div class="d-flex order-sm-0 order-1 mt-3">
+                                        <div class="d-flex order-lg-0 order-1 mt-3">
                                             <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#editCCModal">Modifica</button>
                                             <button class="btn btn-outline-dark">Elimina</button>
                                         </div>
-                                        <small class="mt-sm-auto mt-2 order-sm-1 order-0">Scadenza 05/2025</small>
+                                        <small class="mt-lg-auto mt-2 order-lg-1 order-0">Scadenza 05/2025</small>
                                     </div>
                                 </div>
                             </div>

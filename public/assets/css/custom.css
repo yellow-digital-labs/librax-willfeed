@@ -89,6 +89,65 @@
 .app-email .app-emails-list .email-list li .email-list-item-time {
     width: 150px;
 }
+@media (max-width: 1399.98px) {
+
+}
+
+@media (max-width: 1199.98px) {
+
+}
+
+@media (max-width: 1023.98px) {
+
+}
+
+@media(max-width: 991.98px) {
+    .card .card-widget-separator-wrapper .card-widget-separator .card-widget-2.border-end {
+        border-right:none !important;
+        border-left: none !important
+    }
+}
+
+@media (max-width: 959.98px) {
+
+}
+
+@media (max-width: 767.98px) {
+    div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter, div.dataTables_wrapper div.dataTables_info, div.dataTables_wrapper div.dataTables_paginate {
+        text-align: left;
+    }
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+        justify-content: flex-start !important;
+    }
+    .card .card-separator {
+        border-bottom:1px solid #dbdade;
+        padding-bottom: 1.5rem
+    }
+
+    html:not([dir=rtl]) .card .card-separator {
+        border-right-width: 0 !important
+    }
+
+    [dir=rtl] .card .card-separator {
+        border-left-width: 0 !important
+    }
+}
+@media (max-width: 639.98px) {
+
+}
+
+@media(max-width: 575.98px) {
+    .card .card-widget-separator-wrapper .card-widget-separator .card-widget-1.border-end,.card .card-widget-separator-wrapper .card-widget-separator .card-widget-2.border-end,.card .card-widget-separator-wrapper .card-widget-separator .card-widget-3.border-end {
+        border-right:none !important;
+        border-left: none !important;
+        border-bottom: 1px solid #dbdade
+    }
+}
+
+@media (max-width: 575px) {
+
+}
+
 
 /* Navigation + Sidebar Starts */
 
@@ -188,6 +247,32 @@
     padding-left: 0 !important;
     min-height: 100vh;
 }
+@media (max-width: 1399.98px) {
+
+}
+
+@media (max-width: 1199.98px) {
+
+}
+
+@media (max-width: 1023.98px) {
+
+}
+
+@media (max-width: 959.98px) {
+
+}
+
+@media (max-width: 767.98px) {
+
+}
+@media (max-width: 639.98px) {
+
+}
+
+@media (max-width: 575px) {
+
+}
 
 /* Auth pages Header Starts */
 
@@ -202,6 +287,32 @@
 
 .auth-header__logo {
     display: block;
+}
+@media (max-width: 1399.98px) {
+
+}
+
+@media (max-width: 1199.98px) {
+
+}
+
+@media (max-width: 1023.98px) {
+
+}
+
+@media (max-width: 959.98px) {
+
+}
+
+@media (max-width: 767.98px) {
+
+}
+@media (max-width: 639.98px) {
+
+}
+
+@media (max-width: 575px) {
+
 }
 
 /* Auth pages Header Ends */
@@ -255,6 +366,36 @@
     display: inline-flex;
     align-items: center;
     margin-top: -8px;
+}
+@media (max-width: 1399.98px) {
+
+}
+
+@media (max-width: 1199.98px) {
+}
+
+@media (max-width: 1023.98px) {
+
+}
+
+@media (max-width: 959.98px) {
+
+}
+
+@media (max-width: 767.98px) {
+
+}
+@media (max-width: 639.98px) {
+
+}
+
+@media (max-width: 575px) {
+    .singup__card {
+        padding: 2rem;
+    }
+    .singup__form {
+        padding: 0 0;
+    }
 }
 
 /* Signup page Ends */
@@ -330,6 +471,32 @@
 .signup-wiz__footer a:hover {
     text-decoration: underline;
 }
+@media (max-width: 1399.98px) {
+
+}
+
+@media (max-width: 1199.98px) {
+
+}
+
+@media (max-width: 1023.98px) {
+
+}
+
+@media (max-width: 959.98px) {
+
+}
+
+@media (max-width: 767.98px) {
+
+}
+@media (max-width: 639.98px) {
+
+}
+
+@media (max-width: 575px) {
+
+}
 
 /* Signup Wizard page Ends */
 /* Profile Page CSS Starts */
@@ -363,6 +530,32 @@
     font-weight: 500;
 }
 
+@media (max-width: 1399.98px) {
+
+}
+
+@media (max-width: 1199.98px) {
+
+}
+
+@media (max-width: 1023.98px) {
+
+}
+
+@media (max-width: 959.98px) {
+
+}
+
+@media (max-width: 767.98px) {
+
+}
+@media (max-width: 639.98px) {
+
+}
+
+@media (max-width: 575px) {
+
+}
 /* Profile Page CSS Ends */
 
 .editPaymentModal  .modal-dialog {
@@ -376,4 +569,30 @@
 .editPaymentModal  .btn-close {
     top: 0.5rem;
     right: 0.5rem;
+}
+@media (max-width: 1399.98px) {
+
+}
+
+@media (max-width: 1199.98px) {
+
+}
+
+@media (max-width: 1023.98px) {
+
+}
+
+@media (max-width: 959.98px) {
+
+}
+
+@media (max-width: 767.98px) {
+
+}
+@media (max-width: 639.98px) {
+
+}
+
+@media (max-width: 575px) {
+
 }
