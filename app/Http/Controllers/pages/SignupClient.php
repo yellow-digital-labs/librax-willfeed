@@ -17,6 +17,8 @@ use App\Models\Region;
 use App\Models\UserDetail;
 use App\Models\EaseOfAccess;
 use App\Models\PaymentTerms;
+use App\Models\PaymentExtension;
+use App\Models\ConsumeCapacity;
 
 class SignupClient extends Controller
 {
@@ -38,7 +40,9 @@ class SignupClient extends Controller
     $product = Product::all();
     $region = Region::all();
     $ease_of_access = EaseOfAccess::all();
+    $payment_extension = PaymentExtension::all();
     $payment_terms = PaymentTerms::all();
+    $consume_capacity = ConsumeCapacity::all();
 
     $user_detail = UserDetail::where(['user_id' => $user->id])->first();
 
@@ -55,6 +59,8 @@ class SignupClient extends Controller
       "user_detail" => $user_detail,
       "ease_of_access" => $ease_of_access,
       "payment_terms" => $payment_terms,
+      "payment_extension" => $payment_extension,
+      "consume_capacity" => $consume_capacity,
     ]);
   }
 }

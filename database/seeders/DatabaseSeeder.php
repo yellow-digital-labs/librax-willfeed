@@ -498,18 +498,46 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Motrice a 2 assi',
             ]);
 
-            \App\Models\PaymentTerms::truncate();
-            DB::table('payment_terms')->insert([
+            \App\Models\PaymentExtension::truncate();
+            DB::table('payment_extensions')->insert([
                 'name' => 'A vista',
             ]);
-            DB::table('payment_terms')->insert([
+            DB::table('payment_extensions')->insert([
                 'name' => '30gg',
             ]);
-            DB::table('payment_terms')->insert([
+            DB::table('payment_extensions')->insert([
                 'name' => '60gg',
             ]);
-            DB::table('payment_terms')->insert([
+            DB::table('payment_extensions')->insert([
                 'name' => '90gg',
+            ]);
+
+            \App\Models\PaymentTerms::truncate();
+            DB::table('payment_terms')->insert([
+                'name' => 'Assegno bancario',
+            ]);
+            DB::table('payment_terms')->insert([
+                'name' => 'Bonifico',
+            ]);
+            DB::table('payment_terms')->insert([
+                'name' => 'RIBA',
+            ]);
+            DB::table('payment_terms')->insert([
+                'name' => 'RID',
+            ]);
+
+            \App\Models\ConsumeCapacity::truncate();
+            DB::table('consume_capacities')->insert([
+                'name' => 'Fino a 5.000 Litri',
+            ]);
+            DB::table('consume_capacities')->insert([
+                'name' => '5.000 - 10.000 Litri',
+            ]);
+            DB::table('consume_capacities')->insert([
+                'name' => '10.000 - 20.000 Litri',
+            ]);
+            DB::table('consume_capacities')->insert([
+                'name' => 'Oltre i 20.000 Litri',
             ]);
 
 //         \App\Models\MainActivity::truncate();

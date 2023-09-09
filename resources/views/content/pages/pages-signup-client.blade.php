@@ -90,7 +90,7 @@ $configData = Helper::appClasses();
                 </div>
 
                 <div class="bs-stepper-content signup-wiz__body">
-                    <form id="multiStepsForm" onsubmit="return false" class="signup-wiz__form">
+                    <form id="multiStepsForm" onsubmit="return false" class="signup-wiz__form" method="POST" enctype="multipart/form-data">
                         <!-- Registry -->
                         <div id="SignupStepRegistry" class="content active dstepper-block fv-plugins-bootstrap5 fv-plugins-framework">
                             <div class="content-header mb-4">
@@ -294,60 +294,60 @@ $configData = Helper::appClasses();
                                     <label class="form-label" for="payment_extension">Dilazione di pagamento preferita *</label>
                                     <select name="payment_extension" id="payment_extension" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
-                                    @foreach($payment_terms as $_payment_terms)
-                                        <option value="{{$_payment_terms->name}}" {{$user_detail?($user_detail->destination_common==$_payment_terms->name?'selected':''):''}}>{{$_payment_terms->name}}</option>
+                                    @foreach($payment_extension as $_payment_extension)
+                                        <option value="{{$_payment_extension->name}}" {{$user_detail?($user_detail->destination_common==$_payment_extension->name?'selected':''):''}}>{{$_payment_extension->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Modalità di pagamento * </label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="payment_term">Modalità di pagamento * </label>
+                                    <select name="payment_term" id="payment_term" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                    @foreach($payment_terms as $_payment_terms)
+                                        <option value="{{$_payment_terms->name}}" {{$user_detail?($user_detail->payment_term==$_payment_terms->name?'selected':''):''}}>{{$_payment_terms->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Banca di riferimento (RIBA e RID)</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci filiale" />
+                                    <label class="form-label" for="reference_bank">Banca di riferimento (RIBA e RID) *</label>
+                                    <input type="text" name="reference_bank" id="reference_bank" class="form-control" placeholder="Inserisci filiale" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">IBAN (RIBA e RID)</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="ITxxxxxxxxxxxx" />
+                                    <label class="form-label" for="iban">IBAN (RIBA e RID)</label>
+                                    <input type="text" name="iban" id="iban" class="form-control" placeholder="ITxxxxxxxxxxxx" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">SDI *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci codice univoco" />
+                                    <label class="form-label" for="sdi">SDI *</label>
+                                    <input type="text" name="sdi" id="sdi" class="form-control" placeholder="Inserisci codice univoco" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">CIG</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci CIG ove applicabile" />
+                                    <label class="form-label" for="cig">CIG</label>
+                                    <input type="text" name="cig" id="cig" class="form-control" placeholder="Inserisci CIG ove applicabile" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">CUP</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci CUP, ove applicabile" />
+                                    <label class="form-label" for="cup">CUP</label>
+                                    <input type="text" name="cup" id="cup" class="form-control" placeholder="Inserisci CUP, ove applicabile" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Esenzione IVA </label>
-                                    <input class="form-control" type="file">
+                                    <label class="form-label" for="file_1">Esenzione IVA </label>
+                                    <input class="form-control" type="file" id="file_1" name="file_1">
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Esenzione IVA </label>
-                                    <input class="form-control" type="file">
+                                    <label class="form-label" for="file_2">Esenzione IVA </label>
+                                    <input class="form-control" type="file" id="file_2" name="file_2">
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Esenzione IVA </label>
-                                    <input class="form-control" type="file">
+                                    <label class="form-label" for="file_3">Esenzione IVA </label>
+                                    <input class="form-control" type="file" id="file_3" name="file_3">
                                 </div>
 
                                 <div class="col-12 d-flex justify-content-between mt-4">
@@ -370,38 +370,37 @@ $configData = Helper::appClasses();
                             <div class="row g-3">
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Tipologia di prodotti consumati *</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona dilazione</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="products">Tipologia di prodotti consumati *</label>
+                                    <select name="products" id="products" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
+                                        <option value=""></option>
+                                    @foreach($product as $_product)
+                                        <option value="{{$_product->name}}" {{$user_detail?(in_array($_product->name, explode(",",$user_detail->products))?'selected':''):''}}>{{$_product->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Consumi medi mensili *</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="monthly_consumption">Consumi medi mensili *</label>
+                                    <select name="monthly_consumption" id="monthly_consumption" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                    @foreach($consume_capacity as $_consume_capacity)
+                                        <option value="{{$_consume_capacity->name}}" {{$user_detail?($user_detail->monthly_consumption==$_consume_capacity->name?'selected':''):''}}>{{$_consume_capacity->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Sei un distributore privato? *</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Si o no</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="is_private_distributer">Sei un distributore privato? *</label>
+                                    <select name="is_private_distributer" id="is_private_distributer" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Numero di distributori *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci numero di distributori" />
+                                    <label class="form-label" for="no_of_distributer">Numero di distributori *</label>
+                                    <input type="text" name="no_of_distributer" id="no_of_distributer" class="form-control" placeholder="Inserisci numero di distributori" />
                                 </div>
                                 
                                 <div class="col-sm-12">
@@ -421,7 +420,7 @@ $configData = Helper::appClasses();
                                                                     Tipologia & Dimensione Flotta
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000">
+                                                                    <input type="text" class="form-control" aria-label="000" name="fleet">
                                                                 </div>
                                                             </div>
                                                         </div>

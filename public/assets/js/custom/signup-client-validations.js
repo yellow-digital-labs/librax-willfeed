@@ -14,7 +14,7 @@ $(function() {
             var $this = $(this);
             $this.wrap('<div class="position-relative"></div>');
             $this.select2({
-                placeholder: 'Select an country',
+                placeholder: 'Select an option',
                 dropdownParent: $this.parent()
             });
         });
