@@ -1,40 +1,41 @@
 @php
 $customizerHidden = 'customizer-hide';
-$configData = Helper::appClasses();
+$pageConfigs = ['myLayout' => 'blank'];
 @endphp
-
-@extends('layouts/blankLayout')
-
-@section('title', 'Forgot Password')
-
-@section('page-style')
-{{-- Page Css files --}}
-<link rel="stylesheet" href="{{ asset(mix('assets/vendor/css/pages/page-auth.css')) }}">
+@extends('layouts/layoutMaster')
+@section('title', 'Login')
+@section('vendor-style')
+<!-- Vendor -->
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
 @endsection
-
+@section('page-style')
+<!-- Page -->
+<link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-auth.css')}}">
+<!-- Custom css -->
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+@endsection
+@section('vendor-script')
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
+@endsection
+@section('page-script')
+<script src="{{asset('assets/js/pages-auth.js')}}"></script>
+@endsection
 @section('content')
+    
+<header class="auth-header">
+    <a href="{{route("pages-home")}}" class="auth-header__logo">
+        <img src="{{asset("/assets/img/weelfeed-brand-logo-white.svg")}}">
+    </a>
+</header>
+
 <div class="authentication-wrapper authentication-cover authentication-bg">
   <div class="authentication-inner row">
-    <!-- /Left Text -->
-    <div class="d-none d-lg-flex col-lg-7 p-0">
-      <div class="auth-cover-bg auth-cover-bg-color d-flex justify-content-center align-items-center">
-        <img src="{{ asset('assets/img/illustrations/auth-forgot-password-illustration-'.$configData['style'].'.png') }}" alt="auth-forgot-password-cover" class="img-fluid my-5 auth-illustration" data-app-light-img="illustrations/auth-forgot-password-illustration-light.png" data-app-dark-img="illustrations/auth-forgot-password-illustration-dark.png">
 
-        <img src="{{ asset('assets/img/illustrations/bg-shape-image-'.$configData['style'].'.png') }}" alt="auth-forgot-password-cover" class="platform-bg" data-app-light-img="illustrations/bg-shape-image-light.png" data-app-dark-img="illustrations/bg-shape-image-dark.png">
-      </div>
-    </div>
-    <!-- /Left Text -->
     <!-- Forgot Password -->
-    <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-5 p-4 mx-auto">
+    <div class="card d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-5 p-4 mx-auto">
       <div class="w-px-400 mx-auto">
-        <!-- Logo -->
-        <div class="app-brand justify-content-center mb-5">
-          <a href="{{url('/')}}" class="app-brand-link">
-            <span class="app-brand-logo demo">@include('_partials.macros',["height"=>20,"withbg"=>'fill: #fff;'])</span>
-            <span class="app-brand-text demo text-body fw-bold">{{config('variables.templateName')}}</span>
-          </a>
-        </div>
-        <!-- /Logo -->
         <h4 class="mb-2">Forgot Password? 🔒</h4>
         <p class="mb-4">Enter your email and we'll send you instructions to reset your password</p>
 

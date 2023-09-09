@@ -59,6 +59,11 @@ $customizerHidden = 'customizer-hide';
 
                         <div class="mb-3">
                             <label class="form-label" for="password">Password</label>
+                            @if (Route::has('password.request'))
+                            <a href="{{ route('password.request') }}">
+                                <small>Forgot Password?</small>
+                            </a>
+                            @endif
                             <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
                         </div>
 
