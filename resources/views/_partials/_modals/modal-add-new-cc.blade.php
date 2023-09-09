@@ -8,32 +8,14 @@
           <h3 class="mb-2">Add New Card</h3>
           <p class="text-muted">Add new card to complete payment</p>
         </div>
-        <form id="addNewCCForm" class="row g-3" onsubmit="return false">
-          <div class="col-12">
-            <label class="form-label w-100" for="modalAddCard">Card Number</label>
-            <div class="input-group input-group-merge">
-              <input id="modalAddCard" name="modalAddCard" class="form-control credit-card-mask" type="text" placeholder="1356 3215 6548 7898" aria-describedby="modalAddCard2" />
-              <span class="input-group-text cursor-pointer p-1" id="modalAddCard2"><span class="card-type"></span></span>
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <label class="form-label" for="modalAddCardName">Name</label>
-            <input type="text" id="modalAddCardName" class="form-control" placeholder="John Doe" />
-          </div>
-          <div class="col-6 col-md-3">
-            <label class="form-label" for="modalAddCardExpiryDate">Exp. Date</label>
-            <input type="text" id="modalAddCardExpiryDate" class="form-control expiry-date-mask" placeholder="MM/YY" />
-          </div>
-          <div class="col-6 col-md-3">
-            <label class="form-label" for="modalAddCardCvv">CVV Code</label>
-            <div class="input-group input-group-merge">
-              <input type="text" id="modalAddCardCvv" class="form-control cvv-code-mask" maxlength="3" placeholder="654" />
-              <span class="input-group-text cursor-pointer" id="modalAddCardCvv2"><i class="text-muted ti ti-help" data-bs-toggle="tooltip" data-bs-placement="top" title="Card Verification Value"></i></span>
-            </div>
-          </div>
-          <div class="col-12">
+        <form id='checkout-form' method='post' action="{{ route('stripe.post') }}">
+          @csrf
+          <input type='hidden' name='stripeToken' id='stripe-token-id'>                              
+          <br>
+          <div id="card-element" class="form-control mb-2" ></div>
+          <div class="col-12 mb-5">
             <label class="switch">
-              <input type="checkbox" class="switch-input">
+              <input type="checkbox" name="save_card" class="switch-input" value="yes">
               <span class="switch-toggle-slider">
                 <span class="switch-on"></span>
                 <span class="switch-off"></span>
@@ -42,7 +24,7 @@
             </label>
           </div>
           <div class="col-12 text-center">
-            <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
+            <button type="button" class="btn btn-primary me-sm-3 me-1" id="pay-btn" onclick="createToken()">Submit</button>
             <button type="reset" class="btn btn-label-secondary btn-reset" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
           </div>
         </form>
@@ -51,3 +33,30 @@
   </div>
 </div>
 <!--/ Add New Credit Card Modal -->
+
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script type="text/javascript">
+    var stripe = Stripe('{{ env('STRIPE_KEY') }}')
+    var elements = stripe.elements();
+    var cardElement = elements.create('card');
+
+    cardElement.mount('#card-element');
+
+    function createToken() {
+        document.getElementById("pay-btn").disabled = true;
+
+        stripe.createToken(cardElement).then(function(result) {
+            if(typeof result.error != 'undefined') {
+                document.getElementById("pay-btn").disabled = false;
+                alert(result.error.message);
+            }
+            /* creating token success */
+            if(typeof result.token != 'undefined') {
+              document.getElementById("stripe-token-id").value = result.token.id;
+              document.getElementById('checkout-form').submit();
+            }
+        });
+    }
+</script>

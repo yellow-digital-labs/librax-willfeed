@@ -53,7 +53,7 @@ $customizerHidden = 'customizer-hide';
                     <form id="formAuthentication" class="mb-3 singup__form" action="{{url('/')}}" method="POST">
                         <div class="singup__footer">
                             <p class="text-center">
-                                Didn't get the mail? <a href="#" class="text-dark">Resend</a>  
+                                Didn't get the mail? <a href="{{route('resend-verify-email')}}" class="text-dark">Resend</a>  
                             </p>
                         </div>
 

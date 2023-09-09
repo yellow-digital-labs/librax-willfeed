@@ -596,3 +596,7 @@
 @media (max-width: 575px) {
 
 }
+
+.hide {
+    display: none !important;
+}

@@ -25,6 +25,7 @@ Route::get('/pages/misc-error', $controller_path . '\pages\MiscError@index')->na
 Route::get('/forget-password', $controller_path . '\pages\ForgetPassword@index')->name('forget-password');
 Route::get('/reset-password', $controller_path . '\pages\ResetPassword@index')->name('reset-password');
 Route::get('/verify-email', $controller_path . '\pages\VerifyEmail@index')->name('verify-email');
+Route::get('/verify-email/resend', $controller_path . '\pages\VerifyEmail@resend')->name('resend-verify-email');
 Route::get('/verify-email/{token}', $controller_path . '\pages\VerifyEmail@confirm')->name('verify-email-confirm');
 Route::get('logout', [ App\Http\Controllers\ClientController::class, 'logout'])->name('logout');
 
@@ -141,4 +142,12 @@ Route::middleware([
     //email history
     Route::get('/email-management', $controller_path . '\pages\EmailManagement@index')->name('email-management');
     Route::post('/email-management/{id}/detail', $controller_path . '\pages\EmailManagement@detail')->name('email-management-detail');
+});
+
+Route::controller(App\Http\Controllers\StripePaymentController::class)->group(function(){
+
+    Route::get('stripe', 'stripe');
+
+    Route::post('stripe', 'stripePost')->name('stripe.post');
+
 });

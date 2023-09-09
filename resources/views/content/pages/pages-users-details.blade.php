@@ -1,7 +1,9 @@
 @php
 $configData = Helper::appClasses();
-$isMenu = false;
-$navbarHideToggle = false;
+if($isOnlyProfile){
+    $isMenu = false;
+    $navbarHideToggle = false;
+}
 @endphp
 @extends('layouts/layoutMaster')
 @section('title', 'Profilo')

@@ -487,6 +487,31 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Cheque',
             ]);
 
+            \App\Models\EaseOfAccess::truncate();
+            DB::table('ease_of_accesses')->insert([
+                'name' => 'Bilico',
+            ]);
+            DB::table('ease_of_accesses')->insert([
+                'name' => 'Motrice a 3 assi',
+            ]);
+            DB::table('ease_of_accesses')->insert([
+                'name' => 'Motrice a 2 assi',
+            ]);
+
+            \App\Models\PaymentTerms::truncate();
+            DB::table('payment_terms')->insert([
+                'name' => 'A vista',
+            ]);
+            DB::table('payment_terms')->insert([
+                'name' => '30gg',
+            ]);
+            DB::table('payment_terms')->insert([
+                'name' => '60gg',
+            ]);
+            DB::table('payment_terms')->insert([
+                'name' => '90gg',
+            ]);
+
 //         \App\Models\MainActivity::truncate();
 //         DB::table('main_activities')->insert([
 //             'name' => 'Deposito diretto raffineria',

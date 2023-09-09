@@ -99,81 +99,91 @@ $configData = Helper::appClasses();
                             <div class="row g-3">
 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Ragione sociale *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci ragione sociale" />
+                                    <label class="form-label" for="business_name">Ragione sociale *</label>
+                                    <input type="text" name="business_name" id="business_name" class="form-control" placeholder="Inserisci ragione sociale" value="{{$user_detail?$user_detail->business_name:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Partita IVA *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci numero di partita IVA" />
+                                    <label class="form-label" for="vat_number">Partita IVA *</label>
+                                    <input type="text" name="vat_number" id="vat_number" class="form-control" placeholder="Inserisci numero di partita IVA" value="{{$user_detail?$user_detail->vat_number:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Cellulare referente *</label>
+                                    <label class="form-label" for="contact_person">Cellulare referente *</label>
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text" id="basic-addon-search31">+39 </span>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="contact_person" id="contact_person" value="{{$user_detail?$user_detail->contact_person:''}}">
                                     </div>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">PEC *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="latuaemail@pec.it" />
+                                    <label class="form-label" for="pec">PEC *</label>
+                                    <input type="text" name="pec" id="pec" class="form-control" placeholder="latuaemail@pec.it" value="{{$user_detail?$user_detail->pec:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Codice fiscale *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci il codice fiscale" />
+                                    <label class="form-label" for="tax_id_code">Codice fiscale</label>
+                                    <input type="text" name="tax_id_code" id="tax_id_code" class="form-control" placeholder="Inserisci il codice fiscale" value="{{$user_detail?$user_detail->tax_id_code:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Nominativo Amministratore *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Mario Rossi" />
+                                    <label class="form-label" for="administrator_name">Nominativo amministratore *</label>
+                                    <input type="text" name="administrator_name" id="administrator_name" class="form-control" placeholder="Mario Rossi" value="{{$user_detail?$user_detail->administrator_name:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Attività principale *</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona attività principale</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="main_activity_ids">Attività principale *</label>
+                                    <select name="main_activity_ids" id="main_activity_ids" class="form-select select2" placeholder="Seleziona attività principale">
+                                        <option value=""></option>
+                                    @foreach($main_activity as $_main_activity)
+                                        <option value="{{$_main_activity->name}}" {{$user_detail?($user_detail->main_activity_ids==$_main_activity->name?'selected':''):''}}>{{$_main_activity->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Indirizzo *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Via Battisti " />
+                                    <label class="form-label" for="address">Indirizzo *</label>
+                                    <input type="text" name="address" id="address" class="form-control" placeholder="Via Battisti " value="{{$user_detail?$user_detail->address:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Numero civico *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci il numero civico" />
+                                    <label class="form-label" for="house_no">Numero civico *</label>
+                                    <input type="text" name="house_no" id="house_no" class="form-control" placeholder="Inserisci il numero civico" value="{{$user_detail?$user_detail->house_no:''}}" />
                                 </div>
-                                
+
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Comune *</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona comune</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="region">Regione *</label>
+                                    <select name="region" id="region" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                    @foreach($region as $_region)
+                                        <option value="{{$_region->name}}" data-id="{{$_region->id}}" {{$user_detail?($user_detail->region==$_region->name?'selected':''):''}}>{{$_region->name}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="province">Provincia *</label>
+                                    <select name="province" id="province" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                    @foreach($province as $_province)
+                                        <option value="{{$_province->name}}" data-id="{{$_province->id}}" data-region="{{$_province->regions_id}}" {{$user_detail?($user_detail->province==$_province->name?'selected':''):''}}>{{$_province->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Provincia *</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona provincia</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="common">Comune *</label>
+                                    <select name="common" id="common" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                    @foreach($common as $_common)
+                                        <option value="{{$_common->name}}" data-id="{{$_common->id}}" data-province="{{$_common->provinces_id}}" {{$user_detail?($user_detail->common==$_common->name?'selected':''):''}}>{{$_common->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">CAP *</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci il CAP" />
+                                    <label class="form-label" for="pincode">CAP *</label>
+                                    <input type="text" name="pincode" id="pincode" class="form-control" placeholder="Inserisci il CAP" value="{{$user_detail?$user_detail->pincode:''}}" />
                                 </div>
 
                                 <div class="col-12 d-flex justify-content-end mt-4">
@@ -193,56 +203,74 @@ $configData = Helper::appClasses();
                             <div class="row g-3">
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Facilità di accesso *</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona facilità di accesso</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="ease_of_access">Facilità di accesso *</label>
+                                    <select name="ease_of_access" id="ease_of_access" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                    @foreach($ease_of_access as $_ease_of_access)
+                                        <option value="{{$_ease_of_access->name}}" data-id="{{$_ease_of_access->id}}" {{$user_detail?($user_detail->ease_of_access==$_ease_of_access->name?'selected':''):''}}>{{$_ease_of_access->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Cellulare referente di scarico *</label>
+                                    <label class="form-label" for="mobile_unloading">Cellulare referente di scarico *</label>
                                     <div class="input-group input-group-merge">
-                                        <span class="input-group-text" id="basic-addon-search31">+39 </span>
-                                        <input type="text" class="form-control">
+                                        <span class="input-group-text">+39 </span>
+                                        <input type="text" class="form-control" id="mobile_unloading" name="mobile_unloading" value="{{$user_detail?$user_detail->mobile_unloading:''}}">
                                     </div>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Indirizzo destinazione (se diverso da anagrafica)</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Via Battisti" />
-                                </div>
-                                
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="">Numero civico</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci il numero civico" />
-                                </div>
-                                
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="">Comune</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona comune</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="destination_address">Indirizzo destinazione (se diverso da anagrafica)</label>
+                                    <select name="destination_address" id="destination_address" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
                                     </select>
                                 </div>
                                 
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="">Provincia</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona provincia</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                <div class="col-sm-6 address-container hide">
+                                    <label class="form-label" for="destination_house_no">Numero civico</label>
+                                    <input type="text" name="destination_house_no" id="destination_house_no" class="form-control" placeholder="Inserisci il numero civico" />
+                                </div>
+                                
+                                <div class="col-sm-6 address-container hide">
+                                    <label class="form-label" for="destination_region">Regione *</label>
+                                    <select name="destination_region" id="destination_region" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                    @foreach($region as $_region)
+                                        <option value="{{$_region->name}}" data-id="{{$_region->id}}" {{$user_detail?($user_detail->destination_region==$_region->name?'selected':''):''}}>{{$_region->name}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-6 address-container hide">
+                                    <label class="form-label" for="destination_province">Provincia</label>
+                                    <select name="destination_province" id="destination_province" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                    @foreach($province as $_province)
+                                        <option value="{{$_province->name}}" data-id="{{$_province->id}}" data-region="{{$_province->regions_id}}" {{$user_detail?($user_detail->destination_province==$_province->name?'selected':''):''}}>{{$_province->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
+                                <div class="col-sm-6 address-container hide">
+                                    <label class="form-label" for="destination_common">Comune</label>
+                                    <select name="destination_common" id="destination_common" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                    @foreach($common as $_common)
+                                        <option value="{{$_common->name}}" data-id="{{$_common->id}}" data-province="{{$_common->provinces_id}}" {{$user_detail?($user_detail->destination_common==$_common->name?'selected':''):''}}>{{$_common->name}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                                
+                                <div class="col-sm-6 address-container hide">
+                                    <label class="form-label" for="destination_pincode">CAP</label>
+                                    <input type="text" name="destination_pincode" id="destination_pincode" class="form-control" placeholder="Inserisci il CAP" value="{{$user_detail?$user_detail->destination_pincode:''}}" />
+                                </div>
+
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">CAP</label>
-                                    <input type="text" name="" id="" class="form-control" placeholder="Inserisci CAP" />
+                                    <label class="form-label" for="minor_plant_code">Codice di esercizio impianto minore</label>
+                                    <input type="text" name="minor_plant_code" id="minor_plant_code" class="form-control" placeholder="Codice di esercizio impianto minore" value="{{$user_detail?$user_detail->minor_plant_code:''}}" />
                                 </div>
 
                                 <div class="col-12 d-flex justify-content-between mt-4">
@@ -263,12 +291,12 @@ $configData = Helper::appClasses();
                             <div class="row g-3">
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="">Dilazione di pagamento preferita *</label>
-                                    <select name="" id="" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option>Seleziona dilazione</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label class="form-label" for="payment_extension">Dilazione di pagamento preferita *</label>
+                                    <select name="payment_extension" id="payment_extension" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                        <option value=""></option>
+                                    @foreach($payment_terms as $_payment_terms)
+                                        <option value="{{$_payment_terms->name}}" {{$user_detail?($user_detail->destination_common==$_payment_terms->name?'selected':''):''}}>{{$_payment_terms->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 
@@ -654,7 +682,7 @@ $configData = Helper::appClasses();
             </div>
 
             <div class="signup-wiz__footer">
-                <p>Hai già un account? <a href="{{route('signup')}}">Entra</a></p>    
+                <p>Hai già un account? <a href="{{route('register')}}">Entra</a></p>    
             </div>
 
         </div>
