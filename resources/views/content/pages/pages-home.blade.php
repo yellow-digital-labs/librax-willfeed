@@ -438,267 +438,27 @@ $configData = Helper::appClasses();
 
         <div class="landing-reviews__slider uk-slider-container">
             <div class="uk-grid landing-reviews__grid uk-slider-items">
-
+            @if($ratings)
+                @foreach($ratings as $rating)
                 <div class="uk-width-1-4 landing-reviews__col">
                     <div class="landing-reviews__item">
                         <div class="landing-reviews__rating">
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
+                            <div class="read-only-ratings" data-rateyo-read-only="true" data-rateyo-rating="{{$rating->star}}" data-rateyo-star-width="20px"></div>
                         </div>
                         <div class="landing-reviews__text">
                             <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                                {{$rating->review_text}}
                             </p>
                         </div>
                         <div class="landing-reviews__author">
-                            <div class="landing-reviews__author-img">
-                                <img src="{{asset('assets/front/images/review-img-dummy.png')}}" width="66" height="65">
-                            </div>
                             <div class="landing-reviews__author-data">
-                                <h4 class="landing-reviews__author-name">John Smith</h4>
-                                <div class="landing-reviews__author-dest">Ceo, XYZ</div>
+                                <h4 class="landing-reviews__author-name">{{$rating->review_by_name}}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="uk-width-1-4 landing-reviews__col">
-                    <div class="landing-reviews__item">
-                        <div class="landing-reviews__rating">
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                        </div>
-                        <div class="landing-reviews__text">
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            </p>
-                        </div>
-                        <div class="landing-reviews__author">
-                            <div class="landing-reviews__author-img">
-                                <img src="{{asset('assets/front/images/review-img-dummy.png')}}" width="66" height="65">
-                            </div>
-                            <div class="landing-reviews__author-data">
-                                <h4 class="landing-reviews__author-name">John Smith</h4>
-                                <div class="landing-reviews__author-dest">Ceo, XYZ</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-width-1-4 landing-reviews__col">
-                    <div class="landing-reviews__item">
-                        <div class="landing-reviews__rating">
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                        </div>
-                        <div class="landing-reviews__text">
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            </p>
-                        </div>
-                        <div class="landing-reviews__author">
-                            <div class="landing-reviews__author-img">
-                                <img src="{{asset('assets/front/images/review-img-dummy.png')}}" width="66" height="65">
-                            </div>
-                            <div class="landing-reviews__author-data">
-                                <h4 class="landing-reviews__author-name">John Smith</h4>
-                                <div class="landing-reviews__author-dest">Ceo, XYZ</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-width-1-4 landing-reviews__col">
-                    <div class="landing-reviews__item">
-                        <div class="landing-reviews__rating">
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                        </div>
-                        <div class="landing-reviews__text">
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            </p>
-                        </div>
-                        <div class="landing-reviews__author">
-                            <div class="landing-reviews__author-img">
-                                <img src="{{asset('assets/front/images/review-img-dummy.png')}}" width="66" height="65">
-                            </div>
-                            <div class="landing-reviews__author-data">
-                                <h4 class="landing-reviews__author-name">John Smith</h4>
-                                <div class="landing-reviews__author-dest">Ceo, XYZ</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-width-1-4 landing-reviews__col">
-                    <div class="landing-reviews__item">
-                        <div class="landing-reviews__rating">
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                        </div>
-                        <div class="landing-reviews__text">
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            </p>
-                        </div>
-                        <div class="landing-reviews__author">
-                            <div class="landing-reviews__author-img">
-                                <img src="{{asset('assets/front/images/review-img-dummy.png')}}" width="66" height="65">
-                            </div>
-                            <div class="landing-reviews__author-data">
-                                <h4 class="landing-reviews__author-name">John Smith</h4>
-                                <div class="landing-reviews__author-dest">Ceo, XYZ</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-width-1-4 landing-reviews__col">
-                    <div class="landing-reviews__item">
-                        <div class="landing-reviews__rating">
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                        </div>
-                        <div class="landing-reviews__text">
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            </p>
-                        </div>
-                        <div class="landing-reviews__author">
-                            <div class="landing-reviews__author-img">
-                                <img src="{{asset('assets/front/images/review-img-dummy.png')}}" width="66" height="65">
-                            </div>
-                            <div class="landing-reviews__author-data">
-                                <h4 class="landing-reviews__author-name">John Smith</h4>
-                                <div class="landing-reviews__author-dest">Ceo, XYZ</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-width-1-4 landing-reviews__col">
-                    <div class="landing-reviews__item">
-                        <div class="landing-reviews__rating">
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                        </div>
-                        <div class="landing-reviews__text">
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            </p>
-                        </div>
-                        <div class="landing-reviews__author">
-                            <div class="landing-reviews__author-img">
-                                <img src="{{asset('assets/front/images/review-img-dummy.png')}}" width="66" height="65">
-                            </div>
-                            <div class="landing-reviews__author-data">
-                                <h4 class="landing-reviews__author-name">John Smith</h4>
-                                <div class="landing-reviews__author-dest">Ceo, XYZ</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-width-1-4 landing-reviews__col">
-                    <div class="landing-reviews__item">
-                        <div class="landing-reviews__rating">
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                        </div>
-                        <div class="landing-reviews__text">
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            </p>
-                        </div>
-                        <div class="landing-reviews__author">
-                            <div class="landing-reviews__author-img">
-                                <img src="{{asset('assets/front/images/review-img-dummy.png')}}" width="66" height="65">
-                            </div>
-                            <div class="landing-reviews__author-data">
-                                <h4 class="landing-reviews__author-name">John Smith</h4>
-                                <div class="landing-reviews__author-dest">Ceo, XYZ</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-width-1-4 landing-reviews__col">
-                    <div class="landing-reviews__item">
-                        <div class="landing-reviews__rating">
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                        </div>
-                        <div class="landing-reviews__text">
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            </p>
-                        </div>
-                        <div class="landing-reviews__author">
-                            <div class="landing-reviews__author-img">
-                                <img src="{{asset('assets/front/images/review-img-dummy.png')}}" width="66" height="65">
-                            </div>
-                            <div class="landing-reviews__author-data">
-                                <h4 class="landing-reviews__author-name">John Smith</h4>
-                                <div class="landing-reviews__author-dest">Ceo, XYZ</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-width-1-4 landing-reviews__col">
-                    <div class="landing-reviews__item">
-                        <div class="landing-reviews__rating">
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                            <span class="wf-icon wf-icon-star"></span>
-                        </div>
-                        <div class="landing-reviews__text">
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            </p>
-                        </div>
-                        <div class="landing-reviews__author">
-                            <div class="landing-reviews__author-img">
-                                <img src="{{asset('assets/front/images/review-img-dummy.png')}}" width="66" height="65">
-                            </div>
-                            <div class="landing-reviews__author-data">
-                                <h4 class="landing-reviews__author-name">John Smith</h4>
-                                <div class="landing-reviews__author-dest">Ceo, XYZ</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                @endforeach
+            @endif
             </div>
         </div>
         <div class="landing-reviews__footer">
@@ -758,6 +518,11 @@ $configData = Helper::appClasses();
 @section('footer-script')
 <script src="{{asset('assets/front/plugins/uikit-3.16.22/js/uikit.min.js')}}"></script>
 <script src="{{asset('assets/front/js/jquery-3.7.0.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/rateyo/rateyo.js')}}"></script>
 <script src="{{asset('assets/front/js/custom.js')}}"></script>
+
+<script>
+    $('.read-only-ratings').rateYo();
+</script>
 @endsection
 <!-- Scripts Ends -->
