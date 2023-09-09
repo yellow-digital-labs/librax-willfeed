@@ -606,57 +606,27 @@ if($isOnlyProfile){
                     </div>
                     <div class="card-body">
                         <div class="added-cards">
-                            <div class="cardMaster border p-3 rounded mb-3">
-                                <div class="d-flex justify-content-between flex-lg-row flex-column">
-                                    <div class="card-information">
-                                        <img class="mb-3 img-fluid" src="{{asset('assets/img/icons/payments/mastercard.png')}}" alt="Master Card">
-                                        <h6 class="mb-2 pt-1">Kaith Morrison</h6>
-                                        <span class="card-number">&#8727;&#8727;&#8727;&#8727; &#8727;&#8727;&#8727;&#8727; &#8727;&#8727;&#8727;&#8727; 9856</span>
-                                    </div>
-                                    <div class="d-flex flex-column text-start text-lg-end">
-                                        <div class="d-flex order-lg-0 order-1 mt-3">
-                                            <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#editCCModal">Modifica</button>
-                                            <button class="btn btn-outline-dark">Elimina</button>
+                        @if($payment_methods)
+                            @foreach($payment_methods as $payment_method)
+                                <div class="cardMaster border p-3 rounded mb-3">
+                                    <div class="d-flex justify-content-between flex-lg-row flex-column">
+                                        <div class="card-information">
+                                            <img class="mb-3 img-fluid" src="{{asset('assets/img/icons/payments/'.$payment_method->card->brand.'.png')}}" alt="Master Card">
+                                            <h6 class="mb-2 pt-1">&nbsp;&nbsp;</h6>
+                                            <span class="card-number">XXXX XXXX XXXX {{$payment_method->card->last4}}</span>
                                         </div>
-                                        <small class="mt-lg-auto mt-2 order-lg-1 order-0">Scadenza 03/2024</small>
+                                        <div class="d-flex flex-column text-start text-lg-end">
+                                            <div class="d-flex order-lg-0 order-1 mt-3">
+                                                <a class="btn btn-outline-dark" href="{{route('stripe.payment.delete')}}">Elimina</a>
+                                            </div>
+                                            <small class="mt-lg-auto mt-2 order-lg-1 order-0">Scadenza {{$payment_method->card->exp_month}}/{{$payment_method->card->exp_year}}</small>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cardMaster border p-3 rounded mb-3">
-                                <div class="d-flex justify-content-between flex-lg-row flex-column">
-                                    <div class="card-information">
-                                        <img class="mb-3 img-fluid" src="{{asset('assets/img/icons/payments/visa.png')}}" alt="Master Card">
-                                        <div class="d-flex align-items-center mb-2 pt-1">
-                                            <h6 class="mb-0 me-3">Tom McBride</h6>
-                                            <span class="badge bg-label-primary me-1 badge--primary">Principale</span>
-                                        </div>
-                                        <span class="card-number">&#8727;&#8727;&#8727;&#8727; &#8727;&#8727;&#8727;&#8727; &#8727;&#8727;&#8727;&#8727; 6542</span>
-                                    </div>
-                                    <div class="d-flex flex-column text-start text-lg-end">
-                                        <div class="d-flex order-lg-0 order-1 mt-3">
-                                            <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#editCCModal">Modifica</button>
-                                            <button class="btn btn-outline-dark">Elimina</button>
-                                        </div>
-                                        <small class="mt-lg-auto mt-2 order-lg-1 order-0">Scadenza 05/2025</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cardMaster border p-3 rounded">
-                                <div class="d-flex justify-content-between flex-lg-row flex-column">
-                                    <div class="card-information">
-                                        <img class="mb-3 img-fluid" src="{{asset('assets/img/icons/payments/american-ex.png')}}" alt="Visa Card">
-                                        <h6 class="mb-2 pt-1">Mildred Wagner</h6>
-                                        <span class="card-number">&#8727;&#8727;&#8727;&#8727; &#8727;&#8727;&#8727;&#8727; &#8727;&#8727;&#8727;&#8727; 5896</span>
-                                    </div>
-                                    <div class="d-flex flex-column text-start text-lg-end">
-                                        <div class="d-flex order-lg-0 order-1 mt-3">
-                                            <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#editCCModal">Modifica</button>
-                                            <button class="btn btn-outline-dark">Elimina</button>
-                                        </div>
-                                        <small class="mt-lg-auto mt-2 order-lg-1 order-0">Scadenza 05/2025</small>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+                        @else
+                            <p>No payment method found</p>
+                        @endif
                         </div>
                     </div>
                 </div>

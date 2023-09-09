@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\Subscription;
 use Auth;
+use Stripe;
 
 class UsersDetails extends Controller
 {
@@ -18,12 +19,24 @@ class UsersDetails extends Controller
     $subscriptions = Subscription::where(['status' => 'active'])->get();
     $isOnlyProfile = false;
 
+    $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+    $payment_methods_data = $stripe->customers->allPaymentMethods(
+      $user->stripe_customer_id,
+      ["type" => "card"]
+    );
+
+    $payment_methods = [];
+    if($payment_methods_data){
+      $payment_methods = $payment_methods_data->data;
+    }
+
     return view('content.pages.pages-users-details', [
       'user' => $user,
       'user_detail' => $user_detail,
       'subscriptions' => $subscriptions,
       'isOnlyProfile' => $isOnlyProfile,
       'authUser' => $user,
+      'payment_methods' => $payment_methods,
     ]);
   }
 

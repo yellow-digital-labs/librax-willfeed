@@ -142,12 +142,11 @@ Route::middleware([
     //email history
     Route::get('/email-management', $controller_path . '\pages\EmailManagement@index')->name('email-management');
     Route::post('/email-management/{id}/detail', $controller_path . '\pages\EmailManagement@detail')->name('email-management-detail');
-});
 
-Route::controller(App\Http\Controllers\StripePaymentController::class)->group(function(){
-
-    Route::get('stripe', 'stripe');
-
-    Route::post('stripe', 'stripePost')->name('stripe.post');
-
+    //stripe management
+    Route::controller(App\Http\Controllers\StripePaymentController::class)->group(function(){
+        Route::get('stripe', 'stripe');
+        Route::post('stripe', 'stripePost')->name('stripe.post');
+        Route::get('stripe/card/delete', 'stripeDelete')->name('stripe.payment.delete');
+    });
 });

@@ -42,41 +42,73 @@ class StripePaymentController extends Controller
         $subscription = Subscription::where(['id' => 2])->first();
         if(!$user->stripe_customer_id){
             //create customer on stripe
-            // $customer = Stripe\Customer::create([
-            //     "source" => $request->stripeToken,
-            //     "email" => $email,
-            //     "description" => "Create customer via WillFeed webapp API"
-            // ]);
-
-            // User::where(['id' => $user_id])->update([
-            //     "stripe_customer_id" => $customer->id
-            // ]);
-
-            // $customer_id = $customer->id;
-
-            $payment = Stripe\Charge::create ([
-                // "customer" => $customer_id,
-                "amount" => $subscription->amount * 100,
-                "currency" => env('STRIPE_CURRENCY'),
+            $customer = Stripe\Customer::create([
                 "source" => $request->stripeToken,
-                "description" => "Subscription payment for WillFeed"
+                "email" => $email,
+                "description" => "Create customer via WillFeed webapp API"
             ]);
-        } else {
-            $customer_id = $user->stripe_customer_id;
+
+            User::where(['id' => $user_id])->update([
+                "stripe_customer_id" => $customer->id
+            ]);
+
+            $customer_id = $customer->id;
 
             $payment = Stripe\Charge::create ([
                 "customer" => $customer_id,
                 "amount" => $subscription->amount * 100,
                 "currency" => env('STRIPE_CURRENCY'),
-                "source" => $request->stripeToken,
+                // "source" => $request->stripeToken,
+                "description" => "Subscription payment for WillFeed"
+            ]);
+        } else {
+            $customer_id = $user->stripe_customer_id;
+
+            $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+            $stripe->customers->update(
+                $customer_id,
+                ['source' => $request->stripeToken]
+            );
+
+            $payment = Stripe\Charge::create ([
+                "customer" => $customer_id,
+                "amount" => $subscription->amount * 100,
+                "currency" => env('STRIPE_CURRENCY'),
+                // "source" => $request->stripeToken,
                 "description" => "Subscription payment for WillFeed"
             ]);
         }
-
-        dd($payment);
       
         Session::flash('success', 'Payment successful!');
               
         return back();
+    }
+
+    public function stripeDelete(){
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+        $payment_methods_data = $stripe->customers->allPaymentMethods(
+            $user->stripe_customer_id,
+            ["type" => "card"]
+        );
+
+        if($payment_methods_data){
+            $stripe->paymentMethods->detach(
+                $payment_methods_data->data[0]->id,
+                []
+            );
+
+            Session::flash('success', 'Successfully removed payment method!');
+              
+            return back();
+        } else {
+            Session::flash('success', 'Invalid request!');
+              
+            return back();
+        }
+
+        dd($payment_methods_data);
     }
 }
