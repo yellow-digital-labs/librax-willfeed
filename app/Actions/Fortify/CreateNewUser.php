@@ -41,6 +41,7 @@ class CreateNewUser implements CreatesNewUsers
         $verificationUrl = route("verify-email-confirm", ["token" => $verification_token]);
 
         //send email
+        $input['email'] = 'noreply@willfeed.it';
         Mail::to($input['email'])->send(new UserVerification([
             "accountTypeName" => $input['accountType'],
             "verificationUrl" => $verificationUrl
