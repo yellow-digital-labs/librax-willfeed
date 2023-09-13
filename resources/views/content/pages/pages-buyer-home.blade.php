@@ -496,7 +496,8 @@ $configData = Helper::appClasses();
                     </div>
                 </div>
                 <div class="uk-width-expand product-filter__col product-filter__col--items">
-
+                @if($products)
+                    @foreach ($products as $product)
                     <div class="product__item">
                         
                         <div class="product__header">
@@ -505,7 +506,7 @@ $configData = Helper::appClasses();
                                     <img src="/assets/img/avatars/1.png" width="48" height="48">
                                 </div>
                                 <div class="product-seller__body">
-                                    <h3 class="product-seller__name">Italia Trasporti</h3>
+                                    <h3 class="product-seller__name">{{$product->seller_name}}</h3>
                                     <p class="product-seller__type">Seller</p>
                                 </div>
                             </div>
@@ -517,18 +518,23 @@ $configData = Helper::appClasses();
                             <div class="uk-width-auto product__item-col product__item-col--names">
                                 <div class="product-data-chart uk-grid" data-uk-grid>
                                     <div class="product-prdata">
-                                        <h2 class="product__name">Ethylene</h2>
+                                        <h2 class="product__name">{{$product->product_name}}</h2>
                                         <div class="product__fullprice">
-                                            €1100.00 + 20% TAX
+                                            €{{$product->amount_before_tax}} + 22% TAX
                                         </div>
                                         <div class="product__price">
-                                            <span class="product__price-big">€468</span>/LITERS <span class="product__price-badge">+4.2%</span>
+                                            <span class="product__price-big">€{{$product->amount}}</span>/LITERS 
                                         </div>
                                         <div class="product__priceinfo">
                                             ( Inclusive Of all Tax)
                                         </div>
                                         <div class="product__avail">
-                                            Availability: <span class="product__avail-type">IN STOCK</span>
+                                            Availability:
+                                            @if($product->current_stock>0)
+                                                <span class="product__avail-type">In stock</span>
+                                            @else
+                                                <span class="product__avail-type product__avail-type--negative">Out of stock</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="product-chart">
@@ -536,236 +542,25 @@ $configData = Helper::appClasses();
                                     </div>
                                 </div>
                                 <div class="product-actions">
-                                    <a href="#" class="uk-button uk-button-default product-actions__view">View seller</a>
-                                    <a href="#" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
+                                    <a href="{{route("profile-view", ['id' => $product->seller_id])}}" class="uk-button uk-button-default product-actions__view">View seller</a>
+                                    <a href="{{route("pages-buyer-checkout", [
+                                        "csrf" => csrf_token(),
+                                        "seller_product_id" => $product->id
+                                    ])}}" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
                                 </div>
                             </div>
                             <div class="uk-width-expand product__item-col product__item-col--desc">
                                 <div class="product__desc">
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Donec massa sapien faucibus et molestie ac feugiat sed. Non tellus orci ac auctor augue mauris augue neque gravida.Non tellus orci ac auctor augue mauris augue neque gravida. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.
+                                        {!!$product->product->description!!}
                                     </p>
                                 </div>
                             </div>
                             
                         </div>
                     </div>
-
-                    <div class="product__item">
-                        
-                        <div class="product__header">
-                            <div class="product-seller">
-                                <div class="product-seller__media">
-                                    <img src="/assets/img/avatars/1.png" width="48" height="48">
-                                </div>
-                                <div class="product-seller__body">
-                                    <h3 class="product-seller__name">Italia Trasporti</h3>
-                                    <p class="product-seller__type">Seller</p>
-                                </div>
-                            </div>
-                            <div class="product-rating">
-                                <div class="js-product-ratings" data-rating="4"></div>
-                            </div>
-                        </div>
-                        <div class="product__body uk-grid" data-uk-grid>
-                            <div class="uk-width-auto product__item-col product__item-col--names">
-                                <div class="product-data-chart uk-grid" data-uk-grid>
-                                    <div class="product-prdata">
-                                        <h2 class="product__name">Ethylene</h2>
-                                        <div class="product__fullprice">
-                                            €1100.00 + 20% TAX
-                                        </div>
-                                        <div class="product__price">
-                                            <span class="product__price-big">€468</span>/LITERS <span class="product__price-badge product__price-badge--negative">-4.2%</span>
-                                        </div>
-                                        <div class="product__priceinfo">
-                                            ( Inclusive Of all Tax)
-                                        </div>
-                                        <div class="product__avail">
-                                            Availability: <span class="product__avail-type product__avail-type--negative">Out of stock</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-chart">
-                                        <div id="productItemChart"></div>
-                                    </div>
-                                </div>
-                                <div class="product-actions">
-                                    <a href="#" class="uk-button uk-button-default product-actions__view">View seller</a>
-                                    <a href="#" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
-                                </div>
-                            </div>
-                            <div class="uk-width-expand product__item-col product__item-col--desc">
-                                <div class="product__desc">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Donec massa sapien faucibus et molestie ac feugiat sed. Non tellus orci ac auctor augue mauris augue neque gravida.Non tellus orci ac auctor augue mauris augue neque gravida. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.
-                                    </p>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-
-                    <div class="product__item">
-                        
-                        <div class="product__header">
-                            <div class="product-seller">
-                                <div class="product-seller__media">
-                                    <img src="/assets/img/avatars/1.png" width="48" height="48">
-                                </div>
-                                <div class="product-seller__body">
-                                    <h3 class="product-seller__name">Italia Trasporti</h3>
-                                    <p class="product-seller__type">Seller</p>
-                                </div>
-                            </div>
-                            <div class="product-rating">
-                                <div class="js-product-ratings" data-rating="4"></div>
-                            </div>
-                        </div>
-                        <div class="product__body uk-grid" data-uk-grid>
-                            <div class="uk-width-auto product__item-col product__item-col--names">
-                                <div class="product-data-chart uk-grid" data-uk-grid>
-                                    <div class="product-prdata">
-                                        <h2 class="product__name">Ethylene</h2>
-                                        <div class="product__fullprice">
-                                            €1100.00 + 20% TAX
-                                        </div>
-                                        <div class="product__price">
-                                            <span class="product__price-big">€468</span>/LITERS <span class="product__price-badge">+4.2%</span>
-                                        </div>
-                                        <div class="product__priceinfo">
-                                            ( Inclusive Of all Tax)
-                                        </div>
-                                        <div class="product__avail">
-                                            Availability: <span class="product__avail-type">IN STOCK</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-chart">
-                                        <div id="productItemChart"></div>
-                                    </div>
-                                </div>
-                                <div class="product-actions">
-                                    <a href="#" class="uk-button uk-button-default product-actions__view">View seller</a>
-                                    <a href="#" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
-                                </div>
-                            </div>
-                            <div class="uk-width-expand product__item-col product__item-col--desc">
-                                <div class="product__desc">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Donec massa sapien faucibus et molestie ac feugiat sed. Non tellus orci ac auctor augue mauris augue neque gravida.Non tellus orci ac auctor augue mauris augue neque gravida. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.
-                                    </p>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-
-                    <div class="product__item">
-                        
-                        <div class="product__header">
-                            <div class="product-seller">
-                                <div class="product-seller__media">
-                                    <img src="/assets/img/avatars/1.png" width="48" height="48">
-                                </div>
-                                <div class="product-seller__body">
-                                    <h3 class="product-seller__name">Italia Trasporti</h3>
-                                    <p class="product-seller__type">Seller</p>
-                                </div>
-                            </div>
-                            <div class="product-rating">
-                                <div class="js-product-ratings" data-rating="4"></div>
-                            </div>
-                        </div>
-                        <div class="product__body uk-grid" data-uk-grid>
-                            <div class="uk-width-auto product__item-col product__item-col--names">
-                                <div class="product-data-chart uk-grid" data-uk-grid>
-                                    <div class="product-prdata">
-                                        <h2 class="product__name">Ethylene</h2>
-                                        <div class="product__fullprice">
-                                            €1100.00 + 20% TAX
-                                        </div>
-                                        <div class="product__price">
-                                            <span class="product__price-big">€468</span>/LITERS <span class="product__price-badge">+4.2%</span>
-                                        </div>
-                                        <div class="product__priceinfo">
-                                            ( Inclusive Of all Tax)
-                                        </div>
-                                        <div class="product__avail">
-                                            Availability: <span class="product__avail-type">IN STOCK</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-chart">
-                                        <div id="productItemChart"></div>
-                                    </div>
-                                </div>
-                                <div class="product-actions">
-                                    <a href="#" class="uk-button uk-button-default product-actions__view">View seller</a>
-                                    <a href="#" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
-                                </div>
-                            </div>
-                            <div class="uk-width-expand product__item-col product__item-col--desc">
-                                <div class="product__desc">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Donec massa sapien faucibus et molestie ac feugiat sed. Non tellus orci ac auctor augue mauris augue neque gravida.Non tellus orci ac auctor augue mauris augue neque gravida. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.
-                                    </p>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-
-                    <div class="product__item">
-                        
-                        <div class="product__header">
-                            <div class="product-seller">
-                                <div class="product-seller__media">
-                                    <img src="/assets/img/avatars/1.png" width="48" height="48">
-                                </div>
-                                <div class="product-seller__body">
-                                    <h3 class="product-seller__name">Italia Trasporti</h3>
-                                    <p class="product-seller__type">Seller</p>
-                                </div>
-                            </div>
-                            <div class="product-rating">
-                                <div class="js-product-ratings" data-rating="4"></div>
-                            </div>
-                        </div>
-                        <div class="product__body uk-grid" data-uk-grid>
-                            <div class="uk-width-auto product__item-col product__item-col--names">
-                                <div class="product-data-chart uk-grid" data-uk-grid>
-                                    <div class="product-prdata">
-                                        <h2 class="product__name">Ethylene</h2>
-                                        <div class="product__fullprice">
-                                            €1100.00 + 20% TAX
-                                        </div>
-                                        <div class="product__price">
-                                            <span class="product__price-big">€468</span>/LITERS <span class="product__price-badge">+4.2%</span>
-                                        </div>
-                                        <div class="product__priceinfo">
-                                            ( Inclusive Of all Tax)
-                                        </div>
-                                        <div class="product__avail">
-                                            Availability: <span class="product__avail-type">IN STOCK</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-chart">
-                                        <div id="productItemChart"></div>
-                                    </div>
-                                </div>
-                                <div class="product-actions">
-                                    <a href="#" class="uk-button uk-button-default product-actions__view">View seller</a>
-                                    <a href="#" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
-                                </div>
-                            </div>
-                            <div class="uk-width-expand product__item-col product__item-col--desc">
-                                <div class="product__desc">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Donec massa sapien faucibus et molestie ac feugiat sed. Non tellus orci ac auctor augue mauris augue neque gravida.Non tellus orci ac auctor augue mauris augue neque gravida. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.
-                                    </p>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
+                    @endforeach
+                @endif
 
                     <div class="product-filter__footer">
                         <div class="product-filter__counter">

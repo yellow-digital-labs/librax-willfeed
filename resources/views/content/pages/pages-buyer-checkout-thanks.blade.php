@@ -44,20 +44,20 @@ $configData = Helper::appClasses();
             <h3 class="thanks__title">Ordine inviato con successo!</h3>
             <div class="thanks__data">
                 <div class="thanks__item">
-                    <span class="thanks__item-bold">Order number:</span>  ON545645161
+                    <span class="thanks__item-bold">Order number:</span>  ORD{{$order->id}}
                 </div>
                 <div class="thanks__item">
-                    <span class="thanks__item-bold">Seller:</span>  Italia Trasporti
+                    <span class="thanks__item-bold">Seller:</span>  {{$order->seller_name}}
                 </div>
                 <div class="thanks__item">
-                    <span class="thanks__item-bold">Product name:</span>  Ethylene
+                    <span class="thanks__item-bold">Product name:</span>  {{$order->product_name}}
                 </div>
                 <div class="thanks__item">
-                    <span class="thanks__item-bold">Order QTY:</span>  2 LITTERS
+                    <span class="thanks__item-bold">Order QTY:</span>  {{$order->product_qty}} LITTERS
                 </div>
             </div>
             <div class="thanks__action">
-                <a href="#" class="uk-button uk-button-primary thanks__action-btn">Vai alla Dashboard</a>
+                <a href="{{route("dashboard")}}" class="uk-button uk-button-primary thanks__action-btn">Vai alla Dashboard</a>
             </div>
         </div>
     </div>

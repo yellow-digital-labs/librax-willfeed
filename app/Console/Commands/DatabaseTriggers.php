@@ -121,7 +121,7 @@ class DatabaseTriggers extends Command
                     (SELECT business_name, contact_person INTO @user_name, @customer_contact FROM user_details WHERE user_id=NEW.user_id);
                     (SELECT business_name INTO @seller_name FROM user_details WHERE user_id=NEW.seller_id);
                     (SELECT name INTO @product_name FROM products WHERE id=NEW.product_id);
-                    (SELECT amount INTO @product_amount FROM product_sellers WHERE product_id=NEW.product_id AND seller_id=NEW.seller_id);
+                    (SELECT amount INTO @product_amount FROM product_sellers WHERE product_id=NEW.product_id AND seller_id=NEW.seller_id LIMIT 1);
                     (SELECT name INTO @order_status FROM order_statuses WHERE id=NEW.order_status_id);
                     (SELECT email INTO @customer_email FROM users WHERE id=NEW.user_id);
 

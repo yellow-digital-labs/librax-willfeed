@@ -30,7 +30,7 @@ Route::get('/verify-email/{token}', $controller_path . '\pages\VerifyEmail@confi
 Route::get('logout', [ App\Http\Controllers\ClientController::class, 'logout'])->name('logout');
 
 
-Route::get('/home', $controller_path . '\pages\MainHome@index')->name('pages-main-home');
+// Route::get('/home', $controller_path . '\pages\MainHome@index')->name('pages-main-home');
 Route::get('/about-us', $controller_path . '\pages\PageAboutus@index')->name('pages-aboutus');
 Route::get('/contact-us', $controller_path . '\pages\PageContactus@index')->name('pages-contactus');
 Route::get('/terms', $controller_path . '\pages\PageTerms@index')->name('pages-terms');
@@ -42,8 +42,6 @@ Route::get('/admin', $controller_path . '\Admin@login')->name('admin-login');
 
 //Buyer Home screen
 Route::get('/buyer-home', $controller_path . '\pages\BuyerHome@index')->name('pages-buyer-home');
-Route::get('/buyer-checkout', $controller_path . '\pages\BuyerCheckout@index')->name('pages-buyer-checkout');
-Route::get('/buyer-checkout-thanks', $controller_path . '\pages\BuyerCheckoutThanks@index')->name('pages-buyer-checkout-thanks');
 
 
 //Authentication required
@@ -150,4 +148,9 @@ Route::middleware([
         Route::post('stripe', 'stripePost')->name('stripe.post');
         Route::get('stripe/card/delete', 'stripeDelete')->name('stripe.payment.delete');
     });
+
+    //buyer checkout and order pages
+    Route::get('/buyer-checkout/{seller_product_id}/{csrf}', $controller_path . '\pages\BuyerCheckout@index')->name('pages-buyer-checkout');
+    Route::post('/buyer-checkout/{seller_product_id}/{csrf}', $controller_path . '\pages\BuyerCheckout@store')->name('pages-buyer-checkout-store');
+    Route::get('/buyer-checkout-thanks/{order_id}', $controller_path . '\pages\BuyerCheckoutThanks@index')->name('pages-buyer-checkout-thanks');
 });

@@ -29,7 +29,7 @@
                                 <span class="wf-icon wf-icon-email footer-contact__icon"></span>
                                 <div class="footer-contact__data">
                                     <h2 class="footer-contact__name">Mail Us</h2>
-                                    <a href="mailto:info@example.com" class="footer-contact__href">info@example.com</a>
+                                    <a href="mailto:info@willfeed.it" class="footer-contact__href">info@willfeed.it</a>
                                 </div>
                             </div>
                         </div>
@@ -68,19 +68,19 @@
                     <h2 class="title footer-main__title">Links</h2>
                     <ul class="footer-links">
                         <li class="footer-links__item">
-                            <a href="#" class="footer-links__action">Sell</a>
+                            <a href="{{route("register")}}" class="footer-links__action">Sell</a>
                         </li>
                         <li class="footer-links__item">
-                            <a href="#" class="footer-links__action">Buy</a>
+                            <a href="{{route("register")}}" class="footer-links__action">Buy</a>
                         </li>
                         <li class="footer-links__item">
                             <a href="#" class="footer-links__action">Market</a>
                         </li>
                         <li class="footer-links__item">
-                            <a href="#" class="footer-links__action">About Us</a>
+                            <a href="{{route('pages-aboutus')}}" class="footer-links__action">About Us</a>
                         </li>
                         <li class="footer-links__item">
-                            <a href="#" class="footer-links__action">Contact Us</a>
+                            <a href="{{route('pages-contactus')}}" class="footer-links__action">Contact Us</a>
                         </li>
                     </ul>
                 </div>
@@ -127,13 +127,13 @@
                             <a href="#" class="footer-menu__link">Support center</a>
                         </li>
                         <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">Privacy & policy</a>
+                            <a href="{{route("pages-privacy")}}" class="footer-menu__link">Privacy & policy</a>
                         </li>
                         <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">Terms of use</a>
+                            <a href="{{route("pages-terms")}}" class="footer-menu__link">Terms of use</a>
                         </li>
                         <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">FAQs</a>
+                            <a href="{{route("pages-faqs")}}" class="footer-menu__link">FAQs</a>
                         </li>
                         <li class="footer-menu__item">
                             <a href="#" class="footer-menu__link">Help</a>
