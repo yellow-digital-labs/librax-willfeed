@@ -7,7 +7,8 @@
             "slug": "dashboard",
             "section": [
                 "seller",
-                "admin"
+                "admin",
+                "buyer"
             ]
         },
         {
@@ -16,7 +17,8 @@
             "icon": "menu-icon tf-icons ti ti-users",
             "slug": "profile",
             "section": [
-                "seller"
+                "seller",
+                "buyer"
             ]
         },
         {
@@ -44,7 +46,8 @@
             "slug": "orders",
             "section": [
                 "seller",
-                "admin"
+                "admin",
+                "buyer"
             ]
         },
         {
@@ -54,7 +57,8 @@
             "slug": "payments",
             "section": [
                 "seller",
-                "admin"
+                "admin",
+                "buyer"
             ]
         },
         {
@@ -121,7 +125,8 @@
             "slug": "settings",
             "section": [
                 "seller",
-                "admin"
+                "admin",
+                "buyer"
             ]
         },
         {
@@ -131,7 +136,8 @@
             "slug": "logout",
             "section": [
                 "seller",
-                "admin"
+                "admin",
+                "buyer"
             ]
         }
     ]

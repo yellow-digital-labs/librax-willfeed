@@ -57,6 +57,7 @@ Route::middleware([
     $controller_path = 'App\Http\Controllers';
 
     Route::get('/signup/client', $controller_path . '\pages\SignupClient@index')->name('signup-client');
+    Route::post('/signup/client', $controller_path . '\pages\SignupClient@store')->name('signup-client-store');
     Route::get('/signup/seller', $controller_path . '\pages\SignupSeller@index')->name('signup-seller');
     Route::post('/signup/seller', $controller_path . '\pages\SignupSeller@store')->name('signup-seller-store');
 

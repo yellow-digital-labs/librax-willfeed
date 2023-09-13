@@ -435,80 +435,110 @@ if($isOnlyProfile){
                                 <p class="mb-0">{{$user_detail->no_of_distributer?$user_detail->no_of_distributer:'NA'}}</p>
                             </div>
 
+                            @if($user_detail->fleet&&$user_detail->fleet>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Flotta</h6>
                                 <p class="mb-0">{{$user_detail->fleet?$user_detail->fleet:'NA'}}</p>
                             </div>
+                            @endif
 
+                            @if($user_detail->type_of_flotta&&$user_detail->type_of_flotta>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Tipologia & Dimensione Flotta</h6>
                                 <p class="mb-0">{{$user_detail->type_of_flotta?$user_detail->type_of_flotta:'NA'}}</p>
                             </div>
+                            @endif
 
+                            @if($user_detail->folding_trucks&&$user_detail->folding_trucks>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion Ribaltabili</h6>
                                 <p class="mb-0">{{$user_detail->folding_trucks?$user_detail->folding_trucks:'NA'}}</p>
                             </div>
+                            @endif
 
+                            @if($user_detail->van_trucks&&$user_detail->van_trucks>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion Furgonati</h6>
                                 <p class="mb-0">{{$user_detail->van_trucks?$user_detail->van_trucks:'NA'}}</p>
                             </div>
+                            @endif
                             
+                            @if($user_detail->hundred_trucks&&$user_detail->hundred_trucks>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion Centinato</h6>
                                 <p class="mb-0">{{$user_detail->hundred_trucks?$user_detail->hundred_trucks:'NA'}}</p>
                             </div>
+                            @endif
 
+                            @if($user_detail->chassis_trucks&&$user_detail->chassis_trucks>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion a telaio</h6>
                                 <p class="mb-0">{{$user_detail->chassis_trucks?$user_detail->chassis_trucks:'NA'}}</p>
                             </div>
+                            @endif
 
+                            @if($user_detail->fixed_cassone_truck&&$user_detail->fixed_cassone_truck>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion a cassone Fisso</h6>
                                 <p class="mb-0">{{$user_detail->fixed_cassone_truck?$user_detail->fixed_cassone_truck:'NA'}}</p>
                             </div>
+                            @endif
 
+                            @if($user_detail->fridge_truck&&$user_detail->fridge_truck>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion Frigo</h6>
                                 <p class="mb-0">{{$user_detail->fridge_truck?$user_detail->fridge_truck:'NA'}}</p>
                             </div>
+                            @endif
 
+                            @if($user_detail->truck_with_crane&&$user_detail->truck_with_crane>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion con Gru</h6>
                                 <p class="mb-0">{{$user_detail->truck_with_crane?$user_detail->truck_with_crane:'NA'}}</p>
                             </div>
+                            @endif
 
+                            @if($user_detail->scarble_truck&&$user_detail->scarble_truck>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion Scarrabili</h6>
                                 <p class="mb-0">{{$user_detail->scarble_truck?$user_detail->scarble_truck:'NA'}}</p>
                             </div>
+                            @endif
 
+                            @if($user_detail->bitoniere&&$user_detail->bitoniere>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Bitoniere</h6>
                                 <p class="mb-0">{{$user_detail->bitoniere?$user_detail->bitoniere:'NA'}}</p>
                             </div>
+                            @endif
 
+                            @if($user_detail->comircial_vehicle&&$user_detail->comircial_vehicle>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Veicoli Comerciali & Bus</h6>
                                 <p class="mb-0">{{$user_detail->comircial_vehicle?$user_detail->comircial_vehicle:'NA'}}</p>
                             </div>
+                            @endif
 
+                            @if($user_detail->semi_trailer&&$user_detail->semi_trailer>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Semirimorchio</h6>
                                 <p class="mb-0">{{$user_detail->semi_trailer?$user_detail->semi_trailer:'NA'}}</p>
                             </div>
+                            @endif
 
+                            @if($user_detail->trailers&&$user_detail->trailers>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Rimorchi</h6>
                                 <p class="mb-0">{{$user_detail->trailers?$user_detail->trailers:'NA'}}</p>
                             </div>
+                            @endif
 
+                            @if($user_detail->road_tractors&&$user_detail->road_tractors>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Trattori stradali</h6>
                                 <p class="mb-0">{{$user_detail->road_tractors?$user_detail->road_tractors:'NA'}}</p>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

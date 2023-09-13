@@ -91,6 +91,7 @@ $configData = Helper::appClasses();
 
                 <div class="bs-stepper-content signup-wiz__body">
                     <form id="multiStepsForm" onsubmit="return false" class="signup-wiz__form" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <!-- Registry -->
                         <div id="SignupStepRegistry" class="content active dstepper-block fv-plugins-bootstrap5 fv-plugins-framework">
                             <div class="content-header mb-4">
@@ -414,13 +415,13 @@ $configData = Helper::appClasses();
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
-                                                                    <input class="form-check-input mt-0" type="checkbox">
+                                                                    <input class="form-check-input container-transport mt-0 js-fleet-check" type="checkbox">
                                                                 </div>
                                                                 <div class="col px-0">
                                                                     Tipologia & Dimensione Flotta
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000" name="fleet">
+                                                                    <input type="text" class="form-control hide js-fleet-input" aria-label="000" name="fleet" value="0">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -432,13 +433,13 @@ $configData = Helper::appClasses();
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
-                                                                    <input class="form-check-input mt-0" type="checkbox">
+                                                                    <input class="form-check-input mt-0 container-transport js-type_of_flotta-check" type="checkbox">
                                                                 </div>
                                                                 <div class="col px-0">
                                                                     Camion Ribaltabili
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000">
+                                                                    <input type="text" class="form-control hide js-type_of_flotta-input" aria-label="000" name="type_of_flotta" value="0">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -450,13 +451,13 @@ $configData = Helper::appClasses();
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
-                                                                    <input class="form-check-input mt-0" type="checkbox">
+                                                                    <input class="form-check-input mt-0 container-transport js-folding_trucks-check" type="checkbox">
                                                                 </div>
                                                                 <div class="col px-0">
                                                                     Camion Furgonati
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000">
+                                                                    <input type="text" class="form-control hide js-folding_trucks-input" aria-label="000" name="folding_trucks" value="0">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -468,13 +469,13 @@ $configData = Helper::appClasses();
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
-                                                                    <input class="form-check-input mt-0" type="checkbox">
+                                                                    <input class="form-check-input mt-0 container-transport js-van_trucks-check" type="checkbox">
                                                                 </div>
                                                                 <div class="col px-0">
                                                                     Camion Centinato
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000">
+                                                                    <input type="text" class="form-control hide js-van_trucks-input" aria-label="000" name="van_trucks" value="0">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -486,13 +487,13 @@ $configData = Helper::appClasses();
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
-                                                                    <input class="form-check-input mt-0" type="checkbox">
+                                                                    <input class="form-check-input mt-0 container-transport js-hundred_trucks-check" type="checkbox">
                                                                 </div>
                                                                 <div class="col px-0">
                                                                     Camion a telaio
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000">
+                                                                    <input type="text" class="form-control hide js-hundred_trucks-input" aria-label="000" value="0">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -504,13 +505,13 @@ $configData = Helper::appClasses();
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
-                                                                    <input class="form-check-input mt-0" type="checkbox">
+                                                                    <input class="form-check-input mt-0 container-transport js-chassis_trucks-check" type="checkbox">
                                                                 </div>
                                                                 <div class="col px-0">
                                                                     Camion a cassone Fisso
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000">
+                                                                    <input type="text" class="form-control hide" name="chassis_trucks" aria-label="000" value="0">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -522,13 +523,13 @@ $configData = Helper::appClasses();
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
-                                                                    <input class="form-check-input mt-0" type="checkbox">
+                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
                                                                 </div>
                                                                 <div class="col px-0">
                                                                     Camion Frigo
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000">
+                                                                    <input type="text" class="form-control hide" aria-label="000" name="fixed_cassone_truck">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -540,13 +541,13 @@ $configData = Helper::appClasses();
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
-                                                                    <input class="form-check-input mt-0" type="checkbox">
+                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
                                                                 </div>
                                                                 <div class="col px-0">
                                                                     Camion con Gru
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000">
+                                                                    <input type="text" class="form-control hide" aria-label="000" name="fridge_truck" value="0">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -558,13 +559,13 @@ $configData = Helper::appClasses();
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
-                                                                    <input class="form-check-input mt-0" type="checkbox">
+                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
                                                                 </div>
                                                                 <div class="col px-0">
                                                                     Camion Scarrabili
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000">
+                                                                    <input type="text" class="form-control hide" aria-label="000" name="truck_with_crane" value="0">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -576,13 +577,13 @@ $configData = Helper::appClasses();
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
-                                                                    <input class="form-check-input mt-0" type="checkbox">
+                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
                                                                 </div>
                                                                 <div class="col px-0">
                                                                     Bitoniere
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000">
+                                                                    <input type="text" class="form-control hide" aria-label="000" name="scarble_truck" value="0">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -594,13 +595,13 @@ $configData = Helper::appClasses();
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
-                                                                    <input class="form-check-input mt-0" type="checkbox">
+                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
                                                                 </div>
                                                                 <div class="col px-0">
                                                                     Veicoli Comerciali & Bus
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000">
+                                                                    <input type="text" class="form-control hide" aria-label="000" name="bitoniere" value="0">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -612,13 +613,13 @@ $configData = Helper::appClasses();
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
-                                                                    <input class="form-check-input mt-0" type="checkbox">
+                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
                                                                 </div>
                                                                 <div class="col px-0">
                                                                     Semirimorchio
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000">
+                                                                    <input type="text" class="form-control hide" aria-label="000" name="comircial_vehicle" value="0">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -630,13 +631,13 @@ $configData = Helper::appClasses();
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
-                                                                    <input class="form-check-input mt-0" type="checkbox">
+                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
                                                                 </div>
                                                                 <div class="col px-0">
                                                                     Rimorchi
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000">
+                                                                    <input type="text" class="form-control hide" aria-label="000" name="semi_trailer" value="0">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -648,13 +649,13 @@ $configData = Helper::appClasses();
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
-                                                                    <input class="form-check-input mt-0" type="checkbox">
+                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
                                                                 </div>
                                                                 <div class="col px-0">
                                                                     Trattori stradali
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <input type="text" class="form-control" aria-label="000">
+                                                                    <input type="text" class="form-control hide" aria-label="000" name="trailers" value="0">
                                                                 </div>
                                                             </div>
                                                         </div>

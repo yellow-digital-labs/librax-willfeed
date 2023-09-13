@@ -20,6 +20,17 @@ $(function() {
         });
     }
 
+    $('.container-transport').on('click', function(){
+        if($(this).prop("checked")){
+            //checked
+            $(this).closest(".row").find(".form-control").removeClass("hide");
+        } else {
+            //unchecked
+            $(this).closest(".row").find(".form-control").addClass("hide");
+            $(this).closest(".row").find(".form-control").val(0);
+        }
+    });
+
     $("#destination_address").on("change", function(){
         if(this.value == "Yes") {
             $(".address-container").addClass('hide');
@@ -227,10 +238,31 @@ document.addEventListener('DOMContentLoaded', function(e) {
             // Billing details
             const multiSteps3 = FormValidation.formValidation(stepsValidationFormStep3, {
                 fields: {
-                    multiStepsUsername: {
+                    payment_extension: {
                         validators: {
                             notEmpty: {
-                                message: 'Please enter username'
+                                message: 'Please enter dilazione di pagamento preferita'
+                            }
+                        }
+                    },
+                    payment_term: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter modalità di pagamento'
+                            }
+                        }
+                    },
+                    reference_bank: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter banca di riferimento'
+                            }
+                        }
+                    },
+                    sdi: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter SDI'
                             }
                         }
                     }
@@ -261,10 +293,24 @@ document.addEventListener('DOMContentLoaded', function(e) {
             // Profile details
             const multiSteps4 = FormValidation.formValidation(stepsValidationFormStep4, {
                 fields: {
-                    multiStepsUsername: {
+                    products: {
                         validators: {
                             notEmpty: {
-                                message: 'Please enter username'
+                                message: 'Please enter tipologia di prodotti consumati'
+                            }
+                        }
+                    },
+                    monthly_consumption: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter consumi medi mensili'
+                            }
+                        }
+                    },
+                    is_private_distributer: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter sei un distributore privato'
                             }
                         }
                     }
@@ -289,6 +335,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                 }
             }).on('core.form.valid', function() {
                 // Jump to the next step when all fields in the current step are valid
+                stepsValidationForm.submit();
                 validationStepper.next();
             });
 
