@@ -129,19 +129,19 @@ class Orders extends Controller
       $search = $request->input("search.value");
 
       if($isAdmin){
-        $q = Order::where(function ($query) {
+        $q = Order::where(function ($query) use ($search) {
           return $query
             ->where("user_name", "LIKE", "%{$search}%")
-            ->orWhere("customer_region", "LIKE", "%{$search}%")
+            ->orWhere("product_name", "LIKE", "%{$search}%")
             ->orWhere("order_status", "LIKE", "%{$search}%")
             ->orWhere("payment_status", "LIKE", "%{$search}%");
         });
       } else {
         $q = Order::where("seller_id", "=", $user_id)
-        ->where(function ($query) {
+        ->where(function ($query) use ($search) {
           return $query
             ->where("user_name", "LIKE", "%{$search}%")
-            ->orWhere("customer_region", "LIKE", "%{$search}%")
+            ->orWhere("product_name", "LIKE", "%{$search}%")
             ->orWhere("order_status", "LIKE", "%{$search}%")
             ->orWhere("payment_status", "LIKE", "%{$search}%");
         });

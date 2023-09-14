@@ -85,7 +85,7 @@ class SubscriptionPlanManagement extends Controller
     } else {
       $search = $request->input("search.value");
 
-      $q = Subscription::where(function ($query) {
+      $q = Subscription::where(function ($query) use ($search) {
         return $query
           ->where("name", "LIKE", "%{$search}%")
           ->orWhere("amount", "LIKE", "%{$search}%")
@@ -111,7 +111,7 @@ class SubscriptionPlanManagement extends Controller
         $nestedData["id"] = $customer->id;
         $nestedData["fake_id"] = ++$ids;
         $nestedData["name"] = $customer->name;
-        $nestedData["amount"] = $customer->amount;
+        $nestedData["amount"] = "€".$customer->amount;
         $nestedData["status"] = $customer->status;
 
         $data[] = $nestedData;

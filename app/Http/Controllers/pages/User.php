@@ -98,7 +98,7 @@ class User extends Controller
 
       $customers = UserModel::where("accountType", "=", $accountType)
         ->where("profile_completed", "=", "Yes")
-        ->where(function ($query) {
+        ->where(function ($query) use ($search) {
           return $query
             ->where("name", "LIKE", "%{$search}%")
             ->orWhere("email", "LIKE", "%{$search}%")
@@ -114,7 +114,7 @@ class User extends Controller
 
       $totalFiltered = UserModel::where("accountType", "=", $accountType)
         ->where("profile_completed", "=", "Yes")
-        ->where(function ($query) {
+        ->where(function ($query) use ($search) {
           return $query
             ->where("name", "LIKE", "%{$search}%")
             ->orWhere("email", "LIKE", "%{$search}%")

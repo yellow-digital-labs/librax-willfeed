@@ -91,7 +91,7 @@ class Payments extends Controller
       $search = $request->input("search.value");
 
       if($isAdmin){
-        $q = SubscriptionPayment::where(function ($query) {
+        $q = SubscriptionPayment::where(function ($query) use ($search) {
             return $query
               ->where("transaction_datetime", "LIKE", "%{$search}%")
               ->orWhere("subscription_amount", "LIKE", "%{$search}%")
@@ -101,7 +101,7 @@ class Payments extends Controller
           });
       } else {
         $q = SubscriptionPayment::where("user_id", "=", $user_id)
-          ->where(function ($query) {
+          ->where(function ($query) use ($search) {
             return $query
               ->where("transaction_datetime", "LIKE", "%{$search}%")
               ->orWhere("subscription_amount", "LIKE", "%{$search}%")

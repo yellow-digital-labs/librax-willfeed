@@ -138,7 +138,7 @@ class Product extends Controller
         $q = Products::where([]);
 
         $products = $q
-          ->where(function ($query) {
+          ->where(function ($query) use ($search) {
             return $query
               ->where("name", "LIKE", "%{$search}%")
               ->orWhere("active", "LIKE", "%{$search}%");
@@ -149,7 +149,7 @@ class Product extends Controller
           ->get();
 
         $totalFiltered = $q
-          ->where(function ($query) {
+          ->where(function ($query) use ($search) {
             return $query
               ->where("name", "LIKE", "%{$search}%")
               ->orWhere("active", "LIKE", "%{$search}%");
@@ -159,7 +159,7 @@ class Product extends Controller
         $q = ProductSeller::where("seller_id", "=", $user_id);
 
         $products = $q
-          ->where(function ($query) {
+          ->where(function ($query) use ($search) {
             return $query
               ->where("product_name", "LIKE", "%{$search}%")
               ->orWhere("amount_before_tax", "LIKE", "%{$search}%")
@@ -171,7 +171,7 @@ class Product extends Controller
           ->get();
 
         $totalFiltered = $q
-          ->where(function ($query) {
+          ->where(function ($query) use ($search) {
             return $query
               ->where("product_name", "LIKE", "%{$search}%")
               ->orWhere("amount_before_tax", "LIKE", "%{$search}%")

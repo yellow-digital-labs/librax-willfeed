@@ -41,7 +41,7 @@ $configData = Helper::appClasses();
                     <!-- Email List: Search -->
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex align-items-center w-100">
-                            <i class="ti ti-menu-2 ti-sm cursor-pointer d-block d-lg-none me-3" data-bs-toggle="sidebar" data-target="#app-email-sidebar" data-overlay></i>
+                            {{-- <i class="ti ti-menu-2 ti-sm cursor-pointer d-block d-lg-none me-3" data-bs-toggle="sidebar" data-target="#app-email-sidebar" data-overlay></i>
                             <div class="mb-0 mb-lg-2 w-100">
                                 <div class="input-group input-group-merge shadow-none">
                                     <span class="input-group-text border-0 ps-0" id="email-search">
@@ -49,7 +49,7 @@ $configData = Helper::appClasses();
                                     </span>
                                     <input type="text" class="form-control email-search-input border-0" placeholder="Search mail" aria-label="Search mail" aria-describedby="email-search">
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="d-flex align-items-center mb-0 mb-md-2">
                             <a href="{{route("email-management")}}" class="ti ti-rotate-clockwise rotate-180 scaleX-n1-rtl cursor-pointer email-refresh me-2 mt-1"></a>
@@ -61,9 +61,9 @@ $configData = Helper::appClasses();
                         <div class="d-flex align-items-center">
                         </div>
                         <div class="email-pagination d-sm-flex d-none align-items-center flex-wrap justify-content-between justify-sm-content-end">
-                            <span class="d-sm-block d-none mx-3 text-muted">1-10 of 653</span>
-                            <i class="email-prev ti ti-chevron-left scaleX-n1-rtl cursor-pointer text-muted me-2"></i>
-                            <i class="email-next ti ti-chevron-right scaleX-n1-rtl cursor-pointer"></i>
+                            <span class="d-sm-block d-none mx-3 text-muted">Total {{count($email_history)}} e-mail sent</span>
+                            {{-- <i class="email-prev ti ti-chevron-left scaleX-n1-rtl cursor-pointer text-muted me-2"></i>
+                            <i class="email-next ti ti-chevron-right scaleX-n1-rtl cursor-pointer"></i> --}}
                         </div>
                     </div>
                 </div>

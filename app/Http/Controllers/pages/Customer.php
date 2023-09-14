@@ -77,7 +77,7 @@ class Customer extends Controller
       $search = $request->input("search.value");
 
       $customers = CustomerVerified::where("seller_id", "=", $user_id)
-        ->where(function ($query) {
+        ->where(function ($query) use ($search) {
           return $query
           ->where('status', "<>", "rejected")
             ->where("customer_name", "LIKE", "%{$search}%")
@@ -90,7 +90,7 @@ class Customer extends Controller
         ->get();
 
       $totalFiltered = CustomerVerified::where("seller_id", "=", $user_id)
-        ->where(function ($query) {
+        ->where(function ($query) use ($search) {
           return $query
             ->where('status', "<>", "rejected")
             ->where("customer_name", "LIKE", "%{$search}%")
