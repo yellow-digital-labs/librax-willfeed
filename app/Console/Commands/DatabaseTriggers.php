@@ -150,7 +150,7 @@ class DatabaseTriggers extends Command
                     IF NEW.total_paid_amount <> OLD.total_paid_amount OR NEW.total_payable_amount <> OLD.total_payable_amount THEN
                         SET NEW.total_pending_amount = NEW.total_payable_amount - NEW.total_paid_amount;
 
-                        IF NEW.total_pending_amount = 0 THEN
+                        IF NEW.total_pending_amount <= 0 THEN
                             SET NEW.payment_status = "paid";
                         ELSE
                             SET NEW.payment_status = "unpaid";
@@ -264,6 +264,22 @@ class DatabaseTriggers extends Command
 
                     SET NEW.review_by_name = @review_by_name;
                     SET NEW.review_for_name = @review_for_name;
+                END');
+
+        //order payments
+        DB::unprepared('DROP TRIGGER IF EXISTS `order_payments_before_insert`');
+        DB::unprepared('CREATE TRIGGER order_payments_before_insert BEFORE INSERT ON `order_payments` FOR EACH ROW
+                BEGIN
+                    SELECT name INTO @payment_type_name FROM payment_options WHERE id=NEW.payment_type_id;
+
+                    SET NEW.payment_type_name = @payment_type_name;
+                END');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS `order_payments_after_insert`');
+        DB::unprepared('CREATE TRIGGER order_payments_after_insert AFTER INSERT ON `order_payments` FOR EACH ROW
+                BEGIN
+                    SELECT SUM(payment_amount) INTO @total_paid_amount FROM order_payments WHERE order_id=NEW.order_id;
+                    UPDATE orders SET total_paid_amount=@total_paid_amount WHERE id=NEW.order_id;
                 END');
     }
 }

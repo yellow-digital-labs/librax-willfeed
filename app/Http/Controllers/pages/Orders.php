@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderActivityHistory;
+use App\Models\PaymentOption;
+use App\Models\OrderPayment;
 use App\Helpers\Helpers;
 use Auth;
 use Redirect;
@@ -212,6 +214,10 @@ class Orders extends Controller
         ->count();
 
       $order_activity = OrderActivityHistory::where("order_id", "=", $id)->get();
+      $payment_options = PaymentOption::all();
+      $payment_history = OrderPayment::where([
+        "order_id" => $id
+      ])->get();
 
       return view("content.pages.pages-order-details", [
         'id' => $id,
@@ -219,6 +225,8 @@ class Orders extends Controller
         'customer_total_orders' => $customer_total_orders,
         'order_activity' => $order_activity,
         'isAdmin' => $isAdmin,
+        'payment_options' => $payment_options,
+        'payment_history' => $payment_history,
       ]);
     } else {
       return redirect()->route('orders')->withErrors(['msg' => 'Invalid request']);
@@ -237,6 +245,29 @@ class Orders extends Controller
         'order_status_id' => $status
       ]);
       
+      return redirect()->route('order-details', ['id' => $id]);
+    } else {
+      return redirect()->route('orders')->withErrors(['msg' => 'Invalid request']);
+    }
+  }
+
+  public function payment(Request $request, $id){
+    $user_id = Auth::user()->id;
+
+    $order = Order::where("id", "=", $id)
+      ->where("seller_id", "=", $user_id)
+      ->first();
+
+    if($order){
+      OrderPayment::insert([
+        "order_id" => $id,
+        "user_id" => $user_id,
+        "payment_amount" => $request->payment_amount,
+        "description" => $request->description,
+        "payment_type_id" => $request->payment_type_id,
+        "created_at" => date("Y-m-d H:i:s"),
+      ]);
+
       return redirect()->route('order-details', ['id' => $id]);
     } else {
       return redirect()->route('orders')->withErrors(['msg' => 'Invalid request']);

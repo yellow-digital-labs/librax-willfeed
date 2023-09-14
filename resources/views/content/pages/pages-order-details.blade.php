@@ -6,9 +6,26 @@ $configData = Helper::appClasses();
 
 @section('title', 'Orders')
 
+@section('vendor-style')
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
+@endsection
+
 @section('page-style')
 <!-- Custom css -->
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+@endsection
+
+@section('vendor-script')
+<script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
+@endsection
+
+@section('page-script')
+<script src="{{asset('assets/js/order-detail.js')}}"></script>
 @endsection
 
 @section('content')
@@ -131,16 +148,21 @@ $configData = Helper::appClasses();
             </div>
             <div class="card-body pt-4">
                 <ul class="timeline pb-0 mb-0">
-                    <li class="timeline-item timeline-item-transparent border-transparent pb-0">
-                        <span class="timeline-point timeline-point-success"></span>
-                        <div class="timeline-event">
-                            <div class="timeline-header">
-                                <h6 class="mb-0">€250 received</h6>
-                                <span class="text-muted">22/07/2023,  11:29 AM</span>
+                @if($payment_history)
+                    @foreach($payment_history as $_payment_history)
+                        <li class="timeline-item timeline-item-transparent border-transparent pb-0">
+                            <span class="timeline-point timeline-point-success"></span>
+                            <div class="timeline-event">
+                                <div class="timeline-header">
+                                    <h6 class="mb-0">€{{$_payment_history->payment_amount}} received</h6>
+                                    <span class="text-muted">{{date('F d, Y, H:i', strtotime($_payment_history->created_at))}}</span>
+                                </div>
+                                <p class="mt-2 mb-0">Payment done via {{$_payment_history->payment_type_name}}</p>
+                                <p class="mt-0 mb-0">{{$_payment_history->description}}</p>
                             </div>
-                            <p class="mt-2">Payment done via Internet banking</p>
-                        </div>
-                    </li>
+                        </li>
+                    @endforeach
+                @endif
                 </ul>
             </div>
         </div>
@@ -157,7 +179,9 @@ $configData = Helper::appClasses();
                         <img src="{{asset('assets/img/avatars/1.png')}}" alt="Avatar" class="rounded-circle">
                     </div>
                     <div class="d-flex flex-column">
-                        <a href="app-user-view-account.html" class="text-body text-nowrap">
+                        <a href="{{route("profile-view", [
+                            "id" => $order->user_id
+                        ])}}" class="text-body text-nowrap">
                             <h6 class="mb-0 text-black">{{$order->user_name}}</h6>
                         </a>
                         <small class="text-muted">Customer ID: #{{$order->user_id}}</small></div>
@@ -351,16 +375,26 @@ $configData = Helper::appClasses();
                 <div class="text-center mb-4">
                     <h3 class="mb-2 text-black h4 text-start">Add new payment</h3>
                 </div>
-                <form class="row g-3" onsubmit="return false">
+                <form class="row g-3" onsubmit="return false" id="paymentForm" method="POST" action="{{route("add-order-payment", [
+                    "id" => $id
+                ])}}">
+                    @csrf
+                    <input type="hidden" name="order_id" value="{{$id}}">
                     <div class="col-12">
-                        <label class="form-label" for="modalAddCardName">Payment types</label>
-                        <select class="form-select">
-                            <option>Internet Banking</option>
+                        <label class="form-label" for="payment_type_id">Payment type</label>
+                        <select class="form-select" id="payment_type_id" name="payment_type_id">
+                        @foreach($payment_options as $payment_option)
+                            <option value="{{$payment_option->id}}">{{$payment_option->name}}</option>
+                        @endforeach
                         </select>
                     </div>
                     <div class="col-12">
-                        <label class="form-label" for="modalAddCardExpiryDate">Payment note</label>
-                        <textarea class="form-control" rows="4" placeholder="Enter text"></textarea>
+                        <label class="form-label" for="payment_amount">Payment amount</label>
+                        <input type="number" id="payment_amount" class="form-select" name="payment_amount" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="description">Payment note</label>
+                        <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter note"></textarea>
                     </div>
                     <div class="col-12 text-center">
                         <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
