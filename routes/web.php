@@ -62,6 +62,7 @@ Route::middleware([
     Route::post('/signup/seller', $controller_path . '\pages\SignupSeller@store')->name('signup-seller-store');
 
     Route::get('/thankyou/signup', $controller_path . '\Thankyou@signup')->name('thankyou-signup');
+    Route::get('/reject/signup', $controller_path . '\Thankyou@reject')->name('reject-signup');
 });
 
 Route::middleware([

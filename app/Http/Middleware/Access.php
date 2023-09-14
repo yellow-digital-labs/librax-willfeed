@@ -33,6 +33,10 @@ class Access
           } elseif (Auth::user()->accountType == "1") {
             return redirect()->route("signup-client");
           }
+        } elseif (Auth::user()->approved_by_admin == "Pending"){
+          return redirect()->route("thankyou-signup");
+        } elseif (Auth::user()->approved_by_admin == "No"){
+          return redirect()->route("reject-signup");
         }
       }
     }
