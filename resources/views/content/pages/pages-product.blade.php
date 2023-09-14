@@ -84,8 +84,12 @@ $configData = Helper::appClasses();
                     <div class="d-flex justify-content-between align-items-start">
                         <div>
                             <h6 class="mb-2">Best seller</h6>
+                        @if($bestSeller)
                             <h4 class="mb-2">{{$bestSeller->product_name}}</h4>
                             <p class="mb-0"><span class="text-muted me-2">{{$bestSeller->total_orders}} orders</span><!-- <span class="badge bg-label-danger">-3.5%</span> --></p>
+                        @else
+                            <h4 class="mb-2">NA</h4>
+                        @endif
                         </div>
                         <span class="avatar avatar--prodotti p-2">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>

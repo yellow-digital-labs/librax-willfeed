@@ -35,19 +35,37 @@ $customizerHidden = 'customizer-hide';
 
 @section('content')
 
-<h1 class="h3 text-black mb-4">Customer</h4>
+<h1 class="h3 text-black mb-4">
+@if($type=="buyer")
+    Buyer
+@elseif($type=="seller")
+    Seller
+@endif
+</h4>
 
 <div class="card">
     <div class="card-header d-flex justify-content-between border-bottom">
         <div class="card-title mb-0">
-            <h5 class="mb-0 text-black">Customer list</h5>
+            <h5 class="mb-0 text-black">
+            @if($type=="buyer")
+                Buyer list
+            @elseif($type=="seller")
+                Seller list
+            @endif
+            </h5>
         </div>
     </div>
     <div class="card-datatable text-nowrap">
         <table class="dt-column-search table">
             <thead>
                 <tr>
-                    <th class="js-add-search">Customer name</th>
+                    <th class="js-add-search">
+                    @if($type=="buyer")
+                        Buyer name
+                    @elseif($type=="seller")
+                        Seller name
+                    @endif
+                    </th>
                     <th class="js-add-search">Email</th>
                     <th>verified since</th>
                     <th>Since on platform</th>

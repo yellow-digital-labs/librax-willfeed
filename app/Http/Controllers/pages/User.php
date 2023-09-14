@@ -17,6 +17,7 @@ class User extends Controller
 
     return view("content.pages.pages-user", [
       "urlListCustomerData" => $urlListCustomerData,
+      "type" => "seller",
     ]);
   }
 
@@ -28,6 +29,7 @@ class User extends Controller
 
     return view("content.pages.pages-user", [
       "urlListCustomerData" => $urlListCustomerData,
+      "type" => "buyer",
     ]);
   }
 
