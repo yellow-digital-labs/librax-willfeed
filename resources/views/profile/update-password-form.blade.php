@@ -51,10 +51,10 @@
 
 
   <x-slot name="actions" class="justify-content-start">
-    <x-button class="me-3">
+    <x-button class="me-3 sentence-case">
       {{ __('Aggiorna password') }}
     </x-button>
 
-    <a href="#" class="btn btn-outline-dark">Annulla</a>
+    {{-- <a href="#" class="btn btn-outline-dark">Annulla</a> --}}
   </x-slot>
 </x-form-section>
