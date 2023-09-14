@@ -135,8 +135,8 @@ class User extends Controller
         $nestedData["fake_id"] = ++$ids;
         $nestedData["name"] = $customer->name;
         $nestedData["email"] = $customer->email;
-        $nestedData["email_verified_at"] = $customer->email_verified_at;
-        $nestedData["created_at"] = $customer->created_at;
+        $nestedData["email_verified_at"] = date('Y-m-d H:i:s', strtotime($customer->email_verified_at));
+        $nestedData["created_at"] = date('Y-m-d H:i:s', strtotime($customer->created_at));
         $nestedData["approved_by_admin"] = $customer->approved_by_admin;
         $nestedData["subscription_name"] = $customer->subscription_name;
 
