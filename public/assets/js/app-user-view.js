@@ -4,6 +4,12 @@
 'use strict';
 
 (function () {
+  $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+
   const suspendUser = document.querySelector('.suspend-user');
 
   // Suspend User javascript
@@ -85,5 +91,54 @@
         });
       };
     });
+  }
+
+  $(document).on('click', '.btn-approve', function () {
+      var id = $(this).data('id');
+
+      updateStatus(id, 'Yes');
+  });
+
+  $(document).on('click', '.btn-reject', function () {
+      var id = $(this).data('id');
+
+      updateStatus(id, 'No');
+  });
+
+  $(document).on('click', '.btn-pending', function () {
+      var id = $(this).data('id');
+
+      updateStatus(id, 'Pending');
+  });
+
+  function updateStatus(id, status){
+      // sweetalert for confirmation of update status
+      // Swal.fire({
+      //     title: 'Are you sure?',
+      //     text: "You won't be able to revert this!",
+      //     icon: 'warning',
+      //     showCancelButton: true,
+      //     confirmButtonText: `Yes, ${status} it!`,
+      //     customClass: {
+      //         confirmButton: 'btn btn-primary me-3',
+      //         cancelButton: 'btn btn-label-secondary'
+      //     },
+      //     buttonsStyling: false
+      // }).then(function (result) {
+      //     if (result.value) {
+      //         // update the status
+              
+      //     }
+      // });
+      $.ajax({
+          type: 'POST',
+          url: "".concat(baseUrl, `user/${id}/status/${status}`),
+          success: function success() {
+              location.reload();
+          },
+          error: function error(_error) {
+              console.log(_error);
+          }
+      });
   }
 })();

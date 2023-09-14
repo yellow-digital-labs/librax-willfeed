@@ -137,11 +137,11 @@ if($isOnlyProfile){
         @if($authUser->accountType==0)
         <ul class="nav nav-pills flex-row mb-4 card-header-pills">
             @if($user->approved_by_admin == "Pending" || $user->approved_by_admin == "No")
-            <li class="nav-item"><a href="" class="btn btn-primary" href="javascript:void(0);"><i class="wf-icon-check ti-xs me-1"></i>Verify</a></li>
+            <li class="nav-item"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-primary btn-approve" href="javascript:void(0);"><i class="wf-icon-check ti-xs me-1"></i>Verify</a></li>
             @endif
 
             @if($user->approved_by_admin == "Pending" || $user->approved_by_admin == "Yes")
-            <li class="nav-item"><a href="" class="btn btn-primary" href="javascript:void(0);"><i class="wf-icon-no ti-xs me-1"></i>Unverify</a></li>
+            <li class="nav-item"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-primary btn-reject" href="javascript:void(0);"><i class="wf-icon-no ti-xs me-1"></i>Unverify</a></li>
             @endif
         </ul>
         @endif
