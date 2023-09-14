@@ -318,7 +318,7 @@ $configData = Helper::appClasses();
         </div>
     </div>
 
-    <div class="landing-clrblock">
+    <div class="landing-clrblock" id="vendor">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--sell">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
                 <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
@@ -328,11 +328,46 @@ $configData = Helper::appClasses();
                             Diversifica il tuo modo di vendere carburanti lubrificanti e affini
                         </p>
                     </div>
-                    <a href="#" class="uk-button uk-button-default landing-clrblock__action">SCOPRI DI PIU’</a>  
+                    <a href="#" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #vendor; cls: is-active">SCOPRI DI PIU’</a>  
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
-                        <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
+                        <img src="{{asset('assets/img/home/yellow-section-1.png')}}" width="610" height="460">    
+                    </div>
+                </div>
+            </div>
+
+            <div class="landing-clrblock__grid uk-grid gutter-xxl" data-uk-grid hidden>
+                <div class="uk-width-1-4@s landing-clrblock__col">
+                    {{-- <div class="landing-clrblock__icon wf-icon wf-icon-bag"></div> --}}
+                    <img src="{{asset('assets/img/home/analizza.png')}}" style="height: 50px;">
+                    <h3 class="landing-clrblock__name">Ordina</h3>
+                    <div class="landing-clrblock__desc">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                    </div>
+                </div>
+                <div class="uk-width-1-4@s landing-clrblock__col">
+                    {{-- <div class="landing-clrblock__icon wf-icon wf-icon-analytics"></div> --}}
+                    <img src="{{asset('assets/img/home/cerca.png')}}" style="height: 50px;">
+                    <h3 class="landing-clrblock__name">Traccia</h3>
+                    <div class="landing-clrblock__desc">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                    </div>
+                </div>
+                <div class="uk-width-1-4@s landing-clrblock__col">
+                    {{-- <div class="landing-clrblock__icon wf-icon wf-icon-search1"></div> --}}
+                    <img src="{{asset('assets/img/home/conferma.png')}}" style="height: 50px;">
+                    <h3 class="landing-clrblock__name">Trova</h3>
+                    <div class="landing-clrblock__desc">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                    </div>
+                </div>
+                <div class="uk-width-1-4@s landing-clrblock__col">
+                    {{-- <div class="landing-clrblock__icon wf-icon wf-icon-search1"></div> --}}
+                    <img src="{{asset('assets/img/home/monitora.png')}}" style="height: 50px;">
+                    <h3 class="landing-clrblock__name">Trova</h3>
+                    <div class="landing-clrblock__desc">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
                     </div>
                 </div>
             </div>
@@ -353,28 +388,39 @@ $configData = Helper::appClasses();
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
-                        <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
+                        <img src="{{asset('assets/img/home/orange-section-1.png')}}" width="610" height="460">    
                     </div>
                 </div>
             </div>
 
             <div class="landing-clrblock__grid uk-grid gutter-xxl" data-uk-grid hidden>
-                <div class="uk-width-1-3@s landing-clrblock__col">
-                    <div class="landing-clrblock__icon wf-icon wf-icon-bag"></div>
+                <div class="uk-width-1-4@s landing-clrblock__col">
+                    {{-- <div class="landing-clrblock__icon wf-icon wf-icon-bag"></div> --}}
+                    <img src="{{asset('assets/img/home/analizza.png')}}" style="height: 50px;">
                     <h3 class="landing-clrblock__name">Ordina</h3>
                     <div class="landing-clrblock__desc">
                         Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
                     </div>
                 </div>
-                <div class="uk-width-1-3@s landing-clrblock__col">
-                    <div class="landing-clrblock__icon wf-icon wf-icon-analytics"></div>
+                <div class="uk-width-1-4@s landing-clrblock__col">
+                    {{-- <div class="landing-clrblock__icon wf-icon wf-icon-analytics"></div> --}}
+                    <img src="{{asset('assets/img/home/cerca.png')}}" style="height: 50px;">
                     <h3 class="landing-clrblock__name">Traccia</h3>
                     <div class="landing-clrblock__desc">
                         Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
                     </div>
                 </div>
-                <div class="uk-width-1-3@s landing-clrblock__col">
-                    <div class="landing-clrblock__icon wf-icon wf-icon-search1"></div>
+                <div class="uk-width-1-4@s landing-clrblock__col">
+                    {{-- <div class="landing-clrblock__icon wf-icon wf-icon-search1"></div> --}}
+                    <img src="{{asset('assets/img/home/conferma.png')}}" style="height: 50px;">
+                    <h3 class="landing-clrblock__name">Trova</h3>
+                    <div class="landing-clrblock__desc">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                    </div>
+                </div>
+                <div class="uk-width-1-4@s landing-clrblock__col">
+                    {{-- <div class="landing-clrblock__icon wf-icon wf-icon-search1"></div> --}}
+                    <img src="{{asset('assets/img/home/monitora.png')}}" style="height: 50px;">
                     <h3 class="landing-clrblock__name">Trova</h3>
                     <div class="landing-clrblock__desc">
                         Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
