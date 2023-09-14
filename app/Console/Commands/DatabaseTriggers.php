@@ -231,7 +231,7 @@ class DatabaseTriggers extends Command
         DB::unprepared('DROP TRIGGER IF EXISTS `user_details_after_insert`');
         DB::unprepared('CREATE TRIGGER user_details_after_insert AFTER INSERT ON `user_details` FOR EACH ROW
                 BEGIN
-                    UPDATE users SET name=NEW.business_name WHERE id=NEW.user_id;
+                    UPDATE users SET name=NEW.business_name, profile_completed="Yes" WHERE id=NEW.user_id;
                 END');
 
         DB::unprepared('DROP TRIGGER IF EXISTS `user_details_after_update`');

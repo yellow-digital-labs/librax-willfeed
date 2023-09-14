@@ -9,18 +9,36 @@ use Auth;
 
 class User extends Controller
 {
-  public function index()
+  public function seller()
   {
-    $urlListCustomerData = route("user-list");
+    $urlListCustomerData = route("user-list", [
+      "type" => "seller"
+    ]);
 
     return view("content.pages.pages-user", [
       "urlListCustomerData" => $urlListCustomerData,
     ]);
   }
 
-  public function list(Request $request)
+  public function buyer()
+  {
+    $urlListCustomerData = route("user-list", [
+      "type" => "buyer"
+    ]);
+
+    return view("content.pages.pages-user", [
+      "urlListCustomerData" => $urlListCustomerData,
+    ]);
+  }
+
+  public function list(Request $request, $type)
   {
     $user_id = Auth::user()->id;
+    if($type == "seller"){
+      $accountType = 2;
+    } else {
+      $accountType = 1;
+    }
     $columns = [
       1 => "id",
       2 => "name",
@@ -33,7 +51,7 @@ class User extends Controller
 
     $search = [];
 
-    $f = UserModel::where("accountType", "<>", 0)
+    $f = UserModel::where("accountType", "=", $accountType)
       ->where("profile_completed", "=", "Yes");
     $totalData = $f->count();
 
@@ -53,7 +71,7 @@ class User extends Controller
 
     if (empty($request->input("search.value"))) {
       if (count($applied_filters) > 0) {
-        $customersObj = UserModel::where("accountType", "<>", 0)
+        $customersObj = UserModel::where("accountType", "=", $accountType)
           ->where("profile_completed", "=", "Yes");
 
         foreach ($applied_filters as $field => $search) {
@@ -66,7 +84,7 @@ class User extends Controller
           ->orderBy($order, $dir)
           ->get();
       } else {
-        $customers = UserModel::where("accountType", "<>", 0)
+        $customers = UserModel::where("accountType", "=", $accountType)
           ->where("profile_completed", "=", "Yes")
           ->offset($start)
           ->limit($limit)
@@ -76,7 +94,7 @@ class User extends Controller
     } else {
       $search = $request->input("search.value");
 
-      $customers = UserModel::where("accountType", "<>", 0)
+      $customers = UserModel::where("accountType", "=", $accountType)
         ->where("profile_completed", "=", "Yes")
         ->where(function ($query) {
           return $query
@@ -92,7 +110,7 @@ class User extends Controller
         ->orderBy($order, $dir)
         ->get();
 
-      $totalFiltered = UserModel::where("accountType", "<>", 0)
+      $totalFiltered = UserModel::where("accountType", "=", $accountType)
         ->where("profile_completed", "=", "Yes")
         ->where(function ($query) {
           return $query

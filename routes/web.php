@@ -101,8 +101,9 @@ Route::middleware([
     Route::post('/customer/{id}/status/{status}', $controller_path . '\pages\Customer@status')->name('customer-status'); //customer status update ajax
 
     //user
-    Route::get('/user', $controller_path . '\pages\User@index')->name('user'); //user list view
-    Route::get('/users/list', $controller_path . '\pages\User@list')->name('user-list'); //user list data ajax
+    Route::get('/user/seller', $controller_path . '\pages\User@seller')->name('user-seller'); //user seller list view
+    Route::get('/user/buyer', $controller_path . '\pages\User@buyer')->name('user-buyer'); //user buyer list view
+    Route::get('/users/list/{type}', $controller_path . '\pages\User@list')->name('user-list'); //user list data ajax
     Route::post('/user/{id}/status/{status}', $controller_path . '\pages\User@status')->name('user-status'); //user status update ajax
 
 
