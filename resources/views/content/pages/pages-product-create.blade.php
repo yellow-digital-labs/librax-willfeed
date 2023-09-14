@@ -29,7 +29,13 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('content')
-
+@error('msg')
+  <div class="alert alert-danger" role="alert">
+    <div class="alert-body">
+      <div class="fw-bold">{{ __($message) }}</div>
+    </div>
+  </div>
+@enderror
 <h1 class="h3 text-black mb-4">Aggiungi prodotto</h4>
 <form id="productForm" onsubmit="return false" method="POST">
     @csrf

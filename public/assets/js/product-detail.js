@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
         if (productForm) {
             FormValidation.formValidation(productForm, {
                 fields: {
-                    product_id: {
+                  product_id: {
                     validators: {
                       notEmpty: {
                         message: 'Please select prodotto'
@@ -109,7 +109,10 @@ document.addEventListener('DOMContentLoaded', function (e) {
                   // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
                   autoFocus: new FormValidation.plugins.AutoFocus()
                 }
-              });
+              }).on('core.form.valid', function () {
+                // Jump to the next step when all fields in the current step are valid
+                productForm.submit();
+              });;
         }
     })();
 });

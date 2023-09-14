@@ -250,7 +250,7 @@
                         // delete the data
                         $.ajax({
                             type: 'DELETE',
-                            url: "".concat(baseUrl, "user-list/").concat(user_id),
+                            url: "".concat(baseUrl, "admin/product/").concat(user_id),
                             success: function success() {
                                 dt_user.draw();
                             },
@@ -263,7 +263,7 @@
                         Swal.fire({
                             icon: 'success',
                             title: 'Deleted!',
-                            text: 'The user has been deleted!',
+                            text: 'The product has been deleted!',
                             customClass: {
                                 confirmButton: 'btn btn-success'
                             }
@@ -271,7 +271,7 @@
                     } else if (result.dismiss === Swal.DismissReason.cancel) {
                         Swal.fire({
                             title: 'Cancelled',
-                            text: 'The User is not deleted!',
+                            text: 'The product is not deleted!',
                             icon: 'error',
                             customClass: {
                                 confirmButton: 'btn btn-success'

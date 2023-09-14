@@ -90,6 +90,8 @@ Route::middleware([
     Route::post('/product/create', $controller_path . '\pages\Product@store')->name('product-store'); //product save
     Route::get('/product/{id}/edit', $controller_path . '\pages\Product@edit')->name('product-edit'); //product edit
     Route::post('/product/{id}/edit', $controller_path . '\pages\Product@update')->name('product-update'); //product update
+    Route::delete('/product/{id}', $controller_path . '\pages\Product@delete')->name('product-delete'); //product delete
+    Route::delete('/admin/product/{id}', $controller_path . '\pages\Product@deleteAdmin')->name('product-delete-admin'); //product delete
     Route::get('/admin/product/{id}/edit', $controller_path . '\pages\Product@editAdmin')->name('product-edit'); //product edit admin
     Route::post('/admin/product/{id}/edit', $controller_path . '\pages\Product@updateAdmin')->name('product-update'); //product update admin
     Route::post('/product/{id}/stock', $controller_path . '\pages\Product@stock')->name('product-update-stock'); //product update stock

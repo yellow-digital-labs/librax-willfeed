@@ -354,7 +354,7 @@ class Product extends Controller
     ])->count();
 
     if ($product_avail > 0) {
-      return redirect::back()->withErrors([
+      return back()->withErrors([
         "msg" => "This product is already added",
       ]);
     }
@@ -430,6 +430,33 @@ class Product extends Controller
   {
     return view('content.pages.pages-product-add', [
       'isEdit' => false,
+    ]);
+  }
+
+  public function delete($id){
+    $user = Auth::user();
+    
+    ProductSeller::where([
+      "product_id" => $id,
+      "seller_id" => $user->id
+    ])->delete();
+
+    return response()->json([
+      "message" => "Product deleted successfully",
+      "code" => 200,
+      "data" => [],
+    ]);
+  }
+
+  public function deleteAdmin($id){
+    Product::where([
+      "id" => $id
+    ])->delete();
+
+    return response()->json([
+      "message" => "Product deleted successfully",
+      "code" => 200,
+      "data" => [],
     ]);
   }
 }
