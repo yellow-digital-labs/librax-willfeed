@@ -30,12 +30,12 @@ class SignupSeller extends Controller
     }
 
     $main_activity = MainActivity::all();
-    $common = Common::all();
-    $province = Province::all();
     $storage_capacity = StorageCapacity::all();
     $order_capacity = OrderCapacity::all();
     $product = Product::all();
-    $region = Region::all();
+    $region = Region::orderBy('name', 'ASC')->get();
+    $common = Common::orderBy('name', 'ASC')->get();
+    $province = Province::orderBy('name', 'ASC')->get();
 
     $user_detail = UserDetail::where(['user_id' => $user->id])->first();
 

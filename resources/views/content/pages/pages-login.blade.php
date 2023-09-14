@@ -39,7 +39,7 @@ $customizerHidden = 'customizer-hide';
             <div class="card singup__card">
                 <div class="card-body singup__cardbody ">
 
-                    <h4 class="mb-1 pt-2 text-center singup__title">Crea il tuo account <img src="{{asset('assets/img/icons/handshake.png')}}" width="20" height="20"></h4>
+                    <h4 class="mb-1 pt-2 text-center singup__title">Accedi al tuo account <img src="{{asset('assets/img/icons/handshake.png')}}" width="20" height="20"></h4>
                     <p class="mb-5 text-center singup__text">Inizia ad usare la piattaforma Willfeed in un lampo</p>
 
                     @if ($errors->any())
@@ -79,7 +79,7 @@ $customizerHidden = 'customizer-hide';
             @if (!$isAdmin)
             <div class="singup__footer">
                 <p class="text-center">
-                    <span>Hai già un account?</span>
+                    <span>Non hai un account?</span>
                     <a href="{{route('register')}}">
                         <span>Entra</span>
                     </a>

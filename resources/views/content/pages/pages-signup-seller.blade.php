@@ -231,7 +231,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="geographical_coverage_regions">Copertura geografica regioni *</label>
-                                    <select name="geographical_coverage_regions" id="geographical_coverage_regions" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                    <select name="geographical_coverage_regions" id="geographical_coverage_regions" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                                         <option value="">Seleziona le regioni coperte</option>
                                     @foreach($region as $_region)
                                         <option value="{{$_region->name}}" {{$user_detail?($user_detail->geographical_coverage_regions==$_region->name?'selected':''):''}}>{{$_region->name}}</option>
@@ -241,7 +241,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="geographical_coverage_provinces">Copertura geografica province *</label>
-                                    <select name="geographical_coverage_provinces" id="geographical_coverage_provinces" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                    <select name="geographical_coverage_provinces" id="geographical_coverage_provinces" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                                         <option value="">Seleziona prodotti </option>
                                     @foreach($province as $_province)
                                         <option value="{{$_province->name}}" {{$user_detail?($user_detail->geographical_coverage_provinces==$_province->name?'selected':''):''}}>{{$_province->name}}</option>

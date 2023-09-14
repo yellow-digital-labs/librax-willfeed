@@ -19,20 +19,20 @@
                     <a href="#" class="navmenu__list-link">chi siamo</a>
                 </li>
                 <li class="navmenu__list-item">
-                    <a href="#" class="navmenu__list-link">contatti</a>
+                    <a href="{{route("pages-contactus")}}" class="navmenu__list-link">contatti</a>
                 </li>
             </ul>
             <div class="navmenu__left">
                 <div class="navmenu-search">
-                    <button type="button" class="uk-button navmenu-search__button">
+                    <a href="{{route("pages-buyer-home")}}" class="uk-button navmenu-search__button">
                         <span class="wf-icon wf-icon-search"></span>
-                    </button>
-                    <div class="uk-dropdown uk-drop navmenu-search__dropdown" data-uk-dropdown="mode: click; pos: bottom-right">
+                    </a>
+                    {{-- <div class="uk-dropdown uk-drop navmenu-search__dropdown" data-uk-dropdown="mode: click; pos: bottom-right">
                         <form class="navmenu-search__form">
                             <input type="search" name="" class="uk-input navmenu-search__input">
                             <button type="submit" class="uk-button uk-button-primary navmenu-search__form-button"><span class="wf-icon wf-icon-search"></span></button>
                         </form>
-                    </div>
+                    </div> --}}
                 </div>
             @if(!Auth::user())
                 <a href="{{route("login")}}" class="navmenu__left-link">Entra</a>
