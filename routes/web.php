@@ -18,6 +18,8 @@ $controller_path = 'App\Http\Controllers';
 // Main Page Route
 Route::get('/', $controller_path . '\pages\HomePage@index')->name('pages-home');
 
+Route::get('/test', $controller_path . '\Test@index')->name('test');
+
 // pages
 Route::get('/pages/misc-error', $controller_path . '\pages\MiscError@index')->name('pages-misc-error');
 
