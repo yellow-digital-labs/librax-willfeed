@@ -53,7 +53,6 @@ class VerifyEmail extends Controller
     $verificationUrl = route("verify-email-confirm", ["token" => $user->verification_token]);
 
     //send email
-    $user->email = 'noreply@willfeed.it';
     Mail::to($user->email)->send(new UserVerification([
         "accountTypeName" => $user->accountType,
         "verificationUrl" => $verificationUrl
