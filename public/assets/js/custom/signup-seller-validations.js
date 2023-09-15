@@ -134,8 +134,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     tax_id_code: {
                         validators: {
                             regexp: {
-                              regexp: /^[A-Z]+$/,
-                              message: 'Codice fiscale can only consist of capital alphabets'
+                              regexp: /^[A-Z0-9]+$/,
+                              message: 'Codice fiscale can only consist of capital alphabets or number'
                             }
                         }
                     },
