@@ -4,6 +4,7 @@ namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\ProductSeller;
 use App\Models\Product as Products;
 use App\Models\ProductSellerInventoryHistory;
@@ -310,21 +311,35 @@ class Product extends Controller
             "msg" => "This product is not available",
           ]);
         }
-      } else {
-        $id = null;
-      }
 
-      Products::updateOrCreate(
-        [
+        Products::where([
           "id" => $id,
-        ],
-        [
-          "name" => $request->name,
-          "description" => $request->description,
-          "active" => $request->active ? "yes" : "no",
-          "today_price" => $request->today_price,
-        ]
-      );
+        ])->update([
+            "name" => $request->name,
+            "description" => $request->description,
+            "active" => $request->active ? "yes" : "no",
+            "today_price" => $request->today_price,
+        ]);
+      } else {
+        try{
+          Products::create([
+              "name" => $request->name,
+              "description" => $request->description,
+              "active" => $request->active ? "yes" : "no",
+              "today_price" => $request->today_price,
+          ]);
+        } catch(\Illuminate\Database\QueryException $e){
+          if(Str::contains($e->getMessage(), 'Duplicate entry')){
+            return Redirect::back()->withErrors([
+              "msg" => "Product is already available with the same name",
+            ]);
+          } else {
+            return Redirect::back()->withErrors([
+              "msg" => "Something went wrong!",
+            ]);
+          }
+        }
+      }
   
       return redirect()->route("product");
     } else {

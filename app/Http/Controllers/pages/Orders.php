@@ -131,7 +131,8 @@ class Orders extends Controller
       if($isAdmin){
         $q = Order::where(function ($query) use ($search) {
           return $query
-            ->where("user_name", "LIKE", "%{$search}%")
+            ->where("seller_name", "LIKE", "%{$search}%")
+            ->orWhere("user_name", "LIKE", "%{$search}%")
             ->orWhere("product_name", "LIKE", "%{$search}%")
             ->orWhere("order_status", "LIKE", "%{$search}%")
             ->orWhere("payment_status", "LIKE", "%{$search}%");
