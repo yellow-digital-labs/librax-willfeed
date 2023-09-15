@@ -234,7 +234,7 @@ $configData = Helper::appClasses();
                                     <select name="geographical_coverage_regions" id="geographical_coverage_regions" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                                         <option value="">Seleziona le regioni coperte</option>
                                     @foreach($region as $_region)
-                                        <option value="{{$_region->name}}" {{$user_detail?($user_detail->geographical_coverage_regions==$_region->name?'selected':''):''}}>{{$_region->name}}</option>
+                                        <option value="{{$_region->name}}" data-id="{{$_region->id}}" {{$user_detail?($user_detail->geographical_coverage_regions==$_region->name?'selected':''):''}}>{{$_region->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
@@ -244,7 +244,7 @@ $configData = Helper::appClasses();
                                     <select name="geographical_coverage_provinces" id="geographical_coverage_provinces" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                                         <option value="">Seleziona prodotti </option>
                                     @foreach($province as $_province)
-                                        <option value="{{$_province->name}}" {{$user_detail?($user_detail->geographical_coverage_provinces==$_province->name?'selected':''):''}}>{{$_province->name}}</option>
+                                        <option value="{{$_province->name}}" data-id="{{$_province->id}}" data-region="{{$_province->regions_id}}" {{$user_detail?($user_detail->geographical_coverage_provinces==$_province->name?'selected':''):''}}>{{$_province->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>

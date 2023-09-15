@@ -47,6 +47,25 @@ $(function() {
             }
         });
     });
+
+    $("#geographical_coverage_regions").on("change", function(){
+        let regions = $(this).find(":selected");
+        let selected_ids = [];
+
+        for(let i = 0; i < regions.length; i++){
+            selected_ids.push($(regions[i]).data("id"));
+        }
+        console.log("selected_ids", selected_ids)
+        $("#geographical_coverage_provinces").select2("destroy").select2({
+            templateResult: function(option, container) {
+                if(jQuery.inArray($(option.element).data("region"), selected_ids) === -1){
+                    $(container).css("display","none");
+                }
+        
+                return option.text;
+            }
+        });
+    });
 });
 
 // Multi Steps Validation
