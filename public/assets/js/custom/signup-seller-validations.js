@@ -221,20 +221,20 @@ document.addEventListener('DOMContentLoaded', function(e) {
                         }
                     }
                 },
-                order_capacity_limits_min: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please enter limiti di capacità ordini'
-                        }
-                    }
-                },
-                order_capacity_limits_max: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please enter limiti di capacità ordini'
-                        }
-                    }
-                },
+                // order_capacity_limits: {
+                //     validators: {
+                //         notEmpty: {
+                //             message: 'Please enter limiti di capacità ordini min'
+                //         }
+                //     }
+                // },
+                // order_capacity_limits_new: {
+                //     validators: {
+                //         notEmpty: {
+                //             message: 'Please enter limiti di capacità ordini max'
+                //         }
+                //     }
+                // },
                 available_products: {
                     validators: {
                         notEmpty: {
@@ -246,13 +246,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     validators: {
                         notEmpty: {
                             message: 'Please enter copertura geografica regioni'
-                        }
-                    }
-                },
-                geographical_coverage_provinces: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please enter copertura geografica province'
                         }
                     }
                 },
@@ -361,6 +354,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                             multiSteps1.validate();
                             let main_activity_ids = $("#main_activity_ids").find(":selected").val();
                             delete formTwoValidationFields.order_capacity_limits;
+                            delete formTwoValidationFields.order_capacity_limits_new;
                             if(main_activity_ids=="Agenzia"){
                                 $(".order_capacity_limits_container").hide();
                             } else {
@@ -368,7 +362,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
                                 formTwoValidationFields["order_capacity_limits"] = {
                                     validators: {
                                         notEmpty: {
-                                            message: 'Please enter limiti di capacità ordini'
+                                            message: 'Please enter limiti di capacità ordini min'
+                                        }
+                                    }
+                                };
+                                formTwoValidationFields["order_capacity_limits_new"] = {
+                                    validators: {
+                                        notEmpty: {
+                                            message: 'Please enter limiti di capacità ordini max'
                                         }
                                     }
                                 };

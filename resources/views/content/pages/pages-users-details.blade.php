@@ -239,7 +239,7 @@ if($isOnlyProfile){
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Limiti di capacità ordini</h6>
-                                <p class="mb-0">{{$user_detail->order_capacity_limits_min?$user_detail->order_capacity_limits_min.' litri':'NA'}} - {{$user_detail->order_capacity_limits_max?$user_detail->order_capacity_limits_max.' litri':'NA'}}</p>
+                                <p class="mb-0">{{$user_detail->order_capacity_limits?$user_detail->order_capacity_limits.' litri':'NA'}} - {{$user_detail->order_capacity_limits_new?$user_detail->order_capacity_limits_new.' litri':'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">

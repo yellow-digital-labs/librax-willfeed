@@ -213,19 +213,12 @@ $configData = Helper::appClasses();
                                     <label class="form-label" for="order_capacity_limits">Limiti di capacità ordini *</label>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <input type="number" name="order_capacity_limits_min" id="order_capacity_limits_min" class="form-control" placeholder="Min" value="{{$user_detail?$user_detail->time_limit_daily_order:''}}" />
+                                            <input type="text" name="order_capacity_limits" id="order_capacity_limits" class="form-control" placeholder="Min" value="{{$user_detail?$user_detail->order_capacity_limits:''}}" />
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="number" name="order_capacity_limits_max" id="order_capacity_limits_max" class="form-control" placeholder="Max" value="{{$user_detail?$user_detail->time_limit_daily_order:''}}" />
+                                            <input type="text" name="order_capacity_limits_new" id="order_capacity_limits_new" class="form-control" placeholder="Max" value="{{$user_detail?$user_detail->order_capacity_limits_new:''}}" />
                                         </div>
                                     </div>
-
-                                    {{-- <select name="order_capacity_limits" id="order_capacity_limits" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option value="">Seleziona i limiti</option>
-                                    @foreach($order_capacity as $_order_capacity)
-                                        <option value="{{$_order_capacity->name}}" {{$user_detail?($user_detail->order_capacity_limits==$_order_capacity->name?'selected':''):''}}>{{$_order_capacity->name}}</option>
-                                    @endforeach
-                                    </select> --}}
                                 </div>
                                 
                                 <div class="col-sm-6">
@@ -249,7 +242,7 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="geographical_coverage_provinces">Copertura geografica province *</label>
+                                    <label class="form-label" for="geographical_coverage_provinces">Copertura geografica province</label>
                                     <select name="geographical_coverage_provinces[]" id="geographical_coverage_provinces" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                                         <option value="">Seleziona prodotti </option>
                                     @foreach($province as $_province)
