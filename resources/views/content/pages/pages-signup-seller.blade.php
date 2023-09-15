@@ -211,12 +211,21 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6 order_capacity_limits_container">
                                     <label class="form-label" for="order_capacity_limits">Limiti di capacità ordini *</label>
-                                    <select name="order_capacity_limits" id="order_capacity_limits" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <input type="number" name="order_capacity_limits_min" id="order_capacity_limits_min" class="form-control" placeholder="Min" value="{{$user_detail?$user_detail->time_limit_daily_order:''}}" />
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="number" name="order_capacity_limits_max" id="order_capacity_limits_max" class="form-control" placeholder="Max" value="{{$user_detail?$user_detail->time_limit_daily_order:''}}" />
+                                        </div>
+                                    </div>
+
+                                    {{-- <select name="order_capacity_limits" id="order_capacity_limits" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value="">Seleziona i limiti</option>
                                     @foreach($order_capacity as $_order_capacity)
                                         <option value="{{$_order_capacity->name}}" {{$user_detail?($user_detail->order_capacity_limits==$_order_capacity->name?'selected':''):''}}>{{$_order_capacity->name}}</option>
                                     @endforeach
-                                    </select>
+                                    </select> --}}
                                 </div>
                                 
                                 <div class="col-sm-6">
@@ -231,7 +240,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="geographical_coverage_regions">Copertura geografica regioni *</label>
-                                    <select name="geographical_coverage_regions" id="geographical_coverage_regions" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
+                                    <select name="geographical_coverage_regions[]" id="geographical_coverage_regions" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                                         <option value="">Seleziona le regioni coperte</option>
                                     @foreach($region as $_region)
                                         <option value="{{$_region->name}}" data-id="{{$_region->id}}" {{$user_detail?($user_detail->geographical_coverage_regions==$_region->name?'selected':''):''}}>{{$_region->name}}</option>
@@ -241,7 +250,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="geographical_coverage_provinces">Copertura geografica province *</label>
-                                    <select name="geographical_coverage_provinces" id="geographical_coverage_provinces" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
+                                    <select name="geographical_coverage_provinces[]" id="geographical_coverage_provinces" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                                         <option value="">Seleziona prodotti </option>
                                     @foreach($province as $_province)
                                         <option value="{{$_province->name}}" data-id="{{$_province->id}}" data-region="{{$_province->regions_id}}" {{$user_detail?($user_detail->geographical_coverage_provinces==$_province->name?'selected':''):''}}>{{$_province->name}}</option>

@@ -221,7 +221,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
                         }
                     }
                 },
-                order_capacity_limits: {
+                order_capacity_limits_min: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter limiti di capacità ordini'
+                        }
+                    }
+                },
+                order_capacity_limits_max: {
                     validators: {
                         notEmpty: {
                             message: 'Please enter limiti di capacità ordini'
