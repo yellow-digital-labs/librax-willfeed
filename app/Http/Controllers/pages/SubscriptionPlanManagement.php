@@ -192,4 +192,18 @@ class SubscriptionPlanManagement extends Controller
 
     return response()->json($subscription);
   }
+
+  public function store(Request $request, $id)
+  {
+    $subscription = Subscription::where(['id' => $id])->update([
+      "name" => $request->name,
+      "tagline" => $request->tagline,
+      "amount" => $request->amount,
+      "description" => $request->description,
+      "status" => $request->status?'active':'inactive',
+    ]);
+
+    return redirect()->back();
+    // return response()->json($subscription);
+  }
 }

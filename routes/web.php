@@ -129,6 +129,7 @@ Route::middleware([
     Route::get('/subscription-plan-management', $controller_path . '\pages\SubscriptionPlanManagement@index')->name('subscription-plan-management');
     Route::get('/subscription-plan-managements/list', $controller_path . '\pages\SubscriptionPlanManagement@list')->name('subscription-plan-management-list'); //subscription list data ajax
     Route::get('/subscription-plan-management/{id}/edit', $controller_path . '\pages\SubscriptionPlanManagement@edit')->name('subscription-plan-management-edit'); //subscription detail data ajax
+    Route::post('/subscription-plan-management/{id}/edit', $controller_path . '\pages\SubscriptionPlanManagement@store')->name('subscription-plan-management-store'); //subscription detail data ajax
 
     //settings
     Route::get('/settings', $controller_path . '\pages\Settings@index')->name('settings'); //settings view

@@ -9,12 +9,16 @@ $configData = Helper::appClasses();
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
 @endsection
 
 @section('vendor-script')
 <script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
 <!-- Flat Picker -->
 <script src="{{asset('assets/vendor/libs/moment/moment.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
 @endsection
 
 @section('page-script')
@@ -61,11 +65,12 @@ $configData = Helper::appClasses();
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body flex-grow-1">
-        <form class="add-new-record pt-0 row g-4" id="form-add-new-record" onsubmit="return false">
+        <form method="POST" class="add-new-record pt-0 row g-4" id="form-add-new-record">
+            @csrf
             <input type="hidden" name="id" id="edit-id">
             <div class="col-sm-12">
                 <label class="form-label" for="edit-name">Plan name</label>
-                <input type="text" id="edit-name" class="form-control" name="Planname" placeholder="Enter plan name" />
+                <input type="text" id="edit-name" class="form-control" name="name" placeholder="Enter plan name" />
             </div>
             <div class="col-sm-12">
                 <label class="form-label" for="edit-tagline">Tagline</label>
@@ -80,7 +85,7 @@ $configData = Helper::appClasses();
             </div>
             <div class="col-sm-12">
                 <label class="form-label" for="edit-description">Description</label>
-                <textarea class="form-control" placeholder="Enter description" id="edit-description" rows="4"></textarea>
+                <textarea class="form-control" placeholder="Enter description" id="edit-description" name="description" rows="4"></textarea>
             </div>
             <div class="form-check form-switch col-sm-12">
                 <label class="form-check-label" for="edit-status">Disponibilità</label>
