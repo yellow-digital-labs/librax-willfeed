@@ -186,32 +186,33 @@ document.addEventListener('DOMContentLoaded', function(e) {
             });
 
             // Destination details
-            const multiSteps2 = FormValidation.formValidation(stepsValidationFormStep2, {
-                fields: {
-                    ease_of_access: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please enter facilità di accesso'
-                            }
-                        }
-                    },
-                    mobile_unloading: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please enter cellulare referente di scarico'
-                            },
-                            stringLength: {
-                              min: 10,
-                              max: 10,
-                              message: 'cellulare referente di scarico should be 10 digit long'
-                            },
-                            regexp: {
-                              regexp: /^[0-9]+$/,
-                              message: 'cellulare referente di scarico can only consist of number'
-                            }
+            let formTwoValidationFields = {
+                ease_of_access: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter facilità di accesso'
                         }
                     }
                 },
+                mobile_unloading: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter cellulare referente di scarico'
+                        },
+                        stringLength: {
+                          min: 10,
+                          max: 10,
+                          message: 'cellulare referente di scarico should be 10 digit long'
+                        },
+                        regexp: {
+                          regexp: /^[0-9]+$/,
+                          message: 'cellulare referente di scarico can only consist of number'
+                        }
+                    }
+                }
+            };
+            const multiSteps2 = FormValidation.formValidation(stepsValidationFormStep2, {
+                fields: formTwoValidationFields,
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
                     bootstrap5: new FormValidation.plugins.Bootstrap5({
@@ -348,6 +349,18 @@ document.addEventListener('DOMContentLoaded', function(e) {
                             break;
 
                         case 1:
+                            let destination_address = $("#destination_address").find(":selected").val();
+                            delete formTwoValidationFields.destination_region;
+                            if(destination_address=="Yes"){
+                            } else {
+                                formTwoValidationFields["destination_region"] = {
+                                    validators: {
+                                        notEmpty: {
+                                            message: 'Please enter regione'
+                                        }
+                                    }
+                                };
+                            }
                             multiSteps2.validate();
                             break;
 
