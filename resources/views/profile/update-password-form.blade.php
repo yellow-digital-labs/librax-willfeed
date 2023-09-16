@@ -51,7 +51,7 @@
 
 
   <x-slot name="actions" class="justify-content-start">
-    <x-button class="me-3 sentence-case">
+    <x-button class="me-3 settings-btn">
       {{ __('Aggiorna password') }}
     </x-button>
 

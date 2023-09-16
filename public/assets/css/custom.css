@@ -611,3 +611,6 @@
 .sentence-case::first-letter {
     text-transform: uppercase !important;
 }
+.settings-btn {
+    text-transform: none !important;
+}
