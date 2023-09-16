@@ -257,9 +257,9 @@
         }
     }
 
-    @media (min-width: 1440px) {
+    @media (min-width: 1480px) {
         .uk-container {
-            max-width: 1400px;
+            max-width: 1440px;
         }
     }
 

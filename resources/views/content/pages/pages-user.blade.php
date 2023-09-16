@@ -67,7 +67,7 @@ $customizerHidden = 'customizer-hide';
                     @endif
                     </th>
                     <th class="js-add-search">Email</th>
-                    <th>verified since</th>
+                    <th>Verified since</th>
                     <th>Since on platform</th>
                     <th>Is verified</th>
                     <th>Plan</th>

@@ -1150,7 +1150,7 @@ marquee.dash-charts__marquee {
 /* Landing Video Starts */
 
 .landing-video {
-    padding: 60px 40px 100px;
+    padding: 60px 30px 100px;
 }
 
 .landing-video__wrapper {
@@ -1214,6 +1214,12 @@ marquee.dash-charts__marquee {
 
 /* Landing Colored Blocks Starts */
 
+@media (min-width: 1480px) {
+    .landing-clrblock__container {
+        max-width: 1400px;
+    }
+}
+
 .landing-clrblock__container {
     padding: 60px;
     border-radius: 38px;
@@ -1248,7 +1254,7 @@ marquee.dash-charts__marquee {
 }
 
 .landing-clrblock {
-    padding: 25px 40px;
+    padding: 25px 30px;
 }
 
 .landing-clrblock__container--buy {
@@ -1307,6 +1313,11 @@ marquee.dash-charts__marquee {
 .landing-clrblock__media {
     border-radius: 38px;
     overflow: hidden;
+}
+
+.landing-clrblock__media > img {
+    max-height: 400px;
+    object-fit: contain;
 }
 
 @media (max-width: 1399.98px) {
@@ -2473,6 +2484,9 @@ marquee.dash-charts__marquee {
     }
     .thanks__container {
         padding: 50px 30px
+    }
+    .thanks__container--signup {
+        max-width: 480px;
     }
     .thanks__icon {
         max-width: 100px;

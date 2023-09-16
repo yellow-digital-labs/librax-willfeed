@@ -49,7 +49,7 @@ $configData = Helper::appClasses();
                     <th class="js-add-search">Date & time</th>
                     <th>Amount</th>
                     <th>Card</th>
-                    <th>transaction id</th>
+                    <th>Transaction id</th>
                     <th>status</th>
                 </tr>
             </thead>

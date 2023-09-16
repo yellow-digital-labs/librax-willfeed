@@ -49,8 +49,8 @@ $configData = Helper::appClasses();
             <thead>
                 <tr>
                     <th>Plan name</th>
-                    <th>price</th>
-                    <th>description</th>
+                    <th>Price</th>
+                    <th>Description</th>
                     <th>Azione</th>
                 </tr>
             </thead>

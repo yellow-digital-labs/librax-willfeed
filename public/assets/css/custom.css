@@ -89,6 +89,11 @@
 .app-email .app-emails-list .email-list li .email-list-item-time {
     width: 150px;
 }
+.table th {
+    text-transform: none;
+    font-size: 0.9125rem;
+    letter-spacing: 0.2px;
+}
 @media (max-width: 1399.98px) {
 
 }

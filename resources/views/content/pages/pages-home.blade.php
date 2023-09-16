@@ -48,7 +48,7 @@ $configData = Helper::appClasses();
     </div>
 
     <div class="landing-video">
-        <div class="uk-container uk-container-expand landing-video__container">
+        <div class="uk-container landing-video__container">
             <div class="landing-video__wrapper">
                 
                 <button type="button" class="uk-button uk-icon-button landing-video__action">
