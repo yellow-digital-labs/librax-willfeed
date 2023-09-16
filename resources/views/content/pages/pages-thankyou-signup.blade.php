@@ -35,16 +35,16 @@ $configData = Helper::appClasses();
 
 <main id="main-content" class="wrapper">
 
-    <div class="thanks">
-        <div class="uk-container thanks__container">
+    <div class="thanks thanks--signup">
+        <div class="uk-container thanks__container thanks__container--signup">
             <div class="thanks__icon">
                 <img src="/assets/front/images/thanks.svg" width="340" height="196">
             </div>
             <h2 class="thanks__text">Congratulazioni!</h2>
-            <h3 class="thanks__title">La registrazione è andata a buon fine.
+            <h3 class="thanks__title thanks__title--signup">La registrazione è andata a buon fine.
                 La tua pratica è in stato di verifica -
                 riceverai un email entro 48 ore.</h3>
-            <div class="thanks__action">
+            <div class="thanks__action thanks__action--signup">
                 <a href="{{route("pages-home")}}" class="uk-button uk-button-primary thanks__action-btn">Vai alla homepage</a>
             </div>
         </div>

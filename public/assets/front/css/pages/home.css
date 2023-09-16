@@ -2376,7 +2376,7 @@ marquee.dash-charts__marquee {
 }
 
 .thanks {
-    padding: 130px 0;
+    padding: 130px 40px;
     text-align: center;
 }
 
@@ -2442,6 +2442,19 @@ marquee.dash-charts__marquee {
     padding: 10px 20px;
 }
 
+.thanks__container--signup {
+    padding: 80px 60px;
+}
+
+.thanks__title--signup {
+    max-width: 550px;
+    margin: auto;
+}
+
+.thanks__action--signup {
+    margin-top: 80px;
+}
+
 @media (max-width: 1399.98px) {
 
 }
@@ -2455,7 +2468,24 @@ marquee.dash-charts__marquee {
 }
 
 @media (max-width: 959.98px) {
-
+    .thanks {
+        padding: 50px 30px;
+    }
+    .thanks__container {
+        padding: 50px 30px
+    }
+    .thanks__icon {
+        max-width: 100px;
+    }
+    .thanks__text {
+        font-size: 20px;
+    }
+    .thanks__title {
+        font-size: 20px;
+    }
+    .thanks__action--signup {
+        margin-top: 40px;
+    }
 }
 
 @media (max-width: 767.98px) {
