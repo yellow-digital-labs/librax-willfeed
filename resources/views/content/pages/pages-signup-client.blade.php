@@ -323,7 +323,7 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="sdi">SDI *</label>
-                                    <input type="text" name="sdi" id="sdi" class="form-control" placeholder="Inserisci codice univoco" />
+                                    <input type="text" name="sdi" id="sdi" class="form-control" placeholder="Inserisci codice univoco" oninput="this.value = this.value.toUpperCase()" />
                                 </div>
                                 
                                 <div class="col-sm-6">
@@ -338,17 +338,17 @@ $configData = Helper::appClasses();
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="file_1">Esenzione IVA </label>
-                                    <input class="form-control" type="file" id="file_1" name="file_1">
+                                    <input class="form-control" type="file" id="file_1" name="file_1" accept="application/pdf">
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="file_2">Esenzione IVA </label>
-                                    <input class="form-control" type="file" id="file_2" name="file_2">
+                                    <input class="form-control" type="file" id="file_2" name="file_2" accept="application/pdf">
                                 </div>
                                 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="file_3">Esenzione IVA </label>
-                                    <input class="form-control" type="file" id="file_3" name="file_3">
+                                    <input class="form-control" type="file" id="file_3" name="file_3" accept="application/pdf">
                                 </div>
 
                                 <div class="col-12 d-flex justify-content-between mt-4">
@@ -399,9 +399,9 @@ $configData = Helper::appClasses();
                                     </select>
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 js-distributor-no-container hide">
                                     <label class="form-label" for="no_of_distributer">Numero di distributori *</label>
-                                    <input type="text" name="no_of_distributer" id="no_of_distributer" class="form-control" placeholder="Inserisci numero di distributori" />
+                                    <input type="number" name="no_of_distributer" id="no_of_distributer" class="form-control" placeholder="Inserisci numero di distributori" />
                                 </div>
                                 
                                 <div class="col-sm-12">
