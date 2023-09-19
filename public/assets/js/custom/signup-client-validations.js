@@ -38,14 +38,6 @@ $(function() {
             $(".address-container").removeClass('hide');
         }
     })
-
-    $("#is_private_distributer").on("change", function(){
-        if(this.value == "Yes") {
-            $(".js-distributor-no-container").removeClass('hide');
-        } else {
-            $(".js-distributor-no-container").addClass('hide');
-        }
-    })
 });
 
 // Multi Steps Validation
@@ -272,10 +264,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
                         validators: {
                             notEmpty: {
                                 message: 'Please enter SDI'
-                            },
-                            regexp: {
-                                regexp: /^[A-Z0-9]+$/,
-                                message: 'SDI can only consist of capital alphabets or number'
                             }
                         }
                     }

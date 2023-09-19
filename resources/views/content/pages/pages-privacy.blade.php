@@ -86,7 +86,6 @@ $configData = Helper::appClasses();
         </div>
     </div>
 
-    {{-- {!! $page->description !!} --}}
 </main>
 
 @include('_partials/_front/footer')

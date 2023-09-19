@@ -7,21 +7,14 @@ $configData = Helper::appClasses();
 @section('title', 'Static pages | Privacy policy')
 
 @section('vendor-style')
-{{-- <link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/typography.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/typography.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/katex.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/editor.css')}}" /> --}}
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/editor.css')}}" />
 @endsection
 
 @section('vendor-script')
-<script src="{{asset('assets/vendor/ckeditor5/build/ckeditor.js')}}"></script>
-<script type="module">
-    ClassicEditor
-        .create( document.querySelector( '#editor' ))
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
-
+<script src="{{asset('assets/vendor/libs/quill/katex.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/quill/quill.js')}}"></script>
 @endsection
 
 @section('page-script')
@@ -70,10 +63,7 @@ $configData = Helper::appClasses();
                         </div>
 
                         <!-- Description -->
-                        <div id="editor">
-                            <p>This is some sample content.</p>
-                        </div>
-                        {{-- <div>
+                        <div>
                             <textarea name="description" style="display: none;" id="text_quill">{{$page?$page->description:""}}</textarea>
                             <div id="snow-toolbar" class="p-4 border-bottom border-top border-0">
                                 <span class="ql-formats me-0">
@@ -89,7 +79,7 @@ $configData = Helper::appClasses();
                             <div id="snow-editor" class="border-0">
                                 
                             </div>
-                        </div> --}}
+                        </div>
 
                         <div class="p-4 border-top">
                             <label class="form-label" for="meta_title">Meta title</label>
