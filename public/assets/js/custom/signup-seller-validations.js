@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
             });
 
             // Destination details
-            let formTwoValidationFields = {
+            var formTwoValidationFields = {
                 storage_capacity: {
                     validators: {
                         notEmpty: {
@@ -221,20 +221,22 @@ document.addEventListener('DOMContentLoaded', function(e) {
                         }
                     }
                 },
-                // order_capacity_limits: {
-                //     validators: {
-                //         notEmpty: {
-                //             message: 'Please enter limiti di capacità ordini min'
-                //         }
-                //     }
-                // },
-                // order_capacity_limits_new: {
-                //     validators: {
-                //         notEmpty: {
-                //             message: 'Please enter limiti di capacità ordini max'
-                //         }
-                //     }
-                // },
+                order_capacity_limits: {
+                    validators: {
+                        notEmpty: {
+                            enabled: false,
+                            message: 'Please enter limiti di capacità ordini min'
+                        }
+                    }
+                },
+                order_capacity_limits_new: {
+                    validators: {
+                        notEmpty: {
+                            enabled: false,
+                            message: 'Please enter limiti di capacità ordini max'
+                        }
+                    }
+                },
                 available_products: {
                     validators: {
                         notEmpty: {
@@ -353,26 +355,30 @@ document.addEventListener('DOMContentLoaded', function(e) {
                         case 0:
                             multiSteps1.validate();
                             let main_activity_ids = $("#main_activity_ids").find(":selected").val();
-                            delete formTwoValidationFields.order_capacity_limits;
-                            delete formTwoValidationFields.order_capacity_limits_new;
+                            // delete formTwoValidationFields.order_capacity_limits;
+                            // delete formTwoValidationFields.order_capacity_limits_new;
                             if(main_activity_ids=="Agenzia"){
                                 $(".order_capacity_limits_container").hide();
+                                multiSteps2.disableValidator('order_capacity_limits');
+                                multiSteps2.disableValidator('order_capacity_limits_new');
                             } else {
                                 $(".order_capacity_limits_container").show();
-                                formTwoValidationFields["order_capacity_limits"] = {
-                                    validators: {
-                                        notEmpty: {
-                                            message: 'Please enter limiti di capacità ordini min'
-                                        }
-                                    }
-                                };
-                                formTwoValidationFields["order_capacity_limits_new"] = {
-                                    validators: {
-                                        notEmpty: {
-                                            message: 'Please enter limiti di capacità ordini max'
-                                        }
-                                    }
-                                };
+                                multiSteps2.enableValidator('order_capacity_limits');
+                                multiSteps2.enableValidator('order_capacity_limits_new');
+                                // formTwoValidationFields["order_capacity_limits"] = {
+                                //     validators: {
+                                //         notEmpty: {
+                                //             message: 'Please enter limiti di capacità ordini min'
+                                //         }
+                                //     }
+                                // };
+                                // formTwoValidationFields["order_capacity_limits_new"] = {
+                                //     validators: {
+                                //         notEmpty: {
+                                //             message: 'Please enter limiti di capacità ordini max'
+                                //         }
+                                //     }
+                                // };
                             }
                             break;
 
