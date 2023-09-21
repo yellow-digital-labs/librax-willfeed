@@ -258,7 +258,7 @@ if($isOnlyProfile){
                             </div>
 
                             <div class="col-sm-6 col-12">
-                                <h6 class="text-black mb-2">Tempo limite ordine giornaliero</h6>
+                                <h6 class="text-black mb-2">Tempo limite accettazione ordine</h6>
                                 <p class="mb-0">{{$user_detail->time_limit_daily_order?$user_detail->time_limit_daily_order:'NA'}}</p>
                             </div>
 

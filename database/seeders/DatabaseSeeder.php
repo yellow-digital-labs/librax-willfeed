@@ -551,16 +551,16 @@ class DatabaseSeeder extends Seeder
 //             'name' => 'Agenzia',
 //         ]);
 
-//         \App\Models\StorageCapacity::truncate();
-//         DB::table('storage_capacities')->insert([
-//             'name' => '< 50.000 Litri',
-//         ]);
-//         DB::table('storage_capacities')->insert([
-//             'name' => 'Da 50.000 a 100.000 Litri',
-//         ]);
-//         DB::table('storage_capacities')->insert([
-//             'name' => 'Oltre i 100.000 Litri',
-//         ]);
+            \App\Models\StorageCapacity::truncate();
+            DB::table('storage_capacities')->insert([
+                'name' => 'Fino a 100.000 litri',
+            ]);
+            DB::table('storage_capacities')->insert([
+                'name' => 'Più di 100.000 litri',
+            ]);
+            // DB::table('storage_capacities')->insert([
+            //     'name' => 'Oltre i 100.000 Litri',
+            // ]);
 
 //         \App\Models\OrderCapacity::truncate();
 //         DB::table('order_capacities')->insert([

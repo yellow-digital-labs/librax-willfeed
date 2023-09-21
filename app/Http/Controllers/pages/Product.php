@@ -464,7 +464,7 @@ class Product extends Controller
   }
 
   public function deleteAdmin($id){
-    Product::where([
+    Products::where([
       "id" => $id
     ])->delete();
 

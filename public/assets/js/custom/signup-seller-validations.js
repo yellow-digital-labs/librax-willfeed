@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                 time_limit_daily_order: {
                     validators: {
                         notEmpty: {
-                            message: 'Please enter tempo limite ordine giornaliero'
+                            message: 'Please enter tempo limite accettazione ordine'
                         }
                     }
                 },

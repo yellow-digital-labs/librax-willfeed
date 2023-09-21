@@ -252,7 +252,7 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="time_limit_daily_order">Tempo limite ordine giornaliero *</label>
+                                    <label class="form-label" for="time_limit_daily_order">Tempo limite accettazione ordine *</label>
                                     <input type="time" name="time_limit_daily_order" id="time_limit_daily_order" class="form-control" placeholder="Seleziona limite" value="{{$user_detail?$user_detail->time_limit_daily_order:''}}" />
                                 </div>
 
