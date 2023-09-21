@@ -318,7 +318,7 @@ class Product extends Controller
             "name" => $request->name,
             "description" => $request->description,
             "active" => $request->active ? "yes" : "no",
-            "today_price" => $request->today_price,
+            "today_price" => $request->today_price?$request->today_price:0,
         ]);
       } else {
         try{
@@ -326,7 +326,7 @@ class Product extends Controller
               "name" => $request->name,
               "description" => $request->description,
               "active" => $request->active ? "yes" : "no",
-              "today_price" => $request->today_price,
+              "today_price" => $request->today_price?$request->today_price:0,
           ]);
         } catch(\Illuminate\Database\QueryException $e){
           if(Str::contains($e->getMessage(), 'Duplicate entry')){
@@ -334,6 +334,7 @@ class Product extends Controller
               "msg" => "Product is already available with the same name",
             ]);
           } else {
+            dd($e->getMessage());
             return Redirect::back()->withErrors([
               "msg" => "Something went wrong!",
             ]);
