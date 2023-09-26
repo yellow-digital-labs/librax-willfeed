@@ -24,9 +24,9 @@ class BuyerHome extends Controller
       $products_list = ProductSeller::where(["status" => "active"])
         ->where(function($query) use ($search){
           $query->whereRaw("product_name LIKE '%".$search."%' OR seller_name LIKE '%".$search."%'");
-        })->paginate(10);
+        })->paginate(5);
     } else {
-      $products_list = ProductSeller::where(["status" => "active"])->paginate(10);
+      $products_list = ProductSeller::where(["status" => "active"])->paginate(5);
     }
 
     $products = Product::where(["active" => "yes"])->get();

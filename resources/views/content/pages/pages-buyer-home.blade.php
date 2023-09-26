@@ -205,27 +205,8 @@ $configData = Helper::appClasses();
                         </div>
                         @endforeach
                     @endif
-
-                        <div class="product-filter__footer">
-                            <div class="product-filter__counter">
-                                5 di 10 mostrati
-                            </div>
-                            <div class="product-filter__pagination">
-                                {{ $products_list->links() }}
-                                <ul class="pagination">
-                                    <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a tabindex="0" class="page-link">Previous</a></li>
-                                    <li class="paginate_button page-item active"><a href="#" aria-current="page" tabindex="0" class="page-link">1</a></li>
-                                    <li class="paginate_button page-item "><a href="#" tabindex="0" class="page-link">2</a></li>
-                                    <li class="paginate_button page-item "><a href="#" tabindex="0" class="page-link">3</a></li>
-                                    <li class="paginate_button page-item "><a href="#" tabindex="0" class="page-link">4</a></li>
-                                    <li class="paginate_button page-item "><a href="#" tabindex="0" class="page-link">5</a></li>
-                                    <li class="paginate_button page-item disabled" id="DataTables_Table_0_ellipsis"><a tabindex="0" class="page-link">…</a></li>
-                                    <li class="paginate_button page-item "><a href="#" tabindex="0" class="page-link">15</a></li>
-                                    <li class="paginate_button page-item next" id="DataTables_Table_0_next"><a href="#" tabindex="0" class="page-link">Next</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
+                        {{ $products_list->links() }}
+                        
                     </div>
                     
                 </div>
