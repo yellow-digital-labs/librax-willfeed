@@ -2513,3 +2513,16 @@ marquee.dash-charts__marquee {
 
 }
 /* Thanks Ends */
+
+.mb-5 {
+    margin-bottom: 1.5rem!important;
+}
+.mt-4 {
+    margin-top: 3rem!important;
+}
+.noUi-primary .noUi-connect {
+    background: #000!important
+}
+/* .noUi-primary .noUi-handle {
+    background: #000!important
+} */
