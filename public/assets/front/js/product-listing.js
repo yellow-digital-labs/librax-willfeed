@@ -4,7 +4,7 @@ $(function(){
 
     if(priceRangeSlider){
         noUiSlider.create(priceRangeSlider, {
-            start: [0.10, 10.00],
+            start: [price_min, price_max],
             connect: true,
             step: 0.1,
             direction: 'ltr',
@@ -16,15 +16,17 @@ $(function(){
             }
         });
 
-        priceRangeSlider.noUiSlider.on('update', function (values, handle) {
+        priceRangeSlider.noUiSlider.on('change', function (values, handle) {
             $("#price_min").val(values[0]);
             $("#price_max").val(values[1]);
+
+            $("#product-form").submit();
         });
     }
 
     if (dynamicSlider) {
         noUiSlider.create(dynamicSlider, {
-            start: [0, 30],
+            start: [delivery_time_min, delivery_time_max],
             connect: true,
             step: 1,
             direction: 'ltr',
@@ -36,9 +38,11 @@ $(function(){
             }
         });
 
-        dynamicSlider.noUiSlider.on('update', function (values, handle) {
+        dynamicSlider.noUiSlider.on('change', function (values, handle) {
             $("#delivery_time_min").val(values[0]);
             $("#delivery_time_max").val(values[1]);
+
+            $("#product-form").submit();
         });
     }
 

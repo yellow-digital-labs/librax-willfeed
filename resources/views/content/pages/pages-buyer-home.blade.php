@@ -89,8 +89,8 @@ $configData = Helper::appClasses();
                             <div class="filter__item">
                                 <h3 class="filter__name">Price</h3>
                                 <div class="mb-5 mt-4 noUi-primary" id="price-range"></div>
-                                <input type="hidden" id="price_min" name="price_min" value="">
-                                <input type="hidden" id="price_max" name="price_max" value="">
+                                <input type="hidden" id="price_min" name="price_min" value="{{isset($request['price_min'])?$request['price_min']:''}}">
+                                <input type="hidden" id="price_max" name="price_max" value="{{isset($request['price_max'])?$request['price_max']:''}}">
                             </div>
 
                             <div class="filter__item">
@@ -135,8 +135,8 @@ $configData = Helper::appClasses();
                             <div class="filter__item">
                                 <h3 class="filter__name">Delivery time range</h3>
                                 <div class="mb-5 mt-4 noUi-primary" id="delivery-time-range"></div>
-                                <input type="hidden" name="delivery_time_min" id="delivery_time_min" />
-                                <input type="hidden" name="delivery_time_max" id="delivery_time_max" />
+                                <input type="hidden" name="delivery_time_min" id="delivery_time_min" value="{{isset($request['delivery_time_min'])?$request['delivery_time_min']:''}}" />
+                                <input type="hidden" name="delivery_time_max" id="delivery_time_max" value="{{isset($request['delivery_time_max'])?$request['delivery_time_max']:''}}" />
                             </div>
 
                         </div>
@@ -228,6 +228,12 @@ $configData = Helper::appClasses();
 
 <!-- Scripts Starts -->
 @section('footer-script')
+<script>
+    let price_min = {{isset($request['price_min'])?$request['price_min']:0.10}};
+    let price_max = {{isset($request['price_max'])?$request['price_max']:10.00}};
+    let delivery_time_min = {{isset($request['delivery_time_min'])?$request['delivery_time_min']:0}};
+    let delivery_time_max = {{isset($request['delivery_time_max'])?$request['delivery_time_max']:30}};
+</script>
 <script src="{{asset('assets/front/plugins/uikit-3.16.22/js/uikit.min.js')}}"></script>
 <script src="{{asset('assets/front/js/jquery-3.7.0.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/rateyo/rateyo.js')}}"></script>
