@@ -45,7 +45,7 @@ $configData = Helper::appClasses();
         </div>
     </div>
 
-    <form method="GET">
+    <form method="GET" id="product-form">
         <div class="dash-search">
             <div class="uk-container dash-search__container">
                 <h2 class="title title--m dash-search__title">World’s first platform to buy more than 400+ petrochemical products online</h2>
@@ -76,7 +76,8 @@ $configData = Helper::appClasses();
                                 <h3 class="filter__name">Fuel type</h3>
                                 @foreach($products as $product)
                                 <div class="filter-checkbox">
-                                    <input type="checkbox" name="fuel_type" class="uk-checkbox filter-checkbox__input" id="FuelType-{{$product->id}}" value="{{$product->name}}">
+                                    <input type="checkbox" name="fuel_type[]" class="uk-checkbox filter-checkbox__input product-filter-checkbox" id="FuelType-{{$product->id}}" value="{{$product->name}}"
+                                    {{ isset($request['fuel_type'])&&in_array($product->name, $request['fuel_type'])?'checked':'' }}>
                                     <label class="filter-checkbox__label" for="FuelType-{{$product->id}}">
                                         <span class="filter-checkbox__label-type">{{$product->name}}</span>
                                         {{-- <span class="filter-checkbox__label-count">5</span> --}}
@@ -88,13 +89,15 @@ $configData = Helper::appClasses();
                             <div class="filter__item">
                                 <h3 class="filter__name">Price</h3>
                                 <div class="mb-5 mt-4 noUi-primary" id="price-range"></div>
+                                <input type="hidden" id="price_min" name="price_min" value="">
+                                <input type="hidden" id="price_max" name="price_max" value="">
                             </div>
 
                             <div class="filter__item">
                                 <h3 class="filter__name">Payment method</h3>
                                 @foreach($payment_options as $payment_option)
                                 <div class="filter-checkbox">
-                                    <input type="checkbox" name="payment_option" class="uk-checkbox filter-checkbox__input" id="PaymentMethod-{{$payment_option->id}}">
+                                    <input type="checkbox" name="payment_option[]" class="uk-checkbox filter-checkbox__input product-filter-checkbox" id="PaymentMethod-{{$payment_option->id}}" value="{{$payment_option->name}}" {{ isset($request['payment_option'])&&in_array($payment_option->name, $request['payment_option'])?'checked':'' }}>
                                     <label class="filter-checkbox__label" for="PaymentMethod-{{$payment_option->id}}">
                                         <span class="filter-checkbox__label-type">{{$payment_option->name}}</span>
                                         {{-- <span class="filter-checkbox__label-count">5</span> --}}
@@ -107,7 +110,7 @@ $configData = Helper::appClasses();
                                 <h3 class="filter__name">Geographic delivery limits</h3>
                                 @foreach($regions as $region)
                                 <div class="filter-checkbox">
-                                    <input type="checkbox" name="region" class="uk-checkbox filter-checkbox__input" id="Geographic-{{$region->id}}">
+                                    <input type="checkbox" name="region[]" class="uk-checkbox filter-checkbox__input product-filter-checkbox" id="Geographic-{{$region->id}}" value="{{$region->name}}" {{ isset($request['region'])&&in_array($region->name, $request['region'])?'checked':'' }}>
                                     <label class="filter-checkbox__label" for="Geographic-{{$region->id}}">
                                         <span class="filter-checkbox__label-type">{{$region->name}}</span>
                                         {{-- <span class="filter-checkbox__label-count">5</span> --}}
@@ -120,7 +123,7 @@ $configData = Helper::appClasses();
                                 <h3 class="filter__name">Payment time</h3>
                                 @foreach($payment_extensions as $payment_extension)
                                 <div class="filter-checkbox">
-                                    <input type="checkbox" name="" class="uk-checkbox filter-checkbox__input" id="PaymentTime-{{$payment_extension->id}}">
+                                    <input type="checkbox" name="payment_time[]" class="uk-checkbox filter-checkbox__input product-filter-checkbox" id="PaymentTime-{{$payment_extension->id}}" value="{{$payment_extension->name}}" {{ isset($request['payment_time'])&&in_array($payment_extension->name, $request['payment_time'])?'checked':'' }}>
                                     <label class="filter-checkbox__label" for="PaymentTime-{{$payment_extension->id}}">
                                         <span class="filter-checkbox__label-type">{{$payment_extension->name}}</span>
                                         {{-- <span class="filter-checkbox__label-count">5</span> --}}
@@ -132,6 +135,8 @@ $configData = Helper::appClasses();
                             <div class="filter__item">
                                 <h3 class="filter__name">Delivery time range</h3>
                                 <div class="mb-5 mt-4 noUi-primary" id="delivery-time-range"></div>
+                                <input type="hidden" name="delivery_time_min" id="delivery_time_min" />
+                                <input type="hidden" name="delivery_time_max" id="delivery_time_max" />
                             </div>
 
                         </div>

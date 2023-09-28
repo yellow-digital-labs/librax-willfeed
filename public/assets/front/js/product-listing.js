@@ -17,13 +17,8 @@ $(function(){
         });
 
         priceRangeSlider.noUiSlider.on('update', function (values, handle) {
-            const value = values[handle];
-      
-            // if (handle) {
-            //   sliderInput.value = value;
-            // } else {
-            //   sliderSelect.value = Math.round(value);
-            // }
+            $("#price_min").val(values[0]);
+            $("#price_max").val(values[1]);
         });
     }
 
@@ -42,13 +37,12 @@ $(function(){
         });
 
         dynamicSlider.noUiSlider.on('update', function (values, handle) {
-            const value = values[handle];
-      
-            // if (handle) {
-            //   sliderInput.value = value;
-            // } else {
-            //   sliderSelect.value = Math.round(value);
-            // }
+            $("#delivery_time_min").val(values[0]);
+            $("#delivery_time_max").val(values[1]);
         });
     }
+
+    $(".product-filter-checkbox").on("change", function(){
+        $("#product-form").submit();
+    });
 });
