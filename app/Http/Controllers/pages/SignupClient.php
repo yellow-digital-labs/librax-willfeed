@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Models\MainActivity;
 use App\Models\Common;
@@ -19,6 +20,7 @@ use App\Models\EaseOfAccess;
 use App\Models\PaymentTerms;
 use App\Models\PaymentExtension;
 use App\Models\ConsumeCapacity;
+use App\Mail\UserRequest;
 
 class SignupClient extends Controller
 {
@@ -126,6 +128,14 @@ class SignupClient extends Controller
         'file_3' => $file_3,
       ]
     );
+
+    //send emil to admin
+    Mail::to(env('MAIL_TO_ADDRESS'))->send(new UserRequest([
+      "accountTypeName" => $authUser['accountTypeName'],
+      "url" => route("user-buyer"),
+      "email" => $authUser['email'],
+      "name" => $authUser['name'],
+    ]));
 
     return redirect()->route("thankyou-signup");
 

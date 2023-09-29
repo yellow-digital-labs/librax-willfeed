@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Models\MainActivity;
 use App\Models\Common;
@@ -15,6 +16,7 @@ use App\Models\OrderCapacity;
 use App\Models\Product;
 use App\Models\Region;
 use App\Models\UserDetail;
+use App\Mail\UserRequest;
 
 class SignupSeller extends Controller
 {
@@ -91,6 +93,14 @@ class SignupSeller extends Controller
         'updated_by' => $authUser->email
       ]
     );
+
+    //send email to admin
+    Mail::to(env('MAIL_TO_ADDRESS'))->send(new UserRequest([
+      "accountTypeName" => $authUser['accountTypeName'],
+      "url" => route("user-seller"),
+      "email" => $authUser['email'],
+      "name" => $authUser['name'],
+    ]));
 
     return redirect()->route("thankyou-signup");
 

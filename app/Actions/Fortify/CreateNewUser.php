@@ -42,7 +42,7 @@ class CreateNewUser implements CreatesNewUsers
 
         //send email
         Mail::to($input['email'])->send(new UserVerification([
-            "accountTypeName" => $input['accountType'],
+            "accountTypeName" => $input['accountTypeName'],
             "verificationUrl" => $verificationUrl
         ]));
 

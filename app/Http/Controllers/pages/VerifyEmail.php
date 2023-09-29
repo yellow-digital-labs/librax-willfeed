@@ -54,7 +54,7 @@ class VerifyEmail extends Controller
 
     //send email
     Mail::to($user->email)->send(new UserVerification([
-        "accountTypeName" => $user->accountType,
+        "accountTypeName" => $user->accountTypeName,
         "verificationUrl" => $verificationUrl
     ]));
 
