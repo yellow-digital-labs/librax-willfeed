@@ -4,8 +4,11 @@ namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Models\ProductSeller;
 use App\Models\Order;
+use App\Models\User;
+use App\Mail\OrderNewNotification;
 use Auth;
 
 class BuyerCheckout extends Controller
@@ -19,7 +22,9 @@ class BuyerCheckout extends Controller
         "product" => $product
       ]);
     } else {
-
+      return Redirect::back()->withErrors([
+        "msg" => "Invalid request",
+      ]);
     }
   }
 
@@ -44,12 +49,25 @@ class BuyerCheckout extends Controller
         "billing_city" => $request->billing_city,
         "billing_zip" => $request->billing_zip,
       ]);
+      
+      //order details
+      $order_details = Order::where("id", $order->id)->first();
+      //send email
+      $seller = User::where("id", $seller_product->seller_id)->first();
+      Mail::to($seller->email)->send(new OrderNewNotification([
+          "order_id" => $order->id,
+          "product_name" => $order_details->product_name,
+          "qty" => $request->product_qty,
+          "url" => route("orders")
+      ]));
 
       return redirect()->route('pages-buyer-checkout-thanks', [
         "order_id" => $order->id
       ]);
     } else {
-
+      return Redirect::back()->withErrors([
+        "msg" => "Invalid request",
+      ]);
     }
   }
 }
