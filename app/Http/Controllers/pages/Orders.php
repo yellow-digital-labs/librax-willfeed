@@ -4,11 +4,15 @@ namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Order;
 use App\Models\OrderActivityHistory;
 use App\Models\PaymentOption;
 use App\Models\OrderPayment;
+use App\Models\User;
 use App\Helpers\Helpers;
+use App\Mail\OrderApprove;
+use App\Mail\OrderReject;
 use Auth;
 use Redirect;
 
@@ -301,6 +305,23 @@ class Orders extends Controller
       $order->update([
         'order_status_id' => $status
       ]);
+
+      $buyer = User::where("id", $order->user_id)->first();
+      if($status == "2"){ //Approved
+        Mail::to($buyer->email)->send(new OrderApprove([
+            "order_id" => $order->id,
+            "url" => route("order-details", [
+              "id" => $order->id
+            ])
+        ]));
+      } else if($status == "3"){ // Rejected
+        Mail::to($buyer->email)->send(new OrderReject([
+            "order_id" => $order->id,
+            "url" => route("order-details", [
+              "id" => $order->id
+            ])
+        ]));
+      }
       
       return redirect()->route('order-details', ['id' => $id]);
     } else {
