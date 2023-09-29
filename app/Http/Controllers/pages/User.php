@@ -4,7 +4,10 @@ namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User as UserModel;
+use App\Mail\UserRequestApprove;
+use App\Mail\UserRequestReject;
 use Auth;
 
 class User extends Controller
@@ -165,10 +168,24 @@ class User extends Controller
 
   public function status(Request $request, $id, $status)
   {
-    UserModel::where("id", "=", $id)
-      ->update([
-        "approved_by_admin" => $status
-      ]);
+    $user_query = UserModel::where("id", "=", $id);
+    
+    $user_query->update([
+      "approved_by_admin" => $status
+    ]);
+
+    $user = $user_query->first();
+
+    //send email
+    if($status == "Yes") { //approve
+      Mail::to($user->email)->send(new UserRequestApprove([
+        "url" => route("login"),
+      ]));
+    } else { //reject
+      Mail::to($user->email)->send(new UserRequestReject([
+        "url" => route("login"),
+      ]));
+    }
 
     return response()->json([
       "message" => "Status updated successfully!",

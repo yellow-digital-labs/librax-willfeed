@@ -16,7 +16,7 @@ class UserRequestReject extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public $data)
     {
         //
     }
@@ -34,11 +34,9 @@ class UserRequestReject extends Mailable
     /**
      * Get the message content definition.
      */
-    public function content(): Content
+    public function build()
     {
-        return new Content(
-            view: 'view.name',
-        );
+        return $this->markdown('emails.user-request-reject');
     }
 
     /**
