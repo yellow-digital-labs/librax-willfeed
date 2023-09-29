@@ -16,7 +16,7 @@ class CustomerRequestReject extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public $data)
     {
         //
     }
@@ -27,18 +27,16 @@ class CustomerRequestReject extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Customer Request Reject',
+            subject: 'Customer Request Rejected',
         );
     }
 
     /**
      * Get the message content definition.
      */
-    public function content(): Content
+    public function build()
     {
-        return new Content(
-            view: 'view.name',
-        );
+        return $this->markdown('emails.customer-request-reject');
     }
 
     /**

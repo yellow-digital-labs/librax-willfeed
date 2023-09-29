@@ -1,8 +1,12 @@
 @component('mail::message')
-  {{ __('Sorry! Your user request has been rejected!') }}
+
+  {{ __('Your request has been approved for purchase from :sellerName', ["sellerName" => $data["sellerName"]]) }}
+
+
+  {{ __('Now, you can order by clicking link below') }}
 
   @component('mail::button', ['url' => $data['url']])
-    {{ __('Login now') }}
+    {{ __('Order Now') }}
   @endcomponent
 
   {{ __('If you did not expect to receive an email, you may discard this email.') }}

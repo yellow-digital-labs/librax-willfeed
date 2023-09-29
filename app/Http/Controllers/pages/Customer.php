@@ -4,7 +4,11 @@ namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Models\CustomerVerified;
+use App\Models\User;
+use App\Mail\CustomerRequestApprove;
+use App\Mail\CustomerRequestReject;
 use Auth;
 
 class Customer extends Controller
@@ -142,11 +146,30 @@ class Customer extends Controller
   {
     $user_id = Auth::user()->id;
 
-    CustomerVerified::where("seller_id", "=", $user_id)
-      ->where("id",  "=", $id)
+    $query = CustomerVerified::where("seller_id", "=", $user_id)
+      ->where("id",  "=", $id);
+    $query
       ->update([
         "status" => $status
       ]);
+
+    if($status != "pending"){
+      $CustomerVerified = $query->first();
+      $buyer = User::where("id", $CustomerVerified->customer_id)->first();
+      $seller = User::where("id", $CustomerVerified->seller_id)->first();
+    }
+
+    if($status == "approved"){ //Approved
+      Mail::to($buyer->email)->send(new CustomerRequestApprove([
+        "sellerName" => $seller->name,
+        "url" => route("pages-buyer-home")
+      ]));
+    } else if($status == "rejected"){ //Rejected
+      Mail::to($buyer->email)->send(new CustomerRequestReject([
+        "sellerName" => $seller->name,
+        "url" => route("pages-buyer-home")
+      ]));
+    }
 
     return response()->json([
       "message" => "Status updated successfully!",

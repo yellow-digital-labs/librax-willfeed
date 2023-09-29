@@ -16,7 +16,7 @@ class CustomerRequestApprove extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public $data)
     {
         //
     }
@@ -27,18 +27,16 @@ class CustomerRequestApprove extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Customer Request Approve',
+            subject: 'Customer Request Approved',
         );
     }
 
     /**
      * Get the message content definition.
      */
-    public function content(): Content
+    public function build()
     {
-        return new Content(
-            view: 'view.name',
-        );
+        return $this->markdown('emails.customer-request-approve');
     }
 
     /**
