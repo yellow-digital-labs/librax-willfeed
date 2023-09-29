@@ -26,6 +26,8 @@ $configData = Helper::appClasses();
 </script>
 @if($isAdmin)
 <script src="{{asset('assets/js/approved-order-datatables-admin.js')}}"></script>
+@elseif($isBuyer)
+<script src="{{asset('assets/js/approved-order-datatables-buyer.js')}}"></script>
 @else
 <script src="{{asset('assets/js/approved-order-datatables.js')}}"></script>
 @endif
@@ -109,10 +111,12 @@ $configData = Helper::appClasses();
         <table class="dt-column-search table">
             <thead>
                 <tr>
-                @if($isAdmin)
+                @if($isAdmin || $isBuyer)
                     <th class="js-add-search">Venditore/Agenzia</th>
                 @endif
+                @if(!$isBuyer)
                     <th class="js-add-search">Cliente</th>
+                @endif
                     <th class="js-add-search">Prodotto</th>
                     <th>quantità</th>
                     <th>data</th>

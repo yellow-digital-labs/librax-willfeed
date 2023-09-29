@@ -39,7 +39,7 @@ $configData = Helper::appClasses();
             <span class="badge bg-label-{{$order->payment_status == 'unpaid'?'danger':'success'}} fw-normal">{{Str::ucfirst($order->payment_status)}}</span></h5>
         <p class="text-body">{{date('F d, Y, H:i', strtotime($order->order_date))}} (ET)</p>
     </div>
-    @if(!$isAdmin)
+    @if($isSeller)
     <div class="d-flex align-content-center flex-wrap gap-3">
     @if ($order->order_status_id == '1' || $order->order_status_id == '2')
         <a href="{{route('order-status', ['id' => $id, 'status' => '3'])}}" class="btn btn-outline-dark waves-effect">Reject order</a>
@@ -169,6 +169,7 @@ $configData = Helper::appClasses();
     </div>
 
     <div class="col-12 col-lg-4">
+        @if($isSeller || $isAdmin)
         <div class="card mb-4">
             <div class="card-header border-bottom">
                 <h5 class="card-title m-0 text-black">Customer details</h5>
@@ -198,6 +199,28 @@ $configData = Helper::appClasses();
                 <p class=" mb-0">Mobile: +39 {{$order->customer_contact}}</p>
             </div>
         </div>
+        @endif
+        @if(!$isSeller || $isAdmin)
+        <div class="card mb-4">
+            <div class="card-header border-bottom">
+                <h5 class="card-title m-0 text-black">Seller details</h5>
+            </div>
+            <div class="card-body pt-4">
+                <div class="d-flex justify-content-start align-items-center mb-4">
+                    <div class="avatar me-2">
+                        <img src="{{asset('assets/img/avatars/1.png')}}" alt="Avatar" class="rounded-circle">
+                    </div>
+                    <div class="d-flex flex-column">
+                        <a href="{{route("profile-view", [
+                            "id" => $order->seller_id
+                        ])}}" class="text-body text-nowrap">
+                            <h6 class="mb-0 text-black">{{$order->seller_name}}</h6>
+                        </a>
+                        <small class="text-muted">Seller ID: #{{$order->seller_id}}</small></div>
+                </div>
+            </div>
+        </div>
+        @endif
 
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between border-bottom">
@@ -222,7 +245,7 @@ $configData = Helper::appClasses();
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between border-bottom">
                 <h5 class="card-title m-0 text-black">Payment details</h5>
-                @if(!$isAdmin)
+                @if($isSeller)
                 <h6 class="m-0"><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editPayment">Edit</a></h6>
                 @endif
             </div>

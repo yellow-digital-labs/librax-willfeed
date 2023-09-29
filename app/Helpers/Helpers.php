@@ -202,6 +202,24 @@ class Helpers
     return false;
   }
 
+  public static function isBuyer(){
+    $accountType = Auth::user()->accountType;
+    if($accountType==1){
+      return true;
+    }
+
+    return false;
+  }
+
+  public static function isSeller(){
+    $accountType = Auth::user()->accountType;
+    if($accountType==2){
+      return true;
+    }
+
+    return false;
+  }
+
   public static function generateSlug($string) {
     return \Str::slug($string, "-");
   }

@@ -29,7 +29,7 @@ class BuyerHome extends Controller
           $query->whereRaw("product_name LIKE '%".$search."%' OR seller_name LIKE '%".$search."%'");
         });
     }
-    if($request['price_min'] && $request['price_max']){
+    if(isset($request['price_min']) && isset($request['price_max'])){
       $product_query = $product_query
         ->where("amount", ">=", $request['price_min'])
         ->where("amount", "<=", $request['price_max']);

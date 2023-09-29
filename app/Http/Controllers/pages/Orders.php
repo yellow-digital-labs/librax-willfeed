@@ -17,24 +17,32 @@ class Orders extends Controller
   public function index()
   {
     $isAdmin = Helpers::isAdmin();
+    $isBuyer = Helpers::isBuyer();
     $user_id = Auth::user()->id;
-
     if($isAdmin){
       $total_orders = Order::where([])->count();
       $total_orders_euro = Order::where([])->sum('total_payable_amount');
       $rejected_orders = Order::where(["order_status_id" => "3"])->count();
       $completed_orders = Order::where(["order_status_id" => "5"])->count();
     } else {
-      $total_orders = Order::where(['seller_id' => $user_id])->count();
-      $total_orders_euro = Order::where(['seller_id' => $user_id])->sum('total_payable_amount');
-      $rejected_orders = Order::where(['seller_id' => $user_id, "order_status_id" => "3"])->count();
-      $completed_orders = Order::where(['seller_id' => $user_id, "order_status_id" => "5"])->count();
+      if(Helpers::isSeller()){
+        $total_orders = Order::where(['seller_id' => $user_id])->count();
+        $total_orders_euro = Order::where(['seller_id' => $user_id])->sum('total_payable_amount');
+        $rejected_orders = Order::where(['seller_id' => $user_id, "order_status_id" => "3"])->count();
+        $completed_orders = Order::where(['seller_id' => $user_id, "order_status_id" => "5"])->count();
+      } else {
+        $total_orders = Order::where(['user_id' => $user_id])->count();
+        $total_orders_euro = Order::where(['user_id' => $user_id])->sum('total_payable_amount');
+        $rejected_orders = Order::where(['user_id' => $user_id, "order_status_id" => "3"])->count();
+        $completed_orders = Order::where(['user_id' => $user_id, "order_status_id" => "5"])->count();
+      }
     }
 
     $urlListOrderData = route("order-list");
     
     return view("content.pages.pages-orders", [
       'isAdmin' => $isAdmin,
+      'isBuyer' => $isBuyer,
       'total_orders' => $total_orders,
       'total_orders_euro' => $total_orders_euro,
       'rejected_orders' => $rejected_orders,
@@ -46,6 +54,7 @@ class Orders extends Controller
   public function list(Request $request)
   {
     $isAdmin = Helpers::isAdmin();
+    $isBuyer = Helpers::isBuyer();
     $user_id = Auth::user()->id;
     if($isAdmin){
       $columns = [
@@ -59,15 +68,27 @@ class Orders extends Controller
         8 => "payment_status",
       ];
     } else {
-      $columns = [
-        1 => "id",
-        2 => "user_name",
-        3 => "product_name",
-        4 => "product_qty",
-        5 => "order_date",
-        6 => "order_status",
-        7 => "payment_status",
-      ];
+      if(!$isBuyer){
+        $columns = [
+          1 => "id",
+          2 => "user_name",
+          3 => "product_name",
+          4 => "product_qty",
+          5 => "order_date",
+          6 => "order_status",
+          7 => "payment_status",
+        ];
+      } else {
+        $columns = [
+          1 => "id",
+          2 => "seller_name",
+          3 => "product_name",
+          4 => "product_qty",
+          5 => "order_date",
+          6 => "order_status",
+          7 => "payment_status",
+        ];
+      }
     }
 
     $search = [];
@@ -75,7 +96,11 @@ class Orders extends Controller
     if($isAdmin){
       $f = Order::where([]);
     } else {
-      $f = Order::where("seller_id", "=", $user_id);
+      if(Helpers::isSeller()){
+        $f = Order::where("seller_id", "=", $user_id);
+      } else {
+        $f = Order::where("user_id", "=", $user_id);
+      }
     }
     $totalData = $f->count();
 
@@ -98,7 +123,11 @@ class Orders extends Controller
         if($isAdmin){
           $customersObj = Order::where([]);
         } else {
-          $customersObj = Order::where("seller_id", "=", $user_id);
+          if(Helpers::isSeller()){
+            $customersObj = Order::where("seller_id", "=", $user_id);
+          } else {
+            $customersObj = Order::where("user_id", "=", $user_id);
+          }
         }
 
         foreach ($applied_filters as $field => $search) {
@@ -118,11 +147,19 @@ class Orders extends Controller
             ->orderBy($order, $dir)
             ->get();
         } else {
-          $customers = Order::where("seller_id", "=", $user_id)
-            ->offset($start)
-            ->limit($limit)
-            ->orderBy($order, $dir)
-            ->get();
+          if(Helpers::isSeller()){
+            $customers = Order::where("seller_id", "=", $user_id)
+              ->offset($start)
+              ->limit($limit)
+              ->orderBy($order, $dir)
+              ->get();
+          } else {
+            $customers = Order::where("user_id", "=", $user_id)
+              ->offset($start)
+              ->limit($limit)
+              ->orderBy($order, $dir)
+              ->get();
+          }
         }
       }
     } else {
@@ -138,14 +175,25 @@ class Orders extends Controller
             ->orWhere("payment_status", "LIKE", "%{$search}%");
         });
       } else {
-        $q = Order::where("seller_id", "=", $user_id)
-        ->where(function ($query) use ($search) {
-          return $query
-            ->where("user_name", "LIKE", "%{$search}%")
-            ->orWhere("product_name", "LIKE", "%{$search}%")
-            ->orWhere("order_status", "LIKE", "%{$search}%")
-            ->orWhere("payment_status", "LIKE", "%{$search}%");
-        });
+        if(Helpers::isSeller()){
+          $q = Order::where("seller_id", "=", $user_id)
+          ->where(function ($query) use ($search) {
+            return $query
+              ->where("user_name", "LIKE", "%{$search}%")
+              ->orWhere("product_name", "LIKE", "%{$search}%")
+              ->orWhere("order_status", "LIKE", "%{$search}%")
+              ->orWhere("payment_status", "LIKE", "%{$search}%");
+          });
+        } else {
+          $q = Order::where("user_id", "=", $user_id)
+          ->where(function ($query) use ($search) {
+            return $query
+              ->where("seller_name", "LIKE", "%{$search}%")
+              ->orWhere("product_name", "LIKE", "%{$search}%")
+              ->orWhere("order_status", "LIKE", "%{$search}%")
+              ->orWhere("payment_status", "LIKE", "%{$search}%");
+          });
+        }
       }
       $customers = $q
         ->offset($start)
@@ -198,15 +246,22 @@ class Orders extends Controller
   public function detail(Request $request, $id)
   {
     $isAdmin = Helpers::isAdmin();
+    $isSeller = Helpers::isSeller();
     $user_id = Auth::user()->id;
 
     if($isAdmin){
       $order = Order::where("id", "=", $id)
         ->first();
     } else {
-      $order = Order::where("id", "=", $id)
-        ->where("seller_id", "=", $user_id)
-        ->first();
+      if($isSeller){
+        $order = Order::where("id", "=", $id)
+          ->where("seller_id", "=", $user_id)
+          ->first();
+      } else {
+        $order = Order::where("id", "=", $id)
+          ->where("user_id", "=", $user_id)
+          ->first();
+      }
     }
 
     if($order){
@@ -226,6 +281,7 @@ class Orders extends Controller
         'customer_total_orders' => $customer_total_orders,
         'order_activity' => $order_activity,
         'isAdmin' => $isAdmin,
+        'isSeller' => $isSeller,
         'payment_options' => $payment_options,
         'payment_history' => $payment_history,
       ]);
