@@ -93,7 +93,10 @@ $configData = Helper::appClasses();
     </div>
 </div>
 
-<button class="btn btn-primary px-5 mt-4" type="submit"><span class="px-5">Save</span></button>
+<div class="text-md-start text-center">
+    <button class="btn btn-primary px-5 mt-4" type="submit"><span class="px-5">Save</span></button>
+</div>
+    
 
 </form>
 
