@@ -219,7 +219,7 @@
                         }
                     }],
                     order: [[2, 'desc']],
-                    dom: '<"row mx-2"' + '<"col-md-2"<"me-3 datatable-toolbar"l>>' + '<"col-md-10"<"dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0"fB>>' + '>t' + '<"row mx-2"' + '<"col-sm-12 col-md-6"i>' + '<"col-sm-12 col-md-6"p>' + '>',
+                    dom: '<"row mx-2 product-list-header"' + '<"col-md-2 col-auto product-list-page-col"<"datatable-toolbar"l>>' + '<"col-md-10 col product-list-action-col"<"dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-row mb-3 mb-md-0"fB>>' + '>t' + '<"row mx-2 product-list-footer"' + '<"col-sm-12 col-md-6"i>' + '<"col-sm-12 col-md-6"p>' + '>',
                     language: {
                         sLengthMenu: '_MENU_',
                         search: 'Ricerca',
