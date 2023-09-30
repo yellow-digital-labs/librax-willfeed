@@ -63,10 +63,10 @@ $configData = Helper::appClasses();
                 <table class="table border-top">
                     <thead>
                         <tr>
-                            <th class="w-50" style="width: 296px;">products</th>
-                            <th class="w-25" style="width: 124px;">price</th>
-                            <th class="w-25" style="width: 115px;">qty</th>
-                            <th style="width: 53px;">total</th>
+                            <th class="w-50" style="width: 296px;">Products</th>
+                            <th class="w-25" style="width: 124px;">Price</th>
+                            <th class="w-25" style="width: 115px;">Qty</th>
+                            <th style="width: 53px;">Total</th>
                         </tr>
                     </thead>
                     <tbody>
