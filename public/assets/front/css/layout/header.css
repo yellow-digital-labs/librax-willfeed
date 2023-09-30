@@ -332,7 +332,7 @@ body {
         left: 0;
         overflow-y: auto;
         margin: 0;
-        padding: 110px 0 20px;
+        padding: 20px 0 20px;
         background-size: cover;
         background-position: center bottom;
         background-color: var(--bg-header);

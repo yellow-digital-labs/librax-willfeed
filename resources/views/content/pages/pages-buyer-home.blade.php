@@ -61,9 +61,22 @@ $configData = Helper::appClasses();
 
         <div class="product-filter">
             <div class="uk-container product-filter__container">
-                <div class="uk-grid product-filter__grid" data-uk-grid>
-                    <div class="uk-width-auto product-filter__col  product-filter__col--sidebar">
+                <div>
+                    <button type="button" class="uk-button filter__toggler js-filter-toggler uk-icon uk-button-primary">
+                        <svg height="20" viewBox="-4 0 393 393.99003" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m368.3125 0h-351.261719c-6.195312-.0117188-11.875 3.449219-14.707031 8.960938-2.871094 5.585937-2.3671875 12.3125 1.300781 17.414062l128.6875 181.28125c.042969.0625.089844.121094.132813.183594 4.675781 6.3125 7.203125 13.957031 7.21875 21.816406v147.796875c-.027344 4.378906 1.691406 8.582031 4.777344 11.6875 3.085937 3.105469 7.28125 4.847656 11.65625 4.847656 2.226562 0 4.425781-.445312 6.480468-1.296875l72.3125-27.574218c6.480469-1.976563 10.78125-8.089844 10.78125-15.453126v-120.007812c.011719-7.855469 2.542969-15.503906 7.214844-21.816406.042969-.0625.089844-.121094.132812-.183594l128.683594-181.289062c3.667969-5.097657 4.171875-11.820313 1.300782-17.40625-2.832032-5.511719-8.511719-8.9726568-14.710938-8.960938zm-131.53125 195.992188c-7.1875 9.753906-11.074219 21.546874-11.097656 33.664062v117.578125l-66 25.164063v-142.742188c-.023438-12.117188-3.910156-23.910156-11.101563-33.664062l-124.933593-175.992188h338.070312zm0 0"/></svg>
+                        Filter
+                    </button>
+                </div>
+                <div class="uk-grid product-filter__grid">
+                    <div class="uk-width-auto product-filter__col product-filter__col--sidebar js-filter">
                         <div class="filter">
+
+                            <button type="button" class="uk-button filter__close js-filter-toggler uk-icon">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+                                <path d="M998 916c22 24 22 62 0 86-12 12-28 18-42 18-16 0-32-6-42-18l-402-402-402 402c-12 10-26 16-42 16s-30-6-42-16c-24-24-24-62 0-86l402-400-402-402c-24-24-24-62 0-84 22-24 60-24 84 0l402 400 402-400c22-24 60-24 84 0 24 22 24 60 0 84l-402 402z"></path>
+                                </svg>
+                                <span class="sr-only">Hide Filter</span>
+                            </button>
                             
                             <div class="filter-heading">
                                 <h2 class="filter-heading__title">Filters</h2>
@@ -334,6 +347,14 @@ $configData = Helper::appClasses();
     productItemChart{{$product->id}}.render();
 @endforeach
 @endif
+</script>
+<script type="text/javascript">
+    
+
+    $('.js-filter-toggler').on('click', function () {
+        $('.js-filter').fadeToggle();
+    });
+
 </script>
 @endsection
 <!-- Scripts Ends -->
