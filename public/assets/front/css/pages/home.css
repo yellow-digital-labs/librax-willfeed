@@ -2052,6 +2052,9 @@ marquee.dash-charts__marquee {
 .noUi-primary .noUi-connect {
     background: #000!important
 }
+.product-actions > * {
+    max-width: 50%;
+}
 /* .noUi-primary .noUi-handle {
     background: #000!important
 } */
@@ -2160,6 +2163,9 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
         flex-direction: column;
         align-items: stretch;
         row-gap: 15px;
+    }
+    .product-actions > * {
+        max-width: 100%;
     }
 }
 /* Product List + Filter Ends */
