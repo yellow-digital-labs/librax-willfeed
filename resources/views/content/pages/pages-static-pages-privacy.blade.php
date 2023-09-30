@@ -37,7 +37,7 @@ $configData = Helper::appClasses();
 <h1 class="h3 text-black mb-4">Static pages</h4>
 
 <div class="nav-align-left mb-4">
-    <ul class="nav nav-pills me-3 col-sm-3 card-header-pills" role="tablist">
+    <ul class="nav nav-pills me-3 col-sm-3 card-header-pills d-md-flex d-none" role="tablist">
         <li class="nav-item">
             <a href="{{$staticPagePrivacyUrl}}" class="nav-link {{$currentUrl=='static-pages-privacy'?'active':''}}">Privacy policy</a>
         </li>
