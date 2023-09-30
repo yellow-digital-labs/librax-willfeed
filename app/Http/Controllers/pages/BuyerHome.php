@@ -9,11 +9,21 @@ use App\Models\Product;
 use App\Models\PaymentOption;
 use App\Models\Region;
 use App\Models\PaymentExtension;
+use App\Helpers\Helpers;
+use Auth;
 
 class BuyerHome extends Controller
 {
   public function index(Request $request)
   {
+    $user = Auth::user();
+    $isLoggedIn = false;
+    if($user){
+      $isLoggedIn = true;
+      $isAdmin = Helpers::isAdmin();
+      $isBuyer = Helpers::isBuyer();
+      $isSeller = Helpers::isSeller();
+    }
     $request = $request->all();
     // dd($request);
     
@@ -22,7 +32,8 @@ class BuyerHome extends Controller
     if(isset($request['search'])){
       $search = $request['search'];
     }
-    $product_query = ProductSeller::where(["status" => "active"]);
+    $product_query = ProductSeller::where(["product_sellers.status" => "active"])
+      ->select("product_sellers.*");
     if($search){
       $product_query = $product_query
         ->where(function($query) use ($search){
@@ -82,6 +93,16 @@ class BuyerHome extends Controller
     }
 
     //delivery time
+    
+    //check could able to order
+    if($user){
+      $product_query->leftJoin('customer_verifieds', function($join) use ($user, $product_query){
+        $product_query->addSelect("customer_verifieds.status AS couldOrderStatus");
+        $join->on('customer_verifieds.seller_id', '=', 'product_sellers.seller_id');
+        $join->where('customer_verifieds.customer_id', '=', $user->id);
+      });
+    }
+
     // $product_query->dd();
     $products_list = $product_query->paginate(5);
 
@@ -98,6 +119,9 @@ class BuyerHome extends Controller
       "payment_extensions" => $payment_extensions,
       "search" => $search,
       "request" => $request,
+      "isAdmin" => $isAdmin,
+      "isBuyer" => $isBuyer,
+      "isSeller" => $isSeller,
     ]);
   }
 }
