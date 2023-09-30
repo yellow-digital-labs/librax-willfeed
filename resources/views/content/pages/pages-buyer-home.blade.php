@@ -192,10 +192,21 @@ $configData = Helper::appClasses();
                                     </div>
                                     <div class="product-actions">
                                         <a href="{{route("profile-view", ['id' => $product->seller_id])}}" class="uk-button uk-button-default product-actions__view">View seller</a>
+                                    @if($isBuyer)
+                                        @if($product->couldOrderStatus&&$product->couldOrderStatus=="approved")
                                         <a href="{{route("pages-buyer-checkout", [
                                             "csrf" => csrf_token(),
                                             "seller_product_id" => $product->id
                                         ])}}" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
+                                        @else
+                                        <a href="{{route("customer-request-to-seller", [
+                                            "csrf" => csrf_token(),
+                                            "seller_id" => $product->seller_id
+                                        ])}}" class="uk-button uk-button-primary product-actions__buy" target="_blank">
+                                            {{($product->couldOrderStatus&&$product->couldOrderStatus=="pending")?'Requested':'Send request'}}
+                                        </a>
+                                        @endif
+                                    @endif
                                     </div>
                                 </div>
                                 <div class="uk-width-expand product__item-col product__item-col--desc">

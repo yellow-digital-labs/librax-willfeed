@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\ProductSeller;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\CustomerVerified;
 use App\Mail\OrderNewNotification;
 use Auth;
 
@@ -66,6 +67,78 @@ class BuyerCheckout extends Controller
       ]);
     } else {
       return Redirect::back()->withErrors([
+        "msg" => "Invalid request",
+      ]);
+    }
+  }
+
+  public function customerRequest(Request $request, $seller_id){
+    $user = Auth::user();
+    if($user){
+      $record = CustomerVerified::where([
+        "seller_id" => $seller_id,
+        "customer_id" => $user->id
+      ]);
+
+      $record_data = $record->first();
+      if($record_data){
+        //update
+        if($record_data->status == "pending"){
+          return redirect()->route('customer-request-to-seller-thanks', [
+            "seller_id" => $seller_id
+          ]);
+        } else {
+          $record->update([
+            "status" => "pending"
+          ]);
+
+          return redirect()->route('customer-request-to-seller-thanks', [
+            "seller_id" => $seller_id
+          ]);
+        }
+      } else {
+        //insert
+        CustomerVerified::create([
+          "seller_id" => $seller_id,
+          "customer_id" => $user->id
+        ]);
+
+        return redirect()->route('customer-request-to-seller-thanks', [
+          "seller_id" => $seller_id
+        ]);
+      }
+    } else {
+      return response()->json([
+        "message" => "You are not authorized",
+        "code" => 500,
+        "data" => [],
+      ]);
+    }
+  }
+
+  public function customerRequestThanks($seller_id){
+    $user = Auth::user();
+    if($user){
+      $record = CustomerVerified::where([
+        "seller_id" => $seller_id,
+        "customer_id" => $user->id
+      ]);
+      $record_data = $record->first();
+      if($record_data){
+        if($record_data->status == "pending"){
+          return view('content.pages.customer-request', []);
+        } else {
+          return redirect()->route('pages-buyer-home', [])->withErrors([
+            "msg" => "Invalid request",
+          ]);
+        }
+      } else {
+        return redirect()->route('pages-buyer-home', [])->withErrors([
+          "msg" => "Invalid request",
+        ]);
+      }
+    } else {
+      return redirect()->route('pages-buyer-home', [])->withErrors([
         "msg" => "Invalid request",
       ]);
     }

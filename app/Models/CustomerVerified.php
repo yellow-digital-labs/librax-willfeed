@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerVerified extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    protected $hidden = [];
+
+    protected $casts = [];
 }

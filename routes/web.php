@@ -161,4 +161,8 @@ Route::middleware([
     Route::get('/buyer-checkout/{seller_product_id}/{csrf}', $controller_path . '\pages\BuyerCheckout@index')->name('pages-buyer-checkout');
     Route::post('/buyer-checkout/{seller_product_id}/{csrf}', $controller_path . '\pages\BuyerCheckout@store')->name('pages-buyer-checkout-store');
     Route::get('/buyer-checkout-thanks/{order_id}', $controller_path . '\pages\BuyerCheckoutThanks@index')->name('pages-buyer-checkout-thanks');
+
+    //request seller for profile verification
+    Route::get('/customer-request-to-seller/{seller_id}/{csrf}', $controller_path . '\pages\BuyerCheckout@customerRequest')->name('customer-request-to-seller');
+    Route::get('/customer-request-to-seller-thanks/{seller_id}', $controller_path . '\pages\BuyerCheckout@customerRequestThanks')->name('customer-request-to-seller-thanks');
 });
