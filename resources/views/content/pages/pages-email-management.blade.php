@@ -124,7 +124,7 @@ $configData = Helper::appClasses();
                         <div class="d-flex align-items-center mb-sm-0 mb-3">
                             <img src="{{ asset('assets/img/avatars/1.png') }}" alt="user-avatar" class="flex-shrink-0 rounded-circle me-3" height="40" width="40" />
                             <div class="flex-grow-1 ms-1">
-                                <h6 class="m-0" id="email-display-to"></h6>
+                                <h6 class="m-0 email-display-to" id="email-display-to"></h6>
                                 <small class="text-muted" id="email-display-from"></small>
                             </div>
                         </div>

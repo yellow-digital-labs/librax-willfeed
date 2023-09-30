@@ -685,6 +685,9 @@
         margin-left: 20px !important;
         margin-top: 2px;
     }
+    .email-display-to {
+        word-break: break-all;
+    }
 }
 
 /* Email List CSS Ends */
