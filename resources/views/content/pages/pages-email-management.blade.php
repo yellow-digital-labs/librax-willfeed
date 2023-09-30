@@ -31,17 +31,17 @@ $configData = Helper::appClasses();
 
 @section('content')
 
-<h1 class="h3 text-black mb-4">Email management</h1>
+<h1 class="h3 text-black mb-4 d-flex justify-content-between">Email management <a href="{{route("email-management")}}" class="ti ti-rotate-clockwise rotate-180 scaleX-n1-rtl cursor-pointer email-refresh me-2 mt-1"></a></h1>
 <div class="app-email card">
     <div class="row g-0">
         <!-- Emails List -->
         <div class="col app-emails-list">
             <div class="shadow-none border-0">
                 <div class="emails-list-header p-3 py-lg-3 py-2">
-                    <!-- Email List: Search -->
+                    {{-- <!-- Email List: Search -->
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex align-items-center w-100">
-                            {{-- <i class="ti ti-menu-2 ti-sm cursor-pointer d-block d-lg-none me-3" data-bs-toggle="sidebar" data-target="#app-email-sidebar" data-overlay></i>
+                            <i class="ti ti-menu-2 ti-sm cursor-pointer d-block d-lg-none me-3" data-bs-toggle="sidebar" data-target="#app-email-sidebar" data-overlay></i>
                             <div class="mb-0 mb-lg-2 w-100">
                                 <div class="input-group input-group-merge shadow-none">
                                     <span class="input-group-text border-0 ps-0" id="email-search">
@@ -49,19 +49,20 @@ $configData = Helper::appClasses();
                                     </span>
                                     <input type="text" class="form-control email-search-input border-0" placeholder="Search mail" aria-label="Search mail" aria-describedby="email-search">
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                         <div class="d-flex align-items-center mb-0 mb-md-2">
-                            <a href="{{route("email-management")}}" class="ti ti-rotate-clockwise rotate-180 scaleX-n1-rtl cursor-pointer email-refresh me-2 mt-1"></a>
+                            
                         </div>
                     </div>
-                    <hr class="mx-n3 emails-list-header-hr">
+                    <hr class="mx-n3 emails-list-header-hr"> 
+                    --}}
                     <!-- Email List: Actions -->
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex align-items-center">
                         </div>
-                        <div class="email-pagination d-sm-flex d-none align-items-center flex-wrap justify-content-between justify-sm-content-end">
-                            <span class="d-sm-block d-none mx-3 text-muted">Total {{count($email_history)}} e-mail sent</span>
+                        <div class="email-pagination d-flex align-items-center flex-wrap justify-content-end">
+                            <span class="d-block mx-3 text-muted">Total {{count($email_history)}} e-mail sent</span>
                             {{-- <i class="email-prev ti ti-chevron-left scaleX-n1-rtl cursor-pointer text-muted me-2"></i>
                             <i class="email-next ti ti-chevron-right scaleX-n1-rtl cursor-pointer"></i> --}}
                         </div>
@@ -73,7 +74,7 @@ $configData = Helper::appClasses();
                     <ul class="list-unstyled m-0">
                     @foreach($email_history as $_email_history)
                         <li class="email-list-item" data-starred="true" data-bs-toggle="sidebar" data-target="#app-email-view" data-id="{{$_email_history->id}}">
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center email-list-body">
                                 <img src="{{ asset('assets/img/avatars/1.png') }}" alt="user-avatar" class="d-block flex-shrink-0 rounded-circle me-sm-3 me-2" height="32" width="32" />
                                 <div class="email-list-item-content ms-2 ms-sm-0 me-2">
                                     <span class="h6 email-list-item-username me-2">{{$_email_history->to}}</span>

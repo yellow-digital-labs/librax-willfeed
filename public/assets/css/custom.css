@@ -193,10 +193,18 @@
 }
 
 @media(max-width: 575.98px) {
-    .card .card-widget-separator-wrapper .card-widget-separator .card-widget-1.border-end,.card .card-widget-separator-wrapper .card-widget-separator .card-widget-2.border-end,.card .card-widget-separator-wrapper .card-widget-separator .card-widget-3.border-end {
-        border-right:none !important;
-        border-left: none !important;
-        border-bottom: 1px solid #dbdade
+    .card .card-widget-separator-wrapper .card-widget-separator .avatar {
+        margin-bottom: 15px;
+    }
+    .card-widget-heading {
+        flex-direction: column-reverse;
+    }
+    .card-widget-separator .col-6:nth-child(odd) {
+        width: calc(50% + 5px);
+    }
+
+    .card-widget-separator .col-6:nth-child(even) {
+        width: calc(50% - 5px);
     }
 }
 
@@ -664,3 +672,19 @@
 .settings-btn {
     text-transform: none !important;
 }
+
+/* Email List CSS Starts */
+
+@media (max-width: 575px) {
+    .email-list-body {
+        flex-wrap: wrap;
+    }
+
+    .email-list-item-meta.ms-auto.d-flex.align-items-center {
+        margin-right: auto;
+        margin-left: 20px !important;
+        margin-top: 2px;
+    }
+}
+
+/* Email List CSS Ends */
