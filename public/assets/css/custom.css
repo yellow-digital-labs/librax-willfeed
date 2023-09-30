@@ -159,6 +159,18 @@
     .product-list-header > .product-list-page-col.col-auto {
         padding-right: 0 !important;
     }
+    .user-details-actions {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 5;
+        background: rgba(255, 255, 255, .86);
+        text-align: center;
+        justify-content: center;
+        margin: 0 !important;
+        padding: 20px 0;
+    }
 }
 @media (max-width: 639.98px) {
     .product-list-header > .product-list-page-col.col-auto {

@@ -135,7 +135,7 @@ if($isOnlyProfile){
         </ul>
         @endif
         @if($authUser->accountType==0)
-        <ul class="nav nav-pills flex-row mb-4 card-header-pills">
+        <ul class="nav nav-pills flex-row mb-4 card-header-pills user-details-actions">
             @if($user->approved_by_admin == "Pending" || $user->approved_by_admin == "No")
             <li class="nav-item"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-primary btn-approve" href="javascript:void(0);"><i class="wf-icon-check ti-xs me-1"></i>Verify</a></li>
             @endif
