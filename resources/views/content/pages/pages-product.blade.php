@@ -43,49 +43,49 @@ $configData = Helper::appClasses();
 <div class="card mb-4">
     <div class="card-widget-separator-wrapper">
         <div class="card-body card-widget-separator">
-            <div class="row gy-4 gy-sm-1">
-                <div class="col-sm-6 col-lg-3">
-                    <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
+            <div class="row gy-1">
+                <div class="col-6 col-lg-3">
+                    <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-0 card-widget-heading">
                         <div>
                             <h6 class="mb-2 fw-normal">Totale prodotti</h6>
                             <h4 class="mb-2">{{$total_products}}</h4>
                             <p class="mb-0"><span class="badge bg-label-success fw-normal">100,00%</span></p>
                         </div>
-                        <span class="avatar avatar--prodotti me-sm-4">
+                        <span class="avatar avatar--prodotti me-4">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
                         </span>
                     </div>
-                    <hr class="d-none d-sm-block d-lg-none me-4">
+                    <hr class="d-block d-lg-none me-4">
                 </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
+                <div class="col-6 col-lg-3">
+                    <div class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-0 card-widget-heading">
                         <div>
                             <h6 class="mb-2 fw-normal">Prodotti attivi</h6>
                             <h4 class="mb-2">{{$active_products}}</h4>
                             <p class="mb-0"><span class="badge bg-label-success fw-normal">{{$total_products>0?number_format($active_products*100/$total_products, 2, ',', '.'):0}}%</span></p>
                         </div>
-                        <span class="avatar avatar--prodotti me-sm-4">
+                        <span class="avatar avatar--prodotti me-4">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
                         </span>
                     </div>
-                    <hr class="d-none d-sm-block d-lg-none">
+                    <hr class="d-block d-lg-none">
                 </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="d-flex justify-content-between align-items-start border-end pb-3 pb-sm-0 card-widget-3">
+                <div class="col-6 col-lg-3">
+                    <div class="d-flex justify-content-between align-items-start border-end pb-0 card-widget-3 card-widget-heading">
                         <div>
-                            <h6 class="mb-2">Prodotti inattivi</h6>
+                            <h6 class="mb-2 fw-normal">Prodotti inattivi</h6>
                             <h4 class="mb-2">{{$inactive_products}}</h4>
                             <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{$total_products>0?number_format($inactive_products*100/$total_products, 2, ',', '.'):0}}%</span></p>
                         </div>
-                        <span class="avatar avatar--prodotti p-2 me-sm-4">
+                        <span class="avatar avatar--prodotti p-2 me-4">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
                         </span>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="d-flex justify-content-between align-items-start">
+                <div class="col-6 col-lg-3">
+                    <div class="d-flex justify-content-between align-items-start card-widget-heading">
                         <div>
-                            <h6 class="mb-2">Best seller</h6>
+                            <h6 class="mb-2 fw-normal">Best seller</h6>
                         @if($bestSeller)
                             <h4 class="mb-2">{{$bestSeller->product_name}}</h4>
                             <p class="mb-0"><span class="text-muted me-2">{{$bestSeller->total_orders}} orders</span><!-- <span class="badge bg-label-danger">-3.5%</span> --></p>

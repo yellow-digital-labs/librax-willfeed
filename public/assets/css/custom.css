@@ -159,6 +159,22 @@
     .product-list-header > .product-list-page-col.col-auto {
         padding-right: 0 !important;
     }
+    .user-details-actions {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 5;
+        background: rgba(255, 255, 255, .86);
+        text-align: center;
+        justify-content: center;
+        margin: 0 !important;
+        padding: 20px 0;
+    }
+    div#snow-editor {
+        max-height: 350px;
+        overflow: auto;
+    }
 }
 @media (max-width: 639.98px) {
     .product-list-header > .product-list-page-col.col-auto {
@@ -193,10 +209,18 @@
 }
 
 @media(max-width: 575.98px) {
-    .card .card-widget-separator-wrapper .card-widget-separator .card-widget-1.border-end,.card .card-widget-separator-wrapper .card-widget-separator .card-widget-2.border-end,.card .card-widget-separator-wrapper .card-widget-separator .card-widget-3.border-end {
-        border-right:none !important;
-        border-left: none !important;
-        border-bottom: 1px solid #dbdade
+    .card .card-widget-separator-wrapper .card-widget-separator .avatar {
+        margin-bottom: 15px;
+    }
+    .card-widget-heading {
+        flex-direction: column-reverse;
+    }
+    .card-widget-separator .col-6:nth-child(odd) {
+        width: calc(50% + 5px);
+    }
+
+    .card-widget-separator .col-6:nth-child(even) {
+        width: calc(50% - 5px);
     }
 }
 
@@ -664,3 +688,22 @@
 .settings-btn {
     text-transform: none !important;
 }
+
+/* Email List CSS Starts */
+
+@media (max-width: 575px) {
+    .email-list-body {
+        flex-wrap: wrap;
+    }
+
+    .email-list-item-meta.ms-auto.d-flex.align-items-center {
+        margin-right: auto;
+        margin-left: 20px !important;
+        margin-top: 2px;
+    }
+    .email-display-to {
+        word-break: break-all;
+    }
+}
+
+/* Email List CSS Ends */
