@@ -18,6 +18,9 @@ class BuyerHome extends Controller
   {
     $user = Auth::user();
     $isLoggedIn = false;
+    $isAdmin = false;
+    $isBuyer = false;
+    $isSeller = false;
     if($user){
       $isLoggedIn = true;
       $isAdmin = Helpers::isAdmin();

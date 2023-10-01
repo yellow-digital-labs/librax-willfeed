@@ -219,6 +219,11 @@ $configData = Helper::appClasses();
                                             {{($product->couldOrderStatus&&$product->couldOrderStatus=="pending")?'Requested':'Send request'}}
                                         </a>
                                         @endif
+                                    @else
+                                        <a href="{{route("pages-buyer-checkout", [
+                                            "csrf" => csrf_token(),
+                                            "seller_product_id" => $product->id
+                                        ])}}" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
                                     @endif
                                     </div>
                                 </div>
