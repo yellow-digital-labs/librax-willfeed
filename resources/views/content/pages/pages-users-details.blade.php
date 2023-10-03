@@ -326,6 +326,11 @@ if($isOnlyProfile){
                             </div>
 
                             <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Indirizzo</h6>
+                                <p class="mb-0">{{$user_detail->destination_address_via?$user_detail->destination_address_via:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Numero civico</h6>
                                 <p class="mb-0">{{$user_detail->destination_house_no?$user_detail->destination_house_no:'NA'}}</p>
                             </div>
@@ -343,6 +348,11 @@ if($isOnlyProfile){
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">CAP</h6>
                                 <p class="mb-0">{{$user_detail->destination_pincode?$user_detail->destination_pincode:'NA'}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Codice di esercizio impianto minore</h6>
+                                <p class="mb-0">{{$user_detail->minor_plant_code?$user_detail->minor_plant_code:'NA'}}</p>
                             </div>
                         </div>
                     </div>

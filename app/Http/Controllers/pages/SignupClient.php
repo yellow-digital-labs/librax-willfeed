@@ -93,6 +93,7 @@ class SignupClient extends Controller
         'ease_of_access' => $request->ease_of_access,
         'mobile_unloading' => $request->mobile_unloading,
         'destination_address' => $request->destination_address,
+        'destination_address_via' => $request->destination_address_via,
         'destination_house_no' => $request->destination_house_no,
         'destination_region' => $request->destination_region,
         'destination_province' => $request->destination_province,

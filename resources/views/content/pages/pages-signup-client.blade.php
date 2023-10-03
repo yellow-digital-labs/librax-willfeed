@@ -228,6 +228,11 @@ $configData = Helper::appClasses();
                                         <option value="No">No</option>
                                     </select>
                                 </div>
+
+                                <div class="col-sm-6 address-container hide">
+                                    <label class="form-label" for="destination_address_via">Indirizzo</label>
+                                    <input type="text" name="destination_address_via" id="destination_address_via" class="form-control" placeholder="Via Battisti" value="{{$user_detail?$user_detail->destination_address_via:''}}" />
+                                </div>
                                 
                                 <div class="col-sm-6 address-container hide">
                                     <label class="form-label" for="destination_house_no">Numero civico</label>
