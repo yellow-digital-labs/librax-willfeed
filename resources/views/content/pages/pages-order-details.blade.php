@@ -99,10 +99,10 @@ $configData = Helper::appClasses();
                             <span class="w-px-100 text-heading">Discount:</span>
                             <h6 class="mb-0">$22</h6>
                         </div> -->
-                        <div class="d-flex justify-content-between mb-2">
+                        {{-- <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Tax:</span>
                             <h6 class="mb-0">€0</h6>
-                        </div>
+                        </div> --}}
                         <div class="d-flex justify-content-between">
                             <h6 class="w-px-100 mb-0">Total:</h6>
                             <h6 class="mb-0">€{{$order->total_payable_amount}}</h6>

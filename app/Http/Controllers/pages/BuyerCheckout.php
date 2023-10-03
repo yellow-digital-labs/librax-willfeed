@@ -65,13 +65,14 @@ class BuyerCheckout extends Controller
       if($record_data){
         //update
         if($record_data->status == "approved"){
+          $total_payable_amount = ($request->amount_before_tax * $request->product_qty) + ($request->amount_before_tax * $request->product_qty*22/100);
           $order = Order::create([
             "user_id" => $user->id,
             "seller_id" => $seller_product->seller_id,
             "product_id" => $seller_product->product_id,
             "product_amount" => $seller_product->amount_before_tax,
             "product_qty" => $request->product_qty,
-            "total_payable_amount" => $request->amount * $request->product_qty,
+            "total_payable_amount" => $total_payable_amount,
             "order_date" => date("Y-m-d"),
             "customer_email" => $request->customer_email,
             "customer_contact" => $request->customer_contact,
