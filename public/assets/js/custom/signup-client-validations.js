@@ -48,6 +48,34 @@ $(function() {
         });
     });
 
+    $("#destination_region").on("change", function(){
+        let select_id = $(this).find(":selected").data("id");
+        
+        $("#destination_province").select2("destroy").select2({
+            templateResult: function(option, container) {
+                if ($(option.element).attr("data-region") != select_id){ 
+                  $(container).css("display","none");
+                }
+        
+                return option.text;
+            }
+        });
+    });
+
+    $("#destination_province").on("change", function(){
+        let select_id = $(this).find(":selected").data("id");
+        
+        $("#destination_common").select2("destroy").select2({
+            templateResult: function(option, container) {
+                if ($(option.element).attr("data-province") != select_id){ 
+                  $(container).css("display","none");
+                }
+        
+                return option.text;
+            }
+        });
+    });
+
     $("#geographical_coverage_regions").on("change", function(){
         let regions = $(this).find(":selected");
         let selected_ids = [];
@@ -264,6 +292,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
                           message: 'cellulare referente di scarico can only consist of number'
                         }
                     }
+                },
+                destination_region: {
+                    validators: {
+                        notEmpty: {
+                            enabled: false,
+                            message: 'Please enter regione'
+                        }
+                    }
                 }
             };
             const multiSteps2 = FormValidation.formValidation(stepsValidationFormStep2, {
@@ -405,16 +441,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
                         case 1:
                             let destination_address = $("#destination_address").find(":selected").val();
-                            delete formTwoValidationFields.destination_region;
                             if(destination_address=="Si"){
+                                console.log("...");
+                                multiSteps2.disableValidator('destination_region');
                             } else {
-                                formTwoValidationFields["destination_region"] = {
-                                    validators: {
-                                        notEmpty: {
-                                            message: 'Please enter regione'
-                                        }
-                                    }
-                                };
+                                console.log("...111");
+                                multiSteps2.enableValidator('destination_region');
+                                
                             }
                             multiSteps2.validate();
                             break;
