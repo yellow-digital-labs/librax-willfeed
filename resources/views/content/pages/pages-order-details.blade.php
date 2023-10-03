@@ -84,7 +84,7 @@ $configData = Helper::appClasses();
                             <td><span>€{{$order->product_amount}}</span></td>
                             <td><span class="text-body">{{$order->product_qty}} liters</span></td>
                             <td>
-                                <h6 class="mb-0">€{{$order->total_payable_amount}}</h6>
+                                <h6 class="mb-0">€{{$order->product_amount * $order->product_qty}}</h6>
                             </td>
                         </tr>
                     </tbody>
@@ -93,19 +93,19 @@ $configData = Helper::appClasses();
                     <div class="order-calculations">
                         <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Subtotal:</span>
-                            <h6 class="mb-0">€{{$order->total_payable_amount}}</h6>
+                            <h6 class="mb-0">€{{$order->product_amount * $order->product_qty}}</h6>
                         </div>
                         <!-- <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Discount:</span>
                             <h6 class="mb-0">$22</h6>
                         </div> -->
-                        {{-- <div class="d-flex justify-content-between mb-2">
+                        <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Tax:</span>
-                            <h6 class="mb-0">€0</h6>
-                        </div> --}}
+                            <h6 class="mb-0">€{{($order->product_amount * $order->product_qty * 22 / 100)}}</h6>
+                        </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="w-px-100 mb-0">Total:</h6>
-                            <h6 class="mb-0">€{{$order->total_payable_amount}}</h6>
+                            <h6 class="mb-0">€{{($order->product_amount * $order->product_qty) + ($order->product_amount * $order->product_qty * 22 / 100)}}</h6>
                         </div>
                     </div>
                 </div>
