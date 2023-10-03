@@ -409,24 +409,6 @@ $configData = Helper::appClasses();
                                     <div class="card shadow-none bg-transparent border border-secondary mb-3">
                                         <div class="card-body p-3">
                                             <div class="row g-3">
-
-                                                <div class="col-sm-6">
-                                                    <div class="card shadow-none bg-transparent border border-secondary h-100">
-                                                        <div class="card-body p-3">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <input class="form-check-input container-transport mt-0 js-fleet-check" type="checkbox">
-                                                                </div>
-                                                                <div class="col px-0">
-                                                                    Tipologia & Dimensione Flotta
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" class="form-control hide js-fleet-input" aria-label="000" name="fleet" value="0">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 
                                                 <div class="col-sm-6">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">

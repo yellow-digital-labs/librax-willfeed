@@ -35,12 +35,12 @@ class SignupClient extends Controller
     }
 
     $main_activity = MainActivity::all();
-    $common = Common::all();
-    $province = Province::all();
+    $region = Region::orderBy('name', 'ASC')->get();
+    $common = Common::orderBy('name', 'ASC')->get();
+    $province = Province::orderBy('name', 'ASC')->get();
     $storage_capacity = StorageCapacity::all();
     $order_capacity = OrderCapacity::all();
     $product = Product::all();
-    $region = Region::all();
     $ease_of_access = EaseOfAccess::all();
     $payment_extension = PaymentExtension::all();
     $payment_terms = PaymentTerms::all();

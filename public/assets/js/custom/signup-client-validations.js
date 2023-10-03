@@ -20,6 +20,53 @@ $(function() {
         });
     }
 
+    $("#region").on("change", function(){
+        let select_id = $(this).find(":selected").data("id");
+        
+        $("#province").select2("destroy").select2({
+            templateResult: function(option, container) {
+                if ($(option.element).attr("data-region") != select_id){ 
+                  $(container).css("display","none");
+                }
+        
+                return option.text;
+            }
+        });
+    });
+
+    $("#province").on("change", function(){
+        let select_id = $(this).find(":selected").data("id");
+        
+        $("#common").select2("destroy").select2({
+            templateResult: function(option, container) {
+                if ($(option.element).attr("data-province") != select_id){ 
+                  $(container).css("display","none");
+                }
+        
+                return option.text;
+            }
+        });
+    });
+
+    $("#geographical_coverage_regions").on("change", function(){
+        let regions = $(this).find(":selected");
+        let selected_ids = [];
+
+        for(let i = 0; i < regions.length; i++){
+            selected_ids.push($(regions[i]).data("id"));
+        }
+        console.log("selected_ids", selected_ids)
+        $("#geographical_coverage_provinces").select2("destroy").select2({
+            templateResult: function(option, container) {
+                if(jQuery.inArray($(option.element).data("region"), selected_ids) === -1){
+                    $(container).css("display","none");
+                }
+        
+                return option.text;
+            }
+        });
+    });
+
     $('.container-transport').on('click', function(){
         if($(this).prop("checked")){
             //checked
