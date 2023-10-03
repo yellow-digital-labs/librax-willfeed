@@ -79,12 +79,20 @@ $(function() {
     });
 
     $("#destination_address").on("change", function(){
-        if(this.value == "Yes") {
+        if(this.value == "Si") {
             $(".address-container").addClass('hide');
         } else {
             $(".address-container").removeClass('hide');
         }
-    })
+    });
+
+    $("#is_private_distributer").on("change", function(){
+        if(this.value == "Si") {
+            $(".js-no-of-dis-container").removeClass("hide");
+        } else {
+            $(".js-no-of-dis-container").addClass("hide");
+        }
+    });
 });
 
 // Multi Steps Validation
@@ -398,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                         case 1:
                             let destination_address = $("#destination_address").find(":selected").val();
                             delete formTwoValidationFields.destination_region;
-                            if(destination_address=="Yes"){
+                            if(destination_address=="Si"){
                             } else {
                                 formTwoValidationFields["destination_region"] = {
                                     validators: {

@@ -224,7 +224,7 @@ $configData = Helper::appClasses();
                                 <div class="col-sm-6">
                                     <label class="form-label" for="destination_address">Indirizzo destinazione (se diverso da anagrafica)</label>
                                     <select name="destination_address" id="destination_address" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option value="Yes">Yes</option>
+                                        <option value="Si">Si</option>
                                         <option value="No">No</option>
                                     </select>
                                 </div>
@@ -394,12 +394,12 @@ $configData = Helper::appClasses();
                                     <label class="form-label" for="is_private_distributer">Sei un distributore privato? *</label>
                                     <select name="is_private_distributer" id="is_private_distributer" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
-                                        <option value="Yes">Yes</option>
+                                        <option value="Si">Si</option>
                                         <option value="No">No</option>
                                     </select>
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 js-no-of-dis-container">
                                     <label class="form-label" for="no_of_distributer">Numero di distributori *</label>
                                     <input type="text" name="no_of_distributer" id="no_of_distributer" class="form-control" placeholder="Inserisci numero di distributori" />
                                 </div>
