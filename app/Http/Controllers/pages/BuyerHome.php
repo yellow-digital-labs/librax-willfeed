@@ -56,13 +56,26 @@ class BuyerHome extends Controller
       });
     }
     //payment option
-    // if(isset($request['payment_option']) && count($request['payment_option'])){
-    //   foreach($request['payment_option'] as $payment_option){
-    //     $product_query = $product_query
-    //       ->leftJoin('user_details', 'user_details.seller_id', '=', 'product_sellers.seller_id')
-    //       ->where("user_details.payment_extension", $payment_option);
-    //   }
-    // }
+    if(isset($request['payment_option']) && count($request['payment_option'])){
+      if(!$is_user_details_joined){
+        $product_query = $product_query
+          ->leftJoin('user_details', 'user_details.user_id', '=', 'product_sellers.seller_id');
+        $is_user_details_joined = true;
+      }
+      $product_query->where(function($query) use ($request){
+        foreach($request['payment_option'] as $payment_option){
+          if($payment_option == "Bonifico Bancario"){
+            $query->orWhere("user_details.bank_transfer", "<>", "");
+          } else if($payment_option == "Assegno Bancario") {
+            $query->orWhere("user_details.bank_check", "<>", "");
+          } else if($payment_option == "RIBA") {
+            $query->orWhere("user_details.rib", "<>", "");
+          } else if($payment_option == "RID") {
+            $query->orWhere("user_details.rid", "<>", "");
+          }
+        }
+      });
+    }
     if(isset($request['region']) && count($request['region'])){
       if(!$is_user_details_joined){
         $product_query = $product_query
@@ -110,7 +123,8 @@ class BuyerHome extends Controller
     $products_list = $product_query->paginate(5);
 
     $products = Product::where(["active" => "yes"])->get();
-    $payment_options = PaymentOption::all();
+    // $payment_options = PaymentOption::all();
+    $payment_options = ["Bonifico Bancario", "Assegno Bancario", "RIBA", "RID"];
     $regions = Region::all();
     $payment_extensions = PaymentExtension::all();
 

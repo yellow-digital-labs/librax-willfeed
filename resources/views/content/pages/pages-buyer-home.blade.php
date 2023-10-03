@@ -108,11 +108,11 @@ $configData = Helper::appClasses();
 
                             <div class="filter__item">
                                 <h3 class="filter__name">Payment method</h3>
-                                @foreach($payment_options as $payment_option)
+                                @foreach($payment_options as $c => $payment_option)
                                 <div class="filter-checkbox">
-                                    <input type="checkbox" name="payment_option[]" class="uk-checkbox filter-checkbox__input product-filter-checkbox" id="PaymentMethod-{{$payment_option->id}}" value="{{$payment_option->name}}" {{ isset($request['payment_option'])&&in_array($payment_option->name, $request['payment_option'])?'checked':'' }}>
-                                    <label class="filter-checkbox__label" for="PaymentMethod-{{$payment_option->id}}">
-                                        <span class="filter-checkbox__label-type">{{$payment_option->name}}</span>
+                                    <input type="checkbox" name="payment_option[]" class="uk-checkbox filter-checkbox__input product-filter-checkbox" id="PaymentMethod-{{$c}}" value="{{$payment_option}}" {{ isset($request['payment_option'])&&in_array($payment_option, $request['payment_option'])?'checked':'' }}>
+                                    <label class="filter-checkbox__label" for="PaymentMethod-{{$c}}">
+                                        <span class="filter-checkbox__label-type">{{$payment_option}}</span>
                                         {{-- <span class="filter-checkbox__label-count">5</span> --}}
                                     </label>
                                 </div>
@@ -145,12 +145,12 @@ $configData = Helper::appClasses();
                                 @endforeach
                             </div>
 
-                            <div class="filter__item">
+                            {{-- <div class="filter__item">
                                 <h3 class="filter__name">Delivery time range</h3>
                                 <div class="mb-5 mt-4 noUi-primary" id="delivery-time-range"></div>
                                 <input type="hidden" name="delivery_time_min" id="delivery_time_min" value="{{isset($request['delivery_time_min'])?$request['delivery_time_min']:''}}" />
                                 <input type="hidden" name="delivery_time_max" id="delivery_time_max" value="{{isset($request['delivery_time_max'])?$request['delivery_time_max']:''}}" />
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
