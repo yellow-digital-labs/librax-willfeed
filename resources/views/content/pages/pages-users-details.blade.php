@@ -367,7 +367,7 @@ $configData = Helper::appClasses();
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Dilazione di pagamento preferita</h6>
-                                <p class="mb-0">IBAN: {{$user_detail->payment_extension?$user_detail->payment_extension:'NA'}}</p>
+                                <p class="mb-0">{{$user_detail->payment_extension?$user_detail->payment_extension:'NA'}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
