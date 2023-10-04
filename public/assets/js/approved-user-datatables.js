@@ -239,7 +239,7 @@ $(function () {
                     }
                     return (
                         '<div class="d-inline-block">' +
-                        '<a href="'+baseUrl+'profile/'+full['id']+'/view" class="btn btn-sm btn-icon" data-id="" target="_blank"><i class="ti ti-edit"></i></a>' +
+                        '<a href="'+baseUrl+'profile/'+full['id']+'/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
                         '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
                         '<div class="dropdown-menu dropdown-menu-end m-0">' +
                         statusList +
