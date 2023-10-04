@@ -108,9 +108,9 @@ $(function() {
 
     $("#destination_address").on("change", function(){
         if(this.value == "Si") {
-            $(".address-container").addClass('hide');
-        } else {
             $(".address-container").removeClass('hide');
+        } else {
+            $(".address-container").addClass('hide');
         }
     });
 
@@ -441,11 +441,9 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
                         case 1:
                             let destination_address = $("#destination_address").find(":selected").val();
-                            if(destination_address=="Si"){
-                                console.log("...");
+                            if(destination_address=="No"){
                                 multiSteps2.disableValidator('destination_region');
                             } else {
-                                console.log("...111");
                                 multiSteps2.enableValidator('destination_region');
                                 
                             }
