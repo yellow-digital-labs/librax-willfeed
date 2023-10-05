@@ -203,8 +203,8 @@ $configData = Helper::appClasses();
                     <h6 class=" text-black">Contact info</h6>
                     {{-- <h6><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editUser">Edit</a></h6> --}}
                 </div>
-                <p class=" mb-1">Email: {{$order->customer_email}}</p>
-                <p class=" mb-0">Mobile: +39 {{$order->customer_contact}}</p>
+                <p class=" mb-1">Email: {{$order->billing_email}}</p>
+                <p class=" mb-0">Mobile: +39 {{$order->billing_contact}}</p>
             </div>
         </div>
         @endif
@@ -236,7 +236,7 @@ $configData = Helper::appClasses();
                 {{-- <h6 class="m-0"><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#addNewAddress">Edit</a></h6> --}}
             </div>
             <div class="card-body pt-4">
-                <p class="mb-0">{{$order->shipping_address_line_1}} <br>{{$order->shipping_address_line_2}} <br>{{$order->shipping_city}} {{$order->shipping_state}}, {{$order->shipping_country}} <br>{{$order->shipping_zip}}</p>
+                <p class="mb-0">{{$order->selling_first_name}} <br>{{$order->selling_address}}, {{$order->selling_house_no}} <br>{{$order->selling_region}}, {{$order->selling_province}} <br>{{$order->selling_common}}, {{$order->selling_pincode}}<br>{{$order->selling_email}}<br>{{$order->selling_contact}}</p>
             </div>
         </div>
 
@@ -246,7 +246,7 @@ $configData = Helper::appClasses();
                 {{-- <h6 class="m-0"><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#addNewAddress">Edit</a></h6> --}}
             </div>
             <div class="card-body pt-4">
-                <p class="mb-0">{{$order->billing_address_line_1}} <br>{{$order->billing_address_line_2}} <br>{{$order->billing_city}} {{$order->billing_state}}, {{$order->billing_country}} <br>{{$order->billing_zip}}</p>
+                <p class="mb-0">{{$order->billing_first_name}} <br>{{$order->billing_address}}, {{$order->billing_house_no}} <br>{{$order->billing_region}}, {{$order->billing_province}} <br>{{$order->billing_common}}, {{$order->billing_pincode}}<br>{{$order->billing_email}}<br>{{$order->billing_contact}}</p>
             </div>
         </div>
         

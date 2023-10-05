@@ -306,9 +306,10 @@ $configData = Helper::appClasses();
     //.product-filter
     var $container = $("html,body");
     var $scrollTo = $('.product-filter');
-
-    // $('html, body').scrollTop($('.product-filter').offset().top);
-    // $container.animate({scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop(), scrollLeft: 0},300); 
+    $(document).ready(function(){
+        // $('html, body').scrollTop($('.product-filter').offset().top);
+        $container.animate({scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop(), scrollLeft: 0},300);
+    });
 </script>
 
 <script>

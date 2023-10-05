@@ -95,7 +95,7 @@ $configData = Helper::appClasses();
                                 <div class="d-flex align-items-center">
                                     <h6 class="mb-0 me-1">€{{$_most_order_from_city->total_sales}} ({{$_most_order_from_city->total_orders}})</h6>
                                 </div>
-                                <small class="text-muted fw-light">{{$_most_order_from_city->billing_city}}</small>
+                                <small class="text-muted fw-light">{{$_most_order_from_city->billing_region}}</small>
                             </div>
                             <div class="user-progress">
                                 <p class="text-success fw-semibold mb-0">

@@ -25,8 +25,8 @@ class Dashboard extends Controller
         ->count();
 
       $most_order_from_city = DB::table('orders')
-        ->select('billing_city', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
-        ->groupBy('billing_city')
+        ->select('billing_region', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+        ->groupBy('billing_region')
         ->orderBy('total_sales', 'DESC')
         ->limit(4)
         ->get();
@@ -55,9 +55,9 @@ class Dashboard extends Controller
         ->count();
 
       $most_order_from_city = DB::table('orders')
-        ->select('billing_city', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+        ->select('billing_region', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
         ->where("seller_id", "=", $user_id)
-        ->groupBy('billing_city')
+        ->groupBy('billing_region')
         ->orderBy('total_sales', 'DESC')
         ->limit(4)
         ->get();

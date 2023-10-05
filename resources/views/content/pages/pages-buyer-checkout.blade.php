@@ -24,6 +24,8 @@ $configData = Helper::appClasses();
 <link rel="stylesheet" href="{{asset('assets/front/css/components/common.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/front/css/layout/header.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/front/css/layout/footer.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" />
 
 
 <!-- CSS: Pagevise CSS -->
@@ -103,23 +105,54 @@ $configData = Helper::appClasses();
                         <div class="uk-grid checkout-box__frgrid" data-uk-grid>
                             <div class="uk-width-1-2">
                                 <label class="checkout-box__label">Full Name</label>
-                                <input type="text" class="uk-input checkout-box__input" name="billing_first_name" placeholder="" required>
+                                <input type="text" class="uk-input checkout-box__input" name="billing_first_name" placeholder="" value="{{$user_details->business_name}}" required>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <label class="checkout-box__label">Indirizzo</label>
+                                <input type="text" class="uk-input checkout-box__input" name="billing_address" placeholder="" value="{{$user_details->address}}" required>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <label class="checkout-box__label">Numero civico</label>
+                                <input type="text" class="uk-input checkout-box__input" name="billing_house_no" placeholder="" value="{{$user_details->house_no}}" required>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <label class="checkout-box__label">Regione</label>
+                                <select name="billing_region" id="billing_region" class="uk-input checkout-box__input select2" data-minimum-results-for-search="Infinity" required>
+                                    <option value=""></option>
+                                @foreach($region as $_region)
+                                    <option value="{{$_region->name}}" data-id="{{$_region->id}}" {{$user_details?($user_details->region==$_region->name?'selected':''):''}}>{{$_region->name}}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <label class="checkout-box__label">Provincia</label>
+                                <select name="billing_province" id="billing_province" class="uk-input checkout-box__input select2" data-minimum-results-for-search="Infinity">
+                                    <option value=""></option>
+                                @foreach($province as $_province)
+                                    <option value="{{$_province->name}}" data-id="{{$_province->id}}" data-region="{{$_province->regions_id}}" {{$user_details?($user_details->province==$_province->name?'selected':''):''}}>{{$_province->name}}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <label class="checkout-box__label">Comune</label>
+                                <select name="billing_common" id="billing_common" class="uk-input checkout-box__input select2" data-minimum-results-for-search="Infinity">
+                                    <option value=""></option>
+                                @foreach($common as $_common)
+                                    <option value="{{$_common->name}}" data-id="{{$_common->id}}" data-province="{{$_common->provinces_id}}" {{$user_details?($user_details->common==$_common->name?'selected':''):''}}>{{$_common->name}}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <label class="checkout-box__label">CAP</label>
+                                <input type="text" class="uk-input checkout-box__input" name="billing_pincode" placeholder="" value="{{$user_details->pincode}}" required>
                             </div>
                             <div class="uk-width-1-2">
                                 <label class="checkout-box__label">Email</label>
-                                <input type="email" class="uk-input checkout-box__input" name="customer_email" placeholder="" required>
-                            </div>
-                            <div class="uk-width-1-1">
-                                <label class="checkout-box__label">Address</label>
-                                <input type="text" class="uk-input checkout-box__input" name="billing_address_line_1" placeholder="" required>
-                            </div>
-                            <div class="uk-width-1-2">
-                                <label class="checkout-box__label">City</label>
-                                <input type="text" class="uk-input checkout-box__input" name="billing_city" placeholder="" required>
+                                <input type="email" class="uk-input checkout-box__input" name="billing_email" placeholder="" value="{{$user->email}}" required>
                             </div>
                             <div class="uk-width-1-2">
                                 <label class="checkout-box__label">Contact</label>
-                                <input type="text" class="uk-input checkout-box__input" name="customer_contact" placeholder="" required>
+                                <input type="text" class="uk-input checkout-box__input" name="billing_contact" placeholder="" value="{{$user_details->contact_person}}" required>
                             </div>
                         </div>
                     </div>
@@ -133,23 +166,54 @@ $configData = Helper::appClasses();
                         <div class="uk-grid checkout-box__frgrid" data-uk-grid>
                             <div class="uk-width-1-2">
                                 <label class="checkout-box__label">Full Name</label>
-                                <input type="text" class="uk-input checkout-box__input" name="shipping_first_name" placeholder="" required>
+                                <input type="text" class="uk-input checkout-box__input" name="selling_first_name" placeholder="" required>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <label class="checkout-box__label">Indirizzo</label>
+                                <input type="text" class="uk-input checkout-box__input" name="selling_address" placeholder="" value="{{$user_details->destination_address_via}}" required>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <label class="checkout-box__label">Numero civico</label>
+                                <input type="text" class="uk-input checkout-box__input" name="selling_house_no" placeholder="" value="{{$user_details->destination_house_no}}" required>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <label class="checkout-box__label">Regione</label>
+                                <select name="selling_region" id="shipping_region" class="uk-input checkout-box__input select2" data-minimum-results-for-search="Infinity" required>
+                                    <option value=""></option>
+                                @foreach($region as $_region)
+                                    <option value="{{$_region->name}}" data-id="{{$_region->id}}" {{$user_details?($user_details->destination_region==$_region->name?'selected':''):''}}>{{$_region->name}}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <label class="checkout-box__label">Provincia</label>
+                                <select name="selling_province" id="shipping_province" class="uk-input checkout-box__input select2" data-minimum-results-for-search="Infinity">
+                                    <option value=""></option>
+                                @foreach($province as $_province)
+                                    <option value="{{$_province->name}}" data-id="{{$_province->id}}" data-region="{{$_province->regions_id}}" {{$user_details?($user_details->destination_province==$_province->name?'selected':''):''}}>{{$_province->name}}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <label class="checkout-box__label">Comune</label>
+                                <select name="selling_common" id="shipping_common" class="uk-input checkout-box__input select2" data-minimum-results-for-search="Infinity">
+                                    <option value=""></option>
+                                @foreach($common as $_common)
+                                    <option value="{{$_common->name}}" data-id="{{$_common->id}}" data-province="{{$_common->provinces_id}}" {{$user_details?($user_details->destination_common==$_common->name?'selected':''):''}}>{{$_common->name}}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <label class="checkout-box__label">CAP</label>
+                                <input type="text" class="uk-input checkout-box__input" name="selling_pincode" placeholder="" value="{{$user_details->destination_pincode}}" required>
                             </div>
                             <div class="uk-width-1-2">
                                 <label class="checkout-box__label">Email</label>
-                                <input type="email" class="uk-input checkout-box__input" name="shipping_email" placeholder="" required>
-                            </div>
-                            <div class="uk-width-1-1">
-                                <label class="checkout-box__label">Address</label>
-                                <input type="text" class="uk-input checkout-box__input" name="shipping_address_line_1" placeholder="" required>
-                            </div>
-                            <div class="uk-width-1-2">
-                                <label class="checkout-box__label">City</label>
-                                <input type="text" class="uk-input checkout-box__input" name="shipping_city" placeholder="" required>
+                                <input type="email" class="uk-input checkout-box__input" name="selling_email" placeholder="" required>
                             </div>
                             <div class="uk-width-1-2">
                                 <label class="checkout-box__label">Contact</label>
-                                <input type="text" class="uk-input checkout-box__input" name="shipping_contact" placeholder="" required>
+                                <input type="text" class="uk-input checkout-box__input" name="selling_contact" placeholder="" required>
                             </div>
                         </div>
                     </div>
@@ -177,6 +241,7 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
 <script src="{{asset('assets/front/plugins/uikit-3.16.22/js/uikit.min.js')}}"></script>
 <script src="{{asset('assets/front/js/jquery-3.7.0.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
 <script src="{{asset('assets/front/js/custom.js')}}"></script>
 
 <script>
@@ -192,6 +257,64 @@ $configData = Helper::appClasses();
         $(".js-order-subtotal").text(price_wo_tax);
         $(".js-order-tax-amount").text(tax);
         $(".js-order-final-total").text(total_price);
+    });
+</script>
+
+<script>
+    $("#billing_region").on("change", function(){
+        let select_id = $(this).find(":selected").data("id");
+        
+        $("#billing_province").select2("destroy").select2({
+            templateResult: function(option, container) {
+                if ($(option.element).attr("data-region") != select_id){ 
+                  $(container).css("display","none");
+                }
+        
+                return option.text;
+            }
+        });
+    });
+
+    $("#billing_province").on("change", function(){
+        let select_id = $(this).find(":selected").data("id");
+        
+        $("#billing_common").select2("destroy").select2({
+            templateResult: function(option, container) {
+                if ($(option.element).attr("data-province") != select_id){ 
+                  $(container).css("display","none");
+                }
+        
+                return option.text;
+            }
+        });
+    });
+
+    $("#selling_region").on("change", function(){
+        let select_id = $(this).find(":selected").data("id");
+        
+        $("#selling_province").select2("destroy").select2({
+            templateResult: function(option, container) {
+                if ($(option.element).attr("data-region") != select_id){ 
+                  $(container).css("display","none");
+                }
+        
+                return option.text;
+            }
+        });
+    });
+
+    $("#selling_province").on("change", function(){
+        let select_id = $(this).find(":selected").data("id");
+        
+        $("#selling_common").select2("destroy").select2({
+            templateResult: function(option, container) {
+                if ($(option.element).attr("data-province") != select_id){ 
+                  $(container).css("display","none");
+                }
+        
+                return option.text;
+            }
+        });
     });
 </script>
 

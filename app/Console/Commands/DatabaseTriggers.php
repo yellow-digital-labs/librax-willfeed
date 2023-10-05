@@ -124,7 +124,7 @@ class DatabaseTriggers extends Command
                     (SELECT amount INTO @product_amount FROM product_sellers WHERE product_id=NEW.product_id AND seller_id=NEW.seller_id LIMIT 1);
                     (SELECT amount_before_tax INTO @amount_before_tax FROM product_sellers WHERE product_id=NEW.product_id AND seller_id=NEW.seller_id LIMIT 1);
                     (SELECT name INTO @order_status FROM order_statuses WHERE id=NEW.order_status_id);
-                    (SELECT email INTO @customer_email FROM users WHERE id=NEW.user_id);
+                    -- (SELECT email INTO @customer_email FROM users WHERE id=NEW.user_id);
 
                     SET NEW.user_name = @user_name;
                     SET NEW.seller_name = @seller_name;
@@ -133,8 +133,8 @@ class DatabaseTriggers extends Command
                     SET NEW.total_payable_amount = @product_amount * NEW.product_qty;
                     SET NEW.order_status = @order_status;
                     SET NEW.order_date = NOW();
-                    SET NEW.customer_email = @customer_email;
-                    SET NEW.customer_contact = @customer_contact;
+                    -- SET NEW.customer_email = @customer_email;
+                    -- SET NEW.customer_contact = @customer_contact;
                     SET NEW.payment_method_name = @payment_method_name;
                 END');
 

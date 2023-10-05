@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\ProductSeller;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\UserDetail;
 use App\Models\CustomerVerified;
+use App\Models\Region;
+use App\Models\Common;
+use App\Models\Province;
 use App\Mail\OrderNewNotification;
 use Auth;
 
@@ -31,8 +35,18 @@ class BuyerCheckout extends Controller
       if($record_data){
         //update
         if($record_data->status == "approved"){
+          $user_details = UserDetail::where(["user_id" => $user->id])->first();
+          $region = Region::orderBy('name', 'ASC')->get();
+          $common = Common::orderBy('name', 'ASC')->get();
+          $province = Province::orderBy('name', 'ASC')->get();
+
           return view('content.pages.pages-buyer-checkout', [
-            "product" => $product
+            "product" => $product,
+            "user" => $user,
+            "user_details" => $user_details,
+            "region" => $region,
+            "common" => $common,
+            "province" => $province,
           ]);
         } else {
           return redirect()->route('customer-unauthorized', [
@@ -74,14 +88,24 @@ class BuyerCheckout extends Controller
             "product_qty" => $request->product_qty,
             "total_payable_amount" => $total_payable_amount,
             "order_date" => date("Y-m-d"),
-            "customer_email" => $request->customer_email,
-            "customer_contact" => $request->customer_contact,
-            "shipping_address_line_1" => $request->shipping_address_line_1,
-            "shipping_city" => $request->shipping_city,
-            "shipping_zip" => $request->shipping_zip,
-            "billing_address_line_1" => $request->billing_address_line_1,
-            "billing_city" => $request->billing_city,
-            "billing_zip" => $request->billing_zip,
+            "billing_first_name" => $request->billing_first_name,
+            "billing_address" => $request->billing_address,
+            "billing_house_no" => $request->billing_house_no,
+            "billing_region" => $request->billing_region,
+            "billing_province" => $request->billing_province,
+            "billing_common" => $request->billing_common,
+            "billing_pincode" => $request->billing_pincode,
+            "billing_email" => $request->billing_email,
+            "billing_contact" => $request->billing_contact,
+            "selling_first_name" => $request->selling_first_name,
+            "selling_address" => $request->selling_address,
+            "selling_house_no" => $request->selling_house_no,
+            "selling_region" => $request->selling_region,
+            "selling_province" => $request->selling_province,
+            "selling_common" => $request->selling_common,
+            "selling_pincode" => $request->selling_pincode,
+            "selling_email" => $request->selling_email,
+            "selling_contact" => $request->selling_contact,
           ]);
           
           //order details
