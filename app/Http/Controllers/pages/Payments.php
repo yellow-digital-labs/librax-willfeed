@@ -130,7 +130,7 @@ class Payments extends Controller
       foreach ($customers as $customer) {
         $nestedData["id"] = $customer->id;
         $nestedData["fake_id"] = ++$ids;
-        $nestedData["transaction_datetime"] = $customer->transaction_datetime;
+        $nestedData["transaction_datetime"] = date('d-m-Y H:i', strtotime($customer->transaction_datetime));
         $nestedData["subscription_amount"] = "€".$customer->subscription_amount;
         $nestedData["card"] = "xxxx xxxx xxxx ".$customer->card;
         $nestedData["transaction_no"] = $customer->transaction_no;
