@@ -186,7 +186,7 @@ $(function () {
                 targets: 3,
                 // visible: false,
                 searchable: true,
-                orderable: true,
+                orderable: false,
                 responsivePriority: 4,
                 render: function render(data, type, full, meta) {
                     var $order_date = full['order_date'] ? full['order_date'] : '';

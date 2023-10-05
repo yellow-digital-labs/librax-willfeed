@@ -50,7 +50,7 @@ $configData = Helper::appClasses();
                     <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-0 card-widget-heading">
                         <div>
                             <h6 class="mb-2 fw-normal">Ordini totali</h6>
-                            <h4 class="mb-2">{{$total_orders}}</h4>
+                            <h4 class="mb-2">{{number_format($total_orders, 2)}}</h4>
                             <p class="mb-0"><span class="badge bg-label-success fw-normal">100.00%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti me-sm-4">
@@ -62,8 +62,8 @@ $configData = Helper::appClasses();
                 <div class="col-6 col-lg-3">
                     <div class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-0 card-widget-heading">
                         <div>
-                            <h6 class="mb-2 fw-normal">Ordini in Euro</h6>
-                            <h4 class="mb-2">€{{$total_orders_euro}}</h4>
+                            <h6 class="mb-2 fw-normal">Ordini in euro</h6>
+                            <h4 class="mb-2">€{{number_format($total_orders_euro, 2)}}</h4>
                             <p class="mb-0"><span class="badge bg-label-success fw-normal">100.00%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti me-sm-4">
@@ -75,9 +75,9 @@ $configData = Helper::appClasses();
                 <div class="col-6 col-lg-3">
                     <div class="d-flex justify-content-between align-items-start border-end pb-0 card-widget-3 card-widget-heading">
                         <div>
-                            <h6 class="mb-2 fw-normal">Ordini Cancellati</h6>
+                            <h6 class="mb-2 fw-normal">Ordini cancellati</h6>
                             <h4 class="mb-2">{{$rejected_orders}}</h4>
-                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{$total_orders>0?100 * $rejected_orders / $total_orders:0}}%</span></p>
+                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{number_format($total_orders>0?100 * $rejected_orders / $total_orders:0, 2)}}%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti p-2 me-sm-4">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
@@ -89,7 +89,7 @@ $configData = Helper::appClasses();
                         <div>
                             <h6 class="mb-2 fw-normal">Ordini completati</h6>
                             <h4 class="mb-2">{{$completed_orders}}</h4>
-                            <p class="mb-0"><span class="badge bg-label-danger">{{$total_orders>0?100 * $completed_orders / $total_orders:0}}%</span></p>
+                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{number_format($total_orders>0?100 * $completed_orders / $total_orders:0, 2)}}%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti p-2">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
@@ -118,10 +118,10 @@ $configData = Helper::appClasses();
                     <th class="js-add-search">Cliente</th>
                 @endif
                     <th class="js-add-search">Prodotto</th>
-                    <th>quantità</th>
-                    <th>data</th>
-                    <th>status</th>
-                    <th>payment</th>
+                    <th>Quantità</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                    <th>Payment</th>
                     <th>Azione</th>
                 </tr>
             </thead>

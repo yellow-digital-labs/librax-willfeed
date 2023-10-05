@@ -154,7 +154,7 @@ $(function () {
                 targets: 0,
                 // visible: false,
                 searchable: true,
-                orderable: true,
+                orderable: false,
                 responsivePriority: 4,
                 render: function render(data, type, full, meta) {
                     var $seller_name = full['seller_name'] ? full['seller_name'] : '';
@@ -165,7 +165,7 @@ $(function () {
                 targets: 1,
                 // visible: false,
                 searchable: true,
-                orderable: true,
+                orderable: false,
                 responsivePriority: 4,
                 render: function render(data, type, full, meta) {
                     var $user_name = full['user_name'] ? full['user_name'] : '';
@@ -176,7 +176,7 @@ $(function () {
                 targets: 2,
                 // visible: false,
                 searchable: true,
-                orderable: true,
+                orderable: false,
                 responsivePriority: 4,
                 render: function render(data, type, full, meta) {
                     var $product_name = full['product_name'] ? full['product_name'] : '';
@@ -187,7 +187,7 @@ $(function () {
                 targets: 3,
                 // visible: false,
                 searchable: true,
-                orderable: true,
+                orderable: false,
                 responsivePriority: 4,
                 render: function render(data, type, full, meta) {
                     var $product_qty = full['product_qty'] ? full['product_qty'] : '';
@@ -198,7 +198,7 @@ $(function () {
                 targets: 4,
                 // visible: false,
                 searchable: true,
-                orderable: true,
+                orderable: false,
                 responsivePriority: 4,
                 render: function render(data, type, full, meta) {
                     var $order_date = full['order_date'] ? full['order_date'] : '';
@@ -207,6 +207,7 @@ $(function () {
             }, {
                 // Label
                 targets: 5,
+                orderable: false,
                 render: function (data, type, full, meta) {
                     var $status_number = full['order_status'];
                     console.log("status_number", $status_number)
@@ -225,6 +226,7 @@ $(function () {
             }, {
                 // Payment Status
                 targets: 6,
+                orderable: false,
                 render: function (data, type, full, meta) {
                     var $status_number = full['payment_status'];
                     var $status = {
