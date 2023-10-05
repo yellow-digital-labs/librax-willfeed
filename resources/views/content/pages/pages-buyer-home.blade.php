@@ -190,12 +190,6 @@ $configData = Helper::appClasses();
                                             <div class="product__priceinfo">
                                                 (Inclusive Of all Tax)
                                             </div>
-                                            <div>
-                                                Attività principale: {{$product->main_activity_ids}} <br/>
-                                                Regione: {{$product->region}}<br/>
-                                                Payment timing:<br/>
-                                                Payment methods:<br/>
-                                            </div>
                                             <div class="product__avail">
                                                 Availability:
                                                 @if($product->current_stock>0)
@@ -233,13 +227,44 @@ $configData = Helper::appClasses();
                                     @endif
                                     </div>
                                 </div>
-                                {{-- <div class="uk-width-expand product__item-col product__item-col--desc">
+                                <div class="uk-width-expand product__item-col product__item-col--desc">
                                     <div class="product__desc">
-                                        <p>
+                                        <div class="product__priceinfo">
+                                            Attività principale: {{$product->main_activity_ids}}
+                                        </div>
+                                        <div class="product__priceinfo">
+                                            Regione: {{$product->region}}
+                                        </div>
+                                        <div class="product__priceinfo">
+                                            Payment timing: {{$product->payment_extension}}
+                                        </div>
+                                        <div class="product__priceinfo">
+                                            Payment methods:
+                                            @php
+                                            $sep = "";
+                                            if($product->bank_transfer != ""){
+                                                echo $sep."Bonifico Bancario";
+                                                $sep = ", ";
+                                            }
+                                            if($product->bank_check != ""){
+                                                echo $sep."Assegno Bancario";
+                                                $sep = ", ";
+                                            }
+                                            if($product->rib != ""){
+                                                echo $sep."RIBA";
+                                                $sep = ", ";
+                                            }
+                                            if($product->rid != ""){
+                                                echo $sep."RID";
+                                                $sep = ", ";
+                                            }
+                                            @endphp
+                                        </div>
+                                        {{-- <p>
                                             {!!$product->product->description!!}
-                                        </p>
+                                        </p> --}}
                                     </div>
-                                </div> --}}
+                                </div>
                                 
                             </div>
                         </div>

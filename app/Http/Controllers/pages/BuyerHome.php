@@ -40,7 +40,7 @@ class BuyerHome extends Controller
 
     $product_query = $product_query
       ->leftJoin('user_details', 'user_details.user_id', '=', 'product_sellers.seller_id')
-      ->addSelect(["user_details.region", "user_details.main_activity_ids"]);
+      ->addSelect(["user_details.region", "user_details.main_activity_ids", "user_details.bank_transfer", "user_details.bank_check", "user_details.rib", "user_details.rid", "user_details.payment_extension"]);
     $is_user_details_joined = true;
 
     if($search){
