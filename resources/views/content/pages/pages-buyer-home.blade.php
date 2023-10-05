@@ -190,6 +190,12 @@ $configData = Helper::appClasses();
                                             <div class="product__priceinfo">
                                                 (Inclusive Of all Tax)
                                             </div>
+                                            <div>
+                                                Attività principale: {{$product->main_activity_ids}} <br/>
+                                                Regione: {{$product->region}}<br/>
+                                                Payment timing:<br/>
+                                                Payment methods:<br/>
+                                            </div>
                                             <div class="product__avail">
                                                 Availability:
                                                 @if($product->current_stock>0)
@@ -204,36 +210,36 @@ $configData = Helper::appClasses();
                                         </div>
                                     </div>
                                     <div class="product-actions">
-                                        <a href="{{route("profile-view", ['id' => $product->seller_id])}}" class="uk-button uk-button-default product-actions__view">View seller</a>
+                                        <a href="{{route("profile-view", ['id' => $product->seller_id])}}" class="uk-button uk-button-default product-actions__view">Profilo</a>
                                     @if($isBuyer)
                                         @if($product->couldOrderStatus&&$product->couldOrderStatus=="approved")
                                         <a href="{{route("pages-buyer-checkout", [
                                             "csrf" => csrf_token(),
                                             "seller_product_id" => $product->id
-                                        ])}}" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
+                                        ])}}" class="uk-button uk-button-primary product-actions__buy">Ordina</a>
                                         @else
                                         <a href="{{route("customer-request-to-seller", [
                                             "csrf" => csrf_token(),
                                             "seller_id" => $product->seller_id
                                         ])}}" class="uk-button uk-button-primary product-actions__buy" target="_blank">
-                                            {{($product->couldOrderStatus&&$product->couldOrderStatus=="pending")?'Requested':'Send request'}}
+                                            {{($product->couldOrderStatus&&$product->couldOrderStatus=="pending")?'Requested':'Collabora'}}
                                         </a>
                                         @endif
                                     @else
                                         <a href="{{route("pages-buyer-checkout", [
                                             "csrf" => csrf_token(),
                                             "seller_product_id" => $product->id
-                                        ])}}" class="uk-button uk-button-primary product-actions__buy">Buy now</a>
+                                        ])}}" class="uk-button uk-button-primary product-actions__buy">Ordina</a>
                                     @endif
                                     </div>
                                 </div>
-                                <div class="uk-width-expand product__item-col product__item-col--desc">
+                                {{-- <div class="uk-width-expand product__item-col product__item-col--desc">
                                     <div class="product__desc">
                                         <p>
                                             {!!$product->product->description!!}
                                         </p>
                                     </div>
-                                </div>
+                                </div> --}}
                                 
                             </div>
                         </div>
@@ -270,6 +276,15 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/vendor/libs/nouislider/nouislider.js')}}"></script>
 <script src="{{asset('assets/front/js/custom.js')}}"></script>
 <script src="{{asset('assets/front/js/product-listing.js')}}"></script>
+
+<script>
+    //.product-filter
+    var $container = $("html,body");
+    var $scrollTo = $('.product-filter');
+
+    // $('html, body').scrollTop($('.product-filter').offset().top);
+    // $container.animate({scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop(), scrollLeft: 0},300); 
+</script>
 
 <script>
 @if($products_list)

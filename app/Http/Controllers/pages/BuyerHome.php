@@ -37,6 +37,12 @@ class BuyerHome extends Controller
     }
     $product_query = ProductSeller::where(["product_sellers.status" => "active"])
       ->select("product_sellers.*");
+
+    $product_query = $product_query
+      ->leftJoin('user_details', 'user_details.user_id', '=', 'product_sellers.seller_id')
+      ->addSelect(["user_details.region", "user_details.main_activity_ids"]);
+    $is_user_details_joined = true;
+
     if($search){
       $product_query = $product_query
         ->where(function($query) use ($search){
