@@ -36,16 +36,24 @@ $configData = Helper::appClasses();
     <div class="d-flex flex-column justify-content-center gap-2 gap-sm-0">
         <h5 class="mb-1 mt-3 d-flex flex-wrap gap-2 align-items-end">Order #{{$id}} 
             <span class="badge bg-label-{{$order->order_status_id == '3'?'danger':($order->order_status_id == '1'?'warning':'success')}} fw-normal">{{$order->order_status}}</span>
-            <span class="badge bg-label-{{$order->payment_status == 'unpaid'?'danger':'success'}} fw-normal">{{Str::ucfirst($order->payment_status)}}</span></h5>
+        @if($order->payment_status == "paid")
+            <span class="badge bg-label-{{$order->payment_status == 'unpaid'?'danger':'success'}} fw-normal">{{Str::ucfirst("Pagato")}}</span>
+        @endif
+        </h5>
         <p class="text-body">{{date('F d, Y, H:i', strtotime($order->order_date))}} (ET)</p>
     </div>
     @if($isSeller)
     <div class="d-flex align-content-center flex-wrap gap-3">
-    @if ($order->order_status_id == '1' || $order->order_status_id == '2')
+    @if ($order->order_status_id == '1')
         <a href="{{route('order-status', ['id' => $id, 'status' => '3'])}}" class="btn btn-outline-dark waves-effect">Reject order</a>
     @endif
-    @if ($order->order_status_id == '1' || $order->order_status_id == '3')
+    @if ($order->order_status_id == '1')
         <a href="{{route('order-status', ['id' => $id, 'status' => '2'])}}" class="btn btn-primary delete-order waves-effect">Accept order </a>
+    @endif
+    @if ($order->order_status_id == '2' && $order->payment_status != "paid")
+        <a href="{{route("add-order-payment", [
+            "id" => $id
+        ])}}" class="btn btn-primary waves-effect">Segna come pagato</a>
     @endif
     </div>
     @endif
@@ -157,8 +165,8 @@ $configData = Helper::appClasses();
                                     <h6 class="mb-0">€{{$_payment_history->payment_amount}} received</h6>
                                     <span class="text-muted">{{date('F d, Y, H:i', strtotime($_payment_history->created_at))}}</span>
                                 </div>
-                                <p class="mt-2 mb-0">Payment done via {{$_payment_history->payment_type_name}}</p>
-                                <p class="mt-0 mb-0">{{$_payment_history->description}}</p>
+                                {{-- <p class="mt-2 mb-0">Payment done via {{$_payment_history->payment_type_name}}</p>
+                                <p class="mt-0 mb-0">{{$_payment_history->description}}</p> --}}
                             </div>
                         </li>
                     @endforeach
@@ -244,10 +252,10 @@ $configData = Helper::appClasses();
         
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between border-bottom">
-                <h5 class="card-title m-0 text-black">Payment details</h5>
-                @if($isSeller)
+                <h5 class="card-title m-0 text-black">Pagamento</h5>
+                {{-- @if($isSeller)
                 <h6 class="m-0"><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editPayment">Edit</a></h6>
-                @endif
+                @endif --}}
             </div>
             <div class="card-body pt-4">
                 <p class="d-flex justify-content-between">Total payment <span class="fw-semibold">€{{$order->total_payable_amount}}</span></p>

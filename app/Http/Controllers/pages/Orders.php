@@ -337,9 +337,9 @@ class Orders extends Controller
       OrderPayment::insert([
         "order_id" => $id,
         "user_id" => $user_id,
-        "payment_amount" => $request->payment_amount,
-        "description" => $request->description,
-        "payment_type_id" => $request->payment_type_id,
+        "payment_amount" => $order->total_payable_amount,
+        "description" => "Payment accepted",
+        "payment_type_id" => 1,
         "created_at" => date("Y-m-d H:i:s"),
       ]);
 
