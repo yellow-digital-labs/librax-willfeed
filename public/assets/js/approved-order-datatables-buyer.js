@@ -242,7 +242,7 @@ $(function () {
                 }
             }
             ],
-            order: [[2, 'desc']],
+            order: [[3, 'desc']],
             // orderCellsTop: true,
             language: {
                 sLengthMenu: '_MENU_',

@@ -254,7 +254,7 @@ $(function () {
                 }
             }
             ],
-            order: [[2, 'desc']],
+            order: [[4, 'desc']],
             // orderCellsTop: true,
             language: {
                 sLengthMenu: '_MENU_',

@@ -62,35 +62,32 @@ class Orders extends Controller
     $user_id = Auth::user()->id;
     if($isAdmin){
       $columns = [
-        1 => "id",
-        2 => "seller_name",
-        3 => "user_name",
-        4 => "product_name",
-        5 => "product_qty",
-        6 => "order_date",
-        7 => "order_status",
-        8 => "payment_status",
+        0 => "seller_name",
+        1 => "user_name",
+        2 => "product_name",
+        3 => "product_qty",
+        4 => "order_date",
+        5 => "order_status",
+        6 => "payment_status",
       ];
     } else {
       if(!$isBuyer){
         $columns = [
-          1 => "id",
-          2 => "user_name",
-          3 => "product_name",
-          4 => "product_qty",
-          5 => "order_date",
-          6 => "order_status",
-          7 => "payment_status",
+          0 => "user_name",
+          1 => "product_name",
+          2 => "product_qty",
+          3 => "order_date",
+          4 => "order_status",
+          5 => "payment_status",
         ];
       } else {
         $columns = [
-          1 => "id",
-          2 => "seller_name",
-          3 => "product_name",
-          4 => "product_qty",
-          5 => "order_date",
-          6 => "order_status",
-          7 => "payment_status",
+          0 => "seller_name",
+          1 => "product_name",
+          2 => "product_qty",
+          3 => "order_date",
+          4 => "order_status",
+          5 => "payment_status",
         ];
       }
     }
