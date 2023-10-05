@@ -2626,3 +2626,6 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 .mt-4 {
     margin-top: 3rem!important;
 }
+.w-100 {
+    width: 100%;
+}

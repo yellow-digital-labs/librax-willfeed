@@ -56,6 +56,70 @@ $configData = Helper::appClasses();
                     <span class="thanks__item-bold">Order QTY:</span>  {{$order->product_qty}} LITTERS
                 </div>
             </div>
+            <div class="thanks__data mt-4">
+                <div class="w-100">
+                    <span class="thanks__item-bold">Billing address</span>
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Full name:</span>  {{$order->billing_first_name}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Indirizzo:</span>  {{$order->billing_address}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Numero civico:</span>  {{$order->billing_house_no}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Regione:</span>  {{$order->billing_region}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Provincia:</span>  {{$order->billing_province}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Comune:</span>  {{$order->billing_common}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">CAP:</span>  {{$order->billing_pincode}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Email:</span>  {{$order->billing_email}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Contact:</span>  {{$order->billing_contact}}
+                </div>
+            </div>
+            <div class="thanks__data mt-4">
+                <div class="w-100">
+                    <span class="thanks__item-bold">Shipping address</span>
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Full name:</span>  {{$order->selling_first_name}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Indirizzo:</span>  {{$order->selling_address}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Numero civico:</span>  {{$order->selling_house_no}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Regione:</span>  {{$order->selling_region}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Provincia:</span>  {{$order->selling_province}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Comune:</span>  {{$order->selling_common}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">CAP:</span>  {{$order->selling_pincode}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Email:</span>  {{$order->selling_email}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Contact:</span>  {{$order->selling_contact}}
+                </div>
+            </div>
             <div class="thanks__action">
                 <a href="{{route("dashboard")}}" class="uk-button uk-button-primary thanks__action-btn">Vai alla Dashboard</a>
             </div>
