@@ -99,7 +99,7 @@ $configData = Helper::appClasses();
                             </div>
                             <div class="user-progress">
                                 <p class="text-success fw-semibold mb-0">
-                                    {{$_most_order_from_city->total_orders*100/$total_orders}}%
+                                    {{number_format($_most_order_from_city->total_orders*100/$total_orders, 2)}}%
                                 </p>
                             </div>
                         </div>
@@ -133,7 +133,7 @@ $configData = Helper::appClasses();
                             <div class="d-flex">
                                 <p class="mb-0 fw-medium">€{{$_top_selling_products->total_sales}}</p>
                                 <p class="ms-3 text-success mb-0">
-                                    {{$_top_selling_products->total_orders*100/$total_orders}}%
+                                    {{number_format($_top_selling_products->total_orders*100/$total_orders, 2)}}%
                                 </p>
                             </div>
                         </div>
@@ -159,7 +159,7 @@ $configData = Helper::appClasses();
                             <h6 class="mb-0">{{$_payment_method_wise_income->payment_method_name}}</h6>
                             <div class="d-flex">
                                 <p class="mb-0 fw-medium">{{$_payment_method_wise_income->total_orders}}</p>
-                                <p class="ms-3 text-success mb-0">{{$_payment_method_wise_income->total_orders*100/$total_orders}}%</p>
+                                <p class="ms-3 text-success mb-0">{{number_format($_payment_method_wise_income->total_orders*100/$total_orders, 2)}}%</p>
                             </div>
                         </div>
                     </li>
