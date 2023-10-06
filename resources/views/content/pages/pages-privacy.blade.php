@@ -42,7 +42,8 @@ $configData = Helper::appClasses();
                     @include('_partials/_front/_support-sidebar')
                 </div>
                 <div class="uk-width-expand support__col support__col--content">
-                    <h1 class="title title--xl support__maintitle">Privacy policy</h1>
+                    {!! $page->description !!}
+                    {{-- <h1 class="title title--xl support__maintitle">Privacy policy</h1>
                     <h2 class="support__maintext">Version: 4.7.00</h2>
                     <div class="support__text">
                         <p>
@@ -80,7 +81,7 @@ $configData = Helper::appClasses();
                         <p>
                             Feugiat pretium nibh ipsum consequat nisl. Viverra adipiscing at in tellus integer. Nisi vitae suscipit tellus mauris a diam maecenas. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Amet commodo nulla facilisi nullam. In est ante in nibh. Nulla malesuada pellentesque elit eget. Magna ac placerat vestibulum lectus mauris. Massa tincidunt dui ut ornare lectus. Tempus imperdiet nulla malesuada pellentesque elit eget gravida cum. Urna neque viverra justo nec ultrices dui sapien eget mi. Ut sem nulla pharetra diam sit amet nisl. Duis ut diam quam nulla porttitor massa id neque aliquam. Sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Dui faucibus in ornare quam. Vitae congue eu consequat ac felis donec et odio pellentesque. Ipsum suspendisse ultrices gravida dictum. Tempor id eu nisl nunc mi ipsum faucibus vitae aliquet.
                         </p>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

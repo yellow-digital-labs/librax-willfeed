@@ -7,24 +7,34 @@ $configData = Helper::appClasses();
 @section('title', 'Static pages | Privacy policy')
 
 @section('vendor-style')
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/typography.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/katex.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/editor.css')}}" />
+{{-- <link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/typography.css')}}" /> --}}
+{{-- <link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/katex.css')}}" /> --}}
+{{-- <link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/editor.css')}}" /> --}}
 @endsection
 
 @section('vendor-script')
-<script src="{{asset('assets/vendor/libs/quill/katex.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/quill/quill.js')}}"></script>
-@endsection
-
-@section('page-script')
-<script>
-    let description = "";
-    @if($page)
-    description = "{!!$page?$page->description:""!!}";
-    @endif
+{{-- <script src="{{asset('assets/vendor/libs/quill/katex.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/quill/quill.js')}}"></script> --}}
+<script src="{{asset('assets/vendor/ckeditor5/build/ckeditor.js')}}"></script>
+<script type="module">
+    ClassicEditor
+        .create( document.querySelector( '#editor' ), {
+            removePlugins: ["Title"],
+            htmlSupport: {
+                allow: [
+                    {
+                        name: /.*/,
+                        attributes: true,
+                        classes: true,
+                        styles: true
+                    }
+                ]
+            }
+        })
+        .catch( error => {
+            console.error( error );
+        } );
 </script>
-<script src="{{asset('assets/js/forms-editors.js')}}"></script>
 @endsection
 
 @section('page-style')
@@ -62,8 +72,9 @@ $configData = Helper::appClasses();
                             <input type="text" class="form-control" id="title" placeholder="Enter page title" name="page_name" value="{{$page?$page->page_name:''}}">
                         </div>
 
+                        <textarea name="description" style="display: none;" id="editor">{{$page?$page->description:""}}</textarea>
                         <!-- Description -->
-                        <div>
+                        {{-- <div>
                             <textarea name="description" style="display: none;" id="text_quill">{{$page?$page->description:""}}</textarea>
                             <div id="snow-toolbar" class="p-4 border-bottom border-top border-0">
                                 <span class="ql-formats me-0">
@@ -79,7 +90,7 @@ $configData = Helper::appClasses();
                             <div id="snow-editor" class="border-0">
                                 
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="p-4 border-top">
                             <label class="form-label" for="meta_title">Meta title</label>

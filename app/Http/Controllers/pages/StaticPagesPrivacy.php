@@ -39,7 +39,6 @@ class StaticPagesPrivacy extends Controller
 
   public function save(Request $request)
   {
-    dd($request->all());
     $isAdmin = Helpers::isAdmin();
     if(!$isAdmin){
       return Redirect::back()->withErrors([
