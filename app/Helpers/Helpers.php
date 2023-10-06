@@ -223,4 +223,8 @@ class Helpers
   public static function generateSlug($string) {
     return \Str::slug($string, "-");
   }
+
+  public static function listOfDays(){
+    return ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
+  }
 }

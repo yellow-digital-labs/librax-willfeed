@@ -66,7 +66,7 @@ $configData = Helper::appClasses();
                         <div class="col-12">
                             <label for="product-details-container" class="fw-semibold">Descrizione</label>
                             <div id="product-details-container">
-                                {{$_product?$_product->description:''}}
+                                {!! $_product?$_product->description:'' !!}
                             </div>
                         </div>
                     </div>
@@ -132,6 +132,32 @@ $configData = Helper::appClasses();
                         </div>
                         <hr/>
 
+                        <div class="col-12">
+                            <label class="form-label" for="delivery_time">For same day delivery order before time</label>
+                            <div class="input-group">
+                                <input type="time" name="delivery_time" id="delivery_time" class="form-control" placeholder="" value="{{$product_detail?$product_detail->delivery_time:''}}" />
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label" for="delivery_days">Delivery days</label>
+                            <select name="delivery_days" id="delivery_days" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                <option value="">Seleziona delivery days</option>
+                                <option value="Stesso giorno" {{$product_detail?($product_detail->delivery_days=="Stesso giorno"?'selected':''):''}}>Stesso giorno</option>
+                                <option value="Il giorno dopo" {{$product_detail?($product_detail->delivery_days=="Il giorno dopo"?'selected':''):''}}>Il giorno dopo</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label" for="days_off">Days off</label>
+                            <select name="days_off[]" id="days_off" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
+                                <option value="">Seleziona days off </option>
+                            @foreach ($days as $day)
+                                <option value="{{$day}}" {{$product_detail?(in_array($day, explode(",",$product_detail->days_off))?'selected':''):''}}>{{$day}}</option>
+                            @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-check form-switch mb-2">
                             <label class="form-check-label" for="status">Disponibilità</label>
                             <input class="form-check-input" type="checkbox" name="status" id="status" value="active" {{$product_detail?($product_detail->status=='active'?'checked':''):'checked'}}>
@@ -143,6 +169,8 @@ $configData = Helper::appClasses();
                 </div>
             </div>
 
+
+            @if($product_detail)
             <div class="card">
                 <div class="card-header d-flex justify-content-between border-bottom">
                     <div class="card-title mb-0">
@@ -173,6 +201,7 @@ $configData = Helper::appClasses();
                     </div>
                 </div>
             </div>
+            @endif
         </div>
 
     </div>

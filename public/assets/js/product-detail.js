@@ -94,6 +94,20 @@ document.addEventListener('DOMContentLoaded', function (e) {
                         message: 'Please enter prezzo 90gg'
                       }
                     }
+                  },
+                  delivery_time: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter time'
+                      }
+                    }
+                  },
+                  delivery_days: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter delivery days'
+                      }
+                    }
                   }
                 },
                 plugins: {

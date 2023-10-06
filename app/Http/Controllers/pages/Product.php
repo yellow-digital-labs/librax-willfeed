@@ -231,6 +231,7 @@ class Product extends Controller
       "product_id" => $id,
       "seller_id" => $user_id,
     ])->first();
+    $days = Helpers::listOfDays();
 
     $_product = Products::where(['id' => $id])->first();
 
@@ -239,6 +240,7 @@ class Product extends Controller
         "products" => $products,
         "product_detail" => $product_detail,
         "_product" => $_product,
+        "days" => $days
       ]);
     } else {
       return Redirect::back()->withErrors([
@@ -272,6 +274,9 @@ class Product extends Controller
         "amount_30gg" => $request->amount_30gg,
         "amount_60gg" => $request->amount_60gg,
         "amount_90gg" => $request->amount_90gg,
+        "delivery_time" => $request->delivery_time,
+        "delivery_days" => $request->delivery_days,
+        "days_off" => $request->days_off?implode(",",$request->days_off):"",
         "status" => $request->status ? $request->status : "inactive",
       ]
     );
@@ -353,10 +358,12 @@ class Product extends Controller
   public function create()
   {
     $products = Products::where(["active" => "yes"])->get();
+    $days = Helpers::listOfDays();
     return view("content.pages.pages-product-create", [
       "products" => $products,
       "product_detail" => [],
       "_product" => [],
+      "days" => $days
     ]);
   }
 
@@ -385,6 +392,9 @@ class Product extends Controller
         "amount_30gg" => $request->amount_30gg,
         "amount_60gg" => $request->amount_60gg,
         "amount_90gg" => $request->amount_90gg,
+        "delivery_time" => $request->delivery_time,
+        "delivery_days" => $request->delivery_days,
+        "days_off" => $request->days_off,
         "status" => $request->status ? $request->status : "inactive",
       ]
     );
