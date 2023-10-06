@@ -49,10 +49,22 @@ class UsersDetails extends Controller
     $user_detail = UserDetail::where(['user_id' => $id])->first();
 
     $subscriptions = [];
+    $payment_methods = [];
     $isOnlyProfile = true;
     if($user_id == $id){
       $isOnlyProfile = false;
       $subscriptions = Subscription::where(['status' => 'active'])->get();
+
+      if($user->stripe_customer_id){
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+        $payment_methods_data = $stripe->customers->allPaymentMethods(
+          $user->stripe_customer_id,
+          ["type" => "card"]
+        );
+        if($payment_methods_data){
+          $payment_methods = $payment_methods_data->data;
+        }
+      }
     }
 
     return view('content.pages.pages-users-details', [
@@ -61,6 +73,7 @@ class UsersDetails extends Controller
       'subscriptions' => $subscriptions,
       'isOnlyProfile' => $isOnlyProfile,
       'authUser' => $authUser,
+      'payment_methods' => $payment_methods,
     ]);
   }
 }
