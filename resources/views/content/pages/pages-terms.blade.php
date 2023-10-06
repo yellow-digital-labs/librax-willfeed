@@ -41,7 +41,8 @@ $configData = Helper::appClasses();
                 <div class="uk-width-auto support__col support__col--sidebar">
                     @include('_partials/_front/_support-sidebar')
                 </div>
-                <div class="uk-width-expand support__col support__col--content">
+                {!! $page->description !!}
+                {{-- <div class="uk-width-expand support__col support__col--content">
                     <h1 class="title title--xl support__maintitle">Terms & conditions</h1>
                     <h2 class="support__maintext">Version: 4.7.00</h2>
                     <div class="support__text">
@@ -119,7 +120,7 @@ $configData = Helper::appClasses();
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
