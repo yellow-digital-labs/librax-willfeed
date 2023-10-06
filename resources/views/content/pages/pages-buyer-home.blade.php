@@ -307,8 +307,14 @@ $configData = Helper::appClasses();
     var $container = $("html,body");
     var $scrollTo = $('.product-filter');
     $(document).ready(function(){
+        if ((window.location.href).includes('?')) {
+            $container.animate({
+                scrollTop: $scrollTo.offset().top - 120, 
+                scrollLeft: 0}
+            ,300);
+        }
         // $('html, body').scrollTop($('.product-filter').offset().top);
-        $container.animate({scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop(), scrollLeft: 0},300);
+        
     });
 </script>
 
