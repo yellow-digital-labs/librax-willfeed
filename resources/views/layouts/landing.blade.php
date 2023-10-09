@@ -13,6 +13,11 @@
     <link rel="canonical" href="{{ config('variables.productPage') ? config('variables.productPage') : '' }}">
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
+
+    <script
+    src="https://js.sentry-cdn.com/8d01b7652242a566ea5c5074ca8621d5.min.js"
+    crossorigin="anonymous"
+    ></script>
     @yield('head-style')
 </head>
 
