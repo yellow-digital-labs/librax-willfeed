@@ -5,6 +5,7 @@ namespace App\Helpers;
 use Config;
 use Auth;
 use Illuminate\Support\Str;
+use App\Models\Product;
 
 class Helpers
 {
@@ -280,5 +281,11 @@ class Helpers
         return $dateObj->format('d-m-Y');
       }
     }
+  }
+
+  public static function getNewTenProducts(){
+    $products = Product::where(["active" => "yes"])->orderBy("id", "desc")->take(10)->get();
+
+    return $products;
   }
 }

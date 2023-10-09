@@ -9,7 +9,7 @@
             <span class="wf-icon wf-icon-phone-call footer-info__icon"></span>
             <div class="footer-info__data">
                 <h2 class="footer-info__name">7/7</h2>
-                <a href="tel:+234 123 2352" class="footer-info__href">+39 3334565118</a>
+                <a href="tel:+39 3334565118" class="footer-info__href">+39 3334565118</a>
             </div>
         </div>
     </div>
@@ -74,7 +74,7 @@
                             <a href="{{route("register")}}" class="footer-links__action">Buy</a>
                         </li>
                         <li class="footer-links__item">
-                            <a href="#" class="footer-links__action">Market</a>
+                            <a href="{{route("pages-buyer-home")}}" class="footer-links__action">Market</a>
                         </li>
                         <li class="footer-links__item">
                             <a href="{{route('pages-aboutus')}}" class="footer-links__action">About Us</a>
@@ -87,36 +87,16 @@
                 <div class="uk-width-1-4 footer-main__col footer-main__col--products">
                     <h2 class="title footer-main__title">Our Products</h2>
                     <ul class="footer-menu footer-menu--grid">
-                        <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">Ethylene</a>
-                        </li>
-                        <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">Cosmetics</a>
-                        </li>
-                        <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">Benzene</a>
-                        </li>
-                        <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">Fertilizers</a>
-                        </li>
-                        <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">Medical resins</a>
-                        </li>
-                        <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">Carpets</a>
-                        </li>
-                        <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">Medical plastics</a>
-                        </li>
-                        <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">Safety glass</a>
-                        </li>
-                        <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">Food preservatives</a>
-                        </li>
-                        <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">Crayons and markers</a>
-                        </li>
+                        @php
+                        $products = App\Helpers\Helpers::getNewTenProducts();
+                        @endphp
+                        @if($products)
+                            @foreach($products as $product)
+                            <li class="footer-menu__item">
+                                <a href="{{route("pages-buyer-home", ["search" => $product->name])}}" class="footer-menu__link">{{$product->name}}</a>
+                            </li>
+                            @endforeach
+                        @endif
                     </ul>
                     
                 </div>

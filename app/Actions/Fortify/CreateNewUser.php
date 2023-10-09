@@ -40,11 +40,14 @@ class CreateNewUser implements CreatesNewUsers
 
         $verificationUrl = route("verify-email-confirm", ["token" => $verification_token]);
 
-        //send email
-        Mail::to($input['email'])->send(new UserVerification([
-            "accountTypeName" => $input['accountType'],
-            "verificationUrl" => $verificationUrl
-        ]));
+        if($res){
+            $user = User::where(["id" => $res->id])->first();
+            //send email
+            Mail::to($input['email'])->send(new UserVerification([
+                "accountTypeName" => $user['accountTypeName'],
+                "verificationUrl" => $verificationUrl
+            ]));
+        }
 
         return $res;
     }
