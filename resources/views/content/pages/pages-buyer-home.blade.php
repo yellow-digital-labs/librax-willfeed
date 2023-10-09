@@ -250,11 +250,11 @@ $configData = Helper::appClasses();
                                                 echo $sep."Assegno Bancario";
                                                 $sep = ", ";
                                             }
-                                            if($product->rib != ""){
+                                            if($product->rib == "Si"){
                                                 echo $sep."RIBA";
                                                 $sep = ", ";
                                             }
-                                            if($product->rid != ""){
+                                            if($product->rid == "Si"){
                                                 echo $sep."RID";
                                                 $sep = ", ";
                                             }

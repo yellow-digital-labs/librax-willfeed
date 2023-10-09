@@ -36,6 +36,7 @@ class BuyerCheckout extends Controller
         //update
         if($record_data->status == "approved"){
           $user_details = UserDetail::where(["user_id" => $user->id])->first();
+          $seller_details = UserDetail::where(["user_id" => $product->seller_id])->first();
           $region = Region::orderBy('name', 'ASC')->get();
           $common = Common::orderBy('name', 'ASC')->get();
           $province = Province::orderBy('name', 'ASC')->get();
@@ -44,6 +45,7 @@ class BuyerCheckout extends Controller
             "product" => $product,
             "user" => $user,
             "user_details" => $user_details,
+            "seller_details" => $seller_details,
             "region" => $region,
             "common" => $common,
             "province" => $province,

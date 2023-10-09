@@ -54,11 +54,25 @@ $configData = Helper::appClasses();
                         <div class="uk-grid checkout-box__prgrid gutter-xl" data-uk-grid>
                             <div class="uk-width-1-3 checkout-box__prcol  checkout-box__prcol--item">
                                 <h3 class="checkout-box__prlabel">Item</h3>
-                                <h2 class="checkout-box__itemname">{{$product->product_name}}</h2>
+                                <h2 class="checkout-box__itemname">
+                                    {{$product->product_name}} <br/>
+                                    Delivery on: {{\App\Helpers\Helpers::calculateEstimateShippingDate($product->delivery_time, $product->delivery_days, $product->days_off)}}
+                                </h2>
                             </div>
                             <div class="uk-width-expand checkout-box__prcol  checkout-box__prcol--cost">
                                 <h3 class="checkout-box__prlabel">Cost</h3>
-                                <h2 class="checkout-box__itemcost"><span class="checkout-box__itemcost-price">€{{$product->amount_before_tax}}</span>/LITERS</h2>
+                                <h2 class="checkout-box__itemcost">
+                                    <span class="checkout-box__itemcost-price">€{{$product->amount_before_tax}}</span>/LITERS<br/>
+                                    @if($product->amount_30gg)
+                                    30gg: <span class="checkout-box__itemcost-price">€{{$product->amount_30gg}}</span>/LITERS<br/>
+                                    @endif
+                                    @if($product->amount_60gg)
+                                    60gg: <span class="checkout-box__itemcost-price">€{{$product->amount_60gg}}</span>/LITERS<br/>
+                                    @endif
+                                    @if($product->amount_90gg)
+                                    90gg: <span class="checkout-box__itemcost-price">€{{$product->amount_90gg}}</span>/LITERS
+                                    @endif
+                                </h2>
                                 <input type="hidden" id="js-one-litter-price-wo-tax" value="{{$product->amount_before_tax}}">
                             </div>
                             <div class="uk-width-auto checkout-box__prcol  checkout-box__prcol--qty">
@@ -74,10 +88,28 @@ $configData = Helper::appClasses();
                             </div>
                         </div>
                         <div class="uk-grid checkout-box__ntgrid" data-uk-grid>
-                            <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--note">
+                            {{-- <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--note">
                                 <textarea class="uk-textarea checkout-box__textarea" rows="6" placeholder="Note" name="order_note"></textarea>
+                            </div> --}}
+                            <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--note">
+                                <h2 class="checkout-box__itemcost">
+                                    Bonifico Bancario <br/>
+                                    IBAN: <span class="checkout-box__itemcost-price">{{$seller_details->bank_transfer?$seller_details->bank_transfer:'NA'}}</span><br/>
+                                    Banca: <span class="checkout-box__itemcost-price">{{$seller_details->bank?$seller_details->bank:'NA'}}</span>
+                                </h2>
+                                <h2 class="checkout-box__itemcost">
+                                    RIBA: <span class="checkout-box__itemcost-price">{{$seller_details->rib?$seller_details->rib:'NA'}}</span>
+                                </h2>
                             </div>
-                            <div class="uk-width-2-3 checkout-box__ntcol checkout-box__ntcol--total">
+                            <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--note">
+                                <h2 class="checkout-box__itemcost">
+                                    Assegno Bancario: <span class="checkout-box__itemcost-price">{{$seller_details->bank_check?$seller_details->bank_check:'NA'}}</span>
+                                </h2>
+                                <h2 class="checkout-box__itemcost">
+                                    RID: <span class="checkout-box__itemcost-price">{{$seller_details->rid?$seller_details->rid:'NA'}}</span>
+                                </h2>
+                            </div>
+                            <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--total">
                                 <div class="checkout-box__total">
                                     <p class="checkout-box__total-item">
                                         <span class="checkout-box__total-label">Subtotal:</span>
@@ -92,6 +124,11 @@ $configData = Helper::appClasses();
                                         <span class="checkout-box__total-val">€<span class="js-order-final-total">{{($product->amount_before_tax*100)+($product->amount_before_tax*100*22/100)}}</span></span>
                                     </p>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="uk-grid checkout-box__ntgrid" data-uk-grid>
+                            <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--note">
+                                <textarea class="uk-textarea checkout-box__textarea" rows="6" placeholder="Note" name="order_note"></textarea>
                             </div>
                         </div>
                     </div>
@@ -253,10 +290,10 @@ $configData = Helper::appClasses();
         let tax = price_wo_tax*22/100;
         let total_price = price_wo_tax + tax;
 
-        $(".js-product-total").text(price_wo_tax);
-        $(".js-order-subtotal").text(price_wo_tax);
-        $(".js-order-tax-amount").text(tax);
-        $(".js-order-final-total").text(total_price);
+        $(".js-product-total").text((Math.round(price_wo_tax * 100) / 100).toFixed(2));
+        $(".js-order-subtotal").text((Math.round(price_wo_tax * 100) / 100).toFixed(2));
+        $(".js-order-tax-amount").text((Math.round(tax * 100) / 100).toFixed(2));
+        $(".js-order-final-total").text((Math.round(total_price * 100) / 100).toFixed(2));
     });
 </script>
 

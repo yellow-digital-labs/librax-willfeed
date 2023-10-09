@@ -75,9 +75,9 @@ class BuyerHome extends Controller
           } else if($payment_option == "Assegno Bancario") {
             $query->orWhere("user_details.bank_check", "<>", "");
           } else if($payment_option == "RIBA") {
-            $query->orWhere("user_details.rib", "<>", "");
+            $query->orWhere("user_details.rib", "=", "Si");
           } else if($payment_option == "RID") {
-            $query->orWhere("user_details.rid", "<>", "");
+            $query->orWhere("user_details.rid", "=", "Si");
           }
         }
       });
