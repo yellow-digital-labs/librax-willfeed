@@ -260,19 +260,25 @@ class Helpers
     $dateObj      = new \DateTime($currentDate);
     $timeStamp    = $dateObj->getTimestamp();
 
-    for ($i = 0; $i < $numberOfDays; $i++) {
-        
-        $addDay   = 86400; // add 1 day to timestamp
-        $nextDay  = date('l', ($timeStamp + $addDay));// get what day it is next day
-
-        //Skip the day if it is a weekend
-        if(in_array(strtolower($nextDay), array_map('strtolower', $weekends)) ){
-          $i--;
+    $days = Helpers::listOfDays();
+    $week_of_day = date("N")-1;
+    $today_day = $days[date("N")-1];
+    $addDay   = 0;
+    for ($i = 0; $i < 7; $i++) {
+      if(in_array($days[$week_of_day], $weekends)){
+        //skip
+        $addDay += 86400;
+        $week_of_day++;
+        if($week_of_day>6){
+          $week_of_day = 0;
         }
+      } else {
+        //return
         $timeStamp = $timeStamp + $addDay;
-    }
-    $dateObj->setTimestamp($timeStamp);
+        $dateObj->setTimestamp($timeStamp);
 
-    return $dateObj->format('d-m-Y');
+        return $dateObj->format('d-m-Y');
+      }
+    }
   }
 }
