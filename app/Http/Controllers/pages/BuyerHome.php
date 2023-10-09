@@ -110,8 +110,6 @@ class BuyerHome extends Controller
           $query->orWhere("user_details.payment_extension", $payment_time);
         }
       });
-      $product_query
-        ->whereRaw($sub_query);
     }
 
     //delivery time

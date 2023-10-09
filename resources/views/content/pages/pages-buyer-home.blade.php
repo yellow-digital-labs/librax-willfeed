@@ -155,7 +155,7 @@ $configData = Helper::appClasses();
                         </div>
                     </div>
                     <div class="uk-width-expand product-filter__col product-filter__col--items">
-                    @if($products_list)
+                    @if($products_list && count($products_list))
                         @foreach ($products_list as $product)
                         @php
                             $rating = App\Models\Rating::where(['review_for_id' => $product->seller_id, 'status' => 'approve'])->avg('star');
@@ -287,8 +287,16 @@ $configData = Helper::appClasses();
                             </div>
                         </div>
                         @endforeach
-                    @endif
                         {{ $products_list->links() }}
+                    @else
+                        <div class="thanks__icon">
+                            <img src="/assets/front/images/reject.svg" width="340" height="196">
+                        </div>
+                        <h3 style="text-center">Nessun prodotto trovato</h3>
+                        <div class="thanks__action">
+                            <a href="{{route("pages-buyer-home")}}" class="uk-button uk-button-primary thanks__action-btn">ricerca chiara</a>
+                        </div>
+                    @endif
                         
                     </div>
                     
