@@ -227,4 +227,52 @@ class Helpers
   public static function listOfDays(){
     return ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
   }
+
+  public static function calculateEstimateShippingDate($time, $delivery_day, $days_off){
+    // if(date("N"))
+    if($time){
+      $days = Helpers::listOfDays();
+      $today_day = $days[date("N")-1];
+      $days_off_arr = explode(",", $days_off);
+
+      if(count($days_off_arr)==7){
+        return "NA";
+      } else {
+        if(in_array($today_day, $days_off_arr)){
+          return Helpers::getNextWorkingDay($days_off_arr);
+        } else {
+          if(date("H:i") <= $time){
+            return date("d-m-Y");
+          } else {
+            return Helpers::getNextWorkingDay($days_off_arr);
+          }
+        }
+      }
+    } else {
+      return "NA";
+    }
+  }
+
+  public static function getNextWorkingDay($weekends){
+    $numberOfDays = 7-count($weekends); //Next working day after 5 days
+    // $weekends     = array('saturday', 'sunday'); //Saturday and sunday are weekends
+    $currentDate  = date('Y-m-d');
+    $dateObj      = new \DateTime($currentDate);
+    $timeStamp    = $dateObj->getTimestamp();
+
+    for ($i = 0; $i < $numberOfDays; $i++) {
+        
+        $addDay   = 86400; // add 1 day to timestamp
+        $nextDay  = date('l', ($timeStamp + $addDay));// get what day it is next day
+
+        //Skip the day if it is a weekend
+        if(in_array(strtolower($nextDay), array_map('strtolower', $weekends)) ){
+          $i--;
+        }
+        $timeStamp = $timeStamp + $addDay;
+    }
+    $dateObj->setTimestamp($timeStamp);
+
+    return $dateObj->format('d-m-Y');
+  }
 }

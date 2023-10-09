@@ -260,6 +260,24 @@ $configData = Helper::appClasses();
                                             }
                                             @endphp
                                         </div>
+                                        <div class="product__priceinfo">
+                                            Deliver on: {{App\Helpers\Helpers::calculateEstimateShippingDate($product->delivery_time, $product->delivery_days, $product->days_off)}}
+                                            {{-- @if($product->delivery_time)
+                                                @if(date("H:i")<=$product->delivery_time)
+                                                    Deliver on: {{date("d-m-Y")}}
+                                                @else
+                                                    Deliver on:
+                                                    
+                                                    @if($product->delivery_days=="Stesso giorno")
+                                                        {{date("d-m-Y")}}
+                                                    @else
+                                                        {{date("d-m-Y", time() + 86400)}}
+                                                    @endif
+                                                @endif
+                                            @else
+                                            Deliver on: NA
+                                            @endif --}}
+                                        </div>
                                         {{-- <p>
                                             {!!$product->product->description!!}
                                         </p> --}}
