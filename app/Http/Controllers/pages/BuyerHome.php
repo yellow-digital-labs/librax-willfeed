@@ -132,6 +132,12 @@ class BuyerHome extends Controller
     $regions = Region::all();
     $payment_extensions = PaymentExtension::all();
 
+    //get min max price value
+    $price_arr = ProductSeller::where(["product_sellers.status" => "active"])
+      ->where("amount", "<>", 0)
+      ->selectRaw("MIN(amount) AS min_price, MAX(amount) AS max_price")
+      ->first();
+
     return view('content.pages.pages-buyer-home', [
       "products_list" => $products_list,
       "products" => $products,
@@ -143,6 +149,8 @@ class BuyerHome extends Controller
       "isAdmin" => $isAdmin,
       "isBuyer" => $isBuyer,
       "isSeller" => $isSeller,
+      "price_min" => $price_arr->min_price,
+      "price_max" => $price_arr->max_price,
     ]);
   }
 }

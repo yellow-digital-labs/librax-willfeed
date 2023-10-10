@@ -315,8 +315,8 @@ $configData = Helper::appClasses();
 <!-- Scripts Starts -->
 @section('footer-script')
 <script>
-    let price_min = {{isset($request['price_min'])?$request['price_min']:0.10}};
-    let price_max = {{isset($request['price_max'])?$request['price_max']:10.00}};
+    let price_min = {{isset($request['price_min'])?$request['price_min']:$price_min}};
+    let price_max = {{isset($request['price_max'])?$request['price_max']:$price_max}};
     let delivery_time_min = {{isset($request['delivery_time_min'])?$request['delivery_time_min']:0}};
     let delivery_time_max = {{isset($request['delivery_time_max'])?$request['delivery_time_max']:30}};
 </script>
@@ -326,8 +326,61 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/nouislider/nouislider.js')}}"></script>
 <script src="{{asset('assets/front/js/custom.js')}}"></script>
-<script src="{{asset('assets/front/js/product-listing.js')}}"></script>
+{{-- <script src="{{asset('assets/front/js/product-listing.js')}}"></script> --}}
+<script>
+    $(function(){
+        const dynamicSlider = document.getElementById('delivery-time-range');
+        const priceRangeSlider = document.getElementById('price-range');
 
+        if(priceRangeSlider){
+            noUiSlider.create(priceRangeSlider, {
+                start: [price_min, price_max],
+                connect: true,
+                step: 0.1,
+                direction: 'ltr',
+                behaviour: 'tap-drag',
+                tooltips: true,
+                range: {
+                min: {{$price_min}},
+                max: {{$price_max}}
+                }
+            });
+
+            priceRangeSlider.noUiSlider.on('change', function (values, handle) {
+                $("#price_min").val(values[0]);
+                $("#price_max").val(values[1]);
+
+                $("#product-form").submit();
+            });
+        }
+
+        if (dynamicSlider) {
+            noUiSlider.create(dynamicSlider, {
+                start: [delivery_time_min, delivery_time_max],
+                connect: true,
+                step: 1,
+                direction: 'ltr',
+                behaviour: 'tap-drag',
+                tooltips: true,
+                range: {
+                min: 0,
+                max: 30
+                }
+            });
+
+            dynamicSlider.noUiSlider.on('change', function (values, handle) {
+                $("#delivery_time_min").val(values[0]);
+                $("#delivery_time_max").val(values[1]);
+
+                $("#product-form").submit();
+            });
+        }
+
+        $(".product-filter-checkbox").on("change", function(){
+            $("#product-form").submit();
+        });
+    });
+</script>
 <script>
     //.product-filter
     var $container = $("html,body");
