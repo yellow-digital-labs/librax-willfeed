@@ -168,7 +168,7 @@ $configData = Helper::appClasses();
                             <div class="product__header">
                                 <div class="product-seller">
                                     <div class="product-seller__media">
-                                        <img src="/assets/img/avatars/1.png" width="48" height="48">
+                                        <img src="{{$product->seller->profile_photo_url}}" width="48" height="48">
                                     </div>
                                     <div class="product-seller__body">
                                         <h3 class="product-seller__name">{{$product->seller_name}}</h3>

@@ -44,7 +44,7 @@
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">
                             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);">
                                 <div class="avatar avatar-online">
-                                    <img src="https://ui-avatars.com/api/?name=&amp;color=7F9CF5&amp;background=EBF4FF" alt="" class="rounded-circle">
+                                    <img src="{{ Auth::user() ? Auth::user()->profile_photo_url : asset('assets/img/81160511660785db8768a15358306893.jpg') }}" alt class="rounded-circle">
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end show" data-uk-dropdown>
