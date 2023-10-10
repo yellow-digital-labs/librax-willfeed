@@ -75,7 +75,7 @@ $configData = Helper::appClasses();
                                 </h2>
                                 <input type="hidden" id="js-one-litter-price-wo-tax" value="{{$product->amount_before_tax}}">
                             </div>
-                            <div class="uk-width-auto checkout-box__prcol  checkout-box__prcol--qty">
+                            <div class="uk-width-auto checkout-box__prcol  checkout-box__prcol--qty contact-form__group">
                                 <h3 class="checkout-box__prlabel">Qty</h3>
                                 <div class="checkout-box__qty">
                                     <input type="text" class="uk-input checkout-box__qty-input" id="js-qty-input" name="product_qty" value="100" required>
@@ -140,19 +140,19 @@ $configData = Helper::appClasses();
                     </div>
                     <div class="checkout-box__body">
                         <div class="uk-grid checkout-box__frgrid" data-uk-grid>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Full Name</label>
                                 <input type="text" class="uk-input checkout-box__input" name="billing_first_name" placeholder="" value="{{$user_details->business_name}}" required>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Indirizzo</label>
                                 <input type="text" class="uk-input checkout-box__input" name="billing_address" placeholder="" value="{{$user_details->address}}" required>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Numero civico</label>
                                 <input type="text" class="uk-input checkout-box__input" name="billing_house_no" placeholder="" value="{{$user_details->house_no}}" required>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Regione</label>
                                 <select name="billing_region" id="billing_region" class="uk-input checkout-box__input select2" data-minimum-results-for-search="Infinity" required>
                                     <option value=""></option>
@@ -161,7 +161,7 @@ $configData = Helper::appClasses();
                                 @endforeach
                                 </select>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Provincia</label>
                                 <select name="billing_province" id="billing_province" class="uk-input checkout-box__input select2" data-minimum-results-for-search="Infinity">
                                     <option value=""></option>
@@ -170,7 +170,7 @@ $configData = Helper::appClasses();
                                 @endforeach
                                 </select>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Comune</label>
                                 <select name="billing_common" id="billing_common" class="uk-input checkout-box__input select2" data-minimum-results-for-search="Infinity">
                                     <option value=""></option>
@@ -179,15 +179,15 @@ $configData = Helper::appClasses();
                                 @endforeach
                                 </select>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">CAP</label>
                                 <input type="text" class="uk-input checkout-box__input" name="billing_pincode" placeholder="" value="{{$user_details->pincode}}" required>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Email</label>
                                 <input type="email" class="uk-input checkout-box__input" name="billing_email" placeholder="" value="{{$user->email}}" required>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Contact</label>
                                 <input type="text" class="uk-input checkout-box__input" name="billing_contact" placeholder="" value="{{$user_details->contact_person}}" required>
                             </div>
@@ -201,19 +201,19 @@ $configData = Helper::appClasses();
                     </div>
                     <div class="checkout-box__body">
                         <div class="uk-grid checkout-box__frgrid" data-uk-grid>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Full Name</label>
                                 <input type="text" class="uk-input checkout-box__input" name="selling_first_name" placeholder="" required>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Indirizzo</label>
                                 <input type="text" class="uk-input checkout-box__input" name="selling_address" placeholder="" value="{{$user_details->destination_address_via}}" required>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Numero civico</label>
                                 <input type="text" class="uk-input checkout-box__input" name="selling_house_no" placeholder="" value="{{$user_details->destination_house_no}}" required>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Regione</label>
                                 <select name="selling_region" id="shipping_region" class="uk-input checkout-box__input select2" data-minimum-results-for-search="Infinity" required>
                                     <option value=""></option>
@@ -222,7 +222,7 @@ $configData = Helper::appClasses();
                                 @endforeach
                                 </select>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Provincia</label>
                                 <select name="selling_province" id="shipping_province" class="uk-input checkout-box__input select2" data-minimum-results-for-search="Infinity">
                                     <option value=""></option>
@@ -231,7 +231,7 @@ $configData = Helper::appClasses();
                                 @endforeach
                                 </select>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Comune</label>
                                 <select name="selling_common" id="shipping_common" class="uk-input checkout-box__input select2" data-minimum-results-for-search="Infinity">
                                     <option value=""></option>
@@ -240,15 +240,15 @@ $configData = Helper::appClasses();
                                 @endforeach
                                 </select>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">CAP</label>
                                 <input type="text" class="uk-input checkout-box__input" name="selling_pincode" placeholder="" value="{{$user_details->destination_pincode}}" required>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Email</label>
                                 <input type="email" class="uk-input checkout-box__input" name="selling_email" placeholder="" required>
                             </div>
-                            <div class="uk-width-1-2">
+                            <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Contact</label>
                                 <input type="text" class="uk-input checkout-box__input" name="selling_contact" placeholder="" required>
                             </div>
@@ -356,70 +356,168 @@ $configData = Helper::appClasses();
 </script>
 
 <script>
-// document.addEventListener('DOMContentLoaded', function (e) {
-//     (function () {
-//         const productForm = document.querySelector('#checkout-form');
-//         // Form validation for Add new record
-//         if (productForm) {
-//             FormValidation.formValidation(productForm, {
-//                 fields: {
-//                   product_qty: {
-//                     validators: {
-//                       notEmpty: {
-//                         message: 'Please select prodotto'
-//                       }
-//                     }
-//                   },
-//                   shipping_first_name: {
-//                     validators: {
-//                       notEmpty: {
-//                         message: 'Please enter prezzo a vista'
-//                       }
-//                     }
-//                   },
-//                   amount_30gg: {
-//                     validators: {
-//                       notEmpty: {
-//                         message: 'Please enter prezzo 30gg'
-//                       }
-//                     }
-//                   },
-//                   amount_60gg: {
-//                     validators: {
-//                       notEmpty: {
-//                         message: 'Please enter prezzo 60gg'
-//                       }
-//                     }
-//                   },
-//                   amount_90gg: {
-//                     validators: {
-//                       notEmpty: {
-//                         message: 'Please enter prezzo 90gg'
-//                       }
-//                     }
-//                   }
-//                 },
-//                 plugins: {
-//                   trigger: new FormValidation.plugins.Trigger(),
-//                   bootstrap5: new FormValidation.plugins.Bootstrap5({
-//                     // Use this for enabling/changing valid/invalid class
-//                     // eleInvalidClass: '',
-//                     eleValidClass: '',
-//                     rowSelector: '.col-12'
-//                   }),
-//                   submitButton: new FormValidation.plugins.SubmitButton(),
-//                   // Submit the form when all fields are valid
-//                   // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
-//                   autoFocus: new FormValidation.plugins.AutoFocus()
-//                 }
-//               }).on('core.form.valid', function () {
-//                 console.log("submit")
-//                 // Jump to the next step when all fields in the current step are valid
-//                 // productForm.submit();
-//               });;
-//         }
-//     })();
-// });
+document.addEventListener('DOMContentLoaded', function (e) {
+    (function () {
+        const productForm = document.querySelector('#checkout-form');
+        // Form validation for Add new record
+        if (productForm) {
+            FormValidation.formValidation(productForm, {
+                fields: {
+                  product_qty: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter qty'
+                      }
+                    }
+                  },
+                  billing_first_name: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter name'
+                      }
+                    }
+                  },
+                  billing_address: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter indirizzo'
+                      }
+                    }
+                  },
+                  billing_house_no: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter numero civico'
+                      }
+                    }
+                  },
+                  billing_region: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please select regione'
+                      }
+                    }
+                  },
+                  billing_province: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please select provincia'
+                      }
+                    }
+                  },
+                  billing_common: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please select comune'
+                      }
+                    }
+                  },
+                  billing_pincode: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter CAP'
+                      }
+                    }
+                  },
+                  billing_email: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter email'
+                      }
+                    }
+                  },
+                  billing_contact: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter contact'
+                      }
+                    }
+                  },
+                  selling_first_name: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter name'
+                      }
+                    }
+                  },
+                  selling_address: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter indirizzo'
+                      }
+                    }
+                  },
+                  selling_house_no: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter numero civico'
+                      }
+                    }
+                  },
+                  selling_region: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please select regione'
+                      }
+                    }
+                  },
+                  selling_province: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please select provincia'
+                      }
+                    }
+                  },
+                  selling_common: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please select comune'
+                      }
+                    }
+                  },
+                  selling_pincode: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter CAP'
+                      }
+                    }
+                  },
+                  selling_email: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter email'
+                      }
+                    }
+                  },
+                  selling_contact: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter contact'
+                      }
+                    }
+                  }
+                },
+                plugins: {
+                  trigger: new FormValidation.plugins.Trigger(),
+                  bootstrap5: new FormValidation.plugins.Bootstrap5({
+                    // Use this for enabling/changing valid/invalid class
+                    // eleInvalidClass: '',
+                    eleValidClass: '',
+                    rowSelector: '.contact-form__group'
+                  }),
+                  submitButton: new FormValidation.plugins.SubmitButton(),
+                  // Submit the form when all fields are valid
+                  // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                  autoFocus: new FormValidation.plugins.AutoFocus()
+                }
+              }).on('core.form.valid', function () {
+                console.log("submit")
+                // Jump to the next step when all fields in the current step are valid
+                productForm.submit();
+              });;
+        }
+    })();
+});
 </script>
 
 @endsection
