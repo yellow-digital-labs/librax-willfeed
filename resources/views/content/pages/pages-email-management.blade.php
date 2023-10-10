@@ -62,7 +62,7 @@ $configData = Helper::appClasses();
                         <div class="d-flex align-items-center">
                         </div>
                         <div class="email-pagination d-flex align-items-center flex-wrap justify-content-end">
-                            <span class="d-block mx-3 text-muted">Total {{count($email_history)}} e-mail sent</span>
+                            <span class="d-block mx-3 text-muted">Total {{count($email_history)}} email sent</span>
                             {{-- <i class="email-prev ti ti-chevron-left scaleX-n1-rtl cursor-pointer text-muted me-2"></i>
                             <i class="email-next ti ti-chevron-right scaleX-n1-rtl cursor-pointer"></i> --}}
                         </div>
@@ -109,9 +109,9 @@ $configData = Helper::appClasses();
                         
                     </div>
                     <div class="d-flex align-items-center flex-wrap justify-content-end">
-                        <span class="d-sm-block d-none mx-3 text-muted">1-10 of 653</span>
-                        <i class="ti ti-chevron-left scaleX-n1-rtl cursor-pointer text-muted me-2"></i>
-                        <i class="ti ti-chevron-right scaleX-n1-rtl cursor-pointer"></i>
+                        <span class="d-sm-block d-none mx-3 text-muted js-email-count"></span>
+                        <i class="ti ti-chevron-left scaleX-n1-rtl cursor-pointer me-2 js-email-pre"></i>
+                        <i class="ti ti-chevron-right scaleX-n1-rtl cursor-pointer js-email-next"></i>
                     </div>
                 </div>
             </div>

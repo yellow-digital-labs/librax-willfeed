@@ -385,10 +385,12 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    $(".email-list-item").on('click', function(){
-      console.log("checking...")
+    $(".email-list-item, .js-email-pre, .js-email-next").on('click', function(){
       let id = $(this).data("id");
-      console.log("id", id);
+      fetchEmailDetails(id);
+    });
+
+    function fetchEmailDetails(id){
       $.ajax({
           type: 'POST',
           url: "".concat(baseUrl, `email-management/${id}/detail`),
@@ -400,6 +402,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 $("#email-display-subject").text(data.subject);
                 $("#email-display-sent_at").text(data.sent_at);
                 $("#email-display-html").html(data.html);
+                $(".js-email-count").html(data.id+" of "+data.total);
+                $(".js-email-pre").data("id", data.id+1);
+                $(".js-email-next").data("id", data.id-1);
+
+                $(".js-email-pre").removeClass("hide");
+                $(".js-email-next").removeClass("hide");
+                if(data.id == data.total){
+                  $(".js-email-pre").addClass("hide");
+                }
+                if(data.id == 1){
+                  $(".js-email-next").addClass("hide");
+                }
               } else {
 
               }
@@ -408,6 +422,6 @@ document.addEventListener('DOMContentLoaded', function () {
               console.log(_error);
           }
       });
-    });
+    }
   })();
 });

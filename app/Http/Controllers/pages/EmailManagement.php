@@ -40,6 +40,7 @@ class EmailManagement extends Controller
     }
 
     $email = EmailHistory::where("id", "=", $id)->first();
+    $email['total'] = EmailHistory::count();
 
     if($email) {
       return response()->json([
