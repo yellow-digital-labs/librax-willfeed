@@ -14,6 +14,9 @@ $configData = Helper::appClasses();
 <link rel="stylesheet" href="{{asset('assets/front/plugins/uikit-3.16.22/css/uikit.min.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/rateyo/rateyo.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/nouislider/nouislider.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/animate-css/animate.css')}}">
+{{-- <link rel="stylesheet" href="{{ asset(mix('assets/vendor/css' .$configData['rtlSupport'] .'/core' .($configData['style'] !== 'light' ? '-' . $configData['style'] : '') .'.css')) }}" class="{{ $configData['hasCustomizer'] ? 'template-customizer-core-css' : '' }}" /> --}}
 
 <!-- CSS: Fonts Declaration -->
 <link rel="stylesheet" href="{{asset('assets/front/css/components/fonts.css')}}" />
@@ -172,7 +175,7 @@ $configData = Helper::appClasses();
                                         <p class="product-seller__type">Seller</p>
                                     </div>
                                 </div>
-                                <div class="product-rating">
+                                <div class="product-rating" data-bs-toggle="modal" data-bs-target="#basicModal">
                                     <div class="js-product-ratings" data-rating="{{$rating}}"></div>
                                 </div>
                             </div>
@@ -307,6 +310,35 @@ $configData = Helper::appClasses();
 
 </main>
 
+{{-- <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel1">Add rating</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col mb-3">
+              <label for="nameBasic" class="form-label">Star rating</label>
+              <div class="onset-event-ratings"></div>
+            </div>
+          </div>
+          <div class="row g-2">
+            <div class="col mb-0">
+              <label for="emailBasic" class="form-label">Message</label>
+              <input type="email" id="emailBasic" class="form-control" placeholder="">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="save-rating">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div> --}}
+
 @include('_partials/_front/footer')
 
 
@@ -322,9 +354,12 @@ $configData = Helper::appClasses();
 </script>
 <script src="{{asset('assets/front/plugins/uikit-3.16.22/js/uikit.min.js')}}"></script>
 <script src="{{asset('assets/front/js/jquery-3.7.0.js')}}"></script>
+<script src="{{ asset(mix('assets/vendor/js/bootstrap.js')) }}"></script>
 <script src="{{asset('assets/vendor/libs/rateyo/rateyo.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/nouislider/nouislider.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+{{-- <script src="{{asset('assets/js/ui-modals.js')}}"></script> --}}
 <script src="{{asset('assets/front/js/custom.js')}}"></script>
 {{-- <script src="{{asset('assets/front/js/product-listing.js')}}"></script> --}}
 <script>
@@ -486,6 +521,40 @@ $configData = Helper::appClasses();
         $('.js-filter').fadeToggle();
     });
 
+</script>
+<script>
+    @if($isBuyer)
+    $(function () {
+        var onSetEvents = $('.onset-event-ratings');
+
+        if (onSetEvents) {
+            onSetEvents
+            .rateYo({
+                rtl: isRtl,
+                spacing: '8px'
+            })
+            .on('rateyo.set', function (e, data) {
+                alert('The rating is set to ' + data.rating + '!');
+            });
+        }
+    });
+    $(".product-rating").on("click", function(){
+        console.log("....")
+        // $("#basicModal").modal("toggle");
+    });
+    @else
+    $(".js-product-ratings").on("click", function(){
+        Swal.fire({
+            text: 'You are not logged in, First you need to login to give reviews!',
+            icon: 'warning',
+            showCancelButton: false,
+            customClass: {
+                cancelButton: 'btn btn-label-secondary'
+            },
+            buttonsStyling: true
+        });
+    });
+    @endif
 </script>
 @endsection
 <!-- Scripts Ends -->
