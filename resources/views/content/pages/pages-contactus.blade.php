@@ -17,6 +17,8 @@ $configData = Helper::appClasses();
 <link rel="stylesheet" href="{{asset('assets/front/css/components/fonts.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/css/wf-icon/style.css')}}" />
 
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
+
 <!-- CSS: Layout Setup -->
 <link rel="stylesheet" href="{{asset('assets/front/css/layout/var.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/front/css/components/common.css')}}" />
@@ -95,27 +97,30 @@ $configData = Helper::appClasses();
                 </div>
                 <div class="uk-width-auto contact__col contact__col--form">
                     <div class="contact-form">
-                        <h3 class="contact-form__title">Share your contact details</h3>
-                        <div class="contact-form__group">
-                            <label class="contact-form__label">Full name</label>
-                            <input type="text" class="uk-input contact-form__input" name="" placeholder="Enter name">
-                        </div>
-                        <div class="contact-form__group">
-                            <label class="contact-form__label">Email</label>
-                            <input type="text" class="uk-input contact-form__input" name="" placeholder="Enter email">
-                        </div>
-                        <div class="contact-form__group">
-                            <label class="contact-form__label">Mobile Number</label>
-                            <input type="text" class="uk-input contact-form__input" name="" placeholder="Enter mobile number">
-                        </div>
-                        <div class="contact-form__group">
-                            <label class="contact-form__label">Message</label>
-                            <textarea class="uk-textarea contact-form__input" name="" placeholder="Enter your message" rows="5"></textarea>
-                        </div>
-                        <div class="contact-form__actions">
-                            <button type="submit" class="uk-button uk-button-primary contact-form__submit">Send</button>
-                            <button type="submit" class="uk-button uk-button-default contact-form__cancel">Cancel</button>
-                        </div>
+                        <form method="POST" onsubmit="return false" id="contact-us-form">
+                            @csrf
+                            <h3 class="contact-form__title">Share your contact details</h3>
+                            <div class="contact-form__group">
+                                <label class="contact-form__label">Full name</label>
+                                <input type="text" class="uk-input contact-form__input" name="name" placeholder="Enter name">
+                            </div>
+                            <div class="contact-form__group">
+                                <label class="contact-form__label">Email</label>
+                                <input type="email" class="uk-input contact-form__input" name="email" placeholder="Enter email">
+                            </div>
+                            <div class="contact-form__group">
+                                <label class="contact-form__label">Mobile number</label>
+                                <input type="text" class="uk-input contact-form__input" name="mobile" placeholder="Enter mobile number">
+                            </div>
+                            <div class="contact-form__group">
+                                <label class="contact-form__label">Message</label>
+                                <textarea class="uk-textarea contact-form__input" name="message" placeholder="Enter your message" rows="5"></textarea>
+                            </div>
+                            <div class="contact-form__actions">
+                                <button type="submit" class="uk-button uk-button-primary contact-form__submit">Send</button>
+                                <button type="reset" class="uk-button uk-button-default contact-form__cancel">Cancel</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -133,6 +138,72 @@ $configData = Helper::appClasses();
 @section('footer-script')
 <script src="{{asset('assets/front/plugins/uikit-3.16.22/js/uikit.min.js')}}"></script>
 <script src="{{asset('assets/front/js/jquery-3.7.0.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
 <script src="{{asset('assets/front/js/custom.js')}}"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function (e) {
+    (function () {
+        const productForm = document.querySelector('#contact-us-form');
+        // Form validation for Add new record
+        if (productForm) {
+            FormValidation.formValidation(productForm, {
+                fields: {
+                    name: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter name'
+                            }
+                        }
+                    },
+                    email: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter email'
+                            },
+                            emailAddress: {
+                                message: 'The value is not a valid email address'
+                            }
+                        }
+                    },
+                    mobile: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter mobile'
+                            }
+                        }
+                    },
+                    message: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter message'
+                            }
+                        }
+                    },
+                },
+                plugins: {
+                  trigger: new FormValidation.plugins.Trigger(),
+                  bootstrap5: new FormValidation.plugins.Bootstrap5({
+                    // Use this for enabling/changing valid/invalid class
+                    // eleInvalidClass: '',
+                    eleValidClass: '',
+                    rowSelector: '.contact-form__group'
+                  }),
+                  submitButton: new FormValidation.plugins.SubmitButton(),
+                  // Submit the form when all fields are valid
+                  // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                  autoFocus: new FormValidation.plugins.AutoFocus()
+                }
+              }).on('core.form.valid', function () {
+                // console.log("submit")
+                // Jump to the next step when all fields in the current step are valid
+                productForm.submit();
+              });;
+        }
+    })();
+});
+</script>
 @endsection
 <!-- Scripts Ends -->

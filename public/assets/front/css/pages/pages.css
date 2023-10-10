@@ -677,3 +677,17 @@
 }
 
 /* Support Ends */
+
+.fv-plugins-bootstrap5 .invalid-feedback, .fv-plugins-bootstrap5 .invalid-tooltip {
+    display: block;
+}
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.8125rem;
+    color: #ea5455;
+}
+.contact-form__input.is-invalid {
+    border-color: #ea5455;
+}

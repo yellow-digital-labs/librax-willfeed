@@ -35,6 +35,8 @@ Route::get('logout', [ App\Http\Controllers\ClientController::class, 'logout'])-
 // Route::get('/home', $controller_path . '\pages\MainHome@index')->name('pages-main-home');
 Route::get('/about-us', $controller_path . '\pages\PageAboutus@index')->name('pages-aboutus');
 Route::get('/contact-us', $controller_path . '\pages\PageContactus@index')->name('pages-contactus');
+Route::get('/contact-us/thankyou', $controller_path . '\pages\PageContactus@thankyou')->name('pages-contactus-thankyou');
+Route::post('/contact-us', $controller_path . '\pages\PageContactus@store')->name('pages-contactus-store');
 Route::get('/terms', $controller_path . '\pages\PageTerms@index')->name('pages-terms');
 Route::get('/privacy', $controller_path . '\pages\PagePrivacy@index')->name('pages-privacy');
 Route::get('/faqs', $controller_path . '\pages\PageFaqs@index')->name('pages-faqs');
