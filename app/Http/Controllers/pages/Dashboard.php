@@ -21,7 +21,7 @@ class Dashboard extends Controller
         ->where("order_status_id", "=", 1)
         ->count();
       $completed_orders = Order::where([])
-        ->where("order_status_id", "=", 5)
+        ->where("payment_status", "=", 'paid')
         ->count();
 
       $most_order_from_city = DB::table('orders')
@@ -51,7 +51,7 @@ class Dashboard extends Controller
         ->where("order_status_id", "=", 1)
         ->count();
       $completed_orders = Order::where("seller_id", "=", $user_id)
-        ->where("order_status_id", "=", 5)
+        ->where("payment_status", "=", 'paid')
         ->count();
 
       $most_order_from_city = DB::table('orders')

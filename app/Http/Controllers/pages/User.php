@@ -45,13 +45,13 @@ class User extends Controller
       $accountType = 1;
     }
     $columns = [
-      1 => "id",
-      2 => "name",
-      3 => "email",
-      4 => "email_verified_at",
-      5 => "created_at",
-      6 => "approved_by_admin",
-      7 => "subscription_name",
+      // 1 => "id",
+      0 => "name",
+      1 => "email",
+      2 => "email_verified_at",
+      3 => "created_at",
+      4 => "approved_by_admin",
+      5 => "subscription_name",
     ];
 
     $search = [];
