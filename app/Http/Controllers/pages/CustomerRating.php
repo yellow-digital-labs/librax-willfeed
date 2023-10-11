@@ -4,6 +4,7 @@ namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Rating;
 use App\Helpers\Helpers;
 use Auth;
@@ -19,6 +20,51 @@ class CustomerRating extends Controller
     ]);
   }
 
+  public function add(Request $request)
+  {
+    try{
+      $validator = Validator::make($request->all(), [
+          "rating" => "required",
+          "rating_for" => "required",
+          "message" => "required",
+      ]);
+
+      if ($validator->fails()) {
+          $key = array_keys($validator->errors()->messages());
+          return $this->sendError(
+              implode(",", $validator->errors()->messages()[$key[0]])
+          );
+      }
+
+      $user = Auth::user();
+      $isBuyer = Helpers::isBuyer();
+
+      if($isBuyer){
+        Rating::create([
+          "review_by_id" => $user->id,
+          "review_for_id" => $request->rating_for,
+          "star" => $request->rating,
+          "review_text" => $request->message
+        ]);
+  
+        return response()->json([
+          "code" => 200,
+          "data" => "Rating added successfully",
+        ]);
+      } else {
+        return response()->json([
+          "code" => 500,
+          "data" => "You are not authorized to add review",
+        ]);
+      }
+    }catch(Exception $e){
+      return response()->json([
+        "code" => 500,
+        "data" => "Error while adding reviews, Please try again in some time.",
+      ]);
+    }
+  }
+
   public function list(Request $request)
   {
     $isAdmin = Helpers::isAdmin();
@@ -29,12 +75,12 @@ class CustomerRating extends Controller
     }
 
     $columns = [
-      1 => "id",
-      2 => "review_by_name",
-      3 => "review_for_name",
-      4 => "star",
-      5 => "status",
-      6 => "created_at",
+      0 => "review_by_name",
+      1 => "review_for_name",
+      2 => "star",
+      3 => "status",
+      4 => "created_at",
+      5 => "id",
     ];
 
     $search = [];

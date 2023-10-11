@@ -56,7 +56,7 @@ $(function() {
                 targets: 0,
                 // visible: false,
                 searchable: true,
-                orderable: true,
+                orderable: false,
                 responsivePriority: 4,
                 render: function render(data, type, full, meta) {
                     var $review_by_name = full['review_by_name'] ? full['review_by_name'] : '';
@@ -67,7 +67,7 @@ $(function() {
                 targets: 1,
                 // visible: false,
                 searchable: true,
-                orderable: true,
+                orderable: false,
                 responsivePriority: 4,
                 render: function render(data, type, full, meta) {
                     var $review_for_name = full['review_for_name'] ? full['review_for_name'] : '';
@@ -78,7 +78,7 @@ $(function() {
                 targets: 2,
                 // visible: false,
                 searchable: true,
-                orderable: true,
+                orderable: false,
                 responsivePriority: 4,
                 render: function render(data, type, full, meta) {
                     var $star = full['star'] ? full['star'] : '';
@@ -130,16 +130,27 @@ $(function() {
                         '</div>'
                     );
                 }
+            },
+            {
+                // Actions
+                targets: 5,
+                title: 'Actions',
+                searchable: false,
+                orderable: false,
+                visible: false,
+                render: function (data, type, full, meta) {
+                    return "";
+                }
             }
             ],
-            order: [[1, 'desc']],
+            order: [[5, 'desc']],
             // orderCellsTop: true,
             language: {
                 sLengthMenu: '_MENU_',
                 search: 'Ricerca',
                 searchPlaceholder: 'Search..'
             },
-            dom: '<"row datatable-custom-heading"<"col-6"l><"col-6 d-flex justify-content-end"f>><"table-responsive"t><"row datatable-custom-footer"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>'
+            dom: '<"row datatable-custom-heading"<"col-6"l><"col-6 d-flex justify-content-end"f>><"table-responsive"t><"row datatable-custom-footer"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
             initComplete: function(settings, json){
                 $('.read-only-ratings').rateYo();
             },

@@ -8,7 +8,7 @@ $configData = Helper::appClasses();
 
 
 <!-- CSS Starts -->
-@section('head-style') 
+@section('head-style')
 
 <!-- CSS: Framework Declaration -->
 <link rel="stylesheet" href="{{asset('assets/front/plugins/uikit-3.16.22/css/uikit.min.css')}}" />
@@ -16,7 +16,10 @@ $configData = Helper::appClasses();
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/nouislider/nouislider.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/animate-css/animate.css')}}">
-{{-- <link rel="stylesheet" href="{{ asset(mix('assets/vendor/css' .$configData['rtlSupport'] .'/core' .($configData['style'] !== 'light' ? '-' . $configData['style'] : '') .'.css')) }}" class="{{ $configData['hasCustomizer'] ? 'template-customizer-core-css' : '' }}" /> --}}
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
+<link rel="stylesheet"
+    href="{{ asset(mix('assets/vendor/css' .$configData['rtlSupport'] .'/core' .($configData['style'] !== 'light' ? '-' . $configData['style'] : '') .'.css')) }}"
+    class="{{ $configData['hasCustomizer'] ? 'template-customizer-core-css' : '' }}" />
 
 <!-- CSS: Fonts Declaration -->
 <link rel="stylesheet" href="{{asset('assets/front/css/components/fonts.css')}}" />
@@ -40,7 +43,8 @@ $configData = Helper::appClasses();
 
 <main id="main-content" class="wrapper">
 
-    <div class="dash-charts uk-slider uk-slider-container" data-uk-slider="center: true; autoplay: true; pause-on-hover: true; autoplay-interval: 2000">
+    <div class="dash-charts uk-slider uk-slider-container"
+        data-uk-slider="center: true; autoplay: true; pause-on-hover: true; autoplay-interval: 2000">
         <div class="uk-container">
             <div class="dash-charts__container">
                 @include('content.sections.live-price-products')
@@ -51,10 +55,13 @@ $configData = Helper::appClasses();
     <form method="GET" id="product-form">
         <div class="dash-search">
             <div class="uk-container dash-search__container">
-                <h2 class="title title--m dash-search__title">World’s first platform to buy more than 400+ petrochemical products online</h2>
+                <h2 class="title title--m dash-search__title">World’s first platform to buy more than 400+ petrochemical
+                    products online</h2>
                 <div class="dash-search__box">
-                    <input type="search" class="uk-input dash-search__input" name="search" placeholder="Search products or sellers" value="{{$search}}">
-                    <button type="submit" class="uk-button dash-search__button"><span class="wf-icon wf-icon-search"></span> </button>
+                    <input type="search" class="uk-input dash-search__input" name="search"
+                        placeholder="Search products or sellers" value="{{$search}}">
+                    <button type="submit" class="uk-button dash-search__button"><span
+                            class="wf-icon wf-icon-search"></span> </button>
                 </div>
                 <div class="dash-search__text">
                     <p>WILLFEED rivoluziona il mercato dei carburanti con una piattaforma unica in Italia.</p>
@@ -66,7 +73,10 @@ $configData = Helper::appClasses();
             <div class="uk-container product-filter__container">
                 <div>
                     <button type="button" class="uk-button filter__toggler js-filter-toggler uk-icon uk-button-primary">
-                        <svg height="20" viewBox="-4 0 393 393.99003" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m368.3125 0h-351.261719c-6.195312-.0117188-11.875 3.449219-14.707031 8.960938-2.871094 5.585937-2.3671875 12.3125 1.300781 17.414062l128.6875 181.28125c.042969.0625.089844.121094.132813.183594 4.675781 6.3125 7.203125 13.957031 7.21875 21.816406v147.796875c-.027344 4.378906 1.691406 8.582031 4.777344 11.6875 3.085937 3.105469 7.28125 4.847656 11.65625 4.847656 2.226562 0 4.425781-.445312 6.480468-1.296875l72.3125-27.574218c6.480469-1.976563 10.78125-8.089844 10.78125-15.453126v-120.007812c.011719-7.855469 2.542969-15.503906 7.214844-21.816406.042969-.0625.089844-.121094.132812-.183594l128.683594-181.289062c3.667969-5.097657 4.171875-11.820313 1.300782-17.40625-2.832032-5.511719-8.511719-8.9726568-14.710938-8.960938zm-131.53125 195.992188c-7.1875 9.753906-11.074219 21.546874-11.097656 33.664062v117.578125l-66 25.164063v-142.742188c-.023438-12.117188-3.910156-23.910156-11.101563-33.664062l-124.933593-175.992188h338.070312zm0 0"/></svg>
+                        <svg height="20" viewBox="-4 0 393 393.99003" width="20" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="m368.3125 0h-351.261719c-6.195312-.0117188-11.875 3.449219-14.707031 8.960938-2.871094 5.585937-2.3671875 12.3125 1.300781 17.414062l128.6875 181.28125c.042969.0625.089844.121094.132813.183594 4.675781 6.3125 7.203125 13.957031 7.21875 21.816406v147.796875c-.027344 4.378906 1.691406 8.582031 4.777344 11.6875 3.085937 3.105469 7.28125 4.847656 11.65625 4.847656 2.226562 0 4.425781-.445312 6.480468-1.296875l72.3125-27.574218c6.480469-1.976563 10.78125-8.089844 10.78125-15.453126v-120.007812c.011719-7.855469 2.542969-15.503906 7.214844-21.816406.042969-.0625.089844-.121094.132812-.183594l128.683594-181.289062c3.667969-5.097657 4.171875-11.820313 1.300782-17.40625-2.832032-5.511719-8.511719-8.9726568-14.710938-8.960938zm-131.53125 195.992188c-7.1875 9.753906-11.074219 21.546874-11.097656 33.664062v117.578125l-66 25.164063v-142.742188c-.023438-12.117188-3.910156-23.910156-11.101563-33.664062l-124.933593-175.992188h338.070312zm0 0" />
+                        </svg>
                         Filter
                     </button>
                 </div>
@@ -75,16 +85,20 @@ $configData = Helper::appClasses();
                         <div class="filter">
 
                             <button type="button" class="uk-button filter__close js-filter-toggler uk-icon">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
-                                <path d="M998 916c22 24 22 62 0 86-12 12-28 18-42 18-16 0-32-6-42-18l-402-402-402 402c-12 10-26 16-42 16s-30-6-42-16c-24-24-24-62 0-86l402-400-402-402c-24-24-24-62 0-84 22-24 60-24 84 0l402 400 402-400c22-24 60-24 84 0 24 22 24 60 0 84l-402 402z"></path>
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1024" height="1024"
+                                    viewBox="0 0 1024 1024">
+                                    <path
+                                        d="M998 916c22 24 22 62 0 86-12 12-28 18-42 18-16 0-32-6-42-18l-402-402-402 402c-12 10-26 16-42 16s-30-6-42-16c-24-24-24-62 0-86l402-400-402-402c-24-24-24-62 0-84 22-24 60-24 84 0l402 400 402-400c22-24 60-24 84 0 24 22 24 60 0 84l-402 402z">
+                                    </path>
                                 </svg>
                                 <span class="sr-only">Hide Filter</span>
                             </button>
-                            
+
                             <div class="filter-heading">
                                 <h2 class="filter-heading__title">Filters</h2>
                                 @if(count($request)>0)
-                                <a href="{{route("pages-buyer-home")}}" class="uk-button filter-heading__clear">Clear</a>
+                                <a href="{{route(" pages-buyer-home")}}"
+                                    class="uk-button filter-heading__clear">Clear</a>
                                 @endif
                             </div>
 
@@ -92,8 +106,11 @@ $configData = Helper::appClasses();
                                 <h3 class="filter__name">Fuel type</h3>
                                 @foreach($products as $product)
                                 <div class="filter-checkbox">
-                                    <input type="checkbox" name="fuel_type[]" class="uk-checkbox filter-checkbox__input product-filter-checkbox" id="FuelType-{{$product->id}}" value="{{$product->name}}"
-                                    {{ isset($request['fuel_type'])&&in_array($product->name, $request['fuel_type'])?'checked':'' }}>
+                                    <input type="checkbox" name="fuel_type[]"
+                                        class="uk-checkbox filter-checkbox__input product-filter-checkbox"
+                                        id="FuelType-{{$product->id}}" value="{{$product->name}}" {{
+                                        isset($request['fuel_type'])&&in_array($product->name,
+                                    $request['fuel_type'])?'checked':'' }}>
                                     <label class="filter-checkbox__label" for="FuelType-{{$product->id}}">
                                         <span class="filter-checkbox__label-type">{{$product->name}}</span>
                                         {{-- <span class="filter-checkbox__label-count">5</span> --}}
@@ -105,15 +122,21 @@ $configData = Helper::appClasses();
                             <div class="filter__item">
                                 <h3 class="filter__name">Price</h3>
                                 <div class="mb-5 mt-4 noUi-primary" id="price-range"></div>
-                                <input type="hidden" id="price_min" name="price_min" value="{{isset($request['price_min'])?$request['price_min']:''}}">
-                                <input type="hidden" id="price_max" name="price_max" value="{{isset($request['price_max'])?$request['price_max']:''}}">
+                                <input type="hidden" id="price_min" name="price_min"
+                                    value="{{isset($request['price_min'])?$request['price_min']:''}}">
+                                <input type="hidden" id="price_max" name="price_max"
+                                    value="{{isset($request['price_max'])?$request['price_max']:''}}">
                             </div>
 
                             <div class="filter__item">
                                 <h3 class="filter__name">Payment method</h3>
                                 @foreach($payment_options as $c => $payment_option)
                                 <div class="filter-checkbox">
-                                    <input type="checkbox" name="payment_option[]" class="uk-checkbox filter-checkbox__input product-filter-checkbox" id="PaymentMethod-{{$c}}" value="{{$payment_option}}" {{ isset($request['payment_option'])&&in_array($payment_option, $request['payment_option'])?'checked':'' }}>
+                                    <input type="checkbox" name="payment_option[]"
+                                        class="uk-checkbox filter-checkbox__input product-filter-checkbox"
+                                        id="PaymentMethod-{{$c}}" value="{{$payment_option}}" {{
+                                        isset($request['payment_option'])&&in_array($payment_option,
+                                        $request['payment_option'])?'checked':'' }}>
                                     <label class="filter-checkbox__label" for="PaymentMethod-{{$c}}">
                                         <span class="filter-checkbox__label-type">{{$payment_option}}</span>
                                         {{-- <span class="filter-checkbox__label-count">5</span> --}}
@@ -126,7 +149,11 @@ $configData = Helper::appClasses();
                                 <h3 class="filter__name">Geographic delivery limits</h3>
                                 @foreach($regions as $region)
                                 <div class="filter-checkbox">
-                                    <input type="checkbox" name="region[]" class="uk-checkbox filter-checkbox__input product-filter-checkbox" id="Geographic-{{$region->id}}" value="{{$region->name}}" {{ isset($request['region'])&&in_array($region->name, $request['region'])?'checked':'' }}>
+                                    <input type="checkbox" name="region[]"
+                                        class="uk-checkbox filter-checkbox__input product-filter-checkbox"
+                                        id="Geographic-{{$region->id}}" value="{{$region->name}}" {{
+                                        isset($request['region'])&&in_array($region->name,
+                                    $request['region'])?'checked':'' }}>
                                     <label class="filter-checkbox__label" for="Geographic-{{$region->id}}">
                                         <span class="filter-checkbox__label-type">{{$region->name}}</span>
                                         {{-- <span class="filter-checkbox__label-count">5</span> --}}
@@ -139,7 +166,11 @@ $configData = Helper::appClasses();
                                 <h3 class="filter__name">Payment time</h3>
                                 @foreach($payment_extensions as $payment_extension)
                                 <div class="filter-checkbox">
-                                    <input type="checkbox" name="payment_time[]" class="uk-checkbox filter-checkbox__input product-filter-checkbox" id="PaymentTime-{{$payment_extension->id}}" value="{{$payment_extension->name}}" {{ isset($request['payment_time'])&&in_array($payment_extension->name, $request['payment_time'])?'checked':'' }}>
+                                    <input type="checkbox" name="payment_time[]"
+                                        class="uk-checkbox filter-checkbox__input product-filter-checkbox"
+                                        id="PaymentTime-{{$payment_extension->id}}" value="{{$payment_extension->name}}"
+                                        {{ isset($request['payment_time'])&&in_array($payment_extension->name,
+                                    $request['payment_time'])?'checked':'' }}>
                                     <label class="filter-checkbox__label" for="PaymentTime-{{$payment_extension->id}}">
                                         <span class="filter-checkbox__label-type">{{$payment_extension->name}}</span>
                                         {{-- <span class="filter-checkbox__label-count">5</span> --}}
@@ -151,20 +182,23 @@ $configData = Helper::appClasses();
                             {{-- <div class="filter__item">
                                 <h3 class="filter__name">Delivery time range</h3>
                                 <div class="mb-5 mt-4 noUi-primary" id="delivery-time-range"></div>
-                                <input type="hidden" name="delivery_time_min" id="delivery_time_min" value="{{isset($request['delivery_time_min'])?$request['delivery_time_min']:''}}" />
-                                <input type="hidden" name="delivery_time_max" id="delivery_time_max" value="{{isset($request['delivery_time_max'])?$request['delivery_time_max']:''}}" />
+                                <input type="hidden" name="delivery_time_min" id="delivery_time_min"
+                                    value="{{isset($request['delivery_time_min'])?$request['delivery_time_min']:''}}" />
+                                <input type="hidden" name="delivery_time_max" id="delivery_time_max"
+                                    value="{{isset($request['delivery_time_max'])?$request['delivery_time_max']:''}}" />
                             </div> --}}
 
                         </div>
                     </div>
                     <div class="uk-width-expand product-filter__col product-filter__col--items">
-                    @if($products_list && count($products_list))
+                        @if($products_list && count($products_list))
                         @foreach ($products_list as $product)
                         @php
-                            $rating = App\Models\Rating::where(['review_for_id' => $product->seller_id, 'status' => 'approve'])->avg('star');
+                        $rating = App\Models\Rating::where(['review_for_id' => $product->seller_id, 'status' =>
+                        'approve'])->avg('star');
                         @endphp
                         <div class="product__item">
-                            
+
                             <div class="product__header">
                                 <div class="product-seller">
                                     <div class="product-seller__media">
@@ -175,7 +209,11 @@ $configData = Helper::appClasses();
                                         <p class="product-seller__type">Seller</p>
                                     </div>
                                 </div>
-                                <div class="product-rating" data-bs-toggle="modal" data-bs-target="#basicModal">
+                                <div class="product-rating"
+                                @if($isBuyer)
+                                data-bs-toggle="modal" data-bs-target="#basicModal" data-seller="{{$product->seller_id}}"
+                                @endif
+                                >
                                     <div class="js-product-ratings" data-rating="{{$rating}}"></div>
                                 </div>
                             </div>
@@ -188,7 +226,7 @@ $configData = Helper::appClasses();
                                                 €{{$product->amount_before_tax}} + 22% TAX
                                             </div>
                                             <div class="product__price">
-                                                <span class="product__price-big">€{{$product->amount}}</span>/LITERS 
+                                                <span class="product__price-big">€{{$product->amount}}</span>/LITERS
                                             </div>
                                             <div class="product__priceinfo">
                                                 (Inclusive Of all Tax)
@@ -196,9 +234,10 @@ $configData = Helper::appClasses();
                                             <div class="product__avail">
                                                 Availability:
                                                 @if($product->current_stock>0)
-                                                    <span class="product__avail-type">In stock</span>
+                                                <span class="product__avail-type">In stock</span>
                                                 @else
-                                                    <span class="product__avail-type product__avail-type--negative">Out of stock</span>
+                                                <span class="product__avail-type product__avail-type--negative">Out of
+                                                    stock</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -207,27 +246,26 @@ $configData = Helper::appClasses();
                                         </div>
                                     </div>
                                     <div class="product-actions">
-                                        <a href="{{route("profile-view", ['id' => $product->seller_id])}}" class="uk-button uk-button-default product-actions__view">Profilo</a>
-                                    @if($isBuyer)
+                                        <a href="{{route("profile-view", ['id'=> $product->seller_id])}}"
+                                            class="uk-button uk-button-default product-actions__view">Profilo</a>
+                                        @if($isBuyer)
                                         @if($product->couldOrderStatus&&$product->couldOrderStatus=="approved")
-                                        <a href="{{route("pages-buyer-checkout", [
-                                            "csrf" => csrf_token(),
+                                        <a href="{{route("pages-buyer-checkout", [ "csrf"=> csrf_token(),
                                             "seller_product_id" => $product->id
-                                        ])}}" class="uk-button uk-button-primary product-actions__buy">Ordina</a>
+                                            ])}}" class="uk-button uk-button-primary product-actions__buy">Ordina</a>
                                         @else
-                                        <a href="{{route("customer-request-to-seller", [
-                                            "csrf" => csrf_token(),
+                                        <a href="{{route(" customer-request-to-seller", [ "csrf"=> csrf_token(),
                                             "seller_id" => $product->seller_id
-                                        ])}}" class="uk-button uk-button-primary product-actions__buy" target="_blank">
+                                            ])}}" class="uk-button uk-button-primary product-actions__buy"
+                                            target="_blank">
                                             {{($product->couldOrderStatus&&$product->couldOrderStatus=="pending")?'Requested':'Collabora'}}
                                         </a>
                                         @endif
-                                    @else
-                                        <a href="{{route("pages-buyer-checkout", [
-                                            "csrf" => csrf_token(),
+                                        @else
+                                        <a href="{{route("pages-buyer-checkout", [ "csrf"=> csrf_token(),
                                             "seller_product_id" => $product->id
-                                        ])}}" class="uk-button uk-button-primary product-actions__buy">Ordina</a>
-                                    @endif
+                                            ])}}" class="uk-button uk-button-primary product-actions__buy">Ordina</a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="uk-width-expand product__item-col product__item-col--desc">
@@ -246,63 +284,66 @@ $configData = Helper::appClasses();
                                             @php
                                             $sep = "";
                                             if($product->bank_transfer != ""){
-                                                echo $sep."Bonifico Bancario";
-                                                $sep = ", ";
+                                            echo $sep."Bonifico Bancario";
+                                            $sep = ", ";
                                             }
                                             if($product->bank_check != ""){
-                                                echo $sep."Assegno Bancario";
-                                                $sep = ", ";
+                                            echo $sep."Assegno Bancario";
+                                            $sep = ", ";
                                             }
                                             if($product->rib == "Si"){
-                                                echo $sep."RIBA";
-                                                $sep = ", ";
+                                            echo $sep."RIBA";
+                                            $sep = ", ";
                                             }
                                             if($product->rid == "Si"){
-                                                echo $sep."RID";
-                                                $sep = ", ";
+                                            echo $sep."RID";
+                                            $sep = ", ";
                                             }
                                             @endphp
                                         </div>
                                         <div class="product__priceinfo">
-                                            Deliver on: {{App\Helpers\Helpers::calculateEstimateShippingDate($product->delivery_time, $product->delivery_days, $product->days_off)}}
+                                            Deliver on:
+                                            {{App\Helpers\Helpers::calculateEstimateShippingDate($product->delivery_time,
+                                            $product->delivery_days, $product->days_off)}}
                                             {{-- @if($product->delivery_time)
-                                                @if(date("H:i")<=$product->delivery_time)
-                                                    Deliver on: {{date("d-m-Y")}}
+                                            @if(date("H:i")<=$product->delivery_time)
+                                                Deliver on: {{date("d-m-Y")}}
                                                 @else
-                                                    Deliver on:
-                                                    
-                                                    @if($product->delivery_days=="Stesso giorno")
-                                                        {{date("d-m-Y")}}
-                                                    @else
-                                                        {{date("d-m-Y", time() + 86400)}}
-                                                    @endif
+                                                Deliver on:
+
+                                                @if($product->delivery_days=="Stesso giorno")
+                                                {{date("d-m-Y")}}
+                                                @else
+                                                {{date("d-m-Y", time() + 86400)}}
                                                 @endif
-                                            @else
-                                            Deliver on: NA
-                                            @endif --}}
+                                                @endif
+                                                @else
+                                                Deliver on: NA
+                                                @endif --}}
                                         </div>
                                         {{-- <p>
                                             {!!$product->product->description!!}
                                         </p> --}}
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                         @endforeach
                         {{ $products_list->links() }}
-                    @else
+                        @else
                         <div class="thanks__icon">
                             <img src="/assets/front/images/reject.svg" width="340" height="196">
                         </div>
                         <h3 style="text-center">Nessun prodotto trovato</h3>
                         <div class="thanks__action">
-                            <a href="{{route("pages-buyer-home")}}" class="uk-button uk-button-primary thanks__action-btn">ricerca chiara</a>
+                            <a href="{{route(" pages-buyer-home")}}"
+                                class="uk-button uk-button-primary thanks__action-btn">ricerca chiara</a>
                         </div>
-                    @endif
-                        
+                        @endif
+
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -310,34 +351,42 @@ $configData = Helper::appClasses();
 
 </main>
 
-{{-- <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel1">Add rating</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <form method="POST" onsubmit="return false" id="rating-form">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Add rating</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="nameBasic" class="form-label">Star rating</label>
+                            <div class="onChange-event-ratings mb-3"></div>
+                            <div class="counter-wrapper">
+                                <strong>Ratings:</strong>
+                                <span class="counter"></span>
+                                <input type="hidden" name="rating" id="js-rating-val">
+                                <input type="hidden" name="rating_for" id="rating_for">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                            <label for="message" class="form-label">Message</label>
+                            <input type="text" id="message" name="message" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="save-rating">Save changes</button>
+                </div>
+            </form>
         </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col mb-3">
-              <label for="nameBasic" class="form-label">Star rating</label>
-              <div class="onset-event-ratings"></div>
-            </div>
-          </div>
-          <div class="row g-2">
-            <div class="col mb-0">
-              <label for="emailBasic" class="form-label">Message</label>
-              <input type="email" id="emailBasic" class="form-control" placeholder="">
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="save-rating">Save changes</button>
-        </div>
-      </div>
     </div>
-  </div> --}}
+</div>
 
 @include('_partials/_front/footer')
 
@@ -359,6 +408,9 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/nouislider/nouislider.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
 {{-- <script src="{{asset('assets/js/ui-modals.js')}}"></script> --}}
 <script src="{{asset('assets/front/js/custom.js')}}"></script>
 {{-- <script src="{{asset('assets/front/js/product-listing.js')}}"></script> --}}
@@ -433,7 +485,7 @@ $configData = Helper::appClasses();
 </script>
 
 <script>
-@if($products_list)
+    @if($products_list)
 @foreach ($products_list as $product)
     @php
     $price_history = App\Models\ProductPriceHistory::where(["product_id" => $product->product_id])->orderBy("date", "DESC")->take(10)->get();
@@ -515,32 +567,129 @@ $configData = Helper::appClasses();
 @endif
 </script>
 <script type="text/javascript">
-    
-
     $('.js-filter-toggler').on('click', function () {
         $('.js-filter').fadeToggle();
     });
 
 </script>
 <script>
+document.addEventListener('DOMContentLoaded', function (e) {
+    (function () {
+        const productForm = document.querySelector('#rating-form');
+        // Form validation for Add new record
+        if (productForm) {
+            FormValidation.formValidation(productForm, {
+                fields: {
+                    rating: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please select rating'
+                            }
+                        }
+                    },
+                    message: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter message'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                  trigger: new FormValidation.plugins.Trigger(),
+                  bootstrap5: new FormValidation.plugins.Bootstrap5({
+                    // Use this for enabling/changing valid/invalid class
+                    // eleInvalidClass: '',
+                    eleValidClass: '',
+                    rowSelector: '.col'
+                  }),
+                  submitButton: new FormValidation.plugins.SubmitButton(),
+                  // Submit the form when all fields are valid
+                  // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                  autoFocus: new FormValidation.plugins.AutoFocus()
+                }
+              }).on('core.form.valid', function () {
+                console.log("submit")
+                // Jump to the next step when all fields in the current step are valid
+                // productForm.submit();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{{route("customer-rating-add")}}",
+                    data: $("#rating-form").serialize(),
+                    success: function success(res) {
+                        $("#basicModal").modal("toggle");
+                        if(res.code == 200){
+                            Swal.fire({
+                                text: res.data,
+                                icon: 'success',
+                                showCancelButton: false,
+                                customClass: {
+                                    cancelButton: 'btn btn-label-secondary'
+                                },
+                                buttonsStyling: true
+                            });
+                        } else {
+                            Swal.fire({
+                                text: res.data,
+                                icon: 'warning',
+                                showCancelButton: false,
+                                customClass: {
+                                    cancelButton: 'btn btn-label-secondary'
+                                },
+                                buttonsStyling: true
+                            });
+                        }
+                    },
+                    error: function error(_error) {
+                        $("#basicModal").modal("toggle");
+                        Swal.fire({
+                            text: 'Error! Please try again in some time.',
+                            icon: 'warning',
+                            showCancelButton: false,
+                            customClass: {
+                                cancelButton: 'btn btn-label-secondary'
+                            },
+                            buttonsStyling: true
+                        });
+                    }
+                });
+              });
+        }
+    })();
+});
+</script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     @if($isBuyer)
     $(function () {
-        var onSetEvents = $('.onset-event-ratings');
+        var onChangeEvents = $('.onChange-event-ratings');
 
-        if (onSetEvents) {
-            onSetEvents
+        if (onChangeEvents) {
+            onChangeEvents
             .rateYo({
-                rtl: isRtl,
+                rtl: false,
                 spacing: '8px'
             })
-            .on('rateyo.set', function (e, data) {
-                alert('The rating is set to ' + data.rating + '!');
+            .on('rateyo.change', function (e, data) {
+                var rating = data.rating;
+                $(this).parent().find('.counter').text(rating);
+                $("#js-rating-val").val(rating);
             });
         }
     });
     $(".product-rating").on("click", function(){
-        console.log("....")
-        // $("#basicModal").modal("toggle");
+        $("#rating_for").val($(this).data("seller"));
+        var onChangeEvents = $('.onChange-event-ratings');
+        onChangeEvents.rateYo({
+          rtl: false,
+          spacing: '8px'
+        });
+        $("#rating-form").trigger("reset");
     });
     @else
     $(".js-product-ratings").on("click", function(){

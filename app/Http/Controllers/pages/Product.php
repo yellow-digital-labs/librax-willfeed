@@ -339,7 +339,6 @@ class Product extends Controller
               "msg" => "Product is already available with the same name",
             ]);
           } else {
-            dd($e->getMessage());
             return Redirect::back()->withErrors([
               "msg" => "Something went wrong!",
             ]);

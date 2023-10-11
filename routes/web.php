@@ -147,6 +147,7 @@ Route::middleware([
     Route::get('/customer-ratings/list', $controller_path . '\pages\CustomerRating@list')->name('customer-rating-list'); //customer rating list data ajax
     Route::get('/customer-rating/{id}/edit', $controller_path . '\pages\CustomerRating@edit')->name('customer-rating-details'); //customer rating detail page
     Route::post('/customer-rating/{id}/status/{status}', $controller_path . '\pages\CustomerRating@status')->name('customer-rating-status'); //customer rating status update ajax
+    Route::post('/customer-rating/add', $controller_path . '\pages\CustomerRating@add')->name('customer-rating-add');
 
     //email history
     Route::get('/email-management', $controller_path . '\pages\EmailManagement@index')->name('email-management');
