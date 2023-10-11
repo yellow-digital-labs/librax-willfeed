@@ -38,7 +38,7 @@
                     <div class="dash-charts__perc">
                         <div class="dash-charts__perc-count {{$price_diff>0?"uk-text-success":"uk-text-danger"}}">
                             <span class="dash-charts__perc-arrow"></span>
-                            {{$price_diff>0?"+".$price_diff:$price_diff}} ({{$price_diff>0?"+".$price_diff_per:"-".$price_diff_per}}%)
+                            {{$price_diff>0?"+".$price_diff:$price_diff}} ({{$price_diff>0?"+".$price_diff_per:$price_diff_per}}%)
                         </div>
                         <div class="dash-charts__perc-text">
                             Price change
