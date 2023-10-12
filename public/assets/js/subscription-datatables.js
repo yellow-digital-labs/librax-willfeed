@@ -155,7 +155,6 @@ $(document).on('click', '.edit-record', function () {
 
     // get data
     $.get("".concat(baseUrl, "subscription-plan-management/").concat(user_id, "/edit"), function (data) {
-        console.log("data.status", );
       $('#edit-id').val(data.id);
       $('#edit-name').val(data.name);
       $('#edit-tagline').val(data.tagline);
