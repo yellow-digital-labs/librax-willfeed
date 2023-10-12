@@ -11,9 +11,9 @@ class HomePage extends Controller
 {
   public function index()
   {
-    $ratings = Rating::where(['status' => 'approve'])->get();
+    $ratings = Rating::where(['status' => 'approve'])->take(15)->orderBy("id", "DESC")->get();
 
-    $products = Product::where(["active" => "yes"])->get();
+    $products = Product::where(["active" => "yes"])->orderBy("name", "ASC")->get();
 
     return view('content.pages.pages-home', [
       'ratings' => $ratings,

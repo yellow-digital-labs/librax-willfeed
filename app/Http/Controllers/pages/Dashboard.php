@@ -33,15 +33,17 @@ class Dashboard extends Controller
 
       $payment_method_wise_income = DB::table('orders')
         ->select('payment_method_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+        ->where("payment_status", "=", "paid")
         ->groupBy('payment_method_name')
         ->orderBy('total_sales', 'DESC')
         ->get();
 
       $top_selling_products = DB::table('orders')
         ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+        ->where("order_status", "=", "Approved")
         ->groupBy('product_name')
-        ->limit(5)
         ->orderBy('total_sales', 'DESC')
+        ->limit(5)
         ->get();
     } else {
       $user_id = Auth::user()->id;
@@ -65,6 +67,7 @@ class Dashboard extends Controller
       $payment_method_wise_income = DB::table('orders')
         ->select('payment_method_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
         ->where("seller_id", "=", $user_id)
+        ->where("payment_status", "=", "paid")
         ->groupBy('payment_method_name')
         ->orderBy('total_sales', 'DESC')
         ->get();
@@ -72,10 +75,21 @@ class Dashboard extends Controller
       $top_selling_products = DB::table('orders')
         ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
         ->where("seller_id", "=", $user_id)
+        ->where("order_status", "=", "Approved")
         ->groupBy('product_name')
-        ->limit(5)
         ->orderBy('total_sales', 'DESC')
+        ->limit(5)
         ->get();
+    }
+
+    $total_sell_from_top_selling = 0;
+    foreach($top_selling_products as $top_selling_product){
+      $total_sell_from_top_selling += $top_selling_product->total_sales;
+    }
+
+    $total_payment_method_wise_income = 0;
+    foreach($payment_method_wise_income as $_payment_method_wise_income){
+      $total_payment_method_wise_income += $_payment_method_wise_income->total_sales;
     }
 
     return view('content.pages.pages-dashboard', [
@@ -85,6 +99,8 @@ class Dashboard extends Controller
       "most_order_from_city" => $most_order_from_city,
       "payment_method_wise_income" => $payment_method_wise_income,
       "top_selling_products" => $top_selling_products,
+      "total_sell_from_top_selling" => $total_sell_from_top_selling,
+      "total_payment_method_wise_income" => $total_payment_method_wise_income,
     ]);
   }
 }

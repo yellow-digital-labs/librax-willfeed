@@ -93,7 +93,7 @@ $configData = Helper::appClasses();
                         <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
                                 <div class="d-flex align-items-center">
-                                    <h6 class="mb-0 me-1">€{{$_most_order_from_city->total_sales}} ({{$_most_order_from_city->total_orders}})</h6>
+                                    <h6 class="mb-0 me-1">€{{number_format($_most_order_from_city->total_sales, 2)}} ({{$_most_order_from_city->total_orders}})</h6>
                                 </div>
                                 <small class="text-muted fw-light">{{$_most_order_from_city->billing_region}}</small>
                             </div>
@@ -115,7 +115,7 @@ $configData = Helper::appClasses();
             <div class="card-header d-flex justify-content-between border-bottom">
                 <div class="card-title mb-0">
                     <h5 class="mb-0 text-black">Top selling products</h5>
-                    <small class="fw-light">€38.4k Total sell from top selling products</small>
+                    <small class="fw-light">€{{number_format($total_sell_from_top_selling, 2)}} Total sell from top selling products</small>
                 </div>
             </div>
             <div class="card-body pt-4">
@@ -131,7 +131,7 @@ $configData = Helper::appClasses();
                                 <div class="budgetChart"></div>
                             </div>
                             <div class="d-flex">
-                                <p class="mb-0 fw-medium">€{{$_top_selling_products->total_sales}}</p>
+                                <p class="mb-0 fw-medium">€{{number_format($_top_selling_products->total_sales, 2)}}</p>
                                 <p class="ms-3 text-success mb-0">
                                     {{number_format($_top_selling_products->total_orders*100/$total_orders, 2)}}%
                                 </p>
@@ -148,7 +148,7 @@ $configData = Helper::appClasses();
             <div class="card-header d-flex justify-content-between border-bottom">
                 <div class="card-title mb-0">
                     <h5 class="mb-0 text-black">Payment method wise income</h5>
-                    <small class="fw-light">€8.52k Total income</small>
+                    <small class="fw-light">€{{number_format($total_payment_method_wise_income, 2)}} Total income</small>
                 </div>
             </div>
             <div class="card-body pt-4">
