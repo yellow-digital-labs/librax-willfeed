@@ -27,18 +27,18 @@ class Orders extends Controller
       $total_orders = Order::where([])->count();
       $total_orders_euro = Order::where([])->sum('total_payable_amount');
       $rejected_orders = Order::where(["order_status_id" => "3"])->count();
-      $completed_orders = Order::where(["order_status_id" => "5"])->count();
+      $completed_orders = Order::where(["payment_status" => "paid"])->count();
     } else {
       if(Helpers::isSeller()){
         $total_orders = Order::where(['seller_id' => $user_id])->count();
         $total_orders_euro = Order::where(['seller_id' => $user_id])->sum('total_payable_amount');
         $rejected_orders = Order::where(['seller_id' => $user_id, "order_status_id" => "3"])->count();
-        $completed_orders = Order::where(['seller_id' => $user_id, "order_status_id" => "5"])->count();
+        $completed_orders = Order::where(['seller_id' => $user_id, "payment_status" => "paid"])->count();
       } else {
         $total_orders = Order::where(['user_id' => $user_id])->count();
         $total_orders_euro = Order::where(['user_id' => $user_id])->sum('total_payable_amount');
         $rejected_orders = Order::where(['user_id' => $user_id, "order_status_id" => "3"])->count();
-        $completed_orders = Order::where(['user_id' => $user_id, "order_status_id" => "5"])->count();
+        $completed_orders = Order::where(['user_id' => $user_id, "payment_status" => "paid"])->count();
       }
     }
 

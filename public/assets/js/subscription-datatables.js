@@ -155,12 +155,13 @@ $(document).on('click', '.edit-record', function () {
 
     // get data
     $.get("".concat(baseUrl, "subscription-plan-management/").concat(user_id, "/edit"), function (data) {
+        console.log("data.status", );
       $('#edit-id').val(data.id);
       $('#edit-name').val(data.name);
       $('#edit-tagline').val(data.tagline);
       $('#edit-amount').val(data.amount);
       $('#edit-description').val(data.description);
-      $('#edit-status').val(data.status);
+      $('#edit-status').prop("checked", data.status=="active"?true:false);
       $('#edit-image').val(data.image);
     });
 });

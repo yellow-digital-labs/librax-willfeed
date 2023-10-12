@@ -43,7 +43,7 @@ $configData = Helper::appClasses();
             <div class="card-header d-flex justify-content-between border-bottom">
                 <div class="card-title mb-0">
                     <h5 class="mb-0 text-black">Order tracker</h5>
-                    <small class="fw-normal">Lorem ipsum</small>
+                    <small class="fw-normal">Order by status</small>
                 </div>
             </div>
             <div class="card-body">
