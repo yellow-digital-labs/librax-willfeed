@@ -1697,7 +1697,7 @@ marquee.dash-charts__marquee {
     margin: auto;
     text-align: center;
     letter-spacing: 0.3px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 
 .dash-search__box {
@@ -1736,6 +1736,7 @@ marquee.dash-charts__marquee {
     font-weight: 400;
     line-height: 28px; /* 140% */
     letter-spacing: 0.2px;
+    margin-bottom: 30px;
 }
 
 @media (max-width: 1399.98px) {

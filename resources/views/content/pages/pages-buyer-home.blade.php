@@ -57,14 +57,14 @@ $configData = Helper::appClasses();
             <div class="uk-container dash-search__container">
                 <h2 class="title title--m dash-search__title">World’s first platform to buy more than 400+ petrochemical
                     products online</h2>
+                <div class="dash-search__text">
+                    <p>Ricerca prodotti e venditori su WillFeed</p>
+                </div>
                 <div class="dash-search__box">
                     <input type="search" class="uk-input dash-search__input" name="search"
-                        placeholder="Search products or sellers" value="{{$search}}">
+                        placeholder="Cerca" value="{{$search}}">
                     <button type="submit" class="uk-button dash-search__button"><span
                             class="wf-icon wf-icon-search"></span> </button>
-                </div>
-                <div class="dash-search__text">
-                    <p>WILLFEED rivoluziona il mercato dei carburanti con una piattaforma unica in Italia.</p>
                 </div>
             </div>
         </div>

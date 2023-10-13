@@ -11,6 +11,8 @@
             if($price_diff>0){
                 $image_url = "chart-sample.png";
             }
+            $price_diff = number_format($price_diff, 2);
+            $price_diff_per = number_format($price_diff_per, 2);
         @endphp
         <div class="uk-width-1-4 dash-charts__col">
             <div class="dash-charts__item">
@@ -29,10 +31,10 @@
                 <div class="dash-charts__down">
                     <div class="dash-charts__price">
                         <div class="dash-charts__price-text">
-                            €{{$product->today_price}}
+                            €{{number_format($product->today_price, 2)}}
                         </div>
                         <div class="dash-charts__price-type">
-                            Market price
+                            Prezzo di mercato
                         </div>
                     </div>
                     <div class="dash-charts__perc">
@@ -40,9 +42,9 @@
                             <span class="dash-charts__perc-arrow"></span>
                             {{$price_diff>0?"+".$price_diff:$price_diff}} ({{$price_diff>0?"+".$price_diff_per:$price_diff_per}}%)
                         </div>
-                        <div class="dash-charts__perc-text">
-                            Price change
-                        </div>
+                        {{-- <div class="dash-charts__perc-text">
+                            Prezzo di mercato
+                        </div> --}}
                     </div>
                 </div>
             </div>
