@@ -34,6 +34,14 @@ $configData = Helper::appClasses();
 
 <!-- CSS: Pagevise CSS -->
 <link rel="stylesheet" href="{{asset('assets/front/css/pages/home.css')}}" />
+<style type="text/css">
+    body {
+        background: #fff;
+    }
+    .navbar-nav .dropdown-menu {
+        position: absolute;
+    }
+</style>
 @endsection
 <!-- CSS Ends -->
 

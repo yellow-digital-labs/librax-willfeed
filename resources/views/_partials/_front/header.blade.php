@@ -47,7 +47,7 @@
                                     <img src="{{ Auth::user() ? Auth::user()->profile_photo_url : asset('assets/img/81160511660785db8768a15358306893.jpg') }}" alt class="rounded-circle">
                                 </div>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end" data-uk-dropdown>
+                            <ul class="dropdown-menu dropdown-menu-end uk-drop uk-dropdown" data-uk-dropdown>
                                 <li>
                                     <a class="dropdown-item" href="{{route("dashboard")}}">
                                         <i class="wf-icon wf-icon-analytics"></i>
