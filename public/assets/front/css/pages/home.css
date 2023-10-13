@@ -2352,7 +2352,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     position: relative;
     width: 144px;
     height: 38px;
-    margin-top: -10px;
+    /* margin-top: -10px; */
 }
 
 .checkout-box__qty-label {

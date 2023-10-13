@@ -47,22 +47,34 @@ $configData = Helper::appClasses();
                     <input type="hidden" name="product_id" value="{{$product->product_id}}">
                     <input type="hidden" name="seller_product_id" value="{{$product->id}}">
                     <div class="checkout-box__head">
-                        <h2 class="checkout-box__headtitle">Product: <span class="checkout-box__headtitle-light">{{$product->product_name}}</span></h2>
-                        <h2 class="checkout-box__headtitle">Seller: <span class="checkout-box__headtitle-light">{{$product->seller_name}}</span></h2>
+                        <h2 class="checkout-box__headtitle">Prodotto: <span class="checkout-box__headtitle-light">{{$product->product_name}}</span></h2>
+                        <h2 class="checkout-box__headtitle">Venditrice: <span class="checkout-box__headtitle-light">{{$product->seller_name}}</span></h2>
                     </div>
                     <div class="checkout-box__body">
                         <div class="uk-grid checkout-box__prgrid gutter-xl" data-uk-grid>
                             <div class="uk-width-1-3 checkout-box__prcol  checkout-box__prcol--item">
-                                <h3 class="checkout-box__prlabel">Item</h3>
+                                <h3 class="checkout-box__prlabel">Articolo</h3>
                                 <h2 class="checkout-box__itemname">
                                     {{$product->product_name}} <br/>
                                     Delivery on: {{\App\Helpers\Helpers::calculateEstimateShippingDate($product->delivery_time, $product->delivery_days, $product->days_off)}}
                                 </h2>
                             </div>
                             <div class="uk-width-expand checkout-box__prcol  checkout-box__prcol--cost">
-                                <h3 class="checkout-box__prlabel">Cost</h3>
+                                <h3 class="checkout-box__prlabel">Costo</h3>
                                 <h2 class="checkout-box__itemcost">
-                                    <span class="checkout-box__itemcost-price">€{{$product->amount_before_tax}}</span>/LITERS<br/>
+                                  <select class="uk-input checkout-box__qty-input" id="js-price-selector">
+                                    <option value="A vista" data-price="{{$product->amount_before_tax}}">€{{number_format($product->amount_before_tax, 2)}}/LITRO</option>
+                                    @if($product->amount_30gg)
+                                    <option value="30gg" data-price="{{$product->amount_30gg}}">€{{number_format($product->amount_30gg, 2)}}/LITRO</option>
+                                    @endif
+                                    @if($product->amount_60gg)
+                                    <option value="60gg" data-price="{{$product->amount_60gg}}">€{{number_format($product->amount_60gg, 2)}}/LITRO</option>
+                                    @endif
+                                    @if($product->amount_90gg)
+                                    <option value="90gg" data-price="{{$product->amount_90gg}}">€{{number_format($product->amount_90gg, 2)}}/LITRO</option>
+                                    @endif
+                                  </select>
+                                    {{-- <span class="checkout-box__itemcost-price">€{{$product->amount_before_tax}}</span>/LITERS<br/>
                                     @if($product->amount_30gg)
                                     30gg: <span class="checkout-box__itemcost-price">€{{$product->amount_30gg}}</span>/LITERS<br/>
                                     @endif
@@ -71,20 +83,20 @@ $configData = Helper::appClasses();
                                     @endif
                                     @if($product->amount_90gg)
                                     90gg: <span class="checkout-box__itemcost-price">€{{$product->amount_90gg}}</span>/LITERS
-                                    @endif
+                                    @endif --}}
                                 </h2>
                                 <input type="hidden" id="js-one-litter-price-wo-tax" value="{{$product->amount_before_tax}}">
                             </div>
                             <div class="uk-width-auto checkout-box__prcol  checkout-box__prcol--qty contact-form__group">
-                                <h3 class="checkout-box__prlabel">Qty</h3>
+                                <h3 class="checkout-box__prlabel">Qtyst</h3>
                                 <div class="checkout-box__qty">
                                     <input type="text" class="uk-input checkout-box__qty-input" id="js-qty-input" name="product_qty" value="100" required>
-                                    <span class="checkout-box__qty-label">LITERS</span>
+                                    <span class="checkout-box__qty-label">LITRI</span>
                                 </div>
                             </div>
                             <div class="uk-width-auto checkout-box__prcol  checkout-box__prcol--price">
-                                <h3 class="checkout-box__prlabel">Price</h3>
-                                <h2 class="checkout-box__price">€<span class="js-product-total">{{$product->amount_before_tax*100}}</span></h2>
+                                <h3 class="checkout-box__prlabel">Prezzo</h3>
+                                <h2 class="checkout-box__price">€<span class="js-product-total">{{number_format($product->amount_before_tax*100, 2)}}</span></h2>
                             </div>
                         </div>
                         <div class="uk-grid checkout-box__ntgrid" data-uk-grid>
@@ -112,16 +124,16 @@ $configData = Helper::appClasses();
                             <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--total">
                                 <div class="checkout-box__total">
                                     <p class="checkout-box__total-item">
-                                        <span class="checkout-box__total-label">Subtotal:</span>
-                                        <span class="checkout-box__total-val">€<span class="js-order-subtotal">{{$product->amount_before_tax*100}}</span></span>
+                                        <span class="checkout-box__total-label">Totale parziale:</span>
+                                        <span class="checkout-box__total-val">€<span class="js-order-subtotal">{{number_format($product->amount_before_tax*100, 2)}}</span></span>
                                     </p>
                                     <p class="checkout-box__total-item">
-                                        <span class="checkout-box__total-label">Tax (22,00%):</span>
-                                        <span class="checkout-box__total-val">€<span class="js-order-tax-amount">{{($product->amount_before_tax*100*22/100)}}</span></span>
+                                        <span class="checkout-box__total-label">IVA (22,00%):</span>
+                                        <span class="checkout-box__total-val">€<span class="js-order-tax-amount">{{(number_format($product->amount_before_tax*100*22/100, 2))}}</span></span>
                                     </p>
                                     <p class="checkout-box__total-item">
-                                        <span class="checkout-box__total-label">Total:</span>
-                                        <span class="checkout-box__total-val">€<span class="js-order-final-total">{{($product->amount_before_tax*100)+($product->amount_before_tax*100*22/100)}}</span></span>
+                                        <span class="checkout-box__total-label">Totale:</span>
+                                        <span class="checkout-box__total-val">€<span class="js-order-final-total">{{number_format(($product->amount_before_tax*100)+($product->amount_before_tax*100*22/100), 2)}}</span></span>
                                     </p>
                                 </div>
                             </div>
@@ -136,7 +148,7 @@ $configData = Helper::appClasses();
 
                 <div class="checkout-box">
                     <div class="checkout-box__head">
-                        <h2 class="checkout-box__headtitle">Billing address</h2>
+                        <h2 class="checkout-box__headtitle">Indirizzo di fatturazione</h2>
                     </div>
                     <div class="checkout-box__body">
                         <div class="uk-grid checkout-box__frgrid" data-uk-grid>
@@ -188,7 +200,7 @@ $configData = Helper::appClasses();
                                 <input type="email" class="uk-input checkout-box__input" name="billing_email" placeholder="" value="{{$user->email}}" required>
                             </div>
                             <div class="uk-width-1-2 contact-form__group">
-                                <label class="checkout-box__label">Contact</label>
+                                <label class="checkout-box__label">Contatto</label>
                                 <input type="text" class="uk-input checkout-box__input" name="billing_contact" placeholder="" value="{{$user_details->contact_person}}" required>
                             </div>
                         </div>
@@ -197,7 +209,7 @@ $configData = Helper::appClasses();
 
                 <div class="checkout-box">
                     <div class="checkout-box__head">
-                        <h2 class="checkout-box__headtitle">Shipping address</h2>
+                        <h2 class="checkout-box__headtitle">Indirizzo di spedizione</h2>
                     </div>
                     <div class="checkout-box__body">
                         <div class="uk-grid checkout-box__frgrid" data-uk-grid>
@@ -249,7 +261,7 @@ $configData = Helper::appClasses();
                                 <input type="email" class="uk-input checkout-box__input" name="selling_email" placeholder="" value="{{$user->email}}" required>
                             </div>
                             <div class="uk-width-1-2 contact-form__group">
-                                <label class="checkout-box__label">Contact</label>
+                                <label class="checkout-box__label">Contatto</label>
                                 <input type="text" class="uk-input checkout-box__input" name="selling_contact" placeholder="" value="{{$user_details->contact_person}}" required>
                             </div>
                         </div>
@@ -283,18 +295,31 @@ $configData = Helper::appClasses();
 
 <script>
     $("#js-qty-input").on("change", function(){
-        let price_wo_tax_per_litter = $("#js-one-litter-price-wo-tax").val();
-        let qty = $(this).val();
-
-        let price_wo_tax = price_wo_tax_per_litter * qty;
-        let tax = price_wo_tax*22/100;
-        let total_price = price_wo_tax + tax;
-
-        $(".js-product-total").text((Math.round(price_wo_tax * 100) / 100).toFixed(2));
-        $(".js-order-subtotal").text((Math.round(price_wo_tax * 100) / 100).toFixed(2));
-        $(".js-order-tax-amount").text((Math.round(tax * 100) / 100).toFixed(2));
-        $(".js-order-final-total").text((Math.round(total_price * 100) / 100).toFixed(2));
+      calculate_price();
     });
+</script>
+<script>
+  $(document).ready(function(){
+    $("#js-price-selector").on("change", function(){
+      calculate_price();
+    });
+  });
+</script>
+
+<script>
+  function calculate_price(){
+    let price_wo_tax_per_litter = $("#js-price-selector option:selected").data("price");
+    let qty = $("#js-qty-input").val();
+
+    let price_wo_tax = price_wo_tax_per_litter * qty;
+    let tax = price_wo_tax*22/100;
+    let total_price = price_wo_tax + tax;
+
+    $(".js-product-total").text((Math.round(price_wo_tax * 100) / 100).toFixed(2));
+    $(".js-order-subtotal").text((Math.round(price_wo_tax * 100) / 100).toFixed(2));
+    $(".js-order-tax-amount").text((Math.round(tax * 100) / 100).toFixed(2));
+    $(".js-order-final-total").text((Math.round(total_price * 100) / 100).toFixed(2));
+  }
 </script>
 
 <script>
