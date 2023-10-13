@@ -206,7 +206,7 @@ $configData = Helper::appClasses();
                                     </div>
                                     <div class="product-seller__body">
                                         <h3 class="product-seller__name">{{$product->seller_name}}</h3>
-                                        <p class="product-seller__type">Seller</p>
+                                        <p class="product-seller__type">{{$product->main_activity_ids}}</p>
                                     </div>
                                 </div>
                                 <div class="product-rating"
@@ -223,21 +223,20 @@ $configData = Helper::appClasses();
                                         <div class="product-prdata">
                                             <h2 class="product__name">{{$product->product_name}}</h2>
                                             <div class="product__fullprice">
-                                                €{{$product->amount_before_tax}} + 22% TAX
+                                                €{{$product->amount_before_tax}} + 22% IVA
                                             </div>
                                             <div class="product__price">
-                                                <span class="product__price-big">€{{$product->amount}}</span>/LITERS
+                                                <span class="product__price-big">€{{$product->amount}}</span>/LITRO
                                             </div>
-                                            <div class="product__priceinfo">
+                                            {{-- <div class="product__priceinfo">
                                                 (Inclusive Of all Tax)
-                                            </div>
+                                            </div> --}}
                                             <div class="product__avail">
-                                                Availability:
+                                                Disponibilità:
                                                 @if($product->current_stock>0)
-                                                <span class="product__avail-type">In stock</span>
+                                                <span class="product__avail-type">Disponibile</span>
                                                 @else
-                                                <span class="product__avail-type product__avail-type--negative">Out of
-                                                    stock</span>
+                                                <span class="product__avail-type product__avail-type--negative">Non disponibile</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -270,17 +269,14 @@ $configData = Helper::appClasses();
                                 </div>
                                 <div class="uk-width-expand product__item-col product__item-col--desc">
                                     <div class="product__desc">
-                                        <div class="product__priceinfo">
-                                            Attività principale: {{$product->main_activity_ids}}
-                                        </div>
-                                        <div class="product__priceinfo">
+                                        {{-- <div class="product__priceinfo">
                                             Regione: {{$product->region}}
+                                        </div> --}}
+                                        <div class="product__priceinfo fs-18">
+                                            <strong>Dilazione di pagamento:</strong> {{$product->payment_extension}}
                                         </div>
-                                        <div class="product__priceinfo">
-                                            Payment timing: {{$product->payment_extension}}
-                                        </div>
-                                        <div class="product__priceinfo">
-                                            Payment methods:
+                                        <div class="product__priceinfo fs-18">
+                                            <strong>Metodi di pagamento accettati:</strong>
                                             @php
                                             $sep = "";
                                             if($product->bank_transfer != ""){
@@ -301,8 +297,8 @@ $configData = Helper::appClasses();
                                             }
                                             @endphp
                                         </div>
-                                        <div class="product__priceinfo">
-                                            Deliver on:
+                                        <div class="product__priceinfo fs-18">
+                                            <strong>Prima consegna:</strong>
                                             {{App\Helpers\Helpers::calculateEstimateShippingDate($product->delivery_time,
                                             $product->delivery_days, $product->days_off)}}
                                             {{-- @if($product->delivery_time)

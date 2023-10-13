@@ -2643,3 +2643,6 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 .contact-form__input.is-invalid {
     border-color: #ea5455;
 }
+.fs-18 {
+    font-size: 18px;
+}
