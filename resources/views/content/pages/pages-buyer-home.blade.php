@@ -95,15 +95,15 @@ $configData = Helper::appClasses();
                             </button>
 
                             <div class="filter-heading">
-                                <h2 class="filter-heading__title">Filters</h2>
+                                <h2 class="filter-heading__title">Filtra ricerca</h2>
                                 @if(count($request)>0)
-                                <a href="{{route(" pages-buyer-home")}}"
+                                <a href="{{route("pages-buyer-home")}}"
                                     class="uk-button filter-heading__clear">Clear</a>
                                 @endif
                             </div>
 
                             <div class="filter__item">
-                                <h3 class="filter__name">Fuel type</h3>
+                                <h3 class="filter__name">Prodotto</h3>
                                 @foreach($products as $product)
                                 <div class="filter-checkbox">
                                     <input type="checkbox" name="fuel_type[]"
@@ -120,7 +120,7 @@ $configData = Helper::appClasses();
                             </div>
 
                             <div class="filter__item">
-                                <h3 class="filter__name">Price</h3>
+                                <h3 class="filter__name">Prezzo</h3>
                                 <div class="mb-5 mt-4 noUi-primary" id="price-range"></div>
                                 <input type="hidden" id="price_min" name="price_min"
                                     value="{{isset($request['price_min'])?$request['price_min']:''}}">
@@ -129,7 +129,7 @@ $configData = Helper::appClasses();
                             </div>
 
                             <div class="filter__item">
-                                <h3 class="filter__name">Payment method</h3>
+                                <h3 class="filter__name">Metodo di pagamento</h3>
                                 @foreach($payment_options as $c => $payment_option)
                                 <div class="filter-checkbox">
                                     <input type="checkbox" name="payment_option[]"
@@ -146,7 +146,7 @@ $configData = Helper::appClasses();
                             </div>
 
                             <div class="filter__item">
-                                <h3 class="filter__name">Geographic delivery limits</h3>
+                                <h3 class="filter__name">Regione di consegna</h3>
                                 @foreach($regions as $region)
                                 <div class="filter-checkbox">
                                     <input type="checkbox" name="region[]"
@@ -163,7 +163,7 @@ $configData = Helper::appClasses();
                             </div>
 
                             <div class="filter__item">
-                                <h3 class="filter__name">Payment time</h3>
+                                <h3 class="filter__name">Dilazione di pagamento</h3>
                                 @foreach($payment_extensions as $payment_extension)
                                 <div class="filter-checkbox">
                                     <input type="checkbox" name="payment_time[]"
@@ -253,7 +253,7 @@ $configData = Helper::appClasses();
                                             "seller_product_id" => $product->id
                                             ])}}" class="uk-button uk-button-primary product-actions__buy">Ordina</a>
                                         @else
-                                        <a href="{{route(" customer-request-to-seller", [ "csrf"=> csrf_token(),
+                                        <a href="{{route("customer-request-to-seller", [ "csrf"=> csrf_token(),
                                             "seller_id" => $product->seller_id
                                             ])}}" class="uk-button uk-button-primary product-actions__buy"
                                             target="_blank">
@@ -333,7 +333,7 @@ $configData = Helper::appClasses();
                         </div>
                         <h3 style="text-center">Nessun prodotto trovato</h3>
                         <div class="thanks__action">
-                            <a href="{{route(" pages-buyer-home")}}"
+                            <a href="{{route("pages-buyer-home")}}"
                                 class="uk-button uk-button-primary thanks__action-btn">ricerca chiara</a>
                         </div>
                         @endif
