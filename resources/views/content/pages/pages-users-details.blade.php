@@ -146,7 +146,7 @@ $configData = Helper::appClasses();
         </ul>
         @endif
         <!--/ User Pills -->
-        <div class="tab-content p-0">
+        <div class="tab-content p-0 @if($isOnlyProfile && $user->accountType == 1) tab-content-buyer @endif">
             <div class="tab-pane fade show active" id="navs-pills-top-Profilo" role="tabpanel">
 
                 <div class="card mb-4">
