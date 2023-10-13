@@ -44,24 +44,41 @@ $configData = Helper::appClasses();
             <h3 class="thanks__title">Ordine inviato con successo!</h3>
             <div class="thanks__data">
                 <div class="thanks__item">
-                    <span class="thanks__item-bold">Order number:</span>  ORD{{$order->id}}
+                    <span class="thanks__item-bold">Numero d'ordine:</span>  ORD{{$order->id}}
                 </div>
                 <div class="thanks__item">
-                    <span class="thanks__item-bold">Seller:</span>  {{$order->seller_name}}
+                    <span class="thanks__item-bold">Lo stato dell'ordine:</span>  {{$order->order_status}}
+                </div>
+                @if($order->payment_status == "paid")
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Stato del pagamento:</span>  Pagato
+                </div>
+                @endif
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Venditrice:</span>  {{$order->seller_name}}
                 </div>
                 <div class="thanks__item">
-                    <span class="thanks__item-bold">Product name:</span>  {{$order->product_name}}
+                    <span class="thanks__item-bold">Prodotto:</span>  {{$order->product_name}}
                 </div>
                 <div class="thanks__item">
-                    <span class="thanks__item-bold">Order QTY:</span>  {{$order->product_qty}} LITTERS
+                    <span class="thanks__item-bold">Qtyst:</span>  {{$order->product_qty}} LITRI
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Pagamento totale:</span>  €{{number_format($order->total_payable_amount, 2)}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Modalità di pagamento:</span>  {{$order->payment_method_name}}
+                </div>
+                <div class="thanks__item">
+                    <span class="thanks__item-bold">Prima consegna:</span>  {{$order->est_delivery_date}}
                 </div>
             </div>
             <div class="thanks__data mt-4">
                 <div class="w-100">
-                    <span class="thanks__item-bold">Billing address</span>
+                    <span class="thanks__item-bold">Indirizzo di fatturazione</span>
                 </div>
                 <div class="thanks__item">
-                    <span class="thanks__item-bold">Full name:</span>  {{$order->billing_first_name}}
+                    <span class="thanks__item-bold">Ragione sociale:</span>  {{$order->billing_first_name}}
                 </div>
                 <div class="thanks__item">
                     <span class="thanks__item-bold">Indirizzo:</span>  {{$order->billing_address}}
@@ -85,15 +102,15 @@ $configData = Helper::appClasses();
                     <span class="thanks__item-bold">Email:</span>  {{$order->billing_email}}
                 </div>
                 <div class="thanks__item">
-                    <span class="thanks__item-bold">Contact:</span>  {{$order->billing_contact}}
+                    <span class="thanks__item-bold">Contatto:</span>  {{$order->billing_contact}}
                 </div>
             </div>
             <div class="thanks__data mt-4">
                 <div class="w-100">
-                    <span class="thanks__item-bold">Shipping address</span>
+                    <span class="thanks__item-bold">Indirizzo di spedizione</span>
                 </div>
                 <div class="thanks__item">
-                    <span class="thanks__item-bold">Full name:</span>  {{$order->selling_first_name}}
+                    <span class="thanks__item-bold">Ragione sociale:</span>  {{$order->selling_first_name}}
                 </div>
                 <div class="thanks__item">
                     <span class="thanks__item-bold">Indirizzo:</span>  {{$order->selling_address}}
@@ -117,7 +134,7 @@ $configData = Helper::appClasses();
                     <span class="thanks__item-bold">Email:</span>  {{$order->selling_email}}
                 </div>
                 <div class="thanks__item">
-                    <span class="thanks__item-bold">Contact:</span>  {{$order->selling_contact}}
+                    <span class="thanks__item-bold">Contatto:</span>  {{$order->selling_contact}}
                 </div>
             </div>
             <div class="thanks__action">

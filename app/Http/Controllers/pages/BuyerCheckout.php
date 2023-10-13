@@ -5,6 +5,7 @@ namespace App\Http\Controllers\pages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Helpers\Helpers;
 use App\Models\ProductSeller;
 use App\Models\Order;
 use App\Models\User;
@@ -81,12 +82,39 @@ class BuyerCheckout extends Controller
       if($record_data){
         //update
         if($record_data->status == "approved"){
-          $total_payable_amount = ($seller_product->amount_before_tax * $request->product_qty) + ($seller_product->amount_before_tax * $request->product_qty*22/100);
+          $seller_details = UserDetail::where(["user_id" => $seller_product->seller_id])->first();
+          $amount_before_tax = 0;
+          if($request->product_price_type=="A vista"){
+            $amount_before_tax = $seller_product->amount_before_tax;
+          } elseif($request->product_price_type=="30gg"){
+            $amount_before_tax = $seller_product->amount_30gg;
+          } elseif($request->product_price_type=="60gg"){
+            $amount_before_tax = $seller_product->amount_60gg;
+          } elseif($request->product_price_type=="90gg"){
+            $amount_before_tax = $seller_product->amount_90gg;
+          }
+
+          $payment_method = "";
+          if($request->payment_method == "bank_transfer"){
+            $bank_transfer = $seller_details->bank_transfer?$seller_details->bank_transfer:'NA';
+            $bank = $seller_details->bank?$seller_details->bank:'NA';
+
+            $payment_method = "IBAN: ${bank_transfer} Banca: ${bank}";
+          } elseif($request->payment_method == "rib"){
+            $payment_method = "RIBA";
+          } elseif($request->payment_method == "rid"){
+            $payment_method = "RID";
+          } elseif($request->payment_method == "bank_check"){
+            $bank_check = $seller_details->bank_check?$seller_details->bank_check:'NA';
+            $payment_method = "Assegno Bancario: ${bank_check}";
+          }
+
+          $total_payable_amount = ($amount_before_tax * $request->product_qty) + ($seller_product->amount_before_tax * $request->product_qty*22/100);
           $order = Order::create([
             "user_id" => $user->id,
             "seller_id" => $seller_product->seller_id,
             "product_id" => $seller_product->product_id,
-            "product_amount" => $seller_product->amount_before_tax,
+            "product_amount" => $amount_before_tax,
             "product_qty" => $request->product_qty,
             "total_payable_amount" => $total_payable_amount,
             "order_date" => date("Y-m-d"),
@@ -108,6 +136,9 @@ class BuyerCheckout extends Controller
             "selling_pincode" => $request->selling_pincode,
             "selling_email" => $request->selling_email,
             "selling_contact" => $request->selling_contact,
+            "payment_option" => $request->product_price_type,
+            "payment_method_name" => $payment_method,
+            "est_delivery_date" => Helpers::calculateEstimateShippingDate($seller_product->delivery_time, $seller_product->delivery_days, $seller_product->days_off),
           ]);
           
           //order details

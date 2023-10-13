@@ -56,13 +56,13 @@ $configData = Helper::appClasses();
                                 <h3 class="checkout-box__prlabel">Articolo</h3>
                                 <h2 class="checkout-box__itemname">
                                     {{$product->product_name}} <br/>
-                                    Delivery on: {{\App\Helpers\Helpers::calculateEstimateShippingDate($product->delivery_time, $product->delivery_days, $product->days_off)}}
+                                    Prima consegna: {{\App\Helpers\Helpers::calculateEstimateShippingDate($product->delivery_time, $product->delivery_days, $product->days_off)}}
                                 </h2>
                             </div>
-                            <div class="uk-width-expand checkout-box__prcol  checkout-box__prcol--cost">
+                            <div class="uk-width-expand checkout-box__prcol  checkout-box__prcol--cost contact-form__group">
                                 <h3 class="checkout-box__prlabel">Costo</h3>
                                 <h2 class="checkout-box__itemcost">
-                                  <select class="uk-input checkout-box__qty-input" id="js-price-selector">
+                                  <select class="uk-input checkout-box__qty-input" id="js-price-selector" name="product_price_type">
                                     <option value="A vista" data-price="{{$product->amount_before_tax}}">€{{number_format($product->amount_before_tax, 2)}}/LITRO</option>
                                     @if($product->amount_30gg)
                                     <option value="30gg" data-price="{{$product->amount_30gg}}">€{{number_format($product->amount_30gg, 2)}}/LITRO</option>
@@ -74,16 +74,6 @@ $configData = Helper::appClasses();
                                     <option value="90gg" data-price="{{$product->amount_90gg}}">€{{number_format($product->amount_90gg, 2)}}/LITRO</option>
                                     @endif
                                   </select>
-                                    {{-- <span class="checkout-box__itemcost-price">€{{$product->amount_before_tax}}</span>/LITERS<br/>
-                                    @if($product->amount_30gg)
-                                    30gg: <span class="checkout-box__itemcost-price">€{{$product->amount_30gg}}</span>/LITERS<br/>
-                                    @endif
-                                    @if($product->amount_60gg)
-                                    60gg: <span class="checkout-box__itemcost-price">€{{$product->amount_60gg}}</span>/LITERS<br/>
-                                    @endif
-                                    @if($product->amount_90gg)
-                                    90gg: <span class="checkout-box__itemcost-price">€{{$product->amount_90gg}}</span>/LITERS
-                                    @endif --}}
                                 </h2>
                                 <input type="hidden" id="js-one-litter-price-wo-tax" value="{{$product->amount_before_tax}}">
                             </div>
@@ -100,26 +90,28 @@ $configData = Helper::appClasses();
                             </div>
                         </div>
                         <div class="uk-grid checkout-box__ntgrid" data-uk-grid>
-                            {{-- <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--note">
-                                <textarea class="uk-textarea checkout-box__textarea" rows="6" placeholder="Note" name="order_note"></textarea>
-                            </div> --}}
                             <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--note">
-                                <h2 class="checkout-box__itemcost">
-                                    Bonifico Bancario <br/>
-                                    IBAN: <span class="checkout-box__itemcost-price">{{$seller_details->bank_transfer?$seller_details->bank_transfer:'NA'}}</span><br/>
-                                    Banca: <span class="checkout-box__itemcost-price">{{$seller_details->bank?$seller_details->bank:'NA'}}</span>
-                                </h2>
-                                <h2 class="checkout-box__itemcost">
-                                    RIBA: <span class="checkout-box__itemcost-price">{{$seller_details->rib?$seller_details->rib:'NA'}}</span>
-                                </h2>
+                                <textarea class="uk-textarea checkout-box__textarea" rows="5" placeholder="Note" name="order_note"></textarea>
                             </div>
-                            <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--note">
-                                <h2 class="checkout-box__itemcost">
-                                    Assegno Bancario: <span class="checkout-box__itemcost-price">{{$seller_details->bank_check?$seller_details->bank_check:'NA'}}</span>
-                                </h2>
-                                <h2 class="checkout-box__itemcost">
-                                    RID: <span class="checkout-box__itemcost-price">{{$seller_details->rid?$seller_details->rid:'NA'}}</span>
-                                </h2>
+                            <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--note contact-form__group">
+                              <h3 class="checkout-box__prlabel">Modalità di pagamento</h3>
+                              <h2 class="checkout-box__itemcost">
+                                <select class="uk-input checkout-box__qty-input" name="payment_method">
+                                  <option value="">Please select pagamento</option>
+                                @if($seller_details->bank_transfer)
+                                  <option value="bank_transfer">IBAN: {{$seller_details->bank_transfer}} Banca: {{$seller_details->bank?$seller_details->bank:'NA'}}</option>
+                                @endif
+                                @if($seller_details->bank_check)
+                                  <option value="bank_check">Assegno Bancario: {{$seller_details->bank_check?$seller_details->bank_check:'NA'}}</option>
+                                @endif
+                                @if($seller_details->rib=="Si")
+                                  <option value="rib">RIBA</option>
+                                @endif
+                                @if($seller_details->rid=="Si")
+                                  <option value="rid">RID</option>
+                                @endif
+                                </select>
+                              </h2>
                             </div>
                             <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--total">
                                 <div class="checkout-box__total">
@@ -138,11 +130,29 @@ $configData = Helper::appClasses();
                                 </div>
                             </div>
                         </div>
-                        <div class="uk-grid checkout-box__ntgrid" data-uk-grid>
+                        {{-- <div class="uk-grid checkout-box__ntgrid" data-uk-grid>
+                          <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--note">
+                            <h2 class="checkout-box__itemcost">
+                                Bonifico Bancario <br/>
+                                IBAN: <span class="checkout-box__itemcost-price">{{$seller_details->bank_transfer?$seller_details->bank_transfer:'NA'}}</span><br/>
+                                Banca: <span class="checkout-box__itemcost-price">{{$seller_details->bank?$seller_details->bank:'NA'}}</span>
+                            </h2>
+                            <h2 class="checkout-box__itemcost">
+                                RIBA: <span class="checkout-box__itemcost-price">{{$seller_details->rib?$seller_details->rib:'NA'}}</span>
+                            </h2>
+                        </div>
+                        <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--note">
+                            <h2 class="checkout-box__itemcost">
+                                Assegno Bancario: <span class="checkout-box__itemcost-price">{{$seller_details->bank_check?$seller_details->bank_check:'NA'}}</span>
+                            </h2>
+                            <h2 class="checkout-box__itemcost">
+                                RID: <span class="checkout-box__itemcost-price">{{$seller_details->rid?$seller_details->rid:'NA'}}</span>
+                            </h2>
+                        </div>
                             <div class="uk-width-1-3 checkout-box__ntcol checkout-box__ntcol--note">
                                 <textarea class="uk-textarea checkout-box__textarea" rows="6" placeholder="Note" name="order_note"></textarea>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -269,7 +279,7 @@ $configData = Helper::appClasses();
                 </div>
 
                 <div class="checkout__action">
-                    <button type="submit" class="uk-button uk-button-primary checkout__submit">Check out</button>    
+                    <button type="submit" class="uk-button uk-button-primary checkout__submit">Ordine</button>    
                 </div>
 
             </div>
@@ -395,10 +405,24 @@ document.addEventListener('DOMContentLoaded', function (e) {
                       }
                     }
                   },
+                  product_price_type: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please select costo'
+                      }
+                    }
+                  },
+                  payment_method: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please select modalità di pagamento'
+                      }
+                    }
+                  },
                   billing_first_name: {
                     validators: {
                       notEmpty: {
-                        message: 'Please enter name'
+                        message: 'Please enter ragione sociale'
                       }
                     }
                   },
@@ -454,14 +478,14 @@ document.addEventListener('DOMContentLoaded', function (e) {
                   billing_contact: {
                     validators: {
                       notEmpty: {
-                        message: 'Please enter contact'
+                        message: 'Please enter contatto'
                       }
                     }
                   },
                   selling_first_name: {
                     validators: {
                       notEmpty: {
-                        message: 'Please enter name'
+                        message: 'Please enter ragione sociale'
                       }
                     }
                   },
@@ -517,7 +541,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                   selling_contact: {
                     validators: {
                       notEmpty: {
-                        message: 'Please enter contact'
+                        message: 'Please enter contatto'
                       }
                     }
                   }
