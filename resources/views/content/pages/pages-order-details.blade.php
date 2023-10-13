@@ -65,7 +65,9 @@ $configData = Helper::appClasses();
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5 class="card-title m-0 text-black">Order details</h5>
-                {{-- <h6 class="m-0"><a href=" javascript:void(0)">Edit</a></h6> --}}
+                <h6 class="m-0">
+                    Prima consegna: {{$order->est_delivery_date}}
+                </h6>
             </div>
             <div class="card-datatable table-responsive">
                 <table class="table border-top">
@@ -89,10 +91,10 @@ $configData = Helper::appClasses();
                                     </div>
                                 </div>
                             </td>
-                            <td><span>€{{$order->product_amount}}</span></td>
+                            <td><span>€{{number_format($order->product_amount, 2)}}</span></td>
                             <td><span class="text-body">{{$order->product_qty}} liters</span></td>
                             <td>
-                                <h6 class="mb-0">€{{$order->product_amount * $order->product_qty}}</h6>
+                                <h6 class="mb-0">€{{number_format($order->product_amount * $order->product_qty, 2)}}</h6>
                             </td>
                         </tr>
                     </tbody>
@@ -101,7 +103,7 @@ $configData = Helper::appClasses();
                     <div class="order-calculations">
                         <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Subtotal:</span>
-                            <h6 class="mb-0">€{{$order->product_amount * $order->product_qty}}</h6>
+                            <h6 class="mb-0">€{{number_format($order->product_amount * $order->product_qty, 2)}}</h6>
                         </div>
                         <!-- <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Discount:</span>
@@ -109,11 +111,11 @@ $configData = Helper::appClasses();
                         </div> -->
                         <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Tax:</span>
-                            <h6 class="mb-0">€{{($order->product_amount * $order->product_qty * 22 / 100)}}</h6>
+                            <h6 class="mb-0">€{{number_format($order->product_amount * $order->product_qty * 22 / 100, 2)}}</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="w-px-100 mb-0">Total:</h6>
-                            <h6 class="mb-0">€{{($order->product_amount * $order->product_qty) + ($order->product_amount * $order->product_qty * 22 / 100)}}</h6>
+                            <h6 class="mb-0">€{{number_format(($order->product_amount * $order->product_qty) + ($order->product_amount * $order->product_qty * 22 / 100), 2)}}</h6>
                         </div>
                     </div>
                 </div>
@@ -185,7 +187,7 @@ $configData = Helper::appClasses();
             <div class="card-body pt-4">
                 <div class="d-flex justify-content-start align-items-center mb-4">
                     <div class="avatar me-2">
-                        <img src="{{asset('assets/img/avatars/1.png')}}" alt="Avatar" class="rounded-circle">
+                        <img src="{{ \App\Models\User::where(["id" => $order->user_id])->first()->profile_photo_url }}" alt="Avatar" class="rounded-circle">
                     </div>
                     <div class="d-flex flex-column">
                         <a href="{{route("profile-view", [
@@ -216,7 +218,7 @@ $configData = Helper::appClasses();
             <div class="card-body pt-4">
                 <div class="d-flex justify-content-start align-items-center mb-4">
                     <div class="avatar me-2">
-                        <img src="{{asset('assets/img/avatars/1.png')}}" alt="Avatar" class="rounded-circle">
+                        <img src="{{ \App\Models\User::where(["id" => $order->seller_id])->first()->profile_photo_url }}" alt="Avatar" class="rounded-circle">
                     </div>
                     <div class="d-flex flex-column">
                         <a href="{{route("profile-view", [
@@ -253,11 +255,10 @@ $configData = Helper::appClasses();
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between border-bottom">
                 <h5 class="card-title m-0 text-black">Pagamento</h5>
-                {{-- @if($isSeller)
-                <h6 class="m-0"><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editPayment">Edit</a></h6>
-                @endif --}}
+                <h6 class="m-0">{{$order->payment_method_name}}</h6>
             </div>
             <div class="card-body pt-4">
+                <p class="d-flex justify-content-between">Dilazione di pagamento <span class="fw-semibold">{{$order->payment_option}}</span></p>
                 <p class="d-flex justify-content-between">Total payment <span class="fw-semibold">€{{$order->total_payable_amount}}</span></p>
                 <p class="d-flex justify-content-between">Payment till now <span class="fw-semibold text-success">€{{$order->total_paid_amount}}</span></p>
                 <p class="d-flex justify-content-between">Pending payment <span class="fw-semibold text-danger">€{{$order->total_pending_amount}}</span></p>
