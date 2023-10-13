@@ -707,3 +707,9 @@
 }
 
 /* Email List CSS Ends */
+
+@media (min-width: 768px) {
+    .tab-content-buyer {
+        margin-top: 61px;
+    }
+}
