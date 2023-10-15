@@ -74,12 +74,12 @@ $configData = Helper::appClasses();
                     <div class="d-flex align-items-start mt-1 gap-2">
                         <i class='wf-icon-calendar ti-sm text-black'></i>
                         <div>
-                            Da {{$user->created_at?date('F Y', strtotime($user->created_at)):'NA'}}
+                            Da {{$user->created_at?(\App\Helpers\Helpers::getMonthName(date('m', strtotime($user->created_at)))." ".date('Y', strtotime($user->created_at))):'NA'}}
                         </div>
                     </div>
                 </div>
                 <div class="px-3">
-                    <p class="mt-4 text-uppercase text-black fw-semibold">ABOUT</p>
+                    <p class="mt-4 text-uppercase text-black fw-semibold">Sommario</p>
                     <div class="info-container">
                         <ul class="list-unstyled about-iconlist">
                             <li class="about-iconlist__item">
@@ -99,7 +99,7 @@ $configData = Helper::appClasses();
                             </li>
                             <li class="about-iconlist__item">
                                 <span class="about-iconlist__icon wf-icon-crown"></span>
-                                <span class="about-iconlist__name">Role:</span>
+                                <span class="about-iconlist__name">Attività principale:</span>
                                 <span class="about-iconlist__val">{{$user_detail->main_activity_ids?$user_detail->main_activity_ids:'NA'}}</span>
                             </li>
                         </ul>
@@ -131,7 +131,7 @@ $configData = Helper::appClasses();
         <ul class="nav nav-pills flex-row mb-4 card-header-pills">
             <li class="nav-item"><a class="nav-link active" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Profilo" aria-controls="navs-pills-top-Profilo" aria-selected="true"><i class="wf-icon-User-Info ti-xs me-1"></i>Profilo</a></li>
 
-            <li class="nav-item"><a class="nav-link" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Fatturazione" aria-controls="navs-pills-top-Fatturazione" aria-selected="true"><i class="wf-icon-file-text1 ti-xs me-1"></i>Fatturazione</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Fatturazione" aria-controls="navs-pills-top-Fatturazione" aria-selected="true"><i class="wf-icon-file-text1 ti-xs me-1"></i>Abbonamento</a></li>
         </ul>
         @endif
         @if($authUser->accountType==0)
@@ -327,27 +327,32 @@ $configData = Helper::appClasses();
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Indirizzo</h6>
-                                <p class="mb-0">{{$user_detail->destination_address_via?$user_detail->destination_address_via:'NA'}}</p>
+                                <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_address_via:$user_detail->address}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Numero civico</h6>
-                                <p class="mb-0">{{$user_detail->destination_house_no?$user_detail->destination_house_no:'NA'}}</p>
+                                <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_house_no:$user_detail->house_no}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
-                                <h6 class="text-black mb-2">Comune</h6>
-                                <p class="mb-0">{{$user_detail->destination_common?$user_detail->destination_common:'NA'}}</p>
+                                <h6 class="text-black mb-2">Regione</h6>
+                                <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_region:$user_detail->region}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Provincia</h6>
-                                <p class="mb-0">{{$user_detail->destination_province?$user_detail->destination_province:'NA'}}</p>
+                                <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_province:$user_detail->province}}</p>
+                            </div>
+
+                            <div class="col-sm-6 col-12">
+                                <h6 class="text-black mb-2">Comune</h6>
+                                <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_common:$user_detail->common}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">CAP</h6>
-                                <p class="mb-0">{{$user_detail->destination_pincode?$user_detail->destination_pincode:'NA'}}</p>
+                                <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_pincode:$user_detail->pincode}}</p>
                             </div>
 
                             <div class="col-sm-6 col-12">
@@ -435,6 +440,7 @@ $configData = Helper::appClasses();
                                 <p class="mb-0">{{$user_detail->monthly_consumption?$user_detail->monthly_consumption:'NA'}}</p>
                             </div>
 
+                            @if($user_detail->is_private_distributer=='Si')
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Sei un distributore privato?</h6>
                                 <p class="mb-0">{{$user_detail->is_private_distributer?$user_detail->is_private_distributer:'NA'}}</p>
@@ -444,6 +450,7 @@ $configData = Helper::appClasses();
                                 <h6 class="text-black mb-2">Numero di distributori</h6>
                                 <p class="mb-0">{{$user_detail->no_of_distributer?$user_detail->no_of_distributer:'NA'}}</p>
                             </div>
+                            @endif
 
                             @if($user_detail->fleet&&$user_detail->fleet>0)
                             <div class="col-sm-6 col-12">

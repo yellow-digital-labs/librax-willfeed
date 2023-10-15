@@ -23,7 +23,7 @@
         },
         {
             "url": "/customer",
-            "name": "Approved customer",
+            "name": "Lista clienti",
             "icon": "menu-icon tf-icons ti ti-user-check",
             "slug": "customer",
             "section": [
@@ -129,7 +129,7 @@
         },
         {
             "url": "/settings",
-            "name": "Settings",
+            "name": "Impostazioni",
             "icon": "menu-icon tf-icons ti ti-settings",
             "slug": "settings",
             "section": [

@@ -229,6 +229,16 @@ class Helpers
     return ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
   }
 
+  public static function listOfMonths(){
+    return ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+  }
+
+  public static function getMonthName($monthNo){
+    $months = Helpers::listOfMonths();
+
+    return $months[$monthNo-1];
+  }
+
   public static function calculateEstimateShippingDate($time, $delivery_day, $days_off){
     // if(date("N"))
     if($time){
