@@ -111,7 +111,7 @@ $(function() {
         $('.dt-column-search thead tr:eq(1) th').each(function(i) {
             var title = $(this).text();
             if ($(this).hasClass('js-add-search')) {
-                $(this).html('<input type="text" class="form-control" placeholder="Search ' + title + '" />');
+                $(this).html('<input type="text" class="form-control" placeholder="Cerca ' + title + '" />');
 
                 $('input', this).on('keyup change', function() {
                     if (dt_filter.column(i).search() !== this.value) {
@@ -126,6 +126,13 @@ $(function() {
 
         var dt_filter = dt_filter_table.DataTable({
             ajax: urlListCustomerData,
+            oLanguage: {
+                oPaginate: {
+                    sPrevious: "Precednte",
+                    sNext: "Prossimo",
+                },
+                info: "Mostrato _START_ to _END_ of _TOTAL_ Risultati"
+            },
             columns: [
                 { data: 'customer_name' },
                 { data: 'customer_region' },

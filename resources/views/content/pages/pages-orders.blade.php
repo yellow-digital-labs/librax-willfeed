@@ -121,8 +121,8 @@ $configData = Helper::appClasses();
                     <th>Quantità</th>
                     <th>Data</th>
                     <th>Status</th>
-                    <th>Payment</th>
-                    <th>Azione</th>
+                    <th>Pagamento</th>
+                    <th>Apri</th>
                 </tr>
             </thead>
         </table>

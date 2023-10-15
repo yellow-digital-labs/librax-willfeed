@@ -118,7 +118,7 @@ $(function () {
         $('.dt-column-search thead tr:eq(1) th').each(function (i) {
             var title = $(this).text();
             if ($(this).hasClass('js-add-search')) {
-                $(this).html('<input type="text" class="form-control" placeholder="Search ' + title + '" />');
+                $(this).html('<input type="text" class="form-control" placeholder="Cerca ' + title + '" />');
 
                 $('input', this).on('keyup change', function () {
                     if (dt_filter.column(i).search() !== this.value) {
@@ -136,6 +136,13 @@ $(function () {
             serverSide: true,
             orderCellsTop: true,
             bLengthChange: true,
+            oLanguage: {
+                oPaginate: {
+                    sPrevious: "Precednte",
+                    sNext: "Prossimo",
+                },
+                info: "Mostrato _START_ to _END_ of _TOTAL_ Risultati"
+            },
             ajax: {
                 url: urlListPaymentData 
             },

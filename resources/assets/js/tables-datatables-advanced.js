@@ -110,7 +110,7 @@ $(function () {
     $('.dt-column-search thead tr').clone(true).appendTo('.dt-column-search thead');
     $('.dt-column-search thead tr:eq(1) th').each(function (i) {
       var title = $(this).text();
-      $(this).html('<input type="text" class="form-control" placeholder="Search ' + title + '" />');
+      $(this).html('<input type="text" class="form-control" placeholder="Cerca ' + title + '" />');
 
       $('input', this).on('keyup change', function () {
         if (dt_filter.column(i).search() !== this.value) {
