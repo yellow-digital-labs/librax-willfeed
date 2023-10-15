@@ -614,7 +614,7 @@ $configData = Helper::appClasses();
                     <div class="card-body p-4">
                         <div class="row gy-3">
                         @foreach($subscriptions as $subscription)
-                            <div class="col-lg mb-md-0 mb-4">
+                            <div class="col-6 mb-md-0 mb-4">
                                 <div class="card border rounded shadow-none">
                                     <div class="card-body">
                                         <div class="my-3 pt-2 text-center">

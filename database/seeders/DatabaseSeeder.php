@@ -14,20 +14,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\Subscription::truncate();
-        // DB::table('subscriptions')->insert([
-        //     'name' => 'Base',
-        //     'tagline' => 'Per iniziare',
-        //     'image' => 'assets/img/illustrations/page-pricing-basic.png',
-        //     'amount' => 0,
-        //     'description' => '<ul class="ps-0 my-4 pt-2 list-disc">
-        //         <li>100 responses a month</li>
-        //         <li>Unlimited forms and surveys</li>
-        //         <li>Unlimited fields</li>
-        //         <li>Basic form creation tools</li>
-        //         <li>Up to 2 subdomains</li>
-        //     </ul>'
-        // ]);
+        \App\Models\Subscription::truncate();
+        DB::table('subscriptions')->insert([
+            'name' => 'Base',
+            'tagline' => 'Per iniziare',
+            'image' => 'assets/img/illustrations/page-pricing-basic.png',
+            'amount' => 29.00,
+            'description' => '<ul class="ps-0 my-4 pt-2 list-disc">
+                <li>100 responses a month</li>
+                <li>Unlimited forms and surveys</li>
+                <li>Unlimited fields</li>
+                <li>Basic form creation tools</li>
+                <li>Up to 2 subdomains</li>
+            </ul>'
+        ]);
         // DB::table('subscriptions')->insert([
         //     'name' => 'Standard',
         //     'tagline' => 'Per medie imprese',
@@ -395,38 +395,38 @@ class DatabaseSeeder extends Seeder
         //     'customer_id' => 6,
         // ]);
 
-        \App\Models\Rating::truncate();
-        DB::table('ratings')->insert([
-            'review_by_id' => 2,
-            'review_for_id' => 3,
-            'star' => 3.5,
-            'review_text' => 'Lorem ipsum dolor sit amet, id diceret fastidii apeirian est, vocibus officiis est ei. Esse consul petentium vis et. Eum ne aliquam placerat quaerendum, vel tollit copiosae argumentum ad, eu mea porro augue placerat. Percipit similique constituam ut pri, ut nec dictas officiis evertitur, vix stet harum tantas ad. Qui ad tota homero noluisse, ut vel eius praesent. Ea noster euismod vel.',
-            'created_at' => '2023-08-22 07:10:10',
-        ]);
+        // \App\Models\Rating::truncate();
+        // DB::table('ratings')->insert([
+        //     'review_by_id' => 2,
+        //     'review_for_id' => 3,
+        //     'star' => 3.5,
+        //     'review_text' => 'Lorem ipsum dolor sit amet, id diceret fastidii apeirian est, vocibus officiis est ei. Esse consul petentium vis et. Eum ne aliquam placerat quaerendum, vel tollit copiosae argumentum ad, eu mea porro augue placerat. Percipit similique constituam ut pri, ut nec dictas officiis evertitur, vix stet harum tantas ad. Qui ad tota homero noluisse, ut vel eius praesent. Ea noster euismod vel.',
+        //     'created_at' => '2023-08-22 07:10:10',
+        // ]);
 
-        DB::table('ratings')->insert([
-            'review_by_id' => 2,
-            'review_for_id' => 4,
-            'star' => 4,
-            'review_text' => 'Lorem ipsum dolor sit amet, id diceret fastidii apeirian est, vocibus officiis est ei. Esse consul petentium vis et. Eum ne aliquam placerat quaerendum, vel tollit copiosae argumentum ad, eu mea porro augue placerat. Percipit similique constituam ut pri, ut nec dictas officiis evertitur, vix stet harum tantas ad. Qui ad tota homero noluisse, ut vel eius praesent. Ea noster euismod vel.',
-            'created_at' => '2023-08-22 08:15:10',
-        ]);
+        // DB::table('ratings')->insert([
+        //     'review_by_id' => 2,
+        //     'review_for_id' => 4,
+        //     'star' => 4,
+        //     'review_text' => 'Lorem ipsum dolor sit amet, id diceret fastidii apeirian est, vocibus officiis est ei. Esse consul petentium vis et. Eum ne aliquam placerat quaerendum, vel tollit copiosae argumentum ad, eu mea porro augue placerat. Percipit similique constituam ut pri, ut nec dictas officiis evertitur, vix stet harum tantas ad. Qui ad tota homero noluisse, ut vel eius praesent. Ea noster euismod vel.',
+        //     'created_at' => '2023-08-22 08:15:10',
+        // ]);
 
-        DB::table('ratings')->insert([
-            'review_by_id' => 5,
-            'review_for_id' => 2,
-            'star' => 4.5,
-            'review_text' => 'Lorem ipsum dolor sit amet, id diceret fastidii apeirian est, vocibus officiis est ei. Esse consul petentium vis et. Eum ne aliquam placerat quaerendum, vel tollit copiosae argumentum ad, eu mea porro augue placerat. Percipit similique constituam ut pri, ut nec dictas officiis evertitur, vix stet harum tantas ad. Qui ad tota homero noluisse, ut vel eius praesent. Ea noster euismod vel.',
-            'created_at' => '2023-08-22 08:20:10',
-        ]);
+        // DB::table('ratings')->insert([
+        //     'review_by_id' => 5,
+        //     'review_for_id' => 2,
+        //     'star' => 4.5,
+        //     'review_text' => 'Lorem ipsum dolor sit amet, id diceret fastidii apeirian est, vocibus officiis est ei. Esse consul petentium vis et. Eum ne aliquam placerat quaerendum, vel tollit copiosae argumentum ad, eu mea porro augue placerat. Percipit similique constituam ut pri, ut nec dictas officiis evertitur, vix stet harum tantas ad. Qui ad tota homero noluisse, ut vel eius praesent. Ea noster euismod vel.',
+        //     'created_at' => '2023-08-22 08:20:10',
+        // ]);
 
-        DB::table('ratings')->insert([
-            'review_by_id' => 4,
-            'review_for_id' => 2,
-            'star' => 4.5,
-            'review_text' => 'Lorem ipsum dolor sit amet, id diceret fastidii apeirian est, vocibus officiis est ei. Esse consul petentium vis et. Eum ne aliquam placerat quaerendum, vel tollit copiosae argumentum ad, eu mea porro augue placerat. Percipit similique constituam ut pri, ut nec dictas officiis evertitur, vix stet harum tantas ad. Qui ad tota homero noluisse, ut vel eius praesent. Ea noster euismod vel.',
-            'created_at' => '2023-08-22 08:10:10',
-        ]);
+        // DB::table('ratings')->insert([
+        //     'review_by_id' => 4,
+        //     'review_for_id' => 2,
+        //     'star' => 4.5,
+        //     'review_text' => 'Lorem ipsum dolor sit amet, id diceret fastidii apeirian est, vocibus officiis est ei. Esse consul petentium vis et. Eum ne aliquam placerat quaerendum, vel tollit copiosae argumentum ad, eu mea porro augue placerat. Percipit similique constituam ut pri, ut nec dictas officiis evertitur, vix stet harum tantas ad. Qui ad tota homero noluisse, ut vel eius praesent. Ea noster euismod vel.',
+        //     'created_at' => '2023-08-22 08:10:10',
+        // ]);
 
 //         \App\Models\SubscriptionPayment::truncate();
 //         DB::table('subscription_payments')->insert([
@@ -479,66 +479,66 @@ class DatabaseSeeder extends Seeder
 //             'name' => 'Completed',
 //         ]);
 
-            \App\Models\PaymentOption::truncate();
-            DB::table('payment_options')->insert([
-                'name' => 'Bank Transfer',
-            ]);
-            DB::table('payment_options')->insert([
-                'name' => 'Cheque',
-            ]);
+            // \App\Models\PaymentOption::truncate();
+            // DB::table('payment_options')->insert([
+            //     'name' => 'Bank Transfer',
+            // ]);
+            // DB::table('payment_options')->insert([
+            //     'name' => 'Cheque',
+            // ]);
 
-            \App\Models\EaseOfAccess::truncate();
-            DB::table('ease_of_accesses')->insert([
-                'name' => 'Bilico',
-            ]);
-            DB::table('ease_of_accesses')->insert([
-                'name' => 'Motrice a 3 assi',
-            ]);
-            DB::table('ease_of_accesses')->insert([
-                'name' => 'Motrice a 2 assi',
-            ]);
+            // \App\Models\EaseOfAccess::truncate();
+            // DB::table('ease_of_accesses')->insert([
+            //     'name' => 'Bilico',
+            // ]);
+            // DB::table('ease_of_accesses')->insert([
+            //     'name' => 'Motrice a 3 assi',
+            // ]);
+            // DB::table('ease_of_accesses')->insert([
+            //     'name' => 'Motrice a 2 assi',
+            // ]);
 
-            \App\Models\PaymentExtension::truncate();
-            DB::table('payment_extensions')->insert([
-                'name' => 'A vista',
-            ]);
-            DB::table('payment_extensions')->insert([
-                'name' => '30gg',
-            ]);
-            DB::table('payment_extensions')->insert([
-                'name' => '60gg',
-            ]);
-            DB::table('payment_extensions')->insert([
-                'name' => '90gg',
-            ]);
+            // \App\Models\PaymentExtension::truncate();
+            // DB::table('payment_extensions')->insert([
+            //     'name' => 'A vista',
+            // ]);
+            // DB::table('payment_extensions')->insert([
+            //     'name' => '30gg',
+            // ]);
+            // DB::table('payment_extensions')->insert([
+            //     'name' => '60gg',
+            // ]);
+            // DB::table('payment_extensions')->insert([
+            //     'name' => '90gg',
+            // ]);
 
-            \App\Models\PaymentTerms::truncate();
-            DB::table('payment_terms')->insert([
-                'name' => 'Assegno bancario',
-            ]);
-            DB::table('payment_terms')->insert([
-                'name' => 'Bonifico',
-            ]);
-            DB::table('payment_terms')->insert([
-                'name' => 'RIBA',
-            ]);
-            DB::table('payment_terms')->insert([
-                'name' => 'RID',
-            ]);
+            // \App\Models\PaymentTerms::truncate();
+            // DB::table('payment_terms')->insert([
+            //     'name' => 'Assegno bancario',
+            // ]);
+            // DB::table('payment_terms')->insert([
+            //     'name' => 'Bonifico',
+            // ]);
+            // DB::table('payment_terms')->insert([
+            //     'name' => 'RIBA',
+            // ]);
+            // DB::table('payment_terms')->insert([
+            //     'name' => 'RID',
+            // ]);
 
-            \App\Models\ConsumeCapacity::truncate();
-            DB::table('consume_capacities')->insert([
-                'name' => 'Fino a 5.000 Litri',
-            ]);
-            DB::table('consume_capacities')->insert([
-                'name' => '5.000 - 10.000 Litri',
-            ]);
-            DB::table('consume_capacities')->insert([
-                'name' => '10.000 - 20.000 Litri',
-            ]);
-            DB::table('consume_capacities')->insert([
-                'name' => 'Oltre i 20.000 Litri',
-            ]);
+            // \App\Models\ConsumeCapacity::truncate();
+            // DB::table('consume_capacities')->insert([
+            //     'name' => 'Fino a 5.000 Litri',
+            // ]);
+            // DB::table('consume_capacities')->insert([
+            //     'name' => '5.000 - 10.000 Litri',
+            // ]);
+            // DB::table('consume_capacities')->insert([
+            //     'name' => '10.000 - 20.000 Litri',
+            // ]);
+            // DB::table('consume_capacities')->insert([
+            //     'name' => 'Oltre i 20.000 Litri',
+            // ]);
 
 //         \App\Models\MainActivity::truncate();
 //         DB::table('main_activities')->insert([
@@ -551,13 +551,13 @@ class DatabaseSeeder extends Seeder
 //             'name' => 'Agenzia',
 //         ]);
 
-            \App\Models\StorageCapacity::truncate();
-            DB::table('storage_capacities')->insert([
-                'name' => 'Fino a 100.000 litri',
-            ]);
-            DB::table('storage_capacities')->insert([
-                'name' => 'Più di 100.000 litri',
-            ]);
+            // \App\Models\StorageCapacity::truncate();
+            // DB::table('storage_capacities')->insert([
+            //     'name' => 'Fino a 100.000 litri',
+            // ]);
+            // DB::table('storage_capacities')->insert([
+            //     'name' => 'Più di 100.000 litri',
+            // ]);
             // DB::table('storage_capacities')->insert([
             //     'name' => 'Oltre i 100.000 Litri',
             // ]);
