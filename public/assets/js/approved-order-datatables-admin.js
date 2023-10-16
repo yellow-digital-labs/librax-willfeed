@@ -219,9 +219,10 @@ $(function () {
                     var $status_number = full['order_status'];
                     console.log("status_number", $status_number)
                     var $status = {
-                        'Pending': { title: 'Pending', class: 'bg-label-primary' },
-                        'Approved': { title: 'Approved', class: ' bg-label-success' },
-                        'Rejected': { title: 'Rejected', class: ' bg-label-danger' }
+                        'In corso': { title: 'In corso', class: 'bg-label-primary' },
+                        'Ordine confermato': { title: 'Ordine confermato', class: ' bg-label-success' },
+                        'Ordine rifiutato': { title: 'Ordine rifiutato', class: ' bg-label-danger' },
+                        'Consegnato': { title: 'Consegnato', class: ' bg-label-warning' }
                     };
                     if (typeof $status[$status_number] === 'undefined') {
                         return data;
@@ -237,8 +238,8 @@ $(function () {
                 render: function (data, type, full, meta) {
                     var $status_number = full['payment_status'];
                     var $status = {
-                        'unpaid': { title: 'Unpaid', class: 'bg-label-danger' },
-                        'paid': { title: 'Paid', class: ' bg-label-success' }
+                        'unpaid': { title: 'Non pagato', class: 'bg-label-danger' },
+                        'paid': { title: 'Pagato', class: ' bg-label-success' }
                     };
                     if (typeof $status[$status_number] === 'undefined') {
                         return data;
