@@ -199,10 +199,10 @@ $configData = Helper::appClasses();
                 </div>
                 <div class="d-flex justify-content-start align-items-center mb-4">
                     <span class="avatar rounded-circle bg-label-success me-2 d-flex align-items-center justify-content-center"><i class="ti ti-shopping-cart ti-sm"></i></span>
-                    <h6 class="text-body text-nowrap mb-0 text-black">{{$customer_total_orders}} Orders</h6>
+                    <h6 class="text-body text-nowrap mb-0 text-black">{{$customer_total_orders}} Ordini</h6>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <h6 class=" text-black">Contact info</h6>
+                    <h6 class=" text-black">Informazioni di contatto</h6>
                     {{-- <h6><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editUser">Edit</a></h6> --}}
                 </div>
                 <p class=" mb-1">Email: {{$order->billing_email}}</p>
@@ -259,9 +259,9 @@ $configData = Helper::appClasses();
             </div>
             <div class="card-body pt-4">
                 <p class="d-flex justify-content-between">Dilazione di pagamento <span class="fw-semibold">{{$order->payment_option}}</span></p>
-                <p class="d-flex justify-content-between">Total payment <span class="fw-semibold">€{{$order->total_payable_amount}}</span></p>
-                <p class="d-flex justify-content-between">Payment till now <span class="fw-semibold text-success">€{{$order->total_paid_amount}}</span></p>
-                <p class="d-flex justify-content-between">Pending payment <span class="fw-semibold text-danger">€{{$order->total_pending_amount}}</span></p>
+                <p class="d-flex justify-content-between">Total payment <span class="fw-semibold">€{{number_format($order->total_payable_amount, 2)}}</span></p>
+                <p class="d-flex justify-content-between">Payment till now <span class="fw-semibold text-success">€{{number_format($order->total_paid_amount, 2)}}</span></p>
+                <p class="d-flex justify-content-between">Pending payment <span class="fw-semibold text-danger">€{{number_format($order->total_pending_amount, 2)}}</span></p>
             </div>
         </div>
     </div>
