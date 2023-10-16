@@ -44,7 +44,11 @@
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">
                             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);">
                                 <div class="avatar avatar-online">
+                                @if(Auth::user()->accountType == "0")
+                                    <img src="{{ 'https://ui-avatars.com/api/?name=A&color=7F9CF5&background=EBF4FF' }}" alt class="rounded-circle">
+                                @else
                                     <img src="{{ Auth::user() ? Auth::user()->profile_photo_url : asset('assets/img/81160511660785db8768a15358306893.jpg') }}" alt class="rounded-circle">
+                                @endif
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end uk-drop uk-dropdown" data-uk-dropdown>
