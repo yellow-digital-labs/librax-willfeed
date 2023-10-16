@@ -141,12 +141,12 @@ class DatabaseTriggers extends Command
         DB::unprepared('DROP TRIGGER IF EXISTS `orders_before_update`');
         DB::unprepared('CREATE TRIGGER orders_before_update BEFORE UPDATE ON `orders` FOR EACH ROW
                 BEGIN
-                    -- IF NEW.order_status_id <> OLD.order_status_id THEN
+                    IF NEW.order_status_id <> OLD.order_status_id THEN
                         (SELECT name INTO @order_status FROM order_statuses WHERE id=NEW.order_status_id);
                         SET NEW.order_status = @order_status;
 
                         INSERT INTO order_activity_histories SET order_id=NEW.id, status_title=CONCAT("Ordine ", @order_status), status_description=CONCAT("Ordine stato aggiornato con successo a ", @order_status), status_updated_at=NEW.updated_at;
-                    -- END IF;
+                    END IF;
 
                     IF NEW.total_paid_amount <> OLD.total_paid_amount OR NEW.total_payable_amount <> OLD.total_payable_amount THEN
                         SET NEW.total_pending_amount = NEW.total_payable_amount - NEW.total_paid_amount;
