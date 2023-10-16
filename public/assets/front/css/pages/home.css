@@ -2369,7 +2369,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     height: 38px;
     border-radius: 6px;
     font-weight: 600;
-    padding-right: 70px;
+    /* padding-right: 70px; */
 }
 
 .checkout-box__prgrid {}

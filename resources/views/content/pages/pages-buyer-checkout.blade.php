@@ -48,7 +48,7 @@ $configData = Helper::appClasses();
                     <input type="hidden" name="seller_product_id" value="{{$product->id}}">
                     <div class="checkout-box__head">
                         <h2 class="checkout-box__headtitle">Prodotto: <span class="checkout-box__headtitle-light">{{$product->product_name}}</span></h2>
-                        <h2 class="checkout-box__headtitle">Venditrice: <span class="checkout-box__headtitle-light">{{$product->seller_name}}</span></h2>
+                        <h2 class="checkout-box__headtitle">Venditore: <span class="checkout-box__headtitle-light">{{$product->seller_name}}</span></h2>
                     </div>
                     <div class="checkout-box__body">
                         <div class="uk-grid checkout-box__prgrid gutter-xl" data-uk-grid>
@@ -63,15 +63,15 @@ $configData = Helper::appClasses();
                                 <h3 class="checkout-box__prlabel">Costo</h3>
                                 <h2 class="checkout-box__itemcost">
                                   <select class="uk-input checkout-box__qty-input" id="js-price-selector" name="product_price_type">
-                                    <option value="A vista" data-price="{{$product->amount_before_tax}}">€{{number_format($product->amount_before_tax, 2)}}/LITRO</option>
+                                    <option value="A vista" data-price="{{$product->amount_before_tax}}">€{{number_format($product->amount_before_tax, 2)}}/LITRO A vista</option>
                                     @if($product->amount_30gg)
-                                    <option value="30gg" data-price="{{$product->amount_30gg}}">€{{number_format($product->amount_30gg, 2)}}/LITRO</option>
+                                    <option value="30gg" data-price="{{$product->amount_30gg}}">€{{number_format($product->amount_30gg, 2)}}/LITRO 30gg</option>
                                     @endif
                                     @if($product->amount_60gg)
-                                    <option value="60gg" data-price="{{$product->amount_60gg}}">€{{number_format($product->amount_60gg, 2)}}/LITRO</option>
+                                    <option value="60gg" data-price="{{$product->amount_60gg}}">€{{number_format($product->amount_60gg, 2)}}/LITRO 60gg</option>
                                     @endif
                                     @if($product->amount_90gg)
-                                    <option value="90gg" data-price="{{$product->amount_90gg}}">€{{number_format($product->amount_90gg, 2)}}/LITRO</option>
+                                    <option value="90gg" data-price="{{$product->amount_90gg}}">€{{number_format($product->amount_90gg, 2)}}/LITRO 90gg</option>
                                     @endif
                                   </select>
                                 </h2>
@@ -99,10 +99,10 @@ $configData = Helper::appClasses();
                                 <select class="uk-input checkout-box__qty-input" name="payment_method">
                                   <option value="">Please select pagamento</option>
                                 @if($seller_details->bank_transfer)
-                                  <option value="bank_transfer">IBAN: {{$seller_details->bank_transfer}} Banca: {{$seller_details->bank?$seller_details->bank:'NA'}}</option>
+                                  <option value="bank_transfer">Bonifico</option>
                                 @endif
                                 @if($seller_details->bank_check)
-                                  <option value="bank_check">Assegno Bancario: {{$seller_details->bank_check?$seller_details->bank_check:'NA'}}</option>
+                                  <option value="bank_check">Assegno</option>
                                 @endif
                                 @if($seller_details->rib=="Si")
                                   <option value="rib">RIBA</option>
@@ -225,7 +225,7 @@ $configData = Helper::appClasses();
                         <div class="uk-grid checkout-box__frgrid" data-uk-grid>
                             <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Ragione sociale</label>
-                                <input type="text" class="uk-input checkout-box__input" name="selling_first_name" value="{{$user_details->destination_address=="Si"?$user_details->business_name:""}}" placeholder="" required>
+                                <input type="text" class="uk-input checkout-box__input" name="selling_first_name" value="{{$user_details->business_name}}" placeholder="" required>
                             </div>
                             <div class="uk-width-1-2 contact-form__group">
                                 <label class="checkout-box__label">Indirizzo</label>
