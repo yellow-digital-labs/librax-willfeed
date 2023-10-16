@@ -131,7 +131,7 @@ $configData = Helper::appClasses();
                         <span class="timeline-point timeline-point-warning"></span>
                         <div class="timeline-event">
                             <div class="timeline-header">
-                                <h6 class="mb-0">Ordine inviato (Order ID: #{{$id}})</h6>
+                                <h6 class="mb-0">Ordine inviato (Ordine ID: #{{$id}})</h6>
                                 <span class="text-muted">{{\App\Helpers\Helpers::getMonthName(date('m', strtotime($order->order_date)))}}{{date(' d, Y, H:i', strtotime($order->order_date))}}</span>
                             </div>
                             <p class="mt-2">Ordine inviato correttamente</p>
@@ -182,7 +182,7 @@ $configData = Helper::appClasses();
         @if($isSeller || $isAdmin)
         <div class="card mb-4">
             <div class="card-header border-bottom">
-                <h5 class="card-title m-0 text-black">Customer details</h5>
+                <h5 class="card-title m-0 text-black">Cliente</h5>
             </div>
             <div class="card-body pt-4">
                 <div class="d-flex justify-content-start align-items-center mb-4">
@@ -195,7 +195,7 @@ $configData = Helper::appClasses();
                         ])}}" class="text-body text-nowrap">
                             <h6 class="mb-0 text-black">{{$order->user_name}}</h6>
                         </a>
-                        <small class="text-muted">Customer ID: #{{$order->user_id}}</small></div>
+                        <small class="text-muted">Cliente ID: #{{$order->user_id}}</small></div>
                 </div>
                 <div class="d-flex justify-content-start align-items-center mb-4">
                     <span class="avatar rounded-circle bg-label-success me-2 d-flex align-items-center justify-content-center"><i class="ti ti-shopping-cart ti-sm"></i></span>
@@ -259,9 +259,9 @@ $configData = Helper::appClasses();
             </div>
             <div class="card-body pt-4">
                 <p class="d-flex justify-content-between">Dilazione di pagamento <span class="fw-semibold">{{$order->payment_option}}</span></p>
-                <p class="d-flex justify-content-between">Total payment <span class="fw-semibold">€{{number_format($order->total_payable_amount, 2)}}</span></p>
-                <p class="d-flex justify-content-between">Payment till now <span class="fw-semibold text-success">€{{number_format($order->total_paid_amount, 2)}}</span></p>
-                <p class="d-flex justify-content-between">Pending payment <span class="fw-semibold text-danger">€{{number_format($order->total_pending_amount, 2)}}</span></p>
+                <p class="d-flex justify-content-between">Pagamento totale <span class="fw-semibold">€{{number_format($order->total_payable_amount, 2)}}</span></p>
+                <p class="d-flex justify-content-between">Pagamento fino ad ora <span class="fw-semibold text-success">€{{number_format($order->total_paid_amount, 2)}}</span></p>
+                <p class="d-flex justify-content-between">In attesa di Pagamento <span class="fw-semibold text-danger">€{{number_format($order->total_pending_amount, 2)}}</span></p>
             </div>
         </div>
     </div>
