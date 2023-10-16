@@ -121,7 +121,7 @@ $(function () {
       }, {
         // Actions
         targets: -1,
-        title: 'Actions',
+        title: 'Apri',
         searchable: false,
         orderable: false,
         render: function render(data, type, full, meta) {

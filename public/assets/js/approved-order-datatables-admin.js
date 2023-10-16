@@ -251,7 +251,7 @@ $(function () {
             {
                 // Actions
                 targets: 7,
-                title: 'Actions',
+                title: 'Apri',
                 searchable: false,
                 orderable: false,
                 render: function (data, type, full, meta) {
