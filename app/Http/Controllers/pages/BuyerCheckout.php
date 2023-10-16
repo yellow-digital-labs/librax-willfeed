@@ -96,17 +96,13 @@ class BuyerCheckout extends Controller
 
           $payment_method = "";
           if($request->payment_method == "bank_transfer"){
-            $bank_transfer = $seller_details->bank_transfer?$seller_details->bank_transfer:'NA';
-            $bank = $seller_details->bank?$seller_details->bank:'NA';
-
-            $payment_method = "IBAN: ${bank_transfer} Banca: ${bank}";
+            $payment_method = "Bonifico";
           } elseif($request->payment_method == "rib"){
             $payment_method = "RIBA";
           } elseif($request->payment_method == "rid"){
             $payment_method = "RID";
           } elseif($request->payment_method == "bank_check"){
-            $bank_check = $seller_details->bank_check?$seller_details->bank_check:'NA';
-            $payment_method = "Assegno Bancario: ${bank_check}";
+            $payment_method = "Assegno";
           }
 
           $total_payable_amount = ($amount_before_tax * $request->product_qty) + ($amount_before_tax * $request->product_qty*22/100);

@@ -279,7 +279,7 @@ $configData = Helper::appClasses();
                 </div>
 
                 <div class="checkout__action">
-                    <button type="submit" class="uk-button uk-button-primary checkout__submit">Ordine</button>    
+                    <button type="submit" class="uk-button uk-button-primary checkout__submit">Ordina</button>    
                 </div>
 
             </div>

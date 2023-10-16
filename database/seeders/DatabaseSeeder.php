@@ -462,22 +462,22 @@ class DatabaseSeeder extends Seeder
 //             'transaction_datetime' => '2023-06-02 13:38:00',
 //         ]);
 
-//         \App\Models\OrderStatus::truncate();
-//         DB::table('order_statuses')->insert([
-//             'name' => 'Pending',
-//         ]);
-//         DB::table('order_statuses')->insert([
-//             'name' => 'Approved',
-//         ]);
-//         DB::table('order_statuses')->insert([
-//             'name' => 'Rejected',
-//         ]);
-//         DB::table('order_statuses')->insert([
-//             'name' => 'Intransit',
-//         ]);
-//         DB::table('order_statuses')->insert([
-//             'name' => 'Completed',
-//         ]);
+            \App\Models\OrderStatus::truncate();
+            DB::table('order_statuses')->insert([
+                'name' => 'In corso',
+            ]);
+            DB::table('order_statuses')->insert([
+                'name' => 'Ordine confermato',
+            ]);
+            DB::table('order_statuses')->insert([
+                'name' => 'Ordine rifiutato',
+            ]);
+            DB::table('order_statuses')->insert([
+                'name' => 'Intransit',
+            ]);
+            DB::table('order_statuses')->insert([
+                'name' => 'Consegnato',
+            ]);
 
             // \App\Models\PaymentOption::truncate();
             // DB::table('payment_options')->insert([
