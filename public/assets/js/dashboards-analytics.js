@@ -271,7 +271,7 @@
   const supportTrackerEl = document.querySelector('#supportTracker'),
     supportTrackerOptions = {
       series: [completed_orders],
-      labels: ['Completed orders'],
+      labels: ['Percentuale ordini completati'],
       chart: {
         height: 360,
         type: 'radialBar'
