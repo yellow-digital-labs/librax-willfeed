@@ -45,6 +45,9 @@ $configData = Helper::appClasses();
     $(document).ready(function(){
         $('#bs-rangepicker-range').data('daterangepicker').setStartDate('{{date('dd-mm-YYYY', strtotime($order_start_date))}}');
         $('#bs-rangepicker-range').data('daterangepicker').setEndDate('{{date('dd-mm-YYYY', strtotime($order_end_date))}}');
+
+        $('#bs-rangepicker-range-revenue').data('daterangepicker').setStartDate('{{date('dd-mm-YYYY', strtotime($revenue_start_date))}}');
+        $('#bs-rangepicker-range-revenue').data('daterangepicker').setEndDate('{{date('dd-mm-YYYY', strtotime($revenue_end_date))}}');
     });
 </script>
 @endsection
@@ -114,35 +117,51 @@ $configData = Helper::appClasses();
     <div class="col-md-6">
         <div class="card">
             <div class="card-header d-flex justify-content-between border-bottom">
-                <div class="card-title mb-0">
-                    <h5 class="mb-0 text-black">Fatturato</h5>
-                    <small class="fw-light"></small>
+                <div class="card-title mb-0 row">
+                    <h5 class="mb-0 text-black col">Fatturato</h5>
+                    <div class="col-md-8 col-12 text-right">
+                        <input type="text" id="bs-rangepicker-range-revenue" name="revenue_range" class="form-control form-control-sm" />
+                    </div>
                 </div>
             </div>
             <div class="card-body pt-4">
-                <ul class="p-0 m-0">
-                @foreach($most_order_from_city as $_most_order_from_city)
-                    <li class="d-flex align-items-center mb-4">
-                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                                <div class="d-flex align-items-center">
-                                    <h6 class="mb-0 me-1">€{{number_format($_most_order_from_city->total_sales, 2)}} ({{$_most_order_from_city->total_orders}})</h6>
-                                </div>
-                                <small class="text-muted fw-light">{{$_most_order_from_city->billing_region}}</small>
-                            </div>
-                            <div class="user-progress">
-                                <p class="text-success fw-semibold mb-0">
-                                @if($total_orders>0)
-                                    {{number_format($_most_order_from_city->total_orders*100/$total_orders, 2)}}%
-                                @else
-                                    0.00%
-                                @endif
-                                </p>
+                <h4 class="card-title mb-1">€{{number_format($approved_orders_amount, 2)}}</h4>
+                <div class="d-flex justify-content-between">
+                    <small class="d-block mb-1 text-muted">Spesa totale</small>
+                </div>
+                <div class="row pt-4">
+                    <div class="col-4">
+                        <div class="d-flex gap-2 align-items-center mb-2">
+                            <span class="badge bg-label-info p-1 rounded"><i class="ti ti-shopping-cart ti-xs"></i></span>
+                            <p class="mb-0">Importo pagato</p>
+                        </div>
+                        <h5 class="mb-0 pt-1 text-nowrap">{{number_format($approved_orders_paid_amount_per, 2)}}%</h5>
+                        <small class="text-muted">€{{number_format($approved_orders_paid_amount, 2)}}</small>
+                    </div>
+                    <div class="col-4">
+                        <div class="divider divider-vertical">
+                            <div class="divider-text">
+                                <span class="badge-divider-bg bg-label-secondary">VS</span>
                             </div>
                         </div>
-                    </li>
-                @endforeach
-                </ul>
+                    </div>
+                    <div class="col-4 text-end">
+                        <div class="d-flex gap-2 justify-content-end align-items-center mb-2">
+                            <p class="mb-0">Importo non pagato</p>
+                            <span class="badge bg-label-primary p-1 rounded"><i class="ti ti-link ti-xs"></i></span>
+                        </div>
+                        <h5 class="mb-0 pt-1 text-nowrap ms-lg-n3 ms-xl-0">{{number_format($approved_orders_unpaid_amount_per, 2)}}%</h5>
+                        <small class="text-muted">€{{number_format($approved_orders_unpaid_amount, 2)}}</small>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center mt-4">
+                    <div class="progress w-100" style="height: 8px;">
+                        <div class="progress-bar bg-info" style="width: {{$approved_orders_paid_amount_per}}%" role="progressbar" aria-valuenow="{{$approved_orders_paid_amount_per}}" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{$approved_orders_unpaid_amount_per}}%" aria-valuenow="{{$approved_orders_unpaid_amount_per}}"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -189,9 +208,9 @@ $configData = Helper::appClasses();
                 </div>
                 <div class="d-flex align-items-center mt-4">
                     <div class="progress w-100" style="height: 8px;">
-                        <div class="progress-bar bg-info" style="width: {{$approved_orders_paid_amount}}%" role="progressbar" aria-valuenow="{{$approved_orders_paid_amount}}" aria-valuemin="0"
+                        <div class="progress-bar bg-info" style="width: {{$approved_orders_paid_amount_per}}%" role="progressbar" aria-valuenow="{{$approved_orders_paid_amount_per}}" aria-valuemin="0"
                             aria-valuemax="100"></div>
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{$approved_orders_unpaid_amount}}%" aria-valuenow="{{$approved_orders_unpaid_amount}}"
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{$approved_orders_unpaid_amount_per}}%" aria-valuenow="{{$approved_orders_unpaid_amount_per}}"
                             aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>

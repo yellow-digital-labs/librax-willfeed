@@ -20,13 +20,21 @@ class Dashboard extends Controller
 
     $filters = $request->all();
     $isOrderFilter = false;
+    $isRevenueFilter = false;
     $order_start_date = date("Y-m-d");
     $order_end_date = date("Y-m-d");
+    $revenue_start_date = date("Y-m-d");
+    $revenue_end_date = date("Y-m-d");
     if(count($filters)>0){
       if($filters['orders_range']){
         $isOrderFilter = true;
         $order_start_date = Helpers::getStartDateFromFilter($filters['orders_range']);
         $order_end_date = Helpers::getEndDateFromFilter($filters['orders_range']);
+      }
+      if($filters['revenue_range']){
+        $isRevenueFilter = true;
+        $revenue_start_date = Helpers::getStartDateFromFilter($filters['revenue_range']);
+        $revenue_end_date = Helpers::getEndDateFromFilter($filters['revenue_range']);
       }
     }
     
@@ -148,11 +156,6 @@ class Dashboard extends Controller
           $reject_vendor_conf_count = $_venders_count_by_status->counts;
         }
       }
-
-      if($approved_orders_amount>0){
-        $approved_orders_paid_amount_per = $approved_orders_paid_amount * 100 / $approved_orders_amount;
-        $approved_orders_unpaid_amount_per = $approved_orders_unpaid_amount * 100 / $approved_orders_amount;
-      }
     } elseif($isSeller) {
       $user_id = Auth::user()->id;
 
@@ -179,6 +182,48 @@ class Dashboard extends Controller
         $completed_orders = Order::where("seller_id", "=", $user_id)
           ->where("payment_status", "=", 'paid')
           ->count();
+      }
+
+      if($isRevenueFilter){
+        $approved_orders_amount = Order::where("seller_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->where("created_at", ">=", $revenue_start_date)
+          ->where("created_at", "<=", $revenue_end_date)
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
+
+        $approved_orders_paid_amount = Order::where("seller_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->where("payment_status", "=", 'paid')
+          ->where("created_at", ">=", $revenue_start_date)
+          ->where("created_at", "<=", $revenue_end_date)
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
+
+        $approved_orders_unpaid_amount = Order::where("seller_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->where("payment_status", "=", 'unpaid')
+          ->where("created_at", ">=", $revenue_start_date)
+          ->where("created_at", "<=", $revenue_end_date)
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
+      } else {
+        $approved_orders_amount = Order::where("seller_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
+
+        $approved_orders_paid_amount = Order::where("seller_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->where("payment_status", "=", 'paid')
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
+
+        $approved_orders_unpaid_amount = Order::where("seller_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->where("payment_status", "=", 'unpaid')
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
       }
 
       $most_order_from_city = DB::table('orders')
@@ -234,6 +279,11 @@ class Dashboard extends Controller
       $total_payment_method_wise_income += $_payment_method_wise_income->total_sales;
     }
 
+    if($approved_orders_amount>0){
+      $approved_orders_paid_amount_per = $approved_orders_paid_amount * 100 / $approved_orders_amount;
+      $approved_orders_unpaid_amount_per = $approved_orders_unpaid_amount * 100 / $approved_orders_amount;
+    }
+
     return view('content.pages.pages-dashboard', [
       "isSeller" => $isSeller,
       "isAdmin" => $isAdmin,
@@ -260,6 +310,8 @@ class Dashboard extends Controller
       "reject_vendor_conf_count" => $reject_vendor_conf_count,
       "order_start_date" => $order_start_date,
       "order_end_date" => $order_end_date,
+      "revenue_start_date" => $revenue_start_date,
+      "revenue_end_date" => $revenue_end_date,
     ]);
   }
 }
