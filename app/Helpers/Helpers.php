@@ -298,4 +298,16 @@ class Helpers
 
     return $products;
   }
+
+  public static function getStartDateFromFilter($arg){
+    $args = explode(" - ", $arg);
+    
+    return date("Y-m-d", strtotime($args[0]));
+  }
+
+  public static function getEndDateFromFilter($arg){
+    $args = explode(" - ", $arg);
+    
+    return date("Y-m-d", strtotime($args[1]));
+  }
 }

@@ -10,6 +10,8 @@ $configData = Helper::appClasses();
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css')}}" />
 @endsection
 
 @section('page-style')
@@ -20,20 +22,31 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('vendor-script')
+<script src="{{asset('assets/vendor/libs/moment/moment.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/swiper/swiper.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js')}}"></script>
 @endsection
 
 @section('page-script')
 <script>
 @if($total_orders>0)
-    var completed_orders = {!! "'".($completed_orders*100/$total_orders)."'" !!};
+    var completed_orders = {!! "'".(number_format($completed_orders*100/$total_orders, 2))."'" !!};
 @else
     var completed_orders = {!! "'0.00'" !!};
 @endif
 </script>
+<script src="{{asset('assets/js/forms-pickers.js')}}"></script>
 <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#bs-rangepicker-range').data('daterangepicker').setStartDate('{{date('dd-mm-YYYY', strtotime($order_start_date))}}');
+        $('#bs-rangepicker-range').data('daterangepicker').setEndDate('{{date('dd-mm-YYYY', strtotime($order_end_date))}}');
+    });
+</script>
 @endsection
 
 @section('content')
@@ -51,15 +64,17 @@ $configData = Helper::appClasses();
     dashboard
 </h4>
 
+<form method="GET" id="dashboard-form">
 <div class="row align-items-start g-4">
-
     <div class="col-md-6">
         <div class="card">
             <div class="card-header d-flex justify-content-between border-bottom">
                 <div class="card-title mb-0">
                     <div class="row">
                         <h5 class="mb-0 text-black col">Ordini</h5>
-                        
+                        <div class="col-md-8 col-12 text-right">
+                            <input type="text" id="bs-rangepicker-range" name="orders_range" class="form-control form-control-sm" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -117,7 +132,11 @@ $configData = Helper::appClasses();
                             </div>
                             <div class="user-progress">
                                 <p class="text-success fw-semibold mb-0">
+                                @if($total_orders>0)
                                     {{number_format($_most_order_from_city->total_orders*100/$total_orders, 2)}}%
+                                @else
+                                    0.00%
+                                @endif
                                 </p>
                             </div>
                         </div>
@@ -210,7 +229,11 @@ $configData = Helper::appClasses();
                             <div class="d-flex">
                                 <p class="mb-0 fw-medium">€{{number_format($_top_selling_products->total_sales, 2)}}</p>
                                 <p class="ms-3 text-success mb-0">
+                                @if($total_orders>0)
                                     {{number_format($_top_selling_products->total_orders*100/$total_orders, 2)}}%
+                                @else
+                                    0.00%
+                                @endif
                                 </p>
                             </div>
                         </div>
@@ -372,7 +395,7 @@ $configData = Helper::appClasses();
         </div>
     </div>
     @endif
-
 </div>
+</form>
 
 @endsection

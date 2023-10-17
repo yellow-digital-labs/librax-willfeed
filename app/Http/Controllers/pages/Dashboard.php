@@ -15,8 +15,21 @@ use DB;
 
 class Dashboard extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
+
+    $filters = $request->all();
+    $isOrderFilter = false;
+    $order_start_date = date("Y-m-d");
+    $order_end_date = date("Y-m-d");
+    if(count($filters)>0){
+      if($filters['orders_range']){
+        $isOrderFilter = true;
+        $order_start_date = Helpers::getStartDateFromFilter($filters['orders_range']);
+        $order_end_date = Helpers::getEndDateFromFilter($filters['orders_range']);
+      }
+    }
+    
     $isAdmin = Helpers::isAdmin();
     $isSeller = Helpers::isSeller();
     $isBuyer = Helpers::isBuyer();
@@ -72,13 +85,26 @@ class Dashboard extends Controller
     } elseif($isBuyer) {
       $user_id = Auth::user()->id;
 
-      $total_orders = Order::where("user_id", "=", $user_id)->count();
-      $pending_orders = Order::where("user_id", "=", $user_id)
-        ->where("order_status_id", "=", 1)
-        ->count();
-      $completed_orders = Order::where("user_id", "=", $user_id)
-        ->where("payment_status", "=", 'paid')
-        ->count();
+      if($isOrderFilter){
+        $total_orders = Order::where("user_id", "=", $user_id)
+          ->where("created_at", ">=", $order_start_date)
+          ->where("created_at", "<=", $order_end_date)
+          ->count();
+        $pending_orders = Order::where("user_id", "=", $user_id)
+          ->where("order_status_id", "=", 1)
+          ->count();
+        $completed_orders = Order::where("user_id", "=", $user_id)
+          ->where("payment_status", "=", 'paid')
+          ->count();
+      } else {
+        $total_orders = Order::where("user_id", "=", $user_id)->count();
+        $pending_orders = Order::where("user_id", "=", $user_id)
+          ->where("order_status_id", "=", 1)
+          ->count();
+        $completed_orders = Order::where("user_id", "=", $user_id)
+          ->where("payment_status", "=", 'paid')
+          ->count();
+      }
 
       $approved_orders_amount = Order::where("user_id", "=", $user_id)
         ->where("order_status_id", "=", 2)
@@ -130,13 +156,30 @@ class Dashboard extends Controller
     } elseif($isSeller) {
       $user_id = Auth::user()->id;
 
-      $total_orders = Order::where("seller_id", "=", $user_id)->count();
-      $pending_orders = Order::where("seller_id", "=", $user_id)
-        ->where("order_status_id", "=", 1)
-        ->count();
-      $completed_orders = Order::where("seller_id", "=", $user_id)
-        ->where("payment_status", "=", 'paid')
-        ->count();
+      if($isOrderFilter){
+        $total_orders = Order::where("seller_id", "=", $user_id)
+          ->where("created_at", ">=", $order_start_date)
+          ->where("created_at", "<=", $order_end_date)
+          ->count();
+        $pending_orders = Order::where("seller_id", "=", $user_id)
+          ->where("created_at", ">=", $order_start_date)
+          ->where("created_at", "<=", $order_end_date)
+          ->where("order_status_id", "=", 1)
+          ->count();
+        $completed_orders = Order::where("seller_id", "=", $user_id)
+          ->where("created_at", ">=", $order_start_date)
+          ->where("created_at", "<=", $order_end_date)
+          ->where("payment_status", "=", 'paid')
+          ->count();
+      } else {
+        $total_orders = Order::where("seller_id", "=", $user_id)->count();
+        $pending_orders = Order::where("seller_id", "=", $user_id)
+          ->where("order_status_id", "=", 1)
+          ->count();
+        $completed_orders = Order::where("seller_id", "=", $user_id)
+          ->where("payment_status", "=", 'paid')
+          ->count();
+      }
 
       $most_order_from_city = DB::table('orders')
         ->select('billing_region', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
@@ -215,6 +258,8 @@ class Dashboard extends Controller
       "pending_vendor_conf_count" => $pending_vendor_conf_count,
       "accept_vendor_conf_count" => $accept_vendor_conf_count,
       "reject_vendor_conf_count" => $reject_vendor_conf_count,
+      "order_start_date" => $order_start_date,
+      "order_end_date" => $order_end_date,
     ]);
   }
 }
