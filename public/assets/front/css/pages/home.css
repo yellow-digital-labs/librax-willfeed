@@ -2411,7 +2411,6 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 
 .checkout-box__prcol--price {
     text-align: right;
-    width: 100px;
 }
 
 .checkout-box__total-label {
@@ -2668,6 +2667,30 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 .fs-18 {
     font-size: 18px;
 }
+
+.swal2-styled.swal2-confirm:focus {
+    box-shadow: 0 0 0 3px rgb(0 0 0 / 50%);
+}
+
 .swal2-modal.swal2-popup .swal2-actions button {
-    min-height: 50px;
+    min-height: 45px;
+    text-transform: uppercase;
+}
+
+.swal2-styled.swal2-confirm {
+    background: #000;
+}
+
+.swal2-styled.swal2-cancel {
+    background: transparent;
+    color: #000;
+    border: 1px solid #000;
+}
+.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip] {
+    top: 2.475em;
+    left: 0.3125em;
+}
+.swal2-icon.swal2-success [class^=swal2-success-line][class$=long] {
+    top: 1.975em;
+    right: 0.5em;
 }
