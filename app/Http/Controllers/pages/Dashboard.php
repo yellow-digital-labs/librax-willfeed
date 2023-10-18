@@ -21,20 +21,36 @@ class Dashboard extends Controller
     $filters = $request->all();
     $isOrderFilter = false;
     $isRevenueFilter = false;
+    $isProductFilter = false;
+    $isVendorFilter = false;
     $order_start_date = date("Y-m-d");
     $order_end_date = date("Y-m-d");
     $revenue_start_date = date("Y-m-d");
     $revenue_end_date = date("Y-m-d");
+    $product_start_date = date("Y-m-d");
+    $product_end_date = date("Y-m-d");
+    $vendor_start_date = date("Y-m-d");
+    $vendor_end_date = date("Y-m-d");
     if(count($filters)>0){
-      if($filters['orders_range']){
+      if(isset($filters['orders_range'])){
         $isOrderFilter = true;
         $order_start_date = Helpers::getStartDateFromFilter($filters['orders_range']);
         $order_end_date = Helpers::getEndDateFromFilter($filters['orders_range']);
       }
-      if($filters['revenue_range']){
+      if(isset($filters['revenue_range'])){
         $isRevenueFilter = true;
         $revenue_start_date = Helpers::getStartDateFromFilter($filters['revenue_range']);
         $revenue_end_date = Helpers::getEndDateFromFilter($filters['revenue_range']);
+      }
+      if(isset($filters['product_range'])){
+        $isProductFilter = true;
+        $product_start_date = Helpers::getStartDateFromFilter($filters['product_range']);
+        $product_end_date = Helpers::getEndDateFromFilter($filters['product_range']);
+      }
+      if(isset($filters['vendor_range'])){
+        $isVendorFilter = true;
+        $vendor_start_date = Helpers::getStartDateFromFilter($filters['vendor_range']);
+        $vendor_end_date = Helpers::getEndDateFromFilter($filters['vendor_range']);
       }
     }
     
@@ -242,19 +258,41 @@ class Dashboard extends Controller
         ->orderBy('total_sales', 'DESC')
         ->get();
 
-      $top_selling_products = DB::table('orders')
-        ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
-        ->where("seller_id", "=", $user_id)
-        ->where("order_status_id", "=", 2)
-        ->groupBy('product_name')
-        ->orderBy('total_sales', 'DESC')
-        ->limit(5)
-        ->get();
+      if($isProductFilter){
+        $top_selling_products = DB::table('orders')
+          ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+          ->where("seller_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->where("created_at", ">=", $product_start_date)
+          ->where("created_at", "<=", $product_end_date)
+          ->groupBy('product_name')
+          ->orderBy('total_sales', 'DESC')
+          ->limit(5)
+          ->get();
+      } else {
+        $top_selling_products = DB::table('orders')
+          ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+          ->where("seller_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->groupBy('product_name')
+          ->orderBy('total_sales', 'DESC')
+          ->limit(5)
+          ->get();
+      }
 
-      $venders_count_by_status = CustomerVerified::where("seller_id", "=", $user_id)
-        ->select(DB::raw("COUNT(id) AS counts"), "status")
-        ->groupBy("status")
-        ->get();
+      if($isVendorFilter){
+        $venders_count_by_status = CustomerVerified::where("seller_id", "=", $user_id)
+          ->select(DB::raw("COUNT(id) AS counts"), "status")
+          ->where("status_on", ">=", $vendor_start_date)
+          ->where("status_on", "<=", $vendor_end_date)
+          ->groupBy("status")
+          ->get();
+      } else{
+        $venders_count_by_status = CustomerVerified::where("seller_id", "=", $user_id)
+          ->select(DB::raw("COUNT(id) AS counts"), "status")
+          ->groupBy("status")
+          ->get();
+      }
 
       
       foreach($venders_count_by_status as $_venders_count_by_status){
@@ -312,6 +350,10 @@ class Dashboard extends Controller
       "order_end_date" => $order_end_date,
       "revenue_start_date" => $revenue_start_date,
       "revenue_end_date" => $revenue_end_date,
+      "product_start_date" => $product_start_date,
+      "product_end_date" => $product_end_date,
+      "vendor_start_date" => $vendor_start_date,
+      "vendor_end_date" => $vendor_end_date,
     ]);
   }
 }

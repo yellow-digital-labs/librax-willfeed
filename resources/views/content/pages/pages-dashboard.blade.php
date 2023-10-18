@@ -48,6 +48,12 @@ $configData = Helper::appClasses();
 
         $('#bs-rangepicker-range-revenue').data('daterangepicker').setStartDate('{{date('dd-mm-YYYY', strtotime($revenue_start_date))}}');
         $('#bs-rangepicker-range-revenue').data('daterangepicker').setEndDate('{{date('dd-mm-YYYY', strtotime($revenue_end_date))}}');
+
+        $('#bs-rangepicker-range-product').data('daterangepicker').setStartDate('{{date('dd-mm-YYYY', strtotime($product_start_date))}}');
+        $('#bs-rangepicker-range-product').data('daterangepicker').setEndDate('{{date('dd-mm-YYYY', strtotime($product_end_date))}}');
+
+        $('#bs-rangepicker-range-vendor').data('daterangepicker').setStartDate('{{date('dd-mm-YYYY', strtotime($vendor_start_date))}}');
+        $('#bs-rangepicker-range-vendor').data('daterangepicker').setEndDate('{{date('dd-mm-YYYY', strtotime($vendor_end_date))}}');
     });
 </script>
 @endsection
@@ -222,15 +228,17 @@ $configData = Helper::appClasses();
     <div class="col-md-6">
         <div class="card">
             <div class="card-header d-flex justify-content-between border-bottom">
-                <div class="card-title mb-0">
-                    <h5 class="mb-0 text-black">Prodotti più
+                <div class="card-title mb-0 row">
+                    <h5 class="mb-0 text-black col">Prodotti più
                     @if($isBuyer)
                     acquistati
                     @else
                     venduti
                     @endif 
                     </h5>
-                    <small class="fw-light"></small>
+                    <div class="col-md-8 col-12 text-right">
+                        <input type="text" id="bs-rangepicker-range-product" name="product_range" class="form-control form-control-sm" />
+                    </div>
                 </div>
             </div>
             <div class="card-body pt-4">
@@ -368,9 +376,11 @@ $configData = Helper::appClasses();
     <div class="col-md-6">
         <div class="card">
             <div class="card-header d-flex justify-content-between border-bottom">
-                <div class="card-title mb-0">
-                    <h5 class="mb-0 text-black">Clienti</h5>
-                    <small class="fw-light"></small>
+                <div class="card-title mb-0 row">
+                    <h5 class="mb-0 text-black col">Clienti</h5>
+                    <div class="col-md-8 col-12 text-right">
+                        <input type="text" id="bs-rangepicker-range-vendor" name="vendor_range" class="form-control form-control-sm" />
+                    </div>
                 </div>
             </div>
             <div class="card-body pt-4">
