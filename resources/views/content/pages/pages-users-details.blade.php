@@ -356,7 +356,7 @@ $configData = Helper::appClasses();
                             </div>
 
                             <div class="col-sm-6 col-12">
-                                <h6 class="text-black mb-2">Codice di esercizio impianto minore</h6>
+                                <h6 class="text-black mb-2">Codice licenza cisterna</h6>
                                 <p class="mb-0">{{$user_detail->minor_plant_code?$user_detail->minor_plant_code:'NA'}}</p>
                             </div>
                         </div>

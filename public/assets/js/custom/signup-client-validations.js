@@ -158,6 +158,11 @@ document.addEventListener('DOMContentLoaded', function(e) {
                         validators: {
                             notEmpty: {
                                 message: 'Please enter partita IVA'
+                            },
+                            stringLength: {
+                                min: 11,
+                                max: 11,
+                                message: 'partita IVA should be 11 digit long'
                             }
                         }
                     },
