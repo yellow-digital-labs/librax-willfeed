@@ -177,9 +177,11 @@ $configData = Helper::appClasses();
     <div class="col-md-6">
         <div class="card">
             <div class="card-header d-flex justify-content-between border-bottom">
-                <div class="card-title mb-0">
-                    <h5 class="mb-0 text-black">Acquisti</h5>
-                    <small class="fw-light"></small>
+                <div class="card-title mb-0 row">
+                    <h5 class="mb-0 text-black col">Acquisti</h5>
+                    <div class="col-md-8 col-12 text-right">
+                        <input type="text" id="bs-rangepicker-range-revenue" name="revenue_range" class="form-control form-control-sm" />
+                    </div>
                 </div>
             </div>
             <div class="card-body pt-4">

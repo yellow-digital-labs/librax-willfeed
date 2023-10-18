@@ -130,31 +130,69 @@ class Dashboard extends Controller
           ->count();
       }
 
-      $approved_orders_amount = Order::where("user_id", "=", $user_id)
-        ->where("order_status_id", "=", 2)
-        ->groupBy("payment_status")
-        ->sum("total_payable_amount");
+      if($isRevenueFilter){
+        $approved_orders_amount = Order::where("user_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->where("created_at", ">=", $revenue_start_date)
+          ->where("created_at", "<=", $revenue_end_date)
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
 
-      $approved_orders_paid_amount = Order::where("user_id", "=", $user_id)
-        ->where("order_status_id", "=", 2)
-        ->where("payment_status", "=", 'paid')
-        ->groupBy("payment_status")
-        ->sum("total_payable_amount");
+        $approved_orders_paid_amount = Order::where("user_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->where("payment_status", "=", 'paid')
+          ->where("created_at", ">=", $revenue_start_date)
+          ->where("created_at", "<=", $revenue_end_date)
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
 
-      $approved_orders_unpaid_amount = Order::where("user_id", "=", $user_id)
-        ->where("order_status_id", "=", 2)
-        ->where("payment_status", "=", 'unpaid')
-        ->groupBy("payment_status")
-        ->sum("total_payable_amount");
+        $approved_orders_unpaid_amount = Order::where("user_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->where("payment_status", "=", 'unpaid')
+          ->where("created_at", ">=", $revenue_start_date)
+          ->where("created_at", "<=", $revenue_end_date)
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
+      } else {
+        $approved_orders_amount = Order::where("user_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
 
-      $top_selling_products = DB::table('orders')
-        ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
-        ->where("user_id", "=", $user_id)
-        ->where("order_status_id", "=", 2)
-        ->groupBy('product_name')
-        ->orderBy('total_sales', 'DESC')
-        ->limit(5)
-        ->get();
+        $approved_orders_paid_amount = Order::where("user_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->where("payment_status", "=", 'paid')
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
+
+        $approved_orders_unpaid_amount = Order::where("user_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->where("payment_status", "=", 'unpaid')
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
+      }
+
+      if($isProductFilter){
+        $top_selling_products = DB::table('orders')
+          ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+          ->where("user_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->where("created_at", ">=", $product_start_date)
+          ->where("created_at", "<=", $product_end_date)
+          ->groupBy('product_name')
+          ->orderBy('total_sales', 'DESC')
+          ->limit(5)
+          ->get();
+      } else {
+        $top_selling_products = DB::table('orders')
+          ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+          ->where("user_id", "=", $user_id)
+          ->where("order_status_id", "=", 2)
+          ->groupBy('product_name')
+          ->orderBy('total_sales', 'DESC')
+          ->limit(5)
+          ->get();
+      }
 
       $venders_count_by_status = CustomerVerified::where("customer_id", "=", $user_id)
         ->select(DB::raw("COUNT(id) AS counts"), "status")
