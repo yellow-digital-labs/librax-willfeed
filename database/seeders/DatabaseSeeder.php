@@ -14,20 +14,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Subscription::truncate();
-        DB::table('subscriptions')->insert([
-            'name' => 'Base',
-            'tagline' => 'Per iniziare',
-            'image' => 'assets/img/illustrations/page-pricing-basic.png',
-            'amount' => 29.00,
-            'description' => '<ul class="ps-0 my-4 pt-2 list-disc">
-                <li>100 responses a month</li>
-                <li>Unlimited forms and surveys</li>
-                <li>Unlimited fields</li>
-                <li>Basic form creation tools</li>
-                <li>Up to 2 subdomains</li>
-            </ul>'
+        // stripe_customer_id
+        \App\Models\User::where([])->update([
+            "stripe_customer_id" => NULL
         ]);
+        // \App\Models\Subscription::truncate();
+        // DB::table('subscriptions')->insert([
+        //     'name' => 'Base',
+        //     'tagline' => 'Per iniziare',
+        //     'image' => 'assets/img/illustrations/page-pricing-basic.png',
+        //     'amount' => 29.00,
+        //     'description' => '<ul class="ps-0 my-4 pt-2 list-disc">
+        //         <li>100 responses a month</li>
+        //         <li>Unlimited forms and surveys</li>
+        //         <li>Unlimited fields</li>
+        //         <li>Basic form creation tools</li>
+        //         <li>Up to 2 subdomains</li>
+        //     </ul>'
+        // ]);
         // DB::table('subscriptions')->insert([
         //     'name' => 'Standard',
         //     'tagline' => 'Per medie imprese',
