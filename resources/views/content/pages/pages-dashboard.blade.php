@@ -268,6 +268,17 @@ $configData = Helper::appClasses();
                         </div>
                     </li>
                 @endforeach
+                @if(count($top_selling_products) == 0)
+                    <li class="d-flex align-items-center mb-4">
+                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                                <div class="d-flex align-items-center">
+                                    <h6 class="mb-0 me-1">No data found</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                @endif
             </div>
         </div>
     </div>
@@ -276,9 +287,11 @@ $configData = Helper::appClasses();
     <div class="col-md-6">
         <div class="card">
             <div class="card-header d-flex justify-content-between border-bottom">
-                <div class="card-title mb-0">
-                    <h5 class="mb-0 text-black">Accounts</h5>
-                    <small class="fw-light"></small>
+                <div class="card-title mb-0 row">
+                    <h5 class="mb-0 text-black col">Accounts</h5>
+                    <div class="col-md-8 col-12 text-right">
+                        <input type="text" id="bs-rangepicker-range-vendor" name="vendor_range" class="form-control form-control-sm" />
+                    </div>
                 </div>
             </div>
             <div class="card-body pt-4">
@@ -301,11 +314,41 @@ $configData = Helper::appClasses();
                             </h6>
                             <div class="d-flex">
                                 <p class="mb-0 fw-medium">{{$count}}</p>
-                                <p class="ms-3 text-success mb-0">{{number_format($count*100/$total_accounts, 2)}}%</p>
+                                <p class="ms-3 text-success mb-0">
+                                @if($total_accounts>0)
+                                    {{number_format($count*100/$total_accounts, 2)}}
+                                @else
+                                    0.00
+                                @endif
+                                %</p>
                             </div>
                         </div>
                     </li>
                 @endforeach
+                @if(count($account_counts)==0)
+                    <li class="mb-4 pb-1 d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between w-100 flex-wrap">
+                            <h6 class="mb-0">
+                                Cliente
+                            </h6>
+                            <div class="d-flex">
+                                <p class="mb-0 fw-medium">0</p>
+                                <p class="ms-3 text-success mb-0">0.00%</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mb-4 pb-1 d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between w-100 flex-wrap">
+                            <h6 class="mb-0">
+                                Venditore
+                            </h6>
+                            <div class="d-flex">
+                                <p class="mb-0 fw-medium">0</p>
+                                <p class="ms-3 text-success mb-0">0.00%</p>
+                            </div>
+                        </div>
+                    </li>
+                @endif
                     <li class="mb-4 pb-1 d-flex justify-content-between align-items-center">
                         <div class="d-flex justify-content-between w-100 flex-wrap">
                             <h6 class="mb-0">
@@ -313,7 +356,13 @@ $configData = Helper::appClasses();
                             </h6>
                             <div class="d-flex">
                                 <p class="mb-0 fw-medium">{{$private_distributers}}</p>
-                                <p class="ms-3 text-success mb-0">{{number_format($private_distributers*100/$total_accounts, 2)}}%</p>
+                                <p class="ms-3 text-success mb-0">
+                                @if($total_accounts>0)
+                                    {{number_format($private_distributers*100/$total_accounts, 2)}}
+                                @else
+                                    0.00
+                                @endif
+                                %</p>
                             </div>
                         </div>
                     </li>
@@ -380,9 +429,6 @@ $configData = Helper::appClasses();
             <div class="card-header d-flex justify-content-between border-bottom">
                 <div class="card-title mb-0 row">
                     <h5 class="mb-0 text-black col">Clienti</h5>
-                    <div class="col-md-8 col-12 text-right">
-                        <input type="text" id="bs-rangepicker-range-vendor" name="vendor_range" class="form-control form-control-sm" />
-                    </div>
                 </div>
             </div>
             <div class="card-body pt-4">

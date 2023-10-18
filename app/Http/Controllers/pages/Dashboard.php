@@ -19,10 +19,10 @@ class Dashboard extends Controller
   {
 
     $filters = $request->all();
-    $isOrderFilter = false;
-    $isRevenueFilter = false;
-    $isProductFilter = false;
-    $isVendorFilter = false;
+    $isOrderFilter = true;
+    $isRevenueFilter = true;
+    $isProductFilter = true;
+    $isVendorFilter = true;
     $order_start_date = date("Y-m-d");
     $order_end_date = date("Y-m-d");
     $revenue_start_date = date("Y-m-d");
@@ -73,39 +73,116 @@ class Dashboard extends Controller
     $accept_vendor_conf_count = 0;
     $reject_vendor_conf_count = 0;
     if($isAdmin){
-      $total_orders = Order::where([])->count();
-      $pending_orders = Order::where([])
-        ->where("order_status_id", "=", 1)
-        ->count();
-      $completed_orders = Order::where([])
-        ->where("payment_status", "=", 'paid')
-        ->count();
+      if($isOrderFilter){
+        $total_orders = Order::where([])
+          ->where("created_at", ">=", $order_start_date)
+          ->where("created_at", "<=", $order_end_date)
+          ->count();
+        $pending_orders = Order::where([])
+          ->where("order_status_id", "=", 1)
+          ->where("created_at", ">=", $order_start_date)
+          ->where("created_at", "<=", $order_end_date)
+          ->count();
+        $completed_orders = Order::where([])
+          ->where("payment_status", "=", 'paid')
+          ->where("created_at", ">=", $order_start_date)
+          ->where("created_at", "<=", $order_end_date)
+          ->count();
+      } else {
+        $total_orders = Order::where([])->count();
+        $pending_orders = Order::where([])
+          ->where("order_status_id", "=", 1)
+          ->count();
+        $completed_orders = Order::where([])
+          ->where("payment_status", "=", 'paid')
+          ->count();
+      }
 
-      $most_order_from_city = DB::table('orders')
-        ->select('billing_region', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
-        ->groupBy('billing_region')
-        ->orderBy('total_sales', 'DESC')
-        ->limit(4)
-        ->get();
+      if($isRevenueFilter){
+        $approved_orders_amount = Order::where("order_status_id", "=", 2)
+          ->where("created_at", ">=", $revenue_start_date)
+          ->where("created_at", "<=", $revenue_end_date)
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
 
-      $payment_method_wise_income = DB::table('orders')
-        ->select('payment_method_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
-        ->where("payment_status", "=", "paid")
-        ->groupBy('payment_method_name')
-        ->orderBy('total_sales', 'DESC')
-        ->get();
+        $approved_orders_paid_amount = Order::where("order_status_id", "=", 2)
+          ->where("payment_status", "=", 'paid')
+          ->where("created_at", ">=", $revenue_start_date)
+          ->where("created_at", "<=", $revenue_end_date)
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
 
-      $top_selling_products = DB::table('orders')
-        ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
-        ->where("order_status_id", "=", 2)
-        ->groupBy('product_name')
-        ->orderBy('total_sales', 'DESC')
-        ->limit(5)
-        ->get();
+        $approved_orders_unpaid_amount = Order::where("order_status_id", "=", 2)
+          ->where("payment_status", "=", 'unpaid')
+          ->where("created_at", ">=", $revenue_start_date)
+          ->where("created_at", "<=", $revenue_end_date)
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
+      } else {
+        $approved_orders_amount = Order::where("order_status_id", "=", 2)
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
 
-      $account_counts = User::select(DB::raw("COUNT(id) AS accounts"), 'accountType')->where("accountType", "<>", "0")->groupBy("accountType")->orderBy("accountType")->get();
-      $total_accounts = User::where("accountType", "<>", "0")->count();
-      $private_distributers = UserDetail::where('is_private_distributer', '=', 'Si')->groupBy('is_private_distributer')->count();
+        $approved_orders_paid_amount = Order::where("order_status_id", "=", 2)
+          ->where("payment_status", "=", 'paid')
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
+
+        $approved_orders_unpaid_amount = Order::where("order_status_id", "=", 2)
+          ->where("payment_status", "=", 'unpaid')
+          ->groupBy("payment_status")
+          ->sum("total_payable_amount");
+      }
+
+      if($isProductFilter){
+        $top_selling_products = DB::table('orders')
+          ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+          ->where("order_status_id", "=", 2)
+          ->where("created_at", ">=", $product_start_date)
+          ->where("created_at", "<=", $product_end_date)
+          ->groupBy('product_name')
+          ->orderBy('total_sales', 'DESC')
+          ->limit(5)
+          ->get();
+      } else {
+        $top_selling_products = DB::table('orders')
+          ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+          ->where("order_status_id", "=", 2)
+          ->groupBy('product_name')
+          ->orderBy('total_sales', 'DESC')
+          ->limit(5)
+          ->get();
+      }
+
+      if($isVendorFilter){
+        $account_counts = User::select(DB::raw("COUNT(id) AS accounts"), 'accountType')
+          ->where("accountType", "<>", "0")
+          ->where("created_at", ">=", $vendor_start_date)
+          ->where("created_at", "<=", $vendor_end_date)
+          ->groupBy("accountType")
+          ->orderBy("accountType")
+          ->get();
+        $total_accounts = User::where("accountType", "<>", "0")
+          ->where("created_at", ">=", $vendor_start_date)
+          ->where("created_at", "<=", $vendor_end_date)
+          ->count();
+        $private_distributers = UserDetail::where('is_private_distributer', '=', 'Si')
+          ->where("created_at", ">=", $vendor_start_date)
+          ->where("created_at", "<=", $vendor_end_date)
+          ->groupBy('is_private_distributer')
+          ->count();
+      } else {
+        $account_counts = User::select(DB::raw("COUNT(id) AS accounts"), 'accountType')
+          ->where("accountType", "<>", "0")
+          ->groupBy("accountType")
+          ->orderBy("accountType")
+          ->get();
+        $total_accounts = User::where("accountType", "<>", "0")
+          ->count();
+        $private_distributers = UserDetail::where('is_private_distributer', '=', 'Si')
+          ->groupBy('is_private_distributer')
+          ->count();
+      }
     } elseif($isBuyer) {
       $user_id = Auth::user()->id;
 
@@ -280,22 +357,6 @@ class Dashboard extends Controller
           ->sum("total_payable_amount");
       }
 
-      $most_order_from_city = DB::table('orders')
-        ->select('billing_region', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
-        ->where("seller_id", "=", $user_id)
-        ->groupBy('billing_region')
-        ->orderBy('total_sales', 'DESC')
-        ->limit(4)
-        ->get();
-
-      $payment_method_wise_income = DB::table('orders')
-        ->select('payment_method_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
-        ->where("seller_id", "=", $user_id)
-        ->where("payment_status", "=", "paid")
-        ->groupBy('payment_method_name')
-        ->orderBy('total_sales', 'DESC')
-        ->get();
-
       if($isProductFilter){
         $top_selling_products = DB::table('orders')
           ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
@@ -318,19 +379,10 @@ class Dashboard extends Controller
           ->get();
       }
 
-      if($isVendorFilter){
-        $venders_count_by_status = CustomerVerified::where("seller_id", "=", $user_id)
-          ->select(DB::raw("COUNT(id) AS counts"), "status")
-          ->where("status_on", ">=", $vendor_start_date)
-          ->where("status_on", "<=", $vendor_end_date)
-          ->groupBy("status")
-          ->get();
-      } else{
-        $venders_count_by_status = CustomerVerified::where("seller_id", "=", $user_id)
-          ->select(DB::raw("COUNT(id) AS counts"), "status")
-          ->groupBy("status")
-          ->get();
-      }
+      $venders_count_by_status = CustomerVerified::where("seller_id", "=", $user_id)
+        ->select(DB::raw("COUNT(id) AS counts"), "status")
+        ->groupBy("status")
+        ->get();
 
       
       foreach($venders_count_by_status as $_venders_count_by_status){
@@ -367,8 +419,6 @@ class Dashboard extends Controller
       "total_orders" => $total_orders,
       "pending_orders" => $pending_orders,
       "completed_orders" => $completed_orders,
-      "most_order_from_city" => $most_order_from_city,
-      "payment_method_wise_income" => $payment_method_wise_income,
       "top_selling_products" => $top_selling_products,
       "total_sell_from_top_selling" => $total_sell_from_top_selling,
       "total_payment_method_wise_income" => $total_payment_method_wise_income,
