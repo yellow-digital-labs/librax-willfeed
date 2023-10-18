@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('app:subscription-payment')
-            ->everyMinute()
+            ->dailyAt("01:05")
             ->runInBackground()
             ->emailOutputTo("yellow.digital.labs+cron@gmail.com")
             ->emailOutputOnFailure("yellow.digital.labs+failure@gmail.com");
