@@ -12,6 +12,7 @@ $configData = Helper::appClasses();
 
 <!-- CSS: Framework Declaration -->
 <link rel="stylesheet" href="{{asset('assets/front/plugins/uikit-3.16.22/css/uikit.min.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/rateyo/rateyo.css')}}" />
 
 <!-- CSS: Fonts Declaration -->
 <link rel="stylesheet" href="{{asset('assets/front/css/components/fonts.css')}}" />

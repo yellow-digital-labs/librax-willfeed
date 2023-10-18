@@ -77,14 +77,12 @@ $configData = Helper::appClasses();
 <div class="row align-items-start g-4">
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header d-flex justify-content-between border-bottom">
+            <div class="card-header d-flex justify-content-between border-bottom align-items-center">
                 <div class="card-title mb-0">
-                    <div class="row">
-                        <h5 class="mb-0 text-black col">Ordini</h5>
-                        <div class="col-md-8 col-12 text-right">
-                            <input type="text" id="bs-rangepicker-range" name="orders_range" class="form-control form-control-sm" />
-                        </div>
-                    </div>
+                    <h5 class="mb-0 text-black col">Ordini</h5>
+                </div>
+                <div>
+                    <input type="text" id="bs-rangepicker-range" name="orders_range" class="form-control form-control-sm" />
                 </div>
             </div>
             <div class="card-body">
@@ -122,12 +120,12 @@ $configData = Helper::appClasses();
     @if($isAdmin || $isSeller)
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header d-flex justify-content-between border-bottom">
+            <div class="card-header d-flex justify-content-between border-bottom align-items-center">
                 <div class="card-title mb-0 row">
                     <h5 class="mb-0 text-black col">Fatturato</h5>
-                    <div class="col-md-8 col-12 text-right">
-                        <input type="text" id="bs-rangepicker-range-revenue" name="revenue_range" class="form-control form-control-sm" />
-                    </div>
+                </div>
+                <div>
+                    <input type="text" id="bs-rangepicker-range-revenue" name="revenue_range" class="form-control form-control-sm" />
                 </div>
             </div>
             <div class="card-body pt-4">
@@ -176,12 +174,12 @@ $configData = Helper::appClasses();
     @if($isBuyer)
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header d-flex justify-content-between border-bottom">
+            <div class="card-header d-flex justify-content-between border-bottom align-items-center">
                 <div class="card-title mb-0 row">
                     <h5 class="mb-0 text-black col">Acquisti</h5>
-                    <div class="col-md-8 col-12 text-right">
-                        <input type="text" id="bs-rangepicker-range-revenue" name="revenue_range" class="form-control form-control-sm" />
-                    </div>
+                </div>
+                <div>
+                    <input type="text" id="bs-rangepicker-range-revenue" name="revenue_range" class="form-control form-control-sm" />
                 </div>
             </div>
             <div class="card-body pt-4">
@@ -229,7 +227,7 @@ $configData = Helper::appClasses();
 
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header d-flex justify-content-between border-bottom">
+            <div class="card-header d-flex justify-content-between border-bottom align-items-center">
                 <div class="card-title mb-0 row">
                     <h5 class="mb-0 text-black col">Prodotti più
                     @if($isBuyer)
@@ -238,9 +236,9 @@ $configData = Helper::appClasses();
                     venduti
                     @endif 
                     </h5>
-                    <div class="col-md-8 col-12 text-right">
-                        <input type="text" id="bs-rangepicker-range-product" name="product_range" class="form-control form-control-sm" />
-                    </div>
+                </div>
+                <div>
+                    <input type="text" id="bs-rangepicker-range-product" name="product_range" class="form-control form-control-sm" />
                 </div>
             </div>
             <div class="card-body pt-4">
@@ -286,12 +284,12 @@ $configData = Helper::appClasses();
     @if($isAdmin)
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header d-flex justify-content-between border-bottom">
+            <div class="card-header d-flex justify-content-between border-bottom align-items-center">
                 <div class="card-title mb-0 row">
                     <h5 class="mb-0 text-black col">Accounts</h5>
-                    <div class="col-md-8 col-12 text-right">
-                        <input type="text" id="bs-rangepicker-range-vendor" name="vendor_range" class="form-control form-control-sm" />
-                    </div>
+                </div>
+                <div class="col-md-8 col-12 text-right">
+                    <input type="text" id="bs-rangepicker-range-vendor" name="vendor_range" class="form-control form-control-sm" />
                 </div>
             </div>
             <div class="card-body pt-4">

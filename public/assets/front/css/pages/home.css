@@ -1439,6 +1439,7 @@ marquee.dash-charts__marquee {
     border-radius: 18px;
     border: 1px solid #DBDADE;
     padding: 30px 20px 25px;
+    min-height: 100%;
 }
 
 .landing-reviews__rating {
@@ -1451,6 +1452,26 @@ marquee.dash-charts__marquee {
     font-size: 16px;
     font-weight: 500;
     letter-spacing: 0.48px;
+    max-height: 150px;
+    overflow: auto;
+}
+
+
+
+.landing-reviews__text::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+.landing-reviews__text::-webkit-scrollbar-track {
+  background: #D1D1D1;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+.landing-reviews__text::-webkit-scrollbar-thumb {
+  background-color: var(--text-color);
+  border-radius: 8px;
 }
 
 .landing-reviews__author {
@@ -2646,4 +2667,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 }
 .fs-18 {
     font-size: 18px;
+}
+.swal2-modal.swal2-popup .swal2-actions button {
+    min-height: 50px;
 }
