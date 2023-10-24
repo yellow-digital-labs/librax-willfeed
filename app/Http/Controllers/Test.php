@@ -9,8 +9,9 @@ use App\Mail\UserVerification;
 class Test extends Controller
 {
     public function index(){
-        echo date("Y-m-d H:i:s");die;
-        Mail::to('tejas.ambalia1994@gmail.com')->send(new UserVerification([
+        dd("");
+        $to = explode(',', env('MAIL_TO_ADDRESS'));
+        Mail::to($to)->send(new UserVerification([
             "accountTypeName" => 'Seller',
             "verificationUrl" => 'google.com'
         ]));

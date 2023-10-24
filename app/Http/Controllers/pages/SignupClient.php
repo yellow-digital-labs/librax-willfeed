@@ -131,7 +131,8 @@ class SignupClient extends Controller
     );
 
     //send emil to admin
-    Mail::to(env('MAIL_TO_ADDRESS'))->send(new UserRequest([
+    $to = explode(',', env('MAIL_TO_ADDRESS'));
+    Mail::to($to)->send(new UserRequest([
       "accountTypeName" => $authUser['accountTypeName'],
       "url" => route("user-buyer"),
       "email" => $authUser['email'],

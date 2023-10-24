@@ -95,7 +95,8 @@ class SignupSeller extends Controller
     );
 
     //send email to admin
-    Mail::to(env('MAIL_TO_ADDRESS'))->send(new UserRequest([
+    $to = explode(',', env('MAIL_TO_ADDRESS'));
+    Mail::to($to)->send(new UserRequest([
       "accountTypeName" => $authUser['accountTypeName'],
       "url" => route("user-seller"),
       "email" => $authUser['email'],

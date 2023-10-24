@@ -30,7 +30,8 @@ class PageContactus extends Controller
         );
     }
 
-    Mail::to(env("MAIL_TO_ADDRESS"))->send(new ContactUs([
+    $to = explode(',', env('MAIL_TO_ADDRESS'));
+    Mail::to($to)->send(new ContactUs([
         "name" => $request->name,
         "email" => $request->email,
         "mobile" => $request->mobile,
