@@ -59,7 +59,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{route("logout")}}">
+                                    <a class="dropdown-item" href="{{route("logout-post")}}">
                                         <i class="wf-icon wf-icon-signout"></i>
                                         <span class="align-middle">Esci</span>
                                     </a>

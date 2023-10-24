@@ -48,7 +48,7 @@ $configData = Helper::appClasses();
             </button>
           </form>
 
-          <form method="POST" action="{{route('logout')}}">
+          <form method="POST" action="{{route('logout-post')}}">
             @csrf
 
             <button type="submit" class="w-100 btn btn-danger">

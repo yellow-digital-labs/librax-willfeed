@@ -29,7 +29,7 @@ Route::get('/reset-password', $controller_path . '\pages\ResetPassword@index')->
 Route::get('/verify-email', $controller_path . '\pages\VerifyEmail@index')->name('verify-email');
 Route::get('/verify-email/resend', $controller_path . '\pages\VerifyEmail@resend')->name('resend-verify-email');
 Route::get('/verify-email/{token}', $controller_path . '\pages\VerifyEmail@confirm')->name('verify-email-confirm');
-Route::get('logout', [ App\Http\Controllers\ClientController::class, 'logout'])->name('logout');
+Route::get('logout', [ App\Http\Controllers\ClientController::class, 'logout'])->name('logout-post');
 
 
 // Route::get('/home', $controller_path . '\pages\MainHome@index')->name('pages-main-home');
@@ -94,8 +94,8 @@ Route::middleware([
     Route::post('/product/{id}/edit', $controller_path . '\pages\Product@update')->name('product-update'); //product update
     Route::delete('/product/{id}', $controller_path . '\pages\Product@delete')->name('product-delete'); //product delete
     Route::delete('/admin/product/{id}', $controller_path . '\pages\Product@deleteAdmin')->name('product-delete-admin'); //product delete
-    Route::get('/admin/product/{id}/edit', $controller_path . '\pages\Product@editAdmin')->name('product-edit'); //product edit admin
-    Route::post('/admin/product/{id}/edit', $controller_path . '\pages\Product@updateAdmin')->name('product-update'); //product update admin
+    Route::get('/admin/product/{id}/edit', $controller_path . '\pages\Product@editAdmin')->name('product-edit-admin'); //product edit admin
+    Route::post('/admin/product/{id}/edit', $controller_path . '\pages\Product@updateAdmin')->name('product-update-admin'); //product update admin
     Route::post('/product/{id}/stock', $controller_path . '\pages\Product@stock')->name('product-update-stock'); //product update stock
     Route::post('/product/{id}/detail', $controller_path . '\pages\Product@detail')->name('product-detail'); //product detail ajax
     //admin
