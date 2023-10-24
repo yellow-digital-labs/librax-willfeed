@@ -580,20 +580,31 @@ $configData = Helper::appClasses();
                                 <h6 class="mb-1">Scade il {{date('d F, Y', strtotime($user->exp_datetime))}}</h6>
                                 <p>Riceverai una notifica alla scadenza del piano</p>
 
-                                <h6 class="mb-1">{{$user->subscription_amount==0?'Free':'€'.$user->subscription_amount}} al mese <span class="badge bg-label-{{$remainingDays>0?'success':'danger'}} badge--{{$remainingDays>0?'success':'danger'}}">{{$remainingDays>0?'Active':'Expired'}}</span></h6>
+                                <h6 class="mb-1">
+                                    €{{$subscriptions[0]->amount}} al mese
+                                    <span class="badge bg-label-{{$remainingDays>0?'success':'danger'}} badge--{{$remainingDays>0?'success':'danger'}}">{{$remainingDays>0?'Active':'Expired'}}</span></h6>
                                 <p class="mb-3">Il piano standard per iniziare</p>
+                                {{-- <p class="mb-3 text-danger">Il tuo piano è scaduto, per continuare aggiungi il metodo di pagamento e sottoscrivi il piano</p> --}}
 
                                 {{-- <button type="button" class="btn btn-primary waves-effect waves-light me-2 mt-2">Salva</button> --}}
 
-                                <button type="button" class="btn btn-outline-dark waves-effect mt-2">Indietro</button>
+                                {{-- <button type="button" class="btn btn-outline-dark waves-effect mt-2">Indietro</button> --}}
 
                             </div>
 
                             <div class="col-sm-6 col-12">
+                                @if($remainingDays<=5 && $remainingDays>0)
                                 <div class="alert alert-warning" role="alert">
                                     <h5 class="alert-heading">Piano in scadenza</h5>
                                     <p class="mb-0 fw-normal">Aggiorna il metodo di pagamento</p>
                                 </div>
+                                @endif
+                                @if($remainingDays<0)
+                                <div class="alert alert-danger" role="alert">
+                                    <h5 class="alert-heading">Piano scaduto</h5>
+                                    <p class="mb-0 fw-normal">Aggiorna il metodo di pagamento</p>
+                                </div>
+                                @endif
                                 <div class="d-flex justify-content-between align-items-center mb-1 fw-semibold text-heading">
                                     <span>Giorni</span>
                                     <span>{{$remainingDays}} giorni rimasti</span>
@@ -633,7 +644,7 @@ $configData = Helper::appClasses();
                                         @if($subscription->id == $user->subscription_id && $remainingDays > 0)
                                             <a class="btn btn-label-success d-grid w-100">Your Current Plan</a>
                                         @else
-                                            <a href="{{url('auth/register-basic')}}" class="btn btn-primary d-grid w-100">Subscribe</a>
+                                            {{-- <a href="{{url('auth/register-basic')}}" class="btn btn-primary d-grid w-100">Subscribe</a> --}}
                                         @endif
                                     </div>
                                 </div>

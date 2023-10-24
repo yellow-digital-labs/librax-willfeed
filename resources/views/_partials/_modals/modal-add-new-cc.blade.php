@@ -13,16 +13,6 @@
           <input type='hidden' name='stripeToken' id='stripe-token-id'>                              
           <br>
           <div id="card-element" class="form-control mb-2" ></div>
-          <div class="col-12 mb-5">
-            <label class="switch">
-              <input type="checkbox" name="save_card" class="switch-input" value="yes">
-              <span class="switch-toggle-slider">
-                <span class="switch-on"></span>
-                <span class="switch-off"></span>
-              </span>
-              <span class="switch-label">Save card for future billing?</span>
-            </label>
-          </div>
           <div class="col-12 text-center">
             <button type="button" class="btn btn-primary me-sm-3 me-1" id="pay-btn" onclick="createToken()">Submit</button>
             <button type="reset" class="btn btn-label-secondary btn-reset" data-bs-dismiss="modal" aria-label="Close">Cancel</button>

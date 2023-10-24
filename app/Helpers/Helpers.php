@@ -189,7 +189,7 @@ class Helpers
     $datetime1 = new \DateTime($startDate);
     $datetime2 = new \DateTime($endDate);
     $interval = $datetime1->diff($datetime2);
-    $days = $interval->format('%a');
+    $days = $interval->format('%r%a');
 
     return $days;
   }

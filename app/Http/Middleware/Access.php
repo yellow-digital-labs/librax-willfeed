@@ -38,6 +38,19 @@ class Access
         } elseif (Auth::user()->approved_by_admin == "No"){
           return redirect()->route("reject-signup");
         }
+
+        if($request->route()->action['as'] != 'profile' && $request->route()->action['as'] != 'stripe.post' && $request->route()->action['as'] != 'stripe.payment.delete') {
+          if(Auth::check()) {
+            
+            $exp_date = strtotime(Auth::user()->exp_datetime);
+            $curr_date = strtotime(date("Y-m-d"));
+            
+            if($exp_date < $curr_date){
+              //redirect to profile page
+              return redirect()->route("profile");
+            }
+          }
+        }
       }
     }
 
