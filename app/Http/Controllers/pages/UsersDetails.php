@@ -76,6 +76,7 @@ class UsersDetails extends Controller
       'isOnlyProfile' => $isOnlyProfile,
       'authUser' => $authUser,
       'payment_methods' => $payment_methods,
+      'is_expired' => null,
     ]);
   }
 }
