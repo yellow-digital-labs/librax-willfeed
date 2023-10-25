@@ -582,7 +582,7 @@ $configData = Helper::appClasses();
 
                                 <h6 class="mb-1">
                                     €{{$subscriptions[0]->amount}} al mese
-                                    <span class="badge bg-label-{{$remainingDays>0?'success':'danger'}} badge--{{$remainingDays>0?'success':'danger'}}">{{$remainingDays>0?'Active':'Expired'}}</span></h6>
+                                    <span class="badge bg-label-{{$remainingDays>=0?'success':'danger'}} badge--{{$remainingDays>=0?'success':'danger'}}">{{$remainingDays>=0?'Active':'Expired'}}</span></h6>
                                 <p class="mb-3">Il piano standard per iniziare</p>
                                 {{-- <p class="mb-3 text-danger">Il tuo piano è scaduto, per continuare aggiungi il metodo di pagamento e sottoscrivi il piano</p> --}}
 
@@ -593,7 +593,7 @@ $configData = Helper::appClasses();
                             </div>
 
                             <div class="col-sm-6 col-12">
-                                @if($remainingDays<=5 && $remainingDays>0)
+                                @if($remainingDays<=5 && $remainingDays>=0)
                                 <div class="alert alert-warning" role="alert">
                                     <h5 class="alert-heading">Piano in scadenza</h5>
                                     <p class="mb-0 fw-normal">Aggiorna il metodo di pagamento</p>
@@ -641,7 +641,7 @@ $configData = Helper::appClasses();
                                             </div>
                                         </div>
                                         {!!$subscription->description!!}
-                                        @if($subscription->id == $user->subscription_id && $remainingDays > 0)
+                                        @if($subscription->id == $user->subscription_id && $remainingDays >= 0)
                                             <a class="btn btn-label-success d-grid w-100">Your Current Plan</a>
                                         @else
                                             {{-- <a href="{{url('auth/register-basic')}}" class="btn btn-primary d-grid w-100">Subscribe</a> --}}
