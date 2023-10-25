@@ -12,8 +12,9 @@ use Stripe;
 
 class UsersDetails extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
+    $is_expired = $request->get('expired');
     $user = Auth::user();
     $user_detail = UserDetail::where(['user_id' => $user->id])->first();
     $subscriptions = Subscription::where(['status' => 'active'])->get();
@@ -38,6 +39,7 @@ class UsersDetails extends Controller
       'isOnlyProfile' => $isOnlyProfile,
       'authUser' => $user,
       'payment_methods' => $payment_methods,
+      'is_expired' => $is_expired
     ]);
   }
 

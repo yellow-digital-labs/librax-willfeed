@@ -47,7 +47,7 @@ class Access
             
             if($exp_date < $curr_date){
               //redirect to profile page
-              return redirect()->route("profile");
+              return redirect()->route("profile", ["expired" => "true"]);
             }
           }
         }

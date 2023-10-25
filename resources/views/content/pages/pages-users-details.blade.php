@@ -129,9 +129,9 @@ $configData = Helper::appClasses();
         <!-- User Pills -->
         @if(!$isOnlyProfile)
         <ul class="nav nav-pills flex-row mb-4 card-header-pills">
-            <li class="nav-item"><a class="nav-link active" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Profilo" aria-controls="navs-pills-top-Profilo" aria-selected="true"><i class="wf-icon-User-Info ti-xs me-1"></i>Profilo</a></li>
+            <li class="nav-item"><a class="nav-link {{$is_expired?'':'active'}}" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Profilo" aria-controls="navs-pills-top-Profilo" aria-selected="true"><i class="wf-icon-User-Info ti-xs me-1"></i>Profilo</a></li>
 
-            <li class="nav-item"><a class="nav-link" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Fatturazione" aria-controls="navs-pills-top-Fatturazione" aria-selected="true"><i class="wf-icon-file-text1 ti-xs me-1"></i>Abbonamento</a></li>
+            <li class="nav-item"><a class="nav-link {{$is_expired?'active':''}}" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Fatturazione" aria-controls="navs-pills-top-Fatturazione" aria-selected="true"><i class="wf-icon-file-text1 ti-xs me-1"></i>Abbonamento</a></li>
         </ul>
         @endif
         @if($authUser->accountType==0)
@@ -147,7 +147,7 @@ $configData = Helper::appClasses();
         @endif
         <!--/ User Pills -->
         <div class="tab-content p-0 @if($isOnlyProfile && $authUser->accountType!=0) tab-content-buyer @endif">
-            <div class="tab-pane fade show active" id="navs-pills-top-Profilo" role="tabpanel">
+            <div class="tab-pane fade {{$is_expired?'':'show active'}}" id="navs-pills-top-Profilo" role="tabpanel">
 
                 <div class="card mb-4">
                     <div class="card-header border-bottom">
@@ -563,7 +563,7 @@ $configData = Helper::appClasses();
             </div>
 
             @if(!$isOnlyProfile)
-            <div class="tab-pane fade" id="navs-pills-top-Fatturazione" role="tabpanel">
+            <div class="tab-pane fade {{$is_expired?'show active':''}}" id="navs-pills-top-Fatturazione" role="tabpanel">
                 @php
                 $remainingDays = App\Helpers\Helpers::getDaysBetweenDates(date('Y-m-d H:i:s', time()), $user->exp_datetime);
                 @endphp
