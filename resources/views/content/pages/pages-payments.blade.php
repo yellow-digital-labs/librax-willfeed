@@ -50,7 +50,7 @@ $configData = Helper::appClasses();
                     <th>Amount</th>
                     <th>Card</th>
                     <th>Transaction id</th>
-                    <th>status</th>
+                    <th>Status</th>
                 </tr>
             </thead>
         </table>
