@@ -3,6 +3,8 @@
 # if your server did not have mod_rewrite enabled
 RewriteEngine On
 # RewriteBase /
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,QSA]
 # NOT needed unless you're using mod_alias to redirect
 RewriteCond %{REQUEST_URI} !/public
 RewriteRule ^(.*)$ public/$1 [L]
