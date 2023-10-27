@@ -48,7 +48,7 @@ class StripePaymentController extends Controller
                 $customer = Stripe\Customer::create([
                     "source" => $request->stripeToken,
                     "email" => $email,
-                    "description" => "Create customer via WillFeed webapp API"
+                    "description" => $user->name
                 ]);
 
                 User::where(['id' => $user_id])->update([
