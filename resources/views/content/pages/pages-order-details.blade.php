@@ -29,6 +29,12 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('page-script')
+<script>
+    var isShowRating = true;
+    @if($rating)
+        isShowRating = false;
+    @endif
+</script>
 <script src="{{asset('assets/js/order-detail.js')}}"></script>
 @endsection
 
@@ -61,6 +67,9 @@ $configData = Helper::appClasses();
         <a href="{{route("add-order-payment", [
             "id" => $id
         ])}}" class="btn btn-primary waves-effect">Segna come pagato</a>
+    @endif
+    @if($rating)
+        <div class="display-ratings mb-3" data-rateyo-read-only="true" readonly="readonly" data-rating="{{$rating->star}}"></div>
     @endif
     </div>
     @endif
@@ -167,6 +176,18 @@ $configData = Helper::appClasses();
                         </div>
                     </li>
                     @endforeach
+                    @if($rating)
+                    <li class="timeline-item timeline-item-transparent border-transparent pb-0">
+                        <span class="timeline-point timeline-point-success"></span>
+                        <div class="timeline-event">
+                            <div class="timeline-header">
+                                <h6 class="mb-0">Order rating ({{$rating->star}} star)</h6>
+                                <span class="text-muted">{{\App\Helpers\Helpers::getMonthName(date('m', strtotime($rating->created_at)))}}{{date(' d, Y, H:i', strtotime($rating->created_at))}}</span>
+                            </div>
+                            <p class="mt-2">{{$rating->review_text}}</p>
+                        </div>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </div>

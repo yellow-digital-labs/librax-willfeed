@@ -5,6 +5,10 @@ $(document).ready(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    if(isShowRating){
+      $("#basicModal").modal("show");
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function (e) {
