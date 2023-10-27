@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // stripe_customer_id
-        \App\Models\User::where([])->update([
-            "stripe_customer_id" => NULL
-        ]);
+        // \App\Models\User::where([])->update([
+        //     "stripe_customer_id" => NULL
+        // ]);
         // \App\Models\Subscription::truncate();
         // DB::table('subscriptions')->insert([
         //     'name' => 'Base',
@@ -477,10 +477,10 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Ordine rifiutato',
             ]);
             DB::table('order_statuses')->insert([
-                'name' => 'Intransit',
+                'name' => 'Ordine consegnato',
             ]);
             DB::table('order_statuses')->insert([
-                'name' => 'Consegnato',
+                'name' => 'Pagato',
             ]);
 
             // \App\Models\PaymentOption::truncate();

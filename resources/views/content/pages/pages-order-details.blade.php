@@ -50,7 +50,10 @@ $configData = Helper::appClasses();
     @if ($order->order_status_id == '1')
         <a href="{{route('order-status', ['id' => $id, 'status' => '2'])}}" class="btn btn-primary delete-order waves-effect">Accept order </a>
     @endif
-    @if ($order->order_status_id == '2' && $order->payment_status != "paid")
+    @if ($order->order_status_id == '2')
+        <a href="{{route('order-status', ['id' => $id, 'status' => '4'])}}" class="btn btn-primary delete-order waves-effect">Order deliver </a>
+    @endif
+    @if ($order->order_status_id == '4' && $order->payment_status != "paid")
         <a href="{{route("add-order-payment", [
             "id" => $id
         ])}}" class="btn btn-primary waves-effect">Segna come pagato</a>
