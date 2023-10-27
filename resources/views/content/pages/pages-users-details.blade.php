@@ -37,6 +37,26 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/js/modal-add-new-address.js')}}"></script>
 <script src="{{asset('assets/js/app-user-view.js')}}"></script>
 <script src="{{asset('assets/js/app-user-view-billing.js')}}"></script>
+@if(!$isOnlyProfile)
+@php
+$remainingDays = App\Helpers\Helpers::getDaysBetweenDates(date('Y-m-d H:i:s', time()), $user->exp_datetime);
+@endphp
+@if($remainingDays<0)
+<script>
+$(document).ready(function () {
+    Swal.fire({
+        text: "Per continuare, acquista un abbonamento.",
+        icon: 'warning',
+        showCancelButton: false,
+        customClass: {
+            cancelButton: 'btn btn-label-secondary'
+        },
+        buttonsStyling: true
+    });
+});
+</script>
+@endif
+@endif
 @endsection
 
 @section('content')

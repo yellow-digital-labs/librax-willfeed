@@ -178,7 +178,7 @@ $configData = Helper::appClasses();
                     @endforeach
                     @if($rating)
                     <li class="timeline-item timeline-item-transparent border-transparent pb-0">
-                        <span class="timeline-point timeline-point-success"></span>
+                        <span class="timeline-point timeline-point-info"></span>
                         <div class="timeline-event">
                             <div class="timeline-header">
                                 <h6 class="mb-0">Order rating ({{$rating->star}} star)</h6>
