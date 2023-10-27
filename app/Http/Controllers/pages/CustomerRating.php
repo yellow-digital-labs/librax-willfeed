@@ -40,9 +40,14 @@ class CustomerRating extends Controller
       $isBuyer = Helpers::isBuyer();
 
       if($isBuyer){
-        Rating::create([
+        Rating::updateOrCreate([
           "review_by_id" => $user->id,
           "review_for_id" => $request->rating_for,
+          "order_id" => $request->order_id,
+        ],[
+          "review_by_id" => $user->id,
+          "review_for_id" => $request->rating_for,
+          "order_id" => $request->order_id,
           "star" => $request->rating,
           "review_text" => $request->message
         ]);

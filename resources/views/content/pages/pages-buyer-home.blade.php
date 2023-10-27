@@ -217,11 +217,7 @@ $configData = Helper::appClasses();
                                         <p class="product-seller__type">{{$product->main_activity_ids}}</p>
                                     </div>
                                 </div>
-                                <div class="product-rating"
-                                @if($isBuyer)
-                                data-bs-toggle="modal" data-bs-target="#basicModal" data-seller="{{$product->seller_id}}"
-                                @endif
-                                >
+                                <div class="product-rating">
                                     <div class="js-product-ratings" data-rating="{{$rating}}"></div>
                                 </div>
                             </div>
@@ -686,27 +682,27 @@ document.addEventListener('DOMContentLoaded', function (e) {
             });
         }
     });
-    $(".product-rating").on("click", function(){
-        $("#rating_for").val($(this).data("seller"));
-        var onChangeEvents = $('.onChange-event-ratings');
-        onChangeEvents.rateYo({
-          rtl: false,
-          spacing: '8px'
-        });
-        $("#rating-form").trigger("reset");
-    });
+    // $(".product-rating").on("click", function(){
+    //     $("#rating_for").val($(this).data("seller"));
+    //     var onChangeEvents = $('.onChange-event-ratings');
+    //     onChangeEvents.rateYo({
+    //       rtl: false,
+    //       spacing: '8px'
+    //     });
+    //     $("#rating-form").trigger("reset");
+    // });
     @else
-    $(".js-product-ratings").on("click", function(){
-        Swal.fire({
-            text: 'You are not logged in, First you need to login to give reviews!',
-            icon: 'warning',
-            showCancelButton: false,
-            customClass: {
-                cancelButton: 'btn btn-label-secondary'
-            },
-            buttonsStyling: true
-        });
-    });
+    // $(".js-product-ratings").on("click", function(){
+    //     Swal.fire({
+    //         text: 'You are not logged in, First you need to login to give reviews!',
+    //         icon: 'warning',
+    //         showCancelButton: false,
+    //         customClass: {
+    //             cancelButton: 'btn btn-label-secondary'
+    //         },
+    //         buttonsStyling: true
+    //     });
+    // });
     @endif
 </script>
 @endsection

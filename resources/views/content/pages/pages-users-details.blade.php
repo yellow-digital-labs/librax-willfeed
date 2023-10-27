@@ -647,7 +647,7 @@ $configData = Helper::appClasses();
                                         @if($subscription->id == $user->subscription_id && $remainingDays >= 0)
                                             <a class="btn btn-label-success d-grid w-100">Your Current Plan</a>
                                         @else
-                                            {{-- <a href="{{url('auth/register-basic')}}" class="btn btn-primary d-grid w-100">Subscribe</a> --}}
+                                            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addNewCCModal">Subscribe</button>
                                         @endif
                                     </div>
                                 </div>

@@ -10,6 +10,7 @@ use App\Models\OrderActivityHistory;
 use App\Models\PaymentOption;
 use App\Models\OrderPayment;
 use App\Models\User;
+use App\Models\Rating;
 use App\Helpers\Helpers;
 use App\Mail\OrderApprove;
 use App\Mail\OrderReject;
@@ -248,6 +249,7 @@ class Orders extends Controller
   {
     $isAdmin = Helpers::isAdmin();
     $isSeller = Helpers::isSeller();
+    $isBuyer = Helpers::isBuyer();
     $user_id = Auth::user()->id;
 
     if($isAdmin){
@@ -275,6 +277,11 @@ class Orders extends Controller
       $payment_history = OrderPayment::where([
         "order_id" => $id
       ])->get();
+      $rating = Rating::where([
+        "order_id" => $order->id,
+        "review_by_id" => $order->user_id,
+        "review_for_id" => $order->seller_id,
+      ])->first();
 
       return view("content.pages.pages-order-details", [
         'id' => $id,
@@ -283,8 +290,10 @@ class Orders extends Controller
         'order_activity' => $order_activity,
         'isAdmin' => $isAdmin,
         'isSeller' => $isSeller,
+        'isBuyer' => $isBuyer,
         'payment_options' => $payment_options,
         'payment_history' => $payment_history,
+        'rating' => $rating,
       ]);
     } else {
       return redirect()->route('orders')->withErrors(['msg' => 'Invalid request']);

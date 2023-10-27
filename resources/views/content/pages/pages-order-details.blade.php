@@ -10,6 +10,8 @@ $configData = Helper::appClasses();
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/rateyo/rateyo.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
 @endsection
 
 @section('page-style')
@@ -22,6 +24,8 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/rateyo/rateyo.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
 @endsection
 
 @section('page-script')
@@ -58,6 +62,17 @@ $configData = Helper::appClasses();
             "id" => $id
         ])}}" class="btn btn-primary waves-effect">Segna come pagato</a>
     @endif
+    </div>
+    @endif
+    @if($isBuyer)
+    <div class="d-flex align-content-center flex-wrap gap-3">
+        @if ($order->payment_status == "paid")
+            @if($rating)
+            <div class="display-ratings mb-3" data-rateyo-read-only="true" readonly="readonly" data-rating="{{$rating->star}}"></div>
+            @else
+            <button data-bs-toggle="modal" data-bs-target="#basicModal" data-seller="{{$order->seller_id}}" class="btn btn-primary waves-effect product-rating">Revisione dell'ordine</button>
+            @endif
+        @endif
     </div>
     @endif
 </div>
@@ -442,4 +457,41 @@ $configData = Helper::appClasses();
 </div>
 <!--/ Add New Credit Card Modal -->
 
+<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="POST" onsubmit="return false" id="rating-form">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Add rating</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="nameBasic" class="form-label">Star rating</label>
+                            <div class="onChange-event-ratings mb-3"></div>
+                            <div class="counter-wrapper">
+                                <strong>Ratings:</strong>
+                                <span class="counter"></span>
+                                <input type="hidden" name="rating" id="js-rating-val">
+                                <input type="hidden" name="rating_for" id="rating_for">
+                                <input type="hidden" name="order_id" value="{{$order->id}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                            <label for="message" class="form-label">Message</label>
+                            <input type="text" id="message" name="message" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="save-rating">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
