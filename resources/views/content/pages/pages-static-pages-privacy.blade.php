@@ -20,6 +20,10 @@ $configData = Helper::appClasses();
     ClassicEditor
         .create( document.querySelector( '#editor' ), {
             removePlugins: ["Title"],
+            extraAllowedContent: '*[*]{*}(*)',
+            entities: false,
+            basicEntities: false,
+            forceSimpleAmpersand: true,
             htmlSupport: {
                 allow: [
                     {

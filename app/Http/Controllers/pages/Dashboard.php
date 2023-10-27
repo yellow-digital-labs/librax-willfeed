@@ -23,13 +23,13 @@ class Dashboard extends Controller
     $isRevenueFilter = true;
     $isProductFilter = true;
     $isVendorFilter = true;
-    $order_start_date = date("Y-m-d");
+    $order_start_date = "2023-01-01";
     $order_end_date = date("Y-m-d");
-    $revenue_start_date = date("Y-m-d");
+    $revenue_start_date = "2023-01-01";
     $revenue_end_date = date("Y-m-d");
-    $product_start_date = date("Y-m-d");
+    $product_start_date = "2023-01-01";
     $product_end_date = date("Y-m-d");
-    $vendor_start_date = date("Y-m-d");
+    $vendor_start_date = "2023-01-01";
     $vendor_end_date = date("Y-m-d");
     if(count($filters)>0){
       if(isset($filters['orders_range'])){

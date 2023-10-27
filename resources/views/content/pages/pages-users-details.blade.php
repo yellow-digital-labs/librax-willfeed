@@ -593,6 +593,9 @@ $configData = Helper::appClasses();
                             </div>
 
                             <div class="col-sm-6 col-12">
+                                <div class="card-action-element d-flex justify-content-end mb-1">
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addNewCCModal">Paga ora</button>
+                                </div>
                                 @if($remainingDays<=5 && $remainingDays>=0)
                                 <div class="alert alert-warning" role="alert">
                                     <h5 class="alert-heading">Piano in scadenza</h5>
