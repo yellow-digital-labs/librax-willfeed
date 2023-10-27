@@ -87,7 +87,7 @@ class StripePaymentController extends Controller
                 $subscription = Subscription::where(['id' => 1])->first();
                 //charge the card
                 $req = [
-                    "customer" => $user->stripe_customer_id,
+                    "customer" => $customer_id,
                     "amount" => $subscription->amount * 100,
                     "currency" => env('STRIPE_CURRENCY'),
                     "description" => "Subscription payment for WillFeed on ".date("Y-m-d H:i:s")
