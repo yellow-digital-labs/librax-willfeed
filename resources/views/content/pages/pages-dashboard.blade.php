@@ -42,6 +42,103 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
 
 <script>
+$(document).ready(function(){
+let cardColor, headingColor, labelColor, shadeColor, grayColor, borderColor;
+  if (isDarkStyle) {
+    cardColor = config.colors_dark.cardColor;
+    labelColor = config.colors_dark.textMuted;
+    headingColor = config.colors_dark.headingColor;
+    shadeColor = 'dark';
+    grayColor = '#5E6692'; // gray color is for stacked bar chart
+    borderColor = config.colors_dark.borderColor;
+  } else {
+    cardColor = config.colors.cardColor;
+    labelColor = config.colors.textMuted;
+    headingColor = config.colors.headingColor;
+    shadeColor = '';
+    grayColor = '#817D8D';
+    borderColor = config.colors.borderColor;
+  }
+@foreach($top_selling_products as $count => $_top_selling_products)
+@php
+    $price_history = App\Models\ProductPriceHistory::where(["product_id" => $_top_selling_products->product_id])->orderBy("date", "DESC")->take(10)->get();
+    $price_string = "";
+    $sep = "";
+    for($start = count($price_history); $start < 10; $start++){
+        $price_string .= $sep . "0";
+        $sep = ", ";
+    }
+    foreach($price_history as $_price_history){
+        $price_string .= $sep . $_price_history->price;
+        $sep = ", ";
+    }
+@endphp
+const budgetChartEl{{$count}} = document.querySelector('.budgetChart-{{$count}}'),
+    budgetChartOptions{{$count}} = {
+      chart: {
+        height: 100,
+        toolbar: { show: false },
+        zoom: { enabled: false },
+        type: 'line'
+      },
+      series: [
+        {
+          name: 'Last Month',
+          data: []
+        },
+        {
+          name: 'This Month',
+          data: [{{$price_string}}]
+        }
+      ],
+      stroke: {
+        curve: 'smooth',
+        dashArray: [5, 0],
+        width: [1, 2]
+      },
+      legend: {
+        show: false
+      },
+      colors: [borderColor, config.colors.primary],
+      grid: {
+        show: false,
+        borderColor: borderColor,
+        padding: {
+          top: -30,
+          bottom: -15,
+          left: 25
+        }
+      },
+      markers: {
+        size: 0
+      },
+      xaxis: {
+        labels: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        },
+        axisBorder: {
+          show: false
+        }
+      },
+      yaxis: {
+        show: false
+      },
+      tooltip: {
+        enabled: false
+      }
+    };
+  if (typeof budgetChartEl{{$count}} !== undefined && budgetChartEl{{$count}} !== null) {
+    const budgetChart{{$count}} = new ApexCharts(budgetChartEl{{$count}}, budgetChartOptions{{$count}});
+    budgetChart{{$count}}.render();
+  }
+@endforeach
+});
+</script>
+
+<script>
     $(document).ready(function(){
         $('#bs-rangepicker-range').data('daterangepicker').setStartDate('{{date('dd-mm-YYYY', strtotime($order_start_date))}}');
         $('#bs-rangepicker-range').data('daterangepicker').setEndDate('{{date('dd-mm-YYYY', strtotime($order_end_date))}}');
@@ -242,7 +339,7 @@ $configData = Helper::appClasses();
                 </div>
             </div>
             <div class="card-body pt-4">
-                @foreach($top_selling_products as $_top_selling_products)
+                @foreach($top_selling_products as $count => $_top_selling_products)
                     <li class="d-flex align-items-center mb-4">
                         <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
@@ -251,7 +348,7 @@ $configData = Helper::appClasses();
                                 </div>
                             </div>
                             <div class="d-flex">
-                                <div class="budgetChart"></div>
+                                <div class="budgetChart-{{$count}}"></div>
                             </div>
                             <div class="d-flex">
                                 <p class="mb-0 fw-medium">€{{number_format($_top_selling_products->total_sales, 2)}}</p>

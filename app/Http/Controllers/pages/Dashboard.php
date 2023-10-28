@@ -134,7 +134,7 @@ class Dashboard extends Controller
 
       if($isProductFilter){
         $top_selling_products = DB::table('orders')
-          ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+          ->select('product_id', 'product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
           ->where("order_status_id", "=", 2)
           ->where("created_at", ">=", $product_start_date)
           ->where("created_at", "<=", $product_end_date)
@@ -144,7 +144,7 @@ class Dashboard extends Controller
           ->get();
       } else {
         $top_selling_products = DB::table('orders')
-          ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+          ->select('product_id', 'product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
           ->where("order_status_id", "=", 2)
           ->groupBy('product_name')
           ->orderBy('total_sales', 'DESC')
@@ -247,7 +247,7 @@ class Dashboard extends Controller
 
       if($isProductFilter){
         $top_selling_products = DB::table('orders')
-          ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+          ->select('product_id', 'product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
           ->where("user_id", "=", $user_id)
           ->where("order_status_id", "=", 2)
           ->where("created_at", ">=", $product_start_date)
@@ -258,7 +258,7 @@ class Dashboard extends Controller
           ->get();
       } else {
         $top_selling_products = DB::table('orders')
-          ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+          ->select('product_id', 'product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
           ->where("user_id", "=", $user_id)
           ->where("order_status_id", "=", 2)
           ->groupBy('product_name')
@@ -353,7 +353,7 @@ class Dashboard extends Controller
 
       if($isProductFilter){
         $top_selling_products = DB::table('orders')
-          ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+          ->select('product_id', 'product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
           ->where("seller_id", "=", $user_id)
           ->where("order_status_id", "=", 2)
           ->where("created_at", ">=", $product_start_date)
@@ -364,7 +364,7 @@ class Dashboard extends Controller
           ->get();
       } else {
         $top_selling_products = DB::table('orders')
-          ->select('product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
+          ->select('product_id', 'product_name', DB::raw('SUM(total_payable_amount) as total_sales'), DB::raw('COUNT(id) as total_orders'))
           ->where("seller_id", "=", $user_id)
           ->where("order_status_id", "=", 2)
           ->groupBy('product_name')
