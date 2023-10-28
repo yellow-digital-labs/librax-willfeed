@@ -169,4 +169,13 @@ Route::middleware([
     Route::get('/customer-request-to-seller/{seller_id}/{csrf}', $controller_path . '\pages\BuyerCheckout@customerRequest')->name('customer-request-to-seller');
     Route::get('/customer-request-to-seller-thanks/{seller_id}', $controller_path . '\pages\BuyerCheckout@customerRequestThanks')->name('customer-request-to-seller-thanks');
     Route::get('/customer-unauthorized/{seller_id}', $controller_path . '\pages\BuyerCheckout@customerUnauthorized')->name('customer-unauthorized');
+
+    //blogs management
+    Route::get('/blogs/management', $controller_path . '\pages\BlogsManagement@index')->name('blogs-management');
+    Route::get('/blogs/list', $controller_path . '\pages\BlogsManagement@list')->name('blogs-management-list'); //blogs list data ajax
+    Route::get('/blogs/add', $controller_path . '\pages\BlogsManagement@add')->name('blogs-management-add'); //admin add new blog page
+    Route::post('/blogs/add', $controller_path . '\pages\BlogsManagement@store')->name('blogs-management-store'); //product save
+    Route::get('/blogs/edit/{id}', $controller_path . '\pages\BlogsManagement@edit')->name('blogs-management-edit'); //blogs edit
+    Route::post('/blogs/edit/{id}', $controller_path . '\pages\BlogsManagement@update')->name('blogs-management-update'); //blogs update
+    Route::delete('/blogs/delete/{id}', $controller_path . '\pages\BlogsManagement@delete')->name('blogs-management-delete'); //blog delete
 });

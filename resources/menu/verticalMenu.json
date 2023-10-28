@@ -119,6 +119,15 @@
             ]
         },
         {
+            "url": "/blogs/management",
+            "name": "Blogs",
+            "icon": "menu-icon tf-icons ti ti-article",
+            "slug": "blogs-management",
+            "section": [
+                "admin"
+            ]
+        },
+        {
             "url": "/email-management",
             "name": "Email management",
             "icon": "menu-icon tf-icons ti ti-id",
