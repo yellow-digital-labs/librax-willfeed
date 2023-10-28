@@ -183,7 +183,7 @@ $configData = Helper::appClasses();
                 </div>
             </div>
             <div class="card-body pt-4">
-                <h4 class="card-title mb-1">€{{number_format($approved_orders_amount, 2)}}</h4>
+                <h4 class="card-title mb-1">€{{number_format($approved_orders_paid_amount + $approved_orders_unpaid_amount, 2)}}</h4>
                 <div class="d-flex justify-content-between">
                     <small class="d-block mb-1 text-muted">Spesa totale</small>
                 </div>
