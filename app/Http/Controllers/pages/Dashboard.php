@@ -105,8 +105,7 @@ class Dashboard extends Controller
           ->groupBy("payment_status")
           ->sum("total_payable_amount");
 
-        $approved_orders_paid_amount = Order::where("order_status_id", "=", 4)
-          ->where("payment_status", "=", 'paid')
+        $approved_orders_paid_amount = Order::where("payment_status", "=", 'paid')
           ->where("created_at", ">=", $revenue_start_date)
           ->where("created_at", "<=", $revenue_end_date)
           ->groupBy("payment_status")
@@ -123,8 +122,7 @@ class Dashboard extends Controller
           ->groupBy("payment_status")
           ->sum("total_payable_amount");
 
-        $approved_orders_paid_amount = Order::where("order_status_id", "=", 4)
-          ->where("payment_status", "=", 'paid')
+        $approved_orders_paid_amount = Order::where("payment_status", "=", 'paid')
           ->groupBy("payment_status")
           ->sum("total_payable_amount");
 
@@ -216,7 +214,6 @@ class Dashboard extends Controller
           ->sum("total_payable_amount");
 
         $approved_orders_paid_amount = Order::where("user_id", "=", $user_id)
-          ->where("order_status_id", "=", 4)
           ->where("payment_status", "=", 'paid')
           ->where("created_at", ">=", $revenue_start_date)
           ->where("created_at", "<=", $revenue_end_date)
@@ -237,7 +234,6 @@ class Dashboard extends Controller
           ->sum("total_payable_amount");
 
         $approved_orders_paid_amount = Order::where("user_id", "=", $user_id)
-          ->where("order_status_id", "=", 4)
           ->where("payment_status", "=", 'paid')
           ->groupBy("payment_status")
           ->sum("total_payable_amount");
@@ -324,7 +320,6 @@ class Dashboard extends Controller
           ->sum("total_payable_amount");
 
         $approved_orders_paid_amount = Order::where("seller_id", "=", $user_id)
-          ->where("order_status_id", "=", 4)
           ->where("payment_status", "=", 'paid')
           ->where("created_at", ">=", $revenue_start_date)
           ->where("created_at", "<=", $revenue_end_date)
@@ -345,7 +340,6 @@ class Dashboard extends Controller
           ->sum("total_payable_amount");
 
         $approved_orders_paid_amount = Order::where("seller_id", "=", $user_id)
-          ->where("order_status_id", "=", 4)
           ->where("payment_status", "=", 'paid')
           ->groupBy("payment_status")
           ->sum("total_payable_amount");
