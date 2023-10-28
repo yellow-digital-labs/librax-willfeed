@@ -199,7 +199,24 @@ $configData = Helper::appClasses();
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
-                        <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
+                        <!-- <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">  -->
+
+                        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="autoplay: true">
+
+                            <ul class="uk-slider-items uk-child-width-1-1">
+                                <li>
+                                    <img src="{{asset('assets/img/Illustration11.png')}}" width="610" height="460" alt="">
+                                </li>
+                                <li>
+                                    <img src="{{asset('assets/img/Illustration13.png')}}" width="610" height="460" alt="">
+                                </li>
+                            </ul>
+
+                            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href uk-slidenav-previous uk-slider-item="previous"></a>
+                            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href uk-slidenav-next uk-slider-item="next"></a>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -219,7 +236,23 @@ $configData = Helper::appClasses();
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
-                        <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">    
+                        <!-- <img src="https://placehold.jp/000/fff/610x460.jpg" width="610" height="460">     -->
+
+                        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="autoplay: true">
+
+                            <ul class="uk-slider-items uk-child-width-1-1">
+                                <li>
+                                    <img src="{{asset('assets/img/Illustration12.png')}}" width="610" height="460" alt="">
+                                </li>
+                                <li>
+                                    <img src="{{asset('assets/img/Illustration15.png')}}" width="610" height="460" alt="">
+                                </li>
+                            </ul>
+
+                            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href uk-slidenav-previous uk-slider-item="previous"></a>
+                            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href uk-slidenav-next uk-slider-item="next"></a>
+
+                        </div>
                     </div>
                 </div>
             </div>

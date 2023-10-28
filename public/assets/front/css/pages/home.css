@@ -1323,9 +1323,11 @@ marquee.dash-charts__marquee {
 .landing-clrblock__media {
     border-radius: 38px;
     overflow: hidden;
+    width: 500px;
+    max-width: 100%;
 }
 
-.landing-clrblock__media > img {
+.landing-clrblock__media  img {
     max-height: 400px;
     object-fit: contain;
 }
