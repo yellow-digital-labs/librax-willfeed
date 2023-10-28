@@ -407,7 +407,7 @@ class Dashboard extends Controller
       $total_payment_method_wise_income += $_payment_method_wise_income->total_sales;
     }
 
-    if($approved_orders_amount>0){
+    if($approved_orders_paid_amount+$approved_orders_unpaid_amount>0){
       $approved_orders_paid_amount_per = $approved_orders_paid_amount * 100 / ($approved_orders_paid_amount+$approved_orders_unpaid_amount);
       $approved_orders_unpaid_amount_per = $approved_orders_unpaid_amount * 100 / ($approved_orders_paid_amount+$approved_orders_unpaid_amount);
     }
