@@ -29,7 +29,7 @@ Route::get('/reset-password', $controller_path . '\pages\ResetPassword@index')->
 Route::get('/verify-email', $controller_path . '\pages\VerifyEmail@index')->name('verify-email');
 Route::get('/verify-email/resend', $controller_path . '\pages\VerifyEmail@resend')->name('resend-verify-email');
 Route::get('/verify-email/{token}', $controller_path . '\pages\VerifyEmail@confirm')->name('verify-email-confirm');
-Route::get('logout', [ App\Http\Controllers\ClientController::class, 'logout'])->name('logout-post');
+// Route::get('logout', [ App\Http\Controllers\ClientController::class, 'logout'])->name('logout-post');
 
 
 // Route::get('/home', $controller_path . '\pages\MainHome@index')->name('pages-main-home');

@@ -78,6 +78,15 @@ if($user){
     @endif
     @endif
     @endforeach
+    <li class="menu-item">
+      <a class="menu-link" href="{{route("logout")}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <i class="menu-icon wf-icon-signout"></i>
+        <span class="align-middle">Esci</span>
+      </a>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST">
+          @csrf
+      </form>
+    </li>
   </ul>
 
 </aside>

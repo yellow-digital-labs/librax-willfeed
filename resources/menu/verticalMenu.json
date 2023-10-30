@@ -146,17 +146,6 @@
                 "admin",
                 "buyer"
             ]
-        },
-        {
-            "url": "logout",
-            "name": "Esci",
-            "icon": "menu-icon wf-icon-signout",
-            "slug": "logout",
-            "section": [
-                "seller",
-                "admin",
-                "buyer"
-            ]
         }
     ]
 }

@@ -59,10 +59,13 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{route("logout-post")}}">
+                                    <a class="dropdown-item" href="{{route("logout")}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="wf-icon wf-icon-signout"></i>
                                         <span class="align-middle">Esci</span>
                                     </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                    </form>
                                 </li>
                             </ul>
                         </li>
