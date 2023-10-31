@@ -8,8 +8,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use TemplateMailable;
 
-class ContactUs extends Mailable
+class ContactUs extends TemplateMailable
 {
     use Queueable, SerializesModels;
 
@@ -36,6 +37,7 @@ class ContactUs extends Mailable
      */
     public function build()
     {
+        // return "sample";
         return $this->markdown('emails.contact-us');
     }
 

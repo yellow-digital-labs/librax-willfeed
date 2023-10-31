@@ -14,6 +14,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        \App\Models\MailTemplate::create([
+            'mailable' => \App\Mail\ContactUs::class,
+            'subject' => 'Welcome, {{ name }}',
+            'html_template' => '<h1>Hello, {{ name }}!</h1>',
+            'text_template' => 'Hello, {{ name }}!',
+        ]);
+        \App\Models\MailTemplate::create([
+            'mailable' => \App\Mail\CustomerRequest::class,
+            'subject' => 'Welcome, {{ name }}',
+            'html_template' => '<h1>Hello, {{ name }}!</h1>',
+            'text_template' => 'Hello, {{ name }}!',
+        ]);
+        \App\Models\MailTemplate::create([
+            'mailable' => \App\Mail\CustomerRequestApprove::class,
+            'subject' => 'Welcome, {{ name }}',
+            'html_template' => '<h1>Hello, {{ name }}!</h1>',
+            'text_template' => 'Hello, {{ name }}!',
+        ]);
         // stripe_customer_id
         // \App\Models\User::where([])->update([
         //     "stripe_customer_id" => NULL

@@ -95,6 +95,13 @@
       'Jetstrap' => 'Pixinvent\\Jetstrap\\JetstrapFacade',
     ),
   ),
+  'spatie/laravel-database-mail-templates' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\MailTemplates\\MailTemplatesServiceProvider',
+    ),
+  ),
   'spatie/laravel-ignition' => 
   array (
     'providers' => 

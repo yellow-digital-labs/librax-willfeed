@@ -8,8 +8,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use TemplateMailable;
 
-class CustomerRequestApprove extends Mailable
+class CustomerRequestApprove extends TemplateMailable
 {
     use Queueable, SerializesModels;
 

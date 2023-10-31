@@ -151,6 +151,12 @@ Route::middleware([
     Route::post('/customer-rating/{id}/status/{status}', $controller_path . '\pages\CustomerRating@status')->name('customer-rating-status'); //customer rating status update ajax
     Route::post('/customer-rating/add', $controller_path . '\pages\CustomerRating@add')->name('customer-rating-add');
 
+    //email management
+    Route::get('/email-template-management', $controller_path . '\pages\EmailTemplateManagement@index')->name('email-template-management'); //email management view
+    Route::get('/email-template-management/list', $controller_path . '\pages\EmailTemplateManagement@list')->name('email-template-management-list'); //email management list data ajax
+    Route::get('/email-template-management/{id}/edit', $controller_path . '\pages\EmailTemplateManagement@edit')->name('email-template-management-edit'); //email template edit view
+    Route::post('/email-template-management/{id}/edit', $controller_path . '\pages\EmailTemplateManagement@update')->name('email-template-management-update'); //email template update
+
     //email history
     Route::get('/email-management', $controller_path . '\pages\EmailManagement@index')->name('email-management');
     Route::post('/email-management/{id}/detail', $controller_path . '\pages\EmailManagement@detail')->name('email-management-detail');
