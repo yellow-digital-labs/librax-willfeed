@@ -310,4 +310,15 @@ class Helpers
     
     return date("Y-m-d", strtotime($args[1]));
   }
+
+  public static function clientActivityList(){
+    return [
+        "Azienda di trasporto merci su strada",
+        "Azienda Edile",
+        "Azienda Agricola",
+        "Azienda di servizi navali",
+        "Azienda di trasporto di persone",
+        "Distributore privato",
+    ];
+  }
 }

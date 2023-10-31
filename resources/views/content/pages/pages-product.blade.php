@@ -51,7 +51,7 @@ $configData = Helper::appClasses();
                             <h4 class="mb-2">{{$total_products}}</h4>
                             <p class="mb-0"><span class="badge bg-label-success fw-normal">100,00%</span></p>
                         </div>
-                        <span class="avatar avatar--prodotti me-4">
+                        <span class="avatar avatar--prodotti me-4 no-hover">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
                         </span>
                     </div>
@@ -64,7 +64,7 @@ $configData = Helper::appClasses();
                             <h4 class="mb-2">{{$active_products}}</h4>
                             <p class="mb-0"><span class="badge bg-label-success fw-normal">{{$total_products>0?number_format($active_products*100/$total_products, 2, ',', '.'):0}}%</span></p>
                         </div>
-                        <span class="avatar avatar--prodotti me-4">
+                        <span class="avatar avatar--prodotti me-4 no-hover">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
                         </span>
                     </div>
@@ -77,7 +77,7 @@ $configData = Helper::appClasses();
                             <h4 class="mb-2">{{$inactive_products}}</h4>
                             <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{$total_products>0?number_format($inactive_products*100/$total_products, 2, ',', '.'):0}}%</span></p>
                         </div>
-                        <span class="avatar avatar--prodotti p-2 me-4">
+                        <span class="avatar avatar--prodotti p-2 me-4 no-hover">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
                         </span>
                     </div>
@@ -93,7 +93,7 @@ $configData = Helper::appClasses();
                             <h4 class="mb-2">NA</h4>
                         @endif
                         </div>
-                        <span class="avatar avatar--prodotti p-2">
+                        <span class="avatar avatar--prodotti p-2 no-hover">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
                         </span>
                     </div>

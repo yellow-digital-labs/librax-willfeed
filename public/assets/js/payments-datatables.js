@@ -159,8 +159,8 @@ $(function () {
                 // fake_id
                 targets: 0,
                 // visible: false,
-                searchable: true,
-                orderable: true,
+                searchable: false,
+                orderable: false,
                 responsivePriority: 4,
                 render: function render(data, type, full, meta) {
                     var $fake_id = full['fake_id'] ? full['fake_id'] : '';
@@ -189,8 +189,30 @@ $(function () {
                     return '<span class="user-transaction_datetime">' + $transaction_datetime + '</span>';
                 }
             }, {
-                // subscription_amount
+                // user_name
                 targets: 3,
+                // visible: false,
+                searchable: true,
+                orderable: true,
+                responsivePriority: 4,
+                render: function render(data, type, full, meta) {
+                    var $user_name = full['user_name'] ? full['user_name'] : '';
+                    return '<span class="user-user_name">' + $user_name + '</span>';
+                }
+            }, {
+                // email
+                targets: 4,
+                // visible: false,
+                searchable: true,
+                orderable: true,
+                responsivePriority: 4,
+                render: function render(data, type, full, meta) {
+                    var $email = full['email'] ? full['email'] : '';
+                    return '<span class="user-email">' + $email + '</span>';
+                }
+            }, {
+                // subscription_amount
+                targets: 5,
                 // visible: false,
                 searchable: true,
                 orderable: true,
@@ -201,7 +223,7 @@ $(function () {
                 }
             }, {
                 // card
-                targets: 4,
+                targets: 6,
                 // visible: false,
                 searchable: true,
                 orderable: true,
@@ -212,7 +234,7 @@ $(function () {
                 }
             }, {
                 // transaction_no
-                targets: 5,
+                targets: 7,
                 // visible: false,
                 searchable: true,
                 orderable: true,
@@ -223,7 +245,7 @@ $(function () {
                 }
             }, {
                 // Payment Status
-                targets: 6,
+                targets: 8,
                 render: function (data, type, full, meta) {
                     var $status_number = full['status'];
                     var $status = {

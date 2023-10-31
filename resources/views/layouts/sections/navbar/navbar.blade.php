@@ -29,7 +29,7 @@ $navbarDetached = ($navbarDetached ?? '');
                 <ul class="navbar-nav flex-row align-items-center ms-auto">
                     <!-- User -->
                     <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);">
+                        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                             <div class="avatar avatar-online">
                             @if(Auth::user()->accountType == "0")
                                 <img src="{{ 'https://ui-avatars.com/api/?name=A&color=7F9CF5&background=EBF4FF' }}" alt class="rounded-circle">
@@ -38,6 +38,17 @@ $navbarDetached = ($navbarDetached ?? '');
                             @endif
                             </div>
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-end py-0">
+                            <li>
+                                <a class="dropdown-item" href="{{route("logout")}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="wf-icon wf-icon-signout"></i>
+                                    <span class="align-middle">Esci</span>
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
                     </li>
                     <!--/ User -->
                 </ul>

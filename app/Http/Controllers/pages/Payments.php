@@ -27,20 +27,24 @@ class Payments extends Controller
     $isAdmin = Helpers::isAdmin();
     $user_id = Auth::user()->id;
     $columns = [
-      1 => "id",
+      1 => "subscription_payments.id",
       2 => "transaction_datetime",
-      3 => "subscription_amount",
-      4 => "card",
-      5 => "transaction_no",
-      6 => "status",
+      3 => "user_name",
+      4 => "email",
+      5 => "subscription_payments.subscription_amount",
+      6 => "card",
+      7 => "transaction_no",
+      8 => "subscription_payments.status",
     ];
 
     $search = [];
 
     if($isAdmin){
-      $f = SubscriptionPayment::where([]);
+      $f = SubscriptionPayment::where([])
+        ->leftjoin("users", "users.id", "subscription_payments.user_id");
     } else {
-      $f = SubscriptionPayment::where("user_id", "=", $user_id);
+      $f = SubscriptionPayment::where("user_id", "=", $user_id)
+        ->leftjoin("users", "users.id", "subscription_payments.user_id");
     }
     $totalData = $f->count();
 
@@ -61,9 +65,11 @@ class Payments extends Controller
     if (empty($request->input("search.value"))) {
       if (count($applied_filters) > 0) {
         if($isAdmin){
-          $customersObj = SubscriptionPayment::where([]);
+          $customersObj = SubscriptionPayment::where([])
+            ->leftjoin("users", "users.id", "subscription_payments.user_id");
         } else {
-          $customersObj = SubscriptionPayment::where("user_id", "=", $user_id);
+          $customersObj = SubscriptionPayment::where("user_id", "=", $user_id)
+            ->leftjoin("users", "users.id", "subscription_payments.user_id");
         }
 
         foreach ($applied_filters as $field => $search) {
@@ -71,17 +77,21 @@ class Payments extends Controller
         }
 
         $customers = $customersObj
+          ->selectRaw("users.*, subscription_payments.*")
           ->offset($start)
           ->limit($limit)
           ->orderBy($order, $dir)
           ->get();
       } else {
         if($isAdmin){
-          $q = SubscriptionPayment::where([]);
+          $q = SubscriptionPayment::where([])
+            ->leftjoin("users", "users.id", "subscription_payments.user_id");
         } else {
-          $q = SubscriptionPayment::where("user_id", "=", $user_id);
+          $q = SubscriptionPayment::where("user_id", "=", $user_id)
+            ->leftjoin("users", "users.id", "subscription_payments.user_id");
         }
         $customers = $q
+          ->selectRaw("users.*, subscription_payments.*")
           ->offset($start)
           ->limit($limit)
           ->orderBy($order, $dir)
@@ -93,25 +103,32 @@ class Payments extends Controller
       if($isAdmin){
         $q = SubscriptionPayment::where(function ($query) use ($search) {
             return $query
-              ->where("transaction_datetime", "LIKE", "%{$search}%")
-              ->orWhere("subscription_amount", "LIKE", "%{$search}%")
-              ->orWhere("card", "LIKE", "%{$search}%")
-              ->orWhere("transaction_no", "LIKE", "%{$search}%")
-              ->orWhere("status", "LIKE", "%{$search}%");
-          });
+              ->where("subscription_payments.transaction_datetime", "LIKE", "%{$search}%")
+              ->orWhere("subscription_payments.subscription_amount", "LIKE", "%{$search}%")
+              ->orWhere("subscription_payments.card", "LIKE", "%{$search}%")
+              ->orWhere("subscription_payments.transaction_no", "LIKE", "%{$search}%")
+              ->orWhere("subscription_payments.status", "LIKE", "%{$search}%")
+              ->orWhere("subscription_payments.user_name", "LIKE", "%{$search}%")
+              ->orWhere("users.email", "LIKE", "%{$search}%");
+          })
+          ->leftjoin("users", "users.id", "subscription_payments.user_id");
       } else {
         $q = SubscriptionPayment::where("user_id", "=", $user_id)
           ->where(function ($query) use ($search) {
             return $query
-              ->where("transaction_datetime", "LIKE", "%{$search}%")
-              ->orWhere("subscription_amount", "LIKE", "%{$search}%")
-              ->orWhere("card", "LIKE", "%{$search}%")
-              ->orWhere("transaction_no", "LIKE", "%{$search}%")
-              ->orWhere("status", "LIKE", "%{$search}%");
-          });
+              ->where("subscription_payments.transaction_datetime", "LIKE", "%{$search}%")
+              ->orWhere("subscription_payments.subscription_amount", "LIKE", "%{$search}%")
+              ->orWhere("subscription_payments.card", "LIKE", "%{$search}%")
+              ->orWhere("subscription_payments.transaction_no", "LIKE", "%{$search}%")
+              ->orWhere("subscription_payments.status", "LIKE", "%{$search}%")
+              ->orWhere("subscription_payments.user_name", "LIKE", "%{$search}%")
+              ->orWhere("users.email", "LIKE", "%{$search}%");
+          })
+          ->leftjoin("users", "users.id", "subscription_payments.user_id");
       }
 
       $customers = $q
+        ->selectRaw("users.*, subscription_payments.*")
         ->offset($start)
         ->limit($limit)
         ->orderBy($order, $dir)
@@ -132,6 +149,8 @@ class Payments extends Controller
         $nestedData["fake_id"] = ++$ids;
         $nestedData["transaction_datetime"] = date('d-m-Y H:i', strtotime($customer->transaction_datetime));
         $nestedData["subscription_amount"] = "€".$customer->subscription_amount;
+        $nestedData["user_name"] = $customer->user_name;
+        $nestedData["email"] = $customer->email;
         $nestedData["card"] = "xxxx xxxx xxxx ".$customer->card;
         $nestedData["transaction_no"] = $customer->transaction_no;
         $nestedData["status"] = $customer->status;

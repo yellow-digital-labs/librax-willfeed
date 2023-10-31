@@ -137,7 +137,7 @@ $configData = Helper::appClasses();
                                     <select name="main_activity_ids" id="main_activity_ids" class="form-select select2" placeholder="Seleziona attività principale">
                                         <option value=""></option>
                                     @foreach($main_activity as $_main_activity)
-                                        <option value="{{$_main_activity->name}}" {{$user_detail?($user_detail->main_activity_ids==$_main_activity->name?'selected':''):''}}>{{$_main_activity->name}}</option>
+                                        <option value="{{$_main_activity}}" {{$user_detail?($user_detail->main_activity_ids==$_main_activity?'selected':''):''}}>{{$_main_activity}}</option>
                                     @endforeach
                                     </select>
                                 </div>

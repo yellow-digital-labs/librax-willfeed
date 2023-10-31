@@ -20,6 +20,7 @@ use App\Models\EaseOfAccess;
 use App\Models\PaymentTerms;
 use App\Models\PaymentExtension;
 use App\Models\ConsumeCapacity;
+use App\Helpers\Helpers;
 use App\Mail\UserRequest;
 
 class SignupClient extends Controller
@@ -34,7 +35,7 @@ class SignupClient extends Controller
       return redirect()->route("dashboard");
     }
 
-    $main_activity = MainActivity::all();
+    $main_activity = Helpers::clientActivityList();
     $region = Region::orderBy('name', 'ASC')->get();
     $common = Common::orderBy('name', 'ASC')->get();
     $province = Province::orderBy('name', 'ASC')->get();

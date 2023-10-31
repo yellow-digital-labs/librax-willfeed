@@ -47,6 +47,8 @@ $configData = Helper::appClasses();
                     <th>No</th>
                     <th class="js-add-search">Bill id</th>
                     <th class="js-add-search">Date & time</th>
+                    <th>Account name</th>
+                    <th>Email</th>
                     <th>Amount</th>
                     <th>Card</th>
                     <th>Transaction id</th>
