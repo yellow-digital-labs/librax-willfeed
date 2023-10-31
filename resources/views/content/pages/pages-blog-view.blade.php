@@ -30,7 +30,7 @@ $configData = Helper::appClasses();
 #blog__media {
   width: 100%;
   height: 400px;
-  background-image: url('{{Illuminate\Support\Facades\Storage::url($blog->blog_image)}}') no-repeat center center;
+  background: url('{{Illuminate\Support\Facades\Storage::url($blog->blog_image)}}') no-repeat center center;
   background-size: cover;
   margin-left: 60px;
 }
