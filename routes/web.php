@@ -47,6 +47,8 @@ Route::get('/admin', $controller_path . '\Admin@login')->name('admin-login');
 //Buyer Home screen
 Route::get('/buyer-home', $controller_path . '\pages\BuyerHome@index')->name('pages-buyer-home');
 
+//Blog detail page
+Route::get('/blog/{slug}', $controller_path . '\pages\BlogsManagement@view')->name('blog-page');
 
 //Authentication required
 Route::middleware([

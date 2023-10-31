@@ -313,12 +313,16 @@ $configData = Helper::appClasses();
 
                 @foreach($blogs as $blog)
                 <div class="uk-width-1-3@s blog__col">
-                    <div class="blog__item">
-                        <h2 class="title blog__title">{{$blog->blog_name}}</h2>
-                        <div class="blog__media">
-                            <img src="{{Illuminate\Support\Facades\Storage::url($blog->blog_image)}}" width="340" height="255">
+                    <a href="{{route("blog-page", [
+                        "slug" => $blog->slug
+                    ])}}">
+                        <div class="blog__item">
+                            <h2 class="title blog__title">{{$blog->blog_name}}</h2>
+                            <div class="blog__media">
+                                <img src="{{Illuminate\Support\Facades\Storage::url($blog->blog_image)}}" width="340" height="255">
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 @endforeach
 

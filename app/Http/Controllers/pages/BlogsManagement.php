@@ -261,4 +261,19 @@ class BlogsManagement extends Controller
       "data" => [],
     ]);
   }
+
+  public function view($slug){
+    $blog = Blog::where([
+      "slug" => $slug,
+      "status" => "active"
+    ])->first();
+
+    if($blog) {
+      return view('content.pages.pages-blog-view', [
+        'blog' => $blog,
+      ]);
+    } else {
+      return redirect()->route("pages-home");
+    }
+  }
 }
