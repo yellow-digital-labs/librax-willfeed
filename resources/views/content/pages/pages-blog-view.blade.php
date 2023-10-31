@@ -32,6 +32,7 @@ $configData = Helper::appClasses();
   height: 400px;
   background-image: url('{{Illuminate\Support\Facades\Storage::url($blog->blog_image)}}');
   background-size: cover;
+  margin-left: 60px;
 }
 </style>
 @endsection
