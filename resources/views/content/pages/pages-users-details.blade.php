@@ -170,7 +170,7 @@ $(document).ready(function () {
             <div class="tab-pane fade {{$is_expired?'':'show active'}}" id="navs-pills-top-Profilo" role="tabpanel">
 
                 <div class="card mb-4">
-                    <div class="card-header border-bottom">
+                    <div class="card-header border-bottom" style="background-color: #FFE000;">
                         <h4 class="text-black m-0">Anagrafica</h4>
                     </div>
                     <div class="card-body pt-4">
@@ -246,7 +246,7 @@ $(document).ready(function () {
 
                 @if($user->accountType==2)
                 <div class="card mb-4">
-                    <div class="card-header border-bottom">
+                    <div class="card-header border-bottom" style="background-color: #FF9300;">
                         <h4 class="text-black m-0">Operatività</h4>
                     </div>
                     <div class="card-body pt-4">
@@ -291,8 +291,8 @@ $(document).ready(function () {
                 </div>
 
                 <div class="card">
-                    <div class="card-header border-bottom">
-                        <h4 class="text-black m-0">Fatturazione</h4>
+                    <div class="card-header border-bottom" style="background-color: #941100;">
+                        <h4 class="m-0" style="color: #FFFFFF;">Fatturazione</h4>
                     </div>
                     <div class="card-body pt-4">
                         <div class="row g-4">
@@ -324,7 +324,7 @@ $(document).ready(function () {
 
                 @if($user->accountType==1)
                 <div class="card mb-4">
-                    <div class="card-header border-bottom">
+                    <div class="card-header border-bottom" style="background-color: #FF9300;">
                         <h4 class="text-black m-0">Destinazione</h4>
                     </div>
                     <div class="card-body pt-4">
@@ -384,8 +384,8 @@ $(document).ready(function () {
                 </div>
                 
                 <div class="card">
-                    <div class="card-header border-bottom">
-                        <h4 class="text-black m-0">Fatturazione</h4>
+                    <div class="card-header border-bottom" style="color: #FFFFFF; background-color: #941100;">
+                        <h4 class="m-0" style="color: #FFFFFF;">Fatturazione</h4>
                     </div>
                     <div class="card-body pt-4">
                         <div class="row g-4">
@@ -444,8 +444,8 @@ $(document).ready(function () {
                 </div>
 
                 <div class="card mt-4 mb-4">
-                    <div class="card-header border-bottom">
-                        <h4 class="text-black m-0">Profilo</h4>
+                    <div class="card-header border-bottom" style="background-color: #0433FF;">
+                        <h4 class="m-0" style="color: #FFFFFF;">Profilo</h4>
                     </div>
                     <div class="card-body pt-4">
                         <div class="row g-4">
