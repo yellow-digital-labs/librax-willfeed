@@ -30,9 +30,12 @@ $configData = Helper::appClasses();
 
 @section('page-script')
 <script>
-    var isShowRating = true;
-    @if($rating)
-        isShowRating = false;
+    var isShowRating = false;
+    @if($isBuyer && $order->payment_status == "paid")
+        isShowRating = true;
+        @if($order->is_review_popup_displaied == "1")
+            isShowRating = false;
+        @endif
     @endif
 </script>
 <script src="{{asset('assets/js/order-detail.js')}}"></script>
@@ -154,28 +157,6 @@ $configData = Helper::appClasses();
             </div>
             <div class="card-body pt-4">
                 <ul class="timeline pb-0 mb-0">
-                    <li class="timeline-item timeline-item-transparent">
-                        <span class="timeline-point timeline-point-warning"></span>
-                        <div class="timeline-event">
-                            <div class="timeline-header">
-                                <h6 class="mb-0">Ordine inviato (Ordine ID: #{{$id}})</h6>
-                                <span class="text-muted">{{\App\Helpers\Helpers::getMonthName(date('m', strtotime($order->order_date)))}}{{date(' d, Y, H:i', strtotime($order->order_date))}}</span>
-                            </div>
-                            <p class="mt-2">Ordine inviato correttamente</p>
-                        </div>
-                    </li>
-                    @foreach($order_activity as $num => $_order_activity)
-                    <li class="timeline-item timeline-item-transparent {{$num == (count($order_activity)-1)?'border-transparent pb-0':''}} ">
-                        <span class="timeline-point timeline-point-{{strpos(strtolower($_order_activity->status_title), 'approve') !== false ? "success" : "danger"}}"></span>
-                        <div class="timeline-event">
-                            <div class="timeline-header">
-                                <h6 class="mb-0">{{$_order_activity->status_title}}</h6>
-                                <span class="text-muted">{{\App\Helpers\Helpers::getMonthName(date('m', strtotime($_order_activity->status_updated_at)))}}{{date(' d, Y, H:i', strtotime($_order_activity->status_updated_at))}}</span>
-                            </div>
-                            <p class="mt-2">{{$_order_activity->status_description}}</p>
-                        </div>
-                    </li>
-                    @endforeach
                     @if($rating)
                     <li class="timeline-item timeline-item-transparent border-transparent pb-0">
                         <span class="timeline-point timeline-point-info"></span>
@@ -188,6 +169,28 @@ $configData = Helper::appClasses();
                         </div>
                     </li>
                     @endif
+                    @foreach($order_activity as $num => $_order_activity)
+                    <li class="timeline-item timeline-item-transparent ">
+                        <span class="timeline-point timeline-point-{{strpos(strtolower($_order_activity->status_title), 'approve') !== false ? "success" : "danger"}}"></span>
+                        <div class="timeline-event">
+                            <div class="timeline-header">
+                                <h6 class="mb-0">{{$_order_activity->status_title}}</h6>
+                                <span class="text-muted">{{\App\Helpers\Helpers::getMonthName(date('m', strtotime($_order_activity->status_updated_at)))}}{{date(' d, Y, H:i', strtotime($_order_activity->status_updated_at))}}</span>
+                            </div>
+                            <p class="mt-2">{{$_order_activity->status_description}}</p>
+                        </div>
+                    </li>
+                    @endforeach
+                    <li class="timeline-item timeline-item-transparent border-transparent pb-0">
+                        <span class="timeline-point timeline-point-warning"></span>
+                        <div class="timeline-event">
+                            <div class="timeline-header">
+                                <h6 class="mb-0">Ordine inviato (Ordine ID: #{{$id}})</h6>
+                                <span class="text-muted">{{\App\Helpers\Helpers::getMonthName(date('m', strtotime($order->order_date)))}}{{date(' d, Y, H:i', strtotime($order->order_date))}}</span>
+                            </div>
+                            <p class="mt-2">Ordine inviato correttamente</p>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

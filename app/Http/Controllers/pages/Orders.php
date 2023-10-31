@@ -272,7 +272,7 @@ class Orders extends Controller
         ->where("seller_id", "=", $order->seller_id)
         ->count();
 
-      $order_activity = OrderActivityHistory::where("order_id", "=", $id)->get();
+      $order_activity = OrderActivityHistory::where("order_id", "=", $id)->orderBy("id", "DESC")->get();
       $payment_options = PaymentOption::all();
       $payment_history = OrderPayment::where([
         "order_id" => $id
@@ -282,6 +282,11 @@ class Orders extends Controller
         "review_by_id" => $order->user_id,
         "review_for_id" => $order->seller_id,
       ])->first();
+      if($isBuyer && $order->is_review_popup_displaied == "0" && $order->payment_status == "paid"){
+        Order::where("id", "=", $id)->update([
+          "is_review_popup_displaied" => "1"
+        ]);
+      }
 
       return view("content.pages.pages-order-details", [
         'id' => $id,
