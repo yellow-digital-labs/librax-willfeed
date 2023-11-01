@@ -668,7 +668,7 @@ $(document).ready(function () {
                                             </div>
                                         </div>
                                         <p>
-                                            {!!$subscription->description!!}
+                                            {!! nl2br($subscription->description) !!}
                                         </p>
                                         @if($subscription->id == $user->subscription_id && $remainingDays >= 0)
                                             <a class="btn btn-label-success d-grid w-100">Your Current Plan</a>
