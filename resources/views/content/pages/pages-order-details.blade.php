@@ -129,8 +129,12 @@ $configData = Helper::appClasses();
                         </tr>
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-end align-items-center m-3 mb-2 p-1">
-                    <div class="order-calculations">
+                <div class="d-flex m-3 mb-2 p-1">
+                    <div class="m-0 col">
+                        <strong>Order note:</strong>
+                        {{ $order->order_note?$order->order_note:"NA" }}
+                    </div>
+                    <div class="order-calculations justify-content-end">
                         <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Subtotale:</span>
                             <h6 class="mb-0">€{{number_format($order->product_amount * $order->product_qty, 2)}}</h6>

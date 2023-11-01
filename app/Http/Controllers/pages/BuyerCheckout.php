@@ -134,6 +134,7 @@ class BuyerCheckout extends Controller
             "selling_contact" => $request->selling_contact,
             "payment_option" => $request->product_price_type,
             "payment_method_name" => $payment_method,
+            "order_note" => $request->order_note,
             "est_delivery_date" => Helpers::calculateEstimateShippingDate($seller_product->delivery_time, $seller_product->delivery_days, $seller_product->days_off),
           ]);
           
