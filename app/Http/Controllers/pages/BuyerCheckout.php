@@ -115,7 +115,7 @@ class BuyerCheckout extends Controller
             "product_amount" => $amount_before_tax,
             "product_qty" => $request->product_qty,
             "total_payable_amount" => $total_payable_amount,
-            "order_date" => date("Y-m-d"),
+            "order_date" => date("Y-m-d H:i:s"),
             "billing_first_name" => $request->billing_first_name,
             "billing_address" => $request->billing_address,
             "billing_house_no" => $request->billing_house_no,

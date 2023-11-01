@@ -144,7 +144,7 @@ class DatabaseTriggers extends Command
                     -- SET NEW.product_amount = @amount_before_tax;
                     -- SET NEW.total_payable_amount = @product_amount * NEW.product_qty;
                     SET NEW.order_status = @order_status;
-                    SET NEW.order_date = NOW();
+                    -- SET NEW.order_date = NOW();
                     -- SET NEW.customer_email = @customer_email;
                     -- SET NEW.customer_contact = @customer_contact;
                     -- SET NEW.payment_method_name = @payment_method_name;
