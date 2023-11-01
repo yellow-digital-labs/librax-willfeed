@@ -312,6 +312,7 @@ $(function () {
 
     $(document).on('click', '.btn-approve', function () {
         var id = $(this).data('id');
+        $("#credit-limit-form").trigger("reset");
         $("#credit-limit-form").attr("data-recordid", id);
     });
 

@@ -182,6 +182,18 @@ class DatabaseTriggers extends Command
                         SET @stock_in_transit = (SELECT IFNULL(SUM(product_qty), 0) FROM orders WHERE seller_id=NEW.seller_id AND product_id=NEW.product_id AND order_status_id=2);
 
                         UPDATE product_sellers SET stock_in_transit=@stock_in_transit WHERE seller_id=NEW.seller_id AND product_id=NEW.product_id;
+
+                        IF NEW.order_status_id = 4 THEN
+                            SELECT COALESCE(SUM(total_payable_amount), 0) INTO @credit_used FROM orders WHERE user_id=NEW.user_id AND seller_id=NEW.seller_id AND order_status_id=4 AND payment_status="unpaid";
+
+                            UPDATE customer_verifieds SET credit_used=@credit_used WHERE seller_id=NEW.seller_id AND customer_id=NEW.user_id;
+                        END IF;
+                    END IF;
+
+                    IF NEW.payment_status <> OLD.payment_status THEN
+                        SELECT COALESCE(SUM(total_payable_amount), 0) INTO @credit_used FROM orders WHERE user_id=NEW.user_id AND seller_id=NEW.seller_id AND order_status_id=4 AND payment_status="unpaid";
+
+                        UPDATE customer_verifieds SET credit_used=@credit_used WHERE seller_id=NEW.seller_id AND customer_id=NEW.user_id;
                     END IF;
                 END');
 
@@ -204,6 +216,15 @@ class DatabaseTriggers extends Command
                 BEGIN
                     IF NEW.status <> OLD.status THEN
                         SET NEW.status_on = NOW();
+
+                        SELECT COALESCE(SUM(total_payable_amount), 0) INTO @credit_used FROM orders WHERE user_id=NEW.customer_id AND seller_id=NEW.seller_id AND order_status_id=4 AND payment_status="unpaid";
+
+                        SET NEW.credit_used = @credit_used;
+                        SET NEW.credit_avail = NEW.credit_limit - @credit_used;
+                    END IF;
+
+                    IF NEW.credit_used <> OLD.credit_used THEN
+                        SET NEW.credit_avail = NEW.credit_limit - NEW.credit_used;
                     END IF;
                 END');
 

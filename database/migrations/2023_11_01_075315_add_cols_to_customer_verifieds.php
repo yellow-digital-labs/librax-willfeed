@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('customer_verifieds', function (Blueprint $table) {
-            $table->integer('credit_limit')->after('customer_since')->default(0)->nullable();
-            $table->integer('credit_used')->after('credit_limit')->default(0)->nullable();
-            $table->integer('credit_avail')->after('credit_used')->default(0)->nullable();
+            $table->float('credit_limit', 10, 2)->after('customer_since')->default(0)->nullable();
+            $table->float('credit_used', 10, 2)->after('credit_limit')->default(0)->nullable();
+            $table->float('credit_avail', 10, 2)->after('credit_used')->default(0)->nullable();
             $table->string('seller_name')->after('seller_id')->default("")->nullable();
         });
     }
