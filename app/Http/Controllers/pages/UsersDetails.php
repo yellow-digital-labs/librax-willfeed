@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\Subscription;
+use App\Helpers\Helpers;
 use Auth;
 use Stripe;
+use Redirect;
 
 class UsersDetails extends Controller
 {
@@ -16,8 +18,20 @@ class UsersDetails extends Controller
   {
     $is_expired = $request->get('expired');
     $user = Auth::user();
+    $isAdmin = Helpers::isAdmin();
+    $isSeller = Helpers::isSeller();
+    $isBuyer = Helpers::isBuyer();
     $user_detail = UserDetail::where(['user_id' => $user->id])->first();
-    $subscriptions = Subscription::where(['status' => 'active'])->get();
+    $subscriptions = [];
+    if($isSeller){
+      $subscriptions = Subscription::where(['status' => 'active', 'plan_for' => 'seller'])->get();
+    }
+    if($isBuyer){
+      $subscriptions = Subscription::where(['status' => 'active', 'plan_for' => 'buyer'])->get();
+    }
+    if($isAdmin){
+      $subscriptions = Subscription::where(['status' => 'active'])->get();
+    }
     $isOnlyProfile = false;
 
     $payment_methods = [];
@@ -49,13 +63,24 @@ class UsersDetails extends Controller
     $user_id = Auth::user()->id;
     $user = User::where(['id' => $id])->first();
     $user_detail = UserDetail::where(['user_id' => $id])->first();
+    $isAdmin = Helpers::isAdmin();
+    $isSeller = Helpers::isSeller();
+    $isBuyer = Helpers::isBuyer();
 
     $subscriptions = [];
     $payment_methods = [];
     $isOnlyProfile = true;
     if($user_id == $id){
       $isOnlyProfile = false;
-      $subscriptions = Subscription::where(['status' => 'active'])->get();
+      if($isSeller){
+        $subscriptions = Subscription::where(['status' => 'active', 'plan_for' => 'seller'])->get();
+      }
+      if($isBuyer){
+        $subscriptions = Subscription::where(['status' => 'active', 'plan_for' => 'buyer'])->get();
+      }
+      if($isAdmin){
+        $subscriptions = Subscription::where(['status' => 'active'])->get();
+      }
 
       if($user->stripe_customer_id){
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
@@ -78,5 +103,32 @@ class UsersDetails extends Controller
       'payment_methods' => $payment_methods,
       'is_expired' => null,
     ]);
+  }
+
+  public function updatePlan(Request $request, $planid){
+    $isSeller = Helpers::isSeller();
+    $isBuyer = Helpers::isBuyer();
+    //check plan available
+    $subscriptions = [];
+    if($isSeller){
+      $subscriptions = Subscription::where(['status' => 'active', 'plan_for' => 'seller', "id" => $planid])->first();
+    }
+    if($isBuyer){
+      $subscriptions = Subscription::where(['status' => 'active', 'plan_for' => 'buyer', "id" => $planid])->first();
+    }
+
+    if($subscriptions){
+      //update plan
+      $user_id = Auth::user()->id;
+      User::where(["id" => $user_id])->update([
+        "subscription_id" => $planid
+      ]);
+
+      return redirect()->route("profile");
+    } else {
+      return Redirect::back()->withErrors([
+        "msg" => "Invalid plan subscription request",
+      ]);
+    }
   }
 }

@@ -99,7 +99,7 @@ class DatabaseTriggers extends Command
                             SET NEW.amount_before_tax_old = OLD.amount_before_tax;
                             SET NEW.amount_before_tax_old_date = CURDATE();
                         END IF;
-                        
+
                         IF NEW.amount_before_tax_old_date <> CURDATE() THEN
                             SET NEW.amount_before_tax_old = OLD.amount_before_tax;
                             SET NEW.amount_before_tax_old_date = CURDATE();
@@ -251,7 +251,12 @@ class DatabaseTriggers extends Command
                         SET NEW.accountTypeName = "Admin";
                     END IF;
 
-                    SET NEW.subscription_id = 1;
+                    IF NEW.accountType = "1" THEN
+                        SELECT id INTO @subscription_id FROM subscriptions WHERE `status`="active" AND plan_for="buyer" LIMIT 1;
+                    ELSE
+                        SELECT id INTO @subscription_id FROM subscriptions WHERE `status`="active" AND plan_for="seller" LIMIT 1;
+                    END IF;
+                    SET NEW.subscription_id = @subscription_id;
                     SET NEW.exp_datetime = DATE_ADD(CURDATE(), INTERVAL 30 DAY);
 
                     SELECT name, amount INTO @subscription_name, @subscription_amount FROM subscriptions WHERE id=NEW.subscription_id;

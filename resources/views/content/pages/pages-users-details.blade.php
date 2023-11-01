@@ -601,7 +601,8 @@ $(document).ready(function () {
                                 <p>Riceverai una notifica alla scadenza del piano</p>
 
                                 <h6 class="mb-1">
-                                    €{{$subscriptions[0]->amount}} al mese
+                                    €{{$user->subscription_amount}} al mese
+                                    
                                     <span class="badge bg-label-{{$remainingDays>=0?'success':'danger'}} badge--{{$remainingDays>=0?'success':'danger'}}">{{$remainingDays>=0?'Active':'Expired'}}</span></h6>
                                 <p class="mb-3">Il piano standard per iniziare</p>
                                 {{-- <p class="mb-3 text-danger">Il tuo piano è scaduto, per continuare aggiungi il metodo di pagamento e sottoscrivi il piano</p> --}}
@@ -647,12 +648,15 @@ $(document).ready(function () {
                     </div>
                     <div class="card-body p-4">
                         <div class="row gy-3">
+                        @if(count($subscriptions)==0)
+                        Nessun piano disponibile
+                        @endif
                         @foreach($subscriptions as $subscription)
                             <div class="col-6 mb-md-0 mb-4">
                                 <div class="card border rounded shadow-none">
                                     <div class="card-body">
                                         <div class="my-3 pt-2 text-center">
-                                            <img src="{{asset($subscription->image)}}" alt="{{$subscription->name}} Image" height="140">
+                                            <img src="{{url("/assets/img/illustrations/page-pricing-basic.png")}}" alt="{{$subscription->name}} Image" height="140">
                                         </div>
                                         <h3 class="card-title fw-semibold text-center text-capitalize mb-3 h5">{{$subscription->name}}</h3>
                                         <p class="text-center">{!!$subscription->tagline!!}</p>
@@ -663,11 +667,15 @@ $(document).ready(function () {
                                                 <sub class="h6 pricing-duration mt-auto mb-2 text-muted fw-normal">/mese</sub>
                                             </div>
                                         </div>
-                                        {!!$subscription->description!!}
+                                        <p>
+                                            {!!$subscription->description!!}
+                                        </p>
                                         @if($subscription->id == $user->subscription_id && $remainingDays >= 0)
                                             <a class="btn btn-label-success d-grid w-100">Your Current Plan</a>
                                         @else
-                                            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addNewCCModal">Subscribe</button>
+                                            <a href="{{route("plan-update", [
+                                                "planid" => $subscription->id
+                                            ])}}" class="btn btn-primary d-grid w-100">Change plan</a>
                                         @endif
                                     </div>
                                 </div>
