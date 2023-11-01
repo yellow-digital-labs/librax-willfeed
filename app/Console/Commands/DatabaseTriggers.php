@@ -95,8 +95,13 @@ class DatabaseTriggers extends Command
                     IF NEW.amount_before_tax <> OLD.amount_before_tax THEN
                         SET NEW.amount = NEW.amount_before_tax + (NEW.amount_before_tax*NEW.tax/100);
 
+                        IF NEW.amount_before_tax_old_date IS NULL THEN
+                            SET NEW.amount_before_tax_old = OLD.amount_before_tax;
+                            SET NEW.amount_before_tax_old_date = CURDATE();
+                        END IF;
+                        
                         IF NEW.amount_before_tax_old_date <> CURDATE() THEN
-                            SET NEW.amount_before_tax_old = NEW.amount_before_tax;
+                            SET NEW.amount_before_tax_old = OLD.amount_before_tax;
                             SET NEW.amount_before_tax_old_date = CURDATE();
                         END IF;
                     END IF;
