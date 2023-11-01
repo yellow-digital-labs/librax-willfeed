@@ -6,6 +6,7 @@ use Config;
 use Auth;
 use Illuminate\Support\Str;
 use App\Models\Product;
+use App\Models\CustomerVerified;
 
 class Helpers
 {
@@ -320,5 +321,14 @@ class Helpers
         "Azienda di trasporto di persone",
         "Distributore privato",
     ];
+  }
+
+  public static function getAvailableCreditLimit($seller_id, $customer_id){
+    $record = CustomerVerified::where([
+        "customer_id" => $customer_id,
+        "seller_id" => $seller_id,
+      ])->first();
+
+    return "€".number_format($record->credit_avail, 2);
   }
 }
