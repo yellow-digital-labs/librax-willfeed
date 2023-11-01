@@ -1882,14 +1882,20 @@ marquee.dash-charts__marquee {
 }
 
 @media (max-width: 767.98px) {
-
+    .filter-heading__clear {
+        padding-right: 40px;
+    }
 }
 @media (max-width: 639.98px) {
-
+    .filter-heading__clear {
+        padding-right: 40px;
+    }
 }
 
 @media (max-width: 575px) {
-
+    .filter-heading__clear {
+        padding-right: 40px;
+    }
 }
 /* Filter Ends */
 
