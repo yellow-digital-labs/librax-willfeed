@@ -220,10 +220,10 @@ class Customer extends Controller
     }
 
     if($status == "approved"){ //Approved
-      // Mail::to($buyer->email)->send(new CustomerRequestApprove([
-      //   "sellerName" => $seller->name,
-      //   "url" => route("pages-buyer-home")
-      // ]));
+      Mail::to($buyer->email)->send(new CustomerRequestApprove([
+        "sellerName" => $seller->name,
+        "url" => route("pages-buyer-home")
+      ]));
     } else if($status == "rejected"){ //Rejected
       Mail::to($buyer->email)->send(new CustomerRequestReject([
         "sellerName" => $seller->name,

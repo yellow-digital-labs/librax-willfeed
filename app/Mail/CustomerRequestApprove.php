@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use TemplateMailable;
 
-class CustomerRequestApprove extends TemplateMailable
+class CustomerRequestApprove extends Mailable
 {
     use Queueable, SerializesModels;
 
