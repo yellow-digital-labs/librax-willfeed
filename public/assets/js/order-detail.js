@@ -71,6 +71,10 @@ $(".product-rating").on("click", function(){
   $("#rating-form").trigger("reset");
 });
 
+$(".js-update-order-status").on("click", function(){
+  $("#seller-note-form").attr("action", $(this).data("href"));
+});
+
 document.addEventListener('DOMContentLoaded', function (e) {
   (function () {
       const productForm = document.querySelector('#rating-form');

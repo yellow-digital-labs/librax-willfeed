@@ -145,7 +145,15 @@ class DatabaseTriggers extends Command
                         (SELECT name INTO @order_status FROM order_statuses WHERE id=NEW.order_status_id);
                         SET NEW.order_status = @order_status;
 
-                        INSERT INTO order_activity_histories SET order_id=NEW.id, status_title=CONCAT("Ordine ", @order_status), status_description=CONCAT("Ordine stato aggiornato con successo a ", @order_status), status_updated_at=NEW.updated_at;
+                        IF NEW.order_status_id = 2 OR NEW.order_status_id = 3 THEN
+                            IF NEW.seller_note IS NOT NULL THEN
+                                INSERT INTO order_activity_histories SET order_id=NEW.id, status_title=CONCAT("Ordine ", @order_status), status_description=CONCAT("Note: ", NEW.seller_note), status_updated_at=NEW.updated_at;
+                            ELSE
+                                INSERT INTO order_activity_histories SET order_id=NEW.id, status_title=CONCAT("Ordine ", @order_status), status_description=CONCAT("Ordine stato aggiornato con successo a ", @order_status), status_updated_at=NEW.updated_at;
+                            END IF;
+                        ELSE
+                            INSERT INTO order_activity_histories SET order_id=NEW.id, status_title=CONCAT("Ordine ", @order_status), status_description=CONCAT("Ordine stato aggiornato con successo a ", @order_status), status_updated_at=NEW.updated_at;
+                        END IF;
                     END IF;
 
                     IF NEW.total_paid_amount <> OLD.total_paid_amount OR NEW.total_payable_amount <> OLD.total_payable_amount THEN

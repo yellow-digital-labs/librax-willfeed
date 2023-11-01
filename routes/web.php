@@ -121,6 +121,7 @@ Route::middleware([
     Route::get('/orders/list', $controller_path . '\pages\Orders@list')->name('order-list'); //order list data ajax
     Route::get('/order/detail/{id}', $controller_path . '\pages\Orders@detail')->name('order-details'); //order detail page
     Route::get('/order/{id}/status/{status}', $controller_path . '\pages\Orders@status')->name('order-status'); //order status update ajax
+    Route::post('/order/{id}/status/{status}', $controller_path . '\pages\Orders@status')->name('order-status-post'); //order status update ajax
     Route::get('/order/payment/{id}', $controller_path . '\pages\Orders@payment')->name('add-order-payment'); //order payment add by seller
 
     //payment

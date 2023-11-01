@@ -215,7 +215,8 @@ $(function () {
                         'In corso': { title: 'In corso', class: 'bg-label-primary' },
                         'Ordine confermato': { title: 'Ordine confermato', class: ' bg-label-success' },
                         'Ordine rifiutato': { title: 'Ordine rifiutato', class: ' bg-label-danger' },
-                        'Consegnato': { title: 'Consegnato', class: ' bg-label-warning' }
+                        'Consegnato': { title: 'Consegnato', class: ' bg-label-warning' },
+                        'Ordine consegnato': { title: 'Ordine consegnato', class: ' bg-label-info' },
                     };
                     if (typeof $status[$status_number] === 'undefined') {
                         return data;

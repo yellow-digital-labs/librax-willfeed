@@ -314,7 +314,8 @@ class Orders extends Controller
 
     if($order){
       $order->update([
-        'order_status_id' => $status
+        'order_status_id' => $status,
+        'seller_note' => $request->message,
       ]);
 
       $buyer = User::where("id", $order->user_id)->first();
@@ -322,14 +323,16 @@ class Orders extends Controller
         Mail::to($buyer->email)->send(new OrderApprove([
             "order_id" => $order->id,
             "url" => route("order-details", [
-              "id" => $order->id
+              "id" => $order->id,
+              "message" => $request->message,
             ])
         ]));
       } else if($status == "3"){ // Rejected
         Mail::to($buyer->email)->send(new OrderReject([
             "order_id" => $order->id,
             "url" => route("order-details", [
-              "id" => $order->id
+              "id" => $order->id,
+              "message" => $request->message,
             ])
         ]));
       }
