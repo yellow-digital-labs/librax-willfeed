@@ -261,6 +261,7 @@ $configData = Helper::appClasses();
         <div class="card mb-4">
             <div class="card-header border-bottom">
                 <h5 class="card-title m-0 text-black">Venditore</h5>
+                <h6 class="m-0">Credit available: {{ App\Helpers\Helpers::getAvailableCreditLimit($order->seller_id, $order->user_id) }}</h6>
             </div>
             <div class="card-body pt-4">
                 <div class="d-flex justify-content-start align-items-center mb-4">
