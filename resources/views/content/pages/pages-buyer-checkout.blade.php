@@ -48,7 +48,7 @@ $configData = Helper::appClasses();
                     <input type="hidden" name="seller_product_id" value="{{$product->id}}">
                     <div class="checkout-box__head">
                         <h2 class="checkout-box__headtitle">Prodotto: <span class="checkout-box__headtitle-light">{{$product->product_name}}</span></h2>
-                        <h2 class="checkout-box__headtitle">Venditore: <span class="checkout-box__headtitle-light">{{$product->seller_name}}</span></h2>
+                        <h2 class="checkout-box__headtitle">Venditore: <span class="checkout-box__headtitle-light">{{$product->seller_name}}<br/><span class="" style="font-size: 14px; float:right;">Credit available: {{ App\Helpers\Helpers::getAvailableCreditLimit($seller_id, $customer_id) }}</span></span></h2>
                     </div>
                     <div class="checkout-box__body">
                         <div class="uk-grid checkout-box__prgrid gutter-xl" data-uk-grid>

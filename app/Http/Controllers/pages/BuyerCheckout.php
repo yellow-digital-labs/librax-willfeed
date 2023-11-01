@@ -50,6 +50,8 @@ class BuyerCheckout extends Controller
             "region" => $region,
             "common" => $common,
             "province" => $province,
+            "seller_id" => $product->seller_id,
+            "customer_id" => $user->id,
           ]);
         } else {
           return redirect()->route('customer-unauthorized', [
