@@ -33,9 +33,12 @@ class Customer extends Controller
       2 => "customer_region",
       3 => "status_on",
       4 => "customer_since",
-      5 => "status",
-      6 => "customer_id",
-      7 => "seller_id",
+      5 => "credit_limit",
+      6 => "credit_used",
+      7 => "credit_avail",
+      8 => "status",
+      9 => "customer_id",
+      10 => "seller_id",
     ];
 
     $search = [];
@@ -51,8 +54,10 @@ class Customer extends Controller
 
     $limit = $request->input("length");
     $start = $request->input("start");
-    $order = $columns[$request->input("order.0.column")];
-    $dir = $request->input("order.0.dir");
+    // $order = $columns[$request->input("order.0.column")];
+    // $dir = $request->input("order.0.dir");
+    $order = "id";
+    $dir = "desc";
 
     $applied_filters = [];
     foreach ($request->input("columns") as $col) {
@@ -164,6 +169,9 @@ class Customer extends Controller
         $nestedData["status_on"] = $customer->status_on;
         $nestedData["customer_id"] = $customer->customer_id;
         $nestedData["seller_id"] = $customer->seller_id;
+        $nestedData["credit_limit"] = "€".$customer->credit_limit;
+        $nestedData["credit_used"] = "€".$customer->credit_used;
+        $nestedData["credit_avail"] = "€".$customer->credit_avail;
 
         $data[] = $nestedData;
       }
@@ -192,10 +200,18 @@ class Customer extends Controller
 
     $query = CustomerVerified::where("seller_id", "=", $user_id)
       ->where("id",  "=", $id);
-    $query
-      ->update([
-        "status" => $status
-      ]);
+    if($status == "approved"){
+      $query
+        ->update([
+          "status" => $status,
+          "credit_limit" => $request->credit_limit,
+        ]);
+    } else {
+      $query
+        ->update([
+          "status" => $status
+        ]);
+    }
 
     if($status != "pending"){
       $CustomerVerified = $query->first();
@@ -204,10 +220,10 @@ class Customer extends Controller
     }
 
     if($status == "approved"){ //Approved
-      Mail::to($buyer->email)->send(new CustomerRequestApprove([
-        "sellerName" => $seller->name,
-        "url" => route("pages-buyer-home")
-      ]));
+      // Mail::to($buyer->email)->send(new CustomerRequestApprove([
+      //   "sellerName" => $seller->name,
+      //   "url" => route("pages-buyer-home")
+      // ]));
     } else if($status == "rejected"){ //Rejected
       Mail::to($buyer->email)->send(new CustomerRequestReject([
         "sellerName" => $seller->name,

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::table('customer_verifieds', function (Blueprint $table) {
             $table->integer('credit_limit')->after('customer_since')->default(0)->nullable();
+            $table->integer('credit_used')->after('credit_limit')->default(0)->nullable();
+            $table->integer('credit_avail')->after('credit_used')->default(0)->nullable();
             $table->string('seller_name')->after('seller_id')->default("")->nullable();
         });
     }
@@ -23,7 +25,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('customer_verifieds', function (Blueprint $table) {
-            $table->dropColumn(['credit_limit', "seller_name"]);
+            $table->dropColumn(['credit_limit', 'credit_used', 'credit_avail', "seller_name"]);
         });
     }
 };

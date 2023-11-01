@@ -211,8 +211,41 @@ $(function () {
                     return '<span class="user-customer_since">' + $customer_since + '</span>';
                 }
             }, {
-                // Label
+                // credit_limit
                 targets: 5,
+                visible: true,
+                searchable: true,
+                orderable: true,
+                responsivePriority: 4,
+                render: function render(data, type, full, meta) {
+                    var $credit_limit = full['credit_limit'] ? full['credit_limit'] : '';
+                    return '<span class="user-credit_limit">' + $credit_limit + '</span>';
+                }
+            }, {
+                // credit_used
+                targets: 6,
+                visible: true,
+                searchable: true,
+                orderable: true,
+                responsivePriority: 4,
+                render: function render(data, type, full, meta) {
+                    var $credit_used = full['credit_used'] ? full['credit_used'] : '';
+                    return '<span class="user-credit_used">' + $credit_used + '</span>';
+                }
+            }, {
+                // credit_avail
+                targets: 7,
+                visible: true,
+                searchable: true,
+                orderable: true,
+                responsivePriority: 4,
+                render: function render(data, type, full, meta) {
+                    var $credit_avail = full['credit_avail'] ? full['credit_avail'] : '';
+                    return '<span class="user-credit_avail">' + $credit_avail + '</span>';
+                }
+            }, {
+                // Label
+                targets: 8,
                 render: function (data, type, full, meta) {
                     var $status_number = full['status'];
                     var $status = {
@@ -230,7 +263,7 @@ $(function () {
             },
             {
                 // Actions
-                targets: 6,
+                targets: 9,
                 title: 'Actions',
                 searchable: false,
                 orderable: false,
@@ -238,23 +271,31 @@ $(function () {
                     var status_number = full['status'];
                     var id = full['id'];
                     let statusList = "";
-                    if(status_number != "pending") {
-                        statusList += `<a href="javascript:;" class="dropdown-item btn-pending" data-id="${id}">Pending</a>`;
-                    }
+                    // if(status_number != "pending") {
+                    //     statusList += `<a href="javascript:;" class="dropdown-item btn-pending" data-id="${id}">Pending</a>`;
+                    // }
                     if(status_number != "approved") {
-                        statusList += `<a href="javascript:;" class="dropdown-item btn-approve" data-id="${id}">Approve</a>`;
+                        statusList += `<a href="javascript:;" class="dropdown-item btn-approve" data-id="${id}" data-bs-toggle="modal" data-bs-target="#creditLimitModal">Approve</a>`;
                     }
                     if(status_number != "rejected") {
                         statusList += `<a href="javascript:;" class="dropdown-item btn-reject" data-id="${id}">Reject</a>`;
                     }
-                    return (
-                        '<div class="d-inline-block">' +
-                        '<a href="'+baseUrl+'profile/'+full['customer_id']+'/view" class="btn btn-sm btn-icon" data-id="" target="_blank"><i class="ti ti-edit"></i></a>' +
-                        '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
-                        '<div class="dropdown-menu dropdown-menu-end m-0">' +
-                        statusList +
-                        '</div>'
-                    );
+                    if(isSeller=="1"){
+                        return (
+                            '<div class="d-inline-block">' +
+                            '<a href="'+baseUrl+'profile/'+full['customer_id']+'/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
+                            '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
+                            '<div class="dropdown-menu dropdown-menu-end m-0">' +
+                            statusList +
+                            '</div>'
+                        );
+                    } else {
+                        return (
+                            '<div class="d-inline-block">' +
+                            '<a href="'+baseUrl+'profile/'+full['customer_id']+'/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
+                            '</div>'
+                        );
+                    }
                 }
             }
             ],
@@ -271,8 +312,7 @@ $(function () {
 
     $(document).on('click', '.btn-approve', function () {
         var id = $(this).data('id');
-
-        updateStatus(id, 'approved');
+        $("#credit-limit-form").attr("data-recordid", id);
     });
 
     $(document).on('click', '.btn-reject', function () {
@@ -287,7 +327,7 @@ $(function () {
         updateStatus(id, 'pending');
     });
 
-    function updateStatus(id, status){
+    function updateStatus(id, status, credit_limit = null){
         // sweetalert for confirmation of update status
         // Swal.fire({
         //     title: 'Are you sure?',
@@ -306,11 +346,19 @@ $(function () {
                 
         //     }
         // });
+        var data = {};
+        if(status == "approved"){
+            data = {
+                "credit_limit": credit_limit
+            };
+        }
         $.ajax({
             type: 'POST',
             url: "".concat(baseUrl, `customer/${id}/status/${status}`),
+            data: data,
             success: function success() {
                 dt_filter.draw();
+                $('#creditLimitModal').modal('hide');
             },
             error: function error(_error) {
                 console.log(_error);
@@ -329,4 +377,44 @@ $(function () {
         $('.dataTables_filter .form-control').removeClass('form-control-sm');
         $('.dataTables_length .form-select').removeClass('form-select-sm');
     }, 200);
+
+    
+    const productForm = document.querySelector('#credit-limit-form');
+    // Form validation for Add new record
+    if (productForm) {
+        FormValidation.formValidation(productForm, {
+            fields: {
+                credit_limit: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter credit limit'
+                        },
+                        regexp: {
+                            regexp: /^[0-9]+$/,
+                            message: 'Please enter valid credit limit'
+                        }
+                    }
+                }
+            },
+            plugins: {
+                trigger: new FormValidation.plugins.Trigger(),
+                bootstrap5: new FormValidation.plugins.Bootstrap5({
+                // Use this for enabling/changing valid/invalid class
+                // eleInvalidClass: '',
+                eleValidClass: '',
+                rowSelector: '.col'
+                }),
+                submitButton: new FormValidation.plugins.SubmitButton(),
+                // Submit the form when all fields are valid
+                // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                autoFocus: new FormValidation.plugins.AutoFocus()
+            }
+            }).on('core.form.valid', function () {
+            // Jump to the next step when all fields in the current step are valid
+            // productForm.submit();
+            var credit_limit = $("#credit_limit").val();
+            var id = $("#credit-limit-form").attr("data-recordid");
+            updateStatus(id, 'approved', credit_limit);
+            });
+    }
 });
