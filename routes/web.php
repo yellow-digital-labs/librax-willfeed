@@ -106,6 +106,7 @@ Route::middleware([
 
     //customer
     Route::get('/customer', $controller_path . '\pages\Customer@index')->name('customer'); //customer list view
+    Route::get('/seller', $controller_path . '\pages\Customer@index')->name('seller'); //seller list view
     Route::get('/customers/list', $controller_path . '\pages\Customer@list')->name('customer-list'); //customer list data ajax
     Route::post('/customer/{id}/status/{status}', $controller_path . '\pages\Customer@status')->name('customer-status'); //customer status update ajax
 

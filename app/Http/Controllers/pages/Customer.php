@@ -9,6 +9,7 @@ use App\Models\CustomerVerified;
 use App\Models\User;
 use App\Mail\CustomerRequestApprove;
 use App\Mail\CustomerRequestReject;
+use App\Helpers\Helpers;
 use Auth;
 
 class Customer extends Controller
@@ -19,6 +20,7 @@ class Customer extends Controller
 
     return view("content.pages.pages-approved-customer", [
       "urlListCustomerData" => $urlListCustomerData,
+      "isSeller" => Helpers::isSeller(),
     ]);
   }
 
@@ -26,19 +28,23 @@ class Customer extends Controller
   {
     $user_id = Auth::user()->id;
     $columns = [
-      1 => "id",
-      2 => "customer_name",
-      3 => "customer_region",
-      4 => "status_on",
-      5 => "customer_since",
-      6 => "status",
-      7 => "customer_id",
-      8 => "seller_id",
+      0 => "customer_name",
+      1 => "seller_name",
+      2 => "customer_region",
+      3 => "status_on",
+      4 => "customer_since",
+      5 => "status",
+      6 => "customer_id",
+      7 => "seller_id",
     ];
 
     $search = [];
 
-    $f = CustomerVerified::where("seller_id", "=", $user_id);
+    if(Helpers::isSeller()){
+      $f = CustomerVerified::where("seller_id", "=", $user_id);
+    } else {
+      $f = CustomerVerified::where("customer_id", "=", $user_id);
+    }
     $totalData = $f->count();
 
     $totalFiltered = $totalData;
@@ -57,8 +63,13 @@ class Customer extends Controller
 
     if (empty($request->input("search.value"))) {
       if (count($applied_filters) > 0) {
-        $customersObj = CustomerVerified::where("seller_id", "=", $user_id)
-          ->where('status', "<>", "rejected");
+        if(Helpers::isSeller()){
+          $customersObj = CustomerVerified::where("seller_id", "=", $user_id)
+            ->where('status', "<>", "rejected");
+        } else {
+          $customersObj = CustomerVerified::where("customer_id", "=", $user_id)
+            ->where('status', "<>", "rejected");
+        }
 
         foreach ($applied_filters as $field => $search) {
           $customersObj->where($field, "LIKE", "%{$search}%");
@@ -70,38 +81,70 @@ class Customer extends Controller
           ->orderBy($order, $dir)
           ->get();
       } else {
-        $customers = CustomerVerified::where("seller_id", "=", $user_id)
-          ->where('status', "<>", "rejected")
-          ->offset($start)
-          ->limit($limit)
-          ->orderBy($order, $dir)
-          ->get();
+        if(Helpers::isSeller()){
+          $customers = CustomerVerified::where("seller_id", "=", $user_id)
+            ->where('status', "<>", "rejected")
+            ->offset($start)
+            ->limit($limit)
+            ->orderBy($order, $dir)
+            ->get();
+        } else {
+          $customers = CustomerVerified::where("customer_id", "=", $user_id)
+            ->where('status', "<>", "rejected")
+            ->offset($start)
+            ->limit($limit)
+            ->orderBy($order, $dir)
+            ->get();
+        }
       }
     } else {
       $search = $request->input("search.value");
 
-      $customers = CustomerVerified::where("seller_id", "=", $user_id)
-        ->where(function ($query) use ($search) {
-          return $query
-          ->where('status', "<>", "rejected")
-            ->where("customer_name", "LIKE", "%{$search}%")
-            ->orWhere("customer_region", "LIKE", "%{$search}%")
-            ->orWhere("status", "LIKE", "%{$search}%");
-        })
-        ->offset($start)
-        ->limit($limit)
-        ->orderBy($order, $dir)
-        ->get();
-
-      $totalFiltered = CustomerVerified::where("seller_id", "=", $user_id)
-        ->where(function ($query) use ($search) {
-          return $query
+      if(Helpers::isSeller()){
+        $customers = CustomerVerified::where("seller_id", "=", $user_id)
+          ->where(function ($query) use ($search) {
+            return $query
             ->where('status', "<>", "rejected")
-            ->where("customer_name", "LIKE", "%{$search}%")
-            ->orWhere("customer_region", "LIKE", "%{$search}%")
-            ->orWhere("status", "LIKE", "%{$search}%");
-        })
-        ->count();
+              ->where("customer_name", "LIKE", "%{$search}%")
+              ->orWhere("customer_region", "LIKE", "%{$search}%")
+              ->orWhere("status", "LIKE", "%{$search}%");
+          })
+          ->offset($start)
+          ->limit($limit)
+          ->orderBy($order, $dir)
+          ->get();
+
+        $totalFiltered = CustomerVerified::where("seller_id", "=", $user_id)
+          ->where(function ($query) use ($search) {
+            return $query
+              ->where('status', "<>", "rejected")
+              ->where("customer_name", "LIKE", "%{$search}%")
+              ->orWhere("customer_region", "LIKE", "%{$search}%")
+              ->orWhere("status", "LIKE", "%{$search}%");
+          })
+          ->count();
+      } else {
+        $customers = CustomerVerified::where("customer_id", "=", $user_id)
+          ->where(function ($query) use ($search) {
+            return $query
+            ->where('status', "<>", "rejected")
+              ->where("seller_name", "LIKE", "%{$search}%")
+              ->orWhere("status", "LIKE", "%{$search}%");
+          })
+          ->offset($start)
+          ->limit($limit)
+          ->orderBy($order, $dir)
+          ->get();
+
+        $totalFiltered = CustomerVerified::where("customer_id", "=", $user_id)
+          ->where(function ($query) use ($search) {
+            return $query
+              ->where('status', "<>", "rejected")
+              ->where("seller_name", "LIKE", "%{$search}%")
+              ->orWhere("status", "LIKE", "%{$search}%");
+          })
+          ->count();
+      }
     }
 
     $data = [];
@@ -114,6 +157,7 @@ class Customer extends Controller
         $nestedData["id"] = $customer->id;
         $nestedData["fake_id"] = ++$ids;
         $nestedData["customer_name"] = $customer->customer_name;
+        $nestedData["seller_name"] = $customer->seller_name;
         $nestedData["customer_region"] = $customer->customer_region;
         $nestedData["status"] = $customer->status;
         $nestedData["customer_since"] = $customer->customer_since;

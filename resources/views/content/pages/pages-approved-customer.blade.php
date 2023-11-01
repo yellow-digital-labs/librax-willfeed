@@ -20,6 +20,7 @@ $configData = Helper::appClasses();
 
 @section('page-script')
 <script>
+    var isSeller = "{{$isSeller}}";
     var urlListCustomerData = {!! "'".$urlListCustomerData."'" !!};
 </script>
 <script src="{{asset('assets/js/approved-customer-datatables.js')}}"></script>
@@ -32,12 +33,25 @@ $configData = Helper::appClasses();
 
 @section('content')
 
-<h1 class="h3 text-black mb-4">Customer</h1>
+<h1 class="h3 text-black mb-4">
+@if($isSeller)
+    Customer
+@else
+    Seller
+@endif
+</h1>
 
 <div class="card">
     <div class="card-header d-flex justify-content-between border-bottom">
         <div class="card-title mb-0">
-            <h5 class="mb-0 text-black">Customer list</h5>
+            <h5 class="mb-0 text-black">
+            @if($isSeller)
+                Customer
+            @else
+                Seller
+            @endif
+            list
+            </h5>
         </div>
     </div>
     <div class="card-datatable text-nowrap">
@@ -45,6 +59,7 @@ $configData = Helper::appClasses();
             <thead>
                 <tr>
                     <th class="js-add-search">Customer name</th>
+                    <th class="js-add-search">Seller name</th>
                     <th class="js-add-search">City</th>
                     <th>Verified since</th>
                     <th>Since on platform</th>

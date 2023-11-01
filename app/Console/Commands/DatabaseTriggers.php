@@ -190,10 +190,12 @@ class DatabaseTriggers extends Command
         DB::unprepared('CREATE TRIGGER customer_verifieds_before_insert BEFORE INSERT ON `customer_verifieds` FOR EACH ROW
                 BEGIN
                     (SELECT business_name, region, created_at INTO @customer_name, @customer_region, @customer_since FROM user_details WHERE user_id=NEW.customer_id);
+                    (SELECT business_name INTO @seller_name FROM user_details WHERE user_id=NEW.seller_id);
 
                     SET NEW.customer_name = @customer_name;
                     SET NEW.customer_region = @customer_region;
                     SET NEW.customer_since = @customer_since;
+                    SET NEW.seller_name = @seller_name;
                     SET NEW.status_on = NOW();
                 END');
 

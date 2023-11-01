@@ -148,6 +148,7 @@ $(function () {
             },
             columns: [
                 { data: 'customer_name' },
+                { data: 'seller_name' },
                 { data: 'customer_region' },
                 { data: 'status_on' },
                 { data: 'customer_since' },
@@ -157,7 +158,7 @@ $(function () {
             columnDefs: [{
                 // customer_name
                 targets: 0,
-                // visible: false,
+                visible: isSeller=="1"?true:false,
                 searchable: true,
                 orderable: true,
                 responsivePriority: 4,
@@ -166,9 +167,20 @@ $(function () {
                     return '<span class="user-customer_name">' + $customer_name + '</span>';
                 }
             }, {
-                // customer_region
+                // seller_name
                 targets: 1,
-                // visible: false,
+                visible: isSeller=="1"?false:true,
+                searchable: true,
+                orderable: true,
+                responsivePriority: 4,
+                render: function render(data, type, full, meta) {
+                    var $seller_name = full['seller_name'] ? full['seller_name'] : '';
+                    return '<span class="user-seller_name">' + $seller_name + '</span>';
+                }
+            }, {
+                // customer_region
+                targets: 2,
+                visible: isSeller=="1"?true:false,
                 searchable: true,
                 orderable: true,
                 responsivePriority: 4,
@@ -178,7 +190,7 @@ $(function () {
                 }
             }, {
                 // status_on
-                targets: 2,
+                targets: 3,
                 // visible: false,
                 searchable: true,
                 orderable: true,
@@ -189,8 +201,8 @@ $(function () {
                 }
             }, {
                 // customer_since
-                targets: 3,
-                // visible: false,
+                targets: 4,
+                visible: isSeller=="1"?true:false,
                 searchable: true,
                 orderable: true,
                 responsivePriority: 4,
@@ -200,7 +212,7 @@ $(function () {
                 }
             }, {
                 // Label
-                targets: 4,
+                targets: 5,
                 render: function (data, type, full, meta) {
                     var $status_number = full['status'];
                     var $status = {
@@ -218,7 +230,7 @@ $(function () {
             },
             {
                 // Actions
-                targets: 5,
+                targets: 6,
                 title: 'Actions',
                 searchable: false,
                 orderable: false,

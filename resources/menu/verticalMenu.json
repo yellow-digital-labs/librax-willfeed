@@ -31,6 +31,15 @@
             ]
         },
         {
+            "url": "/seller",
+            "name": "Lista venditori",
+            "icon": "menu-icon tf-icons ti ti-user-check",
+            "slug": "seller",
+            "section": [
+                "buyer"
+            ]
+        },
+        {
             "url": "/user/buyer",
             "name": "Buyer",
             "icon": "menu-icon tf-icons ti ti-user",
