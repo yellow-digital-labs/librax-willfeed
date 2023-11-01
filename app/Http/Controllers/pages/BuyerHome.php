@@ -126,7 +126,8 @@ class BuyerHome extends Controller
     // $product_query->dd();
     $products_list = $product_query->paginate(5);
 
-    $products = Product::where(["active" => "yes"])->get();
+    // $products = Product::where(["active" => "yes"])->get();
+    $products = ProductSeller::where(["status" => "active"])->orderBy("product_name", "ASC")->get();
     // $payment_options = PaymentOption::all();
     $payment_options = ["Bonifico Bancario", "Assegno Bancario", "RIBA", "RID"];
     $regions = Region::all();

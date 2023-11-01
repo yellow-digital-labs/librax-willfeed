@@ -75,6 +75,8 @@ class DatabaseTriggers extends Command
                     SET NEW.tax = 22;
                     SET NEW.amount = NEW.amount_before_tax + (NEW.amount_before_tax*NEW.tax/100);
                     SET NEW.current_stock = 0;
+                    SET NEW.amount_before_tax_old = NEW.amount_before_tax;
+                    SET NEW.amount_before_tax_old_date = CURDATE();
                 END');
         
         DB::unprepared('DROP TRIGGER IF EXISTS `product_sellers_before_update`');
@@ -92,6 +94,11 @@ class DatabaseTriggers extends Command
 
                     IF NEW.amount_before_tax <> OLD.amount_before_tax THEN
                         SET NEW.amount = NEW.amount_before_tax + (NEW.amount_before_tax*NEW.tax/100);
+
+                        IF NEW.amount_before_tax_old_date <> CURDATE() THEN
+                            SET NEW.amount_before_tax_old = NEW.amount_before_tax;
+                            SET NEW.amount_before_tax_old_date = CURDATE();
+                        END IF;
                     END IF;
 
                     IF NEW.stock_lifetime <> OLD.stock_lifetime OR NEW.stock_in_transit <> OLD.stock_in_transit THEN

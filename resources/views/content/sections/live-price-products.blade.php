@@ -1,12 +1,12 @@
 <div class="uk-grid dash-charts__grid uk-slider-items">
     @foreach($products as $product)
         @php
-            $price_diff = $product->today_price-$product->old_price;
+            $price_diff = $product->amount_before_tax-$product->amount_before_tax_old;
             $image_url = "decrease-graph.svg";
-            if($product->old_price==0){
+            if($product->amount_before_tax_old==0){
                 $price_diff_per = "0.00";
             } else {
-                $price_diff_per = number_format($price_diff*100/$product->old_price, 2);
+                $price_diff_per = number_format($price_diff*100/$product->amount_before_tax_old, 2);
             }
             if($price_diff>0){
                 $image_url = "chart-sample.png";
@@ -21,20 +21,19 @@
                         <img src="{{asset('assets/front/images/liquid-drop.png')}}" width="33" height="33">
                     </div>
                     <div class="dash-charts__text">
-                        <h2 class="dash-charts__title">{{$product->name}}</h2>
-                        <div class="dash-charts__about">{{$product->name}}</div>
+                        <h2 class="dash-charts__title">{{$product->product_name}}</h2>
                     </div>
                     <div class="dash-charts__object">
-                        <img src="{{asset('assets/front/images/'.$image_url)}}" width="101" height="47" alt="chart sample image">
+                        <img src="{{asset('assets/front/images/'.$image_url)}}" width="101" height="47" alt="proce chart for {{ $product->product_name }}">
                     </div>
                 </div>
                 <div class="dash-charts__down">
                     <div class="dash-charts__price">
                         <div class="dash-charts__price-text">
-                            €{{number_format($product->today_price, 2)}}
+                            €{{number_format($product->amount_before_tax, 2)}}
                         </div>
                         <div class="dash-charts__price-type">
-                            Prezzo di mercato
+                            {{ $product->seller_name }}
                         </div>
                     </div>
                     <div class="dash-charts__perc">

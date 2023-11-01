@@ -167,9 +167,10 @@
     font-weight: 600;
     letter-spacing: 0.18px;
     margin-bottom: 1px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    overflow-wrap: normal;
+    /* white-space: nowrap; */
 }
 
 .dash-charts__text {
