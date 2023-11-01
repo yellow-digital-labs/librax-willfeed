@@ -112,7 +112,7 @@ $configData = Helper::appClasses();
 
                             <div class="filter__item">
                                 <h3 class="filter__name">Prodotto</h3>
-                                @foreach($products as $product)
+                                @foreach($products_filter as $product)
                                 <div class="filter-checkbox">
                                     <input type="checkbox" name="fuel_type[]"
                                         class="uk-checkbox filter-checkbox__input product-filter-checkbox"
