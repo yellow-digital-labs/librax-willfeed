@@ -8,6 +8,8 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\MailTemplate;
+use App\Helpers\Helpers;
 
 class UserVerification extends Mailable
 {
@@ -16,9 +18,16 @@ class UserVerification extends Mailable
     /**
      * Create a new message instance.
      */
+    public $html;
+    public $subject;
+
     public function __construct(public $data)
     {
-        
+        $email = MailTemplate::where("mailable", "=", "App\Mail\ContactUs")->first();
+        $this->html = Helpers::updateEmailTemplateValues($data, $email->html_template);
+        $this->subject = Helpers::updateEmailTemplateValues($data, $email->subject);
+
+        // dd($data);
     }
 
     /**
@@ -27,7 +36,7 @@ class UserVerification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'User Verification',
+            subject: $this->subject,
         );
     }
 

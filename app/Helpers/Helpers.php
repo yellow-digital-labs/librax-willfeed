@@ -331,4 +331,12 @@ class Helpers
 
     return "€".number_format($record->credit_avail, 2);
   }
+
+  public static function updateEmailTemplateValues($data, $html){
+    foreach($data as $key => $_data){
+      $html = str_replace("{{".$key."}}", $_data, $html);
+    }
+
+    return $html;
+  }
 }
