@@ -259,7 +259,7 @@ $configData = Helper::appClasses();
         @endif
         @if(!$isSeller || $isAdmin)
         <div class="card mb-4">
-            <div class="card-header border-bottom">
+            <div class="card-header d-flex justify-content-between border-bottom">
                 <h5 class="card-title m-0 text-black">Venditore</h5>
                 <h6 class="m-0">Credit available: {{ App\Helpers\Helpers::getAvailableCreditLimit($order->seller_id, $order->user_id) }}</h6>
             </div>
