@@ -87,58 +87,65 @@ $(function() {
         });
     }
 
-    // const productForm = document.querySelector('#form-add-new-record');
-    // // Form validation for Add new record
-    // if (productForm) {
-    //     FormValidation.formValidation(productForm, {
-    //         fields: {
-    //             name: {
-    //             validators: {
-    //                 notEmpty: {
-    //                 message: 'Please enter name'
-    //                 }
-    //             }
-    //             },
-    //             tagline: {
-    //             validators: {
-    //                 notEmpty: {
-    //                 message: 'Please enter tagline'
-    //                 }
-    //             }
-    //             },
-    //             amount: {
-    //             validators: {
-    //                 notEmpty: {
-    //                 message: 'Please enter amount'
-    //                 }
-    //             }
-    //             },
-    //             description: {
-    //             validators: {
-    //                 notEmpty: {
-    //                 message: 'Please enter description'
-    //                 }
-    //             }
-    //             }
-    //         },
-    //         plugins: {
-    //             trigger: new FormValidation.plugins.Trigger(),
-    //             bootstrap5: new FormValidation.plugins.Bootstrap5({
-    //             // Use this for enabling/changing valid/invalid class
-    //             // eleInvalidClass: '',
-    //             eleValidClass: '',
-    //             rowSelector: '.col-12'
-    //             }),
-    //             submitButton: new FormValidation.plugins.SubmitButton(),
-    //             // Submit the form when all fields are valid
-    //             // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
-    //             autoFocus: new FormValidation.plugins.AutoFocus()
-    //         }
-    //         }).on('core.form.valid', function () {
-    //         // Jump to the next step when all fields in the current step are valid
-    //             productForm.submit();
-    //         });
-    // }
+    const productForm = document.querySelector('#form-add-new-record');
+    // Form validation for Add new record
+    if (productForm) {
+        FormValidation.formValidation(productForm, {
+            fields: {
+                name: {
+                validators: {
+                    notEmpty: {
+                    message: 'Please enter name'
+                    }
+                }
+                },
+                tagline: {
+                validators: {
+                    notEmpty: {
+                    message: 'Please enter tagline'
+                    }
+                }
+                },
+                amount: {
+                validators: {
+                    notEmpty: {
+                    message: 'Please enter amount'
+                    }
+                }
+                },
+                description: {
+                validators: {
+                    notEmpty: {
+                    message: 'Please enter description'
+                    }
+                }
+                },
+                plan_for: {
+                validators: {
+                    notEmpty: {
+                    message: 'Please select assign to'
+                    }
+                }
+                }
+            },
+            plugins: {
+                trigger: new FormValidation.plugins.Trigger(),
+                bootstrap5: new FormValidation.plugins.Bootstrap5({
+                // Use this for enabling/changing valid/invalid class
+                // eleInvalidClass: '',
+                eleValidClass: '',
+                rowSelector: '.col-sm-12'
+                }),
+                submitButton: new FormValidation.plugins.SubmitButton(),
+                // Submit the form when all fields are valid
+                // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                autoFocus: new FormValidation.plugins.AutoFocus()
+            }
+            }).on('core.form.valid', function () {
+            // Jump to the next step when all fields in the current step are valid
+                productForm.submit();
+            });
+    }
 });
 
 // edit record
@@ -160,6 +167,7 @@ $(document).on('click', '.edit-record', function () {
       $('#edit-tagline').val(data.tagline);
       $('#edit-amount').val(data.amount);
       $('#edit-description').val(data.description);
+      $('#edit-plan_for').val(data.plan_for);
       $('#edit-status').prop("checked", data.status=="active"?true:false);
       $('#edit-image').val(data.image);
     });

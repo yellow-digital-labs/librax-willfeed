@@ -186,6 +186,21 @@ class SubscriptionPlanManagement extends Controller
     }
   }
 
+  public function add(Request $request)
+  {
+    $subscription = Subscription::create([
+      "name" => $request->name,
+      "tagline" => $request->tagline,
+      "amount" => $request->amount,
+      "description" => $request->description,
+      "status" => $request->status?'active':'inactive',
+      "plan_for" => $request->plan_for,
+    ]);
+
+    return redirect()->back();
+    // return response()->json($subscription);
+  }
+
   public function edit($id)
   {
     $subscription = Subscription::where(['id' => $id])->first();
@@ -201,6 +216,7 @@ class SubscriptionPlanManagement extends Controller
       "amount" => $request->amount,
       "description" => $request->description,
       "status" => $request->status?'active':'inactive',
+      "plan_for" => $request->plan_for,
     ]);
 
     return redirect()->back();

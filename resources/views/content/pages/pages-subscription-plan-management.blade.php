@@ -42,7 +42,7 @@ $configData = Helper::appClasses();
         <div class="card-title mb-0">
             <h5 class="mb-0 text-black">Plans list</h5>
         </div>
-        
+        <button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#add-new-record"><i class="ti ti-plus me-sm-1"></i> Add new plan</button>
     </div>
     <div class="card-datatable text-nowrap">
         <table class="dt-column-search table">
@@ -86,6 +86,14 @@ $configData = Helper::appClasses();
             <div class="col-sm-12">
                 <label class="form-label" for="edit-description">Description</label>
                 <textarea class="form-control" placeholder="Enter description" id="edit-description" name="description" rows="4"></textarea>
+            </div>
+            <div class="col-sm-12">
+                <label class="form-label" for="edit-plan_for">Assign to</label>
+                <select class="form-control" id="edit-plan_for" name="plan_for">
+                    <option value="">Please select</option>
+                    <option value="buyer">Buyer</option>
+                    <option value="seller">Seller</option>
+                </select>
             </div>
             <div class="form-check form-switch col-sm-12">
                 <label class="form-check-label" for="edit-status">Disponibilità</label>
