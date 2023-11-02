@@ -18,6 +18,12 @@ class Kernel extends ConsoleKernel
             ->runInBackground()
             ->emailOutputTo("yellow.digital.labs+cron@gmail.com")
             ->emailOutputOnFailure("yellow.digital.labs+failure@gmail.com");
+
+        $schedule->command('app:send-payment-reminder-email')
+            ->dailyAt("08:05")
+            ->runInBackground()
+            ->emailOutputTo("yellow.digital.labs+cron@gmail.com")
+            ->emailOutputOnFailure("yellow.digital.labs+failure@gmail.com");
     }
 
     /**
