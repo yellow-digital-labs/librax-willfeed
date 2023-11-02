@@ -322,6 +322,13 @@ class Orders extends Controller
       if($status == "2"){ //Approved
         Mail::to($buyer->email)->send(new OrderApprove([
             "order_id" => $order->id,
+            "buyerName" => $order->user_name,
+            "sellerName" => $order->seller_name,
+            "productName" => $order->product_name,
+            "productAmount" => $order->product_amount,
+            "productQty" => $order->product_qty,
+            "payableAmount" => $order->total_payable_amount,
+            "paymentTerm" => $order->payment_option,
             "url" => route("order-details", [
               "id" => $order->id,
               "message" => $request->message,
@@ -330,6 +337,13 @@ class Orders extends Controller
       } else if($status == "3"){ // Rejected
         Mail::to($buyer->email)->send(new OrderReject([
             "order_id" => $order->id,
+            "buyerName" => $order->user_name,
+            "sellerName" => $order->seller_name,
+            "productName" => $order->product_name,
+            "productAmount" => $order->product_amount,
+            "productQty" => $order->product_qty,
+            "payableAmount" => $order->total_payable_amount,
+            "paymentTerm" => $order->payment_option,
             "url" => route("order-details", [
               "id" => $order->id,
               "message" => $request->message,

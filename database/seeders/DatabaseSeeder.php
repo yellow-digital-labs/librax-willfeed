@@ -90,19 +90,19 @@ class DatabaseSeeder extends Seeder
             'mailable' => \App\Mail\UserRequestApprove::class,
             'subject' => 'User Request Approved',
             'html_template' => '<h1>Hello, {{ name }}!</h1>',
-            'variables' => 'loginUrl',
+            'variables' => 'verificationUrl',
         ]);
         \App\Models\MailTemplate::create([
             'mailable' => \App\Mail\UserRequestReject::class,
             'subject' => 'User Request Reject',
             'html_template' => '<h1>Hello, {{ name }}!</h1>',
-            'variables' => 'loginUrl',
+            'variables' => 'verificationUrl',
         ]);
         \App\Models\MailTemplate::create([
             'mailable' => \App\Mail\UserVerification::class,
             'subject' => 'User Verification',
             'html_template' => '<h1>Hello, {{ name }}!</h1>',
-            'variables' => 'loginUrl',
+            'variables' => 'verificationUrl',
         ]);
         // stripe_customer_id
         // \App\Models\User::where([])->update([

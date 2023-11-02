@@ -179,11 +179,11 @@ class User extends Controller
     //send email
     if($status == "Yes") { //approve
       Mail::to($user->email)->send(new UserRequestApprove([
-        "url" => route("login"),
+        "loginUrl" => route("login"),
       ]));
     } else { //reject
       Mail::to($user->email)->send(new UserRequestReject([
-        "url" => route("login"),
+        "loginUrl" => route("login"),
       ]));
     }
 
