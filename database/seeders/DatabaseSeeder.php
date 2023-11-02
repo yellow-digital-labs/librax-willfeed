@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
             'subject' => 'Order approved',
             'html_template' => '<h1>Hello, {{ name }}!</h1>',
             'text_template' => '',
-            'variables' => 'order_id,url'
+            'variables' => 'order_id,url,buyerName,sellerName,productName,productAmount,productQty,payableAmount,paymentTerm'
         ]);
         \App\Models\MailTemplate::create([
             'mailable' => \App\Mail\OrderNewNotification::class,
@@ -72,7 +72,7 @@ class DatabaseSeeder extends Seeder
             'mailable' => \App\Mail\OrderReject::class,
             'subject' => 'Order rejected',
             'html_template' => '<h1>Hello, {{ name }}!</h1>',
-            'variables' => 'order_id,url,sellerName,customerName,paymentTerm,amount',
+            'variables' => 'order_id,url,buyerName,sellerName,productName,productAmount,productQty,payableAmount,paymentTerm',
         ]);
         // \App\Models\MailTemplate::create([
         //     'mailable' => \App\Mail\OrderStatusUpdate::class,
