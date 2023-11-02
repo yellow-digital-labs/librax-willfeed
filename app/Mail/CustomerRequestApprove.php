@@ -8,7 +8,8 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use TemplateMailable;
+use App\Models\MailTemplate;
+use App\Helpers\Helpers;
 
 class CustomerRequestApprove extends Mailable
 {
@@ -17,9 +18,14 @@ class CustomerRequestApprove extends Mailable
     /**
      * Create a new message instance.
      */
+    public $html;
+    public $subject;
+
     public function __construct(public $data)
     {
-        //
+        $email = MailTemplate::where("mailable", "=", "App\Mail\CustomerRequestApprove")->first();
+        $this->html = Helpers::updateEmailTemplateValues($data, $email->html_template);
+        $this->subject = Helpers::updateEmailTemplateValues($data, $email->subject);
     }
 
     /**
@@ -28,7 +34,7 @@ class CustomerRequestApprove extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Customer Request Approved',
+            subject: $this->subject,
         );
     }
 

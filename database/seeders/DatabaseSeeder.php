@@ -14,23 +14,95 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        \App\Models\MailTemplate::truncate();
         \App\Models\MailTemplate::create([
             'mailable' => \App\Mail\ContactUs::class,
-            'subject' => 'Welcome, {{ name }}',
-            'html_template' => '<h1>Hello, {{ name }}!</h1>',
-            'text_template' => 'Hello, {{ name }}!',
+            'subject' => 'Contact us request',
+            'html_template' => "
+            <p>You have new contact us request</p>
+            <p>Name: {{name}}</p>
+            <p>Email: {{email}}</p>
+            <p>Mobile: {{mobile}}</p>
+            <p>Message: {{message}}</p>",
+            'text_template' => '',
+            'variables' => 'name,email,mobile,message',
         ]);
-        \App\Models\MailTemplate::create([
+        /* \App\Models\MailTemplate::create([
             'mailable' => \App\Mail\CustomerRequest::class,
-            'subject' => 'Welcome, {{ name }}',
+            'subject' => 'New customer request',
             'html_template' => '<h1>Hello, {{ name }}!</h1>',
-            'text_template' => 'Hello, {{ name }}!',
-        ]);
+            'text_template' => '',
+        ]); */
         \App\Models\MailTemplate::create([
             'mailable' => \App\Mail\CustomerRequestApprove::class,
-            'subject' => 'Welcome, {{ name }}',
+            'subject' => 'Customer request approved',
+            'html_template' => '
+            <p>Your request has been approved for purchase from {{sellerName}}</p>
+            <p>Now, you can order by clicking link below</p>',
+            'text_template' => '',
+            'variables' => 'sellerName,url'
+        ]);
+        \App\Models\MailTemplate::create([
+            'mailable' => \App\Mail\CustomerRequestReject::class,
+            'subject' => 'Customer request rejected',
+            'html_template' => '<p>Sorry! Your purchase request has been rejected from {{sellerName}}</p>',
+            'text_template' => '',
+            'variables' => 'sellerName'
+        ]);
+        \App\Models\MailTemplate::create([
+            'mailable' => \App\Mail\OrderApprove::class,
+            'subject' => 'Order approved',
             'html_template' => '<h1>Hello, {{ name }}!</h1>',
-            'text_template' => 'Hello, {{ name }}!',
+            'text_template' => '',
+            'variables' => 'order_id,url'
+        ]);
+        \App\Models\MailTemplate::create([
+            'mailable' => \App\Mail\OrderNewNotification::class,
+            'subject' => 'New order notification',
+            'html_template' => '<h1>Hello, {{ name }}!</h1>',
+            'variables' => 'order_id,product_name,qty,url',
+        ]);
+        \App\Models\MailTemplate::create([
+            'mailable' => \App\Mail\OrderPaymentReminder::class,
+            'subject' => 'Order payment reminder',
+            'html_template' => '<h1>Hello, {{ name }}!</h1>',
+            'variables' => 'order_id,sellerName,customerName,paymentTerm,url,amount',
+        ]);
+        \App\Models\MailTemplate::create([
+            'mailable' => \App\Mail\OrderReject::class,
+            'subject' => 'Order rejected',
+            'html_template' => '<h1>Hello, {{ name }}!</h1>',
+            'variables' => 'order_id,url,sellerName,customerName,paymentTerm,amount',
+        ]);
+        // \App\Models\MailTemplate::create([
+        //     'mailable' => \App\Mail\OrderStatusUpdate::class,
+        //     'subject' => 'Order status update',
+        //     'html_template' => '<h1>Hello, {{ name }}!</h1>',
+        //     'text_template' => '',
+        // ]);
+        \App\Models\MailTemplate::create([
+            'mailable' => \App\Mail\UserRequest::class,
+            'subject' => 'User request',
+            'html_template' => '<h1>Hello, {{ name }}!</h1>',
+            'variables' => 'accountTypeName,email,name,url',
+        ]);
+        \App\Models\MailTemplate::create([
+            'mailable' => \App\Mail\UserRequestApprove::class,
+            'subject' => 'User Request Approved',
+            'html_template' => '<h1>Hello, {{ name }}!</h1>',
+            'variables' => 'loginUrl',
+        ]);
+        \App\Models\MailTemplate::create([
+            'mailable' => \App\Mail\UserRequestReject::class,
+            'subject' => 'User Request Reject',
+            'html_template' => '<h1>Hello, {{ name }}!</h1>',
+            'variables' => 'loginUrl',
+        ]);
+        \App\Models\MailTemplate::create([
+            'mailable' => \App\Mail\UserVerification::class,
+            'subject' => 'User Verification',
+            'html_template' => '<h1>Hello, {{ name }}!</h1>',
+            'variables' => 'loginUrl',
         ]);
         // stripe_customer_id
         // \App\Models\User::where([])->update([

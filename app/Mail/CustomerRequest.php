@@ -8,18 +8,24 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use TemplateMailable;
+use App\Models\MailTemplate;
+use App\Helpers\Helpers;
 
-class CustomerRequest extends TemplateMailable
+class CustomerRequest extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public $html;
+    public $subject;
+
+    public function __construct(public $data)
     {
-        //
+        $email = MailTemplate::where("mailable", "=", "App\Mail\CustomerRequest")->first();
+        $this->html = Helpers::updateEmailTemplateValues($data, $email->html_template);
+        $this->subject = Helpers::updateEmailTemplateValues($data, $email->subject);
     }
 
     /**
@@ -28,18 +34,16 @@ class CustomerRequest extends TemplateMailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Customer Request',
+            subject: $this->subject,
         );
     }
 
     /**
      * Get the message content definition.
      */
-    public function content(): Content
+    public function build()
     {
-        return new Content(
-            view: 'view.name',
-        );
+        return $this->markdown('emails.common-view');
     }
 
     /**

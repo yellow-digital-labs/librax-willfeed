@@ -141,8 +141,10 @@ class EmailTemplateManagement extends Controller
     $template = MailTemplate::where(["id" => $id])->first();
 
     if($template){
+      $variables = explode(",", $template->variables);
       return view("content.pages.pages-email-template-management-edit", [
         "template" => $template,
+        "variables" => $variables,
       ]);
     } else {
       return redirect()->route("dashboard");

@@ -23,11 +23,9 @@ class UserVerification extends Mailable
 
     public function __construct(public $data)
     {
-        $email = MailTemplate::where("mailable", "=", "App\Mail\ContactUs")->first();
+        $email = MailTemplate::where("mailable", "=", "App\Mail\UserVerification")->first();
         $this->html = Helpers::updateEmailTemplateValues($data, $email->html_template);
         $this->subject = Helpers::updateEmailTemplateValues($data, $email->subject);
-
-        // dd($data);
     }
 
     /**

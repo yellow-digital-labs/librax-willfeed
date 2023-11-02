@@ -22,7 +22,7 @@ $configData = Helper::appClasses();
 @section('page-script')
 <script>
     let description = "";
-    description = "{!!$template->html_template!!}";
+    description = `{!!$template->html_template!!}`;
 </script>
 <script src="{{asset('assets/js/forms-editors.js')}}"></script>
 <script src="{{asset('assets/js/email-template-form.js')}}"></script>
@@ -82,8 +82,17 @@ $configData = Helper::appClasses();
 
             <div class="col-3">
                 <div class="mb-3">
-                    Tag one
+                    <strong>Available dynamic variables</strong>
                 </div>
+                @if(count($variables)>0)
+                    @foreach($variables as $variable)
+                <div class="mb-3">
+                    @php
+                        echo '{{'.$variable.'}}'
+                    @endphp
+                </div>
+                    @endforeach
+                @endif
             </div>
         </div>
         
