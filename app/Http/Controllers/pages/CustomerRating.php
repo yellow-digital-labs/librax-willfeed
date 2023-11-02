@@ -38,8 +38,9 @@ class CustomerRating extends Controller
 
       $user = Auth::user();
       $isBuyer = Helpers::isBuyer();
+      $isSeller = Helpers::isSeller();
 
-      if($isBuyer){
+      if($isBuyer || $isSeller){
         Rating::updateOrCreate([
           "review_by_id" => $user->id,
           "review_for_id" => $request->rating_for,

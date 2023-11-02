@@ -37,6 +37,12 @@ $configData = Helper::appClasses();
             isShowRating = false;
         @endif
     @endif
+    @if($isSeller && $order->payment_status == "paid")
+        isShowRating = true;
+        @if($order->is_review_popup_displaied_seller == "1")
+            isShowRating = false;
+        @endif
+    @endif
 </script>
 <script src="{{asset('assets/js/order-detail.js')}}"></script>
 @endsection
@@ -71,21 +77,29 @@ $configData = Helper::appClasses();
             "id" => $id
         ])}}" class="btn btn-primary waves-effect">Segna come pagato</a>
     @endif
-    @if($rating)
-        <div class="display-ratings mb-3" data-rateyo-read-only="true" readonly="readonly" data-rating="{{$rating->star}}"></div>
-    @endif
     </div>
     @endif
-    @if($isBuyer)
-    <div class="d-flex align-content-center flex-wrap gap-3">
-        @if ($order->payment_status == "paid")
+    @if ($order->payment_status == "paid")
+        @if(($isSeller && $rating) || $isBuyer)
+        <div class="d-flex justify-content-end flex-wrap gap-3">
             @if($rating)
-            <div class="display-ratings mb-3" data-rateyo-read-only="true" readonly="readonly" data-rating="{{$rating->star}}"></div>
-            @else
+            <label style="width: 100%; text-align: right;">Review by buyer</label>
+            <div class="display-ratings mb-3" style="text-align: right;" data-rateyo-read-only="true" readonly="readonly" data-rating="{{$rating->star}}"></div>
+            @elseif ($isBuyer)
             <button data-bs-toggle="modal" data-bs-target="#basicModal" data-seller="{{$order->seller_id}}" class="btn btn-primary waves-effect product-rating">Revisione dell'ordine</button>
             @endif
+        </div>
         @endif
-    </div>
+        @if(($isBuyer && $forBuyerRating) || $isSeller)
+        <div class="d-flex justify-content-end flex-wrap gap-3">
+            @if($forBuyerRating)
+            <label style="width: 100%; text-align: right;">Review by seller</label>
+            <div class="display-ratings mb-3" style="text-align: right;" data-rateyo-read-only="true" readonly="readonly" data-rating="{{$forBuyerRating->star}}"></div>
+            @elseif ($isSeller)
+            <button data-bs-toggle="modal" data-bs-target="#basicModal" data-seller="{{$order->user_id}}" class="btn btn-primary waves-effect product-rating">Revisione dell'ordine</button>
+            @endif
+        </div>
+        @endif
     @endif
 </div>
 
@@ -162,14 +176,26 @@ $configData = Helper::appClasses();
             <div class="card-body pt-4">
                 <ul class="timeline pb-0 mb-0">
                     @if($rating)
-                    <li class="timeline-item timeline-item-transparent border-transparent pb-0">
+                    <li class="timeline-item timeline-item-transparent">
                         <span class="timeline-point timeline-point-info"></span>
                         <div class="timeline-event">
                             <div class="timeline-header">
-                                <h6 class="mb-0">Order rating ({{$rating->star}} star)</h6>
+                                <h6 class="mb-0">Order rating by buyer ({{$rating->star}} star)</h6>
                                 <span class="text-muted">{{\App\Helpers\Helpers::getMonthName(date('m', strtotime($rating->created_at)))}}{{date(' d, Y, H:i', strtotime($rating->created_at))}}</span>
                             </div>
                             <p class="mt-2">{{$rating->review_text}}</p>
+                        </div>
+                    </li>
+                    @endif
+                    @if($forBuyerRating)
+                    <li class="timeline-item timeline-item-transparent">
+                        <span class="timeline-point timeline-point-info"></span>
+                        <div class="timeline-event">
+                            <div class="timeline-header">
+                                <h6 class="mb-0">Order rating by seller ({{$forBuyerRating->star}})</h6>
+                                <span class="text-muted">{{\App\Helpers\Helpers::getMonthName(date('m', strtotime($forBuyerRating->created_at)))}}{{date(' d, Y, H:i', strtotime($forBuyerRating->created_at))}}</span>
+                            </div>
+                            <p class="mt-2">{{$forBuyerRating->review_text}}</p>
                         </div>
                     </li>
                     @endif
@@ -508,6 +534,46 @@ $configData = Helper::appClasses();
                 <div class="modal-footer">
                     <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" id="save-seller-note">Update order status</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--/ Add buyer rating Modal -->
+<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="POST" onsubmit="return false" id="rating-form">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Add rating</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="nameBasic" class="form-label">Star rating</label>
+                            <div class="onChange-event-ratings mb-3"></div>
+                            <div class="counter-wrapper">
+                                <strong>Ratings:</strong>
+                                <span class="counter"></span>
+                                <input type="hidden" name="rating" id="js-rating-val">
+                                <input type="hidden" name="rating_for" id="rating_for">
+                                <input type="hidden" name="order_id" value="{{$order->id}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                            <label for="message" class="form-label">Message</label>
+                            <input type="text" id="message" name="message" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="save-rating">Save changes</button>
                 </div>
             </form>
         </div>

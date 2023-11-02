@@ -281,10 +281,20 @@ class Orders extends Controller
         "order_id" => $order->id,
         "review_by_id" => $order->user_id,
         "review_for_id" => $order->seller_id,
-      ])->first();
+      ])->first(); //review by buyer
+      $forBuyerRating = Rating::where([
+        "order_id" => $order->id,
+        "review_by_id" => $order->seller_id,
+        "review_for_id" => $order->user_id,
+      ])->first(); //review by seller
       if($isBuyer && $order->is_review_popup_displaied == "0" && $order->payment_status == "paid"){
         Order::where("id", "=", $id)->update([
           "is_review_popup_displaied" => "1"
+        ]);
+      }
+      if($isSeller && $order->is_review_popup_displaied_seller == "0" && $order->payment_status == "paid"){
+        Order::where("id", "=", $id)->update([
+          "is_review_popup_displaied_seller" => "1"
         ]);
       }
 
@@ -298,7 +308,8 @@ class Orders extends Controller
         'isBuyer' => $isBuyer,
         'payment_options' => $payment_options,
         'payment_history' => $payment_history,
-        'rating' => $rating,
+        'rating' => $rating, //for seller rating
+        'forBuyerRating' => $forBuyerRating,
       ]);
     } else {
       return redirect()->route('orders')->withErrors(['msg' => 'Invalid request']);
