@@ -14,6 +14,61 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        \App\Models\MailTemplate::where([
+            "mailable" => \App\Mail\ContactUs::class
+        ])->update([
+            "email_for" => "Admin"
+        ]);
+        \App\Models\MailTemplate::where([
+            "mailable" => \App\Mail\CustomerRequestApprove::class
+        ])->update([
+            "email_for" => "Buyer/Seller"
+        ]);
+        \App\Models\MailTemplate::where([
+            "mailable" => \App\Mail\CustomerRequestReject::class
+        ])->update([
+            "email_for" => "Buyer/Seller"
+        ]);
+        \App\Models\MailTemplate::where([
+            "mailable" => \App\Mail\OrderApprove::class
+        ])->update([
+            "email_for" => "Buyer"
+        ]);
+        \App\Models\MailTemplate::where([
+            "mailable" => \App\Mail\OrderNewNotification::class
+        ])->update([
+            "email_for" => "Seller"
+        ]);
+        \App\Models\MailTemplate::where([
+            "mailable" => \App\Mail\OrderPaymentReminder::class
+        ])->update([
+            "email_for" => "Buyer/Seller"
+        ]);
+        \App\Models\MailTemplate::where([
+            "mailable" => \App\Mail\OrderReject::class
+        ])->update([
+            "email_for" => "Buyer"
+        ]);
+        \App\Models\MailTemplate::where([
+            "mailable" => \App\Mail\UserRequest::class
+        ])->update([
+            "email_for" => "Admin"
+        ]);
+        \App\Models\MailTemplate::where([
+            "mailable" => \App\Mail\UserRequestApprove::class
+        ])->update([
+            "email_for" => "Buyer/Seller"
+        ]);
+        \App\Models\MailTemplate::where([
+            "mailable" => \App\Mail\UserRequestReject::class
+        ])->update([
+            "email_for" => "Buyer/Seller"
+        ]);
+        \App\Models\MailTemplate::where([
+            "mailable" => \App\Mail\UserVerification::class
+        ])->update([
+            "email_for" => "Buyer/Seller"
+        ]);
         // \App\Models\MailTemplate::truncate();
         // \App\Models\MailTemplate::create([
         //     'mailable' => \App\Mail\ContactUs::class,
@@ -49,14 +104,14 @@ class DatabaseSeeder extends Seeder
         //     'text_template' => '',
         //     'variables' => 'sellerName'
         // ]);
-        \App\Models\MailTemplate::where(["mailable" => \App\Mail\OrderApprove::class])->delete();
-        \App\Models\MailTemplate::create([
-            'mailable' => \App\Mail\OrderApprove::class,
-            'subject' => 'Order approved',
-            'html_template' => '<h1>Hello, {{ name }}!</h1>',
-            'text_template' => '',
-            'variables' => 'order_id,url,buyerName,sellerName,productName,productAmount,productQty,payableAmount,paymentTerm'
-        ]);
+        // \App\Models\MailTemplate::where(["mailable" => \App\Mail\OrderApprove::class])->delete();
+        // \App\Models\MailTemplate::create([
+        //     'mailable' => \App\Mail\OrderApprove::class,
+        //     'subject' => 'Order approved',
+        //     'html_template' => '<h1>Hello, {{ name }}!</h1>',
+        //     'text_template' => '',
+        //     'variables' => 'order_id,url,buyerName,sellerName,productName,productAmount,productQty,payableAmount,paymentTerm'
+        // ]);
         // \App\Models\MailTemplate::create([
         //     'mailable' => \App\Mail\OrderNewNotification::class,
         //     'subject' => 'New order notification',
@@ -69,13 +124,13 @@ class DatabaseSeeder extends Seeder
         //     'html_template' => '<h1>Hello, {{ name }}!</h1>',
         //     'variables' => 'order_id,sellerName,customerName,paymentTerm,url,amount',
         // ]);
-        \App\Models\MailTemplate::where(["mailable" => \App\Mail\OrderReject::class])->delete();
-        \App\Models\MailTemplate::create([
-            'mailable' => \App\Mail\OrderReject::class,
-            'subject' => 'Order rejected',
-            'html_template' => '<h1>Hello, {{ name }}!</h1>',
-            'variables' => 'order_id,url,buyerName,sellerName,productName,productAmount,productQty,payableAmount,paymentTerm',
-        ]);
+        // \App\Models\MailTemplate::where(["mailable" => \App\Mail\OrderApprove::class])->delete();
+        // \App\Models\MailTemplate::create([
+        //     'mailable' => \App\Mail\OrderReject::class,
+        //     'subject' => 'Order rejected',
+        //     'html_template' => '<h1>Hello, {{ name }}!</h1>',
+        //     'variables' => 'order_id,url,buyerName,sellerName,productName,productAmount,productQty,payableAmount,paymentTerm',
+        // ]);
         // \App\Models\MailTemplate::create([
         //     'mailable' => \App\Mail\OrderStatusUpdate::class,
         //     'subject' => 'Order status update',

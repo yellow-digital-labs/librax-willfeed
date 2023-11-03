@@ -46,6 +46,7 @@ $configData = Helper::appClasses();
                 <tr>
                     <th>Template</th>
                     <th>Subject</th>
+                    <th>Receipent category</th>
                     <th>Azione</th>
                 </tr>
             </thead>

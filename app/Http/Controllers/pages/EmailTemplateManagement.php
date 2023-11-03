@@ -33,9 +33,10 @@ class EmailTemplateManagement extends Controller
     $isAdmin = Helpers::isAdmin();
     $user_id = Auth::user()->id;
     $columns = [
-      2 => "id",
-      0 => "mailable",
+      3 => "id",
+      0 => "template",
       1 => "subject",
+      2 => "email_for",
     ];
 
     $search = [];
@@ -88,7 +89,8 @@ class EmailTemplateManagement extends Controller
         ->where(function ($query) use ($search) {
           return $query
             ->where("mailable", "LIKE", "%{$search}%")
-            ->orWhere("subject", "LIKE", "%{$search}%");
+            ->orWhere("subject", "LIKE", "%{$search}%")
+            ->orWhere("email_for", "LIKE", "%{$search}%");
         })
         ->offset($start)
         ->limit($limit)
@@ -99,7 +101,8 @@ class EmailTemplateManagement extends Controller
         ->where(function ($query) use ($search) {
           return $query
             ->where("mailable", "LIKE", "%{$search}%")
-            ->orWhere("subject", "LIKE", "%{$search}%");
+            ->orWhere("subject", "LIKE", "%{$search}%")
+            ->orWhere("email_for", "LIKE", "%{$search}%");
         })
         ->count();
     }
@@ -113,7 +116,8 @@ class EmailTemplateManagement extends Controller
       foreach ($products as $product) {
         $nestedData["id"] = $product->id;
         $nestedData["fake_id"] = ++$ids;
-        $nestedData["mailable"] = $product->mailable;
+        $nestedData["mailable"] = $product->template;
+        $nestedData["email_for"] = $product->email_for;
         $nestedData["subject"] = $product->subject;
 
         $data[] = $nestedData;
@@ -156,6 +160,7 @@ class EmailTemplateManagement extends Controller
 
     if($template){
       MailTemplate::where(["id" => $id])->update([
+        "template" => $request->template,
         "subject" => $request->subject,
         "html_template" => $request->html_template,
       ]);

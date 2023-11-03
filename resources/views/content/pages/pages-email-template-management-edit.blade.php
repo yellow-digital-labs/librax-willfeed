@@ -41,20 +41,24 @@ $configData = Helper::appClasses();
     </div>
   </div>
 @enderror
-<h1 class="h3 text-black mb-4">Edit email template {{str_replace("App\Mail\\", "", $template->mailable)}}</h4>
+<h1 class="h3 text-black mb-4">Edit email template</h4>
 
 <form method="POST" {{-- onsubmit="return false" --}} id="productAddForm">
 @csrf
 <div class="card">
     <div class="card-header d-flex justify-content-between border-bottom">
         <div class="card-title mb-0">
-            <h5 class="mb-0 text-black">Edit template</h5>
+            <h5 class="mb-0 text-black">Edit {{$template->template}} template ({{$template->email_for}})</h5>
         </div>
     </div>
     <div class="card-body pt-4">
         <div class="row gy-1">
             <div class="col-8">
 
+                <div class="mb-3">
+                    <label class="form-label" for="Template">Template name</label>
+                    <input type="text" class="form-control" id="Template" placeholder="Enter template name" name="template" value="{{$template->template}}">
+                </div>
                 <div class="mb-3">
                     <label class="form-label" for="Prodotto">Subject</label>
                     <input type="text" class="form-control" id="Prodotto" placeholder="Enter subject" name="subject" value="{{$template->subject}}">

@@ -172,11 +172,13 @@
                         }, {
                             data: 'subject'
                         }, {
+                            data: 'email_for'
+                        }, {
                             data: ''
                         }],
                     columnDefs: [{
                         // Actions
-                        targets: 2,
+                        targets: 3,
                         searchable: false,
                         orderable: false,
                         render: function render(data, type, full, meta) {
@@ -204,6 +206,17 @@
                         render: function render(data, type, full, meta) {
                             var $subject = full['subject'] ? full['subject'] : '';
                             return '<span class="user-name">' + $subject + '</span>';
+                        }
+                    }, {
+                        // email_for
+                        targets: 2,
+                        // visible: false,
+                        searchable: false,
+                        orderable: false,
+                        responsivePriority: 4,
+                        render: function render(data, type, full, meta) {
+                            var $email_for = full['email_for'] ? full['email_for'] : '';
+                            return '<span class="user-email_for">' + $email_for + '</span>';
                         }
                     }],
                     order: [[0, 'asc']],

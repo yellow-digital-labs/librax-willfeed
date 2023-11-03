@@ -14,7 +14,14 @@ document.addEventListener('DOMContentLoaded', function (e) {
         if (productAddForm) {
             FormValidation.formValidation(productAddForm, {
                 fields: {
-                    subject: {
+                  template: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter template name'
+                      }
+                    }
+                  },
+                  subject: {
                     validators: {
                       notEmpty: {
                         message: 'Please enter subject'
