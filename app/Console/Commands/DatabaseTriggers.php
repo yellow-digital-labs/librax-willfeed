@@ -228,7 +228,9 @@ class DatabaseTriggers extends Command
                 BEGIN
                     IF NEW.status <> OLD.status THEN
                         SET NEW.status_on = NOW();
+                    END IF;
 
+                    IF NEW.credit_limit <> OLD.credit_limit THEN
                         SELECT COALESCE(SUM(total_payable_amount), 0) INTO @credit_used FROM orders WHERE user_id=NEW.customer_id AND seller_id=NEW.seller_id AND order_status_id=4 AND payment_status="unpaid";
 
                         SET NEW.credit_used = @credit_used;

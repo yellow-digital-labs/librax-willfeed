@@ -287,6 +287,8 @@ $(function () {
                             '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
                             '<div class="dropdown-menu dropdown-menu-end m-0">' +
                             statusList +
+                            '</div>' +
+                            '<a href="'+baseUrl+'profile/'+full['customer_id']+'/view" class="btn btn-sm btn-icon js-update-credit-limit" data-id="'+full['id']+'" data-bs-toggle="modal" data-bs-target="#creditLimitModal">€</a>' +
                             '</div>'
                         );
                     } else {
@@ -314,6 +316,16 @@ $(function () {
         var id = $(this).data('id');
         $("#credit-limit-form").trigger("reset");
         $("#credit-limit-form").attr("data-recordid", id);
+        $("#save-seller-note").removeAttr('style');
+        $("#save-credit-limit").attr('style','display:none !important');
+    });
+
+    $(document).on('click', '.js-update-credit-limit', function () {
+        var id = $(this).data('id');
+        $("#credit-limit-form").trigger("reset");
+        $("#credit-limit-form").attr("data-recordid", id);
+        $("#save-seller-note").attr('style','display:none !important');
+        $("#save-credit-limit").removeAttr('style');
     });
 
     $(document).on('click', '.btn-reject', function () {
@@ -356,6 +368,25 @@ $(function () {
         $.ajax({
             type: 'POST',
             url: "".concat(baseUrl, `customer/${id}/status/${status}`),
+            data: data,
+            success: function success() {
+                dt_filter.draw();
+                $('#creditLimitModal').modal('hide');
+            },
+            error: function error(_error) {
+                console.log(_error);
+            }
+        });
+    }
+
+    function updateCredit(id, credit_limit){
+        var data = {
+            "credit_limit": credit_limit,
+            "only_update": "yes"
+        };
+        $.ajax({
+            type: 'POST',
+            url: "".concat(baseUrl, `customer/${id}/status/approved`),
             data: data,
             success: function success() {
                 dt_filter.draw();
@@ -415,7 +446,13 @@ $(function () {
             // productForm.submit();
             var credit_limit = $("#credit_limit").val();
             var id = $("#credit-limit-form").attr("data-recordid");
-            updateStatus(id, 'approved', credit_limit);
+            if($("#save-seller-note").attr("style")){
+                //update
+                updateCredit(id, credit_limit);
+            } else {
+                //approve
+                updateStatus(id, 'approved', credit_limit);
+            }
             });
     }
 });

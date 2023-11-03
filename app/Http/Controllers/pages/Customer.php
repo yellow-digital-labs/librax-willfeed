@@ -201,11 +201,18 @@ class Customer extends Controller
     $query = CustomerVerified::where("seller_id", "=", $user_id)
       ->where("id",  "=", $id);
     if($status == "approved"){
-      $query
-        ->update([
-          "status" => $status,
-          "credit_limit" => $request->credit_limit,
-        ]);
+      if($request->only_update == "yes"){
+        $query
+          ->update([
+            "credit_limit" => $request->credit_limit,
+          ]);
+      } else {
+        $query
+          ->update([
+            "status" => $status,
+            "credit_limit" => $request->credit_limit,
+          ]);
+      }
     } else {
       $query
         ->update([
@@ -213,22 +220,26 @@ class Customer extends Controller
         ]);
     }
 
-    if($status != "pending"){
-      $CustomerVerified = $query->first();
-      $buyer = User::where("id", $CustomerVerified->customer_id)->first();
-      $seller = User::where("id", $CustomerVerified->seller_id)->first();
-    }
+    if($request->only_update == "yes"){
 
-    if($status == "approved"){ //Approved
-      Mail::to($buyer->email)->send(new CustomerRequestApprove([
-        "sellerName" => $seller->name,
-        "url" => route("pages-buyer-home")
-      ]));
-    } else if($status == "rejected"){ //Rejected
-      Mail::to($buyer->email)->send(new CustomerRequestReject([
-        "sellerName" => $seller->name,
-        "url" => route("pages-buyer-home")
-      ]));
+    } else {
+      if($status != "pending"){
+        $CustomerVerified = $query->first();
+        $buyer = User::where("id", $CustomerVerified->customer_id)->first();
+        $seller = User::where("id", $CustomerVerified->seller_id)->first();
+      }
+  
+      if($status == "approved"){ //Approved
+        Mail::to($buyer->email)->send(new CustomerRequestApprove([
+          "sellerName" => $seller->name,
+          "url" => route("pages-buyer-home")
+        ]));
+      } else if($status == "rejected"){ //Rejected
+        Mail::to($buyer->email)->send(new CustomerRequestReject([
+          "sellerName" => $seller->name,
+          "url" => route("pages-buyer-home")
+        ]));
+      }
     }
 
     return response()->json([

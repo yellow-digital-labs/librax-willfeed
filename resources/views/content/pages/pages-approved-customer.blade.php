@@ -98,7 +98,8 @@ $configData = Helper::appClasses();
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="save-seller-note">Approve customer</button>
+                    <button type="submit" class="btn btn-primary" id="save-seller-note" name="approve-customer">Approve customer</button>
+                    <button type="submit" class="btn btn-primary" id="save-credit-limit" name="update-credit-limit">Update credit limit</button>
                 </div>
             </form>
         </div>
