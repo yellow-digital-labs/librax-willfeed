@@ -559,7 +559,12 @@ $configData = Helper::appClasses();
                                 <strong>Ratings:</strong>
                                 <span class="counter"></span>
                                 <input type="hidden" name="rating" id="js-rating-val">
-                                <input type="hidden" name="rating_for" id="rating_for">
+                                @if($isBuyer)
+                                <input type="hidden" name="rating_for" id="rating_for" value="{{$order->seller_id}}">
+                                @endif
+                                @if($isSeller)
+                                <input type="hidden" name="rating_for" id="rating_for" value="{{$order->user_id}}">
+                                @endif
                                 <input type="hidden" name="order_id" value="{{$order->id}}">
                             </div>
                         </div>
