@@ -46,7 +46,7 @@ class BuyerHome extends Controller
     if($search){
       $product_query = $product_query
         ->where(function($query) use ($search){
-          $query->whereRaw("product_name LIKE '%".$search."%' OR seller_name LIKE '%".$search."%'");
+          $query->whereRaw("product_sellers.product_name LIKE '%".$search."%' OR product_sellers.seller_name LIKE '%".$search."%'");
         });
     }
     if(isset($request['price_min']) && isset($request['price_max'])){

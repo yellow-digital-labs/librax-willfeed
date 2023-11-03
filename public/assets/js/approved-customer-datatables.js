@@ -292,11 +292,20 @@ $(function () {
                             '</div>'
                         );
                     } else {
-                        return (
-                            '<div class="d-inline-block">' +
-                            '<a href="'+baseUrl+'profile/'+full['customer_id']+'/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
-                            '</div>'
-                        );
+                        if(status_number == "approved") {
+                            return (
+                                '<div class="d-inline-block">' +
+                                '<a href="'+baseUrl+'profile/'+full['customer_id']+'/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
+                                '<a href="'+baseUrl+'buyer-home?search='+full['seller_name']+'" class="btn btn-sm btn-icon js-update-credit-limit"><i class="ti ti-share"></i></a>' +
+                                '</div>'
+                            );
+                        } else {
+                            return (
+                                '<div class="d-inline-block">' +
+                                '<a href="'+baseUrl+'profile/'+full['customer_id']+'/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
+                                '</div>'
+                            );
+                        }
                     }
                 }
             }
