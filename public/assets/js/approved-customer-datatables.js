@@ -274,37 +274,77 @@ $(function () {
                     // if(status_number != "pending") {
                     //     statusList += `<a href="javascript:;" class="dropdown-item btn-pending" data-id="${id}">Pending</a>`;
                     // }
-                    if(status_number != "approved") {
-                        statusList += `<a href="javascript:;" class="dropdown-item btn-approve" data-id="${id}" data-bs-toggle="modal" data-bs-target="#creditLimitModal">Approve</a>`;
-                    }
-                    if(status_number != "rejected") {
-                        statusList += `<a href="javascript:;" class="dropdown-item btn-reject" data-id="${id}">Reject</a>`;
-                    }
                     if(isSeller=="1"){
-                        return (
-                            '<div class="d-inline-block">' +
-                            '<a href="'+baseUrl+'profile/'+full['customer_id']+'/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
-                            '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
-                            '<div class="dropdown-menu dropdown-menu-end m-0">' +
-                            statusList +
-                            '</div>' +
-                            '<a href="'+baseUrl+'profile/'+full['customer_id']+'/view" class="btn btn-sm btn-icon js-update-credit-limit" data-id="'+full['id']+'" data-bs-toggle="modal" data-bs-target="#creditLimitModal">€</a>' +
-                            '</div>'
-                        );
-                    } else {
-                        if(status_number == "approved") {
+                        if(status_number != "approved") {
+                            statusList += `<a href="javascript:;" class="dropdown-item btn-approve" data-id="${id}" data-bs-toggle="modal" data-bs-target="#creditLimitModal">Approve</a>`;
+                        }
+                        if(status_number != "rejected") {
+                            statusList += `<a href="javascript:;" class="dropdown-item btn-reject" data-id="${id}">Reject</a>`;
+                        }
+                        if(full['is_request_by_seller'] == "0"){
                             return (
                                 '<div class="d-inline-block">' +
                                 '<a href="'+baseUrl+'profile/'+full['customer_id']+'/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
-                                '<a href="'+baseUrl+'buyer-home?search='+full['seller_name']+'" class="btn btn-sm btn-icon js-update-credit-limit"><i class="ti ti-share"></i></a>' +
+                                '<a href="'+baseUrl+'profile/'+full['customer_id']+'/view" class="btn btn-sm btn-icon js-update-credit-limit" data-id="'+full['id']+'" data-bs-toggle="modal" data-bs-target="#creditLimitModal">€</a>' +
+                                '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
+                                '<div class="dropdown-menu dropdown-menu-end m-0">' +
+                                statusList +
+                                '</div>' +
                                 '</div>'
                             );
                         } else {
                             return (
                                 '<div class="d-inline-block">' +
                                 '<a href="'+baseUrl+'profile/'+full['customer_id']+'/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
+                                '<a href="'+baseUrl+'profile/'+full['customer_id']+'/view" class="btn btn-sm btn-icon js-update-credit-limit" data-id="'+full['id']+'" data-bs-toggle="modal" data-bs-target="#creditLimitModal">€</a>' +
                                 '</div>'
                             );
+                        }
+                    } else {
+                        if(status_number != "approved") {
+                            statusList += `<a href="javascript:;" class="dropdown-item btn-approve-buyer-login" data-id="${id}">Approve</a>`;
+                        }
+                        if(status_number != "rejected") {
+                            statusList += `<a href="javascript:;" class="dropdown-item btn-reject" data-id="${id}">Reject</a>`;
+                        }
+                        if(full['is_request_by_seller'] == "1"){
+                            if(status_number == "approved") {
+                                return (
+                                    '<div class="d-inline-block">' +
+                                    '<a href="'+baseUrl+'profile/'+full['seller_id']+'/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
+                                    '<a href="'+baseUrl+'buyer-home?search='+full['seller_name']+'" class="btn btn-sm btn-icon js-update-credit-limit"><i class="ti ti-share"></i></a>' +
+                                    '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
+                                    '<div class="dropdown-menu dropdown-menu-end m-0">' +
+                                    statusList +
+                                    '</div>' +
+                                    '</div>'
+                                );
+                            } else {
+                                return (
+                                    '<div class="d-inline-block">' +
+                                    '<a href="'+baseUrl+'profile/'+full['seller_id']+'/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
+                                    '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
+                                    '<div class="dropdown-menu dropdown-menu-end m-0">' +
+                                    statusList +
+                                    '</div>' +
+                                    '</div>'
+                                );
+                            }
+                        } else {
+                            if(status_number == "approved") {
+                                return (
+                                    '<div class="d-inline-block">' +
+                                    '<a href="'+baseUrl+'profile/'+full['seller_id']+'/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
+                                    '<a href="'+baseUrl+'buyer-home?search='+full['seller_name']+'" class="btn btn-sm btn-icon js-update-credit-limit"><i class="ti ti-share"></i></a>' +
+                                    '</div>'
+                                );
+                            } else {
+                                return (
+                                    '<div class="d-inline-block">' +
+                                    '<a href="'+baseUrl+'profile/'+full['seller_id']+'/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
+                                    '</div>'
+                                );
+                            }
                         }
                     }
                 }
@@ -335,6 +375,12 @@ $(function () {
         $("#credit-limit-form").attr("data-recordid", id);
         $("#save-seller-note").attr('style','display:none !important');
         $("#save-credit-limit").removeAttr('style');
+    });
+
+    $(document).on('click', '.btn-approve-buyer-login', function () {
+        var id = $(this).data('id');
+
+        updateStatus(id, 'approved');
     });
 
     $(document).on('click', '.btn-reject', function () {

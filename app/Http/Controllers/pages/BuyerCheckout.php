@@ -267,7 +267,8 @@ class BuyerCheckout extends Controller
         } else {
           $record->update([
             "status" => "pending",
-            "credit_limit" => $request->credit_limit
+            "credit_limit" => $request->credit_limit,
+            "is_request_by_seller" => 1,
           ]);
 
           return redirect()->route('seller-request-to-buyer-thanks', [
@@ -279,7 +280,8 @@ class BuyerCheckout extends Controller
         CustomerVerified::create([
           "customer_id" => $buyer_id,
           "seller_id" => $user->id,
-          "credit_limit" => $request->credit_limit
+          "credit_limit" => $request->credit_limit,
+          "is_request_by_seller" => 1,
         ]);
 
         return redirect()->route('seller-request-to-buyer-thanks', [

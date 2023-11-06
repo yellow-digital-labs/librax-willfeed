@@ -9,6 +9,8 @@ use App\Models\CustomerVerified;
 use App\Models\User;
 use App\Mail\CustomerRequestApprove;
 use App\Mail\CustomerRequestReject;
+use App\Mail\SellerRequestApprove;
+use App\Mail\SellerRequestReject;
 use App\Helpers\Helpers;
 use Auth;
 
@@ -165,6 +167,7 @@ class Customer extends Controller
         $nestedData["seller_name"] = $customer->seller_name;
         $nestedData["customer_region"] = $customer->customer_region;
         $nestedData["status"] = $customer->status;
+        $nestedData["is_request_by_seller"] = $customer->is_request_by_seller;
         $nestedData["customer_since"] = $customer->customer_since;
         $nestedData["status_on"] = $customer->status_on;
         $nestedData["customer_id"] = $customer->customer_id;
@@ -196,49 +199,80 @@ class Customer extends Controller
 
   public function status(Request $request, $id, $status)
   {
-    $user_id = Auth::user()->id;
+    $user = Auth::user();
+    $user_id = $user->id;
 
-    $query = CustomerVerified::where("seller_id", "=", $user_id)
-      ->where("id",  "=", $id);
-    if($status == "approved"){
-      if($request->only_update == "yes"){
-        $query
-          ->update([
-            "credit_limit" => $request->credit_limit,
-          ]);
+    if($user->accountType == "2"){ //seller login
+      $query = CustomerVerified::where("seller_id", "=", $user_id)
+        ->where("id",  "=", $id);
+
+      if($status == "approved"){
+        if($request->only_update == "yes"){
+          $query
+            ->update([
+              "credit_limit" => $request->credit_limit,
+            ]);
+        } else {
+          $query
+            ->update([
+              "status" => $status,
+              "credit_limit" => $request->credit_limit,
+            ]);
+        }
       } else {
         $query
           ->update([
-            "status" => $status,
-            "credit_limit" => $request->credit_limit,
+            "status" => $status
           ]);
       }
-    } else {
+  
+      if($request->only_update == "yes"){
+  
+      } else {
+        if($status != "pending"){
+          $CustomerVerified = $query->first();
+          $buyer = User::where("id", $CustomerVerified->customer_id)->first();
+          $seller = User::where("id", $CustomerVerified->seller_id)->first();
+        }
+    
+        if($status == "approved"){ //Approved
+          Mail::to($buyer->email)->send(new CustomerRequestApprove([
+            "sellerName" => $seller->name,
+            "url" => route("pages-buyer-home")
+          ]));
+        } else if($status == "rejected"){ //Rejected
+          Mail::to($buyer->email)->send(new CustomerRequestReject([
+            "sellerName" => $seller->name,
+            "url" => route("pages-buyer-home")
+          ]));
+        }
+      }
+    } else { //buyer login
+      $query = CustomerVerified::where("customer_id", "=", $user_id)
+        ->where("id",  "=", $id);
       $query
         ->update([
           "status" => $status
         ]);
-    }
-
-    if($request->only_update == "yes"){
-
-    } else {
-      if($status != "pending"){
-        $CustomerVerified = $query->first();
-        $buyer = User::where("id", $CustomerVerified->customer_id)->first();
-        $seller = User::where("id", $CustomerVerified->seller_id)->first();
-      }
   
-      if($status == "approved"){ //Approved
-        Mail::to($buyer->email)->send(new CustomerRequestApprove([
-          "sellerName" => $seller->name,
-          "url" => route("pages-buyer-home")
-        ]));
-      } else if($status == "rejected"){ //Rejected
-        Mail::to($buyer->email)->send(new CustomerRequestReject([
-          "sellerName" => $seller->name,
-          "url" => route("pages-buyer-home")
-        ]));
+      if($request->only_update == "yes"){
+  
+      } else {
+        if($status != "pending"){
+          $CustomerVerified = $query->first();
+          $buyer = User::where("id", $CustomerVerified->customer_id)->first();
+          $seller = User::where("id", $CustomerVerified->seller_id)->first();
+        }
+    
+        if($status == "approved"){ //Approved
+          Mail::to($seller->email)->send(new SellerRequestApprove([
+            "buyerName" => $buyer->name,
+          ]));
+        } else if($status == "rejected"){ //Rejected
+          Mail::to($seller->email)->send(new SellerRequestReject([
+            "buyerName" => $buyer->name,
+          ]));
+        }
       }
     }
 
