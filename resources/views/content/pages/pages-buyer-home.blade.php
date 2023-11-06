@@ -50,7 +50,7 @@ $configData = Helper::appClasses();
 @include('_partials/_front/header')
 
 <main id="main-content" class="wrapper">
-@if($isBuyer)
+@if(!$isSeller)
     <div class="dash-charts uk-slider uk-slider-container"
         data-uk-slider="center: true; autoplay: true; pause-on-hover: true; autoplay-interval: 2000">
         <div class="uk-container">
@@ -63,7 +63,7 @@ $configData = Helper::appClasses();
 
     <form method="GET" id="product-form">
         <div class="dash-search"
-        @if(!$isBuyer)
+        @if($isSeller)
         style="padding-top: 60px;"
         @endif
         >
@@ -72,7 +72,7 @@ $configData = Helper::appClasses();
                     products online</h2>
                 <div class="dash-search__text">
                     <p>
-                    @if(!$isBuyer)
+                    @if($isSeller)
                         Cerca acquirenti su WillFeed
                     @else
                         Ricerca prodotti e venditori su WillFeed
@@ -138,6 +138,7 @@ $configData = Helper::appClasses();
                                 @endforeach
                             </div>
 
+                            @if(!$isSeller)
                             <div class="filter__item">
                                 <h3 class="filter__name">Prezzo</h3>
                                 <div class="mb-5 mt-4 noUi-primary" id="price-range"></div>
@@ -146,6 +147,7 @@ $configData = Helper::appClasses();
                                 <input type="hidden" id="price_max" name="price_max"
                                     value="{{isset($request['price_max'])?$request['price_max']:''}}">
                             </div>
+                            @endif
 
                             <div class="filter__item">
                                 <h3 class="filter__name">Metodo di pagamento</h3>
@@ -211,7 +213,73 @@ $configData = Helper::appClasses();
                     </div>
                     <div class="uk-width-expand product-filter__col product-filter__col--items">
                         @if($products_list && count($products_list))
-                        @if($isBuyer)
+                        @if($isSeller)
+                        @foreach ($products_list as $product)
+                        @php
+                        $rating = App\Models\Rating::where(['review_for_id' => $product->user_id, 'status' =>
+                        'approve'])->avg('star');
+                        $u = \App\Models\User::where(["id" => $product->user_id])->first();
+                        @endphp
+                        <div class="product__item">
+
+                            <div class="product__header">
+                                <div class="product-seller">
+                                    <div class="product-seller__media">
+                                        @if($u)
+                                        <img src="{{$u->profile_photo_url}}" width="48" height="48">
+                                        @endif
+                                    </div>
+                                    <div class="product-seller__body">
+                                        <h3 class="product-seller__name">{{$product->business_name}}</h3>
+                                        <p class="product-seller__type">{{$product->main_activity_ids}}</p>
+                                    </div>
+                                </div>
+                                <div class="product-rating">
+                                    <div class="js-product-ratings" data-rating="{{$rating}}"></div>
+                                </div>
+                            </div>
+                            <div class="product__body uk-grid" daa-uk-grid>
+                                <div class="uk-width-auto product__item-col product__item-col--names">
+                                    <div class="product-data-chart uk-grid" data-uk-grid>
+                                        <div class="product-prdata">
+                                            <h2 class="product__name">{{$product->products}}</h2>
+                                        </div>
+                                        <div class="product-chart">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="product-actions">
+                                        @if($product->user_id)
+                                        <a href="{{route("profile-view", ['id'=> $product->user_id])}}"
+                                            class="uk-button uk-button-default product-actions__view">Profilo</a>
+                                        @endif
+                                        @if($product->couldOrderStatus&&$product->couldOrderStatus=="approved")
+                                        <button type="button" class="uk-button uk-button-primary product-actions__buy" disabled>Collaborata</button>
+                                        @elseif(($product->couldOrderStatus&&$product->couldOrderStatus=="pending"))
+                                        <button type="button" class="uk-button uk-button-primary product-actions__buy" disabled>Requested</button>
+                                        @else
+                                        <button type="button" class="uk-button uk-button-primary product-actions__buy js-send-collab-request" data-customer-id="{{$product->user_id}}"
+                                            target="_blank">
+                                            {{($product->couldOrderStatus&&$product->couldOrderStatus=="pending")?'Requested':'Collabora'}}
+                                        </button>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="uk-width-expand product__item-col product__item-col--desc">
+                                    <div class="product__desc">
+                                        <div class="product__priceinfo fs-18">
+                                            <strong>Dilazione di pagamento:</strong> {{$product->payment_extension}}
+                                        </div>
+                                        <div class="product__priceinfo fs-18">
+                                            <strong>Sei un distributore privato:</strong> {{$product->is_private_distributer}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        @endforeach
+                        @else
                         @foreach ($products_list as $product)
                         @php
                         $rating = App\Models\Rating::where(['review_for_id' => $product->seller_id, 'status' =>
@@ -342,79 +410,19 @@ $configData = Helper::appClasses();
                             </div>
                         </div>
                         @endforeach
-                        @else
-                        @foreach ($products_list as $product)
-                        @php
-                        $rating = App\Models\Rating::where(['review_for_id' => $product->user_id, 'status' =>
-                        'approve'])->avg('star');
-                        $u = \App\Models\User::where(["id" => $product->user_id])->first();
-                        @endphp
-                        <div class="product__item">
-
-                            <div class="product__header">
-                                <div class="product-seller">
-                                    <div class="product-seller__media">
-                                        @if($u)
-                                        <img src="{{$u->profile_photo_url}}" width="48" height="48">
-                                        @endif
-                                    </div>
-                                    <div class="product-seller__body">
-                                        <h3 class="product-seller__name">{{$product->business_name}}</h3>
-                                        <p class="product-seller__type">{{$product->main_activity_ids}}</p>
-                                    </div>
-                                </div>
-                                <div class="product-rating">
-                                    <div class="js-product-ratings" data-rating="{{$rating}}"></div>
-                                </div>
-                            </div>
-                            <div class="product__body uk-grid" daa-uk-grid>
-                                <div class="uk-width-auto product__item-col product__item-col--names">
-                                    <div class="product-data-chart uk-grid" data-uk-grid>
-                                        <div class="product-prdata">
-                                            <h2 class="product__name">{{$product->products}}</h2>
-                                        </div>
-                                        <div class="product-chart">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="product-actions">
-                                        @if($product->user_id)
-                                        <a href="{{route("profile-view", ['id'=> $product->user_id])}}"
-                                            class="uk-button uk-button-default product-actions__view">Profilo</a>
-                                        @endif
-                                        @if($product->couldOrderStatus&&$product->couldOrderStatus=="approved")
-                                        <button type="button" class="uk-button uk-button-primary product-actions__buy" disabled>Collaborata</button>
-                                        @elseif(($product->couldOrderStatus&&$product->couldOrderStatus=="pending"))
-                                        <button type="button" class="uk-button uk-button-primary product-actions__buy" disabled>Requested</button>
-                                        @else
-                                        <button type="button" class="uk-button uk-button-primary product-actions__buy js-send-collab-request" data-customer-id="{{$product->user_id}}"
-                                            target="_blank">
-                                            {{($product->couldOrderStatus&&$product->couldOrderStatus=="pending")?'Requested':'Collabora'}}
-                                        </button>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="uk-width-expand product__item-col product__item-col--desc">
-                                    <div class="product__desc">
-                                        <div class="product__priceinfo fs-18">
-                                            <strong>Dilazione di pagamento:</strong> {{$product->payment_extension}}
-                                        </div>
-                                        <div class="product__priceinfo fs-18">
-                                            <strong>Sei un distributore privato:</strong> {{$product->is_private_distributer}}
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        @endforeach
                         @endif
                         {{ $products_list->links() }}
                         @else
                         <div class="thanks__icon">
                             <img src="/assets/front/images/reject.svg" width="340" height="196">
                         </div>
-                        <h3 style="text-center">Nessun prodotto trovato</h3>
+                        <h3 style="text-center">
+                        @if($isSeller)
+                            Nessun acquirente trovato
+                        @else
+                            Nessun prodotto trovato
+                        @endif
+                        </h3>
                         <div class="thanks__action">
                             <a href="{{route("pages-buyer-home")}}"
                                 class="uk-button uk-button-primary thanks__action-btn">ricerca chiara</a>

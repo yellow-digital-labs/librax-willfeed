@@ -40,6 +40,45 @@ class BuyerHome extends Controller
       $product_query = UserDetail::selectRaw("user_details.*, users.*")->where(["users.approved_by_admin" => "Yes", "users.accountType" => 1])
         ->leftJoin("users", "users.id", "user_details.user_id");
 
+      if($search){
+        $product_query = $product_query
+          ->where(function($query) use ($search){
+            $query->whereRaw("user_details.business_name LIKE '%".$search."%'");
+          });
+      }
+
+      if(isset($request['fuel_type']) && count($request['fuel_type'])){
+        $product_query->where(function($query) use ($request){
+          foreach($request['fuel_type'] as $fuel_type){
+            $query->orWhereRaw("FIND_IN_SET('".$fuel_type."', user_details.products)");
+          }
+        });
+      }
+
+      if(isset($request['payment_option']) && count($request['payment_option'])){
+        $product_query->where(function($query) use ($request){
+          foreach($request['payment_option'] as $payment_option){
+            $query->orWhere("user_details.payment_term", $payment_option);
+          }
+        });
+      }
+
+      if(isset($request['region']) && count($request['region'])){
+        $product_query->where(function($query) use ($request){
+          foreach($request['region'] as $region){
+            $query->orWhere("user_details.destination_region", $region);
+          }
+        });
+      }
+
+      if(isset($request['payment_time']) && count($request['payment_time'])){
+        $product_query->where(function($query) use ($request){
+          foreach($request['payment_time'] as $payment_time){
+            $query->orWhere("user_details.payment_extension", $payment_time);
+          }
+        });
+      }
+
       if($user){
         $product_query->leftJoin('customer_verifieds', function($join) use ($user, $product_query){
           $product_query->addSelect("customer_verifieds.status AS couldOrderStatus");
