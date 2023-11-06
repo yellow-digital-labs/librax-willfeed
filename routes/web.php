@@ -180,6 +180,8 @@ Route::middleware([
     //request seller for profile verification
     Route::get('/customer-request-to-seller/{seller_id}/{csrf}', $controller_path . '\pages\BuyerCheckout@customerRequest')->name('customer-request-to-seller');
     Route::get('/customer-request-to-seller-thanks/{seller_id}', $controller_path . '\pages\BuyerCheckout@customerRequestThanks')->name('customer-request-to-seller-thanks');
+    Route::post('/seller-request-to-buyer/{csrf}', $controller_path . '\pages\BuyerCheckout@sellerRequest')->name('seller-request-to-buyer');
+    Route::get('/customer-request-to-buyer-thanks/{buyer_id}', $controller_path . '\pages\BuyerCheckout@sellerRequestThanks')->name('seller-request-to-buyer-thanks');
     Route::get('/customer-unauthorized/{seller_id}', $controller_path . '\pages\BuyerCheckout@customerUnauthorized')->name('customer-unauthorized');
 
     //blogs management

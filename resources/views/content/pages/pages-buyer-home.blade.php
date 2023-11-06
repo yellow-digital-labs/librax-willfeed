@@ -50,7 +50,7 @@ $configData = Helper::appClasses();
 @include('_partials/_front/header')
 
 <main id="main-content" class="wrapper">
-
+@if($isBuyer)
     <div class="dash-charts uk-slider uk-slider-container"
         data-uk-slider="center: true; autoplay: true; pause-on-hover: true; autoplay-interval: 2000">
         <div class="uk-container">
@@ -59,14 +59,25 @@ $configData = Helper::appClasses();
             </div>
         </div>
     </div>
+@endif
 
     <form method="GET" id="product-form">
-        <div class="dash-search">
+        <div class="dash-search"
+        @if(!$isBuyer)
+        style="padding-top: 60px;"
+        @endif
+        >
             <div class="uk-container dash-search__container">
                 <h2 class="title title--m dash-search__title">World’s first platform to buy more than 400+ petrochemical
                     products online</h2>
                 <div class="dash-search__text">
-                    <p>Ricerca prodotti e venditori su WillFeed</p>
+                    <p>
+                    @if(!$isBuyer)
+                        Cerca acquirenti su WillFeed
+                    @else
+                        Ricerca prodotti e venditori su WillFeed
+                    @endif
+                    </p>
                 </div>
                 <div class="dash-search__box">
                     <input type="search" class="uk-input dash-search__input" name="search"
@@ -200,6 +211,7 @@ $configData = Helper::appClasses();
                     </div>
                     <div class="uk-width-expand product-filter__col product-filter__col--items">
                         @if($products_list && count($products_list))
+                        @if($isBuyer)
                         @foreach ($products_list as $product)
                         @php
                         $rating = App\Models\Rating::where(['review_for_id' => $product->seller_id, 'status' =>
@@ -330,6 +342,73 @@ $configData = Helper::appClasses();
                             </div>
                         </div>
                         @endforeach
+                        @else
+                        @foreach ($products_list as $product)
+                        @php
+                        $rating = App\Models\Rating::where(['review_for_id' => $product->user_id, 'status' =>
+                        'approve'])->avg('star');
+                        $u = \App\Models\User::where(["id" => $product->user_id])->first();
+                        @endphp
+                        <div class="product__item">
+
+                            <div class="product__header">
+                                <div class="product-seller">
+                                    <div class="product-seller__media">
+                                        @if($u)
+                                        <img src="{{$u->profile_photo_url}}" width="48" height="48">
+                                        @endif
+                                    </div>
+                                    <div class="product-seller__body">
+                                        <h3 class="product-seller__name">{{$product->business_name}}</h3>
+                                        <p class="product-seller__type">{{$product->main_activity_ids}}</p>
+                                    </div>
+                                </div>
+                                <div class="product-rating">
+                                    <div class="js-product-ratings" data-rating="{{$rating}}"></div>
+                                </div>
+                            </div>
+                            <div class="product__body uk-grid" daa-uk-grid>
+                                <div class="uk-width-auto product__item-col product__item-col--names">
+                                    <div class="product-data-chart uk-grid" data-uk-grid>
+                                        <div class="product-prdata">
+                                            <h2 class="product__name">{{$product->products}}</h2>
+                                        </div>
+                                        <div class="product-chart">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="product-actions">
+                                        @if($product->user_id)
+                                        <a href="{{route("profile-view", ['id'=> $product->user_id])}}"
+                                            class="uk-button uk-button-default product-actions__view">Profilo</a>
+                                        @endif
+                                        @if($product->couldOrderStatus&&$product->couldOrderStatus=="approved")
+                                        <button type="button" class="uk-button uk-button-primary product-actions__buy" disabled>Collaborata</button>
+                                        @elseif(($product->couldOrderStatus&&$product->couldOrderStatus=="pending"))
+                                        <button type="button" class="uk-button uk-button-primary product-actions__buy" disabled>Requested</button>
+                                        @else
+                                        <button type="button" class="uk-button uk-button-primary product-actions__buy js-send-collab-request" data-customer-id="{{$product->user_id}}"
+                                            target="_blank">
+                                            {{($product->couldOrderStatus&&$product->couldOrderStatus=="pending")?'Requested':'Collabora'}}
+                                        </button>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="uk-width-expand product__item-col product__item-col--desc">
+                                    <div class="product__desc">
+                                        <div class="product__priceinfo fs-18">
+                                            <strong>Dilazione di pagamento:</strong> {{$product->payment_extension}}
+                                        </div>
+                                        <div class="product__priceinfo fs-18">
+                                            <strong>Sei un distributore privato:</strong> {{$product->is_private_distributer}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        @endforeach
+                        @endif
                         {{ $products_list->links() }}
                         @else
                         <div class="thanks__icon">
@@ -382,6 +461,35 @@ $configData = Helper::appClasses();
                 <div class="modal-footer">
                     <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" id="save-rating">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="collabModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="POST" id="collab-form" action="{{route("seller-request-to-buyer", [
+                "csrf" => csrf_token()
+            ])}}">
+                @csrf
+                <div class="modal-header">
+                    <input type="hidden" name="buyer_id" id="buyer_id_input">
+                    <h5 class="modal-title" id="exampleModalLabel1">Aggiungi limite di credito</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                            <label for="message" class="form-label">Limite di credito</label>
+                            <input type="number" id="credit_limit" name="credit_limit" class="form-control" placeholder="Inserisci il limite di credito">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="uk-button uk-button-default product-actions__view" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="uk-button uk-button-primary product-actions__buy" id="save-invitation">Invia collaborazione</button>
                 </div>
             </form>
         </div>
@@ -485,7 +593,7 @@ $configData = Helper::appClasses();
 </script>
 
 <script>
-    @if($products_list)
+    @if($products_list && $isBuyer)
 @foreach ($products_list as $product)
     @php
     $price_history = App\Models\ProductPriceHistory::where(["product_id" => $product->product_id])->orderBy("date", "DESC")->take(10)->get();
@@ -704,6 +812,13 @@ document.addEventListener('DOMContentLoaded', function (e) {
     //     });
     // });
     @endif
+</script>
+
+<script>
+    $(".js-send-collab-request").on("click", function(){
+        $("#collabModal").modal("toggle");
+        $("#buyer_id_input").val($(this).attr("data-customer-id"));
+    })
 </script>
 @endsection
 <!-- Scripts Ends -->

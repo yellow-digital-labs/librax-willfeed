@@ -248,6 +248,81 @@ class BuyerCheckout extends Controller
     }
   }
 
+  public function sellerRequest(Request $request){
+    $user = Auth::user();
+    $buyer_id = $request->buyer_id;
+    if($user){
+      $record = CustomerVerified::where([
+        "customer_id" => $buyer_id,
+        "seller_id" => $user->id
+      ]);
+
+      $record_data = $record->first();
+      if($record_data){
+        //update
+        if($record_data->status == "pending"){
+          return redirect()->route('seller-request-to-buyer-thanks', [
+            "buyer_id" => $buyer_id
+          ]);
+        } else {
+          $record->update([
+            "status" => "pending",
+            "credit_limit" => $request->credit_limit
+          ]);
+
+          return redirect()->route('seller-request-to-buyer-thanks', [
+            "buyer_id" => $buyer_id
+          ]);
+        }
+      } else {
+        //insert
+        CustomerVerified::create([
+          "customer_id" => $buyer_id,
+          "seller_id" => $user->id,
+          "credit_limit" => $request->credit_limit
+        ]);
+
+        return redirect()->route('seller-request-to-buyer-thanks', [
+          "buyer_id" => $buyer_id
+        ]);
+      }
+    } else {
+      return response()->json([
+        "message" => "You are not authorized",
+        "code" => 500,
+        "data" => [],
+      ]);
+    }
+  }
+
+  public function sellerRequestThanks($buyer_id){
+    $user = Auth::user();
+    if($user){
+      $record = CustomerVerified::where([
+        "customer_id" => $buyer_id,
+        "seller_id" => $user->id
+      ]);
+      $record_data = $record->first();
+      if($record_data){
+        if($record_data->status == "pending"){
+          return view('content.pages.seller-request', []);
+        } else {
+          return redirect()->route('pages-buyer-home', [])->withErrors([
+            "msg" => "Invalid request",
+          ]);
+        }
+      } else {
+        return redirect()->route('pages-buyer-home', [])->withErrors([
+          "msg" => "Invalid request",
+        ]);
+      }
+    } else {
+      return redirect()->route('pages-buyer-home', [])->withErrors([
+        "msg" => "Invalid request",
+      ]);
+    }
+  }
+
   public function customerUnauthorized($seller_id){
     return view('content.pages.customer-unauthorized', []);
   }

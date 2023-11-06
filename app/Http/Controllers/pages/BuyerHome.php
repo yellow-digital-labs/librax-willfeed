@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\PaymentOption;
 use App\Models\Region;
 use App\Models\PaymentExtension;
+use App\Models\UserDetail;
 use App\Helpers\Helpers;
 use Auth;
 
@@ -35,92 +36,105 @@ class BuyerHome extends Controller
     if(isset($request['search'])){
       $search = $request['search'];
     }
-    $product_query = ProductSeller::where(["product_sellers.status" => "active"])
-      ->select("product_sellers.*");
+    if($isSeller){
+      $product_query = UserDetail::selectRaw("user_details.*, users.*")->where(["users.approved_by_admin" => "Yes", "users.accountType" => 1])
+        ->leftJoin("users", "users.id", "user_details.user_id");
 
-    $product_query = $product_query
-      ->leftJoin('user_details', 'user_details.user_id', '=', 'product_sellers.seller_id')
-      ->addSelect(["user_details.region", "user_details.main_activity_ids", "user_details.bank_transfer", "user_details.bank_check", "user_details.rib", "user_details.rid", "user_details.payment_extension"]);
-    $is_user_details_joined = true;
-
-    if($search){
-      $product_query = $product_query
-        ->where(function($query) use ($search){
-          $query->whereRaw("product_sellers.product_name LIKE '%".$search."%' OR product_sellers.seller_name LIKE '%".$search."%'");
+      if($user){
+        $product_query->leftJoin('customer_verifieds', function($join) use ($user, $product_query){
+          $product_query->addSelect("customer_verifieds.status AS couldOrderStatus");
+          $join->where('customer_verifieds.seller_id', '=', $user->id);
+          $join->on('customer_verifieds.customer_id', '=', 'user_details.user_id');
         });
-    }
-    if(isset($request['price_min']) && isset($request['price_max'])){
+      }
+    } else {
+      $product_query = ProductSeller::where(["product_sellers.status" => "active"])
+        ->select("product_sellers.*");
+
       $product_query = $product_query
-        ->where("amount", ">=", $request['price_min'])
-        ->where("amount", "<=", $request['price_max']);
-    }
-    if(isset($request['fuel_type']) && count($request['fuel_type'])){
-      $product_query->where(function($query) use ($request){
-        foreach($request['fuel_type'] as $fuel_type){
-          $query->orWhere("product_name", $fuel_type);
-        }
-      });
-    }
-    //payment option
-    if(isset($request['payment_option']) && count($request['payment_option'])){
-      if(!$is_user_details_joined){
+        ->leftJoin('user_details', 'user_details.user_id', '=', 'product_sellers.seller_id')
+        ->addSelect(["user_details.region", "user_details.main_activity_ids", "user_details.bank_transfer", "user_details.bank_check", "user_details.rib", "user_details.rid", "user_details.payment_extension"]);
+      $is_user_details_joined = true;
+
+      if($search){
         $product_query = $product_query
-          ->leftJoin('user_details', 'user_details.user_id', '=', 'product_sellers.seller_id');
-        $is_user_details_joined = true;
+          ->where(function($query) use ($search){
+            $query->whereRaw("product_sellers.product_name LIKE '%".$search."%' OR product_sellers.seller_name LIKE '%".$search."%'");
+          });
       }
-      $product_query->where(function($query) use ($request){
-        foreach($request['payment_option'] as $payment_option){
-          if($payment_option == "Bonifico Bancario"){
-            $query->orWhere("user_details.bank_transfer", "<>", "");
-          } else if($payment_option == "Assegno Bancario") {
-            $query->orWhere("user_details.bank_check", "<>", "");
-          } else if($payment_option == "RIBA") {
-            $query->orWhere("user_details.rib", "=", "Si");
-          } else if($payment_option == "RID") {
-            $query->orWhere("user_details.rid", "=", "Si");
+      if(isset($request['price_min']) && isset($request['price_max'])){
+        $product_query = $product_query
+          ->where("amount", ">=", $request['price_min'])
+          ->where("amount", "<=", $request['price_max']);
+      }
+      if(isset($request['fuel_type']) && count($request['fuel_type'])){
+        $product_query->where(function($query) use ($request){
+          foreach($request['fuel_type'] as $fuel_type){
+            $query->orWhere("product_name", $fuel_type);
           }
+        });
+      }
+      //payment option
+      if(isset($request['payment_option']) && count($request['payment_option'])){
+        if(!$is_user_details_joined){
+          $product_query = $product_query
+            ->leftJoin('user_details', 'user_details.user_id', '=', 'product_sellers.seller_id');
+          $is_user_details_joined = true;
         }
-      });
-    }
-    if(isset($request['region']) && count($request['region'])){
-      if(!$is_user_details_joined){
-        $product_query = $product_query
-          ->leftJoin('user_details', 'user_details.user_id', '=', 'product_sellers.seller_id');
-        $is_user_details_joined = true;
+        $product_query->where(function($query) use ($request){
+          foreach($request['payment_option'] as $payment_option){
+            if($payment_option == "Bonifico Bancario"){
+              $query->orWhere("user_details.bank_transfer", "<>", "");
+            } else if($payment_option == "Assegno Bancario") {
+              $query->orWhere("user_details.bank_check", "<>", "");
+            } else if($payment_option == "RIBA") {
+              $query->orWhere("user_details.rib", "=", "Si");
+            } else if($payment_option == "RID") {
+              $query->orWhere("user_details.rid", "=", "Si");
+            }
+          }
+        });
       }
-      $sub_query = "";
-      $sep = "(";
-      foreach($request['region'] as $region){
-        $sub_query .= $sep."FIND_IN_SET(user_details.geographical_coverage_regions, '$region')";
-        $sep = " OR ";
-      }
-      $sub_query .= ")";
-      $product_query
-        ->whereRaw($sub_query);
-    }
-
-    if(isset($request['payment_time']) && count($request['payment_time'])){
-      if(!$is_user_details_joined){
-        $product_query = $product_query
-          ->leftJoin('user_details', 'user_details.user_id', '=', 'product_sellers.seller_id');
-        $is_user_details_joined = true;
-      }
-      $product_query->where(function($query) use ($request){
-        foreach($request['payment_time'] as $payment_time){
-          $query->orWhere("user_details.payment_extension", $payment_time);
+      if(isset($request['region']) && count($request['region'])){
+        if(!$is_user_details_joined){
+          $product_query = $product_query
+            ->leftJoin('user_details', 'user_details.user_id', '=', 'product_sellers.seller_id');
+          $is_user_details_joined = true;
         }
-      });
-    }
+        $sub_query = "";
+        $sep = "(";
+        foreach($request['region'] as $region){
+          $sub_query .= $sep."FIND_IN_SET(user_details.geographical_coverage_regions, '$region')";
+          $sep = " OR ";
+        }
+        $sub_query .= ")";
+        $product_query
+          ->whereRaw($sub_query);
+      }
 
-    //delivery time
-    
-    //check could able to order
-    if($user){
-      $product_query->leftJoin('customer_verifieds', function($join) use ($user, $product_query){
-        $product_query->addSelect("customer_verifieds.status AS couldOrderStatus");
-        $join->on('customer_verifieds.seller_id', '=', 'product_sellers.seller_id');
-        $join->where('customer_verifieds.customer_id', '=', $user->id);
-      });
+      if(isset($request['payment_time']) && count($request['payment_time'])){
+        if(!$is_user_details_joined){
+          $product_query = $product_query
+            ->leftJoin('user_details', 'user_details.user_id', '=', 'product_sellers.seller_id');
+          $is_user_details_joined = true;
+        }
+        $product_query->where(function($query) use ($request){
+          foreach($request['payment_time'] as $payment_time){
+            $query->orWhere("user_details.payment_extension", $payment_time);
+          }
+        });
+      }
+
+      //delivery time
+      
+      //check could able to order
+      if($user){
+        $product_query->leftJoin('customer_verifieds', function($join) use ($user, $product_query){
+          $product_query->addSelect("customer_verifieds.status AS couldOrderStatus");
+          $join->on('customer_verifieds.seller_id', '=', 'product_sellers.seller_id');
+          $join->where('customer_verifieds.customer_id', '=', $user->id);
+        });
+      }
     }
 
     // $product_query->dd();

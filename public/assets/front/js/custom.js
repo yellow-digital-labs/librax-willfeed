@@ -61,6 +61,9 @@ if ($('.js-product-ratings').length > 0) {
     $('.js-product-ratings').each(function () {
         var sel = $(this);
         var currentRating = $(sel).attr('data-rating');
+        if(currentRating == ""){
+            currentRating = 0;
+        }
         $(sel).rateYo({
             rating: currentRating,
             spacing: '4px',
