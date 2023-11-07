@@ -381,6 +381,11 @@ class Product extends Controller
       ]);
     }
 
+    $qty = 0;
+    if($request->qty){
+      $qty = $request->qty;
+    }
+
     ProductSeller::updateOrCreate(
       [
         "seller_id" => $user_id,
@@ -395,6 +400,7 @@ class Product extends Controller
         "delivery_days" => $request->delivery_days,
         "days_off" => $request->days_off?implode(",",$request->days_off):"",
         "status" => $request->status ? $request->status : "inactive",
+        "current_stock" => $qty,
       ]
     );
 

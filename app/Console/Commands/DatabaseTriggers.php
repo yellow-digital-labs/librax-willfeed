@@ -74,7 +74,7 @@ class DatabaseTriggers extends Command
                     SET NEW.product_name = (SELECT name FROM products WHERE id=NEW.product_id);
                     SET NEW.tax = 22;
                     SET NEW.amount = NEW.amount_before_tax + (NEW.amount_before_tax*NEW.tax/100);
-                    SET NEW.current_stock = 0;
+                    -- SET NEW.current_stock = 0;
                     SET NEW.amount_before_tax_old = NEW.amount_before_tax;
                     SET NEW.amount_before_tax_old_date = CURDATE();
                 END');

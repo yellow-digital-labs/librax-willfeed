@@ -170,7 +170,7 @@ $configData = Helper::appClasses();
             </div>
 
 
-            @if($product_detail)
+            {{-- @if($product_detail) --}}
             <div class="card">
                 <div class="card-header d-flex justify-content-between border-bottom">
                     <div class="card-title mb-0">
@@ -185,13 +185,15 @@ $configData = Helper::appClasses();
                             <div class="row g-3 mb-4">
                                 <div class="col">
                                     <div class="input-group">
-                                        <input type="text" id="qty" class="form-control" placeholder="Quantity" />
+                                        <input type="number" id="qty" name="qty" class="form-control" placeholder="Quantity" />
                                         <span class="input-group-text">litri</span>
                                     </div>
                                 </div>
+                                @if($product_detail)
                                 <div class="col-auto">
                                     <button type="button" class="btn btn-dark btn-next btn-submit waves-effect waves-light" id="inventory-submit"><i class="ti ti-check me-2"></i> Confirm</button>
                                 </div>
+                                @endif
                             </div>
                             <p><span class="fw-semibold me-2">Product in stock now:</span> <span id="current_stock">{{$product_detail?number_format($product_detail->current_stock, 0, ',', '.'):'NA'}}</span> litri</p>
                             <p><span class="fw-semibold me-2">Product in transit:</span> <span id="stock_in_transit">{{$product_detail?number_format($product_detail->stock_in_transit, 0, ',', '.'):'NA'}}</span> litri</p>
@@ -201,7 +203,7 @@ $configData = Helper::appClasses();
                     </div>
                 </div>
             </div>
-            @endif
+            {{-- @endif --}}
         </div>
 
     </div>

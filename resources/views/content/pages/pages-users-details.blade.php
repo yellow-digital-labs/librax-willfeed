@@ -105,7 +105,7 @@ $(document).ready(function () {
                             <li class="about-iconlist__item">
                                 <span class="about-iconlist__icon wf-icon-user"></span>
                                 <span class="about-iconlist__name">Ragione sociale:</span>
-                                <span class="about-iconlist__val">{{$user_detail->administrator_name?$user_detail->administrator_name:'NA'}}</span>
+                                <span class="about-iconlist__val">{{$user_detail->business_name?$user_detail->business_name:'NA'}}</span>
                             </li>
                             <li class="about-iconlist__item">
                                 <span class="about-iconlist__icon wf-icon-location"></span>
