@@ -25,7 +25,11 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('page-script')
+@if($product_detail)
 <script src="{{asset('assets/js/product-detail.js')}}"></script>
+@else
+<script src="{{asset('assets/js/product-detail-add.js')}}"></script>
+@endif
 @endsection
 
 @section('content')
@@ -163,7 +167,9 @@ $configData = Helper::appClasses();
                             <input class="form-check-input" type="checkbox" name="status" id="status" value="active" {{$product_detail?($product_detail->status=='active'?'checked':''):'checked'}}>
                         </div>
 
+                        @if($product_detail)
                         <button type="submit" class="btn btn-dark btn-next btn-submit waves-effect waves-light">Save</button>
+                        @endif
                         
                     </div>
                 </div>
@@ -180,12 +186,18 @@ $configData = Helper::appClasses();
                 <div class="card-body pt-4">
                     <h5 class="fw-normal">Restock</h5>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 mb-4">
                             <label class="form-label" for="qty">Add to stock</label>
                             <div class="row g-3 mb-4">
                                 <div class="col">
                                     <div class="input-group">
-                                        <input type="number" id="qty" name="qty" class="form-control" placeholder="Quantity" />
+                                        @php
+                                            $qty = "100000";
+                                            if($product_detail){
+                                                $qty = "";
+                                            }
+                                        @endphp
+                                        <input type="number" id="qty" name="qty" class="form-control" placeholder="Quantity" value="{{$qty}}"/>
                                         <span class="input-group-text">litri</span>
                                     </div>
                                 </div>
@@ -200,6 +212,10 @@ $configData = Helper::appClasses();
                             <p><span class="fw-semibold me-2">Last time restocked:</span> <span id="stock_updated_at">{{$product_detail&&$product_detail->stock_updated_at?date('dS F, Y', strtotime($product_detail->stock_updated_at)):'NA'}}</span></p>
                             <p><span class="fw-semibold me-2">Total stock over lifetime:</span> <span id="stock_lifetime">{{$product_detail?number_format($product_detail->stock_lifetime, 0, ',', '.'):'NA'}}</span> litri</p>
                         </div>
+
+                        @if(!$product_detail)
+                            <button type="submit" class="btn btn-dark btn-next btn-submit waves-effect waves-light mt-2 me-2">Save</button>
+                        @endif
                     </div>
                 </div>
             </div>

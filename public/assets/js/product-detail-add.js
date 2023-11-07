@@ -116,6 +116,13 @@ document.addEventListener('DOMContentLoaded', function (e) {
                         message: 'Please enter delivery days'
                       }
                     }
+                  },
+                  qty: {
+                    validators: {
+                      notEmpty: {
+                        message: 'Please enter stock'
+                      }
+                    }
                   }
                 },
                 plugins: {
