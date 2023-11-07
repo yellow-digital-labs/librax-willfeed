@@ -357,7 +357,8 @@ $configData = Helper::appClasses();
                                             Regione: {{$product->region}}
                                         </div> --}}
                                         <div class="product__priceinfo fs-18">
-                                            <strong>Dilazione di pagamento:</strong> {{$product->payment_extension}}
+                                            <strong>Dilazione di pagamento:</strong>
+                                            A vista{{$product->amount_30gg!=""?", 30gg":""}}{{$product->amount_60gg!=""?", 60gg":""}}{{$product->amount_90gg!=""?", 90gg":""}}
                                         </div>
                                         <div class="product__priceinfo fs-18">
                                             <strong>Metodi di pagamento accettati:</strong>
