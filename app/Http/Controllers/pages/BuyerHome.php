@@ -152,14 +152,17 @@ class BuyerHome extends Controller
       }
 
       if(isset($request['payment_time']) && count($request['payment_time'])){
-        if(!$is_user_details_joined){
-          $product_query = $product_query
-            ->leftJoin('user_details', 'user_details.user_id', '=', 'product_sellers.seller_id');
-          $is_user_details_joined = true;
-        }
         $product_query->where(function($query) use ($request){
           foreach($request['payment_time'] as $payment_time){
-            $query->orWhere("user_details.payment_extension", $payment_time);
+            if($payment_time == "A vista"){
+              $query->orWhereRaw("product_sellers.amount_before_tax > 0");
+            } else if($payment_time == "30gg"){
+              $query->orWhereRaw("product_sellers.amount_30gg > 0");
+            } else if($payment_time == "60gg"){
+              $query->orWhereRaw("product_sellers.amount_60gg > 0");
+            } else if($payment_time == "90gg"){
+              $query->orWhereRaw("product_sellers.amount_90gg > 0");
+            }
           }
         });
       }
