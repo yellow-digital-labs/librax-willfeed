@@ -307,10 +307,10 @@ $configData = Helper::appClasses();
                                         <div class="product-prdata">
                                             <h2 class="product__name">{{$product->product_name}}</h2>
                                             <div class="product__fullprice">
-                                                €{{$product->amount_before_tax}} + 22% IVA
+                                                €<span class="js-display-without-tax">{{$product->amount_before_tax}}</span> + 22% IVA
                                             </div>
                                             <div class="product__price">
-                                                <span class="product__price-big">€{{$product->amount}}</span>/LITRO
+                                                <span class="product__price-big">€<span class="js-display-final-amount">{{$product->amount}}</span></span>/LITRO
                                             </div>
                                             {{-- <div class="product__priceinfo">
                                                 (Inclusive Of all Tax)
@@ -357,8 +357,21 @@ $configData = Helper::appClasses();
                                             Regione: {{$product->region}}
                                         </div> --}}
                                         <div class="product__priceinfo fs-18">
-                                            <strong>Dilazione di pagamento:</strong>
-                                            A vista{{$product->amount_30gg!=""?", 30gg":""}}{{$product->amount_60gg!=""?", 60gg":""}}{{$product->amount_90gg!=""?", 90gg":""}}
+                                            <strong class="">Dilazione di pagamento:</strong>
+                                            <select class="form-select select2 js-payment-term" data-minimum-results-for-search="Infinity">
+                                                @if($product->amount_before_tax>0)
+                                                <option data-price="{{$product->amount_before_tax}}">A vista</option>
+                                                @endif
+                                                @if($product->amount_30gg>0)
+                                                <option data-price="{{$product->amount_30gg}}">30gg</option>
+                                                @endif
+                                                @if($product->amount_60gg>0)
+                                                <option data-price="{{$product->amount_60gg}}">60gg</option>
+                                                @endif
+                                                @if($product->amount_90gg>0)
+                                                <option data-price="{{$product->amount_90gg}}">90gg</option>
+                                                @endif
+                                            </select>
                                         </div>
                                         <div class="product__priceinfo fs-18">
                                             <strong>Metodi di pagamento accettati:</strong>
@@ -827,6 +840,15 @@ document.addEventListener('DOMContentLoaded', function (e) {
     $(".js-send-collab-request").on("click", function(){
         $("#collabModal").modal("toggle");
         $("#buyer_id_input").val($(this).attr("data-customer-id"));
+    })
+</script>
+<script>
+    $(".js-payment-term").on("change", function(){
+        let p = $(this).find("option:selected").attr("data-price");
+        $(this).parents(".product__body").find(".js-display-without-tax").text(p);
+        let per = 22 * p / 100;
+        let fp = (+p + +per).toFixed(2);
+        $(this).parents(".product__body").find(".js-display-final-amount").text(fp);
     })
 </script>
 @endsection
