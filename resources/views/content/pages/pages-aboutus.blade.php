@@ -4,7 +4,7 @@ $configData = Helper::appClasses();
 
 @extends('layouts/landing')
 
-@section('title', 'About us')
+@section('title', 'Chi siamo')
 
 
 <!-- CSS Starts -->
@@ -37,9 +37,9 @@ $configData = Helper::appClasses();
 
     <div class="page-heading">
         <div class="uk-container page-heading__container">
-            <h1 class="title title--xl page-heading__title">About us</h1>
+            <h1 class="title title--xl page-heading__title">Chi siamo</h1>
             <div class="page-heading__text">
-                <p>WILLFEED rivoluziona il mercato dei carburanti con una piattaforma unica in Italia.</p>
+                <p></p>
             </div>
             <hr class="page-heading__hr">
         </div>
@@ -51,36 +51,12 @@ $configData = Helper::appClasses();
             <div class="about-item">                
                 <div class="uk-grid about-item__grid" data-uk-grid>
                     <div class="uk-width-auto about-item__col about-item__col--sidebar">
-                        <h2 class="about-item__name">Story</h2>
+                        <h2 class="about-item__name">La Nostra Mission</h2>
                     </div>
                     <div class="uk-width-expand about-item__col about-item__col--content">
-                        <h2 class="about-item__title">We envision a brighter future, transforming the way the world purchase to create positive change.</h2>
                         <div class="about-item__text">
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Donec massa sapien faucibus et molestie ac feugiat sed. 
-                            </p>
-                            <p>
-                                Et tortor consequat id porta. Aliquam ultrices sagittis orci a scelerisque. Aenean sed adipiscing diam donec adipiscing tristique risus nec feugiat. Suspendisse interdum consectetur libero id faucibus nisl tincidunt eget. Consectetur adipiscing elit duis tristique sollicitudin nibh sit amet commodo. Bibendum neque egestas congue quisque egestas diam in arcu. Vestibulum mattis ullamcorper velit sed ullamcorper. Mauris cursus mattis molestie a iaculis at erat pellentesque. Dictum sit amet justo donec enim diam. Erat velit scelerisque in dictum non consectetur. Pulvinar mattis nunc sed blandit example@willfeed.com.
-                            </p>
-                            <p>
-                                Feugiat pretium nibh ipsum consequat nisl. Viverra adipiscing at in tellus integer. Nisi vitae suscipit tellus mauris a diam maecenas. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Amet commodo nulla facilisi nullam. In est ante in nibh. Nulla malesuada pellentesque elit eget. Magna ac placerat vestibulum lectus mauris. Massa tincidunt dui ut ornare lectus. Tempus imperdiet nulla malesuada pellentesque elit eget gravida cum. Urna neque viverra justo nec ultrices dui sapien eget mi. Ut sem nulla pharetra diam sit amet nisl. Duis ut diam quam nulla porttitor massa id neque aliquam. Sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Dui faucibus in ornare quam. Vitae congue eu consequat ac felis donec et odio pellentesque. Ipsum suspendisse ultrices gravida dictum. Tempor id eu nisl nunc mi ipsum faucibus vitae aliquet.
-                            </p>
-                        </div>
-                        <div class="about-build">
-                            <div class="uk-grid gutter-xl about-build__grid" data-uk-grid>
-                                <div class="uk-width-2-3@s">
-                                    <h2 class="title title--l about-build__title">We build bridges between customer and seller</h2>
-                                </div>
-                                <div class="uk-width-1-3@s">
-                                    <div class="about-build__icon">
-                                        <img src="/assets/front/images/icons/communication.svg" width="176" height="176">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="about-item__text">
-                            <p>
-                                Feugiat pretium nibh ipsum consequat nisl. Viverra adipiscing at in tellus integer. Nisi vitae suscipit tellus mauris a diam maecenas. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Amet commodo nulla facilisi nullam. In est ante in nibh. Nulla malesuada pellentesque elit eget. Magna ac placerat vestibulum lectus mauris. Massa tincidunt dui ut ornare lectus. Tempus imperdiet nulla malesuada pellentesque elit eget gravida cum. Urna neque viverra justo nec ultrices dui sapien eget mi. Ut sem nulla pharetra diam sit amet nisl. Duis ut diam quam nulla porttitor massa id neque aliquam. Sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Dui faucibus in ornare quam. Vitae congue eu consequat ac felis donec et odio pellentesque. Ipsum suspendisse ultrices gravida dictum. Tempor id eu nisl nunc mi ipsum faucibus vitae aliquet.
+                                Benvenuti in WILLFEED il tuo partner  affidabile per l’acquisto di carburanti di qualità online. Siamo più di una piattaforma di vendita, siamo il tuo supporto per un’esperienza di approvvigionamento senza precedenti. 
                             </p>
                         </div>
                     </div>
@@ -90,106 +66,36 @@ $configData = Helper::appClasses();
             <div class="about-item">                
                 <div class="uk-grid about-item__grid" data-uk-grid>
                     <div class="uk-width-auto about-item__col about-item__col--sidebar">
-                        <h2 class="about-item__name">Together we are strong</h2>
+                        <h2 class="about-item__name">Ecco perché siamo diversi</h2>
                     </div>
                     <div class="uk-width-expand about-item__col about-item__col--content">
                         <div class="about-item__text">
+                            <h2 class="about-item__title">Senza Intermediari, Solo Qualità</h2>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Donec massa sapien faucibus et molestie ac feugiat sed. 
+                                A differenza di altri, su WILLFEED eliminiamo gli intermediari, garantendo che il tuo carburante arrivi direttamente dalla fonte. Ciò significa prodotti di qualità superiore, sempre. 
                             </p>
-                            <p>
-                                Et tortor consequat id porta. Aliquam ultrices sagittis orci a scelerisque. Aenean sed adipiscing diam donec adipiscing tristique risus nec feugiat. Suspendisse interdum consectetur libero id faucibus nisl tincidunt eget. Consectetur adipiscing elit duis tristique sollicitudin nibh sit amet commodo. Bibendum neque egestas congue quisque egestas diam in arcu. Vestibulum mattis ullamcorper velit sed ullamcorper. Mauris cursus mattis molestie a iaculis at erat pellentesque. Dictum sit amet justo donec enim diam. Erat velit scelerisque in dictum non consectetur. Pulvinar mattis nunc sed blandit example@willfeed.com.
-                            </p>
-                        </div>
-                        <div class="about-count uk-grid" data-uk-grid>
-                            <div class="uk-width-1-2@s about-count__col">
-                                <div class="about-count__item about-count__item--maroon">
-                                    <div class="about-count__heading">
-                                        <span class="about-count__heading-big"><span class="about-count__heading-big-light">></span> 80</span> million
-                                    </div>
-                                    <div class="about-count__text">
-                                        <p>average monthly active users</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="uk-width-1-2@s about-count__col">
-                                <div class="about-count__item about-count__item--blue">
-                                    <div class="about-count__heading">
-                                        <span class="about-count__heading-big"><span class="about-count__heading-big-light">></span> 350</span>
-                                    </div>
-                                    <div class="about-count__text">
-                                        <p>employees</p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="about-item__text">
+                            <p></p>
+                            <h2 class="about-item__title">Prodotti Certificati e Clienti Selezionati</h2>
                             <p>
-                                Feugiat pretium nibh ipsum consequat nisl. Viverra adipiscing at in tellus integer. Nisi vitae suscipit tellus mauris a diam maecenas. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Amet commodo nulla facilisi nullam. In est ante in nibh. Nulla malesuada pellentesque elit eget. Magna ac placerat vestibulum lectus mauris. Massa tincidunt dui ut ornare lectus. Tempus imperdiet nulla malesuada pellentesque elit eget gravida cum. Urna neque viverra justo nec ultrices dui sapien eget mi. Ut sem nulla pharetra diam sit amet nisl. Duis ut diam quam nulla porttitor massa id neque aliquam. Sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Dui faucibus in ornare quam. Vitae congue eu consequat ac felis donec et odio pellentesque. Ipsum suspendisse ultrices gravida dictum. Tempor id eu nisl nunc mi ipsum faucibus vitae aliquet.
+                                Siamo fieri di offrire solo carburanti certificati. Collaboriamo con venditori altamente qualificati e selezioniamo con attenzione i nostri clienti. 
                             </p>
-                        </div>
-                        <div class="about-count uk-grid" data-uk-grid>
-                            <div class="uk-width-1-2@s about-count__col">
-                                <div class="about-count__item about-count__item--yellow">
-                                    <div class="about-count__heading">
-                                        <span class="about-count__heading-big"><span class="about-count__heading-big-light">></span> 800</span>
-                                    </div>
-                                    <div class="about-count__text">
-                                        <p>Sellers</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="uk-width-1-2@s about-count__col">
-                                <div class="about-count__item about-count__item--orange">
-                                    <div class="about-count__heading">
-                                        <span class="about-count__heading-big">Certified</span>
-                                    </div>
-                                    <div class="about-count__text">
-                                        <p>since June 2020</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <p>
+                                La tua soddisfazione è la nostra priorità, e ogni acquisto su WILLFEED è una garanzia di qualità.
+                            </p>
 
-            <div class="about-item">                
-                <div class="uk-grid about-item__grid" data-uk-grid>
-                    <div class="uk-width-auto about-item__col about-item__col--sidebar">
-                        <div class="about-author">
-                            <div class="about-author__media">
-                                <img src="{{asset('assets/front/images/review-img-dummy.png')}}" width="66" height="65">
-                            </div>
-                            <div class="about-author__body">
-                                <h3 class="about-author__name">Darrell Barnes</h3>
-                                <p class="about-author__des">Founder, CEO</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uk-width-expand about-item__col about-item__col--content">
-                        <div class="about-item__quote">
-                            <p>"Our goal is to harness the power of advanced synthetic chemistry and cutting-edge technology to create a seamless and sustainable petrochemical ecosystem that benefits both our customers and the environment."</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <h2 class="about-item__title">Assistenza Completa a Tua Disposizione</h2>
+                            <p>
+                                Il nostro impegno per il servizio va oltre la vendita. Con WILLFEED hai un’assistenza completa a tua disposizione. Il nostro team è pronto a rispondere alle tue domande, risolvere eventuali problemi e garantire che la tua esperienza sia sempre positiva. 
+                            </p>
 
-            <div class="about-item">                
-                <div class="uk-grid about-item__grid" data-uk-grid>
-                    <div class="uk-width-auto about-item__col about-item__col--sidebar">
-                        <h2 class="about-item__name">Who we are</h2>
-                    </div>
-                    <div class="uk-width-expand about-item__col about-item__col--content">
-                        <div class="about-item__text">
+                            <h2 class="about-item__title">Distribuzione su Tutto il Territorio Italiano</h2>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Donec massa sapien faucibus et molestie ac feugiat sed. 
+                                Con una copertura nazionale, consegniamo il tuo carburante in ogni angolo d’Italia. Nessun luogo è troppo remoto o difficile da raggiungere. La tua comodità è la nostra priorità.
                             </p>
                             <p>
-                                Et tortor consequat id porta. Aliquam ultrices sagittis orci a scelerisque. Aenean sed adipiscing diam donec adipiscing tristique risus nec feugiat. Suspendisse interdum consectetur libero id faucibus nisl tincidunt eget. Consectetur adipiscing elit duis tristique sollicitudin nibh sit amet commodo. Bibendum neque egestas congue quisque egestas diam in arcu. Vestibulum mattis ullamcorper velit sed ullamcorper. Mauris cursus mattis molestie a iaculis at erat pellentesque. Dictum sit amet justo donec enim diam. Erat velit scelerisque in dictum non consectetur. Pulvinar mattis nunc sed blandit example@willfeed.com.
-                            </p>
-                            <p>
-                                Feugiat pretium nibh ipsum consequat nisl. Viverra adipiscing at in tellus integer. Nisi vitae suscipit tellus mauris a diam maecenas. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Amet commodo nulla facilisi nullam. In est ante in nibh. Nulla malesuada pellentesque elit eget. Magna ac placerat vestibulum lectus mauris. Massa tincidunt dui ut ornare lectus. Tempus imperdiet nulla malesuada pellentesque elit eget gravida cum. Urna neque viverra justo nec ultrices dui sapien eget mi. Ut sem nulla pharetra diam sit amet nisl. Duis ut diam quam nulla porttitor massa id neque aliquam. Sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Dui faucibus in ornare quam. Vitae congue eu consequat ac felis donec et odio pellentesque. Ipsum suspendisse ultrices gravida dictum. Tempor id eu nisl nunc mi ipsum faucibus vitae aliquet.
+                                In breve, WILLFEED è il tuo compagno affidabile per l’approvvigionamento di carburanti di qualità. Siamo più di una piattaforma, siamo la tua scelta sicura per un futuro più efficiente e sostenibile.
                             </p>
                         </div>
                     </div>
@@ -200,7 +106,7 @@ $configData = Helper::appClasses();
     </div>
 
     <div class="landing-video">
-        <div class="uk-container uk-container-expand landing-video__container">
+        {{-- <div class="uk-container uk-container-expand landing-video__container">
             <div class="landing-video__wrapper">
                 
                 <button type="button" class="uk-button uk-icon-button landing-video__action">
@@ -210,7 +116,7 @@ $configData = Helper::appClasses();
                     </svg>
                 </button>
             </div>
-        </div>
+        </div> --}}
     </div>
 
 </main>
