@@ -43,14 +43,14 @@ class BuyerHome extends Controller
       if($search){
         $product_query = $product_query
           ->where(function($query) use ($search){
-            $query->whereRaw("user_details.business_name LIKE '%".$search."%'");
+            $query->whereRaw("user_details.business_name LIKE '%".addslashes($search)."%'");
           });
       }
 
       if(isset($request['fuel_type']) && count($request['fuel_type'])){
         $product_query->where(function($query) use ($request){
           foreach($request['fuel_type'] as $fuel_type){
-            $query->orWhereRaw("FIND_IN_SET('".$fuel_type."', user_details.products)");
+            $query->orWhereRaw("FIND_IN_SET('".addslashes($fuel_type)."', user_details.products)");
           }
         });
       }
@@ -66,7 +66,7 @@ class BuyerHome extends Controller
       if(isset($request['region']) && count($request['region'])){
         $product_query->where(function($query) use ($request){
           foreach($request['region'] as $region){
-            $query->orWhere("user_details.destination_region", $region);
+            $query->orWhere("user_details.destination_region", addslashes($region));
           }
         });
       }
@@ -74,7 +74,7 @@ class BuyerHome extends Controller
       if(isset($request['payment_time']) && count($request['payment_time'])){
         $product_query->where(function($query) use ($request){
           foreach($request['payment_time'] as $payment_time){
-            $query->orWhere("user_details.payment_extension", $payment_time);
+            $query->orWhere("user_details.payment_extension", addslashes($payment_time));
           }
         });
       }
@@ -98,7 +98,7 @@ class BuyerHome extends Controller
       if($search){
         $product_query = $product_query
           ->where(function($query) use ($search){
-            $query->whereRaw("product_sellers.product_name LIKE '%".$search."%' OR product_sellers.seller_name LIKE '%".$search."%'");
+            $query->whereRaw("product_sellers.product_name LIKE '%".addslashes($search)."%' OR product_sellers.seller_name LIKE '%".addslashes($search)."%'");
           });
       }
       if(isset($request['price_min']) && isset($request['price_max'])){
@@ -109,7 +109,7 @@ class BuyerHome extends Controller
       if(isset($request['fuel_type']) && count($request['fuel_type'])){
         $product_query->where(function($query) use ($request){
           foreach($request['fuel_type'] as $fuel_type){
-            $query->orWhere("product_name", $fuel_type);
+            $query->orWhere("product_name", addslashes($fuel_type));
           }
         });
       }
@@ -143,7 +143,7 @@ class BuyerHome extends Controller
         $sub_query = "";
         $sep = "(";
         foreach($request['region'] as $region){
-          $sub_query .= $sep."FIND_IN_SET(user_details.geographical_coverage_regions, '$region')";
+          $sub_query .= $sep."FIND_IN_SET(user_details.geographical_coverage_regions, '".addslashes($region)."')";
           $sep = " OR ";
         }
         $sub_query .= ")";
