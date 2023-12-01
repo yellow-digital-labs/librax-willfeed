@@ -143,7 +143,7 @@ class BuyerHome extends Controller
         $sub_query = "";
         $sep = "(";
         foreach($request['region'] as $region){
-          $sub_query .= $sep."FIND_IN_SET(user_details.geographical_coverage_regions, '".addslashes($region)."')";
+          $sub_query .= $sep."FIND_IN_SET('".addslashes($region)."', user_details.geographical_coverage_regions)";
           $sep = " OR ";
         }
         $sub_query .= ")";
