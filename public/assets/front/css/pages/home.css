@@ -1202,9 +1202,6 @@ marquee.dash-charts__marquee {
     .landing-video {
         padding: 30px 10px;
     }
-    .landing-video__wrapper {
-        padding-bottom: 75%;
-    }
 }
 
 @media (max-width: 767.98px) {
