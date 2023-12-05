@@ -51,13 +51,15 @@ $configData = Helper::appClasses();
     <div class="landing-video">
         <div class="uk-container landing-video__container">
             <div class="landing-video__wrapper">
-                
-                <button type="button" class="uk-button uk-icon-button landing-video__action">
+                <video controls autoplay muted>
+                    <source src="{{asset('assets/video/willfeed-landing-page-video.mp4')}}" type="video/mp4">
+                </video>
+                {{-- <button type="button" class="uk-button uk-icon-button landing-video__action">
                     <svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 82 82" fill="none">
                         <circle cx="41" cy="41" r="41" fill="black"/>
                         <path d="M51.0268 39.9336C52.0355 40.7343 52.0355 42.2657 51.0268 43.0664L38.2435 53.2145C36.9328 54.2551 35 53.3216 35 51.6481L35 31.3519C35 29.6784 36.9328 28.7449 38.2435 29.7855L51.0268 39.9336Z" fill="white"/>
                     </svg>
-                </button>
+                </button> --}}
             </div>
         </div>
     </div>
