@@ -56,7 +56,12 @@ $configData = Helper::appClasses();
                     <div class="uk-width-expand about-item__col about-item__col--content">
                         <div class="about-item__text">
                             <p>
-                                Benvenuti in WILLFEED il tuo partner  affidabile per l’acquisto di carburanti di qualità online. Siamo più di una piattaforma di vendita, siamo il tuo supporto per un’esperienza di approvvigionamento senza precedenti. 
+                                Benvenuti in WILLFEED il tuo partner affidabile per l’acquisto di carburanti di qualità online.
+Siamo più di una piattaforma di vendita, siamo il tuo supporto esclusivo per un’esperienza di
+approvvigionamento di carburanti lubrificanti e affini senza precedenti. Su WILLFEED
+venditori e acquirenti di tutta Italia possono vendere e acquistare qualsiasi tipo di carburante
+in maniere completamente personalizzata, partendo dalla scelta del prodotto, dalla modalità di
+pagamento fino alla scelta di dilazione di esso. Scopri subito come funziona
                             </p>
                         </div>
                     </div>
@@ -70,9 +75,12 @@ $configData = Helper::appClasses();
                     </div>
                     <div class="uk-width-expand about-item__col about-item__col--content">
                         <div class="about-item__text">
-                            <h2 class="about-item__title">Senza Intermediari, Solo Qualità</h2>
+                            <h2 class="about-item__title">Dal produttore al consumatore</h2>
                             <p>
-                                A differenza di altri, su WILLFEED eliminiamo gli intermediari, garantendo che il tuo carburante arrivi direttamente dalla fonte. Ciò significa prodotti di qualità superiore, sempre. 
+                                WILLFEED è l’unica piattaforma che mette in contatto chi vende e chi acquista qualsiasi
+prodotto che serva ad alimentare i processi produttivi della tua attività. Ciò significa, avrai a
+disposizione tutti i tipi di carburante lubrificante e affini senza nessun costo di
+intermediazione ma soprattutto prodotti di qualità superiore, sempre. 
                             </p>
                         </div>
                         <div class="about-item__text">
@@ -82,20 +90,40 @@ $configData = Helper::appClasses();
                                 Siamo fieri di offrire solo carburanti certificati. Collaboriamo con venditori altamente qualificati e selezioniamo con attenzione i nostri clienti. 
                             </p>
                             <p>
-                                La tua soddisfazione è la nostra priorità, e ogni acquisto su WILLFEED è una garanzia di qualità.
+                                La tua soddisfazione è la nostra priorità, e ogni acquisto su WILLFEED è una garanzia.
                             </p>
 
                             <h2 class="about-item__title">Assistenza Completa a Tua Disposizione</h2>
                             <p>
-                                Il nostro impegno per il servizio va oltre la vendita. Con WILLFEED hai un’assistenza completa a tua disposizione. Il nostro team è pronto a rispondere alle tue domande, risolvere eventuali problemi e garantire che la tua esperienza sia sempre positiva. 
+                                Il nostro impegno per il servizio va oltre la vendita. Con WILLFEED hai un’assistenza completa
+a tua disposizione. Il nostro team è pronto a rispondere alle tue domande, risolvere eventuali
+problemi e garantire che la tua esperienza sia sempre positiva. 
+                            </p>
+
+                            <h2 class="about-item__title">Monitoraggio dettagliato della tua attività su WILLFEED</h2>
+                            <p>
+                                Con Willfeed hai a disposizione un gestionale completamente personale che ti permette di tenere sotto controllo tutte le tue attività.
+                            </p>
+                            <p>
+                                Sia per chi vende che per chi compra con un click hai tutto sotto controllo. Chi vende può
+monitorare i suoi andamenti di vendita, per prodotto, per cliente e per prezzo, e controllare e
+monitorare ogni singolo ordine effettuato. Chi compra allo stesso modo avrà sotto controllo
+tutti i suoi acquisti, i suoi ordini e può monitorare i suoi andamenti in base al prezzo di
+acquisto e prodotto. in pratica un gestionale che ha come priorità l’organizzazione e
+l’ottimizzazione del tuo business
                             </p>
 
                             <h2 class="about-item__title">Distribuzione su Tutto il Territorio Italiano</h2>
                             <p>
-                                Con una copertura nazionale, consegniamo il tuo carburante in ogni angolo d’Italia. Nessun luogo è troppo remoto o difficile da raggiungere. La tua comodità è la nostra priorità.
+                                Con una copertura nazionale, garantiamo le consegne in tutta Italia, Nessun luogo è troppo
+remoto o difficile da raggiungere. La tua comodità è la nostra priorità. Grazie alla nostra
+piattaforma estremamente elastica permette ad ogni singolo venditore e cliente di essere
+raggiunto alla propria destinazione 
                             </p>
                             <p>
-                                In breve, WILLFEED è il tuo compagno affidabile per l’approvvigionamento di carburanti di qualità. Siamo più di una piattaforma, siamo la tua scelta sicura per un futuro più efficiente e sostenibile.
+                                In breve, WILLFEED è il tuo compagno affidabile per l’approvvigionamento di carburanti di
+qualità. Siamo più di una piattaforma, siamo la tua scelta sicura per un futuro più efficiente e
+sostenibile.
                             </p>
                         </div>
                     </div>
