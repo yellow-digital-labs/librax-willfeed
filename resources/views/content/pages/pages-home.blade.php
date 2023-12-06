@@ -51,7 +51,7 @@ $configData = Helper::appClasses();
     <div class="landing-video">
         <div class="uk-container landing-video__container">
             <div class="landing-video__wrapper">
-                <video controls autoplay muted>
+                <video controls autoplay muted playsinline>
                     <source src="{{asset('assets/video/willfeed-landing-page-video.mp4')}}" type="video/mp4">
                 </video>
                 {{-- <button type="button" class="uk-button uk-icon-button landing-video__action">
