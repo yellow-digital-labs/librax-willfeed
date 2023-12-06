@@ -26,7 +26,7 @@ $configData = Helper::appClasses();
 
 
 <!-- CSS: Pagevise CSS -->
-<link rel="stylesheet" href="{{asset('assets/front/css/pages/home.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/front/css/pages/home.css?v1.0.1')}}" />
 @endsection
 <!-- CSS Ends -->
 
