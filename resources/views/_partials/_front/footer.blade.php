@@ -53,15 +53,6 @@
                         <a href="#" class="footer-social__link">
                             <span class="wf-icon wf-icon-facebook"></span>
                         </a>
-                        <a href="#" class="footer-social__link">
-                            <span class="wf-icon wf-icon-instagram"></span>
-                        </a>
-                        <a href="#" class="footer-social__link">
-                            <span class="wf-icon wf-icon-linkedin"></span>
-                        </a>
-                        <a href="#" class="footer-social__link">
-                            <span class="wf-icon wf-icon-youtube"></span>
-                        </a>
                     </div>
                 </div>
                 <div class="uk-width-1-4 footer-main__col footer-main__col--links">

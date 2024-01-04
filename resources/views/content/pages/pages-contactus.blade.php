@@ -39,9 +39,10 @@ $configData = Helper::appClasses();
 
     <div class="page-heading">
         <div class="uk-container page-heading__container">
-            <h1 class="title title--xl page-heading__title">Contact us</h1>
+            <h1 class="title title--xl page-heading__title">CONTATTACI</h1>
             <div class="page-heading__text">
-                <p>WILLFEED rivoluziona il mercato dei carburanti con una piattaforma unica in Italia.</p>
+                <p>Saremo felici di parlare con te!</p>
+                <p>Puoi chiamarci o inviarci una mail, fai come meglio preferisci Siamo disponibili 24H su 24</p>
             </div>
             <hr class="page-heading__hr">
         </div>
@@ -52,12 +53,6 @@ $configData = Helper::appClasses();
             <div class="uk-grid gutter-xxl contact__grid" data-uk-grid>
                 <div class="uk-width-expand contact__col contact__col--content">
                     <div class="contact-sales">
-                        <h2 class="title contact-sales__maintitle">Talk to our sales team</h2>
-                        <div class="contact-sales__text">
-                            <p>
-                                Find out how willfeed can help your company or get a product demo. We'll be in touch shortly.
-                            </p>
-                        </div>
                         <div class="uk-grid contact-sales__grid" data-uk-grid>
                             <div class="uk-width-1-2 contact-sales__col">
                                 <div class="contact-sales__item">
@@ -76,9 +71,6 @@ $configData = Helper::appClasses();
                                         <span class="wf-icon-mail"></span>
                                     </div>
                                     <div class="contact-sales__title"><a href="mailto:info@willfeed.it">info@willfeed.it</a></div>
-                                    <div class="contact-sales__text">
-                                        Best way to get a quick answer
-                                    </div>
                                 </div>
                             </div>
                             <div class="uk-width-1-1 contact-sales__col">
@@ -99,21 +91,21 @@ $configData = Helper::appClasses();
                     <div class="contact-form">
                         <form method="POST" onsubmit="return false" id="contact-us-form">
                             @csrf
-                            <h3 class="contact-form__title">Share your contact details</h3>
+                            <h3 class="contact-form__title">Inserisci i tuoi dati</h3>
                             <div class="contact-form__group">
-                                <label class="contact-form__label">Full name</label>
+                                <label class="contact-form__label">NOME & COGNOME</label>
                                 <input type="text" class="uk-input contact-form__input" name="name" placeholder="Enter name">
                             </div>
                             <div class="contact-form__group">
-                                <label class="contact-form__label">Email</label>
+                                <label class="contact-form__label">EMAIL</label>
                                 <input type="email" class="uk-input contact-form__input" name="email" placeholder="Enter email">
                             </div>
                             <div class="contact-form__group">
-                                <label class="contact-form__label">Mobile number</label>
+                                <label class="contact-form__label">NUMERO DI CELLULARE</label>
                                 <input type="text" class="uk-input contact-form__input" name="mobile" placeholder="Enter mobile number">
                             </div>
                             <div class="contact-form__group">
-                                <label class="contact-form__label">Message</label>
+                                <label class="contact-form__label">SCRIVI IL TUO MESSAGGIO</label>
                                 <textarea class="uk-textarea contact-form__input" name="message" placeholder="Enter your message" rows="5"></textarea>
                             </div>
                             <div class="contact-form__actions">

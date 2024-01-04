@@ -38,7 +38,8 @@ $configData = Helper::appClasses();
 
     <div class="landing-hero">
         <div class="uk-container landing-hero__container">
-            <h1 class="title title--xl landing-hero__maintitle">Acquista e vendi carburanti in totale sicurezza e trasparenza online.</h1>
+            <h1 class="title title--xl landing-hero__maintitle">Acquista e vendi carburanti on line
+                In totale sicurezza e trasparenza</h1>
             <p class="landing-hero__desc">
                 WILLFEED rivoluziona il mercato dei carburanti con una piattaforma unica in Italia.
             </p>
@@ -82,7 +83,19 @@ $configData = Helper::appClasses();
                     <h2 class="title landing-clrblock__title">Come vendere su <br> willfeed?</h2>
                     <div class="landing-clrblock__text">
                         <p>
-                            Diversifica il tuo modo di vendere carburanti lubrificanti e affini
+                            VENDITA e CONTROLLO sono al centro della tua esperienza.
+                        </p>
+                        <p>
+                            AUMENTA IL TUO VOLUME DI AFFARI, Grazie alla diversificazione dei clienti, divisi per categorie suddivisi per regioni, modalità di pagamento e dilazioni, puoi ottimizzare le vendite.
+                        </p>
+                        <p>
+                            Tutto sotto CONTROLLO grazie ad un avanzato gestionale a tua disposizione che consente di controllare e accettare gli ordini, monitorare i fidi in scadenza e ricevere avvisi automatici per i pagamenti imminenti.
+                        </p>
+                        <p>
+                            Entra subito in CONTATTO con aziende di trasporto, aziende edili e aziende agricole soddisfa le loro richieste e aumenta i tuoi affari.
+                        </p>
+                        <p>
+                            Garantiamo un ambiente in cui l'espansione del business è agevolata dalla diversità dei clienti e dal controllo completo
                         </p>
                     </div>
                     <a href="#" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #vendor; cls: is-active">SCOPRI DI PIU’</a>  
@@ -98,33 +111,33 @@ $configData = Helper::appClasses();
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-bag"></div> --}}
                     <img src="{{asset('assets/img/home/analizza.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">Ordina</h3>
+                    <h3 class="landing-clrblock__name">CLIENTI</h3>
                     <div class="landing-clrblock__desc">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                        CERCA I TUOI CLIENTI PER REGIONI, PER ATTIVITÀ, PER PRODOTTO, PER DILAZIONE E MODALITA’ DI PAGAMENTO
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-analytics"></div> --}}
                     <img src="{{asset('assets/img/home/cerca.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">Traccia</h3>
+                    <h3 class="landing-clrblock__name">COLLABORA</h3>
                     <div class="landing-clrblock__desc">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                        INDIVIDUATI I POTENZIALI CLIENTI INVITALI A COLLABORARE OFFRENDO IL FIDO CHE RITIENI OPPORTUNO
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-search1"></div> --}}
                     <img src="{{asset('assets/img/home/conferma.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">Trova</h3>
+                    <h3 class="landing-clrblock__name">VENDI</h3>
                     <div class="landing-clrblock__desc">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                        PUBBLICA QUOTIDIANAMENTE I TUOI PREZZI PER PRODOTTO E DILAZIONE DI PAGAMENTO IN BASE ALLE TUE ESIGENZE DI VENDITA
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-search1"></div> --}}
                     <img src="{{asset('assets/img/home/monitora.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">Trova</h3>
+                    <h3 class="landing-clrblock__name">GESTISCI</h3>
                     <div class="landing-clrblock__desc">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                        ACCETTA O RIFIUTA LE RICHIESTE DEI TUOI CLIENTI E MONITORA I TUOI ORDINI E ANALIZZA I TUOI ANDAMENTI DI VENDITA PER PRODOTTO, PER PERIODO E PER CLIENTE
                     </div>
                 </div>
             </div>
@@ -138,7 +151,16 @@ $configData = Helper::appClasses();
                     <h2 class="title landing-clrblock__title">Come comprare su <br> willfeed?</h2>
                     <div class="landing-clrblock__text">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus, nisi at tempor convallis.
+                            CONVENIENZA e CONTROLLO sono al centro della tua esperienza. Con noi, hai uno scenario reale dei prezzi del carburante, lubrificanti e prodotti affini dai migliori fornitori di Italia.
+                        </p>
+                        <p>
+                            Scopri la CONVENIENZA nell’avere a di disposizione in un unica piattaforma molteplici venditori con prezzi reali e competitivi, avendo la possibilità di acquistare il prodotto che vuoi con il metodo di pagamento e dilazioni che preferisci.
+                        </p>
+                        <p>
+                            Tutto sotto CONTROLLO grazie al gestionale privato che ti consente di monitorare i tuoi fidi, gestire gli ordini e accedere a un'analisi dettagliata dei costi e dei risparmi legati ai tuoi acquisti.
+                        </p>
+                        <p>
+                            Scegli la comodità di un servizio online pensato per ottimizzare il tuo business
                         </p>
                     </div>
                     <button type="button" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #comprare; cls: is-active">SCOPRI DI PIU’</button>
@@ -154,33 +176,33 @@ $configData = Helper::appClasses();
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-bag"></div> --}}
                     <img src="{{asset('assets/img/home/analizza.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">Ordina</h3>
+                    <h3 class="landing-clrblock__name">CERCA</h3>
                     <div class="landing-clrblock__desc">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                        CERCA I VENDITORI PER PRODOTTO, PREZZO, MODALITA’ E DILAZIONE DI PAGAMENTO
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-analytics"></div> --}}
                     <img src="{{asset('assets/img/home/cerca.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">Traccia</h3>
+                    <h3 class="landing-clrblock__name">COLLABORA</h3>
                     <div class="landing-clrblock__desc">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                        INDIVIDUATI I POTENZIALI VENDITORI INVIA UNA RICHIESTA DI COLLABORAZIONE PER OTTENERE UN FIDO
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-search1"></div> --}}
                     <img src="{{asset('assets/img/home/conferma.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">Trova</h3>
+                    <h3 class="landing-clrblock__name">ACQUISTA</h3>
                     <div class="landing-clrblock__desc">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                        SCOPRI GIORNO PER GIORNO I PREZZI REALI DI MERCATO ANALIZZA, VALUTA E SCEGLI DA CHI ORDINARE
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-search1"></div> --}}
                     <img src="{{asset('assets/img/home/monitora.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">Trova</h3>
+                    <h3 class="landing-clrblock__name">GESTISCI</h3>
                     <div class="landing-clrblock__desc">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit Sed dapibus, nisi at tempor
+                        MONITORA I TUOI ORDINI E ANALIZZA I TUOI ANDAMENTI DI ACQUISTO PER PRODOTTO E PER VENDITORE
                     </div>
                 </div>
             </div>
