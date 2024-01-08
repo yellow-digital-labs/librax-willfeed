@@ -103,7 +103,7 @@
                     <h2 class="title footer-main__title">Support</h2>
                     <ul class="footer-menu">
                         <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">Support center</a>
+                            <a href="{{route('pages-contactus')}}" class="footer-menu__link">Support center</a>
                         </li>
                         <li class="footer-menu__item">
                             <a href="{{route("pages-privacy")}}" class="footer-menu__link">Privacy & policy</a>
@@ -115,7 +115,7 @@
                             <a href="{{route("pages-faqs")}}" class="footer-menu__link">FAQs</a>
                         </li>
                         <li class="footer-menu__item">
-                            <a href="#" class="footer-menu__link">Help</a>
+                            <a href="{{route('pages-contactus')}}" class="footer-menu__link">Help</a>
                         </li>
                     </ul>
                     

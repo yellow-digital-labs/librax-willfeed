@@ -307,10 +307,10 @@ $configData = Helper::appClasses();
                                         <div class="product-prdata">
                                             <h2 class="product__name">{{$product->product_name}}</h2>
                                             <div class="product__fullprice">
-                                                €<span class="js-display-without-tax">{{$product->amount_before_tax}}</span> + 22% IVA
+                                                €<span class="js-display-final-amount">{{$product->amount}}/LITRO</span> IVA inclusa
                                             </div>
                                             <div class="product__price">
-                                                <span class="product__price-big">€<span class="js-display-final-amount">{{$product->amount}}</span></span>/LITRO
+                                                <span class="product__price-big">€<span class="js-display-without-tax">{{$product->amount_before_tax}}</span></span>/LITRO
                                             </div>
                                             {{-- <div class="product__priceinfo">
                                                 (Inclusive Of all Tax)

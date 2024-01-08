@@ -52,7 +52,7 @@ $configData = Helper::appClasses();
     <div class="landing-video">
         <div class="uk-container landing-video__container">
             <div class="landing-video__wrapper">
-                <video autoplay muted playsinline>
+                <video playsinline controls>
                     <source src="{{asset('assets/video/willfeed-landing-page-video.mp4')}}" type="video/mp4">
                 </video>
                 {{-- <button type="button" class="uk-button uk-icon-button landing-video__action">
@@ -111,7 +111,7 @@ $configData = Helper::appClasses();
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-bag"></div> --}}
                     <img src="{{asset('assets/img/home/analizza.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">CLIENTI</h3>
+                    <h3 class="landing-clrblock__name">CERCA</h3>
                     <div class="landing-clrblock__desc">
                         CERCA I TUOI CLIENTI PER REGIONI, PER ATTIVITÀ, PER PRODOTTO, PER DILAZIONE E MODALITA’ DI PAGAMENTO
                     </div>

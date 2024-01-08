@@ -59,9 +59,6 @@ $configData = Helper::appClasses();
                                     <div class="contact-sales__icon">
                                         <span class="wf-icon-phone-contact"></span>
                                     </div>
-                                    <div class="contact-sales__boldtext">
-                                        7/7
-                                    </div>
                                     <div class="contact-sales__title"><a href="tel:+39 3334565118">+39 3334565118</a></div>
                                 </div>
                             </div>
