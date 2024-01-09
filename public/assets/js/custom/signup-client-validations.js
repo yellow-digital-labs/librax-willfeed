@@ -362,6 +362,27 @@ document.addEventListener('DOMContentLoaded', function(e) {
                                 message: 'Please enter SDI'
                             }
                         }
+                    },
+                    file_1: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please upload esenzione IVA'
+                            }
+                        }
+                    },
+                    file_2: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please upload esenzione IVA'
+                            }
+                        }
+                    },
+                    file_3: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please upload esenzione IVA'
+                            }
+                        }
                     }
                 },
                 plugins: {
