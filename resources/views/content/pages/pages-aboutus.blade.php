@@ -51,7 +51,7 @@ $configData = Helper::appClasses();
             <div class="about-item">                
                 <div class="uk-grid about-item__grid" data-uk-grid>
                     <div class="uk-width-auto about-item__col about-item__col--sidebar">
-                        <h2 class="about-item__name">La Nostra Mission</h2>
+                        <h2 class="about-item__name" style="color: #941100;">La Nostra Mission</h2>
                     </div>
                     <div class="uk-width-expand about-item__col about-item__col--content">
                         <div class="about-item__text">
@@ -71,7 +71,7 @@ pagamento fino alla scelta di dilazione di esso. Scopri subito come funziona
             <div class="about-item">                
                 <div class="uk-grid about-item__grid" data-uk-grid>
                     <div class="uk-width-auto about-item__col about-item__col--sidebar">
-                        <h2 class="about-item__name">Ecco perché siamo diversi</h2>
+                        <h2 class="about-item__name" style="color: #0433FF;">Ecco perché siamo diversi</h2>
                     </div>
                     <div class="uk-width-expand about-item__col about-item__col--content">
                         <div class="about-item__text">

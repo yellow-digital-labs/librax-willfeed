@@ -19,7 +19,9 @@
             <div class="uk-grid uk-flex-middle foolter-upper__grid" data-uk-grid>
                 <div class="uk-width-1-2@s foolter-upper__col">
                     <div class="footer-logo">
-                        <img src="{{asset('/assets/front/images/weelfeed-brand-logo.svg')}}" width= "170" height= "105">
+                        <a href="{{route("pages-home")}}">
+                            <img src="{{asset('/assets/front/images/weelfeed-brand-logo.svg')}}" width= "170" height= "105">
+                        </a>
                     </div>
                 </div>
                 <div class="uk-width-1-2@s foolter-upper__col">

@@ -2700,3 +2700,9 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     top: 1.975em;
     right: 0.5em;
 }
+html {
+    scroll-behavior: smooth;
+}
+#vendor, #comprare{
+    scroll-margin-top: 100px;
+}
