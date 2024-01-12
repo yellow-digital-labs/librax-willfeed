@@ -24,7 +24,6 @@ $navbarDetached = ($navbarDetached ?? '');
                     <img src="{{asset('assets/img/weelfeed-brand-logo-white.svg')}}" width="170" height="93" class="img-fluid">
                 </a>
             </div>
-            <div id="google_translate_element"></div>
             <div class="d-flex align-items-center">
                 <ul class="navbar-nav flex-row align-items-center ms-auto">
                     <!-- User -->
