@@ -37,9 +37,9 @@ $customizerHidden = 'customizer-hide';
 
 <h1 class="h3 text-black mb-4">
 @if($type=="buyer")
-    Buyer
+    Compratori
 @elseif($type=="seller")
-    Seller
+    Venditori
 @endif
 </h4>
 
@@ -48,9 +48,9 @@ $customizerHidden = 'customizer-hide';
         <div class="card-title mb-0">
             <h5 class="mb-0 text-black">
             @if($type=="buyer")
-                Buyer list
+                Lista compratori
             @elseif($type=="seller")
-                Seller list
+                Lista Rivenditori
             @endif
             </h5>
         </div>
@@ -61,17 +61,17 @@ $customizerHidden = 'customizer-hide';
                 <tr>
                     <th class="js-add-search">
                     @if($type=="buyer")
-                        Buyer name
+                        Nome compratore
                     @elseif($type=="seller")
-                        Seller name
+                        Nome Venditore
                     @endif
                     </th>
                     <th class="js-add-search">Email</th>
-                    <th>Verified since</th>
-                    <th>Since on platform</th>
-                    <th>Is verified</th>
-                    <th>Plan</th>
-                    <th>Action</th>
+                    <th>Data Verificato</th>
+                    <th>Data Iscrizione</th>
+                    <th>Verificato</th>
+                    <th>Abbonamento</th>
+                    <th>Modifica</th>
                 </tr>
             </thead>
         </table>

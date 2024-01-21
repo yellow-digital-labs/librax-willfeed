@@ -33,21 +33,21 @@ $configData = Helper::appClasses();
 
 @section('content')
         
-<h1 class="h3 text-black mb-4">Email templates</h4>
+<h1 class="h3 text-black mb-4">Email Automatiche</h4>
 
 <!-- Product List Table -->
 <div class="card">
     <div class="card-header">
-        <h5 class="card-title mb-0">Lista email templates</h5>
+        <h5 class="card-title mb-0">Lista email automatiche</h5>
     </div>
     <div class="card-datatable table-responsive">
         <table class="datatables-products table dt-column-search">
             <thead class="border-top">
                 <tr>
-                    <th>Template</th>
-                    <th>Subject</th>
-                    <th>Receipent category</th>
-                    <th>Azione</th>
+                    <th>Descrizione modello</th>
+                    <th>Oggetto</th>
+                    <th>Destinatario</th>
+                    <th>Modifica</th>
                 </tr>
             </thead>
         </table>

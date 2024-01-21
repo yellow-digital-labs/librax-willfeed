@@ -131,7 +131,8 @@ $(function() {
                     sPrevious: "Precednte",
                     sNext: "Prossimo",
                 },
-                info: "Mostrato _START_ to _END_ of _TOTAL_ Risultati"
+                info: "Visualizza _START_ di _END_ of _TOTAL_ Risultati",
+                zeroRecords: "nessun account trovato"
             },
             columns: [
                 { data: 'customer_name' },

@@ -14,6 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        \App\Models\AccountType::truncate();
+        \App\Models\AccountType::create([
+            'name' => 'Compratore'
+        ]);
+        \App\Models\AccountType::create([
+            'name' => 'Venditore'
+        ]);
         // \App\Models\MailTemplate::where([
         //     "mailable" => \App\Mail\ContactUs::class
         // ])->update([
@@ -88,23 +95,23 @@ class DatabaseSeeder extends Seeder
             'html_template' => '<h1>Hello, {{ name }}!</h1>',
             'text_template' => '',
         ]); */
-        \App\Models\MailTemplate::create([
-            'mailable' => \App\Mail\SellerRequestApprove::class,
-            'subject' => 'Sell request approved',
-            'html_template' => '
-            <p>Your request has been approved for sell to {{buyerName}}</p>',
-            'text_template' => '',
-            'variables' => 'buyerName',
-            'email_for' => 'Seller'
-        ]);
-        \App\Models\MailTemplate::create([
-            'mailable' => \App\Mail\SellerRequestReject::class,
-            'subject' => 'Sell request rejected',
-            'html_template' => '<p>Sorry! Your sell request has been rejected from {{buyerName}}</p>',
-            'text_template' => '',
-            'variables' => 'buyerName',
-            'email_for' => 'Seller'
-        ]);
+        // \App\Models\MailTemplate::create([
+        //     'mailable' => \App\Mail\SellerRequestApprove::class,
+        //     'subject' => 'Sell request approved',
+        //     'html_template' => '
+        //     <p>Your request has been approved for sell to {{buyerName}}</p>',
+        //     'text_template' => '',
+        //     'variables' => 'buyerName',
+        //     'email_for' => 'Seller'
+        // ]);
+        // \App\Models\MailTemplate::create([
+        //     'mailable' => \App\Mail\SellerRequestReject::class,
+        //     'subject' => 'Sell request rejected',
+        //     'html_template' => '<p>Sorry! Your sell request has been rejected from {{buyerName}}</p>',
+        //     'text_template' => '',
+        //     'variables' => 'buyerName',
+        //     'email_for' => 'Seller'
+        // ]);
         // \App\Models\MailTemplate::where(["mailable" => \App\Mail\OrderApprove::class])->delete();
         // \App\Models\MailTemplate::create([
         //     'mailable' => \App\Mail\OrderApprove::class,
@@ -614,22 +621,22 @@ class DatabaseSeeder extends Seeder
 //             'transaction_datetime' => '2023-06-02 13:38:00',
 //         ]);
 
-            \App\Models\OrderStatus::truncate();
-            DB::table('order_statuses')->insert([
-                'name' => 'In corso',
-            ]);
-            DB::table('order_statuses')->insert([
-                'name' => 'Ordine confermato',
-            ]);
-            DB::table('order_statuses')->insert([
-                'name' => 'Ordine rifiutato',
-            ]);
-            DB::table('order_statuses')->insert([
-                'name' => 'Ordine consegnato',
-            ]);
-            DB::table('order_statuses')->insert([
-                'name' => 'Pagato',
-            ]);
+            // \App\Models\OrderStatus::truncate();
+            // DB::table('order_statuses')->insert([
+            //     'name' => 'In corso',
+            // ]);
+            // DB::table('order_statuses')->insert([
+            //     'name' => 'Ordine confermato',
+            // ]);
+            // DB::table('order_statuses')->insert([
+            //     'name' => 'Ordine rifiutato',
+            // ]);
+            // DB::table('order_statuses')->insert([
+            //     'name' => 'Ordine consegnato',
+            // ]);
+            // DB::table('order_statuses')->insert([
+            //     'name' => 'Pagato',
+            // ]);
 
             // \App\Models\PaymentOption::truncate();
             // DB::table('payment_options')->insert([

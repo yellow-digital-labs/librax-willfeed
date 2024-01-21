@@ -2,7 +2,7 @@
     "menu": [
         {
             "url": "/dashboard",
-            "name": "Dashboard",
+            "name": "Gestionale",
             "icon": "menu-icon tf-icons ti ti-smart-home",
             "slug": "dashboard",
             "section": [
@@ -41,7 +41,7 @@
         },
         {
             "url": "/user/buyer",
-            "name": "Buyer",
+            "name": "Compratori",
             "icon": "menu-icon tf-icons ti ti-user",
             "slug": "user-buyer",
             "section": [
@@ -50,7 +50,7 @@
         },
         {
             "url": "/user/seller",
-            "name": "Seller",
+            "name": "Venditori",
             "icon": "menu-icon tf-icons ti ti-user",
             "slug": "user-seller",
             "section": [
@@ -91,7 +91,7 @@
         },
         {
             "url": "/subscription-plan-management",
-            "name": "Subscription plans",
+            "name": "Abbonamenti",
             "icon": "menu-icon tf-icons ti ti-color-swatch",
             "slug": "subscription-plan-management",
             "section": [
@@ -99,7 +99,7 @@
             ]
         },
         {
-            "name": "Static pages",
+            "name": "Regolamenti",
             "icon": "menu-icon tf-icons ti ti-files",
             "slug": "static",
             "section": [
@@ -120,7 +120,7 @@
         },
         {
             "url": "/customer-ratings",
-            "name": "Customer rating",
+            "name": "Feedback",
             "icon": "menu-icon tf-icons ti ti-star",
             "slug": "customer-rating",
             "section": [
@@ -129,7 +129,7 @@
         },
         {
             "url": "/blogs/management",
-            "name": "Blogs",
+            "name": "Blog",
             "icon": "menu-icon tf-icons ti ti-article",
             "slug": "blogs-management",
             "section": [
@@ -138,7 +138,7 @@
         },
         {
             "url": "/email-template-management",
-            "name": "Email management",
+            "name": "Email Automatiche",
             "icon": "menu-icon tf-icons ti ti-id",
             "slug": "email-template-management",
             "section": [

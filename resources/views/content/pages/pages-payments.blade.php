@@ -32,12 +32,12 @@ $configData = Helper::appClasses();
 
 @section('content')
 
-<h1 class="h3 text-black mb-4">Payments</h4>
+<h1 class="h3 text-black mb-4">Pagamenti</h4>
 
 <div class="card">
     <div class="card-header d-flex justify-content-between border-bottom">
         <div class="card-title mb-0">
-            <h5 class="mb-0 text-black">Payment list</h5>
+            <h5 class="mb-0 text-black">Lista pagamenti</h5>
         </div>
     </div>
     <div class="card-datatable text-nowrap">
@@ -45,14 +45,14 @@ $configData = Helper::appClasses();
             <thead>
                 <tr>
                     <th>No</th>
-                    <th class="js-add-search">Bill id</th>
-                    <th class="js-add-search">Date & time</th>
-                    <th>Account name</th>
+                    <th class="js-add-search">ID fattura</th>
+                    <th class="js-add-search">Data e Ora</th>
+                    <th>Nome Account</th>
                     <th>Email</th>
                     <th>Amount</th>
-                    <th>Card</th>
-                    <th>Transaction id</th>
-                    <th>Status</th>
+                    <th>Carta</th>
+                    <th>ID transazione</th>
+                    <th>Stato</th>
                 </tr>
             </thead>
         </table>

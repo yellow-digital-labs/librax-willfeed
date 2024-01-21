@@ -35,16 +35,16 @@
       </div>
     </div>
 
-    <p class="text-black fw-semibold mt-4">Requisiti password:</p>
+    <p class="text-black fw-semibold mt-4">Password richiesta:</p>
     <ul class="mb-5">
         <li>
-            Minimum 8 characters long - the more, the better
+          Lunghezza minima 8 caratteri: più sono i caratteri, meglio è.
         </li>
         <li>
-            At least one uppercase character
+          Almeno un carattere maiuscolo.
         </li>
         <li>
-            At least one number and symbol
+          Almeno un numero e un simbolo.
         </li>
     </ul>
   </x-slot>

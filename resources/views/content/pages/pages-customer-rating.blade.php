@@ -4,7 +4,7 @@ $configData = Helper::appClasses();
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Customer rating')
+@section('title', 'Feedback')
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/rateyo/rateyo.css')}}" />
@@ -32,23 +32,23 @@ $configData = Helper::appClasses();
 
 @section('content')
 
-<h1 class="h3 text-black mb-4">Customer rating</h4>
+<h1 class="h3 text-black mb-4">Feedback</h4>
 
 <div class="card">
     <div class="card-header d-flex justify-content-between border-bottom align-items-center">
         <div class="card-title mb-0">
-            <h5 class="mb-0 text-black">Customer rating list</h5>
+            <h5 class="mb-0 text-black">Lista feedback</h5>
         </div>
     </div>
     <div class="card-datatable text-nowrap">
         <table class="dt-column-search table">
             <thead>
                 <tr>
-                    <th class="js-add-search">Review by</th>
-                    <th class="js-add-search">Review for</th>
-                    <th>Ratings</th>
-                    <th class="js-add-search">Status</th>
-                    <th>Action</th>
+                    <th class="js-add-search">Recensione di</th>
+                    <th class="js-add-search">Recensione per</th>
+                    <th>Valutazione</th>
+                    <th class="js-add-search">Stato</th>
+                    <th>Modifica</th>
                 </tr>
             </thead>
         </table>

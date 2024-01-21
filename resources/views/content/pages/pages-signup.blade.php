@@ -56,7 +56,7 @@ $customizerHidden = 'customizer-hide';
                         <div class="mb-3">
                             <label for="account-type" class="form-label" for="account-type">Tipo Account</label>
                             <select class="form-select select2" id="account-type" name="accountType">
-                                <option value="" selected>Please select</option>
+                                <option value="" selected>Seleziona account</option>
                             @foreach($accountType as $_accountType)
                                 <option value="{{$_accountType->id}}">{{$_accountType->name}}</option>
                             @endforeach
@@ -65,7 +65,7 @@ $customizerHidden = 'customizer-hide';
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="inserisci la tua email">
                         </div>
 
                         <div class="mb-3">
@@ -74,7 +74,7 @@ $customizerHidden = 'customizer-hide';
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="confirm-password">Confirm password</label>
+                            <label class="form-label" for="confirm-password">Conferma Password</label>
                             <input type="password" id="confirm-password" class="form-control" name="confirm-password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
                         </div>
 

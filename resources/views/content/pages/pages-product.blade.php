@@ -119,7 +119,7 @@ $configData = Helper::appClasses();
                     @if(!$isAdmin)
                     <th>status</th>
                     @else
-                    <th>active</th>
+                    <th>Attivo</th>
                     @endif
                     <th>Azione</th>
                 </tr>

@@ -77,7 +77,7 @@ $configData = Helper::appClasses();
                                     </div>
                                     <div class="contact-sales__title">Willfeed HQ</div>
                                     <div class="contact-sales__text">
-                                        45 Roker Terrace LatheronwheelKW5 8NW,LondonUK
+                                        Italy
                                     </div>
                                 </div>
                             </div>
@@ -91,23 +91,23 @@ $configData = Helper::appClasses();
                             <h3 class="contact-form__title">Inserisci i tuoi dati</h3>
                             <div class="contact-form__group">
                                 <label class="contact-form__label">NOME & COGNOME</label>
-                                <input type="text" class="uk-input contact-form__input" name="name" placeholder="Enter name">
+                                <input type="text" class="uk-input contact-form__input" name="name" placeholder="">
                             </div>
                             <div class="contact-form__group">
                                 <label class="contact-form__label">EMAIL</label>
-                                <input type="email" class="uk-input contact-form__input" name="email" placeholder="Enter email">
+                                <input type="email" class="uk-input contact-form__input" name="email" placeholder="">
                             </div>
                             <div class="contact-form__group">
                                 <label class="contact-form__label">NUMERO DI CELLULARE</label>
-                                <input type="text" class="uk-input contact-form__input" name="mobile" placeholder="Enter mobile number">
+                                <input type="text" class="uk-input contact-form__input" name="mobile" placeholder="">
                             </div>
                             <div class="contact-form__group">
                                 <label class="contact-form__label">SCRIVI IL TUO MESSAGGIO</label>
-                                <textarea class="uk-textarea contact-form__input" name="message" placeholder="Enter your message" rows="5"></textarea>
+                                <textarea class="uk-textarea contact-form__input" name="message" placeholder="" rows="5"></textarea>
                             </div>
                             <div class="contact-form__actions">
-                                <button type="submit" class="uk-button uk-button-primary contact-form__submit">Send</button>
-                                <button type="reset" class="uk-button uk-button-default contact-form__cancel">Cancel</button>
+                                <button type="submit" class="uk-button uk-button-primary contact-form__submit">Invia</button>
+                                <button type="reset" class="uk-button uk-button-default contact-form__cancel">Cancella</button>
                             </div>
                         </form>
                     </div>
