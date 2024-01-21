@@ -1,9 +1,11 @@
 <footer class="footer">
 
     <div class="footer-info">
-        <h2 class="title footer-info__title">Assistenza & info</h2>
+        <h2 class="title footer-info__title">Assistenza & Info</h2>
         <div class="footer-info__text">
-            <p>Il nostro team e’ a tua completa disposizione. Offriamo un servizio di assistenza per rispondere a tutte le tue esigenze</p>
+            <h2 style="color: #FFF;">Il <strong>Nostro Team</strong> è a Tua Completa Disposizione</h2>
+            <h3 style="color: #FFF;">Offriamo un Servizio di <strong>Assistenza</strong> per Rispondere a Tutte le Tue <strong>Esigenze</strong></h3>
+            {{-- <p>Il nostro team e’ a tua completa disposizione. Offriamo un servizio di assistenza per rispondere a tutte le tue esigenze</p> --}}
         </div>
         <div class="footer-info__call">
             <span class="wf-icon wf-icon-phone-call footer-info__icon"></span>
@@ -45,10 +47,16 @@
         <div class="uk-container footer-main__container">
             <div class="uk-grid footer-main__grid" data-uk-grid>
                 <div class="uk-width-1-4 footer-main__col footer-main__col--about">
-                    <h2 class="title footer-main__title">About Us</h2>
+                    <h2 class="title footer-main__title">CHI SIAMO</h2>
                     <div class="footer-main__text">
                         <p>
-                            WillFeed are responsible for manufacturing essential products such as plastics, fertilizers, synthetic fibers, and various other materials.
+                            Il Tuo supporto esclusivo per l'approvvigionamento di carburanti, lubrificanti e affini
+                        </p>
+                        <p>
+                            Siamo più di una piattaforma di vendita
+                        </p>
+                        <p>
+                            Vivi un'esperienza senza precedenti con la nostra piattaforma specializzata
                         </p>
                     </div>
                     <div class="footer-social">
@@ -66,27 +74,27 @@
                     </div>
                 </div>
                 <div class="uk-width-1-4 footer-main__col footer-main__col--links">
-                    <h2 class="title footer-main__title">Links</h2>
+                    <h2 class="title footer-main__title">LINKS</h2>
                     <ul class="footer-links">
                         <li class="footer-links__item">
-                            <a href="{{route("register")}}" class="footer-links__action">Sell</a>
+                            <a href="{{route("register")}}" class="footer-links__action">VENDITORI</a>
                         </li>
                         <li class="footer-links__item">
-                            <a href="{{route("register")}}" class="footer-links__action">Buy</a>
+                            <a href="{{route("register")}}" class="footer-links__action">COMPRATORI</a>
                         </li>
                         <li class="footer-links__item">
-                            <a href="{{route("pages-buyer-home")}}" class="footer-links__action">Market</a>
+                            <a href="{{route("pages-buyer-home")}}" class="footer-links__action">MARKET</a>
                         </li>
                         <li class="footer-links__item">
-                            <a href="{{route('pages-aboutus')}}" class="footer-links__action">About Us</a>
+                            <a href="{{route('pages-aboutus')}}" class="footer-links__action">CHI SIAMO</a>
                         </li>
                         <li class="footer-links__item">
-                            <a href="{{route('pages-contactus')}}" class="footer-links__action">Contact Us</a>
+                            <a href="{{route('pages-contactus')}}" class="footer-links__action">CONTATTACI</a>
                         </li>
                     </ul>
                 </div>
                 <div class="uk-width-1-4 footer-main__col footer-main__col--products">
-                    <h2 class="title footer-main__title">Our Products</h2>
+                    <h2 class="title footer-main__title">PRODOTTI</h2>
                     <ul class="footer-menu footer-menu--grid">
                         @php
                         $products = App\Helpers\Helpers::getNewTenProducts();
@@ -102,22 +110,22 @@
                     
                 </div>
                 <div class="uk-width-1-4 footer-main__col footer-main__col--support">
-                    <h2 class="title footer-main__title">Support</h2>
+                    <h2 class="title footer-main__title">SUPPORTO</h2>
                     <ul class="footer-menu">
                         <li class="footer-menu__item">
-                            <a href="{{route('pages-contactus')}}" class="footer-menu__link">Support center</a>
+                            <a href="{{route('pages-contactus')}}" class="footer-menu__link">Centro di supporto</a>
                         </li>
                         <li class="footer-menu__item">
-                            <a href="{{route("pages-privacy")}}" class="footer-menu__link">Privacy & policy</a>
+                            <a href="{{route("pages-privacy")}}" class="footer-menu__link">Privacy e Policy</a>
                         </li>
                         <li class="footer-menu__item">
-                            <a href="{{route("pages-terms")}}" class="footer-menu__link">Terms of use</a>
+                            <a href="{{route("pages-terms")}}" class="footer-menu__link">Termini e Condizioni</a>
                         </li>
                         <li class="footer-menu__item">
                             <a href="{{route("pages-faqs")}}" class="footer-menu__link">FAQs</a>
                         </li>
                         <li class="footer-menu__item">
-                            <a href="{{route('pages-contactus')}}" class="footer-menu__link">Help</a>
+                            <a href="{{route('pages-contactus')}}" class="footer-menu__link">Aiuto</a>
                         </li>
                     </ul>
                     
@@ -126,6 +134,6 @@
         </div>
     </div>
     <div class="footer-copyright">
-        Copyright © 2023 willFeed. All rights reserved.
+        Copyright © 2024 WILLFEED. All rights reserved.
     </div>
 </footer>

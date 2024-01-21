@@ -38,13 +38,9 @@ $configData = Helper::appClasses();
 
     <div class="landing-hero">
         <div class="uk-container landing-hero__container">
-            <h1 class="title title--xl landing-hero__maintitle">Acquista e vendi carburanti on line
-                In totale sicurezza e trasparenza</h1>
+            <h1 class="title title--xl landing-hero__maintitle">Acquista e Vendi Carburanti Online in totale Sicurezza e Trasparenza</h1>
             <p class="landing-hero__desc">
-                WILLFEED rivoluziona il mercato dei carburanti con una piattaforma unica in Italia.
-            </p>
-            <p class="landing-hero__bolddesc">
-                Senza costi di intermediazione. Reale trasparenza sui prezzi di mercato. Qualità del prodotto e servizio garantito.
+                <b>WILLFEED</b> rivoluziona il mercato dei carburanti con una piattaforma unica in Italia. Senza <b>costi di intermediazione.</b>  Reale <b>trasparenza sui prezzi di mercato</b>, garantendo sempre la <b>qualità del prodotto e del servizio</b>.
             </p>
         </div>
     </div>
@@ -80,22 +76,17 @@ $configData = Helper::appClasses();
         <div class="uk-container landing-clrblock__container landing-clrblock__container--sell">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
                 <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
-                    <h2 class="title landing-clrblock__title">Come vendere su <br> willfeed?</h2>
+                    <h2 class="title landing-clrblock__title">Come Vendere su WILLFEED?</h2>
+                    <h2>Aumenta il Tuo <strong>Volume d'Affari</strong></h2>
                     <div class="landing-clrblock__text">
                         <p>
-                            VENDITA e CONTROLLO sono al centro della tua esperienza.
+                            Cerca i clienti per categorie, regioni e modalità di pagamento per ottimizzare le vendite.
                         </p>
+                    </div>
+                    <h2><strong>Controllo</strong> totale con un tuo gestionale prIvato</strong></h2>
+                    <div class="landing-clrblock__text">
                         <p>
-                            AUMENTA IL TUO VOLUME DI AFFARI, Grazie alla diversificazione dei clienti, divisi per categorie suddivisi per regioni, modalità di pagamento e dilazioni, puoi ottimizzare le vendite.
-                        </p>
-                        <p>
-                            Tutto sotto CONTROLLO grazie ad un avanzato gestionale a tua disposizione che consente di controllare e accettare gli ordini, monitorare i fidi in scadenza e ricevere avvisi automatici per i pagamenti imminenti.
-                        </p>
-                        <p>
-                            Entra subito in CONTATTO con aziende di trasporto, aziende edili e aziende agricole soddisfa le loro richieste e aumenta i tuoi affari.
-                        </p>
-                        <p>
-                            Garantiamo un ambiente in cui l'espansione del business è agevolata dalla diversità dei clienti e dal controllo completo
+                            <strong>Gestisci</strong> ordini, monitora i fidi e ricevi avvisi automatici per pagamenti imminenti.
                         </p>
                     </div>
                     <a href="#" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #vendor; cls: is-active">SCOPRI DI PIU’</a>  
@@ -113,7 +104,8 @@ $configData = Helper::appClasses();
                     <img src="{{asset('assets/img/home/analizza.png')}}" style="height: 50px;">
                     <h3 class="landing-clrblock__name">CERCA</h3>
                     <div class="landing-clrblock__desc">
-                        CERCA I TUOI CLIENTI PER REGIONI, PER ATTIVITÀ, PER PRODOTTO, PER DILAZIONE E MODALITA’ DI PAGAMENTO
+                        <h3>Per Regioni, Attività, Prodotto, Dilazione e Modalità di Pagamento</h3>
+                        Ottimizza la tua strategia di vendita raggiungendo un pubblico mirato e personalizzato.
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
@@ -121,7 +113,8 @@ $configData = Helper::appClasses();
                     <img src="{{asset('assets/img/home/cerca.png')}}" style="height: 50px;">
                     <h3 class="landing-clrblock__name">COLLABORA</h3>
                     <div class="landing-clrblock__desc">
-                        INDIVIDUATI I POTENZIALI CLIENTI INVITALI A COLLABORARE OFFRENDO IL FIDO CHE RITIENI OPPORTUNO
+                        <h3>Individua i Potenziali Clienti</h3>
+                        <h4>Offri il Fido che Ritieni Opportuno</h4>
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
@@ -129,7 +122,7 @@ $configData = Helper::appClasses();
                     <img src="{{asset('assets/img/home/conferma.png')}}" style="height: 50px;">
                     <h3 class="landing-clrblock__name">VENDI</h3>
                     <div class="landing-clrblock__desc">
-                        PUBBLICA QUOTIDIANAMENTE I TUOI PREZZI PER PRODOTTO E DILAZIONE DI PAGAMENTO IN BASE ALLE TUE ESIGENZE DI VENDITA
+                        <h3>Pubblica Quotidianamente i Tuoi Prezzi per Prodotto, Metodo e Dilazione di Pagamento</h3>
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
@@ -137,7 +130,8 @@ $configData = Helper::appClasses();
                     <img src="{{asset('assets/img/home/monitora.png')}}" style="height: 50px;">
                     <h3 class="landing-clrblock__name">GESTISCI</h3>
                     <div class="landing-clrblock__desc">
-                        ACCETTA O RIFIUTA LE RICHIESTE DEI TUOI CLIENTI E MONITORA I TUOI ORDINI E ANALIZZA I TUOI ANDAMENTI DI VENDITA PER PRODOTTO, PER PERIODO E PER CLIENTE
+                        <h3><strong>Accetta</strong> o <strong>Rifiuta</strong> le Richieste dei Tuoi Clienti</h3>
+                        <h4>Monitora gli Ordini, Analizza gli Andamenti di Vendita per Prodotto, Periodo e Cliente</h4>
                     </div>
                 </div>
             </div>
@@ -148,21 +142,20 @@ $configData = Helper::appClasses();
         <div class="uk-container landing-clrblock__container landing-clrblock__container--buy">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
                 <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
-                    <h2 class="title landing-clrblock__title">Come comprare su <br> willfeed?</h2>
+                    <h2 class="title landing-clrblock__title">Come comprare su willfeed</h2>
+                    <h2>Scopri la <strong>Convenienza</strong> di avere accesso a diversi venditori in un'unica piattaforma</h2>
                     <div class="landing-clrblock__text">
                         <p>
-                            CONVENIENZA e CONTROLLO sono al centro della tua esperienza. Con noi, hai uno scenario reale dei prezzi del carburante, lubrificanti e prodotti affini dai migliori fornitori di Italia.
-                        </p>
-                        <p>
-                            Scopri la CONVENIENZA nell’avere a di disposizione in un unica piattaforma molteplici venditori con prezzi reali e competitivi, avendo la possibilità di acquistare il prodotto che vuoi con il metodo di pagamento e dilazioni che preferisci.
-                        </p>
-                        <p>
-                            Tutto sotto CONTROLLO grazie al gestionale privato che ti consente di monitorare i tuoi fidi, gestire gli ordini e accedere a un'analisi dettagliata dei costi e dei risparmi legati ai tuoi acquisti.
-                        </p>
-                        <p>
-                            Scegli la comodità di un servizio online pensato per ottimizzare il tuo business
+                            Acquista con <strong>prezzi reali e competitivi</strong>, scegli il prodotto desiderato e seleziona il metodo di pagamento e le dilazioni che preferisci.
                         </p>
                     </div>
+                    <h2>Tutto Sotto <strong>Controllo</strong> con un tuo gestionale privato</h2>
+                    <div class="landing-clrblock__text">
+                        <p>
+                            <strong>Monitora</strong> fidi, gestisci ordini e accedi a un'analisi dettagliata dei costi e risparmi legati ai tuoi acquisti.
+                        </p>
+                    </div>
+                    <h3>Scegli la comodità di un Servizio Online per Ottimizzare il Tuo Business</h3>
                     <button type="button" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #comprare; cls: is-active">SCOPRI DI PIU’</button>
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
@@ -178,7 +171,8 @@ $configData = Helper::appClasses();
                     <img src="{{asset('assets/img/home/analizza.png')}}" style="height: 50px;">
                     <h3 class="landing-clrblock__name">CERCA</h3>
                     <div class="landing-clrblock__desc">
-                        CERCA I VENDITORI PER PRODOTTO, PREZZO, MODALITA’ E DILAZIONE DI PAGAMENTO
+                        <h3>Per Prodotto, Prezzo, Modalità e Dilazione di Pagamento</h3>
+                        <h4>Trova i migliori venditori che soddisfano le tue esigenze con <strong>facilità e sicurezza</strong></h4>
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
@@ -186,15 +180,17 @@ $configData = Helper::appClasses();
                     <img src="{{asset('assets/img/home/cerca.png')}}" style="height: 50px;">
                     <h3 class="landing-clrblock__name">COLLABORA</h3>
                     <div class="landing-clrblock__desc">
-                        INDIVIDUATI I POTENZIALI VENDITORI INVIA UNA RICHIESTA DI COLLABORAZIONE PER OTTENERE UN FIDO
+                        <h3>Invia una richiesta di collaborazione per ottenere un Fido</h3>
+                        <h4><strong>Esplora</strong> e <strong>Potenzia</strong> la tua attività collaborando con i migliori venditori.</h4>
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-search1"></div> --}}
                     <img src="{{asset('assets/img/home/conferma.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">ACQUISTA</h3>
+                    <h3 class="landing-clrblock__name">SCOPRI</h3>
                     <div class="landing-clrblock__desc">
-                        SCOPRI GIORNO PER GIORNO I PREZZI REALI DI MERCATO ANALIZZA, VALUTA E SCEGLI DA CHI ORDINARE
+                        <h3><strong>Analizza, Valuta e Scegli</strong> i Migliori Fornitori Giorno per Giorno</h3>
+                        <h4><strong>Ottimizza</strong> le tue scelte di acquisto.</h4>
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
@@ -202,7 +198,7 @@ $configData = Helper::appClasses();
                     <img src="{{asset('assets/img/home/monitora.png')}}" style="height: 50px;">
                     <h3 class="landing-clrblock__name">GESTISCI</h3>
                     <div class="landing-clrblock__desc">
-                        MONITORA I TUOI ORDINI E ANALIZZA I TUOI ANDAMENTI DI ACQUISTO PER PRODOTTO E PER VENDITORE
+                        <h3><strong>Monitora</strong> i Tuoi Ordini e <strong>Analizza</strong> gli Andamenti di Acquisto</h3>
                     </div>
                 </div>
             </div>
@@ -214,12 +210,9 @@ $configData = Helper::appClasses();
         <div class="uk-container landing-clrblock__container landing-clrblock__container--safe">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
                 <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
-                    <h2 class="title landing-clrblock__title">Willfeed sicuro & <br> conveniente</h2>
-                    <div class="landing-clrblock__text">
-                        <p>
-                            La nostra visone è dare la possibilità a fornitori e clienti di relazionarsi in piena sicurezza e convenienza
-                        </p>
-                    </div>
+                    <h2 class="title landing-clrblock__title">Willfeed, Sicuro e Conveniente</h2>
+                    <h2><strong>La Nostra Visione:</strong> Fornire la possibilità di relazionarsi in sicurezza e convenienza</h2>
+                    <h3>Creiamo un <strong>Ambiente Affidabile</strong> per fornitori e clienti</h3>
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
@@ -251,12 +244,9 @@ $configData = Helper::appClasses();
         <div class="uk-container landing-clrblock__container landing-clrblock__container--community">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
                 <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
-                    <h2 class="title landing-clrblock__title">Willfeed una <br> community sostenibile</h2>
-                    <div class="landing-clrblock__text">
-                        <p>
-                            La nostra missione è aumentare il consumo di materie prime ecosostenibili dando così a tutte le attività l’opportunità di aumentare la propria quota green.
-                        </p>
-                    </div>
+                    <h2 class="title landing-clrblock__title">Willfeed: Una Community Sostenibile</h2>
+                    <h2><strong>La Nostra Missione:</strong> Aumentare il Consumo di Materie Prime Ecosostenibili</h2>
+                    <h3>Dare <strong>Opportunità</strong> a tutte le attività di aumentare la propria <strong>quota green</strong></h3>
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
@@ -286,10 +276,10 @@ $configData = Helper::appClasses();
     <div class="landing-reviews uk-slider" data-uk-slider="center: true; autoplay: true; pause-on-hover: true; autoplay-interval: 2000">
 
         <div class="uk-container landing-reviews__container">
-            <h2 class="title landing-reviews__title">Esplora la nostra community</h2>
+            <h2 class="title landing-reviews__title">Esplora la Nostra Community</h2>
             <div class="landing-reviews__about">
                 <p>
-                    Willfeed si base su due concetti fondamentali: Confronto e trasparenza
+                    Willfeed si Basa su Due Concetti Fondamentali: <strong>Confronto e Trasparenza</strong>
                 </p>
             </div>
         </div>
@@ -331,7 +321,7 @@ $configData = Helper::appClasses();
         <div class="uk-container blog__container">
             <h2 class="title blog__maintitle">Blog</h2>
             <div class="blog__maintext">
-                <p>Costantemente aggiornato sulle ultime notizie di mercato</p>
+                <p>Costantemente Aggiornato sulle Ultime Notizie di Mercato</p>
             </div>
             <div class="uk-grid blog__grid" data-uk-grid>
 
