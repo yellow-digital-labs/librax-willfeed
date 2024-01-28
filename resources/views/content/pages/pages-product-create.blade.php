@@ -167,9 +167,9 @@ $configData = Helper::appClasses();
                             <input class="form-check-input" type="checkbox" name="status" id="status" value="active" {{$product_detail?($product_detail->status=='active'?'checked':''):'checked'}}>
                         </div>
 
-                        @if($product_detail)
+                        {{-- @if($product_detail) --}}
                         <button type="submit" class="btn btn-dark btn-next btn-submit waves-effect waves-light">Save</button>
-                        @endif
+                        {{-- @endif --}}
                         
                     </div>
                 </div>
@@ -177,7 +177,7 @@ $configData = Helper::appClasses();
 
 
             {{-- @if($product_detail) --}}
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-header d-flex justify-content-between border-bottom">
                     <div class="card-title mb-0">
                         <h5 class="mb-0 text-black">Inventory</h5>
@@ -218,7 +218,7 @@ $configData = Helper::appClasses();
                         @endif
                     </div>
                 </div>
-            </div>
+            </div> --}}
             {{-- @endif --}}
         </div>
 

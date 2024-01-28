@@ -317,7 +317,7 @@ $configData = Helper::appClasses();
                                             </div> --}}
                                             <div class="product__avail">
                                                 Disponibilità:
-                                                @if($product->current_stock>0)
+                                                @if($product->status == "active")
                                                 <span class="product__avail-type">Disponibile</span>
                                                 @else
                                                 <span class="product__avail-type product__avail-type--negative">Non disponibile</span>

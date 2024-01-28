@@ -106,25 +106,25 @@ class DatabaseTriggers extends Command
                         END IF;
                     END IF;
 
-                    IF NEW.stock_lifetime <> OLD.stock_lifetime OR NEW.stock_in_transit <> OLD.stock_in_transit THEN
+                    /* IF NEW.stock_lifetime <> OLD.stock_lifetime OR NEW.stock_in_transit <> OLD.stock_in_transit THEN
                         SET NEW.current_stock = NEW.stock_lifetime - NEW.stock_in_transit;
-                    END IF;
+                    END IF; */
                 END');
 
         //product_seller_inventory_histories
         DB::unprepared('DROP TRIGGER IF EXISTS `product_seller_inventory_histories_before_insert`');
-        DB::unprepared('CREATE TRIGGER product_seller_inventory_histories_before_insert BEFORE INSERT ON `product_seller_inventory_histories` FOR EACH ROW
+        /* DB::unprepared('CREATE TRIGGER product_seller_inventory_histories_before_insert BEFORE INSERT ON `product_seller_inventory_histories` FOR EACH ROW
                 BEGIN
                     SET NEW.product_sellers_id = (SELECT id FROM product_sellers WHERE seller_id=NEW.seller_id AND product_id=NEW.product_id);
-                END');
+                END'); */
 
         DB::unprepared('DROP TRIGGER IF EXISTS `product_seller_inventory_histories_after_insert`');
-        DB::unprepared('CREATE TRIGGER product_seller_inventory_histories_after_insert AFTER INSERT ON `product_seller_inventory_histories` FOR EACH ROW
+        /* DB::unprepared('CREATE TRIGGER product_seller_inventory_histories_after_insert AFTER INSERT ON `product_seller_inventory_histories` FOR EACH ROW
                 BEGIN
                     SET @stock_lifetime = (SELECT COALESCE(SUM(qty), 0) FROM product_seller_inventory_histories WHERE seller_id=NEW.seller_id AND product_id=NEW.product_id);
 
                     UPDATE product_sellers SET stock_lifetime=@stock_lifetime, stock_updated_at=NEW.created_at WHERE id=NEW.product_sellers_id;
-                END');
+                END'); */
 
         //orders
         DB::unprepared('DROP TRIGGER IF EXISTS `orders_before_insert`');
@@ -191,9 +191,9 @@ class DatabaseTriggers extends Command
         DB::unprepared('CREATE TRIGGER orders_after_update AFTER UPDATE ON `orders` FOR EACH ROW
                 BEGIN
                     IF NEW.order_status_id <> OLD.order_status_id THEN
-                        SET @stock_in_transit = (SELECT IFNULL(SUM(product_qty), 0) FROM orders WHERE seller_id=NEW.seller_id AND product_id=NEW.product_id AND order_status_id=2);
+                        /* SET @stock_in_transit = (SELECT IFNULL(SUM(product_qty), 0) FROM orders WHERE seller_id=NEW.seller_id AND product_id=NEW.product_id AND order_status_id=2);
 
-                        UPDATE product_sellers SET stock_in_transit=@stock_in_transit WHERE seller_id=NEW.seller_id AND product_id=NEW.product_id;
+                        UPDATE product_sellers SET stock_in_transit=@stock_in_transit WHERE seller_id=NEW.seller_id AND product_id=NEW.product_id; */
 
                         IF NEW.order_status_id = 4 THEN
                             SELECT COALESCE(SUM(total_payable_amount), 0) INTO @credit_used FROM orders WHERE user_id=NEW.user_id AND seller_id=NEW.seller_id AND order_status_id=4 AND payment_status="unpaid";
