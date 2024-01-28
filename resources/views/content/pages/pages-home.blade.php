@@ -76,17 +76,17 @@ $configData = Helper::appClasses();
         <div class="uk-container landing-clrblock__container landing-clrblock__container--sell">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
                 <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
-                    <h2 class="title landing-clrblock__title">Come Vendere su WILLFEED?</h2>
-                    <h2>Aumenta il Tuo <strong>Volume d'Affari</strong></h2>
+                    <h1 class="title landing-clrblock__title">Come Vendere su WILLFEED?</h1>
+                    <h2 class="landing-clrblock__text" style="margin-bottom: 0px;"><strong>Aumenta</strong> il Tuo volume d'affari</h2>
                     <div class="landing-clrblock__text">
                         <p>
-                            Cerca i clienti per categorie, regioni e modalità di pagamento per ottimizzare le vendite.
+                            Entra subito in contatto con Aziende di Trasporto, Edili e Agricole.
                         </p>
                     </div>
-                    <h2><strong>Controllo</strong> totale con un tuo gestionale prIvato</strong></h2>
+                    <h3 class="landing-clrblock__text" style="margin-bottom: 0px;"><strong>Controllo</strong> totale con un tuo gestionale privato</h3>
                     <div class="landing-clrblock__text">
                         <p>
-                            <strong>Gestisci</strong> ordini, monitora i fidi e ricevi avvisi automatici per pagamenti imminenti.
+                            Gestisci ordini, monitora i fidi e ricevi avvisi automatici per pagamenti imminenti.
                         </p>
                     </div>
                     <a href="#" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #vendor; cls: is-active">SCOPRI DI PIU’</a>  
@@ -102,10 +102,9 @@ $configData = Helper::appClasses();
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-bag"></div> --}}
                     <img src="{{asset('assets/img/home/analizza.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">CERCA</h3>
+                    <h1 class="landing-clrblock__name">CERCA</h1>
                     <div class="landing-clrblock__desc">
-                        <h3>Per Regioni, Attività, Prodotto, Dilazione e Modalità di Pagamento</h3>
-                        Ottimizza la tua strategia di vendita raggiungendo un pubblico mirato e personalizzato.
+                        <h2 style="font-size: 20px;">Ottimizza le tue vendite raggiungendo clienti mirati e personalizzati.</h2>
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
@@ -113,8 +112,7 @@ $configData = Helper::appClasses();
                     <img src="{{asset('assets/img/home/cerca.png')}}" style="height: 50px;">
                     <h3 class="landing-clrblock__name">COLLABORA</h3>
                     <div class="landing-clrblock__desc">
-                        <h3>Individua i Potenziali Clienti</h3>
-                        <h4>Offri il Fido che Ritieni Opportuno</h4>
+                        <h2 style="font-size: 20px;">Individua i potenziali clienti, offri il fido che ritieni opportuno</h2>
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
@@ -122,7 +120,7 @@ $configData = Helper::appClasses();
                     <img src="{{asset('assets/img/home/conferma.png')}}" style="height: 50px;">
                     <h3 class="landing-clrblock__name">VENDI</h3>
                     <div class="landing-clrblock__desc">
-                        <h3>Pubblica Quotidianamente i Tuoi Prezzi per Prodotto, Metodo e Dilazione di Pagamento</h3>
+                        <h2 style="font-size: 20px;">Pubblica quotidianamente i tuoi prezzi per prodotto, metodo e dilazione di pagamento</h2>
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
@@ -130,8 +128,7 @@ $configData = Helper::appClasses();
                     <img src="{{asset('assets/img/home/monitora.png')}}" style="height: 50px;">
                     <h3 class="landing-clrblock__name">GESTISCI</h3>
                     <div class="landing-clrblock__desc">
-                        <h3><strong>Accetta</strong> o <strong>Rifiuta</strong> le Richieste dei Tuoi Clienti</h3>
-                        <h4>Monitora gli Ordini, Analizza gli Andamenti di Vendita per Prodotto, Periodo e Cliente</h4>
+                        <h2 style="font-size: 20px;">Monitora gli ordini, analizza gli andamenti di vendita per prodotto, periodo e cliente</h2>
                     </div>
                 </div>
             </div>
@@ -142,20 +139,19 @@ $configData = Helper::appClasses();
         <div class="uk-container landing-clrblock__container landing-clrblock__container--buy">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
                 <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
-                    <h2 class="title landing-clrblock__title">Come comprare su willfeed</h2>
-                    <h2>Scopri la <strong>Convenienza</strong> di avere accesso a diversi venditori in un'unica piattaforma</h2>
+                    <h1 class="title landing-clrblock__title">Come comprare su willfeed</h1>
+                    <h2 class="landing-clrblock__text" style="margin-bottom: 0px;"><strong>Convenienza</strong> garantita entrando in contatto con una molteplicità di venditori</h2>
                     <div class="landing-clrblock__text">
                         <p>
-                            Acquista con <strong>prezzi reali e competitivi</strong>, scegli il prodotto desiderato e seleziona il metodo di pagamento e le dilazioni che preferisci.
+                            Acquista carburanti lubrificanti e affini con prezzi reali e competitivi, scegli il metodo di pagamento e la dilazione che preferisci.
                         </p>
                     </div>
-                    <h2>Tutto Sotto <strong>Controllo</strong> con un tuo gestionale privato</h2>
+                    <h2 class="landing-clrblock__text" style="margin-bottom: 0px;"><strong>Controllo</strong> totale con un tuo gestionale privato</h2>
                     <div class="landing-clrblock__text">
                         <p>
-                            <strong>Monitora</strong> fidi, gestisci ordini e accedi a un'analisi dettagliata dei costi e risparmi legati ai tuoi acquisti.
+                            Monitora i tuoi fidi, gestisci ordini e accedi a un'analisi dettagliata dei costi e risparmi legati ai tuoi acquisti.
                         </p>
                     </div>
-                    <h3>Scegli la comodità di un Servizio Online per Ottimizzare il Tuo Business</h3>
                     <button type="button" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #comprare; cls: is-active">SCOPRI DI PIU’</button>
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
@@ -169,36 +165,33 @@ $configData = Helper::appClasses();
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-bag"></div> --}}
                     <img src="{{asset('assets/img/home/analizza.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">CERCA</h3>
+                    <h1 class="landing-clrblock__name">CERCA</h1>
                     <div class="landing-clrblock__desc">
-                        <h3>Per Prodotto, Prezzo, Modalità e Dilazione di Pagamento</h3>
-                        <h4>Trova i migliori venditori che soddisfano le tue esigenze con <strong>facilità e sicurezza</strong></h4>
+                        <h2 style="font-size: 20px;">Trova i migliori venditori che soddisfano le tue esigenze con facilità e sicurezza</h2>
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-analytics"></div> --}}
                     <img src="{{asset('assets/img/home/cerca.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">COLLABORA</h3>
+                    <h1 class="landing-clrblock__name">INDIVIDUA</h1>
                     <div class="landing-clrblock__desc">
-                        <h3>Invia una richiesta di collaborazione per ottenere un Fido</h3>
-                        <h4><strong>Esplora</strong> e <strong>Potenzia</strong> la tua attività collaborando con i migliori venditori.</h4>
+                        <h2 style="font-size: 20px;">Esplora e potenzia la tua attività collaborando con i migliori venditori.</h2>
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-search1"></div> --}}
                     <img src="{{asset('assets/img/home/conferma.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">SCOPRI</h3>
+                    <h1 class="landing-clrblock__name">SCOPRI</h1>
                     <div class="landing-clrblock__desc">
-                        <h3><strong>Analizza, Valuta e Scegli</strong> i Migliori Fornitori Giorno per Giorno</h3>
-                        <h4><strong>Ottimizza</strong> le tue scelte di acquisto.</h4>
+                        <h2 style="font-size: 20px;">Analizza, valuta e scegli i migliori prezzi giorno per giorno</h2>
                     </div>
                 </div>
                 <div class="uk-width-1-4@s landing-clrblock__col">
                     {{-- <div class="landing-clrblock__icon wf-icon wf-icon-search1"></div> --}}
                     <img src="{{asset('assets/img/home/monitora.png')}}" style="height: 50px;">
-                    <h3 class="landing-clrblock__name">GESTISCI</h3>
+                    <h1 class="landing-clrblock__name">GESTISCI</h1>
                     <div class="landing-clrblock__desc">
-                        <h3><strong>Monitora</strong> i Tuoi Ordini e <strong>Analizza</strong> gli Andamenti di Acquisto</h3>
+                        <h2 style="font-size: 20px;">Monitora i tuoi ordini e analizza gli andamenti di acquisto</h2>
                     </div>
                 </div>
             </div>
@@ -210,9 +203,9 @@ $configData = Helper::appClasses();
         <div class="uk-container landing-clrblock__container landing-clrblock__container--safe">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
                 <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
-                    <h2 class="title landing-clrblock__title">Willfeed, Sicuro e Conveniente</h2>
-                    <h2><strong>La Nostra Visione:</strong> Fornire la possibilità di relazionarsi in sicurezza e convenienza</h2>
-                    <h3>Creiamo un <strong>Ambiente Affidabile</strong> per fornitori e clienti</h3>
+                    <h1 class="title landing-clrblock__title">Willfeed, Sicuro e Conveniente</h1>
+                    <h2 class="landing-clrblock__text">Offriamo la possibilità di relazionarsi in <strong>Sicurezza</strong> e <strong>Convenienza</strong></h2>
+                    <h3 class="landing-clrblock__text">Creiamo un <strong>Ambiente Affidabile</strong> per venditori e acquirenti</h3>
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
@@ -244,9 +237,9 @@ $configData = Helper::appClasses();
         <div class="uk-container landing-clrblock__container landing-clrblock__container--community">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
                 <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
-                    <h2 class="title landing-clrblock__title">Willfeed: Una Community Sostenibile</h2>
-                    <h2><strong>La Nostra Missione:</strong> Aumentare il Consumo di Materie Prime Ecosostenibili</h2>
-                    <h3>Dare <strong>Opportunità</strong> a tutte le attività di aumentare la propria <strong>quota green</strong></h3>
+                    <h1 class="title landing-clrblock__title">Willfeed: Una Community Sostenibile</h1>
+                    <h2 class="landing-clrblock__text">Aumentiamo il consumo di <strong>Materie Prime ecosostenibili</strong></h2>
+                    <h3 class="landing-clrblock__text">Diamo <strong>Opportunità</strong> a tutte le attività di aumentare la propria <strong>Quota Green</strong></h3>
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
