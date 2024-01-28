@@ -89,19 +89,34 @@ document.addEventListener('DOMContentLoaded', function (e) {
                       }
                     }
                   },
-                  amount_before_tax: {
+                  price: {
+                    // All the email address field have js-price-input class
+                    selector: '.js-price-input',
                     validators: {
-                      notEmpty: {
-                        message: 'Please enter prezzo a vista'
-                      }
-                    }
-                  },
-                  amount_30gg: {
-                    validators: {
-                      notEmpty: {
-                        message: 'Please enter prezzo 30gg'
-                      }
-                    }
+                      callback: {
+                        message: 'è necessario inserire almeno un prezzo',
+                        callback: function (input) {
+                          let isEmpty = true;
+                          const emailElements = fv.getElements('price');
+                          for (const i in emailElements) {
+                            if (emailElements[i].value !== '') {
+                              isEmpty = false;
+                              break;
+                            }
+                          }
+        
+                          if (!isEmpty) {
+                            // Update the status of callback validator for all fields
+                            fv.updateFieldStatus('price', 'Valid', 'callback');
+                            return true;
+                          }
+                          return false;
+                        },
+                      },
+                      amount_before_tax: {
+                        message: 'The value is not a valid email address',
+                      },
+                    },
                   },
                   delivery_time: {
                     validators: {
