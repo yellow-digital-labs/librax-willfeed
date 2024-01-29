@@ -77,13 +77,13 @@ $configData = Helper::appClasses();
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
                 <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
                     <h1 class="title landing-clrblock__title">Come Vendere su WILLFEED?</h1>
-                    <h2 class="landing-clrblock__text" style="margin-bottom: 0px;"><strong>Aumenta</strong> il Tuo volume d'affari</h2>
+                    <h2 class="landing-clrblock__text" style="margin-bottom: 0px;"><strong>Aumenta il Tuo volume d'affari</strong></h2>
                     <div class="landing-clrblock__text">
                         <p>
                             Entra subito in contatto con Aziende di Trasporto, Edili e Agricole.
                         </p>
                     </div>
-                    <h3 class="landing-clrblock__text" style="margin-bottom: 0px;"><strong>Controllo</strong> totale con un tuo gestionale privato</h3>
+                    <h3 class="landing-clrblock__text" style="margin-bottom: 0px;"><strong>Controllo totale con un tuo gestionale privato</strong></h3>
                     <div class="landing-clrblock__text">
                         <p>
                             Gestisci ordini, monitora i fidi e ricevi avvisi automatici per pagamenti imminenti.
@@ -140,13 +140,13 @@ $configData = Helper::appClasses();
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
                 <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
                     <h1 class="title landing-clrblock__title">Come comprare su willfeed</h1>
-                    <h2 class="landing-clrblock__text" style="margin-bottom: 0px;"><strong>Convenienza</strong> garantita entrando in contatto con una molteplicità di venditori</h2>
+                    <h2 class="landing-clrblock__text" style="margin-bottom: 0px;"><strong>Convenienza garantita entrando in contatto con una molteplicità di venditori</strong></h2>
                     <div class="landing-clrblock__text">
                         <p>
                             Acquista carburanti lubrificanti e affini con prezzi reali e competitivi, scegli il metodo di pagamento e la dilazione che preferisci.
                         </p>
                     </div>
-                    <h2 class="landing-clrblock__text" style="margin-bottom: 0px;"><strong>Controllo</strong> totale con un tuo gestionale privato</h2>
+                    <h2 class="landing-clrblock__text" style="margin-bottom: 0px;"><strong>Controllo totale con un tuo gestionale privato</strong></h2>
                     <div class="landing-clrblock__text">
                         <p>
                             Monitora i tuoi fidi, gestisci ordini e accedi a un'analisi dettagliata dei costi e risparmi legati ai tuoi acquisti.
