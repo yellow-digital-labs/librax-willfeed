@@ -120,7 +120,7 @@ $configData = Helper::appClasses();
                     <th class="js-add-search">Prodotto</th>
                     <th>Quantità</th>
                     <th>Data</th>
-                    <th>Status</th>
+                    <th>Stato</th>
                     <th>Pagamento</th>
                     <th>Apri</th>
                 </tr>

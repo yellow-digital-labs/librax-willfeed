@@ -39,9 +39,9 @@ $configData = Helper::appClasses();
 
 <h1 class="h3 text-black mb-4">
 @if($isSeller)
-    Customer
+    Clienti
 @else
-    Seller
+    Venditori
 @endif
 </h1>
 
@@ -49,12 +49,12 @@ $configData = Helper::appClasses();
     <div class="card-header d-flex justify-content-between border-bottom">
         <div class="card-title mb-0">
             <h5 class="mb-0 text-black">
+            Lista
             @if($isSeller)
-                Customer
+                clienti
             @else
-                Seller
+                venditori
             @endif
-            list
             </h5>
         </div>
     </div>
@@ -62,16 +62,16 @@ $configData = Helper::appClasses();
         <table class="dt-column-search table">
             <thead>
                 <tr>
-                    <th class="js-add-search">Customer name</th>
-                    <th class="js-add-search">Seller name</th>
-                    <th class="js-add-search">City</th>
-                    <th>Verified since</th>
-                    <th>Since on platform</th>
-                    <th>Credit limit assigned</th>
-                    <th>Credit limit used</th>
-                    <th>Credit limit available</th>
-                    <th>Is verified</th>
-                    <th>Action</th>
+                    <th class="js-add-search">Compratori</th>
+                    <th class="js-add-search">Venditori</th>
+                    <th class="js-add-search">Luogo</th>
+                    <th>Data verificato</th>
+                    <th>Data iscrizione</th>
+                    <th>Ammontare fido</th>
+                    <th>Fido utilizzato</th>
+                    <th>Fido disponibile</th>
+                    <th>Verificato</th>
+                    <th>Apri</th>
                 </tr>
             </thead>
         </table>

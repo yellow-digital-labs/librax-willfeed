@@ -70,7 +70,7 @@
         },
         {
             "url": "/payments",
-            "name": "Fatturazione",
+            "name": "Abbonamento",
             "icon": "menu-icon wf-icon-money",
             "slug": "payments",
             "section": [

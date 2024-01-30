@@ -159,15 +159,14 @@ const budgetChartEl{{$count}} = document.querySelector('.budgetChart-{{$count}}'
 
 <h1 class="h3 text-black mb-4">
     @if($isAdmin)
-    Admin
+    Admin dashboard
     @endif
     @if($isBuyer)
-    Buyer
+    Area riservata
     @endif
     @if($isSeller)
-    Seller
+    Area personale
     @endif
-    dashboard
 </h4>
 
 <form method="GET" id="dashboard-form">

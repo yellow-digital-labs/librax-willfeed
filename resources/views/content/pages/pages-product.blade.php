@@ -117,7 +117,7 @@ $configData = Helper::appClasses();
                     <th>prezzo / litro</th>
                     @endif
                     @if(!$isAdmin)
-                    <th>status</th>
+                    <th>Stato</th>
                     @else
                     <th>Attivo</th>
                     @endif
