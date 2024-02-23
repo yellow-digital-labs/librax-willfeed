@@ -397,7 +397,7 @@ class Product extends Controller
         "amount_60gg" => $request->amount_60gg,
         "amount_90gg" => $request->amount_90gg,
         "delivery_time" => $request->delivery_time,
-        "delivery_days" => $request->delivery_days,
+        "delivery_days" => 'Il giorno dopo',
         "days_off" => $request->days_off?implode(",",$request->days_off):"",
         "status" => $request->status ? $request->status : "inactive",
         "current_stock" => $qty,

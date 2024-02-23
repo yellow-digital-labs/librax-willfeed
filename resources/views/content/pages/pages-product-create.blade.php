@@ -137,25 +137,16 @@ $configData = Helper::appClasses();
                         <hr/>
 
                         <div class="col-12">
-                            <label class="form-label" for="delivery_time">For same day delivery order before time</label>
+                            <label class="form-label" for="delivery_time">Prezzi validi fino alle ore</label>
                             <div class="input-group">
                                 <input type="time" name="delivery_time" id="delivery_time" class="form-control" placeholder="" value="{{$product_detail?$product_detail->delivery_time:''}}" />
                             </div>
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label" for="delivery_days">Delivery days</label>
-                            <select name="delivery_days" id="delivery_days" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                <option value="">Seleziona delivery days</option>
-                                <option value="Stesso giorno" {{$product_detail?($product_detail->delivery_days=="Stesso giorno"?'selected':''):''}}>Stesso giorno</option>
-                                <option value="Il giorno dopo" {{$product_detail?($product_detail->delivery_days=="Il giorno dopo"?'selected':''):''}}>Il giorno dopo</option>
-                            </select>
-                        </div>
-
-                        <div class="col-12">
-                            <label class="form-label" for="days_off">Days off</label>
+                            <label class="form-label" for="days_off">Giorni di chiusura</label>
                             <select name="days_off[]" id="days_off" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
-                                <option value="">Seleziona days off </option>
+                                <option value="">Seleziona giorni non operativi </option>
                             @foreach ($days as $day)
                                 <option value="{{$day}}" {{$product_detail?(in_array($day, explode(",",$product_detail->days_off))?'selected':''):''}}>{{$day}}</option>
                             @endforeach

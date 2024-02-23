@@ -7,6 +7,9 @@
         <div class="header__collapsible navmenu js-header-collapse" id="navmenu">
             <ul class="navmenu__list">
                 <li class="navmenu__list-item">
+                    <a href="{{route("pages-home")}}" class="navmenu__list-link">Home</a>
+                </li>
+                <li class="navmenu__list-item">
                     <a href="{{route("pages-home")}}#comprare" class="navmenu__list-link">Acquista</a>
                 </li>
                 <li class="navmenu__list-item has-megamenu">

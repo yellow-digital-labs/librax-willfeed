@@ -124,13 +124,6 @@ document.addEventListener('DOMContentLoaded', function (e) {
                         message: 'Please enter time'
                       }
                     }
-                  },
-                  delivery_days: {
-                    validators: {
-                      notEmpty: {
-                        message: 'Please enter delivery days'
-                      }
-                    }
                   }
                 },
                 plugins: {
@@ -148,8 +141,8 @@ document.addEventListener('DOMContentLoaded', function (e) {
                 }
               }).on('core.form.valid', function () {
                 // Jump to the next step when all fields in the current step are valid
-                console.log("submit...")
-                // productForm.submit();
+                // console.log("submit...")
+                productForm.submit();
               });;
         }
     })();

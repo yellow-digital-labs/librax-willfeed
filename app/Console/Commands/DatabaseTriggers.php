@@ -73,6 +73,18 @@ class DatabaseTriggers extends Command
                     SET NEW.seller_name = (SELECT business_name FROM user_details WHERE user_id=NEW.seller_id);
                     SET NEW.product_name = (SELECT name FROM products WHERE id=NEW.product_id);
                     SET NEW.tax = 22;
+                    IF NEW.amount_before_tax IS NULL THEN
+                        SET NEW.amount_before_tax = 0;
+                    END IF;
+                    IF NEW.amount_30gg IS NULL THEN
+                        SET NEW.amount_30gg = 0;
+                    END IF;
+                    IF NEW.amount_60gg IS NULL THEN
+                        SET NEW.amount_60gg = 0;
+                    END IF;
+                    IF NEW.amount_90gg IS NULL THEN
+                        SET NEW.amount_90gg = 0;
+                    END IF;
                     SET NEW.amount = NEW.amount_before_tax + (NEW.amount_before_tax*NEW.tax/100);
                     -- SET NEW.current_stock = 0;
                     SET NEW.amount_before_tax_old = NEW.amount_before_tax;
@@ -92,7 +104,20 @@ class DatabaseTriggers extends Command
                         SET NEW.product_name = (SELECT name FROM products WHERE id=NEW.product_id);
                     END IF;
 
+                    IF NEW.amount_30gg IS NULL THEN
+                        SET NEW.amount_30gg = 0;
+                    END IF;
+                    IF NEW.amount_60gg IS NULL THEN
+                        SET NEW.amount_60gg = 0;
+                    END IF;
+                    IF NEW.amount_90gg IS NULL THEN
+                        SET NEW.amount_90gg = 0;
+                    END IF;
+
                     IF NEW.amount_before_tax <> OLD.amount_before_tax THEN
+                        IF NEW.amount_before_tax IS NULL THEN
+                            SET NEW.amount_before_tax = 0;
+                        END IF;
                         SET NEW.amount = NEW.amount_before_tax + (NEW.amount_before_tax*NEW.tax/100);
 
                         IF NEW.amount_before_tax_old_date IS NULL THEN

@@ -90,7 +90,7 @@ $configData = Helper::appClasses();
                                 </div>
                             </li>
                             <li>
-                                <a class="uk-accordion-title" href="#">COSA SONO I FEEDACK?</a>
+                                <a class="uk-accordion-title" href="#">COSA SONO I FEEDBACK?</a>
                                 <div class="uk-accordion-content">
                                     <p>I feedback che puoi trovare sotto forma di stelline sui profili dei venditori o dei clienti sono uno strumento utile a classificare velocemente un utente nella piattaforma e garantire una community che interagisce su due principi fondamentali trasparenza e confronto sia che sei un venditore o un cliente puoi dare una valutazione in maniera completamente anonima ad un utente con cui collabori.</p>
                                     <p>Durante la tua attività lavorativa qui su WILLFEED possono accadere alcuni eventi piacevoli o spiacevoli con alcuni clienti o fornitori e in base a ciò che accade puoi dare una valutazione rispettando sempre un principio di verità e rispetto per la community.</p>

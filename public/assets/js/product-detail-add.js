@@ -125,13 +125,6 @@ document.addEventListener('DOMContentLoaded', function (e) {
                       }
                     }
                   },
-                  delivery_days: {
-                    validators: {
-                      notEmpty: {
-                        message: 'Please enter delivery days'
-                      }
-                    }
-                  },
                   qty: {
                     validators: {
                       notEmpty: {
