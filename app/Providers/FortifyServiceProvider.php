@@ -40,13 +40,22 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
-        Fortify::registerView(function () {
+        Fortify::registerView(function (Request $request) {
             $pageConfigs = ['myLayout' => 'blank'];
             $accountType = AccountType::all();
-            
+            $defaultType = 0;
+            if($request->get('type')){
+                if($request->get('type') == 'buyer'){
+                    $defaultType = 1;
+                } elseif($request->get('type') == 'seller'){
+                    $defaultType = 2;
+                }
+            }
+
             return view('content.pages.pages-signup', [
                 'pageConfigs' => $pageConfigs,
-                'accountType' => $accountType
+                'accountType' => $accountType,
+                'defaultType' => $defaultType,
             ]);
         });
 

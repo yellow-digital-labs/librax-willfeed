@@ -58,7 +58,7 @@ $customizerHidden = 'customizer-hide';
                             <select class="form-select select2" id="account-type" name="accountType">
                                 <option value="" selected>Seleziona account</option>
                             @foreach($accountType as $_accountType)
-                                <option value="{{$_accountType->id}}">{{$_accountType->name}}</option>
+                                <option value="{{$_accountType->id}}" {{$_accountType->id == $defaultType ? 'selected' : ''}}>{{$_accountType->name}}</option>
                             @endforeach
                             </select>
                         </div>

@@ -89,6 +89,9 @@ $configData = Helper::appClasses();
                             Gestisci ordini, monitora i fidi e ricevi avvisi automatici per pagamenti imminenti.
                         </p>
                     </div>
+                    <a href="{{ route('register').'?type=seller' }}" class="uk-button uk-button-default" style="color: #fff;
+    border-color: #000;
+    background: #000;">ISCRIVITI ORA</a>
                     <a href="#" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #vendor; cls: is-active">SCOPRI DI PIU’</a>  
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
@@ -152,6 +155,9 @@ $configData = Helper::appClasses();
                             Monitora i tuoi fidi, gestisci ordini e accedi a un'analisi dettagliata dei costi e risparmi legati ai tuoi acquisti.
                         </p>
                     </div>
+                    <a href="{{ route('register').'?type=buyer' }}" class="uk-button uk-button-default" style="color: #fff;
+    border-color: #000;
+    background: #000;">ISCRIVITI ORA</a>
                     <button type="button" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #comprare; cls: is-active">SCOPRI DI PIU’</button>
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
