@@ -48,15 +48,21 @@ $configData = Helper::appClasses();
                     <input type="hidden" name="seller_product_id" value="{{$product->id}}">
                     <div class="checkout-box__head">
                         <h2 class="checkout-box__headtitle">Prodotto: <span class="checkout-box__headtitle-light">{{$product->product_name}}</span></h2>
-                        <h2 class="checkout-box__headtitle">Venditore: <span class="checkout-box__headtitle-light">{{$product->seller_name}}<br/><span class="" style="font-size: 14px; float:right;">Credit available: {{ App\Helpers\Helpers::getAvailableCreditLimit($seller_id, $customer_id) }}</span></span></h2>
+                        <h2 class="checkout-box__headtitle">Venditore: <span class="checkout-box__headtitle-light">{{$product->seller_name}}<br/><span class="" style="font-size: 14px; float:right;">Fido disponibile: {{ App\Helpers\Helpers::getAvailableCreditLimit($seller_id, $customer_id) }}</span></span></h2>
                     </div>
                     <div class="checkout-box__body">
                         <div class="uk-grid checkout-box__prgrid gutter-xl" data-uk-grid>
                             <div class="uk-width-1-3 checkout-box__prcol  checkout-box__prcol--item">
                                 <h3 class="checkout-box__prlabel">Articolo</h3>
                                 <h2 class="checkout-box__itemname">
+                                  @php
+                                    $display_date = \App\Helpers\Helpers::calculateEstimateShippingDate($product->delivery_time, $product->delivery_days, $product->days_off)
+                                  @endphp
                                     {{$product->product_name}} <br/>
-                                    Prima consegna: {{\App\Helpers\Helpers::calculateEstimateShippingDate($product->delivery_time, $product->delivery_days, $product->days_off)}}
+                                    Prima consegna: {{$display_date}}
+                                  @if($display_date != "NA" && $display_date != date("d-m-Y"))
+                                    <i>ORDINE EFFETTUATO FUORI ORARIO OPERATIVO L'APPROVAZIONE SARÀ A DISCREZIONE DEL VENDITORE.</i>
+                                  @endif
                                 </h2>
                             </div>
                             <div class="uk-width-expand checkout-box__prcol  checkout-box__prcol--cost contact-form__group">
@@ -78,7 +84,7 @@ $configData = Helper::appClasses();
                                 <input type="hidden" id="js-one-litter-price-wo-tax" value="{{$product->amount_before_tax}}">
                             </div>
                             <div class="uk-width-auto checkout-box__prcol  checkout-box__prcol--qty contact-form__group">
-                                <h3 class="checkout-box__prlabel">Qtyst</h3>
+                                <h3 class="checkout-box__prlabel">Quantità</h3>
                                 <div class="checkout-box__qty">
                                     <input type="text" class="uk-input checkout-box__qty-input" id="js-qty-input" name="product_qty" value="100" required>
                                     <span class="checkout-box__qty-label">LITRI</span>
@@ -97,7 +103,7 @@ $configData = Helper::appClasses();
                               <h3 class="checkout-box__prlabel">Modalità di pagamento</h3>
                               <h2 class="checkout-box__itemcost">
                                 <select class="uk-input checkout-box__qty-input" name="payment_method">
-                                  <option value="">Please select pagamento</option>
+                                  <option value="">Seleziona pagamento</option>
                                 @if($seller_details->bank_transfer)
                                   <option value="bank_transfer">Bonifico</option>
                                 @endif

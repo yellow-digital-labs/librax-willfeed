@@ -256,7 +256,7 @@ $configData = Helper::appClasses();
                                         @if($product->couldOrderStatus&&$product->couldOrderStatus=="approved")
                                         <button type="button" class="uk-button uk-button-primary product-actions__buy" disabled>Collaborata</button>
                                         @elseif(($product->couldOrderStatus&&$product->couldOrderStatus=="pending"))
-                                        <button type="button" class="uk-button uk-button-primary product-actions__buy" disabled>Requested</button>
+                                        <button type="button" class="uk-button uk-button-primary product-actions__buy" disabled>Richiesta inviata</button>
                                         @else
                                         <button type="button" class="uk-button uk-button-primary product-actions__buy js-send-collab-request" data-customer-id="{{$product->user_id}}"
                                             target="_blank">
@@ -415,9 +415,10 @@ $configData = Helper::appClasses();
                                                 Deliver on: NA
                                                 @endif --}}
                                         </div>
-                                        {{-- <p>
-                                            {!!$product->product->description!!}
-                                        </p> --}}
+                                        <p>
+                                            ORDINE EFFETTUATO FUORI ORARIO OPERATIVO.<br>
+                                            L'APPROVAZIONE SARSARÀ A DISCREZIONE DEL VENDITORE.
+                                        </p>
                                     </div>
                                 </div>
 
