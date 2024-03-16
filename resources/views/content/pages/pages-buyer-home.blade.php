@@ -416,8 +416,8 @@ $configData = Helper::appClasses();
                                                 @endif --}}
                                         </div>
                                         <p>
-                                            ORDINE EFFETTUATO FUORI ORARIO OPERATIVO.<br>
-                                            L'APPROVAZIONE SARSARÀ A DISCREZIONE DEL VENDITORE.
+                                            <strong class="text-danger">ORDINE EFFETTUATO FUORI ORARIO OPERATIVO.<br>
+                                            L'APPROVAZIONE SARSARÀ A DISCREZIONE DEL VENDITORE.</strong>
                                         </p>
                                     </div>
                                 </div>

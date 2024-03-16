@@ -61,7 +61,7 @@ $configData = Helper::appClasses();
                                     {{$product->product_name}} <br/>
                                     Prima consegna: {{$display_date}}
                                   @if($display_date != "NA" && $display_date != date("d-m-Y"))
-                                    <i>ORDINE EFFETTUATO FUORI ORARIO OPERATIVO L'APPROVAZIONE SARÀ A DISCREZIONE DEL VENDITORE.</i>
+                                    <i class="text-danger">ORDINE EFFETTUATO FUORI ORARIO OPERATIVO L'APPROVAZIONE SARÀ A DISCREZIONE DEL VENDITORE.</i>
                                   @endif
                                 </h2>
                             </div>
