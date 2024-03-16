@@ -128,12 +128,12 @@ $configData = Helper::appClasses();
                             <p class="small">Prezzo incluso iva: €<span id="amount">{{$product_detail?number_format($product_detail->amount, 2, ',', '.'):'0,00'}}</span></p>
                         </div>
 
-                        <div class="form-check mt-3">
+                        <!-- <div class="form-check mt-3">
                             <input class="form-check-input" type="checkbox" value="yes" id="add_vat_to_price" />
                             <label class="form-check-label" for="add_vat_to_price">
                                 Aggiungi IVA al prezzo
                             </label>
-                        </div>
+                        </div> -->
                         <hr/>
 
                         <div class="col-12">
