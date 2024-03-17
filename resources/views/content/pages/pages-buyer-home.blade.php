@@ -417,7 +417,7 @@ $configData = Helper::appClasses();
                                         </div>
                                         <p>
                                             <strong class="text-danger">ORDINE EFFETTUATO FUORI ORARIO OPERATIVO.<br>
-                                            L'APPROVAZIONE SARSARÀ A DISCREZIONE DEL VENDITORE.</strong>
+                                            L'APPROVAZIONE SARÀ A DISCREZIONE DEL VENDITORE.</strong>
                                         </p>
                                     </div>
                                 </div>
