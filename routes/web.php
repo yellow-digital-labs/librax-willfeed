@@ -39,6 +39,7 @@ Route::get('/contact-us/thankyou', $controller_path . '\pages\PageContactus@than
 Route::post('/contact-us', $controller_path . '\pages\PageContactus@store')->name('pages-contactus-store');
 Route::get('/terms', $controller_path . '\pages\PageTerms@index')->name('pages-terms');
 Route::get('/privacy', $controller_path . '\pages\PagePrivacy@index')->name('pages-privacy');
+Route::get('/cookie-policy', $controller_path . '\pages\PagePrivacy@cookie')->name('pages-cookie-policy');
 Route::get('/faqs', $controller_path . '\pages\PageFaqs@index')->name('pages-faqs');
 
 // Admin Pages

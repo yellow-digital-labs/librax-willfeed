@@ -20,4 +20,9 @@ class PagePrivacy extends Controller
       return redirect()->route("pages-home");
     }
   }
+
+  public function cookie()
+  {
+    return view('content.pages.cookie', []);
+  }
 }

@@ -1,3 +1,17 @@
+<style>
+    span.footer-menu__link__label {
+        text-align: left !important;
+        text-transform: none !important;
+    }
+    button.footer-menu__link__link {
+        padding: 0 !important;
+        font-weight: 400 !important;
+    }
+    button.footer-menu__link__link:hover {
+        color: #FF8200 !important;
+        transition: all 0.4s ease;
+    }
+</style>
 <footer class="footer">
 
     <div class="footer-info">
@@ -122,10 +136,13 @@
                             <a href="{{route("pages-terms")}}" class="footer-menu__link">Termini e Condizioni</a>
                         </li>
                         <li class="footer-menu__item">
-                            <a href="{{route("pages-faqs")}}" class="footer-menu__link">FAQs</a>
+                            <a href="{{route("pages-cookie-policy")}}" class="footer-menu__link">Gestione dei Cookie</a>
                         </li>
                         <li class="footer-menu__item">
-                            <a href="{{route('pages-contactus')}}" class="footer-menu__link">Aiuto</a>
+                            @cookieconsentbutton('reset', label: __('Impostazione dei Cookie'), attributes: ['class' => 'footer-menu__link'])
+                        </li>
+                        <li class="footer-menu__item">
+                            <a href="{{route("pages-faqs")}}" class="footer-menu__link">FAQs</a>
                         </li>
                     </ul>
                     

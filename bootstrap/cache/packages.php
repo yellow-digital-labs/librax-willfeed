@@ -113,4 +113,15 @@
       'Flare' => 'Spatie\\LaravelIgnition\\Facades\\Flare',
     ),
   ),
+  'whitecube/laravel-cookie-consent' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Whitecube\\LaravelCookieConsent\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Cookies' => 'Whitecube\\LaravelCookieConsent\\Facades\\Cookies',
+    ),
+  ),
 );

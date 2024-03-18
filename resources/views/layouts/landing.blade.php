@@ -19,6 +19,7 @@
     crossorigin="anonymous"
     ></script>
     @yield('head-style')
+    @cookieconsentscripts
 </head>
 
 <body>
@@ -26,6 +27,7 @@
     @yield('content')
     <!--/ Layout Content -->
     @yield('footer-script')
+    @cookieconsentview
 </body>
 
 </html>
