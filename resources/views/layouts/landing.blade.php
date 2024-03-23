@@ -27,7 +27,9 @@
     @yield('content')
     <!--/ Layout Content -->
     @yield('footer-script')
-    @cookieconsentview
+    @if(!Illuminate\Support\Facades\Cookie::get('willfeed_cookie_consent'))
+        @cookieconsentview
+    @endif
 </body>
 
 </html>

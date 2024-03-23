@@ -4,7 +4,7 @@ namespace Whitecube\LaravelCookieConsent\Http\Controllers;
 
 use Whitecube\LaravelCookieConsent\CookiesManager;
 use Illuminate\Http\Request;
-use App\Models\Cookie as CookieModel;
+use App\Models\CookieModel;
 
 class AcceptAllController
 {

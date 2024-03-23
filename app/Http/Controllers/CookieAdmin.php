@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Cookie;
+use App\Models\CookieModel;
 use App\Helpers\Helpers;
 
 class CookieAdmin extends Controller
@@ -27,7 +27,7 @@ class CookieAdmin extends Controller
     ];
 
     $search = [];
-    $f = Cookie::where([]);
+    $f = CookieModel::where([]);
     $totalData = $f->count();
 
     $totalFiltered = $totalData;
@@ -46,7 +46,7 @@ class CookieAdmin extends Controller
 
     if (empty($request->input("search.value"))) {
       if (count($applied_filters) > 0) {
-        $customersObj = Cookie::where([]);
+        $customersObj = CookieModel::where([]);
 
         foreach ($applied_filters as $field => $search) {
           $customersObj->where($field, "LIKE", "%{$search}%");
@@ -58,7 +58,7 @@ class CookieAdmin extends Controller
           ->orderBy($order, $dir)
           ->get();
       } else {
-        $q = Cookie::where([]);
+        $q = CookieModel::where([]);
         $customers = $q
           ->offset($start)
           ->limit($limit)
@@ -68,7 +68,7 @@ class CookieAdmin extends Controller
     } else {
         $search = $request->input("search.value");
 
-        $q = Cookie::where(function ($query) use ($search) {
+        $q = CookieModel::where(function ($query) use ($search) {
             return $query
                 ->where("user_name", "LIKE", "%{$search}%")
                 ->orWhere("consents", "LIKE", "%{$search}%");
