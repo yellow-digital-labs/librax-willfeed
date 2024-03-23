@@ -95,7 +95,7 @@ class CookieAdmin extends Controller
         $nestedData["fake_id"] = ++$ids;
         $nestedData["user_name"] = $customer->user_name;
         $nestedData["consents"] = $customer->consents;
-        $nestedData["updated_at"] = $customer->created_at;
+        $nestedData["updated_at"] = date('d-m-Y H:i', strtotime($customer->created_at));
 
         $data[] = $nestedData;
       }
