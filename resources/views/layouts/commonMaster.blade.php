@@ -45,7 +45,9 @@
   <!-- Include Scripts -->
   @include('layouts/sections/scripts')
 
-  @cookieconsentview
+  @if(!Illuminate\Support\Facades\Cookie::get('willfeed_cookie_consent'))
+    @cookieconsentview
+  @endif
 </body>
 
 </html>
