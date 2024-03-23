@@ -16,7 +16,7 @@ return [
 
     'url' => [
         'domain' => null,
-        'middleware' => ['web'],
+        'middleware' => [],
         'prefix' => 'cookie-consent',
     ],
 
@@ -53,6 +53,6 @@ return [
     |
     */
 
-    'policy' => 'pages-cookie-policy',
+    'policy' => null,
     
 ];

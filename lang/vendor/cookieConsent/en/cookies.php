@@ -4,7 +4,7 @@ return [
     'intro' => 'WillFeed utilizza cookies su questo sito. I cookie servono a migliorare i nostri servizi e ottimizzare l\'esperienza utente. Sono inclusi cookie di profilazione (anche di terze parti) per inviare messaggi pubblicitari mirati o personalizzare i contenuti. Usiamo cookie analitici per capire come viene utilizzato il sito e valutarne il funzionamento. Accetta tutti i cookie cliccando sul pulsante ACCETTA TUTTI oppure seleziona le tipologie.',
     'link' => 'Per maggiori informazioni consulta l\'<a href=":url">informativa sui Cookie</a>.',
 
-    'essentials' => 'Cookie necessari',
+    'essentials' => 'Rifiuta tutti',
     'all' => 'Accetta tutti',
     'customize' => 'Impostazioni cookies',
     'manage' => 'Gestisci i cookie',

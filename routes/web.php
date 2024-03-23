@@ -193,4 +193,8 @@ Route::middleware([
     Route::get('/blogs/edit/{id}', $controller_path . '\pages\BlogsManagement@edit')->name('blogs-management-edit'); //blogs edit
     Route::post('/blogs/edit/{id}', $controller_path . '\pages\BlogsManagement@update')->name('blogs-management-update'); //blogs update
     Route::delete('/blogs/delete/{id}', $controller_path . '\pages\BlogsManagement@delete')->name('blogs-management-delete'); //blog delete
+
+    //cookie list
+    Route::get('/admin/cookie', $controller_path . '\CookieAdmin@index')->name('cookie-admin'); //order list view
+    Route::get('/admin/cookie/list', $controller_path . '\CookieAdmin@list')->name('cookie-admin-list'); //order list data ajax
 });

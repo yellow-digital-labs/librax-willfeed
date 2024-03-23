@@ -18,7 +18,7 @@
     "livewire/livewire": "^2.11",
     "spatie/laravel-database-mail-templates": "^3.5",
     "stripe/stripe-php": "^11.0",
-    "whitecube/laravel-cookie-consent": "^1.1"
+    "yellowdigitallabs/laravel-cookie-consent": "dev-main"
   },
   "require-dev": {
     "fakerphp/faker": "^1.9.1",
@@ -72,6 +72,15 @@
     "allow-plugins": {
       "pestphp/pest-plugin": true,
       "php-http/discovery": true
+    }
+  },
+  "repositories": {
+    "local": {
+        "type": "path",
+        "url": "./packages/yellowdigitallabs/laravel-cookie-consent",
+        "options": {
+            "symlink": true
+        }
     }
   },
   "minimum-stability": "dev",

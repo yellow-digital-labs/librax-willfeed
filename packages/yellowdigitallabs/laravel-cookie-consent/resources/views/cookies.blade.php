@@ -1,8 +1,3 @@
-<style>
-    #cookies-policy .cookies__category input:checked+.cookies__box:after{
-        background: #000 !important;
-    }
-</style>
 <aside id="cookies-policy" class="cookies cookies--no-js" data-text="{{ json_encode(__('cookieConsent::cookies.details')) }}">
     <div class="cookies__alert">
         <div class="cookies__container">
@@ -15,8 +10,8 @@
                     @endif
                 </div>
                 <div class="cookies__actions">
-                    @cookieconsentbutton(action: 'accept.all', label: __('cookieConsent::cookies.all'), attributes: ['class' => 'cookiesBtn cookiesBtn--accept'])
                     @cookieconsentbutton(action: 'accept.essentials', label: __('cookieConsent::cookies.essentials'), attributes: ['class' => 'cookiesBtn cookiesBtn--essentials'])
+                    @cookieconsentbutton(action: 'accept.all', label: __('cookieConsent::cookies.all'), attributes: ['class' => 'cookiesBtn cookiesBtn--accept'])
                 </div>
             </div>
         </div>
@@ -60,14 +55,12 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <a href="#cookies-policy-{{ $category->key() }}" class="cookies__details" style="color: #000; text-decoration: underline;">@lang('cookieConsent::cookies.details.more')</a>
+                        <a href="#cookies-policy-{{ $category->key() }}" class="cookies__details">@lang('cookieConsent::cookies.details.more')</a>
                     </div>
                     @endforeach
                 </div>
                 <div class="cookies__save">
-                    <button type="submit" class="cookiesBtn__link" style="color: #fff;
-    border-color: #000;
-    background: #000;">@lang('cookieConsent::cookies.save')</button>
+                    <button type="submit" class="cookiesBtn__link">@lang('cookieConsent::cookies.save')</button>
                 </div>
             </form>
         </div>
@@ -77,7 +70,7 @@
 {{-- STYLES & SCRIPT : feel free to remove them and add your own --}}
 
 <script data-cookie-consent>
-    {!! file_get_contents(LCC_ROOT . '/resources/js/script.js') !!}
+    {!! file_get_contents(LCC_ROOT . '/dist/script.js') !!}
 </script>
 <style data-cookie-consent>
     {!! file_get_contents(LCC_ROOT . '/dist/style.css') !!}

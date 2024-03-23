@@ -146,6 +146,15 @@
             ]
         },
         {
+            "url": "/admin/cookie",
+            "name": "Elenco consensi sui cookie",
+            "icon": "menu-icon tf-icons ti ti-id",
+            "slug": "cookie-admin",
+            "section": [
+                "admin"
+            ]
+        },
+        {
             "url": "/settings",
             "name": "Impostazioni",
             "icon": "menu-icon tf-icons ti ti-settings",

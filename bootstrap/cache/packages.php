@@ -113,7 +113,7 @@
       'Flare' => 'Spatie\\LaravelIgnition\\Facades\\Flare',
     ),
   ),
-  'whitecube/laravel-cookie-consent' => 
+  'yellowdigitallabs/laravel-cookie-consent' => 
   array (
     'providers' => 
     array (
