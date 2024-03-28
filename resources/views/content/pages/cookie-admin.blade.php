@@ -45,9 +45,10 @@ $configData = Helper::appClasses();
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>User</th>
-                    <th>Consents</th>
-                    <th>Updated At</th>
+                    <th>Utente</th>
+				    <th>Indirizzo IP</th>
+                    <th>Consensi</th>
+                    <th>Ultima modifica</th>
                 </tr>
             </thead>
         </table>
