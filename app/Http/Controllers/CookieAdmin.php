@@ -70,7 +70,8 @@ class CookieAdmin extends Controller
       $q = CookieModel::where(function ($query) use ($search) {
         return $query
           ->where("user_name", "LIKE", "%{$search}%")
-          ->orWhere("consents", "LIKE", "%{$search}%");
+          ->orWhere("consents", "LIKE", "%{$search}%")
+          ->orWhere("ip_address", "LIKE", "%{$search}%");
       });
 
       $customers = $q
