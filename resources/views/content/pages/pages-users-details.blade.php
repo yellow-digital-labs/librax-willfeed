@@ -164,13 +164,7 @@ $(document).ready(function () {
             <li class="nav-item"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-primary btn-reject" href="javascript:void(0);"><i class="wf-icon-no ti-xs me-1"></i>Unverify</a></li>
             @endif
         </ul>
-        @endif
-
-        <!-- Extend Free trial button  -->
-        <ul class="nav nav-pills flex-row mb-4 card-header-pills user-details-actions">
-            <li class="nav-item"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-primary" href="javascript:void(0);">ESTENDI PROVA GRATUITA</a></li>
-        </ul>
-        
+        @endif 
         <!--/ User Pills -->
         <div class="tab-content p-0 @if($isOnlyProfile && $authUser->accountType!=0) tab-content-buyer @endif">
             <div class="tab-pane fade {{$is_expired?'':'show active'}}" id="navs-pills-top-Profilo" role="tabpanel">
