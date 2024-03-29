@@ -165,6 +165,11 @@ $(document).ready(function () {
             @endif
         </ul>
         @endif
+
+        <!-- Extend Free trial button  -->
+        <ul class="nav nav-pills flex-row mb-4 card-header-pills user-details-actions">
+            <li class="nav-item"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-primary" href="javascript:void(0);">ESTENDI PROVA GRATUITA</a></li>
+        </ul>
         
         <!--/ User Pills -->
         <div class="tab-content p-0 @if($isOnlyProfile && $authUser->accountType!=0) tab-content-buyer @endif">
