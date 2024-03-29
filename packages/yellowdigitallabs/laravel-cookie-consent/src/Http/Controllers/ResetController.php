@@ -23,6 +23,7 @@ class ResetController
 
             CookieModel::updateOrCreate([
                 'user_id' => $request->user()->id,
+                'ip_address' =>  $request->ip(),
             ],
             [
                 'user_id' => $request->user()->id,
@@ -33,7 +34,10 @@ class ResetController
         } else {
             $user_type = 'Guest';
 
-            CookieModel::insert([
+            CookieModel::updateOrCreate([
+                'ip_address' =>  $request->ip(),
+            ],
+            [
                 'user_name' => $user_type,
                 'consents' => 'Reset',
                 'created_at' => date('Y-m-d H:i:s')
