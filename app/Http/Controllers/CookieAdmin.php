@@ -8,10 +8,9 @@ use App\Helpers\Helpers;
 
 class CookieAdmin extends Controller
 {
-    public function index()
+  public function index()
   {
     $urlList = route("cookie-admin-list");
-
     return view('content.pages.cookie-admin', [
       'urlList' => $urlList
     ]);
@@ -66,22 +65,22 @@ class CookieAdmin extends Controller
           ->get();
       }
     } else {
-        $search = $request->input("search.value");
+      $search = $request->input("search.value");
 
-        $q = CookieModel::where(function ($query) use ($search) {
-            return $query
-                ->where("user_name", "LIKE", "%{$search}%")
-                ->orWhere("consents", "LIKE", "%{$search}%");
-            });
+      $q = CookieModel::where(function ($query) use ($search) {
+        return $query
+          ->where("user_name", "LIKE", "%{$search}%")
+          ->orWhere("consents", "LIKE", "%{$search}%");
+      });
 
-        $customers = $q
-            ->offset($start)
-            ->limit($limit)
-            ->orderBy($order, $dir)
-            ->get();
+      $customers = $q
+        ->offset($start)
+        ->limit($limit)
+        ->orderBy($order, $dir)
+        ->get();
 
-        $totalFiltered = $q
-            ->count();
+      $totalFiltered = $q
+        ->count();
     }
 
     $data = [];
@@ -94,6 +93,7 @@ class CookieAdmin extends Controller
         $nestedData["id"] = $customer->id;
         $nestedData["fake_id"] = ++$ids;
         $nestedData["user_name"] = $customer->user_name;
+        $nestedData["ip_address"] = $customer->ip_address;
         $nestedData["consents"] = $customer->consents;
         $nestedData["updated_at"] = date('d-m-Y H:i', strtotime($customer->created_at));
 
