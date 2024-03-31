@@ -11,6 +11,7 @@ use App\Helpers\Helpers;
 use Auth;
 use Stripe;
 use Redirect;
+use Carbon\Carbon;
 
 class UsersDetails extends Controller
 {
@@ -132,26 +133,35 @@ class UsersDetails extends Controller
     }
   }
 
-  public function extendTrial(Request $request, $userId)
-  {
-    $user = User::findOrFail($userId);
-    $today = now();
+public function extendFreeTrial($id) {
+    try {
+        $today = Carbon::now();
+        $user = User::findOrFail($id);
+        $exp_date = Carbon::parse($user->exp_datetime);
+        $newExpiryDate = $exp_date;
 
-    if ($user->exp_datetime > $today) {
-        // Trial is still active, extend from expiry date
-        $newExpiryDate = $user->exp_datetime->addDays(30);
-    } else {
-        // Trial has expired, extend from today
-        $newExpiryDate = $today->addDays(30);
+        if ($exp_date > $today) {
+            // Trial is still active, extend from expiry date
+            $newExpiryDate = $exp_date->addDays(30);
+        } else {
+            // Trial has expired, extend from today
+            $newExpiryDate = $today->addDays(30);
+        }
+
+        $user->exp_datetime = $newExpiryDate;
+        $user->save();
+
+        return response()->json([
+            "message" => "Success",
+            "code" => 200,
+            "data" => $user,
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            "message" => $e->getMessage(),
+            "code" => 500,
+            "data" => [],
+        ], 500);
     }
-
-    $user->exp_datetime = $newExpiryDate;
-    $user->save();
-     return response()->json([
-        "message" => "Internal Server Error",
-        "code" => 500,
-        "data" => [],
-      ]);
   }
-
 }
