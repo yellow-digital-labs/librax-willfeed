@@ -131,4 +131,27 @@ class UsersDetails extends Controller
       ]);
     }
   }
+
+  public function extendTrial(Request $request, $userId)
+  {
+    $user = User::findOrFail($userId);
+    $today = now();
+
+    if ($user->exp_datetime > $today) {
+        // Trial is still active, extend from expiry date
+        $newExpiryDate = $user->exp_datetime->addDays(30);
+    } else {
+        // Trial has expired, extend from today
+        $newExpiryDate = $today->addDays(30);
+    }
+
+    $user->exp_datetime = $newExpiryDate;
+    $user->save();
+     return response()->json([
+        "message" => "Internal Server Error",
+        "code" => 500,
+        "data" => [],
+      ]);
+  }
+
 }
