@@ -31,11 +31,14 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('page-script')
+<!-- Edit Profle Modal js -->
+<script src="{{asset('assets/js/modal-edit-user-proile.js')}}"></script>
 <script src="{{asset('assets/js/modal-edit-user.js')}}"></script>
 <script src="{{asset('assets/js/modal-edit-cc.js')}}"></script>
 <script src="{{asset('assets/js/modal-add-new-cc.js')}}"></script>
 <script src="{{asset('assets/js/modal-add-new-address.js')}}"></script>
 <script src="{{asset('assets/js/app-user-view.js')}}"></script>
+<!-- Extend Free Trail js -->
 <script src="{{asset('assets/js/user-extend-free-trial.js')}}"></script>
 <script src="{{asset('assets/js/app-user-view-billing.js')}}"></script>
 @if(!$isOnlyProfile)
@@ -150,9 +153,14 @@ $(document).ready(function () {
         <!-- User Pills -->
         @if(!$isOnlyProfile)
         <ul class="nav nav-pills flex-row mb-4 card-header-pills">
-            <li class="nav-item"><a class="nav-link {{$is_expired?'':'active'}}" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Profilo" aria-controls="navs-pills-top-Profilo" aria-selected="true"><i class="wf-icon-User-Info ti-xs me-1"></i>Profilo</a></li>
-
-            <li class="nav-item"><a class="nav-link {{$is_expired?'active':''}}" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Fatturazione" aria-controls="navs-pills-top-Fatturazione" aria-selected="true"><i class="wf-icon-file-text1 ti-xs me-1"></i>Abbonamento</a></li>
+            <div class="d-flex flex-grow-1">
+                <li class="nav-item"><a class="nav-link {{$is_expired?'':'active'}}" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Profilo" aria-controls="navs-pills-top-Profilo" aria-selected="true"><i class="wf-icon-User-Info ti-xs me-1"></i>Profilo</a></li>
+                <li class="nav-item"><a class="nav-link {{$is_expired?'active':''}}" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Fatturazione" aria-controls="navs-pills-top-Fatturazione" aria-selected="true"><i class="wf-icon-file-text1 ti-xs me-1"></i>Abbonamento</a></li>
+            </div>
+            <!-- Update User Profile Button -->
+            <li class="nav-item user-profile-edit-btn"><a class="nav-link" href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">Modifica Profilo</a></li>
+            <!-- User Profle Review Button -->
+            <li class="nav-item user-proile-review-btn"><a class="nav-link" href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">lnvia richiesta</a></li>
         </ul>
         @endif
         @if($authUser->accountType==0)
@@ -167,6 +175,12 @@ $(document).ready(function () {
 
             <!-- Extend Free trial button  -->
             <li class="nav-item user-extend-free-trial-btn" data-user-id="{{ $user->id }}"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-outline-primary" href="javascript:void(0);">ESTENDI PROVA GRATUITA</a></li>
+
+            <!-- approve edit button  -->
+            <li class="nav-item ms-2 user-approve-btn" data-user-id="{{ $user->id }}"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-outline-primary" href="javascript:void(0);"> Aprrova modifiche</a></li>
+
+             <!-- Refuse edit button  -->
+            <li class="nav-item  ms-2 user-Refuse-btn" data-user-id="{{ $user->id }}" ><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-outline-primary" href="javascript:void(0);">Rifiuta modifiche</a></li>
         </ul>
         @endif
     
@@ -740,5 +754,7 @@ $(document).ready(function () {
 @include('_partials/_modals/modal-add-new-address')
 @include('_partials/_modals/modal-add-new-cc')
 @include('_partials/_modals/modal-upgrade-plan')
+<!-- include the edit user profile model  -->
+@include('__partials/_modals/modal-edit-user-profile')
 <!-- /Modal -->
 @endsection
