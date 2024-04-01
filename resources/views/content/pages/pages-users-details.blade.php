@@ -36,6 +36,7 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/js/modal-add-new-cc.js')}}"></script>
 <script src="{{asset('assets/js/modal-add-new-address.js')}}"></script>
 <script src="{{asset('assets/js/app-user-view.js')}}"></script>
+<script src="{{asset('assets/js/user-extend-free-trial.js')}}"></script>
 <script src="{{asset('assets/js/app-user-view-billing.js')}}"></script>
 @if(!$isOnlyProfile)
 @php
@@ -157,14 +158,18 @@ $(document).ready(function () {
         @if($authUser->accountType==0)
         <ul class="nav nav-pills flex-row mb-4 card-header-pills user-details-actions">
             @if($user->approved_by_admin == "Pending" || $user->approved_by_admin == "No")
-            <li class="nav-item"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-primary btn-approve" href="javascript:void(0);"><i class="wf-icon-check ti-xs me-1"></i>Verify</a></li>
+            <li class="nav-item flex-grow-1"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-primary btn-approve" href="javascript:void(0);"><i class="wf-icon-check ti-xs me-1"></i>Verify</a></li>
             @endif
 
             @if($user->approved_by_admin == "Pending" || $user->approved_by_admin == "Yes")
-            <li class="nav-item"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-primary btn-reject" href="javascript:void(0);"><i class="wf-icon-no ti-xs me-1"></i>Unverify</a></li>
+            <li class="nav-item flex-grow-1"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-primary btn-reject" href="javascript:void(0);"><i class="wf-icon-no ti-xs me-1"></i>Unverify</a></li>
             @endif
+
+            <!-- Extend Free trial button  -->
+            <li class="nav-item user-extend-free-trial-btn" data-user-id="{{ $user->id }}"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-outline-primary" href="javascript:void(0);">ESTENDI PROVA GRATUITA</a></li>
         </ul>
         @endif
+    
         <!--/ User Pills -->
         <div class="tab-content p-0 @if($isOnlyProfile && $authUser->accountType!=0) tab-content-buyer @endif">
             <div class="tab-pane fade {{$is_expired?'':'show active'}}" id="navs-pills-top-Profilo" role="tabpanel">
