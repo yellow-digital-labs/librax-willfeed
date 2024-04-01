@@ -32,7 +32,7 @@ $configData = Helper::appClasses();
 
 @section('page-script')
 <!-- Edit Profle Modal js -->
-<script src="{{asset('assets/js/modal-edit-user-proile.js')}}"></script>
+<script src="{{asset('assets/js/modal-edit-user-profile.js')}}"></script>
 <script src="{{asset('assets/js/modal-edit-user.js')}}"></script>
 <script src="{{asset('assets/js/modal-edit-cc.js')}}"></script>
 <script src="{{asset('assets/js/modal-add-new-cc.js')}}"></script>
@@ -158,7 +158,7 @@ $(document).ready(function () {
                 <li class="nav-item"><a class="nav-link {{$is_expired?'active':''}}" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Fatturazione" aria-controls="navs-pills-top-Fatturazione" aria-selected="true"><i class="wf-icon-file-text1 ti-xs me-1"></i>Abbonamento</a></li>
             </div>
             <!-- Update User Profile Button -->
-            <li class="nav-item user-profile-edit-btn"><a class="nav-link" href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">Modifica Profilo</a></li>
+            <li class="nav-item user-profile-edit-btn" onclick="openEditUserModal()"><a class="nav-link" href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">Modifica Profilo</a></li>
             <!-- User Profle Review Button -->
             <li class="nav-item user-proile-review-btn"><a class="nav-link" href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">lnvia richiesta</a></li>
         </ul>
@@ -755,6 +755,6 @@ $(document).ready(function () {
 @include('_partials/_modals/modal-add-new-cc')
 @include('_partials/_modals/modal-upgrade-plan')
 <!-- include the edit user profile model  -->
-@include('__partials/_modals/modal-edit-user-profile')
+@include('_partials/_modals/modal-edit-user-profile')
 <!-- /Modal -->
 @endsection
