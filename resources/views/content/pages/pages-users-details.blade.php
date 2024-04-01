@@ -166,7 +166,7 @@ $(document).ready(function () {
             @endif
 
             <!-- Extend Free trial button  -->
-            <li class="nav-item user-extend-free-trial-btn" data-user-id="{{ $user->id }}"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-primary" href="javascript:void(0);">ESTENDI PROVA GRATUITA</a></li>
+            <li class="nav-item user-extend-free-trial-btn" data-user-id="{{ $user->id }}"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-outline-primary" href="javascript:void(0);">ESTENDI PROVA GRATUITA</a></li>
         </ul>
         @endif
     
