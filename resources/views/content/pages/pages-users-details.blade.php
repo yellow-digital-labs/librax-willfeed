@@ -32,7 +32,7 @@ $configData = Helper::appClasses();
 
 @section('page-script')
 <!-- Edit Profle Modal js -->
-<script src="{{asset('assets/js/modal-edit-seller-profile.js')}}"></script>
+@if( $user->accountType==2) <script src="{{asset('assets/js/modal-edit-seller-profile.js')}}"></script> @endif
 <script src="{{asset('assets/js/modal-edit-user.js')}}"></script>
 <script src="{{asset('assets/js/modal-edit-cc.js')}}"></script>
 <script src="{{asset('assets/js/modal-add-new-cc.js')}}"></script>
@@ -754,7 +754,30 @@ $(document).ready(function () {
 @include('_partials/_modals/modal-add-new-address')
 @include('_partials/_modals/modal-add-new-cc')
 @include('_partials/_modals/modal-upgrade-plan')
-<!-- include the edit user profile model  -->
+<!-- include the edit seller profile model  -->
+@if( $user->accountType==2)
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
+<!-- <link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" /> -->
+<!-- <link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" /> -->
+
+<!-- Page -->
+<link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-auth.css')}}">
+<!-- Custom css -->
+<!-- <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}"> -->
+
+<!-- <script src="{{asset('assets/vendor/libs/cleavejs/cleave.js')}}"></script> -->
+<!-- <script src="{{asset('assets/vendor/libs/cleavejs/cleave-phone.js')}}"></script> -->
+<script src="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.js')}}"></script>
+<!-- <script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script> -->
+<!-- <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script> -->
+<!-- <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script> -->
+<!-- <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script> -->
+
+<script src="{{asset('assets/js/custom/signup-seller-validations.js')}}"></script>
 @include('_partials/_modals/modal-edit-seller-profile')
+@endif
 <!-- /Modal -->
 @endsection

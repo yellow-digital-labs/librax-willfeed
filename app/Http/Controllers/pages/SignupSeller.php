@@ -16,6 +16,7 @@ use App\Models\OrderCapacity;
 use App\Models\Product;
 use App\Models\Region;
 use App\Models\UserDetail;
+use App\Models\UserDetailOldData;
 use App\Mail\UserRequest;
 
 class SignupSeller extends Controller
@@ -106,4 +107,51 @@ class SignupSeller extends Controller
     return redirect()->route("thankyou-signup");
 
   }
+
+  public function store_old_data(Request $request)
+{
+    // $authUser = Auth::user();
+
+    // $file_operating_license_path = $request->file('file_operating_license')->store('storage');
+
+    $userDetail = UserDetail::where('user_id', $authUser->id)->firstOrFail();
+
+    UserDetailOldData::create([
+        'user_detail_id' => $request->user_id,
+        'business_name' => $request->business_name,
+        'vat_number' => $request->vat_number,
+        'contact_person' => $request->contact_person,
+        'pec' => $request->pec,
+        'tax_id_code' => $request->tax_id_code,
+        'administrator_name' => $request->administrator_name,
+        'main_activity_ids' => $request->main_activity_ids,
+        'address' => $request->address,
+        'house_no' => $request->house_no,
+        'region' => $request->region,
+        'province' => $request->province,
+        'common' => $request->common,
+        'pincode' => $request->pincode,
+        'storage_capacity' => $request->storage_capacity,
+        'order_capacity_limits' => $request->order_capacity_limits,
+        'order_capacity_limits_new' => $request->order_capacity_limits_new,
+        'available_products' => implode(",", $request->available_products),
+        'geographical_coverage_regions' => implode(",", $request->geographical_coverage_regions),
+        'geographical_coverage_provinces' => implode(",", $request->geographical_coverage_provinces),
+        'time_limit_daily_order' => $request->time_limit_daily_order,
+        'bank_transfer' => $request->bank_transfer,
+        'bank_check' => $request->bank_check,
+        'bank' => $request->bank,
+        'rib' => $request->rib,
+        'rid' => $request->rid,
+        // 'file_operating_license' => $file_operating_license_path,
+        // 'updated_by' => $authUser->email
+    ]);
+
+  
+
+    // return redirect()->route("thankyou-signup");
+}
+
+
+
 }

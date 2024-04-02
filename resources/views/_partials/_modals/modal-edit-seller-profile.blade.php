@@ -7,51 +7,13 @@
         <div class="text-center mb-4">
           <h3 class="mb-2">Edit User Information</h3>
           <p class="text-muted">Updating user details will receive a privacy audit.</p>
-        </div>
-              @php
-$customizerHidden = 'customizer-hide';
-$configData = Helper::appClasses();
-@endphp
-@extends('layouts/layoutMaster')
-@section('title', 'Multi Steps Sign-up - Pages')
-@section('vendor-style')
-<!-- Vendor -->
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
-@endsection
-@section('page-style')
-<!-- Page -->
-<link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-auth.css')}}">
-<!-- Custom css -->
-<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
-@endsection
-@section('vendor-script')
-<script src="{{asset('assets/vendor/libs/cleavejs/cleave.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/cleavejs/cleave-phone.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
-@endsection
-@section('page-script')
-<script src="{{asset('assets/js/custom/signup-client-validations.js')}}"></script>
-@endsection
-@section('content')
-    
-<header class="auth-header">
-    <a href="{{route("pages-home")}}" class="auth-header__logo">
-        <img src="{{asset("/assets/img/weelfeed-brand-logo-white.svg")}}">
-    </a>
-</header>
+        </div>    
 
 <div class="signup-wiz">
     <div class="authentication-wrapper signup-wiz__wrapper">
         <div class="authentication-inner signup-wiz__inner">
 
-            <h1 class="mb-5 pt-2 text-center text-black text-uppercase signup-wiz__maintitle">REGISTRAZIONE CLIENTE</h1>
+            <h1 class="mb-5 pt-2 text-center text-black text-uppercase signup-wiz__maintitle">REGISTRAZIONE VENDITORE</h1>
 
             <div id="multiStepsValidation" class="bs-stepper shadow-none linear signup-wiz__stepper">
 
@@ -71,7 +33,7 @@ $configData = Helper::appClasses();
                         <button type="button" class="step-trigger signup-wiz__trigger" aria-selected="false" disabled="disabled">
                             <span class="bs-stepper-circle"><i class="wf-icon wf-icon-location"></i></span>
                             <span class="bs-stepper-label">
-                                <span class="bs-stepper-title">Destinazione</span>
+                                <span class="bs-stepper-title">Operatività</span>
                             </span>
                         </button>
                     </div>
@@ -86,26 +48,15 @@ $configData = Helper::appClasses();
                             </span>
                         </button>
                     </div>
-                    <div class="line">
-                        <i class="ti ti-chevron-right"></i>
-                    </div>
-                    <div class="step signup-wiz__step" data-target="#SignupStepProfile">
-                        <button type="button" class="step-trigger signup-wiz__trigger" aria-selected="false" disabled="disabled">
-                            <span class="bs-stepper-circle"><i class="wf-icon wf-icon-user"></i></span>
-                            <span class="bs-stepper-label">
-                                <span class="bs-stepper-title">Profilo</span>
-                            </span>
-                        </button>
-                    </div>
                 </div>
 
                 <div class="bs-stepper-content signup-wiz__body">
-                    <form id="multiStepsForm" onsubmit="return false" class="signup-wiz__form" method="POST" enctype="multipart/form-data">
+                    <form id="sellerEditForm" action="{{ route('edit-seller-profile') }}" onsubmit="return false" class="signup-wiz__form">
                         @csrf
                         <!-- Registry -->
                         <div id="SignupStepRegistry" class="content active dstepper-block fv-plugins-bootstrap5 fv-plugins-framework">
                             <div class="content-header mb-4">
-                                <h3 class="signup-wiz__name text-center">Informazioni societarie</h3>
+                                <h3 class="signup-wiz__name">Informazioni societarie</h3>
                             </div>
                             <div class="row g-3">
 
@@ -146,7 +97,7 @@ $configData = Helper::appClasses();
                                     <label class="form-label" for="main_activity_ids">Attività principale *</label>
                                     <select name="main_activity_ids" id="main_activity_ids" class="form-select select2" placeholder="Seleziona attività principale">
                                         <option value=""></option>
-                                    @foreach($main_activity as $_main_activity)
+                                         @foreach($main_activity as $_main_activity)
                                         <option value="{{$_main_activity}}" {{$user_detail?($user_detail->main_activity_ids==$_main_activity?'selected':''):''}}>{{$_main_activity}}</option>
                                     @endforeach
                                     </select>
@@ -198,9 +149,6 @@ $configData = Helper::appClasses();
                                 </div>
 
                                 <div class="col-12 d-flex justify-content-end mt-4">
-                                    <!-- <button class="btn btn-label-secondary btn-prev" disabled> <i class="ti ti-arrow-left ti-xs me-sm-1 me-0"></i>
-                                        <span class="align-middle d-sm-inline-block d-none">Indietro</span>
-                                    </button> -->
                                     <button class="btn btn-dark btn-next"> <span class="align-middle d-sm-inline-block d-none me-sm-1 me-0">Avanti</span> <i class="ti ti-arrow-right ti-xs"></i></button>
                                 </div>
                             </div>
@@ -209,85 +157,71 @@ $configData = Helper::appClasses();
                         <!-- Destination -->
                         <div id="SignupStepDestination" class="content fv-plugins-bootstrap5 fv-plugins-framework">
                             <div class="content-header mb-4">
-                                <h3 class="signup-wiz__name text-center">Informazioni destinazione</h3>
+                                <h3 class="signup-wiz__name">Informazioni operative</h3>
                             </div>
                             <div class="row g-3">
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="ease_of_access">Facilità di accesso *</label>
-                                    <select name="ease_of_access" id="ease_of_access" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option value=""></option>
-                                    @foreach($ease_of_access as $_ease_of_access)
-                                        <option value="{{$_ease_of_access->name}}" data-id="{{$_ease_of_access->id}}" {{$user_detail?($user_detail->ease_of_access==$_ease_of_access->name?'selected':''):''}}>{{$_ease_of_access->name}}</option>
+                                    <label class="form-label" for="storage_capacity">Capacità di stoccaggio *</label>
+                                    <select name="storage_capacity" id="storage_capacity" class="form-select select2" data-minimum-results-for-search="Infinity">
+                                    <option value="">Seleziona facilità di accesso</option>
+                                    @foreach($storage_capacity as $_storage_capacity)
+                                        <option value="{{$_storage_capacity->name}}" {{$user_detail?($user_detail->storage_capacity==$_storage_capacity->name?'selected':''):''}}>{{$_storage_capacity->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
                                 
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="mobile_unloading">Cellulare referente di scarico *</label>
-                                    <div class="input-group input-group-merge">
-                                        <span class="input-group-text">+39 </span>
-                                        <input type="text" class="form-control" id="mobile_unloading" name="mobile_unloading" value="{{$user_detail?$user_detail->mobile_unloading:''}}">
+                                <div class="col-sm-6 order_capacity_limits_container">
+                                    <label class="form-label" for="order_capacity_limits">Limiti di capacità ordini *</label>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <input type="text" name="order_capacity_limits" id="order_capacity_limits" class="form-control" placeholder="Min" value="{{$user_detail?$user_detail->order_capacity_limits:''}}" />
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="order_capacity_limits_new" id="order_capacity_limits_new" class="form-control" placeholder="Max" value="{{$user_detail?$user_detail->order_capacity_limits_new:''}}" />
+                                        </div>
                                     </div>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="destination_address">Indirizzo destinazione (se diverso da anagrafica)</label>
-                                    <select name="destination_address" id="destination_address" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option value="No">No</option>
-                                        <option value="Si">Si</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-sm-6 address-container hide">
-                                    <label class="form-label" for="destination_address_via">Indirizzo</label>
-                                    <input type="text" name="destination_address_via" id="destination_address_via" class="form-control" placeholder="Via Battisti" value="{{$user_detail?$user_detail->destination_address_via:''}}" />
-                                </div>
-                                
-                                <div class="col-sm-6 address-container hide">
-                                    <label class="form-label" for="destination_house_no">Numero civico</label>
-                                    <input type="text" name="destination_house_no" id="destination_house_no" class="form-control" placeholder="Inserisci il numero civico" />
-                                </div>
-                                
-                                <div class="col-sm-6 address-container hide">
-                                    <label class="form-label" for="destination_region">Regione *</label>
-                                    <select name="destination_region" id="destination_region" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option value=""></option>
-                                    @foreach($region as $_region)
-                                        <option value="{{$_region->name}}" data-id="{{$_region->id}}" {{$user_detail?($user_detail->destination_region==$_region->name?'selected':''):''}}>{{$_region->name}}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="col-sm-6 address-container hide">
-                                    <label class="form-label" for="destination_province">Provincia</label>
-                                    <select name="destination_province" id="destination_province" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option value=""></option>
-                                    @foreach($province as $_province)
-                                        <option value="{{$_province->name}}" data-id="{{$_province->id}}" data-region="{{$_province->regions_id}}" {{$user_detail?($user_detail->destination_province==$_province->name?'selected':''):''}}>{{$_province->name}}</option>
+                                    <label class="form-label" for="available_products">Prodotti disponibili *</label>
+                                    <select name="available_products[]" id="available_products" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
+                                        <option value="">Seleziona prodotti</option>
+                                    @foreach($product as $_product)
+                                        <option value="{{$_product->name}}" {{$user_detail?(in_array($_product->name, explode(",",$user_detail->available_products))?'selected':''):''}}>{{$_product->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
                                 
-                                <div class="col-sm-6 address-container hide">
-                                    <label class="form-label" for="destination_common">Comune</label>
-                                    <select name="destination_common" id="destination_common" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option value=""></option>
-                                    @foreach($common as $_common)
-                                        <option value="{{$_common->name}}" data-id="{{$_common->id}}" data-province="{{$_common->provinces_id}}" {{$user_detail?($user_detail->destination_common==$_common->name?'selected':''):''}}>{{$_common->name}}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                                
-                                <div class="col-sm-6 address-container hide">
-                                    <label class="form-label" for="destination_pincode">CAP</label>
-                                    <input type="text" name="destination_pincode" id="destination_pincode" class="form-control" placeholder="Inserisci il CAP" value="{{$user_detail?$user_detail->destination_pincode:''}}" />
-                                </div>
-
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="minor_plant_code">Codice licenza cisterna</label>
-                                    <input type="text" name="minor_plant_code" id="minor_plant_code" class="form-control" placeholder="Codice licenza cisterna" value="{{$user_detail?$user_detail->minor_plant_code:''}}" />
+                                    <label class="form-label" for="geographical_coverage_regions">Copertura geografica regioni *</label>
+                                    <select name="geographical_coverage_regions[]" id="geographical_coverage_regions" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
+                                        <option value="">Seleziona le regioni coperte</option>
+                                    @foreach($region as $_region)
+                                        <option value="{{$_region->name}}" data-id="{{$_region->id}}" {{$user_detail?($user_detail->geographical_coverage_regions==$_region->name?'selected':''):''}}>{{$_region->name}}</option>
+                                    @endforeach
+                                    </select>
                                 </div>
+                                
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="geographical_coverage_provinces">Copertura geografica province</label>
+                                    <select name="geographical_coverage_provinces[]" id="geographical_coverage_provinces" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
+                                        <option value="">Seleziona prodotti </option>
+                                    @foreach($province as $_province)
+                                        <option value="{{$_province->name}}" data-id="{{$_province->id}}" data-region="{{$_province->regions_id}}" {{$user_detail?($user_detail->geographical_coverage_provinces==$_province->name?'selected':''):''}}>{{$_province->name}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                                
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="time_limit_daily_order">Tempo limite accettazione ordine *</label>
+                                    <input type="time" name="time_limit_daily_order" id="time_limit_daily_order" class="form-control" placeholder="Seleziona limite" value="{{$user_detail?$user_detail->time_limit_daily_order:''}}" />
+                                </div>
+
+                                <!-- <div class="col-sm-6">
+                                    <label class="form-label" for="file_operating_license">Licenza di esercizio *</label>
+                                    <input type="file" name="file_operating_license" id="file_operating_license" class="form-control" placeholder="Nessun file caricato" accept="application/pdf" value="{{$user_detail?$user_detail->file_operating_license:''}}" />
+                                </div> -->
 
                                 <div class="col-12 d-flex justify-content-between mt-4">
                                     <button class="btn btn-outline-dark btn-prev waves-effect"> <i class="ti ti-arrow-left ti-xs me-sm-1 me-0"></i>
@@ -301,364 +235,76 @@ $configData = Helper::appClasses();
                         <!-- Billing -->
                         <div id="SignupStepBilling" class="content fv-plugins-bootstrap5 fv-plugins-framework">
                             <div class="content-header">
-                                <h3 class="signup-wiz__name text-center">Informazioni fatturazione</h3>
+                                <h3 class="signup-wiz__name">Metodi di pagamento accettati</h3>
                             </div>
 
                             <div class="row g-3">
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="payment_extension">Dilazione di pagamento preferita *</label>
-                                    <select name="payment_extension" id="payment_extension" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option value=""></option>
-                                    @foreach($payment_extension as $_payment_extension)
-                                        <option value="{{$_payment_extension->name}}" {{$user_detail?($user_detail->destination_common==$_payment_extension->name?'selected':''):''}}>{{$_payment_extension->name}}</option>
-                                    @endforeach
-                                    </select>
+                                    <label class="form-label" for="bank_transfer">Bonifico bancario *</label>
+                                    <input type="text" name="bank_transfer" id="bank_transfer" class="form-control" placeholder="IBAN" value="{{$user_detail?$user_detail->bank_transfer:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="payment_term">Modalità di pagamento * </label>
-                                    <select name="payment_term" id="payment_term" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option value=""></option>
-                                    @foreach($payment_terms as $_payment_terms)
-                                        <option value="{{$_payment_terms->name}}" {{$user_detail?($user_detail->payment_term==$_payment_terms->name?'selected':''):''}}>{{$_payment_terms->name}}</option>
-                                    @endforeach
-                                    </select>
+                                    <label class="form-label" for="bank_check">Assegno bancario *</label>
+                                    <input type="text" name="bank_check" id="bank_check" class="form-control" placeholder="Intestazione assegno" value="{{$user_detail?$user_detail->bank_check:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="reference_bank">Banca di riferimento (RIBA e RID) *</label>
-                                    <input type="text" name="reference_bank" id="reference_bank" class="form-control" placeholder="Inserisci filiale" />
-                                </div>
-                                
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="iban">IBAN (RIBA e RID)</label>
-                                    <input type="text" name="iban" id="iban" class="form-control" placeholder="ITxxxxxxxxxxxx" />
-                                </div>
-                                
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="sdi">SDI *</label>
-                                    <input type="text" name="sdi" id="sdi" class="form-control" placeholder="Inserisci codice univoco" />
-                                </div>
-                                
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="cig">CIG</label>
-                                    <input type="text" name="cig" id="cig" class="form-control" placeholder="Inserisci CIG ove applicabile" />
-                                </div>
-                                
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="cup">CUP</label>
-                                    <input type="text" name="cup" id="cup" class="form-control" placeholder="Inserisci CUP, ove applicabile" />
-                                </div>
-                                
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="file_1">Esenzione IVA *</label>
-                                    <input class="form-control" type="file" id="file_1" name="file_1">
-                                </div>
-                                
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="file_2">Esenzione IVA *</label>
-                                    <input class="form-control" type="file" id="file_2" name="file_2">
-                                </div>
-                                
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="file_3">Esenzione IVA *</label>
-                                    <input class="form-control" type="file" id="file_3" name="file_3">
-                                </div>
-
-                                <div class="col-12 d-flex justify-content-between mt-4">
-                                    <button class="btn btn-outline-dark btn-prev waves-effect"> <i class="ti ti-arrow-left ti-xs me-sm-1 me-0"></i>
-                                        <span class="align-middle d-sm-inline-block d-none">Indietro</span>
-                                    </button>
-                                    <button class="btn btn-dark btn-next waves-effect waves-light"> <span class="align-middle d-sm-inline-block d-none me-sm-1 me-0">Avanti</span> <i class="ti ti-arrow-right ti-xs"></i></button>
-                                    <!-- <button type="submit" class="btn btn-success btn-next btn-submit waves-effect waves-light">Submit</button> -->
+                                    <input type="text" name="bank" id="bank" class="form-control" placeholder="Banca" value="{{$user_detail?$user_detail->bank:''}}" />
                                 </div>
                             </div>
-                            <!--/ Credit Card Details -->
-                        </div>
 
-                        <!-- Profile -->
-                        <div id="SignupStepProfile" class="content fv-plugins-bootstrap5 fv-plugins-framework">
-                            <div class="content-header">
-                                <h3 class="signup-wiz__name text-center">Final Step: Profilo Cliente</h3>
-                            </div>
 
-                            <div class="row g-3">
+                            <div class="row g-3 mt-4">
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="products">Tipologia di prodotti consumati *</label>
-                                    <select name="products" id="products" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
-                                        <option value=""></option>
-                                    @foreach($product as $_product)
-                                        <option value="{{$_product->name}}" {{$user_detail?(in_array($_product->name, explode(",",$user_detail->products))?'selected':''):''}}>{{$_product->name}}</option>
-                                    @endforeach
-                                    </select>
+                                    <label class="form-label" for="">RIBA *</label>
+                                    <div class="row g-3">
+                                        <div class="col-sm-6">
+                                            <div class="form-check custom-option custom-option-basic">
+                                                <label class="form-check-label custom-option-content" for="rib-si">
+                                                  <input name="rib" class="form-check-input" type="radio" value="Si" id="rib-si" {{$user_detail?($user_detail->rib=='Si'?'checked=""':''):'checked=""'}}>
+                                                  <span class="custom-option-header">
+                                                    <span class="h6 mb-0">Si</span>
+                                                  </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-check custom-option custom-option-basic">
+                                                <label class="form-check-label custom-option-content" for="rib-no">
+                                                  <input name="rib" class="form-check-input" type="radio" value="No" id="rib-no" {{$user_detail?($user_detail->rib=='No'?'checked=""':''):''}}>
+                                                  <span class="custom-option-header">
+                                                    <span class="h6 mb-0">No</span>
+                                                  </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="monthly_consumption">Consumi medi mensili *</label>
-                                    <select name="monthly_consumption" id="monthly_consumption" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option value=""></option>
-                                    @foreach($consume_capacity as $_consume_capacity)
-                                        <option value="{{$_consume_capacity->name}}" {{$user_detail?($user_detail->monthly_consumption==$_consume_capacity->name?'selected':''):''}}>{{$_consume_capacity->name}}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                                
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="is_private_distributer">Sei un distributore privato? *</label>
-                                    <select name="is_private_distributer" id="is_private_distributer" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option value=""></option>
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="col-sm-6 js-no-of-dis-container">
-                                    <label class="form-label" for="no_of_distributer">Numero di distributori *</label>
-                                    <input type="text" name="no_of_distributer" id="no_of_distributer" class="form-control" placeholder="Inserisci numero di distributori" />
-                                </div>
-                                
-                                <div class="col-sm-12">
-                                    <label class="form-label" for="">Flotta *</label>
-                                    <div class="card shadow-none bg-transparent border border-secondary mb-3">
-                                        <div class="card-body p-3">
-                                            <div class="row g-3">
-                                                
-                                                <div class="col-sm-6">
-                                                    <div class="card shadow-none bg-transparent border border-secondary h-100">
-                                                        <div class="card-body p-3">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <input class="form-check-input mt-0 container-transport js-type_of_flotta-check" type="checkbox">
-                                                                </div>
-                                                                <div class="col px-0">
-                                                                    Camion Ribaltabili
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" class="form-control hide js-type_of_flotta-input" aria-label="000" name="type_of_flotta" value="0">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-6">
-                                                    <div class="card shadow-none bg-transparent border border-secondary h-100">
-                                                        <div class="card-body p-3">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <input class="form-check-input mt-0 container-transport js-folding_trucks-check" type="checkbox">
-                                                                </div>
-                                                                <div class="col px-0">
-                                                                    Camion Furgonati
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" class="form-control hide js-folding_trucks-input" aria-label="000" name="folding_trucks" value="0">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-6">
-                                                    <div class="card shadow-none bg-transparent border border-secondary h-100">
-                                                        <div class="card-body p-3">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <input class="form-check-input mt-0 container-transport js-van_trucks-check" type="checkbox">
-                                                                </div>
-                                                                <div class="col px-0">
-                                                                    Camion Centinato
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" class="form-control hide js-van_trucks-input" aria-label="000" name="van_trucks" value="0">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-6">
-                                                    <div class="card shadow-none bg-transparent border border-secondary h-100">
-                                                        <div class="card-body p-3">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <input class="form-check-input mt-0 container-transport js-hundred_trucks-check" type="checkbox">
-                                                                </div>
-                                                                <div class="col px-0">
-                                                                    Camion a telaio
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" class="form-control hide js-hundred_trucks-input" aria-label="000" value="0">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-6">
-                                                    <div class="card shadow-none bg-transparent border border-secondary h-100">
-                                                        <div class="card-body p-3">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <input class="form-check-input mt-0 container-transport js-chassis_trucks-check" type="checkbox">
-                                                                </div>
-                                                                <div class="col px-0">
-                                                                    Camion a cassone Fisso
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" class="form-control hide" name="chassis_trucks" aria-label="000" value="0">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-6">
-                                                    <div class="card shadow-none bg-transparent border border-secondary h-100">
-                                                        <div class="card-body p-3">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
-                                                                </div>
-                                                                <div class="col px-0">
-                                                                    Camion Frigo
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" class="form-control hide" aria-label="000" name="fixed_cassone_truck">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-6">
-                                                    <div class="card shadow-none bg-transparent border border-secondary h-100">
-                                                        <div class="card-body p-3">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
-                                                                </div>
-                                                                <div class="col px-0">
-                                                                    Camion con Gru
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" class="form-control hide" aria-label="000" name="fridge_truck" value="0">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-6">
-                                                    <div class="card shadow-none bg-transparent border border-secondary h-100">
-                                                        <div class="card-body p-3">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
-                                                                </div>
-                                                                <div class="col px-0">
-                                                                    Camion Scarrabili
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" class="form-control hide" aria-label="000" name="truck_with_crane" value="0">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-6">
-                                                    <div class="card shadow-none bg-transparent border border-secondary h-100">
-                                                        <div class="card-body p-3">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
-                                                                </div>
-                                                                <div class="col px-0">
-                                                                    Bitoniere
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" class="form-control hide" aria-label="000" name="scarble_truck" value="0">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-6">
-                                                    <div class="card shadow-none bg-transparent border border-secondary h-100">
-                                                        <div class="card-body p-3">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
-                                                                </div>
-                                                                <div class="col px-0">
-                                                                    Veicoli Comerciali & Bus
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" class="form-control hide" aria-label="000" name="bitoniere" value="0">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-6">
-                                                    <div class="card shadow-none bg-transparent border border-secondary h-100">
-                                                        <div class="card-body p-3">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
-                                                                </div>
-                                                                <div class="col px-0">
-                                                                    Semirimorchio
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" class="form-control hide" aria-label="000" name="comircial_vehicle" value="0">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-6">
-                                                    <div class="card shadow-none bg-transparent border border-secondary h-100">
-                                                        <div class="card-body p-3">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
-                                                                </div>
-                                                                <div class="col px-0">
-                                                                    Rimorchi
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" class="form-control hide" aria-label="000" name="semi_trailer" value="0">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-6">
-                                                    <div class="card shadow-none bg-transparent border border-secondary h-100">
-                                                        <div class="card-body p-3">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <input class="form-check-input mt-0 container-transport" type="checkbox">
-                                                                </div>
-                                                                <div class="col px-0">
-                                                                    Trattori stradali
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" class="form-control hide" aria-label="000" name="trailers" value="0">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
+                                    <label class="form-label" for="">RID *</label>
+                                    <div class="row g-3">
+                                        <div class="col-sm-6">
+                                            <div class="form-check custom-option custom-option-basic">
+                                                <label class="form-check-label custom-option-content" for="rid-si">
+                                                  <input name="rid" class="form-check-input" type="radio" value="Si" id="rid-si" {{$user_detail?($user_detail->rid=='Si'?'checked=""':''):'checked=""'}}>
+                                                  <span class="custom-option-header">
+                                                    <span class="h6 mb-0">Si</span>
+                                                  </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-check custom-option custom-option-basic">
+                                                <label class="form-check-label custom-option-content" for="rid-no">
+                                                  <input name="rid" class="form-check-input" type="radio" value="No" id="rid-no" {{$user_detail?($user_detail->rid=='No'?'checked=""':''):''}}>
+                                                  <span class="custom-option-header">
+                                                    <span class="h6 mb-0">No</span>
+                                                  </span>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -668,6 +314,7 @@ $configData = Helper::appClasses();
                                     <button class="btn btn-outline-dark btn-prev waves-effect"> <i class="ti ti-arrow-left ti-xs me-sm-1 me-0"></i>
                                         <span class="align-middle d-sm-inline-block d-none">Indietro</span>
                                     </button>
+                                    <!-- <button class="btn btn-dark btn-next waves-effect waves-light"> <span class="align-middle d-sm-inline-block d-none me-sm-1 me-0">Avanti</span> <i class="ti ti-arrow-right ti-xs"></i></button> -->
                                     <button type="submit" class="btn btn-dark btn-next btn-submit waves-effect waves-light">Avanti</button>
                                 </div>
                             </div>
@@ -677,11 +324,6 @@ $configData = Helper::appClasses();
                 </div>
                 
             </div>
-
-            <div class="signup-wiz__footer">
-                <p>Hai già un account? <a href="{{route('register')}}">Entra</a></p>    
-            </div>
-
         </div>
     </div>
 </div>
@@ -689,7 +331,9 @@ $configData = Helper::appClasses();
 // Check selected custom option
 window.Helpers.initCustomOptionCheck();
 </script>
-@endsection
+
+     
+
       </div>
     </div>
   </div>

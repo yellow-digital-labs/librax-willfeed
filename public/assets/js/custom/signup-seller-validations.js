@@ -5,12 +5,12 @@
 'use strict';
 
 // Select2 (jquery)
-$(function() {
+$(function () {
     var select2 = $('.select2');
 
     // select2
     if (select2.length) {
-        select2.each(function() {
+        select2.each(function () {
             var $this = $(this);
             $this.wrap('<div class="position-relative"></div>');
             $this.select2({
@@ -20,62 +20,64 @@ $(function() {
         });
     }
 
-    $("#region").on("change", function(){
+    $("#region").on("change", function () {
         let select_id = $(this).find(":selected").data("id");
-        
+
         $("#province").select2("destroy").select2({
-            templateResult: function(option, container) {
-                if ($(option.element).attr("data-region") != select_id){ 
-                  $(container).css("display","none");
+            templateResult: function (option, container) {
+                if ($(option.element).attr("data-region") != select_id) {
+                    $(container).css("display", "none");
                 }
-        
+
                 return option.text;
             }
         });
     });
 
-    $("#province").on("change", function(){
+    $("#province").on("change", function () {
         let select_id = $(this).find(":selected").data("id");
-        
+
         $("#common").select2("destroy").select2({
-            templateResult: function(option, container) {
-                if ($(option.element).attr("data-province") != select_id){ 
-                  $(container).css("display","none");
+            templateResult: function (option, container) {
+                if ($(option.element).attr("data-province") != select_id) {
+                    $(container).css("display", "none");
                 }
-        
+
                 return option.text;
             }
         });
     });
 
-    $("#geographical_coverage_regions").on("change", function(){
+    $("#geographical_coverage_regions").on("change", function () {
         let regions = $(this).find(":selected");
         let selected_ids = [];
 
-        for(let i = 0; i < regions.length; i++){
+        for (let i = 0; i < regions.length; i++) {
             selected_ids.push($(regions[i]).data("id"));
         }
         console.log("selected_ids", selected_ids)
         $("#geographical_coverage_provinces").select2("destroy").select2({
-            templateResult: function(option, container) {
-                if(jQuery.inArray($(option.element).data("region"), selected_ids) === -1){
-                    $(container).css("display","none");
+            templateResult: function (option, container) {
+                if (jQuery.inArray($(option.element).data("region"), selected_ids) === -1) {
+                    $(container).css("display", "none");
                 }
-        
+
                 return option.text;
             }
         });
     });
+
+
 });
 
 // Multi Steps Validation
 // --------------------------------------------------------------------
-document.addEventListener('DOMContentLoaded', function(e) {
-    (function() {
+document.addEventListener('DOMContentLoaded', function (e) {
+    (function () {
         const stepsValidation = document.querySelector('#multiStepsValidation');
         if (typeof stepsValidation !== undefined && stepsValidation !== null) {
             // Multi Steps form
-            const stepsValidationForm = stepsValidation.querySelector('#multiStepsForm');
+            const stepsValidationForm = stepsValidation.querySelector('#sellerEditForm');
             // Form steps
             const stepsValidationFormStep1 = stepsValidationForm.querySelector('#SignupStepRegistry');
             const stepsValidationFormStep2 = stepsValidationForm.querySelector('#SignupStepDestination');
@@ -116,13 +118,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
                                 message: 'Please enter cellulare referente'
                             },
                             stringLength: {
-                              min: 10,
-                              max: 10,
-                              message: 'cellulare referente should be 10 digit long'
+                                min: 10,
+                                max: 10,
+                                message: 'cellulare referente should be 10 digit long'
                             },
                             regexp: {
-                              regexp: /^[0-9]+$/,
-                              message: 'cellulare referente can only consist of number'
+                                regexp: /^[0-9]+$/,
+                                message: 'cellulare referente can only consist of number'
                             }
                         }
                     },
@@ -132,15 +134,15 @@ document.addEventListener('DOMContentLoaded', function(e) {
                                 message: 'Please enter PEC'
                             },
                             emailAddress: {
-                              message: 'The value is not a valid PEC'
+                                message: 'The value is not a valid PEC'
                             }
                         }
                     },
                     tax_id_code: {
                         validators: {
                             regexp: {
-                              regexp: /^[A-Z0-9]+$/,
-                              message: 'Codice fiscale can only consist of capital alphabets or number'
+                                regexp: /^[A-Z0-9]+$/,
+                                message: 'Codice fiscale can only consist of capital alphabets or number'
                             }
                         }
                     },
@@ -206,13 +208,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     submitButton: new FormValidation.plugins.SubmitButton()
                 },
                 init: instance => {
-                    instance.on('plugins.message.placed', function(e) {
+                    instance.on('plugins.message.placed', function (e) {
                         if (e.element.parentElement.classList.contains('input-group')) {
                             e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
                         }
                     });
                 }
-            }).on('core.form.valid', function() {
+            }).on('core.form.valid', function () {
                 // Jump to the next step when all fields in the current step are valid
                 validationStepper.next();
             });
@@ -285,13 +287,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     submitButton: new FormValidation.plugins.SubmitButton()
                 },
                 init: instance => {
-                    instance.on('plugins.message.placed', function(e) {
+                    instance.on('plugins.message.placed', function (e) {
                         if (e.element.parentElement.classList.contains('input-group')) {
                             e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
                         }
                     });
                 }
-            }).on('core.form.valid', function() {
+            }).on('core.form.valid', function () {
                 // Jump to the next step when all fields in the current step are valid
                 validationStepper.next();
             });
@@ -340,17 +342,32 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     submitButton: new FormValidation.plugins.SubmitButton()
                 },
                 init: instance => {
-                    instance.on('plugins.message.placed', function(e) {
+                    instance.on('plugins.message.placed', function (e) {
                         if (e.element.parentElement.classList.contains('input-group')) {
                             e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
                         }
                     });
                 }
-            }).on('core.form.valid', function() {
-                // Jump to the next step when all fields in the current step are valid
-                console.log("submit form");
+            }).on('core.form.valid', function () {
                 stepsValidationForm.submit();
                 validationStepper.next();
+                console.log('final submit');
+
+                var formData = $("#sellerEditForm").serialize();
+
+                $.ajax({
+                    url: $("#sellerEditForm").attr('action'),
+                    method: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+
+
             });
 
             stepsValidationNext.forEach(item => {
@@ -362,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                             let main_activity_ids = $("#main_activity_ids").find(":selected").val();
                             // delete formTwoValidationFields.order_capacity_limits;
                             // delete formTwoValidationFields.order_capacity_limits_new;
-                            if(main_activity_ids=="Agenzia"){
+                            if (main_activity_ids == "Agenzia") {
                                 $(".order_capacity_limits_container").hide();
                                 multiSteps2.disableValidator('order_capacity_limits');
                                 multiSteps2.disableValidator('order_capacity_limits_new');

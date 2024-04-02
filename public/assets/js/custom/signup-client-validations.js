@@ -5,12 +5,12 @@
 'use strict';
 
 // Select2 (jquery)
-$(function() {
+$(function () {
     var select2 = $('.select2');
 
     // select2
     if (select2.length) {
-        select2.each(function() {
+        select2.each(function () {
             var $this = $(this);
             $this.wrap('<div class="position-relative"></div>');
             $this.select2({
@@ -20,83 +20,84 @@ $(function() {
         });
     }
 
-    $("#region").on("change", function(){
+    $("#region").on("change", function () {
+        console.log('region changes');
         let select_id = $(this).find(":selected").data("id");
-        
+
         $("#province").select2("destroy").select2({
-            templateResult: function(option, container) {
-                if ($(option.element).attr("data-region") != select_id){ 
-                  $(container).css("display","none");
+            templateResult: function (option, container) {
+                if ($(option.element).attr("data-region") != select_id) {
+                    $(container).css("display", "none");
                 }
-        
+
                 return option.text;
             }
         });
     });
 
-    $("#province").on("change", function(){
+    $("#province").on("change", function () {
         let select_id = $(this).find(":selected").data("id");
-        
+
         $("#common").select2("destroy").select2({
-            templateResult: function(option, container) {
-                if ($(option.element).attr("data-province") != select_id){ 
-                  $(container).css("display","none");
+            templateResult: function (option, container) {
+                if ($(option.element).attr("data-province") != select_id) {
+                    $(container).css("display", "none");
                 }
-        
+
                 return option.text;
             }
         });
     });
 
-    $("#destination_region").on("change", function(){
+    $("#destination_region").on("change", function () {
         let select_id = $(this).find(":selected").data("id");
-        
+
         $("#destination_province").select2("destroy").select2({
-            templateResult: function(option, container) {
-                if ($(option.element).attr("data-region") != select_id){ 
-                  $(container).css("display","none");
+            templateResult: function (option, container) {
+                if ($(option.element).attr("data-region") != select_id) {
+                    $(container).css("display", "none");
                 }
-        
+
                 return option.text;
             }
         });
     });
 
-    $("#destination_province").on("change", function(){
+    $("#destination_province").on("change", function () {
         let select_id = $(this).find(":selected").data("id");
-        
+
         $("#destination_common").select2("destroy").select2({
-            templateResult: function(option, container) {
-                if ($(option.element).attr("data-province") != select_id){ 
-                  $(container).css("display","none");
+            templateResult: function (option, container) {
+                if ($(option.element).attr("data-province") != select_id) {
+                    $(container).css("display", "none");
                 }
-        
+
                 return option.text;
             }
         });
     });
 
-    $("#geographical_coverage_regions").on("change", function(){
+    $("#geographical_coverage_regions").on("change", function () {
         let regions = $(this).find(":selected");
         let selected_ids = [];
 
-        for(let i = 0; i < regions.length; i++){
+        for (let i = 0; i < regions.length; i++) {
             selected_ids.push($(regions[i]).data("id"));
         }
         console.log("selected_ids", selected_ids)
         $("#geographical_coverage_provinces").select2("destroy").select2({
-            templateResult: function(option, container) {
-                if(jQuery.inArray($(option.element).data("region"), selected_ids) === -1){
-                    $(container).css("display","none");
+            templateResult: function (option, container) {
+                if (jQuery.inArray($(option.element).data("region"), selected_ids) === -1) {
+                    $(container).css("display", "none");
                 }
-        
+
                 return option.text;
             }
         });
     });
 
-    $('.container-transport').on('click', function(){
-        if($(this).prop("checked")){
+    $('.container-transport').on('click', function () {
+        if ($(this).prop("checked")) {
             //checked
             $(this).closest(".row").find(".form-control").removeClass("hide");
         } else {
@@ -106,16 +107,16 @@ $(function() {
         }
     });
 
-    $("#destination_address").on("change", function(){
-        if(this.value == "Si") {
+    $("#destination_address").on("change", function () {
+        if (this.value == "Si") {
             $(".address-container").removeClass('hide');
         } else {
             $(".address-container").addClass('hide');
         }
     });
 
-    $("#is_private_distributer").on("change", function(){
-        if(this.value == "Si") {
+    $("#is_private_distributer").on("change", function () {
+        if (this.value == "Si") {
             $(".js-no-of-dis-container").removeClass("hide");
         } else {
             $(".js-no-of-dis-container").addClass("hide");
@@ -125,8 +126,8 @@ $(function() {
 
 // Multi Steps Validation
 // --------------------------------------------------------------------
-document.addEventListener('DOMContentLoaded', function(e) {
-    (function() {
+document.addEventListener('DOMContentLoaded', function (e) {
+    (function () {
         const stepsValidation = document.querySelector('#multiStepsValidation');
         if (typeof stepsValidation !== undefined && stepsValidation !== null) {
             // Multi Steps form
@@ -172,13 +173,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
                                 message: 'Please enter cellulare referente'
                             },
                             stringLength: {
-                              min: 10,
-                              max: 10,
-                              message: 'cellulare referente should be 10 digit long'
+                                min: 10,
+                                max: 10,
+                                message: 'cellulare referente should be 10 digit long'
                             },
                             regexp: {
-                              regexp: /^[0-9]+$/,
-                              message: 'cellulare referente can only consist of number'
+                                regexp: /^[0-9]+$/,
+                                message: 'cellulare referente can only consist of number'
                             }
                         }
                     },
@@ -188,15 +189,15 @@ document.addEventListener('DOMContentLoaded', function(e) {
                                 message: 'Please enter PEC'
                             },
                             emailAddress: {
-                              message: 'The value is not a valid PEC'
+                                message: 'The value is not a valid PEC'
                             }
                         }
                     },
                     tax_id_code: {
                         validators: {
                             regexp: {
-                              regexp: /^[A-Z0-9]+$/,
-                              message: 'Codice fiscale can only consist of capital alphabets or number'
+                                regexp: /^[A-Z0-9]+$/,
+                                message: 'Codice fiscale can only consist of capital alphabets or number'
                             }
                         }
                     },
@@ -262,13 +263,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     submitButton: new FormValidation.plugins.SubmitButton()
                 },
                 init: instance => {
-                    instance.on('plugins.message.placed', function(e) {
+                    instance.on('plugins.message.placed', function (e) {
                         if (e.element.parentElement.classList.contains('input-group')) {
                             e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
                         }
                     });
                 }
-            }).on('core.form.valid', function() {
+            }).on('core.form.valid', function () {
                 // Jump to the next step when all fields in the current step are valid
                 validationStepper.next();
             });
@@ -288,13 +289,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
                             message: 'Please enter cellulare referente di scarico'
                         },
                         stringLength: {
-                          min: 10,
-                          max: 10,
-                          message: 'cellulare referente di scarico should be 10 digit long'
+                            min: 10,
+                            max: 10,
+                            message: 'cellulare referente di scarico should be 10 digit long'
                         },
                         regexp: {
-                          regexp: /^[0-9]+$/,
-                          message: 'cellulare referente di scarico can only consist of number'
+                            regexp: /^[0-9]+$/,
+                            message: 'cellulare referente di scarico can only consist of number'
                         }
                     }
                 },
@@ -321,13 +322,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     submitButton: new FormValidation.plugins.SubmitButton()
                 },
                 init: instance => {
-                    instance.on('plugins.message.placed', function(e) {
+                    instance.on('plugins.message.placed', function (e) {
                         if (e.element.parentElement.classList.contains('input-group')) {
                             e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
                         }
                     });
                 }
-            }).on('core.form.valid', function() {
+            }).on('core.form.valid', function () {
                 // Jump to the next step when all fields in the current step are valid
                 validationStepper.next();
             });
@@ -397,13 +398,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     submitButton: new FormValidation.plugins.SubmitButton()
                 },
                 init: instance => {
-                    instance.on('plugins.message.placed', function(e) {
+                    instance.on('plugins.message.placed', function (e) {
                         if (e.element.parentElement.classList.contains('input-group')) {
                             e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
                         }
                     });
                 }
-            }).on('core.form.valid', function() {
+            }).on('core.form.valid', function () {
                 // Jump to the next step when all fields in the current step are valid
                 validationStepper.next();
             });
@@ -445,13 +446,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     submitButton: new FormValidation.plugins.SubmitButton()
                 },
                 init: instance => {
-                    instance.on('plugins.message.placed', function(e) {
+                    instance.on('plugins.message.placed', function (e) {
                         if (e.element.parentElement.classList.contains('input-group')) {
                             e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
                         }
                     });
                 }
-            }).on('core.form.valid', function() {
+            }).on('core.form.valid', function () {
                 // Jump to the next step when all fields in the current step are valid
                 stepsValidationForm.submit();
                 validationStepper.next();
@@ -467,11 +468,11 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
                         case 1:
                             let destination_address = $("#destination_address").find(":selected").val();
-                            if(destination_address=="No"){
+                            if (destination_address == "No") {
                                 multiSteps2.disableValidator('destination_region');
                             } else {
                                 multiSteps2.enableValidator('destination_region');
-                                
+
                             }
                             multiSteps2.validate();
                             break;
