@@ -5,7 +5,6 @@
 'use strict';
 
 function openEditUserModal() {
-  console.log('edit modal script ')
   $('#edit-user-profile').modal('show');
 }
 
@@ -13,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
   (function () {
     // variables
 
-    $(". user-profile-edit-btn", "click", () => {
+    $(".user-profile-edit-btn", "click", () => {
       $('#edit-user-profile').modal('show');
     })
     const modalEditUserTaxID = document.querySelector('.modal-edit-tax-id');

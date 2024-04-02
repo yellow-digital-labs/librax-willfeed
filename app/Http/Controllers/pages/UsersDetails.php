@@ -8,6 +8,20 @@ use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\Subscription;
 use App\Helpers\Helpers;
+use App\Models\MainActivity;
+use App\Models\Common;
+use App\Models\Province;
+use App\Models\StorageCapacity;
+use App\Models\OrderCapacity;
+use App\Models\Product;
+use App\Models\Region;
+use App\Models\EaseOfAccess;
+use App\Models\PaymentTerms;
+use App\Models\PaymentExtension;
+use App\Models\ConsumeCapacity;
+use App\Mail\UserRequest;
+
+
 use Auth;
 use Stripe;
 use Redirect;
@@ -47,6 +61,20 @@ class UsersDetails extends Controller
     //   }
     // }
 
+    $main_activity = Helpers::clientActivityList();
+    $region = Region::orderBy('name', 'ASC')->get();
+    $common = Common::orderBy('name', 'ASC')->get();
+    $province = Province::orderBy('name', 'ASC')->get();
+    $storage_capacity = StorageCapacity::all();
+    $order_capacity = OrderCapacity::all();
+    $product = Product::all();
+    $ease_of_access = EaseOfAccess::all();
+    $payment_extension = PaymentExtension::all();
+    $payment_terms = PaymentTerms::all();
+    $consume_capacity = ConsumeCapacity::all();
+
+    $user_detail = UserDetail::where(['user_id' => $user->id])->first();
+
     return view('content.pages.pages-users-details', [
       'user' => $user,
       'user_detail' => $user_detail,
@@ -54,7 +82,21 @@ class UsersDetails extends Controller
       'isOnlyProfile' => $isOnlyProfile,
       'authUser' => $user,
       'payment_methods' => $payment_methods,
-      'is_expired' => $is_expired
+      'is_expired' => $is_expired,
+        //New Code
+
+      "main_activity" => $main_activity,
+      "common" => $common,
+      "province" => $province,
+      "storage_capacity" => $storage_capacity,
+      "order_capacity" => $order_capacity,
+      "product" => $product,
+      "region" => $region,
+      "user_detail" => $user_detail,
+      "ease_of_access" => $ease_of_access,
+      "payment_terms" => $payment_terms,
+      "payment_extension" => $payment_extension,
+      "consume_capacity" => $consume_capacity,
     ]);
   }
 
