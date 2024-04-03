@@ -15,7 +15,7 @@
       var userId = $(this).data('user-id');
 
       Swal.fire({
-        text: "Are you sure you want to extend the free trial period?",
+        text: "Sei sicuro di voler estendere l'abbonamento per 30 giorni? Si, Annulla",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes',
@@ -31,7 +31,7 @@
             url: baseUrl + `user/${userId}/extend-free-trial`,
             success: function () {
               Swal.fire({
-                text: "30 free trial period has been extended successfully.",
+                text: "L'estensione di 30 giorni è andata a buon fine.",
                 icon: 'success',
                 customClass: {
                   confirmButton: 'btn btn-primary'
