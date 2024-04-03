@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     });
                 }
             }).on('core.form.valid', function () {
-                stepsValidationForm.submit();
+                // stepsValidationForm.submit();
                 validationStepper.next();
                 console.log('final submit');
 
@@ -366,8 +366,6 @@ document.addEventListener('DOMContentLoaded', function (e) {
                         console.error(xhr.responseText);
                     }
                 });
-
-
             });
 
             stepsValidationNext.forEach(item => {

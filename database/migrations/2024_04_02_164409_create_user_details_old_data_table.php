@@ -72,8 +72,13 @@ class CreateUserDetailsOldDataTable extends Migration
             $table->string('time_limit_daily_order')->nullable();
             $table->string('bank_transfer')->nullable();
             $table->string('bank_check')->nullable();
+            $table->string('bank')->nullable();
             $table->string('rib')->nullable();
             $table->string('rid')->nullable();
+            $table->string('order_capacity_limits_new', 50)->nullable();
+            $table->string('destination_address_via', 255)->nullable();
+            $table->string('region', 50)->nullable();
+            $table->string('destination_address', 50)->nullable()->change();
             $table->timestamps();
             $table->string('created_by', 50)->nullable();
             $table->string('updated_by', 50)->nullable();

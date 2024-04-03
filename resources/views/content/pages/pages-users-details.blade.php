@@ -158,9 +158,12 @@ $(document).ready(function () {
                 <li class="nav-item"><a class="nav-link {{$is_expired?'active':''}}" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Fatturazione" aria-controls="navs-pills-top-Fatturazione" aria-selected="true"><i class="wf-icon-file-text1 ti-xs me-1"></i>Abbonamento</a></li>
             </div>
             <!-- Update User Profile Button -->
+            @if(!$is_new_data)
             <li class="nav-item seller-profile-edit-btn" onclick="openEditUserModal()"><a class="nav-link" href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">Modifica Profilo</a></li>
+            @else
             <!-- User Profle Review Button -->
             <li class="nav-item seller-proile-review-btn"><a class="nav-link" href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">lnvia richiesta</a></li>
+            @endif
         </ul>
         @endif
         @if($authUser->accountType==0)
@@ -176,11 +179,13 @@ $(document).ready(function () {
             <!-- Extend Free trial button  -->
             <li class="nav-item user-extend-free-trial-btn" data-user-id="{{ $user->id }}"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-outline-primary" href="javascript:void(0);">ESTENDI PROVA GRATUITA</a></li>
 
+            @if($is_new_data)
             <!-- approve edit button  -->
             <li class="nav-item ms-2 user-approve-btn" data-user-id="{{ $user->id }}"><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-outline-primary" href="javascript:void(0);"> Aprrova modifiche</a></li>
 
              <!-- Refuse edit button  -->
             <li class="nav-item  ms-2 user-Refuse-btn" data-user-id="{{ $user->id }}" ><a href="javascript:;" data-id="{{$user->id}}" class="btn btn-outline-primary" href="javascript:void(0);">Rifiuta modifiche</a></li>
+            @endif
         </ul>
         @endif
     
@@ -196,67 +201,114 @@ $(document).ready(function () {
                         <div class="row g-4">
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Ragione sociale</h6>
+                                @if($isOnlyProfile && $is_new_data && $user_detail->business_name !== $new_user_detail->business_name)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->business_name?$user_detail->business_name:'NA'}}</p>
+                                    <p class="mb-0">{{$new_user_detail->business_name?$new_user_detail->business_name:'NA'}}</p>
+                                </div>
+                                @else
                                 <p class="mb-0">{{$user_detail->business_name?$user_detail->business_name:'NA'}}</p>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Partita IVA</h6>
+                                 @if($isOnlyProfile && $is_new_data && $user_detail->vat_number !== $new_user_detail->vat_number)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->vat_number?$user_detail->vat_number:'NA'}}</p>
+                                    <p class="mb-0">{{$new_user_detail->vat_number?$new_user_detail->vat_number:'NA'}}</p>
+                                </div>
+                                @else
                                 <p class="mb-0">{{$user_detail->vat_number?$user_detail->vat_number:'NA'}}</p>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Cellulare referente</h6>
-                                <p class="mb-0"><span class="text-black">+39</span> {{$user_detail->contact_person?$user_detail->contact_person:'NA'}}</p>
+                                <span class="mb-0"><span class="text-black">+39</span> {{$user_detail->contact_person?$user_detail->contact_person:'NA'}}</span>
+                                @if($is_new_data &&  $is_new_data && $user_detail->contact_person !== $new_user_detail->contact_person)
+                                <span class="mb-0"><span class="text-black">+39</span>{{$new_user_detail->contact_person?$new_user_detail->contact_person:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">PEC</h6>
                                 <p class="mb-0">{{$user_detail->pec?$user_detail->pec:'NA'}}</p>
+                                 @if($is_new_data && $user_detail->business_name !== $new_user_detail->business_name)
+                                <span class="mb-0">{{$new_user_detail->business_name?$new_user_detail->business_name:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Codice fiscale</h6>
                                 <p class="mb-0">{{$user_detail->tax_id_code?$user_detail->tax_id_code:'NA'}}</p>
+                                 @if($is_new_data &&  $user_detail->tax_id_code !== $new_user_detail->tax_id_code)
+                                <span class="mb-0">{{$new_user_detail->tax_id_code?$new_user_detail->tax_id_code:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Nominativo Amministratore</h6>
                                 <p class="mb-0">{{$user_detail->administrator_name?$user_detail->administrator_name:'NA'}}</p>
+                                 @if($is_new_data && $user_detail->administrator_name !== $new_user_detail->administrator_name)
+                                <span class="mb-0">{{$new_user_detail->administrator_name?$new_user_detail->administrator_name:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Attività principale </h6>
                                 <p class="mb-0">{{$user_detail->main_activity_ids?$user_detail->main_activity_ids:'NA'}}</p>
+                                 @if($is_new_data && $user_detail->main_activity_ids !== $new_user_detail->main_activity_ids)
+                                <span class="mb-0">{{$new_user_detail->main_activity_ids?$new_user_detail->main_activity_ids:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Indirizzo</h6>
                                 <p class="mb-0">{{$user_detail->address?$user_detail->address:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->address !== $new_user_detail->address)
+                                <span class="mb-0">{{$new_user_detail->address?$new_user_detail->address:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Numero civico</h6>
                                 <p class="mb-0">{{$user_detail->house_no?$user_detail->house_no:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->house_no !== $new_user_detail->house_no)
+                                <span class="mb-0">{{$new_user_detail->house_no?$new_user_detail->house_no:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Regione</h6>
                                 <p class="mb-0">{{$user_detail->region?$user_detail->region:'NA'}}</p>
+                                @if($is_new_data && $user_detail->region !== $new_user_detail->region)
+                                <span class="mb-0">{{$new_user_detail->region?$new_user_detail->region:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Provincia</h6>
                                 <p class="mb-0">{{$user_detail->province?$user_detail->province:'NA'}}</p>
+                                @if($is_new_data && $user_detail->province !== $new_user_detail->province)
+                                <span class="mb-0">{{$new_user_detail->province?$new_user_detail->province:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Comune</h6>
                                 <p class="mb-0">{{$user_detail->common?$user_detail->common:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->common !== $new_user_detail->common)
+                                <span class="mb-0">{{$new_user_detail->common?$new_user_detail->common:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">CAP</h6>
                                 <p class="mb-0">{{$user_detail->pincode?$user_detail->pincode:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->pincode !== $new_user_detail->pincode)
+                                <span class="mb-0">{{$new_user_detail->pincode?$new_user_detail->pincode:'NA'}}</span>
+                                @endif
                             </div>
 
                         </div>
@@ -274,31 +326,49 @@ $(document).ready(function () {
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Capacità di stoccaggio</h6>
                                 <p class="mb-0">{{$user_detail->storage_capacity?$user_detail->storage_capacity:'NA'}}</p>
+                                @if($is_new_data && $user_detail->pincode !== $new_user_detail->pincode)
+                                <span class="mb-0">{{$new_user_detail->pincode?$new_user_detail->pincode:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Limiti di capacità ordini</h6>
                                 <p class="mb-0">{{$user_detail->order_capacity_limits?$user_detail->order_capacity_limits.' litri':'NA'}} - {{$user_detail->order_capacity_limits_new?$user_detail->order_capacity_limits_new.' litri':'NA'}}</p>
+                                @if($is_new_data && $user_detail->order_capacity_limits !== $new_user_detail->order_capacity_limits)
+                                <span class="mb-0">{{$new_user_detail->order_capacity_limits?$new_user_detail->order_capacity_limits.' litri':'NA'}} - {{$new_user_detail->order_capacity_limits_new?$new_user_detail->order_capacity_limits_new.' litri':'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Prodotti disponibili</h6>
                                 <p class="mb-0">{{$user_detail->available_products?$user_detail->available_products:'NA'}}</p>
+                                @if($is_new_data && $user_detail->pincode !== $new_user_detail->pincode)
+                                <span class="mb-0">{{$new_user_detail->pincode?$new_user_detail->pincode:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Copertura geografica regioni</h6>
                                 <p class="mb-0">{{$user_detail->geographical_coverage_regions?$user_detail->geographical_coverage_regions:'NA'}}</p>
+                                 @if($is_new_data && $user_detail->geographical_coverage_regions !== $new_user_detail->geographical_coverage_regions)
+                                <span class="mb-0">{{$new_user_detail->geographical_coverage_regions?$new_user_detail->geographical_coverage_regions:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Copertura geografica province</h6>
                                 <p class="mb-0">{{$user_detail->geographical_coverage_provinces?$user_detail->geographical_coverage_provinces:'NA'}}</p>
+                                 @if($is_new_data && $user_detail->geographical_coverage_provinces !== $new_user_detail->geographical_coverage_provinces)
+                                <span class="mb-0">{{$new_user_detail->geographical_coverage_provinces?$new_user_detail->geographical_coverage_provinces:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Tempo limite accettazione ordine</h6>
                                 <p class="mb-0">{{$user_detail->time_limit_daily_order?$user_detail->time_limit_daily_order:'NA'}}</p>
+                                 @if($is_new_data && $user_detail->time_limit_daily_order !== $new_user_detail->time_limit_daily_order)
+                                <span class="mb-0">{{$new_user_detail->time_limit_daily_order?$new_user_detail->time_limit_daily_order:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
@@ -320,21 +390,34 @@ $(document).ready(function () {
                                 <h6 class="text-black mb-2">Bonifico Bancario</h6>
                                 <p class="mb-0">IBAN: {{$user_detail->bank_transfer?$user_detail->bank_transfer:'NA'}} <br>
                                 Banca: {{$user_detail->bank?$user_detail->bank:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->bank_transfer !== $new_user_detail->bank_transfer)
+                                <p class="mb-0">IBAN: {{$user_detail->bank_transfer?$user_detail->bank_transfer:'NA'}} <br>
+                                Banca: {{$user_detail->bank?$user_detail->bank:'NA'}}</p>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Assegno Bancario</h6>
                                 <p class="mb-0">{{$user_detail->bank_check?$user_detail->bank_check:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->time_limit_daily_order !== $new_user_detail->time_limit_daily_order)
+                                <span class="mb-0">{{$new_user_detail->time_limit_daily_order?$new_user_detail->time_limit_daily_order:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">RIBA</h6>
                                 <p class="mb-0">{{$user_detail->rib?$user_detail->rib:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->time_limit_daily_order !== $new_user_detail->time_limit_daily_order)
+                                <span class="mb-0">{{$new_user_detail->time_limit_daily_order?$new_user_detail->time_limit_daily_order:'NA'}}</span>
+                                @endif
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">RID</h6>
                                 <p class="mb-0">{{$user_detail->rid?$user_detail->rid:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->time_limit_daily_order !== $new_user_detail->time_limit_daily_order)
+                                <span class="mb-0">{{$new_user_detail->time_limit_daily_order?$new_user_detail->time_limit_daily_order:'NA'}}</span>
+                                @endif
                             </div>
                         </div>
                     </div>

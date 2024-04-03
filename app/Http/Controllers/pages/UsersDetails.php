@@ -19,6 +19,7 @@ use App\Models\EaseOfAccess;
 use App\Models\PaymentTerms;
 use App\Models\PaymentExtension;
 use App\Models\ConsumeCapacity;
+use App\Models\UserDetailOldData;
 use App\Mail\UserRequest;
 
 
@@ -74,10 +75,17 @@ class UsersDetails extends Controller
     $consume_capacity = ConsumeCapacity::all();
 
     $user_detail = UserDetail::where(['user_id' => $user->id])->first();
+    $new_user_detail = UserDetailOldData::where(['user_detail_id'=>$user->id])->first();
+    $is_new_data = false;
+    if($new_user_detail){
+      $is_new_data = true;
+    }
+    // dd($new_user_detail);
 
     return view('content.pages.pages-users-details', [
       'user' => $user,
       'user_detail' => $user_detail,
+      'new_user_detail'=>$new_user_detail,
       'subscriptions' => $subscriptions,
       'isOnlyProfile' => $isOnlyProfile,
       'authUser' => $user,
@@ -85,6 +93,7 @@ class UsersDetails extends Controller
       'is_expired' => $is_expired,
         //New Code
 
+      'is_new_data' => $is_new_data,
       "main_activity" => $main_activity,
       "common" => $common,
       "province" => $province,
@@ -137,14 +146,48 @@ class UsersDetails extends Controller
       }
     }
 
+    $main_activity = Helpers::clientActivityList();
+    $region = Region::orderBy('name', 'ASC')->get();
+    $common = Common::orderBy('name', 'ASC')->get();
+    $province = Province::orderBy('name', 'ASC')->get();
+    $storage_capacity = StorageCapacity::all();
+    $order_capacity = OrderCapacity::all();
+    $product = Product::all();
+    $ease_of_access = EaseOfAccess::all();
+    $payment_extension = PaymentExtension::all();
+    $payment_terms = PaymentTerms::all();
+    $consume_capacity = ConsumeCapacity::all();
+
+    $new_user_detail = UserDetailOldData::where(['user_detail_id'=>$id])->first();
+    $is_new_data = false;
+    if($new_user_detail){
+      $is_new_data = true;
+    }
+
     return view('content.pages.pages-users-details', [
       'user' => $user,
       'user_detail' => $user_detail,
+      'new_user_detail'=>$new_user_detail,
       'subscriptions' => $subscriptions,
       'isOnlyProfile' => $isOnlyProfile,
       'authUser' => $authUser,
       'payment_methods' => $payment_methods,
       'is_expired' => null,
+
+      //new Data
+      'is_new_data' => $is_new_data,
+      "main_activity" => $main_activity,
+      "common" => $common,
+      "province" => $province,
+      "storage_capacity" => $storage_capacity,
+      "order_capacity" => $order_capacity,
+      "product" => $product,
+      "region" => $region,
+      "user_detail" => $user_detail,
+      "ease_of_access" => $ease_of_access,
+      "payment_terms" => $payment_terms,
+      "payment_extension" => $payment_extension,
+      "consume_capacity" => $consume_capacity,
     ]);
   }
 

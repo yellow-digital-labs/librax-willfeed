@@ -53,6 +53,7 @@
                 <div class="bs-stepper-content signup-wiz__body">
                     <form id="sellerEditForm" action="{{ route('edit-seller-profile') }}" onsubmit="return false" class="signup-wiz__form">
                         @csrf
+                        <input type="hidden" name="user_detail_id" value="{{$user->id}}" />
                         <!-- Registry -->
                         <div id="SignupStepRegistry" class="content active dstepper-block fv-plugins-bootstrap5 fv-plugins-framework">
                             <div class="content-header mb-4">
@@ -96,7 +97,7 @@
                                 <div class="col-sm-6">
                                     <label class="form-label" for="main_activity_ids">Attività principale *</label>
                                     <select name="main_activity_ids" id="main_activity_ids" class="form-select select2" placeholder="Seleziona attività principale">
-                                        <option value=""></option>
+                                        <option value="$user_detail->main_activity_ids" selected>{{$user_detail->main_activity_ids}}</option>
                                          @foreach($main_activity as $_main_activity)
                                         <option value="{{$_main_activity}}" {{$user_detail?($user_detail->main_activity_ids==$_main_activity?'selected':''):''}}>{{$_main_activity}}</option>
                                     @endforeach
@@ -164,7 +165,7 @@
                                 <div class="col-sm-6">
                                     <label class="form-label" for="storage_capacity">Capacità di stoccaggio *</label>
                                     <select name="storage_capacity" id="storage_capacity" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                    <option value="">Seleziona facilità di accesso</option>
+                                    <option value="{{$user_detail->storage_capacity}}" selected> {{$user_detail->storage_capacity}}</option>
                                     @foreach($storage_capacity as $_storage_capacity)
                                         <option value="{{$_storage_capacity->name}}" {{$user_detail?($user_detail->storage_capacity==$_storage_capacity->name?'selected':''):''}}>{{$_storage_capacity->name}}</option>
                                     @endforeach

@@ -114,10 +114,10 @@ class SignupSeller extends Controller
 
     // $file_operating_license_path = $request->file('file_operating_license')->store('storage');
 
-    $userDetail = UserDetail::where('user_id', $authUser->id)->firstOrFail();
+    // $userDetail = UserDetail::where('user_id', $authUser->id)->firstOrFail();
 
     UserDetailOldData::create([
-        'user_detail_id' => $request->user_id,
+        'user_detail_id' => $request->user_detail_id,
         'business_name' => $request->business_name,
         'vat_number' => $request->vat_number,
         'contact_person' => $request->contact_person,
@@ -147,6 +147,9 @@ class SignupSeller extends Controller
         // 'updated_by' => $authUser->email
     ]);
 
+   return response()->json([
+       "message"=>'done'
+      ]);
   
 
     // return redirect()->route("thankyou-signup");
