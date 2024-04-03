@@ -145,13 +145,14 @@ $(function () {
                 zeroRecords: "nessun account trovato"
             },
             ajax: {
-                url: urlListCustomerData 
+                url: urlListCustomerData
             },
             columns: [
                 { data: 'name' },
                 { data: 'email' },
                 { data: 'email_verified_at' },
                 { data: 'created_at' },
+                { data: 'exp_datetime' },
                 { data: 'approved_by_admin' },
                 { data: 'subscription_name' },
                 { data: '' }
@@ -201,8 +202,19 @@ $(function () {
                     return '<span class="user-created_at">' + $created_at + '</span>';
                 }
             }, {
-                // approved_by_admin
                 targets: 4,
+                // visible: false,
+                searchable: true,
+                orderable: true,
+                responsivePriority: 4,
+                render: function render(data, type, full, meta) {
+                    var $exp_datetime = full['exp_datetime'] ? full['exp_datetime'] : '';
+                    return '<span class="user-exp-datetime">' + $exp_datetime + '</span>';
+                }
+            },
+            {
+                // approved_by_admin
+                targets: 5,
                 // visible: false,
                 searchable: true,
                 orderable: true,
@@ -223,7 +235,7 @@ $(function () {
                 }
             }, {
                 // subscription_name
-                targets: 5,
+                targets: 6,
                 render: function (data, type, full, meta) {
                     var $subscription_name = full['subscription_name'] ? full['subscription_name'] : '';
                     return '<span class="user-subscription_name">' + $subscription_name + '</span>';
@@ -231,7 +243,7 @@ $(function () {
             },
             {
                 // Actions
-                targets: 6,
+                targets: 7,
                 title: 'Actions',
                 searchable: false,
                 orderable: false,
@@ -239,15 +251,15 @@ $(function () {
                     var status_number = full['approved_by_admin'];
                     var id = full['id'];
                     let statusList = "";
-                    if(status_number != "Yes") {
+                    if (status_number != "Yes") {
                         statusList += `<a href="javascript:;" class="dropdown-item btn-approve" data-id="${id}">Approve</a>`;
                     }
-                    if(status_number != "No") {
+                    if (status_number != "No") {
                         statusList += `<a href="javascript:;" class="dropdown-item btn-reject" data-id="${id}">Reject</a>`;
                     }
                     return (
                         '<div class="d-inline-block">' +
-                        '<a href="'+baseUrl+'profile/'+full['id']+'/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
+                        '<a href="' + baseUrl + 'profile/' + full['id'] + '/view" class="btn btn-sm btn-icon" data-id=""><i class="ti ti-edit"></i></a>' +
                         '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
                         '<div class="dropdown-menu dropdown-menu-end m-0">' +
                         statusList +
@@ -264,7 +276,7 @@ $(function () {
                 search: 'Ricerca',
                 searchPlaceholder: 'Search..'
             },
-            
+
             dom: '<"row datatable-custom-heading"<"col-6"l><"col-6 d-flex justify-content-end"f>><"table-responsive"t><"row datatable-custom-footer"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>'
         });
     }
@@ -287,7 +299,7 @@ $(function () {
         updateStatus(id, 'Pending');
     });
 
-    function updateStatus(id, status){
+    function updateStatus(id, status) {
         // sweetalert for confirmation of update status
         // Swal.fire({
         //     title: 'Are you sure?',
@@ -303,7 +315,7 @@ $(function () {
         // }).then(function (result) {
         //     if (result.value) {
         //         // update the status
-                
+
         //     }
         // });
         $.ajax({
