@@ -396,9 +396,11 @@ $configData = Helper::appClasses();
                                             @endphp
                                         </div>
                                         <div class="product__priceinfo fs-18">
+                                        @php
+                                            $display_date = \App\Helpers\Helpers::calculateEstimateShippingDate($product->delivery_time, $product->delivery_days, $product->days_off)
+                                        @endphp
                                             <strong>Prima consegna:</strong>
-                                            {{App\Helpers\Helpers::calculateEstimateShippingDate($product->delivery_time,
-                                            $product->delivery_days, $product->days_off)}}
+                                            {{$display_date}}
                                             {{-- @if($product->delivery_time)
                                             @if(date("H:i")<=$product->delivery_time)
                                                 Deliver on: {{date("d-m-Y")}}
@@ -415,10 +417,12 @@ $configData = Helper::appClasses();
                                                 Deliver on: NA
                                                 @endif --}}
                                         </div>
+                                        @if($display_date != "NA" && $display_date < date("d-m-Y"))
                                         <p>
                                             <strong class="text-danger">ORDINE EFFETTUATO FUORI ORARIO OPERATIVO.<br>
                                             L'APPROVAZIONE SARÀ A DISCREZIONE DEL VENDITORE.</strong>
                                         </p>
+                                        @endif
                                     </div>
                                 </div>
 
