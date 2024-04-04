@@ -417,7 +417,7 @@ $configData = Helper::appClasses();
                                                 Deliver on: NA
                                                 @endif --}}
                                         </div>
-                                        @if($display_date != "NA" && $display_date < date("m-d-Y"))
+                                        @if($display_date != "NA" && $display_date < date("d-m-Y"))
                                         <p>
                                             <strong class="text-danger">ORDINE EFFETTUATO FUORI ORARIO OPERATIVO.<br>
                                             L'APPROVAZIONE SARÀ A DISCREZIONE DEL VENDITORE.</strong>
