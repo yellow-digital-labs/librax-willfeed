@@ -254,7 +254,7 @@ class Helpers
           return Helpers::getNextWorkingDay($days_off_arr);
         } else {
           if(date("H:i") <= $time){
-            return date("d-m-Y");
+            return Helpers::getNextWorkingDay($days_off_arr);
           } else {
             return Helpers::getNextWorkingDay($days_off_arr);
           }
