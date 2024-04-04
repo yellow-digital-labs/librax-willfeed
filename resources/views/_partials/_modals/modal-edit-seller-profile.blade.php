@@ -97,7 +97,7 @@
                                 <div class="col-sm-6">
                                     <label class="form-label" for="main_activity_ids">Attività principale *</label>
                                     <select name="main_activity_ids" id="main_activity_ids" class="form-select select2" placeholder="Seleziona attività principale">
-                                        <option value="$user_detail->main_activity_ids" selected>{{$user_detail->main_activity_ids}}</option>
+                                        <option value="{{$user_detail->main_activity_ids}}" selected>{{$user_detail->main_activity_ids}}</option>
                                          @foreach($main_activity as $_main_activity)
                                         <option value="{{$_main_activity}}" {{$user_detail?($user_detail->main_activity_ids==$_main_activity?'selected':''):''}}>{{$_main_activity}}</option>
                                     @endforeach

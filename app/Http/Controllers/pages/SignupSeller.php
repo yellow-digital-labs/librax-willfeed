@@ -110,6 +110,28 @@ class SignupSeller extends Controller
 
   public function store_old_data(Request $request)
 {
+  
+    $user_detail = UserDetailOldData::where(['user_detail_id' => $request->user_detail_id])->first();
+
+    if($user_detail){
+        return response()->json([
+       "error"=>'Edit Request Already submitted'
+      ],400);
+    }
+
+    $userDetail = UserDetail::findOrFail($request->user_detail_id);
+
+    // Get the new data from the UserDetailOldData model
+    $newData =  $request->except(['user_detail_id']);
+
+    // Update only the changed fields
+    $changedFields = array_diff_assoc($newData->toArray(), $userDetail->toArray());
+    $changedFields['user_detail_id'] = $request->user_detail_id; 
+    UserDetailOldData::create($changedFields);
+       return response()->json([
+       "message"=>'user detail store successfully'
+      ]);
+    
     // $authUser = Auth::user();
 
     // $file_operating_license_path = $request->file('file_operating_license')->store('storage');
@@ -148,7 +170,7 @@ class SignupSeller extends Controller
     ]);
 
    return response()->json([
-       "message"=>'done'
+       "message"=>'user detail store successfully'
       ]);
   
 

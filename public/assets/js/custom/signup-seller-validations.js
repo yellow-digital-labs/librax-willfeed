@@ -66,8 +66,6 @@ $(function () {
             }
         });
     });
-
-
 });
 
 // Multi Steps Validation
@@ -77,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
         const stepsValidation = document.querySelector('#multiStepsValidation');
         if (typeof stepsValidation !== undefined && stepsValidation !== null) {
             // Multi Steps form
-            const stepsValidationForm = stepsValidation.querySelector('#sellerEditForm');
+            const stepsValidationForm = stepsValidation.querySelector('#multiStepsForm');
             // Form steps
             const stepsValidationFormStep1 = stepsValidationForm.querySelector('#SignupStepRegistry');
             const stepsValidationFormStep2 = stepsValidationForm.querySelector('#SignupStepDestination');
@@ -349,23 +347,10 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     });
                 }
             }).on('core.form.valid', function () {
-                // stepsValidationForm.submit();
+                // Jump to the next step when all fields in the current step are valid
+                console.log("submit form");
+                stepsValidationForm.submit();
                 validationStepper.next();
-                console.log('final submit');
-
-                var formData = $("#sellerEditForm").serialize();
-
-                $.ajax({
-                    url: $("#sellerEditForm").attr('action'),
-                    method: 'POST',
-                    data: formData,
-                    success: function (response) {
-                        console.log(response);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
             });
 
             stepsValidationNext.forEach(item => {

@@ -89,6 +89,8 @@ Route::middleware([
     Route::get('/profile/{id}/view', $controller_path . '\pages\UsersDetails@view')->name('profile-view'); //profile view
     Route::get('/plan/update/{planid}', $controller_path . '\pages\UsersDetails@updatePlan')->name('plan-update');
     Route::post('/user/{id}/extend-free-trial', $controller_path . '\pages\UsersDetails@extendFreeTrial')->name('users.extend-free-trial');
+   Route::post('/approve/${id}/data',  $controller_path . '\pages\UsersDetails@approveData')->name('approve-edit-data');
+
     //products
     //general
     Route::get('/products', $controller_path . '\pages\Product@index')->name('product'); //product list view

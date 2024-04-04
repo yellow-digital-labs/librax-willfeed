@@ -21,8 +21,6 @@ use App\Models\PaymentExtension;
 use App\Models\ConsumeCapacity;
 use App\Models\UserDetailOldData;
 use App\Mail\UserRequest;
-
-
 use Auth;
 use Stripe;
 use Redirect;
@@ -80,8 +78,7 @@ class UsersDetails extends Controller
     if($new_user_detail){
       $is_new_data = true;
     }
-    // dd($new_user_detail);
-
+    
     return view('content.pages.pages-users-details', [
       'user' => $user,
       'user_detail' => $user_detail,
@@ -134,16 +131,16 @@ class UsersDetails extends Controller
         $subscriptions = Subscription::where(['status' => 'active'])->get();
       }
 
-      if($user->stripe_customer_id){
-        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
-        $payment_methods_data = $stripe->customers->allPaymentMethods(
-          $user->stripe_customer_id,
-          ["type" => "card"]
-        );
-        if($payment_methods_data){
-          $payment_methods = $payment_methods_data->data;
-        }
-      }
+      // if($user->stripe_customer_id){
+      //   $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+      //   $payment_methods_data = $stripe->customers->allPaymentMethods(
+      //     $user->stripe_customer_id,
+      //     ["type" => "card"]
+      //   );
+      //   if($payment_methods_data){
+      //     $payment_methods = $payment_methods_data->data;
+      //   }
+      // }
     }
 
     $main_activity = Helpers::clientActivityList();
@@ -249,4 +246,29 @@ public function extendFreeTrial($id) {
         ], 500);
     }
   }
+
+  public function approveData(Request $request,$id) {
+
+    $userDetail = UserDetail::findOrFail($request->user_detail_id);
+
+    $newData = UserDetailOldData::where('user_detail_id', $request->user_detail_id)->where('admin_approval',"pending")->first();
+
+    $changedFields = array_diff_assoc($newData->toArray(), $userDetail->toArray());
+
+    dd($changedFields);
+    
+    $userDetail->update($changedFields);
+
+    $newData->update(['admin_approval'=>"approved"]);
+
+    // $newData->delete();
+
+    // SEND MAIL to USER
+
+        return response()->json([
+       "message"=>'"data approved successfully'
+      ],200);
+
+  }
+
 }

@@ -79,12 +79,12 @@ class CreateUserDetailsOldDataTable extends Migration
             $table->string('destination_address_via', 255)->nullable();
             $table->string('region', 50)->nullable();
             $table->string('destination_address', 50)->nullable()->change();
+            $table->enum('admin_approval', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->text('reject_reason')->nullable();
             $table->timestamps();
             $table->string('created_by', 50)->nullable();
             $table->string('updated_by', 50)->nullable();
-
             $table->index('user_detail_id');
-            $table->foreign('user_detail_id')->references('id')->on('user_details')->onDelete('cascade');
         });
     }
 
