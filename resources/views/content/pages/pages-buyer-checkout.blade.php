@@ -60,7 +60,7 @@ $configData = Helper::appClasses();
                                   @endphp
                                     {{$product->product_name}} <br/>
                                     Prima consegna: {{$display_date}}
-                                  @if(App\Helpers\Helpers::validatePriceCutOffDate($product->delivery_time, $product->updated_at, $product->days_off))
+                                  @if(!App\Helpers\Helpers::validatePriceCutOffDate($product->delivery_time, $product->updated_at, $product->days_off))
                                     <i class="text-danger" style="color: rgba(234, 84, 85, 1) !important;">ORDINE EFFETTUATO FUORI ORARIO OPERATIVO L'APPROVAZIONE SARÀ A DISCREZIONE DEL VENDITORE.</i>
                                   @endif
                                 </h2>
