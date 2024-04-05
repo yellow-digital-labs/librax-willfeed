@@ -417,7 +417,7 @@ $configData = Helper::appClasses();
                                                 Deliver on: NA
                                                 @endif --}}
                                         </div>
-                                        @if($display_date != "NA" && $display_date < date("d-m-Y"))
+                                        @if(App\Helpers\Helpers::validatePriceCutOffDate($product->delivery_time, $product->updated_at, $product->days_off))
                                         <p>
                                             <strong class="text-danger">ORDINE EFFETTUATO FUORI ORARIO OPERATIVO.<br>
                                             L'APPROVAZIONE SARÀ A DISCREZIONE DEL VENDITORE.</strong>

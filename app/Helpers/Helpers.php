@@ -254,7 +254,7 @@ class Helpers
           return Helpers::getNextWorkingDay($days_off_arr);
         } else {
           if(date("H:i") <= $time){
-            return date("d-m-Y");
+            return Helpers::getNextWorkingDay($days_off_arr);
           } else {
             return Helpers::getNextWorkingDay($days_off_arr);
           }
@@ -265,17 +265,43 @@ class Helpers
     }
   }
 
-  public static function getNextWorkingDay($weekends){
+  public static function validatePriceCutOffDate($cutoff_time, $updated_datetime, $days_off){
+    if(!$cutoff_time){
+      $cutoff_time = '00:00';
+    }
+
+    $days = Helpers::listOfDays();
+    $today_day = $days[date("N")-1];
+    $days_off_arr = explode(",", $days_off);
+
+    if(count($days_off_arr)==7){
+      return false;
+    } else {
+      $calculated_date = Helpers::getNextWorkingDay($days_off_arr, $updated_datetime);
+    }
+
+    if(strtotime($calculated_date." ".date("H:i")) < strtotime(date('d-m-Y H:i'))){
+      return false;
+    }
+
+    return true;
+  }
+
+  public static function getNextWorkingDay($weekends, $fromdate = null){
     $numberOfDays = 7-count($weekends); //Next working day after 5 days
     // $weekends     = array('saturday', 'sunday'); //Saturday and sunday are weekends
-    $currentDate  = date('Y-m-d');
+    if($fromdate){
+      $currentDate = $fromdate;
+    } else {
+      $currentDate  = date('Y-m-d');
+    }
     $dateObj      = new \DateTime($currentDate);
     $timeStamp    = $dateObj->getTimestamp();
 
     $days = Helpers::listOfDays();
-    $week_of_day = date("N")-1;
-    $today_day = $days[date("N")-1];
-    $addDay   = 0;
+    $week_of_day = date("N", strtotime($currentDate))-1;
+    $today_day = $days[date("N", strtotime($currentDate))-1];
+    $addDay = 86400;
     for ($i = 0; $i < 7; $i++) {
       if(in_array($days[$week_of_day], $weekends)){
         //skip
