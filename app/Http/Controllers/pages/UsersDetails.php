@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\pages;
 
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ProfileEditApprovalNotification;
+use App\Mail\ProfileEditNotification;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -270,12 +270,17 @@ public function extendFreeTrial($id) {
    
     // SEND MAIL to USER
 
+    // $to = "vimal1122001@gmail.com"; 
+    // Mail::to($to)->send(new ProfileEditNotification("approved",null,$userDetail));
+
     return response()->json([
     "message"=>'"data approved successfully'
   ],200);
   }
 
   public function rejectData(Request $request, $id){
+
+    $userDetail = UserDetail::where('user_id', $id)->first();
     $newData = UserDetailOldData::where('user_detail_id', $id)->where('admin_approval', 'pending')->first();
     if(!$newData){
       return response()->json([
@@ -283,21 +288,15 @@ public function extendFreeTrial($id) {
           ],400);
     }
 
-    $url = "https://example.com"; // Replace this with your URL
-    $to = "vimal1122001@gmail.com"; // Replace this with the recipient's email address
-
-    Mail::to($to)->send(new ProfileEditApprovalNotification("rejected"));
-      return response()->json([
-    "message"=>'send email succesully'
-  ],200);
-
     $newData->reject_reason =  $request->input('reject_reason');
     $newData->admin_approval = 'rejected';
-    dd($request->input('reject_reason'));
     $newData->save();
-
+    
+    // $to = "vimal1122001@gmail.com"; 
+    // Mail::to($to)->send(new ProfileEditNotification("rejected",$newData->reject_reason,$userDetail));
+    
     return response()->json([
-    "message"=>'"data approved successfully'
+    "message"=>'data approved successfully'
   ],200);
   }
 }

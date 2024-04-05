@@ -8,13 +8,12 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use App\Models\MailTemplate;
-use App\Helpers\Helpers;
 
-class ProfileEditApprovalNotification  extends Mailable
+class ProfileEditNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
+  
     public $user;
     public $status;
     public $reason; 
@@ -26,14 +25,35 @@ class ProfileEditApprovalNotification  extends Mailable
         $this->reason = $reason;
     }
 
+
+    /**
+     * Get the message envelope.
+     */
+    // public function envelope(): Envelope
+    // {
+    //     return new Envelope(
+    //         subject: 'Profile Edit Notification',
+    //     );
+    // }
+
     /**
      * Get the message content definition.
      */
-    public function build()
+      public function build()
     {
         $subject = 'Profile Edit ' . ucfirst($this->status);
 
         return $this->subject($subject)
                     ->markdown('emails.profile-edit-approval-notification');
+    }
+
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     */
+    public function attachments(): array
+    {
+        return [];
     }
 }

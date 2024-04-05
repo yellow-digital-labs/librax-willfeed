@@ -15,13 +15,12 @@ class ProfileEditReviewNotification  extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $admin;
-    public $user;
+    public $editPageUrl;
 
-      public function __construct(Admin $admin, User $user)
+    public function __construct($editPageUrl)
     {
-        $this->admin = $admin;
-        $this->user = $user;
+      
+        $this->editPageUrl = $editPageUrl;
     }
 
     public function build()

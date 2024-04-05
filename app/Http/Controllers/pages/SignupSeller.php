@@ -18,6 +18,7 @@ use App\Models\Region;
 use App\Models\UserDetail;
 use App\Models\UserDetailOldData;
 use App\Mail\UserRequest;
+use App\Mail\ProfileEditReviewNotification;
 
 class SignupSeller extends Controller
 {
@@ -169,14 +170,13 @@ class SignupSeller extends Controller
         // 'updated_by' => $authUser->email
     ]);
 
+  //   $to = "vimal1122001@gmail.com";
+  //   $link = $url = url(`/profile/{$request->user_detail_id}/view`);
+  //  Mail::to($to)->send(new ProfileEditReviewNotification($userDetail));
+    
    return response()->json([
        "message"=>'user detail store successfully'
       ]);
-  
-
     // return redirect()->route("thankyou-signup");
-}
-
-
-
+  }
 }
