@@ -369,7 +369,9 @@ document.addEventListener('DOMContentLoaded', function (e) {
                                 confirmButton: 'btn btn-primary'
                             },
                             buttonsStyling: false
-                        })
+                        }).then(() => {
+                            window.location.href = `${baseUrl}profile`;
+                        });
                     },
                     error: function (xhr, status, error) {
                         console.error(xhr.responseText);

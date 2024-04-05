@@ -35,7 +35,9 @@ function validateAndSubmit(userId) {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-      })
+      }).then(() => {
+        window.location.reload();
+      });
     },
     error: function (xhr, status, error) {
       console.error(xhr.responseText);
@@ -78,19 +80,21 @@ document.addEventListener('DOMContentLoaded', function (e) {
               console.log(response);
               $('#edit-seller-profile').modal('hide');
               Swal.fire({
-                text: "edited request submitted",
+                text: "New Data Approved",
                 icon: 'success',
                 customClass: {
                   confirmButton: 'btn btn-primary'
                 },
                 buttonsStyling: false
-              })
+              }).then(() => {
+                window.location.reload();
+              });
             },
             error: function (xhr, status, error) {
               console.error(xhr.responseText);
               $('#edit-seller-profile').modal('hide');
               Swal.fire({
-                text: "Error while Submitting response",
+                text: "Error While Approvig new Data",
                 icon: 'error',
                 customClass: {
                   confirmButton: 'btn btn-primary'
