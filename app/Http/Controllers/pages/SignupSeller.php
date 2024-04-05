@@ -121,16 +121,16 @@ class SignupSeller extends Controller
 
     $userDetail = UserDetail::findOrFail($request->user_detail_id);
 
-    // Get the new data from the UserDetailOldData model
-    $newData =  $request->except(['user_detail_id']);
+    // // Get the new data from the UserDetailOldData model
+    // $newData =  $request->except(['user_detail_id']);
 
     // Update only the changed fields
-    $changedFields = array_diff_assoc($newData->toArray(), $userDetail->toArray());
-    $changedFields['user_detail_id'] = $request->user_detail_id; 
-    UserDetailOldData::create($changedFields);
-       return response()->json([
-       "message"=>'user detail store successfully'
-      ]);
+    // $changedFields = array_diff_assoc($newData, $userDetail);
+    // $changedFields['user_detail_id'] = $request->user_detail_id; 
+    // UserDetailOldData::create($changedFields);
+    //    return response()->json([
+    //    "message"=>'user detail store successfully'
+    //   ]);
     
     // $authUser = Auth::user();
 

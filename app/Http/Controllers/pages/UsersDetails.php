@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\pages;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserRequestReject;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -73,12 +75,11 @@ class UsersDetails extends Controller
     $consume_capacity = ConsumeCapacity::all();
 
     $user_detail = UserDetail::where(['user_id' => $user->id])->first();
-    $new_user_detail = UserDetailOldData::where(['user_detail_id'=>$user->id])->first();
+    $new_user_detail = UserDetailOldData::where(['user_detail_id'=>$user->id, 'admin_approval'=>"pending"])->first();
     $is_new_data = false;
     if($new_user_detail){
       $is_new_data = true;
     }
-    
     return view('content.pages.pages-users-details', [
       'user' => $user,
       'user_detail' => $user_detail,
@@ -248,27 +249,53 @@ public function extendFreeTrial($id) {
   }
 
   public function approveData(Request $request,$id) {
+    $excludedFields = ["created_at", "updated_at", "created_by", "updated_by", "id", "user_id"];
 
-    $userDetail = UserDetail::findOrFail($request->user_detail_id);
-
-    $newData = UserDetailOldData::where('user_detail_id', $request->user_detail_id)->where('admin_approval',"pending")->first();
-
-    $changedFields = array_diff_assoc($newData->toArray(), $userDetail->toArray());
-
-    dd($changedFields);
-    
-    $userDetail->update($changedFields);
-
-    $newData->update(['admin_approval'=>"approved"]);
-
-    // $newData->delete();
-
+    $userDetail = UserDetail::where('user_id', $id)->first();
+    $newData = UserDetailOldData::where('user_detail_id', $id)->where('admin_approval', 'pending')->first();
+    if(!$newData){
+      return response()->json([
+          "error"=>"no any pendig request found for edit"
+          ],400);
+    }
+    foreach ($userDetail->getAttributes() as $key => $value) {
+      if (!in_array($key, $excludedFields) && isset($newData->$key) && $userDetail->$key != $newData->$key) {
+          $userDetail->$key = $newData->$key;
+      }
+    }
+  
+    $newData->admin_approval = "approved";
+    $userDetail->save();
+    $newData->save();
+   
     // SEND MAIL to USER
 
-        return response()->json([
-       "message"=>'"data approved successfully'
-      ],200);
-
+    return response()->json([
+    "message"=>'"data approved successfully'
+  ],200);
   }
 
+  public function rejectData(Request $request, $id){
+    $newData = UserDetailOldData::where('user_detail_id', $id)->where('admin_approval', 'pending')->first();
+    if(!$newData){
+      return response()->json([
+          "error"=>"no any pendig request found for edit"
+          ],400);
+    }
+
+    $url = "https://example.com"; // Replace this with your URL
+    $to = "vimal1122001@example.com"; // Replace this with the recipient's email address
+
+    Mail::to($to)->send(new MyCustomMail($url));
+
+
+    $newData->reject_reason =  $request->input('reject_reason');
+    $newData->admin_approval = 'rejected';
+    dd($request->input('reject_reason'));
+    $newData->save();
+
+    return response()->json([
+    "message"=>'"data approved successfully'
+  ],200);
+  }
 }

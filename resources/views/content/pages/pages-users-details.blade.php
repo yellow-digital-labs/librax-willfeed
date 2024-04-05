@@ -32,7 +32,7 @@ $configData = Helper::appClasses();
 
 @section('page-script')
 <!-- Edit Profle Modal js -->
-@if( $user->accountType==2) <script src="{{asset('assets/js/modal-edit-seller-profile.js')}}"></script> @endif
+ <script src="{{asset('assets/js/user-edit-profile.js')}}"></script> 
 <script src="{{asset('assets/js/modal-edit-user.js')}}"></script>
 <script src="{{asset('assets/js/modal-edit-cc.js')}}"></script>
 <script src="{{asset('assets/js/modal-add-new-cc.js')}}"></script>
@@ -47,6 +47,7 @@ $remainingDays = App\Helpers\Helpers::getDaysBetweenDates(date('Y-m-d H:i:s', ti
 @endphp
 @if($remainingDays<0)
 <script>
+let baseUrl ={{url('/')}};
 $(document).ready(function () {
     Swal.fire({
         text: "Per continuare, acquista un abbonamento.",
@@ -497,7 +498,7 @@ $(document).ready(function () {
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">RIBA</h6>
                             
-                                       @if($isOnlyProfile && $is_new_data && $user_detail->time_limit_daily_order !== $new_user_detail->rib)
+                                       @if($isOnlyProfile && $is_new_data && $user_detail->rib !== $new_user_detail->rib)
                                 <div class="d-flex">
                                     <p class="mb-0 strike-through">{{$user_detail->rib?$user_detail->rib:'NA'}}</p>
                                     <p class="ms-2">{{$new_user_detail->rib?$new_user_detail->rib:'NA'}}</p>
@@ -937,9 +938,8 @@ $(document).ready(function () {
 @include('_partials/_modals/modal-add-new-cc')
 @include('_partials/_modals/modal-upgrade-plan')
 <!-- include the edit seller profile model  -->
-@if( $user->accountType == 2)
+@if( $user->accountType == 2 )
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
 
@@ -953,3 +953,34 @@ $(document).ready(function () {
 @endif
 <!-- /Modal -->
 @endsection
+
+@if($isOnlyProfile)
+<!-- Reject Reason Modal -->
+<div class="modal fade" id="reject-user-data" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+    <div class="modal-content p-3 p-md-5">
+      <div class="modal-body">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<style>
+  .input-group {
+    margin-bottom: 1rem;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+  }
+</style>
+
+  <h2>Enter Rejection Reason</h2>
+  <div class="input-group">
+    <textarea id="rejectionReason" rows="4" cols="50" placeholder="Enter rejection reason"></textarea>
+    <div class="error-message" id="rejectionReasonError"></div>
+  </div>
+  <button onclick="validateAndSubmit({{$user->id}})" >Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+@endif

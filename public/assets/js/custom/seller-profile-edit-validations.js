@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     data: formData,
                     success: function (response) {
                         console.log(response);
-                        $('#edit-user-profile').modal('hide');
+                        $('#edit-seller-profile').modal('hide');
                         Swal.fire({
                             text: "edited request submitted",
                             icon: 'success',
@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     },
                     error: function (xhr, status, error) {
                         console.error(xhr.responseText);
-                        $('#edit-user-profile').modal('hide');
+                        $('#edit-seller-profile').modal('hide');
                         Swal.fire({
                             text: "Error while Submitting response",
                             icon: 'error',
