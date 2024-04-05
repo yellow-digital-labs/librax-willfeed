@@ -85,7 +85,7 @@ $configData = Helper::appClasses();
                         <h5 class="mb-0 text-black">
                             Prezzo
                             @if($product_detail)
-                                @if(App\Helpers\Helpers::validatePriceCutOffDate($product_detail->delivery_time, $product_detail->updated_at, $product_detail->days_off))
+                                @if(date('Y-m-d', strtotime($product_detail->updated_at)) == date('Y-m-d'))
                                     <div class="badge rounded bg-label-success">VALIDO</div>
                                 @else
                                     <div class="badge rounded bg-label-danger">SCADUTO</div>
