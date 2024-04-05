@@ -952,7 +952,8 @@ $(document).ready(function () {
 @if( $user->accountType == 1)
 @endif
 <!-- /Modal -->
-@endsection
+
+
 
 @if($isOnlyProfile)
 <!-- Reject Reason Modal -->
@@ -984,3 +985,6 @@ $(document).ready(function () {
   </div>
 </div>
 @endif
+@endsection
+
+

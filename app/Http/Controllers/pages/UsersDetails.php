@@ -30,8 +30,7 @@ use Carbon\Carbon;
 
 class UsersDetails extends Controller
 {
-  public function index(Request $request)
-  {
+  public function index(Request $request){
     $is_expired = $request->get('expired');
     $user = Auth::user();
     $isAdmin = Helpers::isAdmin();
@@ -107,8 +106,7 @@ class UsersDetails extends Controller
     ]);
   }
 
-  public function view($id)
-  {
+  public function view($id){
     $authUser = Auth::user();
     $user_id = Auth::user()->id;
     $user = User::where(['id' => $id])->first();
@@ -187,6 +185,47 @@ class UsersDetails extends Controller
       "payment_extension" => $payment_extension,
       "consume_capacity" => $consume_capacity,
     ]);
+  }
+
+  public function edit(){
+    $authUser = Auth::user();
+    $id = Auth::user()->id;
+        
+    $user_detail = UserDetail::where(['user_id' => $id])->first();
+
+    $main_activity = Helpers::clientActivityList();
+    $region = Region::orderBy('name', 'ASC')->get();
+    $common = Common::orderBy('name', 'ASC')->get();
+    $province = Province::orderBy('name', 'ASC')->get();
+    $storage_capacity = StorageCapacity::all();
+    $order_capacity = OrderCapacity::all();
+    $product = Product::all();
+    $ease_of_access = EaseOfAccess::all();
+    $payment_extension = PaymentExtension::all();
+    $payment_terms = PaymentTerms::all();
+    $consume_capacity = ConsumeCapacity::all();
+
+      return view('content.pages.pages-users-edit-profile', [
+      //new Data
+      "user_detail"=>$user_detail,
+      "main_activity" => $main_activity,
+      "common" => $common,
+      "province" => $province,
+      "storage_capacity" => $storage_capacity,
+      "order_capacity" => $order_capacity,
+      "product" => $product,
+      "region" => $region,
+      "user_detail" => $user_detail,
+      "ease_of_access" => $ease_of_access,
+      "payment_terms" => $payment_terms,
+      "payment_extension" => $payment_extension,
+      "consume_capacity" => $consume_capacity,
+    ]);
+
+
+
+
+
   }
 
   public function updatePlan(Request $request, $planid){

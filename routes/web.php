@@ -86,12 +86,12 @@ Route::middleware([
     Route::get('/unverified-users', $controller_path . '\pages\UnverifiedUser@index')->name('unverified-users');
 
     Route::get('/profile', $controller_path . '\pages\UsersDetails@index')->name('profile');
+    Route::get('/profile/edit',$controller_path . '\pages\UsersDetails@edit')->name('profile-edit');
     Route::get('/profile/{id}/view', $controller_path . '\pages\UsersDetails@view')->name('profile-view'); //profile view
     Route::get('/plan/update/{planid}', $controller_path . '\pages\UsersDetails@updatePlan')->name('plan-update');
     Route::post('/user/{id}/extend-free-trial', $controller_path . '\pages\UsersDetails@extendFreeTrial')->name('users.extend-free-trial');
     Route::post('/approve/{id}/data',  $controller_path . '\pages\UsersDetails@approveData')->name('approve-edit-data');
-     Route::post('/reject/{id}/data',  $controller_path . '\pages\UsersDetails@rejectData')->name('reject-edit-data');
-
+    Route::post('/reject/{id}/data',  $controller_path . '\pages\UsersDetails@rejectData')->name('reject-edit-data');
 
     //products
     //general

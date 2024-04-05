@@ -57,32 +57,48 @@ document.addEventListener('DOMContentLoaded', function (e) {
   (function () {
     $(document).on('click', '.user-approve-btn', function (e) {
       let userId = $(this).data('user-id');
-      $.ajax({
-        url: `${baseUrl}approve/${userId}/data`,
-        method: 'POST',
-        success: function (response) {
-          console.log(response);
-          $('#edit-seller-profile').modal('hide');
-          Swal.fire({
-            text: "edited request submitted",
-            icon: 'success',
-            customClass: {
-              confirmButton: 'btn btn-primary'
-            },
-            buttonsStyling: false
-          })
+
+
+      Swal.fire({
+        text: "Are you sure you want to Approve New Data?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        customClass: {
+          confirmButton: 'btn btn-primary me-3',
+          cancelButton: 'btn btn-label-secondary'
         },
-        error: function (xhr, status, error) {
-          console.error(xhr.responseText);
-          $('#edit-seller-profile').modal('hide');
-          Swal.fire({
-            text: "Error while Submitting response",
-            icon: 'error',
-            customClass: {
-              confirmButton: 'btn btn-primary'
+        buttonsStyling: false
+      }).then(function (result) {
+        if (result.value) {
+          $.ajax({
+            url: `${baseUrl}approve/${userId}/data`,
+            method: 'POST',
+            success: function (response) {
+              console.log(response);
+              $('#edit-seller-profile').modal('hide');
+              Swal.fire({
+                text: "edited request submitted",
+                icon: 'success',
+                customClass: {
+                  confirmButton: 'btn btn-primary'
+                },
+                buttonsStyling: false
+              })
             },
-            buttonsStyling: false
-          })
+            error: function (xhr, status, error) {
+              console.error(xhr.responseText);
+              $('#edit-seller-profile').modal('hide');
+              Swal.fire({
+                text: "Error while Submitting response",
+                icon: 'error',
+                customClass: {
+                  confirmButton: 'btn btn-primary'
+                },
+                buttonsStyling: false
+              })
+            }
+          });
         }
       });
     });
