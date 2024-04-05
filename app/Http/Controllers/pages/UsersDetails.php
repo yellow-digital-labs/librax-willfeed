@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\pages;
 
 use Illuminate\Support\Facades\Mail;
-use App\Mail\UserRequestReject;
+use App\Mail\ProfileEditApprovalNotification;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -284,10 +284,12 @@ public function extendFreeTrial($id) {
     }
 
     $url = "https://example.com"; // Replace this with your URL
-    $to = "vimal1122001@example.com"; // Replace this with the recipient's email address
+    $to = "vimal1122001@gmail.com"; // Replace this with the recipient's email address
 
-    Mail::to($to)->send(new MyCustomMail($url));
-
+    Mail::to($to)->send(new ProfileEditApprovalNotification("rejected"));
+      return response()->json([
+    "message"=>'send email succesully'
+  ],200);
 
     $newData->reject_reason =  $request->input('reject_reason');
     $newData->admin_approval = 'rejected';

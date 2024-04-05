@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\MailTemplate;
 use App\Helpers\Helpers;
 
-class ContactUs extends Mailable
+class ProfileEditApprovalNotification  extends Mailable
 {
     use Queueable, SerializesModels;
 
