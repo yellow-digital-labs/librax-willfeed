@@ -291,9 +291,9 @@ class Helpers
     $numberOfDays = 7-count($weekends); //Next working day after 5 days
     // $weekends     = array('saturday', 'sunday'); //Saturday and sunday are weekends
     if($fromdate){
-      $currentDate = $fromdate;
+      $currentDate = date('Y-m-d', strtotime($fromdate) + 86400);
     } else {
-      $currentDate  = date('Y-m-d');
+      $currentDate  = date('Y-m-d', strtotime(date('Y-m-d'))+ 86400);
     }
     $dateObj      = new \DateTime($currentDate);
     $timeStamp    = $dateObj->getTimestamp();
@@ -301,7 +301,7 @@ class Helpers
     $days = Helpers::listOfDays();
     $week_of_day = date("N", strtotime($currentDate))-1;
     $today_day = $days[date("N", strtotime($currentDate))-1];
-    $addDay = 86400;
+    $addDay = 0;
     for ($i = 0; $i < 7; $i++) {
       if(in_array($days[$week_of_day], $weekends)){
         //skip
