@@ -160,7 +160,7 @@ $(document).ready(function () {
             </div>
             <!-- Update User Profile Button -->
             @if(!$is_new_data &&  $user->accountType==2)
-            <li class="nav-item seller-profile-edit-btn" onclick="openEditUserModal()"><a class="nav-link" href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">Modifica Profilo</a></li>
+            <li class="nav-item seller-profile-edit-btn"><a class="nav-link" href="{{ route('profile-edit') }}" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">Modifica Profilo</a></li>
             @endif
             @if($is_new_data && $user->accountType==2)
             <!-- User Profle Review Button -->
@@ -938,7 +938,7 @@ $(document).ready(function () {
 @include('_partials/_modals/modal-add-new-cc')
 @include('_partials/_modals/modal-upgrade-plan')
 <!-- include the edit seller profile model  -->
-@if( $user->accountType == 2 )
+<!-- @if( $user->accountType == 2 )
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
@@ -950,7 +950,7 @@ $(document).ready(function () {
 @include('_partials/_modals/modal-edit-seller-profile')
 @endif
 @if( $user->accountType == 1)
-@endif
+@endif -->
 <!-- /Modal -->
 
 

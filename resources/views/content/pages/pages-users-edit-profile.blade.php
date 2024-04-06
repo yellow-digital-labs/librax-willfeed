@@ -40,10 +40,10 @@
 <script>
 let baseUrl ={{url('/')}};
 </script>
-<!-- 
 
 
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> -->
+
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
 
@@ -59,16 +59,13 @@ let baseUrl ={{url('/')}};
 <div id="edit-seller-profile" tabindex="-1">
 
         <div class="text-center mb-4">
-          <h3 class="mb-2">Edit User Information</h3>
+          <h3 class="mb-1">Edit User Information</h3>
           <p class="text-muted">Updating user details will receive a privacy audit.</p>
         </div>    
 
-<div class="signup-wiz">
+<div class="signup-wiz" style="margin-top: -64px;">
     <div class="authentication-wrapper signup-wiz__wrapper">
         <div class="authentication-inner signup-wiz__inner">
-
-            <h1 class="mb-5 pt-2 text-center text-black text-uppercase signup-wiz__maintitle">REGISTRAZIONE VENDITORE</h1>
-
             <div id="multiStepsValidation" class="bs-stepper shadow-none linear signup-wiz__stepper">
 
                 <div class="bs-stepper-header border-bottom-0 signup-wiz__header">
