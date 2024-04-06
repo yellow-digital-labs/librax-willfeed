@@ -172,13 +172,17 @@
                         }, {
                             data: 'amount_before_tax'
                         }, {
+                            data: 'updated_at'
+                        }, {
+                            data: 'price_validate'
+                        }, {
                             data: 'status'
                         }, {
                             data: ''
                         }],
                     columnDefs: [{
                         // Actions
-                        targets: 3,
+                        targets: 5,
                         searchable: false,
                         orderable: false,
                         render: function render(data, type, full, meta) {
@@ -207,8 +211,30 @@
                             return '<span class="user-amount_before_tax">' + $amount_before_tax + '</span>';
                         }
                     }, {
-                        // status
+                        // updated_at
                         targets: 2,
+                        // visible: false,
+                        searchable: false,
+                        orderable: true,
+                        responsivePriority: 4,
+                        render: function render(data, type, full, meta) {
+                            var $updated_at = full['updated_at'];
+                            return '<span class="user-updated_at">' + $updated_at + '</span>';
+                        }
+                    }, {
+                        // price_validate
+                        targets: 3,
+                        // visible: false,
+                        searchable: false,
+                        orderable: true,
+                        responsivePriority: 4,
+                        render: function render(data, type, full, meta) {
+                            var $status = full['price_validate'] ? 'VALIDO' : 'SCADUTO';
+                            return '<span class="badge text-uppercase bg-label-'+(full['price_validate']==true?'success':'danger')+'">' + $status + '</span>';
+                        }
+                    }, {
+                        // status
+                        targets: 4,
                         // visible: false,
                         searchable: true,
                         orderable: true,
