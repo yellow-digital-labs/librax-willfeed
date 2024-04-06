@@ -76,8 +76,9 @@ class Product extends Controller
         1 => "id",
         2 => "product_name",
         3 => "amount_before_tax",
-        4 => "price_validate",
-        5 => "status",
+        4 => "updated_at",
+        5 => "price_validate",
+        6 => "status",
       ];
     }
 
@@ -199,6 +200,7 @@ class Product extends Controller
           $nestedData["product_name"] = $product->product_name;
           $nestedData["amount_before_tax"] =
             "€" . $product->amount_before_tax . "/LITERS";
+          $nestedData["updated_at"] = date("d-m-Y H:i", strtotime($product->updated_at));
           $nestedData["price_validate"] = Helpers::validatePriceCutOffDate($product->delivery_time, $product->updated_at, $product->days_off);
           $nestedData["status"] = $product->status;
           $nestedData["product_id"] = $product->product_id;
