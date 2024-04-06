@@ -154,7 +154,7 @@ class UsersDetails extends Controller
     $payment_terms = PaymentTerms::all();
     $consume_capacity = ConsumeCapacity::all();
 
-    $new_user_detail = UserDetailOldData::where(['user_detail_id'=>$id])->first();
+    $new_user_detail = UserDetailOldData::where(['user_detail_id'=>$id,"admin_approval" => "pending"])->first();
     $is_new_data = false;
     if($new_user_detail){
       $is_new_data = true;
@@ -172,25 +172,26 @@ class UsersDetails extends Controller
 
       //new Data
       'is_new_data' => $is_new_data,
-      "main_activity" => $main_activity,
-      "common" => $common,
-      "province" => $province,
-      "storage_capacity" => $storage_capacity,
-      "order_capacity" => $order_capacity,
-      "product" => $product,
-      "region" => $region,
-      "user_detail" => $user_detail,
-      "ease_of_access" => $ease_of_access,
-      "payment_terms" => $payment_terms,
-      "payment_extension" => $payment_extension,
-      "consume_capacity" => $consume_capacity,
+      // "main_activity" => $main_activity,
+      // "common" => $common,
+      // "province" => $province,
+      // "storage_capacity" => $storage_capacity,
+      // "order_capacity" => $order_capacity,
+      // "product" => $product,
+      // "region" => $region,
+      // "user_detail" => $user_detail,
+      // "ease_of_access" => $ease_of_access,
+      // "payment_terms" => $payment_terms,
+      // "payment_extension" => $payment_extension,
+      // "consume_capacity" => $consume_capacity,
     ]);
   }
 
   public function edit(){
-    $authUser = Auth::user();
+
     $id = Auth::user()->id;
-        
+
+    $user = User::where(['id' => $id])->first();
     $user_detail = UserDetail::where(['user_id' => $id])->first();
 
     $main_activity = Helpers::clientActivityList();
@@ -205,7 +206,27 @@ class UsersDetails extends Controller
     $payment_terms = PaymentTerms::all();
     $consume_capacity = ConsumeCapacity::all();
 
-      return view('content.pages.pages-users-edit-profile', [
+    if($user->accountType == 1){
+      return view('content.pages.pages-buyer-edit-profile', [
+      //new Data
+      "user_detail"=>$user_detail,
+      "main_activity" => $main_activity,
+      "common" => $common,
+      "province" => $province,
+      "storage_capacity" => $storage_capacity,
+      "order_capacity" => $order_capacity,
+      "product" => $product,
+      "region" => $region,
+      "user_detail" => $user_detail,
+      "ease_of_access" => $ease_of_access,
+      "payment_terms" => $payment_terms,
+      "payment_extension" => $payment_extension,
+      "consume_capacity" => $consume_capacity,
+    ]);
+  }
+  else{
+
+      return view('content.pages.pages-seller-edit-profile', [
       //new Data
       "user_detail"=>$user_detail,
       "main_activity" => $main_activity,
@@ -223,9 +244,7 @@ class UsersDetails extends Controller
     ]);
 
 
-
-
-
+  }
   }
 
   public function updatePlan(Request $request, $planid){
@@ -288,6 +307,9 @@ public function extendFreeTrial($id) {
   }
 
   public function approveData(Request $request,$id) {
+
+    $user = User::where(['id' => $id])->first();
+
     $excludedFields = ["created_at", "updated_at", "created_by", "updated_by", "id", "user_id"];
 
     $userDetail = UserDetail::where('user_id', $id)->first();
@@ -308,9 +330,8 @@ public function extendFreeTrial($id) {
     $newData->save();
    
     // SEND MAIL to USER
-
-    // $to = "vimal1122001@gmail.com"; 
-    // Mail::to($to)->send(new ProfileEditNotification("approved",null,$userDetail));
+    $to = $user->email;
+    Mail::to($to)->send(new ProfileEditNotification("approved",null,$userDetail));
 
     return response()->json([
     "message"=>'"data approved successfully'
@@ -318,6 +339,7 @@ public function extendFreeTrial($id) {
   }
 
   public function rejectData(Request $request, $id){
+    $user = User::where(['id' => $id])->first();
 
     $userDetail = UserDetail::where('user_id', $id)->first();
     $newData = UserDetailOldData::where('user_detail_id', $id)->where('admin_approval', 'pending')->first();
@@ -331,8 +353,8 @@ public function extendFreeTrial($id) {
     $newData->admin_approval = 'rejected';
     $newData->save();
     
-    // $to = "vimal1122001@gmail.com"; 
-    // Mail::to($to)->send(new ProfileEditNotification("rejected",$newData->reject_reason,$userDetail));
+    $to = $user->email;
+    Mail::to($to)->send(new ProfileEditNotification("rejected",$newData->reject_reason,$userDetail));
     
     return response()->json([
     "message"=>'data approved successfully'

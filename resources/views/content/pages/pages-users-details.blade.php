@@ -159,10 +159,10 @@ $(document).ready(function () {
                 <li class="nav-item"><a class="nav-link {{$is_expired?'active':''}}" href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#navs-pills-top-Fatturazione" aria-controls="navs-pills-top-Fatturazione" aria-selected="true"><i class="wf-icon-file-text1 ti-xs me-1"></i>Abbonamento</a></li>
             </div>
             <!-- Update User Profile Button -->
-            @if(!$is_new_data &&  $user->accountType==2)
+            @if(!$is_new_data)
             <li class="nav-item seller-profile-edit-btn"><a class="nav-link" href="{{ route('profile-edit') }}" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">Modifica Profilo</a></li>
             @endif
-            @if($is_new_data && $user->accountType==2)
+            @if($is_new_data)
             <!-- User Profle Review Button -->
             <li class="nav-item seller-proile-review-btn"><a class="nav-link" href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">lnvia richiesta</a></li>
             @endif
@@ -937,23 +937,6 @@ $(document).ready(function () {
 @include('_partials/_modals/modal-add-new-address')
 @include('_partials/_modals/modal-add-new-cc')
 @include('_partials/_modals/modal-upgrade-plan')
-<!-- include the edit seller profile model  -->
-<!-- @if( $user->accountType == 2 )
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
-
-<link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-auth.css')}}">
-<script src="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.js')}}"></script>
-
-<script src="{{asset('assets/js/custom/seller-profile-edit-validations.js')}}"></script>
-@include('_partials/_modals/modal-edit-seller-profile')
-@endif
-@if( $user->accountType == 1)
-@endif -->
-<!-- /Modal -->
-
-
 
 @if($isOnlyProfile)
 <!-- Reject Reason Modal -->

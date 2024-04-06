@@ -58,7 +58,7 @@ class SignupSeller extends Controller
   }
 
   public function store(Request $request)
-  {
+ {
     $authUser = Auth::user();
 
     $file_operating_license_path = $request->file('file_operating_license')->store('storage');
@@ -109,38 +109,29 @@ class SignupSeller extends Controller
 
   }
 
-  public function store_old_data(Request $request)
-{
-  
-    $user_detail = UserDetailOldData::where(['user_detail_id' => $request->user_detail_id])->first();
+  public function store_old_data(Request $request){
 
-    if($user_detail){
+    $user = Auth::user();
+    $id = $user->id;
+
+    $user_detail_old = UserDetailOldData::where(['user_detail_id' =>  $id, "admin_approval"=>"pending"])->first();
+
+    if($user_detail_old){
         return response()->json([
        "error"=>'Edit Request Already submitted'
       ],400);
     }
 
-    $userDetail = UserDetail::findOrFail($request->user_detail_id);
+    $userDetail = UserDetail::findOrFail( $id);
 
-    // // Get the new data from the UserDetailOldData model
-    // $newData =  $request->except(['user_detail_id']);
+    // $file_operating_license_path =$userDetail->file_operating_license;
 
-    // Update only the changed fields
-    // $changedFields = array_diff_assoc($newData, $userDetail);
-    // $changedFields['user_detail_id'] = $request->user_detail_id; 
-    // UserDetailOldData::create($changedFields);
-    //    return response()->json([
-    //    "message"=>'user detail store successfully'
-    //   ]);
-    
-    // $authUser = Auth::user();
-
+    // if($request->hasFile('file_operating_license')){
     // $file_operating_license_path = $request->file('file_operating_license')->store('storage');
-
-    // $userDetail = UserDetail::where('user_id', $authUser->id)->firstOrFail();
+    // }
 
     UserDetailOldData::create([
-        'user_detail_id' => $request->user_detail_id,
+        'user_detail_id' => $id,
         'business_name' => $request->business_name,
         'vat_number' => $request->vat_number,
         'contact_person' => $request->contact_person,
@@ -170,13 +161,14 @@ class SignupSeller extends Controller
         // 'updated_by' => $authUser->email
     ]);
 
-  //   $to = "vimal1122001@gmail.com";
-  //   $link = $url = url(`/profile/{$request->user_detail_id}/view`);
-  //  Mail::to($to)->send(new ProfileEditReviewNotification($userDetail));
+    $to = "vimal1122001@gmail.com";
+    // $to = $user->email;
+   $link = $url = url(`/profile/{$request->user_detail_id}/view`);
+   Mail::to($to)->send(new ProfileEditReviewNotification($userDetail, $user));
     
    return response()->json([
-       "message"=>'user detail store successfully'
+       "message"=>'user detail edit request store successfully'
       ]);
-    // return redirect()->route("thankyou-signup");
+  
   }
 }
