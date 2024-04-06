@@ -39,12 +39,12 @@
                 buttonsStyling: false
               }).then(function () {
                 // Reload the page or perform any other action
-                location.reload();
+                // location.reload();
               });
             },
             error: function (error) {
               Swal.fire({
-                text: "An error occurred while extending the free trial period.",
+                text: `${error.responseJSON.message || "An error occurred while extending the free trial period."}`,
                 icon: 'error',
                 customClass: {
                   confirmButton: 'btn btn-primary'
