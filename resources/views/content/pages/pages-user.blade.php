@@ -69,6 +69,7 @@ $customizerHidden = 'customizer-hide';
                     <th class="js-add-search">Email</th>
                     <th>Data Verificato</th>
                     <th>Data Iscrizione</th>
+                    <th>data di scadenza</th>
                     <th>Verificato</th>
                     <th>Abbonamento</th>
                     <th>Modifica</th>

@@ -82,7 +82,19 @@ $configData = Helper::appClasses();
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between border-bottom">
                     <div class="card-title mb-0">
-                        <h5 class="mb-0 text-black">Prezzo</h5>
+                        <h5 class="mb-0 text-black">
+                            Prezzo
+                            @if($product_detail)
+                                @if(date('Y-m-d', strtotime($product_detail->updated_at)) == date('Y-m-d'))
+                                    <div class="badge rounded bg-label-success">VALIDO</div>
+                                @else
+                                    <div class="badge rounded bg-label-danger">SCADUTO</div>
+                                @endif
+                            @endif
+                        </h5>
+                        @if($product_detail)
+                        <span><strong>PREZZO PER IL: {{App\Helpers\Helpers::calculateEstimateShippingDate($product_detail->delivery_time, $product_detail->delivery_days, $product_detail->days_off)}}</strong></span>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body pt-4">
