@@ -52,7 +52,8 @@ class User extends Controller
       3 => "created_at",
       4 => "exp_datetime",
       5 => "approved_by_admin",
-      6 => "subscription_name",
+      6 => "profile_update_request",
+      7 => "subscription_name",
     ];
 
     $search = [];
@@ -145,6 +146,7 @@ class User extends Controller
         $nestedData["created_at"] = date('d-m-Y H:i', strtotime($customer->created_at));
         $nestedData["exp_datetime"] = date('d-m-Y H:i', strtotime($customer->exp_datetime));
         $nestedData["approved_by_admin"] = $customer->approved_by_admin;
+        $nestedData["profile_update_request"] = $customer->profile_update_request;
         $nestedData["subscription_name"] = $customer->subscription_name;
 
         $data[] = $nestedData;

@@ -310,13 +310,15 @@ public function extendFreeTrial($id) {
 
     $user = User::where(['id' => $id])->first();
 
-    $excludedFields = ["created_at", "updated_at", "created_by", "updated_by", "id", "user_id"];
+    $excludedFields = ["created_at", "updated_at", "created_by", "updated_by", "id", "user_id", "file_operating_license"];
 
     $userDetail = UserDetail::where('user_id', $id)->first();
     $newData = UserDetailOldData::where('user_detail_id', $id)->where('admin_approval', 'pending')->first();
     if(!$newData){
       return response()->json([
-          "error"=>"no any pendig request found for edit"
+          "error"=>"no any pendig request found for edit",
+          "status" => 400,
+          "data"=> [],
           ],400);
     }
     foreach ($userDetail->getAttributes() as $key => $value) {
@@ -328,13 +330,19 @@ public function extendFreeTrial($id) {
     $newData->admin_approval = "approved";
     $userDetail->save();
     $newData->save();
+
+    //Set  profile_update_request to Not in  Users table
+    $user->profile_update_request = "No";
+    $user->save();
    
     // SEND MAIL to USER
     $to = $user->email;
     Mail::to($to)->send(new ProfileEditNotification("approved",null,$userDetail));
 
     return response()->json([
-    "message"=>'"data approved successfully'
+    "message"=>"New Edit Request of User is Approved",
+    "status" => 200,
+    "data"=> [],
   ],200);
   }
 
@@ -345,7 +353,9 @@ public function extendFreeTrial($id) {
     $newData = UserDetailOldData::where('user_detail_id', $id)->where('admin_approval', 'pending')->first();
     if(!$newData){
       return response()->json([
-          "error"=>"no any pendig request found for edit"
+          "error"=>"no any pendig request found for edit",
+          "status" => 400,
+          "data"=> [],
           ],400);
     }
 
@@ -353,11 +363,17 @@ public function extendFreeTrial($id) {
     $newData->admin_approval = 'rejected';
     $newData->save();
     
+    //Set  profile_update_request to Not in  Users table
+    $user->profile_update_request = "No";
+    $user->save();
+       
     $to = $user->email;
     Mail::to($to)->send(new ProfileEditNotification("rejected",$newData->reject_reason,$userDetail));
     
     return response()->json([
-    "message"=>'data approved successfully'
+    "message"=>"New Edit Request of User is Rejected",
+    "status" => 200,
+    "data"=> [],
   ],200);
   }
 }

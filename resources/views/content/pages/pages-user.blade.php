@@ -71,6 +71,7 @@ $customizerHidden = 'customizer-hide';
                     <th>Data Iscrizione</th>
                     <th>data di scadenza</th>
                     <th>Verificato</th>
+                    <th> Richiesta di aggiornamento </th>
                     <th>Abbonamento</th>
                     <th>Modifica</th>
                 </tr>

@@ -138,7 +138,7 @@ let baseUrl ={{url('/')}};
                                 <div class="col-sm-6">
                                     <label class="form-label" for="main_activity_ids">Attività principale *</label>
                                     <select name="main_activity_ids" id="main_activity_ids" class="form-select select2" placeholder="Seleziona attività principale">
-                                        <option value="{{$user_detail->main_activity_ids}}" selected>{{$user_detail->main_activity_ids}}</option>
+                                        <option value=""></option>
                                          @foreach($main_activity as $_main_activity)
                                         <option value="{{$_main_activity}}" {{$user_detail?($user_detail->main_activity_ids==$_main_activity?'selected':''):''}}>{{$_main_activity}}</option>
                                     @endforeach
@@ -206,7 +206,7 @@ let baseUrl ={{url('/')}};
                                 <div class="col-sm-6">
                                     <label class="form-label" for="storage_capacity">Capacità di stoccaggio *</label>
                                     <select name="storage_capacity" id="storage_capacity" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                    <option value="{{$user_detail->storage_capacity}}" selected> {{$user_detail->storage_capacity}}</option>
+                                    <option value=""> </option>
                                     @foreach($storage_capacity as $_storage_capacity)
                                         <option value="{{$_storage_capacity->name}}" {{$user_detail?($user_detail->storage_capacity==$_storage_capacity->name?'selected':''):''}}>{{$_storage_capacity->name}}</option>
                                     @endforeach
@@ -240,7 +240,7 @@ let baseUrl ={{url('/')}};
                                     <select name="geographical_coverage_regions[]" id="geographical_coverage_regions" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                                         <option value="">Seleziona le regioni coperte</option>
                                     @foreach($region as $_region)
-                                        <option value="{{$_region->name}}" data-id="{{$_region->id}}" {{$user_detail?($user_detail->geographical_coverage_regions==$_region->name?'selected':''):''}}>{{$_region->name}}</option>
+                                        <option value="{{$_region->name}}"  data-id="{{$_region->id}}" {{$user_detail?(in_array($_region->name, explode(",",$user_detail->geographical_coverage_regions))?'selected':''):''}}>{{$_region->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
@@ -250,7 +250,7 @@ let baseUrl ={{url('/')}};
                                     <select name="geographical_coverage_provinces[]" id="geographical_coverage_provinces" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                                         <option value="">Seleziona prodotti </option>
                                     @foreach($province as $_province)
-                                        <option value="{{$_province->name}}" data-id="{{$_province->id}}" data-region="{{$_province->regions_id}}" {{$user_detail?($user_detail->geographical_coverage_provinces==$_province->name?'selected':''):''}}>{{$_province->name}}</option>
+                                        <option value="{{$_province->name}}"  data-id="{{$_province->id}}" {{$user_detail?(in_array($_province->name, explode(",",$user_detail->geographical_coverage_provinces))?'selected':''):''}}>{{$_province->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>

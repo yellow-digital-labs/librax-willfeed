@@ -154,6 +154,7 @@ $(function () {
                 { data: 'created_at' },
                 { data: 'exp_datetime' },
                 { data: 'approved_by_admin' },
+                { data: 'profile_update_request' },
                 { data: 'subscription_name' },
                 { data: '' }
             ],
@@ -233,9 +234,30 @@ $(function () {
                         '<span class="badge ' + $status[$status_number].class + '">' + $status[$status_number].title + '</span>'
                     );
                 }
-            }, {
-                // subscription_name
+            },
+            {
+                // profile_update_request
                 targets: 6,
+                searchable: true,
+                orderable: true,
+                responsivePriority: 4,
+                render: function render(data, type, full, meta) {
+                    var $status_number = full['profile_update_request'];
+                    var $status = {
+                        'Yes': { title: 'Yes', class: ' bg-label-success' },
+                        'No': { title: 'No', class: ' bg-label-danger' }
+                    };
+                    if (typeof $status[$status_number] === 'undefined') {
+                        return data;
+                    }
+                    return (
+                        '<span class="badge ' + $status[$status_number].class + '">' + $status[$status_number].title + '</span>'
+                    );
+                }
+            },
+            {
+                // subscription_name
+                targets: 7,
                 render: function (data, type, full, meta) {
                     var $subscription_name = full['subscription_name'] ? full['subscription_name'] : '';
                     return '<span class="user-subscription_name">' + $subscription_name + '</span>';
@@ -243,7 +265,7 @@ $(function () {
             },
             {
                 // Actions
-                targets: 7,
+                targets: 8,
                 title: 'Actions',
                 searchable: false,
                 orderable: false,

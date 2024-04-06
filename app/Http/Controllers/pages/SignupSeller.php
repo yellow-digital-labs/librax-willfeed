@@ -118,7 +118,9 @@ class SignupSeller extends Controller
 
     if($user_detail_old){
         return response()->json([
-       "error"=>'Edit Request Already submitted'
+          "error"=>"no any pendig request found for edit",
+          "status" => 400,
+          "data"=> [],
       ],400);
     }
 
@@ -161,14 +163,21 @@ class SignupSeller extends Controller
         // 'updated_by' => $authUser->email
     ]);
 
+    //Set profile_update_request to true in Users table
+    $user_profile = User::find($id);
+    $user_profile->profile_update_request = 'Yes';
+    $user_profile->save();
+    // $user->profile_update_request = "Yes";
+
     $to = "vimal1122001@gmail.com";
     // $to = $user->email;
-   $link = $url = url(`/profile/{$request->user_detail_id}/view`);
-   Mail::to($to)->send(new ProfileEditReviewNotification($userDetail, $user));
-    
-   return response()->json([
-       "message"=>'user detail edit request store successfully'
-      ]);
-  
+    $link = $url = url(`/profile/{$request->user_detail_id}/view`);
+    Mail::to($to)->send(new ProfileEditReviewNotification($userDetail, $user));
+      
+    return response()->json([
+        "message"=>'Edit Request Submited for Admin Review',
+        "status" => 200,
+          "data"=> [],
+    ]);
   }
 }
