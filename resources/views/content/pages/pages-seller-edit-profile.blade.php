@@ -244,7 +244,7 @@ let baseUrl ={{url('/')}};
                                     @endforeach
                                     </select>
                                 </div>
-                                
+                            
                                 <div class="col-sm-6">
                                     <label class="form-label" for="geographical_coverage_provinces">Copertura geografica province</label>
                                     <select name="geographical_coverage_provinces[]" id="geographical_coverage_provinces" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
@@ -260,10 +260,10 @@ let baseUrl ={{url('/')}};
                                     <input type="time" name="time_limit_daily_order" id="time_limit_daily_order" class="form-control" placeholder="Seleziona limite" value="{{$user_detail?$user_detail->time_limit_daily_order:''}}" />
                                 </div>
 
-                                <!-- <div class="col-sm-6">
+                                <div class="col-sm-6">
                                     <label class="form-label" for="file_operating_license">Licenza di esercizio *</label>
                                     <input type="file" name="file_operating_license" class="form-control" placeholder="Nessun file caricato" accept="application/pdf" value="{{$user_detail?$user_detail->file_operating_license:''}}" />
-                                </div> -->
+                                </div>
                                  <!-- <div class="col-sm-6">
                                     <label class="form-label" for="file_operating_license">Licenza di esercizio *</label>
                                     <input type="file" name="file_operating_license" id="file_operating_license" class="form-control" placeholder="Nessun file caricato" accept="application/pdf" value="{{$user_detail?$user_detail->file_operating_license:''}}" />

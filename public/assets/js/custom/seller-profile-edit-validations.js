@@ -353,12 +353,15 @@ document.addEventListener('DOMContentLoaded', function (e) {
                 validationStepper.next();
                 console.log('final submit');
 
-                var formData = $("#sellerEditForm").serialize();
+                // var formData = $("#sellerEditForm").serialize();
+                var formData = new FormData($("#sellerEditForm")[0]);
 
                 $.ajax({
                     url: $("#sellerEditForm").attr('action'),
                     method: 'POST',
                     data: formData,
+                    processData: false,
+                    contentType: false,
                     success: function (response) {
                         console.log(response);
                         $('#edit-seller-profile').modal('hide');

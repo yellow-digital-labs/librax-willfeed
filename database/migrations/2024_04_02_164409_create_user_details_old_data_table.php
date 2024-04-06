@@ -81,6 +81,7 @@ class CreateUserDetailsOldDataTable extends Migration
             $table->string('destination_address', 50)->nullable()->change();
             $table->enum('admin_approval', ['pending', 'approved', 'rejected'])->default('pending');
             $table->text('reject_reason')->nullable();
+            $table->string('file_operating_license')->nullable();
             $table->timestamps();
             $table->string('created_by', 50)->nullable();
             $table->string('updated_by', 50)->nullable();

@@ -445,7 +445,6 @@ $(document).ready(function () {
                                    <p class="mb-0">{{$user_detail->time_limit_daily_order?$user_detail->time_limit_daily_order:'NA'}}</p>
                                 @endif 
                             </div>
-
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Licenza di esercizio</h6>
                                 <p class="mb-0"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_operating_license)}}" target="_blank">View Document</a></p>

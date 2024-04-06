@@ -118,7 +118,7 @@ class SignupSeller extends Controller
 
     if($user_detail_old){
         return response()->json([
-          "error"=>"no any pendig request found for edit",
+          "error"=>"pendig request found for edit",
           "status" => 400,
           "data"=> [],
       ],400);
@@ -126,11 +126,11 @@ class SignupSeller extends Controller
 
     $userDetail = UserDetail::findOrFail( $id);
 
-    // $file_operating_license_path =$userDetail->file_operating_license;
+    $file_operating_license_path =$userDetail->file_operating_license;
 
-    // if($request->hasFile('file_operating_license')){
-    // $file_operating_license_path = $request->file('file_operating_license')->store('storage');
-    // }
+    if($request->hasFile('file_operating_license')){
+        $file_operating_license_path = $request->file('file_operating_license')->store('storage');
+    }
 
     UserDetailOldData::create([
         'user_detail_id' => $id,
@@ -159,7 +159,7 @@ class SignupSeller extends Controller
         'bank' => $request->bank,
         'rib' => $request->rib,
         'rid' => $request->rid,
-        // 'file_operating_license' => $file_operating_license_path,
+        'file_operating_license' => $file_operating_license_path,
         // 'updated_by' => $authUser->email
     ]);
 
@@ -167,12 +167,11 @@ class SignupSeller extends Controller
     $user_profile = User::find($id);
     $user_profile->profile_update_request = 'Yes';
     $user_profile->save();
-    // $user->profile_update_request = "Yes";
-
+  
     $to = "vimal1122001@gmail.com";
     // $to = $user->email;
-    $link = $url = url(`/profile/{$request->user_detail_id}/view`);
-    Mail::to($to)->send(new ProfileEditReviewNotification($userDetail, $user));
+    $link = route('profile-view', ['id' => $request->user_detail_id]);
+    Mail::to($to)->send(new ProfileEditReviewNotification($link, $user));
       
     return response()->json([
         "message"=>'Edit Request Submited for Admin Review',

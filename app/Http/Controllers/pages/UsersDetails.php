@@ -326,6 +326,10 @@ public function extendFreeTrial($id) {
           $userDetail->$key = $newData->$key;
       }
     }
+
+    if(isset($newData->file_operating_license) &&  $userDetail->file_operating_license != $newData->file_operating_license){
+      $userDetail->file_operating_license = $newData->$file_operating_license;
+    }
   
     $newData->admin_approval = "approved";
     $userDetail->save();
