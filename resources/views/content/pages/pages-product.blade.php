@@ -115,6 +115,7 @@ $configData = Helper::appClasses();
                     <th>Prodotto</th>
                     @if(!$isAdmin)
                     <th>prezzo / litro</th>
+                    <th>Ultima modifica</th>
                     <th>Validità</th>
                     @endif
                     @if(!$isAdmin)
