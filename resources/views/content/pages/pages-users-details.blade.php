@@ -955,17 +955,22 @@ $(document).ready(function () {
     font-size: 0.8rem;
     margin-top: 0.2rem;
   }
+  .reject-container {
+    max-width:80%;
+    margin:auto
+  }
 </style>
-
+<div class="reject-container">
   <h2>Enter Rejection Reason</h2>
   <div class="input-group">
-    <textarea id="rejectionReason" rows="4" cols="50" placeholder="Enter rejection reason"></textarea>
+    <textarea id="rejectionReason" rows="4" cols="65" placeholder="Enter rejection reason" style="height:150px; font-size:large"></textarea>
     <div class="error-message" id="rejectionReasonError"></div>
   </div>
-  <button onclick="validateAndSubmit({{$user->id}})" >Submit</button>
-      </div>
+  <button onclick="validateAndSubmit({{$user->id}})" class="btn btn-primary" >Submit</button>
+</div>
     </div>
-  </div>
+ </div>
+</div>
 </div>
 @endif
 @endsection

@@ -4,11 +4,15 @@
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
 @endsection
 
 @section('vendor-script')
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
 <script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/cleavejs/cleave.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/cleavejs/cleave-phone.js')}}"></script>
@@ -26,28 +30,14 @@
 
 @section('page-script')
 <!-- Edit Profle Modal js -->
- <script src="{{asset('assets/js/user-edit-profile.js')}}"></script> 
-<script src="{{asset('assets/js/modal-edit-user.js')}}"></script>
-<script src="{{asset('assets/js/modal-edit-cc.js')}}"></script>
-<script src="{{asset('assets/js/modal-add-new-cc.js')}}"></script>
-<script src="{{asset('assets/js/modal-add-new-address.js')}}"></script>
 <script src="{{asset('assets/js/app-user-view.js')}}"></script>
 <!-- Extend Free Trail js -->
 <script src="{{asset('assets/js/user-extend-free-trial.js')}}"></script>
-<script src="{{asset('assets/js/app-user-view-billing.js')}}"></script>
-
 
 <script>
 let baseUrl ={{url('/')}};
 </script>
 
-
-
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
-
-<link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-auth.css')}}">
 <script src="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.js')}}"></script>
 
 <script src="{{asset('assets/js/custom/seller-profile-edit-validations.js')}}"></script>
