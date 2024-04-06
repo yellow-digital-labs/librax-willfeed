@@ -60,8 +60,8 @@ $configData = Helper::appClasses();
                                   @endphp
                                     {{$product->product_name}} <br/>
                                     Prima consegna: {{$display_date}}
-                                  @if($display_date != "NA" && $display_date < date("d-m-Y"))
-                                    <i class="text-danger">ORDINE EFFETTUATO FUORI ORARIO OPERATIVO L'APPROVAZIONE SARÀ A DISCREZIONE DEL VENDITORE.</i>
+                                  @if((date('Y-m-d', strtotime($product->updated_at)) != date('Y-m-d')) || (date('Y-m-d', strtotime($product->updated_at)) == date('Y-m-d') && (date('H:i') > $product->delivery_time)))
+                                    <i class="text-danger" style="color: rgba(234, 84, 85, 1) !important;">ORDINE EFFETTUATO FUORI ORARIO OPERATIVO L'APPROVAZIONE SARÀ A DISCREZIONE DEL VENDITORE.</i>
                                   @endif
                                 </h2>
                             </div>
