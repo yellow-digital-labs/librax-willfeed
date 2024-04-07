@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\pages;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ProfileEditNotification;
 use App\Http\Controllers\Controller;
@@ -191,6 +192,11 @@ class UsersDetails extends Controller
 
     $id = Auth::user()->id;
 
+    $user_detail_old = UserDetailOldData::where(['user_detail_id' =>  $id, "admin_approval"=>"pending"])->first();
+    if($user_detail_old){
+      return redirect()->route('profile');
+    }
+
     $user = User::where(['id' => $id])->first();
     $user_detail = UserDetail::where(['user_id' => $id])->first();
 
@@ -309,11 +315,10 @@ public function extendFreeTrial($id) {
   public function approveData(Request $request,$id) {
 
     $user = User::where(['id' => $id])->first();
-
-    $excludedFields = ["created_at", "updated_at", "created_by", "updated_by", "id", "user_id", "file_operating_license"];
-
     $userDetail = UserDetail::where('user_id', $id)->first();
     $newData = UserDetailOldData::where('user_detail_id', $id)->where('admin_approval', 'pending')->first();
+    $excludedFields = ["created_at", "updated_at", "created_by", "updated_by", "id", "user_id", "file_operating_license"];
+
     if(!$newData){
       return response()->json([
           "error"=>"no any pendig request found for edit",
@@ -321,15 +326,22 @@ public function extendFreeTrial($id) {
           "data"=> [],
           ],400);
     }
+
     foreach ($userDetail->getAttributes() as $key => $value) {
       if (!in_array($key, $excludedFields) && isset($newData->$key) && $userDetail->$key != $newData->$key) {
           $userDetail->$key = $newData->$key;
       }
     }
 
-    if(isset($newData->file_operating_license) &&  $userDetail->file_operating_license != $newData->file_operating_license){
-      $userDetail->file_operating_license = $newData->$file_operating_license;
+    if($user->accountType == 2 && isset($newData->file_operating_license) &&  $userDetail->file_operating_license != $newData->file_operating_license){
+      if (Storage::exists($userDetail->file_operating_license)) {
+       Storage::delete($userDetail->file_operating_license);
+      } 
+      $userDetail->file_operating_license = $newData->file_operating_license;
     }
+    // if($user->accountType == 1){
+
+    // }
   
     $newData->admin_approval = "approved";
     $userDetail->save();
@@ -379,5 +391,16 @@ public function extendFreeTrial($id) {
     "status" => 200,
     "data"=> [],
   ],200);
+  }
+  
+  public function showPdf($filename){
+     $filePath = 'storage/'.storage_path($filename);
+
+     return Response::make(file_get_contents($filePath,200,[
+      "Content-Type" => "application/pdf",
+      "Content-Disposition" => 'inline; filename="'.$filename.'"'
+     ]));
+        
+    // return response()->file(storage_path($filePath));
   }
 }

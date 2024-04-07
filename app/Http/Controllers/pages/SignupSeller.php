@@ -126,7 +126,7 @@ class SignupSeller extends Controller
 
     $userDetail = UserDetail::findOrFail( $id);
 
-    $file_operating_license_path =$userDetail->file_operating_license;
+    $file_operating_license_path = $userDetail->file_operating_license_path;
 
     if($request->hasFile('file_operating_license')){
         $file_operating_license_path = $request->file('file_operating_license')->store('storage');

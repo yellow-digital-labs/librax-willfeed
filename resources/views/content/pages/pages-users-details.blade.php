@@ -436,7 +436,7 @@ $(document).ready(function () {
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Tempo limite accettazione ordine</h6>
                                 
-                                  @if( $is_new_data && $user_detail->time_limit_daily_order !== $new_user_detail->time_limit_daily_order)
+                              @if( $is_new_data && $user_detail->time_limit_daily_order !== $new_user_detail->time_limit_daily_order)
                                 <div class="d-flex">
                                     <p class="mb-0 strike-through">{{$user_detail->time_limit_daily_order?$user_detail->time_limit_daily_order:'NA'}}</p>
                                     <p class="ms-2">{{$new_user_detail->time_limit_daily_order?$new_user_detail->time_limit_daily_order:'NA'}}</p>
@@ -447,7 +447,14 @@ $(document).ready(function () {
                             </div>
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Licenza di esercizio</h6>
-                                <p class="mb-0"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_operating_license)}}" target="_blank">View Document</a></p>
+                                  @if( $is_new_data && $user_detail->file_operating_license !== $new_user_detail->file_operating_license)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_operating_license)}}" target="_blank">View Document</a></p>
+                                    <p class="ms-2"><a href="{{Illuminate\Support\Facades\Storage::url($new_user_detail->file_operating_license)}}" target="_blank">View Document</a></p>
+                                </div>
+                                @else
+                                  <p class="mb-0"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_operating_license)}}" target="_blank">View Document</a></p>
+                                @endif 
                             </div>
                         </div>
                     </div>
