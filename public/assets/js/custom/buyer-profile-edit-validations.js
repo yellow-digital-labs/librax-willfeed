@@ -461,7 +461,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                 var formData = new FormData($("#buyerEditForm")[0]);
 
                 $.ajax({
-                    url: $("#sellerEditForm").attr('action'),
+                    url: $("#buyerEditForm").attr('action'),
                     method: 'POST',
                     data: formData,
                     processData: false,

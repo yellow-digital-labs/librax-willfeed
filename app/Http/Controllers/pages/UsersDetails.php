@@ -381,11 +381,11 @@ public function extendFreeTrial($id) {
 
   public function rejectData(Request $request, $id){
     $user = User::where(['id' => $id])->first();
-
     $userDetail = UserDetail::where('user_id', $id)->first();
     $newData = UserDetailOldData::where('user_detail_id', $id)->where('admin_approval', 'pending')->first();
+
     if(!$newData){
-      return response()->json([
+      return response()->json([ 
           "error"=>"no any pendig request found for edit",
           "status" => 400,
           "data"=> [],

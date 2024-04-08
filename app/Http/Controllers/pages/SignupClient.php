@@ -163,11 +163,19 @@ class SignupClient extends Controller
 
     $userDetail = UserDetail::findOrFail( $id);
 
-    // $file_operating_license_path = $userDetail->file_operating_license_path;
+      $file_1 = $userDetail->file_1;
+      $file_2 = $userDetail->file_2;
+      $file_3 = $userDetail->file_3;
 
-    // if($request->hasFile('file_operating_license')){
-    //     $file_operating_license_path = $request->file('file_operating_license')->store('storage');
-    // }
+      if($request->hasFile('file_1')){
+          $file_1 = $request->file('file_1')->store('storage');
+      }
+      if($request->hasFile('file_2')){
+          $file_2 = $request->file('file_2')->store('storage');
+      }
+      if($request->hasFile('file_3')){
+          $file_3 = $request->file('file_3')->store('storage');
+      }
 
     UserDetailOldData::create([
         'user_detail_id' => $id,
@@ -218,9 +226,9 @@ class SignupClient extends Controller
         'comircial_vehicle' => $request->comircial_vehicle,
         'semi_trailer' => $request->semi_trailer,
         'trailers' => $request->trailers,
-        // 'file_1' => $file_1,
-        // 'file_2' => $file_2,
-        // 'file_3' => $file_3,
+        'file_1' => $file_1,
+        'file_2' => $file_2,
+        'file_3' => $file_3,
     ]);
 
     //Set profile_update_request to true in Users table
