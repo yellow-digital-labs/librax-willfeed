@@ -26,7 +26,7 @@ class ProfileEditReviewNotification  extends Mailable
 
     public function build()
     {
-        $subject = 'New Profile Edit to Review';
+        $subject = 'Nuovo profilo Modifica da rivedere';
 
         return $this->subject($subject)
                   ->markdown('emails.profile-edit-review-notification');

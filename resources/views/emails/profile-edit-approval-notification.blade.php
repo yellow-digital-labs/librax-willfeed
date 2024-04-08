@@ -1,10 +1,10 @@
 @component('mail::message')
-# Profile Edit {{ ucfirst($status) }}
 
 @if($status == 'approved')
 Your profile edit has been successfully approved.
 @else
-Your profile edit has been rejected. Reason: {{ $reason }}
+La tua richiesta di aggiornamento del profilo è stata rifiutata
+La modifica del tuo profilo è stata rifiutata. Motivo: {{ $reason }}
 @endif
 
 Thanks,<br>

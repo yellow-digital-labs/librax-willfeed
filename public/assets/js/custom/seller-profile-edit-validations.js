@@ -366,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                         console.log(response);
                         $('#edit-seller-profile').modal('hide');
                         Swal.fire({
-                            text: "edited request submitted",
+                            text: "Richiesta di modifica inviata",
                             icon: 'success',
                             customClass: {
                                 confirmButton: 'btn btn-primary'
@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                         console.error(xhr.responseText);
                         $('#edit-seller-profile').modal('hide');
                         Swal.fire({
-                            text: "Error while Submitting response",
+                            text: " Hai già inviato una richiesta di aggiornamento",
                             icon: 'error',
                             customClass: {
                                 confirmButton: 'btn btn-primary'

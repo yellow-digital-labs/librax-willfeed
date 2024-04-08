@@ -155,7 +155,7 @@ class SignupClient extends Controller
 
     if($user_detail_old){
         return response()->json([
-          "error"=>"pendig request found for edit",
+          "error"=>" Hai già inviato una richiesta di aggiornamento",
           "status" => 400,
           "data"=> [],
       ],400);
@@ -242,7 +242,7 @@ class SignupClient extends Controller
     Mail::to($to)->send(new ProfileEditReviewNotification($link, $user));
       
     return response()->json([
-        "message"=>'Edit Request Submited for Admin Review',
+        "message"=>'Richiesta di modifica inviata',
         "status" => 200,
           "data"=> [],
     ]);

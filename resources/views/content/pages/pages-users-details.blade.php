@@ -1270,7 +1270,7 @@ $(document).ready(function () {
   }
 </style>
 <div class="reject-container">
-  <h4>Enter Rejection Reason</h4>
+  <h4> Inserisci il motivo del rifiuto</h4>
   <div class="input-group">
     <textarea class="form-control" id="rejectionReason" rows="4" cols="65" placeholder="Enter rejection reason" style="height: 150px;"></textarea>
     <div class="error-message" id="rejectionReasonError"></div>

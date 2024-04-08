@@ -118,7 +118,7 @@ class SignupSeller extends Controller
 
     if($user_detail_old){
         return response()->json([
-          "error"=>"pendig request found for edit",
+          "error"=>" Hai già inviato una richiesta di aggiornamento",
           "status" => 400,
           "data"=> [],
       ],400);
@@ -170,11 +170,11 @@ class SignupSeller extends Controller
   
      //send email to admin
     $to = explode(',', env('MAIL_TO_ADDRESS'));
-    $link = route('profile-view', ['id' => $request->user_detail_id]);
+    $link = route('profile-view', ['id' => $id]);
     Mail::to($to)->send(new ProfileEditReviewNotification($link, $user));
       
     return response()->json([
-        "message"=>'Edit Request Submited for Admin Review',
+        "message"=>'Richiesta di modifica inviata',
         "status" => 200,
           "data"=> [],
     ]);

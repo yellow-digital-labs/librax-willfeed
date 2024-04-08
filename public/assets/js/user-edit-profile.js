@@ -13,7 +13,7 @@ function validateAndSubmit(userId) {
   var errorField = document.getElementById("rejectionReasonError");
 
   if (rejectionReason === "") {
-    errorField.textContent = "Please enter a rejection reason.";
+    errorField.textContent = "Inserisci il motivo del rifiuto";
     return;
   }
 
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
 
 
       Swal.fire({
-        text: "Are you sure you want to Approve New Data?",
+        text: " Sei sicuro di voler approvare i nuovi dati?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes',
