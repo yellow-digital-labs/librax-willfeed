@@ -3,9 +3,10 @@ $customizerHidden = 'customizer-hide';
 $configData = Helper::appClasses();
 @endphp
 @extends('layouts/layoutMaster')
-@section('title', 'Multi Steps Sign-up - Pages')
+@section('title', 'Edit Profilo')
 @section('vendor-style')
 <!-- Vendor -->
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" />
@@ -18,6 +19,9 @@ $configData = Helper::appClasses();
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 @endsection
 @section('vendor-script')
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+<script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/cleavejs/cleave.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/cleavejs/cleave-phone.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.js')}}"></script>
@@ -27,7 +31,7 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
 @endsection
 @section('page-script')
-<script src="{{asset('assets/js/custom/signup-client-validations.js')}}"></script>
+<script src="{{asset('assets/js/custom/buyer-profile-edit-validations.js')}}"></script>
 @endsection
 @section('content')
     
@@ -35,7 +39,7 @@ $configData = Helper::appClasses();
     <div class="authentication-wrapper signup-wiz__wrapper">
         <div class="authentication-inner signup-wiz__inner">
 
-            <div id="multiStepsValidation" class="bs-stepper shadow-none linear signup-wiz__stepper">
+            <div id="multiStepsBuyerValidation" class="bs-stepper shadow-none linear signup-wiz__stepper">
 
                 <div class="bs-stepper-header border-bottom-0 signup-wiz__header">
                     <div class="step active signup-wiz__step" data-target="#SignupStepRegistry">
@@ -82,7 +86,7 @@ $configData = Helper::appClasses();
                 </div>
 
                 <div class="bs-stepper-content signup-wiz__body">
-                    <form id="multiStepsForm" onsubmit="return false" class="signup-wiz__form" method="POST" enctype="multipart/form-data">
+                    <form id="buyerEditForm" action="{{ route('edit-buyer-profile') }}" onsubmit="return false" class="signup-wiz__form" method="POST" enctype="multipart/form-data">
                         @csrf
                         <!-- Registry -->
                         <div id="SignupStepRegistry" class="content active dstepper-block fv-plugins-bootstrap5 fv-plugins-framework">
@@ -399,13 +403,12 @@ $configData = Helper::appClasses();
                                     <label class="form-label" for="no_of_distributer">Numero di distributori *</label>
                                     <input type="text" name="no_of_distributer" id="no_of_distributer" class="form-control" value="{{$user_detail->no_of_distributer?$user_detail->no_of_distributer:'' }}" placeholder="Inserisci numero di distributori" />
                                 </div>
-                                
+                        
                                 <div class="col-sm-12">
                                     <label class="form-label" for="">Flotta *</label>
                                     <div class="card shadow-none bg-transparent border border-secondary mb-3">
                                         <div class="card-body p-3">
                                             <div class="row g-3">
-                                                
                                                 <div class="col-sm-6">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">
                                                         <div class="card-body p-3">

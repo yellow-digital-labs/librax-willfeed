@@ -168,8 +168,7 @@ class SignupSeller extends Controller
     $user_profile->profile_update_request = 'Yes';
     $user_profile->save();
   
-    $to = "vimal1122001@gmail.com";
-    // $to = $user->email;
+    $to = $user->email;
     $link = route('profile-view', ['id' => $request->user_detail_id]);
     Mail::to($to)->send(new ProfileEditReviewNotification($link, $user));
       

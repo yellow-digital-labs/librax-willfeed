@@ -261,7 +261,7 @@ let baseUrl ={{url('/')}};
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="file_operating_license">Licenza di esercizio *</label>
+                                    <label class="form-label" for="file_operating_license">Licenza di esercizio </label>
                                     <input type="file" name="file_operating_license" class="form-control" placeholder="Nessun file caricato" accept="application/pdf" value="{{$user_detail?$user_detail->file_operating_license:''}}" />
                                 </div>
                                  <!-- <div class="col-sm-6">

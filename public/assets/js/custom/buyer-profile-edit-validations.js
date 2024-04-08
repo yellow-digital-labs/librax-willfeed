@@ -14,13 +14,14 @@ $(function () {
             var $this = $(this);
             $this.wrap('<div class="position-relative"></div>');
             $this.select2({
-                placeholder: 'Seleziona attività principale',
+                placeholder: 'Select an option',
                 dropdownParent: $this.parent()
             });
         });
     }
 
     $("#region").on("change", function () {
+        console.log('region changes');
         let select_id = $(this).find(":selected").data("id");
 
         $("#province").select2("destroy").select2({
@@ -38,6 +39,34 @@ $(function () {
         let select_id = $(this).find(":selected").data("id");
 
         $("#common").select2("destroy").select2({
+            templateResult: function (option, container) {
+                if ($(option.element).attr("data-province") != select_id) {
+                    $(container).css("display", "none");
+                }
+
+                return option.text;
+            }
+        });
+    });
+
+    $("#destination_region").on("change", function () {
+        let select_id = $(this).find(":selected").data("id");
+
+        $("#destination_province").select2("destroy").select2({
+            templateResult: function (option, container) {
+                if ($(option.element).attr("data-region") != select_id) {
+                    $(container).css("display", "none");
+                }
+
+                return option.text;
+            }
+        });
+    });
+
+    $("#destination_province").on("change", function () {
+        let select_id = $(this).find(":selected").data("id");
+
+        $("#destination_common").select2("destroy").select2({
             templateResult: function (option, container) {
                 if ($(option.element).attr("data-province") != select_id) {
                     $(container).css("display", "none");
@@ -67,21 +96,47 @@ $(function () {
         });
     });
 
+    $('.container-transport').on('click', function () {
+        if ($(this).prop("checked")) {
+            //checked
+            $(this).closest(".row").find(".form-control").removeClass("hide");
+        } else {
+            //unchecked
+            $(this).closest(".row").find(".form-control").addClass("hide");
+            $(this).closest(".row").find(".form-control").val(0);
+        }
+    });
 
+    $("#destination_address").on("change", function () {
+        if (this.value == "Si") {
+            $(".address-container").removeClass('hide');
+        } else {
+            $(".address-container").addClass('hide');
+        }
+    });
+
+    $("#is_private_distributer").on("change", function () {
+        if (this.value == "Si") {
+            $(".js-no-of-dis-container").removeClass("hide");
+        } else {
+            $(".js-no-of-dis-container").addClass("hide");
+        }
+    });
 });
 
 // Multi Steps Validation
 // --------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', function (e) {
     (function () {
-        const stepsValidation = document.querySelector('#multiStepsValidation');
+        const stepsValidation = document.querySelector('#multiStepsBuyerValidation');
         if (typeof stepsValidation !== undefined && stepsValidation !== null) {
             // Multi Steps form
-            const stepsValidationForm = stepsValidation.querySelector('#sellerEditForm');
+            const stepsValidationForm = stepsValidation.querySelector('#buyerEditForm');
             // Form steps
             const stepsValidationFormStep1 = stepsValidationForm.querySelector('#SignupStepRegistry');
             const stepsValidationFormStep2 = stepsValidationForm.querySelector('#SignupStepDestination');
             const stepsValidationFormStep3 = stepsValidationForm.querySelector('#SignupStepBilling');
+            const stepsValidationFormStep4 = stepsValidationForm.querySelector('#SignupStepProfile');
             // Multi steps next prev button
             const stepsValidationNext = [].slice.call(stepsValidationForm.querySelectorAll('.btn-next'));
             const stepsValidationPrev = [].slice.call(stepsValidationForm.querySelectorAll('.btn-prev'));
@@ -220,56 +275,36 @@ document.addEventListener('DOMContentLoaded', function (e) {
             });
 
             // Destination details
-            var formTwoValidationFields = {
-                storage_capacity: {
+            let formTwoValidationFields = {
+                ease_of_access: {
                     validators: {
                         notEmpty: {
-                            message: 'Please enter capacità di stoccaggio'
+                            message: 'Please enter facilità di accesso'
                         }
                     }
                 },
-                order_capacity_limits: {
+                mobile_unloading: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter cellulare referente di scarico'
+                        },
+                        stringLength: {
+                            min: 10,
+                            max: 10,
+                            message: 'cellulare referente di scarico should be 10 digit long'
+                        },
+                        regexp: {
+                            regexp: /^[0-9]+$/,
+                            message: 'cellulare referente di scarico can only consist of number'
+                        }
+                    }
+                },
+                destination_region: {
                     validators: {
                         notEmpty: {
                             enabled: false,
-                            message: 'Please enter limiti di capacità ordini min'
+                            message: 'Please enter regione'
                         }
-                    }
-                },
-                order_capacity_limits_new: {
-                    validators: {
-                        notEmpty: {
-                            enabled: false,
-                            message: 'Please enter limiti di capacità ordini max'
-                        }
-                    }
-                },
-                available_products: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please enter prodotti disponibili'
-                        }
-                    }
-                },
-                geographical_coverage_regions: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please enter copertura geografica regioni'
-                        }
-                    }
-                },
-                time_limit_daily_order: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please enter tempo limite accettazione ordine'
-                        }
-                    }
-                },
-                file_operating_license: {
-                    validators: {
-                        // notEmpty: {
-                        //     message: 'Please enter Licenza di esercizio'
-                        // }
                     }
                 }
             };
@@ -301,31 +336,52 @@ document.addEventListener('DOMContentLoaded', function (e) {
             // Billing details
             const multiSteps3 = FormValidation.formValidation(stepsValidationFormStep3, {
                 fields: {
-                    bank_transfer: {
+                    payment_extension: {
                         validators: {
                             notEmpty: {
-                                message: 'Please enter bonifico bancario'
+                                message: 'Please enter dilazione di pagamento preferita'
                             }
                         }
                     },
-                    bank_check: {
+                    payment_term: {
                         validators: {
                             notEmpty: {
-                                message: 'Please enter assegno bancario'
+                                message: 'Please enter modalità di pagamento'
                             }
                         }
                     },
-                    rib: {
+                    reference_bank: {
                         validators: {
                             notEmpty: {
-                                message: 'Please enter RIBA'
+                                message: 'Please enter banca di riferimento'
                             }
                         }
                     },
-                    rid: {
+                    sdi: {
                         validators: {
                             notEmpty: {
-                                message: 'Please enter RID'
+                                message: 'Please enter SDI'
+                            }
+                        }
+                    },
+                    file_1: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please upload esenzione IVA'
+                            }
+                        }
+                    },
+                    file_2: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please upload esenzione IVA'
+                            }
+                        }
+                    },
+                    file_3: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please upload esenzione IVA'
                             }
                         }
                     }
@@ -349,12 +405,60 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     });
                 }
             }).on('core.form.valid', function () {
-                // stepsValidationForm.submit();
+                // Jump to the next step when all fields in the current step are valid
+                validationStepper.next();
+            });
+
+            // Profile details
+            const multiSteps4 = FormValidation.formValidation(stepsValidationFormStep4, {
+                fields: {
+                    products: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter tipologia di prodotti consumati'
+                            }
+                        }
+                    },
+                    monthly_consumption: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter consumi medi mensili'
+                            }
+                        }
+                    },
+                    is_private_distributer: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter sei un distributore privato'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap5: new FormValidation.plugins.Bootstrap5({
+                        // Use this for enabling/changing valid/invalid class
+                        // eleInvalidClass: '',
+                        eleValidClass: '',
+                        rowSelector: '.col-sm-6'
+                    }),
+                    autoFocus: new FormValidation.plugins.AutoFocus(),
+                    submitButton: new FormValidation.plugins.SubmitButton()
+                },
+                init: instance => {
+                    instance.on('plugins.message.placed', function (e) {
+                        if (e.element.parentElement.classList.contains('input-group')) {
+                            e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
+                        }
+                    });
+                }
+            }).on('core.form.valid', function () {
+                // Jump to the next step when all fields in the current step are valid
                 validationStepper.next();
                 console.log('final submit');
 
                 // var formData = $("#sellerEditForm").serialize();
-                var formData = new FormData($("#sellerEditForm")[0]);
+                var formData = new FormData($("#buyerEditForm")[0]);
 
                 $.ajax({
                     url: $("#sellerEditForm").attr('action'),
@@ -364,7 +468,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     contentType: false,
                     success: function (response) {
                         console.log(response);
-                        $('#edit-seller-profile').modal('hide');
+                        $('#edit-buyer-profile').modal('hide');
                         Swal.fire({
                             text: "edited request submitted",
                             icon: 'success',
@@ -397,40 +501,25 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     switch (validationStepper._currentIndex) {
                         case 0:
                             multiSteps1.validate();
-                            let main_activity_ids = $("#main_activity_ids").find(":selected").val();
-                            // delete formTwoValidationFields.order_capacity_limits;
-                            // delete formTwoValidationFields.order_capacity_limits_new;
-                            if (main_activity_ids == "Agenzia") {
-                                $(".order_capacity_limits_container").hide();
-                                multiSteps2.disableValidator('order_capacity_limits');
-                                multiSteps2.disableValidator('order_capacity_limits_new');
-                            } else {
-                                $(".order_capacity_limits_container").show();
-                                multiSteps2.enableValidator('order_capacity_limits');
-                                multiSteps2.enableValidator('order_capacity_limits_new');
-                                // formTwoValidationFields["order_capacity_limits"] = {
-                                //     validators: {
-                                //         notEmpty: {
-                                //             message: 'Please enter limiti di capacità ordini min'
-                                //         }
-                                //     }
-                                // };
-                                // formTwoValidationFields["order_capacity_limits_new"] = {
-                                //     validators: {
-                                //         notEmpty: {
-                                //             message: 'Please enter limiti di capacità ordini max'
-                                //         }
-                                //     }
-                                // };
-                            }
                             break;
 
                         case 1:
+                            let destination_address = $("#destination_address").find(":selected").val();
+                            if (destination_address == "No") {
+                                multiSteps2.disableValidator('destination_region');
+                            } else {
+                                multiSteps2.enableValidator('destination_region');
+
+                            }
                             multiSteps2.validate();
                             break;
 
                         case 2:
                             multiSteps3.validate();
+                            break;
+
+                        case 3:
+                            multiSteps4.validate();
                             break;
 
                         default:
@@ -442,6 +531,10 @@ document.addEventListener('DOMContentLoaded', function (e) {
             stepsValidationPrev.forEach(item => {
                 item.addEventListener('click', event => {
                     switch (validationStepper._currentIndex) {
+                        case 3:
+                            validationStepper.previous();
+                            break;
+
                         case 2:
                             validationStepper.previous();
                             break;

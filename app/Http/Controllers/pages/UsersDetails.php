@@ -317,7 +317,7 @@ public function extendFreeTrial($id) {
     $user = User::where(['id' => $id])->first();
     $userDetail = UserDetail::where('user_id', $id)->first();
     $newData = UserDetailOldData::where('user_detail_id', $id)->where('admin_approval', 'pending')->first();
-    $excludedFields = ["created_at", "updated_at", "created_by", "updated_by", "id", "user_id", "file_operating_license"];
+    $excludedFields = ["created_at", "updated_at", "created_by", "updated_by", "id", "user_id", "file_operating_license","file_1","file_2","file_3"];
 
     if(!$newData){
       return response()->json([
@@ -339,9 +339,26 @@ public function extendFreeTrial($id) {
       } 
       $userDetail->file_operating_license = $newData->file_operating_license;
     }
-    // if($user->accountType == 1){
-
-    // }
+    if($user->accountType == 1){  
+      if(isset($newData->file_1) &&  $userDetail->file_1 != $newData->file_1){
+         if (Storage::exists($userDetail->file_1)) {
+           Storage::delete($userDetail->file_1);
+        }  
+        $userDetail->file_1 = $newData->file_1;
+      }
+      if(isset($newData->file_2) &&  $userDetail->file_2 != $newData->file_2){
+          if (Storage::exists($userDetail->file_2)) {
+            Storage::delete($userDetail->file_2);
+        }  
+        $userDetail->file_2 = $newData->file_2;
+      }
+      if(isset($newData->file_3) &&  $userDetail->file_3 != $newData->file_3){
+        if (Storage::exists($userDetail->file_3)) {
+          Storage::delete($userDetail->file_3);
+        }  
+        $userDetail->file_3 = $newData->file_3;
+      }
+    }
   
     $newData->admin_approval = "approved";
     $userDetail->save();
