@@ -164,7 +164,7 @@ $(document).ready(function () {
             @endif
             @if($is_new_data)
             <!-- User Profle Review Button -->
-            <li class="nav-item bg-secondary border-3 disabled seller-proile-review-btn"  style="pointer-events: none;"><a class="nav-link" href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">lnvia richiesta</a></li>
+            <li class="nav-item bg-secondary border-3 disabled seller-proile-review-btn"  style="pointer-events: none;"><a class="btn btn-secondary " href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">lnvia richiesta</a></li>
             @endif
         </ul>
         @endif
@@ -956,63 +956,135 @@ $(document).ready(function () {
                             @if($user_detail->fixed_cassone_truck&&$user_detail->fixed_cassone_truck>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion a cassone Fisso</h6>
-                                <p class="mb-0">{{$user_detail->fixed_cassone_truck?$user_detail->fixed_cassone_truck:'NA'}}</p>
+                                   @if($is_new_data && $user_detail->fixed_cassone_truck !== $new_user_detail->fixed_cassone_truck)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->fixed_cassone_truck?$user_detail->fixed_cassone_truck:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->fixed_cassone_truck?$new_user_detail->fixed_cassone_truck:'NA'}}</p>
+                                </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->fixed_cassone_truck?$user_detail->fixed_cassone_truck:'NA'}}</p>
+                                @endif 
+                              
                             </div>
                             @endif
 
                             @if($user_detail->fridge_truck&&$user_detail->fridge_truck>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion Frigo</h6>
-                                <p class="mb-0">{{$user_detail->fridge_truck?$user_detail->fridge_truck:'NA'}}</p>
+                                       @if($is_new_data && $user_detail->fridge_truck !== $new_user_detail->fridge_truck)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->fridge_truck?$user_detail->fridge_truck:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->fridge_truck?$new_user_detail->fridge_truck:'NA'}}</p>
+                                </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->fridge_truck?$user_detail->fridge_truck:'NA'}}</p>
+                                @endif 
+                         
                             </div>
                             @endif
 
                             @if($user_detail->truck_with_crane&&$user_detail->truck_with_crane>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion con Gru</h6>
-                                <p class="mb-0">{{$user_detail->truck_with_crane?$user_detail->truck_with_crane:'NA'}}</p>
+                                       @if($is_new_data && $user_detail->truck_with_crane !== $new_user_detail->truck_with_crane)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->truck_with_crane?$user_detail->truck_with_crane:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->truck_with_crane?$new_user_detail->truck_with_crane:'NA'}}</p>
+                                </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->truck_with_crane?$user_detail->truck_with_crane:'NA'}}</p>
+                                @endif 
+                               
                             </div>
                             @endif
 
                             @if($user_detail->scarble_truck&&$user_detail->scarble_truck>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion Scarrabili</h6>
-                                <p class="mb-0">{{$user_detail->scarble_truck?$user_detail->scarble_truck:'NA'}}</p>
+                                   @if($is_new_data && $user_detail->scarble_truck !== $new_user_detail->scarble_truck)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->scarble_truck?$user_detail->scarble_truck:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->scarble_truck?$new_user_detail->scarble_truck:'NA'}}</p>
+                                </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->scarble_truck?$user_detail->scarble_truck:'NA'}}</p>
+                                @endif 
+                              
                             </div>
                             @endif
 
                             @if($user_detail->bitoniere&&$user_detail->bitoniere>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Bitoniere</h6>
-                                <p class="mb-0">{{$user_detail->bitoniere?$user_detail->bitoniere:'NA'}}</p>
+                                       @if($is_new_data && $user_detail->bitoniere !== $new_user_detail->bitoniere)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->bitoniere?$user_detail->bitoniere:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->bitoniere?$new_user_detail->bitoniere:'NA'}}</p>
+                                </div>
+                                @else
+                                  <p class="mb-0">{{$user_detail->bitoniere?$user_detail->bitoniere:'NA'}}</p>
+                                @endif 
+                              
                             </div>
                             @endif
 
                             @if($user_detail->comircial_vehicle&&$user_detail->comircial_vehicle>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Veicoli Comerciali & Bus</h6>
-                                <p class="mb-0">{{$user_detail->comircial_vehicle?$user_detail->comircial_vehicle:'NA'}}</p>
+                                       @if($is_new_data && $user_detail->comircial_vehicle !== $new_user_detail->comircial_vehicle)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->comircial_vehicle?$user_detail->comircial_vehicle:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->comircial_vehicle?$new_user_detail->comircial_vehicle:'NA'}}</p>
+                                </div>
+                                @else
+                                     <p class="mb-0">{{$user_detail->comircial_vehicle?$user_detail->comircial_vehicle:'NA'}}</p>
+                                @endif 
+                               
                             </div>
                             @endif
 
                             @if($user_detail->semi_trailer&&$user_detail->semi_trailer>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Semirimorchio</h6>
-                                <p class="mb-0">{{$user_detail->semi_trailer?$user_detail->semi_trailer:'NA'}}</p>
+                                   @if($is_new_data && $user_detail->semi_trailer !== $new_user_detail->semi_trailer)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->semi_trailer?$user_detail->semi_trailer:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->semi_trailer?$new_user_detail->semi_trailer:'NA'}}</p>
+                                </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->semi_trailer?$user_detail->semi_trailer:'NA'}}</p>
+                                @endif 
+                       
                             </div>
                             @endif
 
                             @if($user_detail->trailers&&$user_detail->trailers>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Rimorchi</h6>
-                                <p class="mb-0">{{$user_detail->trailers?$user_detail->trailers:'NA'}}</p>
+                                   @if($is_new_data && $user_detail->trailers !== $new_user_detail->trailers)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->trailers?$user_detail->trailers:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->trailers?$new_user_detail->trailers:'NA'}}</p>
+                                </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->trailers?$user_detail->trailers:'NA'}}</p>
+                                @endif 
+                               
                             </div>
                             @endif
 
                             @if($user_detail->road_tractors&&$user_detail->road_tractors>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Trattori stradali</h6>
-                                <p class="mb-0">{{$user_detail->road_tractors?$user_detail->road_tractors:'NA'}}</p>
+                              @if($is_new_data && $user_detail->road_tractors !== $new_user_detail->road_tractors)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->road_tractors?$user_detail->road_tractors:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->road_tractors?$new_user_detail->road_tractors:'NA'}}</p>
+                                </div>
+                              @else
+                                   <p class="mb-0">{{$user_detail->road_tractors?$user_detail->road_tractors:'NA'}}</p>
+                              @endif 
+                               
                             </div>
                             @endif
                         </div>
