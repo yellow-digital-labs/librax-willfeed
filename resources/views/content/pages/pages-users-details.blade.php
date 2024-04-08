@@ -537,52 +537,129 @@ $(document).ready(function () {
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Facilità di accesso</h6>
-                                <p class="mb-0">{{$user_detail->ease_of_access?$user_detail->ease_of_access:'NA'}}</p>
+                                @if($is_new_data && $user_detail->ease_of_access !== $new_user_detail->ease_of_access)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->ease_of_access?$user_detail->ease_of_access:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->ease_of_access?$new_user_detail->ease_of_access:'NA'}}</p>
+                                    </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->ease_of_access?$user_detail->ease_of_access:'NA'}}</p>
+                                @endif 
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Cellulare referente di scarico</h6>
-                                <p class="mb-0">{{$user_detail->mobile_unloading?$user_detail->mobile_unloading:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->mobile_unloading !== $new_user_detail->mobile_unloading)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->mobile_unloading?$user_detail->mobile_unloading:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->mobile_unloading?$new_user_detail->mobile_unloading:'NA'}}</p>
+                                    </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->mobile_unloading?$user_detail->mobile_unloading:'NA'}}</p>
+                                @endif 
+                               
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Indirizzo destinazione (se diverso da anagrafica)</h6>
-                                <p class="mb-0">{{$user_detail->destination_address?$user_detail->destination_address:'NA'}}</p>
+                                @if($is_new_data && $user_detail->destination_address !== $new_user_detail->destination_address)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->destination_address?$user_detail->destination_address:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->destination_address?$new_user_detail->destination_address:'NA'}}</p>
+                                    </div>
+                                @else
+                                   <p class="mb-0">{{$user_detail->destination_address?$user_detail->destination_address:'NA'}}</p>
+                                @endif 
+                                
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Indirizzo</h6>
-                                <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_address_via:$user_detail->address}}</p>
+                                 @if($is_new_data && $user_detail->destination_address !== $new_user_detail->destination_address)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->destination_address?$user_detail->destination_address:'NA'}}</p>
+                                        <p class="ms-2">{{$user_detail->destination_address=='Si'?$user_detail->destination_address_via:$user_detail->address}}</p>
+                                    </div>
+                                @else
+                                   <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_address_via:$user_detail->address}}</p>
+                                @endif 
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Numero civico</h6>
-                                <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_house_no:$user_detail->house_no}}</p>
+                                  @if($is_new_data && $user_detail->destination_house_no !== $new_user_detail->destination_house_no)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->destination_house_no?$user_detail->destination_house_no:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->destination_house_no?$new_user_detail->destination_house_no:'NA'}}</p>
+                                    </div>
+                                @else
+                                  <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_house_no:$user_detail->house_no}}</p>
+                                @endif 
+                                
                             </div>
-
+                              
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Regione</h6>
-                                <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_region:$user_detail->region}}</p>
+                                  @if($is_new_data && $user_detail->destination_region !== $new_user_detail->destination_region)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->destination_region?$user_detail->destination_region:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->destination_region?$new_user_detail->destination_region:'NA'}}</p>
+                                    </div>
+                                @else
+                                     <p class="mb-0">{{$user_detail->destination_region=='Si'?$user_detail->destination_region:$user_detail->region}}</p>
+                                @endif 
+                             
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Provincia</h6>
-                                <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_province:$user_detail->province}}</p>
+                                  @if($is_new_data && $user_detail->destination_province !== $new_user_detail->destination_province)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->destination_province?$user_detail->destination_province:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->destination_province?$new_user_detail->destination_province:'NA'}}</p>
+                                    </div>
+                                @else
+                                     <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_province:$user_detail->province}}</p>
+                                @endif 
+                            
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Comune</h6>
-                                <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_common:$user_detail->common}}</p>
+                                  @if($is_new_data && $user_detail->destination_common !== $new_user_detail->destination_common)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->destination_common?$user_detail->destination_common:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->destination_common?$new_user_detail->destination_common:'NA'}}</p>
+                                    </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->destination_common=='Si'?$user_detail->destination_common:$user_detail->common}}</p>
+                                @endif 
+                     
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">CAP</h6>
-                                <p class="mb-0">{{$user_detail->destination_address=='Si'?$user_detail->destination_pincode:$user_detail->pincode}}</p>
+                                  @if($is_new_data && $user_detail->destination_pincode !== $new_user_detail->destination_pincode)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->destination_pincode?$user_detail->destination_pincode:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->destination_pincode?$new_user_detail->destination_pincode:'NA'}}</p>
+                                    </div>
+                                @else
+                                     <p class="mb-0">{{$user_detail->destination_pincode=='Si'?$user_detail->destination_pincode:$user_detail->pincode}}</p>
+                                @endif 
+                              
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Codice licenza cisterna</h6>
-                                <p class="mb-0">{{$user_detail->minor_plant_code?$user_detail->minor_plant_code:'NA'}}</p>
+                                @if($is_new_data && $user_detail->minor_plant_code !== $new_user_detail->minor_plant_code)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->minor_plant_code?$user_detail->minor_plant_code:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->minor_plant_code?$new_user_detail->minor_plant_code:'NA'}}</p>
+                                    </div>
+                                @else
+                                   <p class="mb-0">{{$user_detail->minor_plant_code?$user_detail->minor_plant_code:'NA'}}</p>
+                                @endif 
                             </div>
                         </div>
                     </div>
@@ -597,52 +674,130 @@ $(document).ready(function () {
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Dilazione di pagamento preferita</h6>
-                                <p class="mb-0">{{$user_detail->payment_extension?$user_detail->payment_extension:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->payment_extension !== $new_user_detail->payment_extension)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->payment_extension?$user_detail->payment_extension:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->payment_extension?$new_user_detail->payment_extension:'NA'}}</p>
+                                    </div>
+                                @else
+                                 <p class="mb-0">{{$user_detail->payment_extension?$user_detail->payment_extension:'NA'}}</p>
+                                @endif 
+                            
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Modalità di pagamento</h6>
-                                <p class="mb-0">{{$user_detail->payment_term?$user_detail->payment_term:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->payment_term !== $new_user_detail->payment_term)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->payment_term?$user_detail->payment_term:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->payment_term?$new_user_detail->payment_term:'NA'}}</p>
+                                    </div>
+                                @else
+                                 <p class="mb-0">{{$user_detail->payment_term?$user_detail->payment_term:'NA'}}</p>
+                                @endif 
+                                
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Banca di riferimento (RIBA e RID)</h6>
-                                <p class="mb-0">{{$user_detail->reference_bank?$user_detail->reference_bank:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->reference_bank !== $new_user_detail->reference_bank)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->reference_bank?$user_detail->reference_bank:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->reference_bank?$new_user_detail->reference_bank:'NA'}}</p>
+                                    </div>
+                                @else
+                                   <p class="mb-0">{{$user_detail->reference_bank?$user_detail->reference_bank:'NA'}}</p>
+                                @endif 
+                               
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">IBAN (RIBA e RID)</h6>
-                                <p class="mb-0">{{$user_detail->iban?$user_detail->iban:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->iban !== $new_user_detail->iban)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->iban?$user_detail->iban:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->iban?$new_user_detail->iban:'NA'}}</p>
+                                    </div>
+                                @else
+                                   <p class="mb-0">{{$user_detail->iban?$user_detail->iban:'NA'}}</p>
+                                @endif 
+                              
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">SDI</h6>
-                                <p class="mb-0">{{$user_detail->sdi?$user_detail->sdi:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->sdi !== $new_user_detail->sdi)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->sdi?$user_detail->sdi:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->sdi?$new_user_detail->sdi:'NA'}}</p>
+                                    </div>
+                                @else
+                                     <p class="mb-0">{{$user_detail->sdi?$user_detail->sdi:'NA'}}</p>
+                                @endif 
+                              
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">CIG</h6>
-                                <p class="mb-0">{{$user_detail->cig?$user_detail->cig:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->cig !== $new_user_detail->cig)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->cig?$user_detail->cig:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->cig?$new_user_detail->cig:'NA'}}</p>
+                                    </div>
+                                @else
+                                   <p class="mb-0">{{$user_detail->cig?$user_detail->cig:'NA'}}</p>
+                                @endif 
+
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">CUP</h6>
-                                <p class="mb-0">{{$user_detail->cup?$user_detail->cup:'NA'}}</p>
+                                  @if($is_new_data && $user_detail->cup !== $new_user_detail->cup)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through">{{$user_detail->cup?$user_detail->cup:'NA'}}</p>
+                                        <p class="ms-2">{{$new_user_detail->cup?$new_user_detail->cup:'NA'}}</p>
+                                    </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->cup?$user_detail->cup:'NA'}}</p>
+                                @endif 
+                               
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Esenzione IVA</h6>
-                                <p class="mb-0"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_1)}}" target="_blank">View Document</a></p>
+                                     @if($is_new_data && $user_detail->file_1 !== $new_user_detail->file_1)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_1)}}" target="_blank">View Document</a></p>
+                                        <p class="ms-2"><a href="{{Illuminate\Support\Facades\Storage::url($new_user_detail->file_1)}}" target="_blank">View Document</a></p>
+                                    </div>
+                                @else
+                                    <p class="mb-0"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_1)}}" target="_blank">View Document</a></p>
+                                @endif 
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Esenzione IVA</h6>
-                                <p class="mb-0"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_2)}}" target="_blank">View Document</a></p>
+                                @if($is_new_data && $user_detail->file_2 !== $new_user_detail->file_2)
+                            <div class="d-flex">
+                                <p class="mb-0 strike-through"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_2)}}" target="_blank">View Document</a></p>
+                                <p class="ms-2"><a href="{{Illuminate\Support\Facades\Storage::url($new_user_detail->file_2)}}" target="_blank">View Document</a></p>
+                            </div>
+                                @else
+                                    <p class="mb-0"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_2)}}" target="_blank">View Document</a></p>
+                                @endif 
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Esenzione IVA</h6>
-                                <p class="mb-0"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_3)}}" target="_blank">View Document</a></p>
+                                  @if($is_new_data && $user_detail->file_3 !== $new_user_detail->file_3)
+                                    <div class="d-flex">
+                                        <p class="mb-0 strike-through"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_3)}}" target="_blank">View Document</a></p>
+                                        <p class="ms-2"><a href="{{Illuminate\Support\Facades\Storage::url($new_user_detail->file_3)}}" target="_blank">View Document</a></p>
+                                    </div>
+                                @else
+                                    <p class="mb-0"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_3)}}" target="_blank">View Document</a></p>
+                                @endif 
+                               
                             </div>
                         </div>
                     </div>
@@ -657,65 +812,144 @@ $(document).ready(function () {
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Tipologia di prodotti consumati</h6>
-                                <p class="mb-0">{{$user_detail->products?$user_detail->products:'NA'}}</p>
+                                @if($is_new_data && $user_detail->products !== $new_user_detail->products)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->products?$user_detail->products:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->products?$new_user_detail->products:'NA'}}</p>
+                                </div>
+                                @else
+                                  <p class="mb-0">{{$user_detail->products?$user_detail->products:'NA'}}</p>
+                                @endif 
+                              
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Consumi medi mensili</h6>
-                                <p class="mb-0">{{$user_detail->monthly_consumption?$user_detail->monthly_consumption:'NA'}}</p>
+                                @if($is_new_data && $user_detail->monthly_consumption !== $new_user_detail->monthly_consumption)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->monthly_consumption?$user_detail->monthly_consumption:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->monthly_consumption?$new_user_detail->monthly_consumption:'NA'}}</p>
+                                </div>
+                                @else
+                                     <p class="mb-0">{{$user_detail->monthly_consumption?$user_detail->monthly_consumption:'NA'}}</p>
+                                @endif 
+                              
                             </div>
 
                             @if($user_detail->is_private_distributer=='Si')
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Sei un distributore privato?</h6>
-                                <p class="mb-0">{{$user_detail->is_private_distributer?$user_detail->is_private_distributer:'NA'}}</p>
+                                @if($is_new_data && $user_detail->is_private_distributer !== $new_user_detail->is_private_distributer)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->is_private_distributer?$user_detail->is_private_distributer:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->is_private_distributer?$new_user_detail->is_private_distributer:'NA'}}</p>
+                                </div>
+                                @else
+                                   <p class="mb-0">{{$user_detail->is_private_distributer?$user_detail->is_private_distributer:'NA'}}</p>
+                                @endif 
+                             
                             </div>
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Numero di distributori</h6>
-                                <p class="mb-0">{{$user_detail->no_of_distributer?$user_detail->no_of_distributer:'NA'}}</p>
+                                @if($is_new_data && $user_detail->no_of_distributer !== $new_user_detail->no_of_distributer)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->no_of_distributer?$user_detail->no_of_distributer:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->no_of_distributer?$new_user_detail->no_of_distributer:'NA'}}</p>
+                                </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->no_of_distributer?$user_detail->no_of_distributer:'NA'}}</p>
+                                @endif 
+                              
                             </div>
                             @endif
 
                             @if($user_detail->fleet&&$user_detail->fleet>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Flotta</h6>
-                                <p class="mb-0">{{$user_detail->fleet?$user_detail->fleet:'NA'}}</p>
+                                 @if($is_new_data && $user_detail->fleet !== $new_user_detail->fleet)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->fleet?$user_detail->fleet:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->fleet?$new_user_detail->fleet:'NA'}}</p>
+                                </div>
+                                @else
+                                     <p class="mb-0">{{$user_detail->fleet?$user_detail->fleet:'NA'}}</p>
+                                @endif 
+                              
                             </div>
                             @endif
 
                             @if($user_detail->type_of_flotta&&$user_detail->type_of_flotta>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Tipologia & Dimensione Flotta</h6>
-                                <p class="mb-0">{{$user_detail->type_of_flotta?$user_detail->type_of_flotta:'NA'}}</p>
+                                   @if($is_new_data && $user_detail->type_of_flotta !== $new_user_detail->type_of_flotta)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->type_of_flotta?$user_detail->type_of_flotta:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->type_of_flotta?$new_user_detail->type_of_flotta:'NA'}}</p>
+                                </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->type_of_flotta?$user_detail->type_of_flotta:'NA'}}</p>
+                                @endif 
+                               
                             </div>
                             @endif
 
                             @if($user_detail->folding_trucks&&$user_detail->folding_trucks>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion Ribaltabili</h6>
-                                <p class="mb-0">{{$user_detail->folding_trucks?$user_detail->folding_trucks:'NA'}}</p>
+                                @if($is_new_data && $user_detail->folding_trucks !== $new_user_detail->folding_trucks)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->folding_trucks?$user_detail->folding_trucks:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->folding_trucks?$new_user_detail->folding_trucks:'NA'}}</p>
+                                </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->folding_trucks?$user_detail->folding_trucks:'NA'}}</p>
+                                @endif 
+                              
                             </div>
                             @endif
 
                             @if($user_detail->van_trucks&&$user_detail->van_trucks>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion Furgonati</h6>
-                                <p class="mb-0">{{$user_detail->van_trucks?$user_detail->van_trucks:'NA'}}</p>
+                                         @if($is_new_data && $user_detail->van_trucks !== $new_user_detail->van_trucks)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->van_trucks?$user_detail->van_trucks:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->van_trucks?$new_user_detail->van_trucks:'NA'}}</p>
+                                </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->van_trucks?$user_detail->van_trucks:'NA'}}</p>
+                                @endif 
+                               
                             </div>
                             @endif
                             
                             @if($user_detail->hundred_trucks&&$user_detail->hundred_trucks>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion Centinato</h6>
-                                <p class="mb-0">{{$user_detail->hundred_trucks?$user_detail->hundred_trucks:'NA'}}</p>
+                              @if($is_new_data && $user_detail->hundred_trucks !== $new_user_detail->hundred_trucks)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->hundred_trucks?$user_detail->hundred_trucks:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->hundred_trucks?$new_user_detail->hundred_trucks:'NA'}}</p>
+                                </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->hundred_trucks?$user_detail->hundred_trucks:'NA'}}</p>
+                                @endif 
                             </div>
                             @endif
 
                             @if($user_detail->chassis_trucks&&$user_detail->chassis_trucks>0)
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Camion a telaio</h6>
-                                <p class="mb-0">{{$user_detail->chassis_trucks?$user_detail->chassis_trucks:'NA'}}</p>
+                                @if($is_new_data && $user_detail->chassis_trucks !== $new_user_detail->chassis_trucks)
+                                <div class="d-flex">
+                                    <p class="mb-0 strike-through">{{$user_detail->chassis_trucks?$user_detail->chassis_trucks:'NA'}}</p>
+                                    <p class="ms-2">{{$new_user_detail->chassis_trucks?$new_user_detail->chassis_trucks:'NA'}}</p>
+                                </div>
+                                @else
+                                    <p class="mb-0">{{$user_detail->chassis_trucks?$user_detail->chassis_trucks:'NA'}}</p>
+                                @endif 
+                                
                             </div>
                             @endif
 
