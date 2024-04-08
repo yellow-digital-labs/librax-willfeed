@@ -160,11 +160,11 @@ $(document).ready(function () {
             </div>
             <!-- Update User Profile Button -->
             @if(!$is_new_data)
-            <li class="nav-item seller-profile-edit-btn"><a class="nav-link" href="{{ route('profile-edit') }}" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">Modifica Profilo</a></li>
+            <li class="nav-item seller-profile-edit-btn"><a class="btn btn-primary" href="{{ route('profile-edit') }}" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">Modifica Profilo</a></li>
             @endif
             @if($is_new_data)
             <!-- User Profle Review Button -->
-            <li class="nav-item seller-proile-review-btn"><a class="nav-link" href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">lnvia richiesta</a></li>
+            <li class="nav-item seller-proile-review-btn"><a class="btn btn-primary" href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">lnvia richiesta</a></li>
             @endif
         </ul>
         @endif
@@ -964,9 +964,9 @@ $(document).ready(function () {
   }
 </style>
 <div class="reject-container">
-  <h2>Enter Rejection Reason</h2>
+  <h4>Enter Rejection Reason</h4>
   <div class="input-group">
-    <textarea id="rejectionReason" rows="4" cols="65" placeholder="Enter rejection reason" style="height:150px; font-size:large"></textarea>
+    <textarea class="form-control" id="rejectionReason" rows="4" cols="65" placeholder="Enter rejection reason" style="height: 150px;"></textarea>
     <div class="error-message" id="rejectionReasonError"></div>
   </div>
   <button onclick="validateAndSubmit({{$user->id}})" class="btn btn-primary" >Submit</button>
