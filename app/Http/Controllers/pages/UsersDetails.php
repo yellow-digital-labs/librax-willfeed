@@ -143,17 +143,17 @@ class UsersDetails extends Controller
       // }
     }
 
-    $main_activity = Helpers::clientActivityList();
-    $region = Region::orderBy('name', 'ASC')->get();
-    $common = Common::orderBy('name', 'ASC')->get();
-    $province = Province::orderBy('name', 'ASC')->get();
-    $storage_capacity = StorageCapacity::all();
-    $order_capacity = OrderCapacity::all();
-    $product = Product::all();
-    $ease_of_access = EaseOfAccess::all();
-    $payment_extension = PaymentExtension::all();
-    $payment_terms = PaymentTerms::all();
-    $consume_capacity = ConsumeCapacity::all();
+    // $main_activity = Helpers::clientActivityList();
+    // $region = Region::orderBy('name', 'ASC')->get();
+    // $common = Common::orderBy('name', 'ASC')->get();
+    // $province = Province::orderBy('name', 'ASC')->get();
+    // $storage_capacity = StorageCapacity::all();
+    // $order_capacity = OrderCapacity::all();
+    // $product = Product::all();
+    // $ease_of_access = EaseOfAccess::all();
+    // $payment_extension = PaymentExtension::all();
+    // $payment_terms = PaymentTerms::all();
+    // $consume_capacity = ConsumeCapacity::all();
 
     $new_user_detail = UserDetailOldData::where(['user_detail_id'=>$id,"admin_approval" => "pending"])->first();
     $is_new_data = false;
@@ -200,41 +200,55 @@ class UsersDetails extends Controller
     $user = User::where(['id' => $id])->first();
     $user_detail = UserDetail::where(['user_id' => $id])->first();
 
-    $main_activity = Helpers::clientActivityList();
-    $region = Region::orderBy('name', 'ASC')->get();
-    $common = Common::orderBy('name', 'ASC')->get();
-    $province = Province::orderBy('name', 'ASC')->get();
-    $storage_capacity = StorageCapacity::all();
-    $order_capacity = OrderCapacity::all();
-    $product = Product::all();
-    $ease_of_access = EaseOfAccess::all();
-    $payment_extension = PaymentExtension::all();
-    $payment_terms = PaymentTerms::all();
-    $consume_capacity = ConsumeCapacity::all();
-
     if($user->accountType == 1){
-      return view('content.pages.pages-buyer-edit-profile', [
-      //new Data
-      "user_detail"=>$user_detail,
-      "main_activity" => $main_activity,
-      "common" => $common,
-      "province" => $province,
-      "storage_capacity" => $storage_capacity,
-      "order_capacity" => $order_capacity,
-      "product" => $product,
-      "region" => $region,
-      "user_detail" => $user_detail,
-      "ease_of_access" => $ease_of_access,
-      "payment_terms" => $payment_terms,
-      "payment_extension" => $payment_extension,
-      "consume_capacity" => $consume_capacity,
-    ]);
+      $main_activity = Helpers::clientActivityList();
+      $region = Region::orderBy('name', 'ASC')->get();
+      $common = Common::orderBy('name', 'ASC')->get();
+      $province = Province::orderBy('name', 'ASC')->get();
+      $storage_capacity = StorageCapacity::all();
+      $order_capacity = OrderCapacity::all();
+      $product = Product::all();
+      $ease_of_access = EaseOfAccess::all();
+      $payment_extension = PaymentExtension::all();
+      $payment_terms = PaymentTerms::all();
+      $consume_capacity = ConsumeCapacity::all();
+
+      $user_detail = UserDetail::where(['user_id' => $user->id])->first();
+
+      $pageConfigs = ['myLayout' => 'blank'];
+        return view('content.pages.pages-buyer-edit-profile', [
+        //new Data
+        "user_detail"=>$user_detail,
+        "main_activity" => $main_activity,
+        "common" => $common,
+        "province" => $province,
+        "storage_capacity" => $storage_capacity,
+        "order_capacity" => $order_capacity,
+        "product" => $product,
+        "region" => $region,
+        "user_detail" => $user_detail,
+        "ease_of_access" => $ease_of_access,
+        "payment_terms" => $payment_terms,
+        "payment_extension" => $payment_extension,
+        "consume_capacity" => $consume_capacity,
+      ]);
   }
   else{
 
+    $main_activity = MainActivity::all();
+    $storage_capacity = StorageCapacity::all();
+    $order_capacity = OrderCapacity::all();
+    $product = Product::all();
+    $region = Region::orderBy('name', 'ASC')->get();
+    $common = Common::orderBy('name', 'ASC')->get();
+    $province = Province::orderBy('name', 'ASC')->get();
+
+    $user_detail = UserDetail::where(['user_id' => $user->id])->first();
+
+    $pageConfigs = ["myLayout" => "blank"];
+
       return view('content.pages.pages-seller-edit-profile', [
-      //new Data
-      "user_detail"=>$user_detail,
+         "pageConfigs" => $pageConfigs,
       "main_activity" => $main_activity,
       "common" => $common,
       "province" => $province,
@@ -243,14 +257,8 @@ class UsersDetails extends Controller
       "product" => $product,
       "region" => $region,
       "user_detail" => $user_detail,
-      "ease_of_access" => $ease_of_access,
-      "payment_terms" => $payment_terms,
-      "payment_extension" => $payment_extension,
-      "consume_capacity" => $consume_capacity,
     ]);
-
-
-  }
+   }
   }
 
   public function updatePlan(Request $request, $planid){

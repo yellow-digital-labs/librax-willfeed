@@ -49,8 +49,8 @@ let baseUrl ={{url('/')}};
 <div id="edit-seller-profile" tabindex="-1">
 
         <div class="text-center mb-4">
-          <h3 class="mb-1">Edit User Information</h3>
-          <p class="text-muted">Updating user details will receive a privacy audit.</p>
+          <h3 class="mb-1">Modifica Profilo</h3>
+          <!-- <p class="text-muted">Updating user details will receive a privacy audit.</p> -->
         </div>    
 
 <div class="signup-wiz" style="margin-top: -64px;">
@@ -140,7 +140,7 @@ let baseUrl ={{url('/')}};
                                     <select name="main_activity_ids" id="main_activity_ids" class="form-select select2" placeholder="Seleziona attività principale">
                                         <option value=""></option>
                                          @foreach($main_activity as $_main_activity)
-                                        <option value="{{$_main_activity}}" {{$user_detail?($user_detail->main_activity_ids==$_main_activity?'selected':''):''}}>{{$_main_activity}}</option>
+                                        <option value="{{$_main_activity->name}}" {{$user_detail?($user_detail->main_activity_ids==$_main_activity->name?'selected':''):''}}>{{$_main_activity->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>

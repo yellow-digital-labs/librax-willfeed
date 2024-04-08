@@ -34,6 +34,13 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/js/custom/buyer-profile-edit-validations.js')}}"></script>
 @endsection
 @section('content')
+
+<div id="edit-buyer-profile" tabindex="-1">
+
+        <div class="text-center mb-4">
+          <h3 class="mb-1">Modifica Profilo</h3>
+          <!-- <p class="text-muted">Updating user details will receive a privacy audit.</p> -->
+        </div>    
     
 <div class="signup-wiz">
     <div class="authentication-wrapper signup-wiz__wrapper">
@@ -673,4 +680,5 @@ $configData = Helper::appClasses();
 // Check selected custom option
 window.Helpers.initCustomOptionCheck();
 </script>
+</div>
 @endsection
