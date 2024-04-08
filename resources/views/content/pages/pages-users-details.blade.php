@@ -164,7 +164,7 @@ $(document).ready(function () {
             @endif
             @if($is_new_data)
             <!-- User Profle Review Button -->
-            <li class="nav-item bg-secondary border-3 disabled seller-proile-review-btn"  style="pointer-events: none;"><a class="nav-link" href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">lnvia richiesta</a></li>
+            <li class="nav-item seller-proile-review-btn"  style="pointer-events: none;"><a class="nav-link bg-secondary border-3 disabled" style="color: #FFF;" href="javascript:void(0);" aria-controls="navs-pills-top-Fatturazione" aria-selected="true">lnvia richiesta</a></li>
             @endif
         </ul>
         @endif

@@ -238,7 +238,7 @@ class SignupClient extends Controller
   
     //send emil to admin
     $to = explode(',', env('MAIL_TO_ADDRESS'));
-    $link = route('profile-view', ['id' => $request->user_detail_id]);
+    $link = route('profile-view', ['id' => $id]);
     Mail::to($to)->send(new ProfileEditReviewNotification($link, $user));
       
     return response()->json([
