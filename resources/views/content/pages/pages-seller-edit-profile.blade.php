@@ -133,11 +133,11 @@ let baseUrl ={{url('/')}};
 
     <div class="col-xl-8 col-lg-7 col-md-7" id="multiStepsValidation">
         <div id="edit-seller-profile" tabindex="-1">
-               <form id="sellerEditForm" action="{{ route('edit-seller-profile') }}" onsubmit="return false" class="signup-wiz__form">
+               <form id="sellerEditForm" action="{{ route('edit-seller-profile') }}" onsubmit="return false" class="">
                     @csrf
                     <input type="hidden" name="user_detail_id" value="{{$user_detail->user_id}}" />
 
-                <div id="SignupStepRegistry">
+                <div id="SignupStepRegistry" class="tab-content-buyer">
                     <div class="card mb-4">
                         <div class="card-header border-bottom" style="background-color: #FFE000;">
                             <h4 class="text-black m-0">Anagrafica</h4>
