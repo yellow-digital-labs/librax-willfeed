@@ -96,6 +96,8 @@ $configData = Helper::appClasses();
                         </h5>
                         @if($product_detail)
                         <span><strong>PREZZO PER IL: {{App\Helpers\Helpers::calculateEstimateShippingDate($product_detail->delivery_time, $product_detail->delivery_days, $product_detail->days_off)}}</strong></span>
+                        @else
+                        <span><strong>PREZZO PER IL: {{App\Helpers\Helpers::calculateEstimateShippingDate('00:01', null, '')}}</strong></span>
                         @endif
                     </div>
                 </div>
