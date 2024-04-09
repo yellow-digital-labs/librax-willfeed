@@ -130,7 +130,7 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
-<script src="{{asset('assets/front/js/custom.js')}}"></script>
+<script src="{{asset('assets/front/js/custom.js?version=1')}}"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function (e) {

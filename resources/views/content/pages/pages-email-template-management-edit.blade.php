@@ -24,8 +24,8 @@ $configData = Helper::appClasses();
     let description = "";
     description = `{!!$template->html_template!!}`;
 </script>
-<script src="{{asset('assets/js/forms-editors.js')}}"></script>
-<script src="{{asset('assets/js/email-template-form.js')}}"></script>
+<script src="{{asset('assets/js/forms-editors.js?version=1')}}"></script>
+<script src="{{asset('assets/js/email-template-form.js?version=1')}}"></script>
 @endsection
 
 @section('page-style')

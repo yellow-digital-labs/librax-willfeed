@@ -20,7 +20,7 @@ $customizerHidden = 'customizer-hide';
 <script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
 @endsection
 @section('page-script')
-<script src="{{asset('assets/js/pages-auth.js')}}"></script>
+<script src="{{asset('assets/js/pages-auth.js?version=1')}}"></script>
 @endsection
 @section('content')
     

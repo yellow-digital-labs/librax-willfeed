@@ -30,17 +30,17 @@
 
 @section('page-script')
 <!-- Edit Profle Modal js -->
-<script src="{{asset('assets/js/app-user-view.js')}}"></script>
+<script src="{{asset('assets/js/app-user-view.js?version=1')}}"></script>
 <!-- Extend Free Trail js -->
-<script src="{{asset('assets/js/user-extend-free-trial.js')}}"></script>
+<script src="{{asset('assets/js/user-extend-free-trial.js?version=1')}}"></script>
 
 <script>
 let baseUrl ={{url('/')}};
 </script>
 
-<script src="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.js?version=1')}}"></script>
 
-<script src="{{asset('assets/js/custom/seller-profile-edit-validations.js')}}"></script>
+<script src="{{asset('assets/js/custom/seller-profile-edit-validations.js?version=1')}}"></script>
 
 @endsection
 

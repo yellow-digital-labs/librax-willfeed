@@ -50,7 +50,7 @@ $configData = Helper::appClasses();
     isEdit = true;
     @endif
 </script>
-<script src="{{asset('assets/js/admin-blog-add.js')}}"></script>
+<script src="{{asset('assets/js/admin-blog-add.js?version=1')}}"></script>
 @endsection
 
 @section('page-style')

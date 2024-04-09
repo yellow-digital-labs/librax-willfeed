@@ -28,9 +28,9 @@ $configData = Helper::appClasses();
 
 @section('page-script')
 @if($product_detail)
-<script src="{{asset('assets/js/product-detail.js')}}"></script>
+<script src="{{asset('assets/js/product-detail.js?version=1')}}"></script>
 @else
-<script src="{{asset('assets/js/product-detail-add.js')}}"></script>
+<script src="{{asset('assets/js/product-detail-add.js?version=1')}}"></script>
 @endif
 @endsection
 

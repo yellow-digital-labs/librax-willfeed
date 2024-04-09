@@ -22,7 +22,7 @@ $configData = Helper::appClasses();
 <script>
     var urlListPaymentData = {!! "'".$urlListPaymentData."'" !!};
 </script>
-<script src="{{asset('assets/js/payments-datatables.js')}}"></script>
+<script src="{{asset('assets/js/payments-datatables.js?version=1')}}"></script>
 @endsection
 
 @section('page-style')
