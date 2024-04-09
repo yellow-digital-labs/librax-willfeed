@@ -236,7 +236,7 @@ class UsersDetails extends Controller
         "order_capacity" => $order_capacity,
         "product" => $product,
         "region" => $region,
-        "user_detail" => $user_detail,
+        "user" => $user,
         "ease_of_access" => $ease_of_access,
         "payment_terms" => $payment_terms,
         "payment_extension" => $payment_extension,

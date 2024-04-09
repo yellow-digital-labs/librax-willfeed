@@ -35,85 +35,110 @@ $configData = Helper::appClasses();
 @endsection
 @section('content')
 
-<div id="edit-buyer-profile" tabindex="-1">
-
-        <div class="text-center mb-4">
-          <h3 class="mb-1">Modifica Profilo</h3>
-          <!-- <p class="text-muted">Updating user details will receive a privacy audit.</p> -->
-        </div>    
-    
-<div class="signup-wiz">
-    <div class="authentication-wrapper signup-wiz__wrapper">
-        <div class="authentication-inner signup-wiz__inner">
-
-            <div id="multiStepsBuyerValidation" class="bs-stepper shadow-none linear signup-wiz__stepper">
-
-                <div class="bs-stepper-header border-bottom-0 signup-wiz__header">
-                    <div class="step active signup-wiz__step" data-target="#SignupStepRegistry">
-                        <button type="button" class="step-trigger signup-wiz__trigger" aria-selected="true">
-                            <span class="bs-stepper-circle"><i class="ti ti-smart-home ti-sm"></i></span>
-                            <span class="bs-stepper-label">
-                                <span class="bs-stepper-title">Anagrafica</span>
-                            </span>
-                        </button>
-                    </div>
-                    <div class="line">
-                        <i class="ti ti-chevron-right"></i>
-                    </div>
-                    <div class="step signup-wiz__step" data-target="#SignupStepDestination">
-                        <button type="button" class="step-trigger signup-wiz__trigger" aria-selected="false" disabled="disabled">
-                            <span class="bs-stepper-circle"><i class="wf-icon wf-icon-location"></i></span>
-                            <span class="bs-stepper-label">
-                                <span class="bs-stepper-title">Destinazione</span>
-                            </span>
-                        </button>
-                    </div>
-                    <div class="line">
-                        <i class="ti ti-chevron-right"></i>
-                    </div>
-                    <div class="step signup-wiz__step" data-target="#SignupStepBilling">
-                        <button type="button" class="step-trigger signup-wiz__trigger" aria-selected="false" disabled="disabled">
-                            <span class="bs-stepper-circle"><i class="ti ti-file-text ti-sm"></i></span>
-                            <span class="bs-stepper-label">
-                                <span class="bs-stepper-title">Fatturazione</span>
-                            </span>
-                        </button>
-                    </div>
-                    <div class="line">
-                        <i class="ti ti-chevron-right"></i>
-                    </div>
-                    <div class="step signup-wiz__step" data-target="#SignupStepProfile">
-                        <button type="button" class="step-trigger signup-wiz__trigger" aria-selected="false" disabled="disabled">
-                            <span class="bs-stepper-circle"><i class="wf-icon wf-icon-user"></i></span>
-                            <span class="bs-stepper-label">
-                                <span class="bs-stepper-title">Profilo</span>
-                            </span>
-                        </button>
+<div class="row">
+    <div class="col-xl-4 col-lg-5 col-md-5">
+        
+        <h1 class="h3 text-black mb-4">
+            Profilo
+        </h1>
+        
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="user-avatar-section">
+                    <div class=" d-flex align-items-center flex-column">
+                        <img class="img-fluid rounded mb-3 pt-1 mt-4 rounded-circle" src="{{ $user ? $user->profile_photo_url :asset('assets/img/81160511660785db8768a15358306893.jpg') }}" height="100" width="100" alt="User avatar" />
+                        <div class="user-info text-center">
+                            <h4 class="text-black mt-3">{{$user_detail->business_name?$user_detail->business_name:'NA'}}</h4>
+                        </div>
                     </div>
                 </div>
+                <div class="d-flex justify-content-around flex-wrap  pb-4 border-bottom">
+                    <div class="d-flex align-items-start me-4 mt-1 gap-2">
+                        <i class='wf-icon-location ti-sm text-black'></i>
+                        <div>
+                            {{$user_detail->region?$user_detail->region:'NA'}}
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start mt-1 gap-2">
+                        <i class='wf-icon-calendar ti-sm text-black'></i>
+                        <div>
+                            Da {{$user->created_at?(\App\Helpers\Helpers::getMonthName(date('m', strtotime($user->created_at)))." ".date('Y', strtotime($user->created_at))):'NA'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="px-3">
+                    <p class="mt-4 text-uppercase text-black fw-semibold">Sommario</p>
+                    <div class="info-container">
+                        <ul class="list-unstyled about-iconlist">
+                            <li class="about-iconlist__item">
+                                <span class="about-iconlist__icon wf-icon-user"></span>
+                                <span class="about-iconlist__name">Ragione sociale:</span>
+                                <span class="about-iconlist__val">{{$user_detail->business_name?$user_detail->business_name:'NA'}}</span>
+                            </li>
+                            <li class="about-iconlist__item">
+                                <span class="about-iconlist__icon wf-icon-location"></span>
+                                <span class="about-iconlist__name">Sede:</span>
+                                <span class="about-iconlist__val">{{$user_detail->address}} {{$user_detail->house_no}}, {{$user_detail->region}}</span>
+                            </li>
+                            <li class="about-iconlist__item">
+                                <span class="about-iconlist__icon wf-icon-check"></span>
+                                <span class="about-iconlist__name">Status:</span>
+                                <span class="about-iconlist__val">{{$user->approved_by_admin=='Yes'?'Varified':'Unvarified'}}</span>
+                            </li>
+                            <li class="about-iconlist__item">
+                                <span class="about-iconlist__icon wf-icon-crown"></span>
+                                <span class="about-iconlist__name">Attività principale:</span>
+                                <span class="about-iconlist__val">{{$user_detail->main_activity_ids?$user_detail->main_activity_ids:'NA'}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="mt-4 text-uppercase text-black fw-semibold">CONTATTI</p>
+                    <div class="info-container">
+                        <ul class="list-unstyled about-iconlist">
+                            <li class="about-iconlist__item">
+                            <li class="about-iconlist__item">
+                                <span class="about-iconlist__icon wf-icon-phone-call1"></span>
+                                <span class="about-iconlist__name">Cellulare:</span>
+                                <span class="about-iconlist__val">+39 {{$user_detail->contact_person}}</span>
+                            </li>
+                            <li class="about-iconlist__item">
+                                <span class="about-iconlist__icon wf-icon-mail"></span>
+                                <span class="about-iconlist__name">Pec:</span>
+                                <span class="about-iconlist__val">{{$user_detail->pec}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8 col-lg-7 col-md-7">
+        <div id="edit-buyer-profile" tabindex="-1">
 
-                <div class="bs-stepper-content signup-wiz__body">
-                    <form id="buyerEditForm" action="{{ route('edit-buyer-profile') }}" onsubmit="return false" class="signup-wiz__form" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <!-- Registry -->
-                        <div id="SignupStepRegistry" class="content active dstepper-block fv-plugins-bootstrap5 fv-plugins-framework">
-                            <div class="content-header mb-4">
-                                <h3 class="signup-wiz__name text-center">Informazioni societarie</h3>
-                            </div>
-                            <div class="row g-3">
+            
+            <form id="buyerEditForm" action="{{ route('edit-buyer-profile') }}" onsubmit="return false" method="POST" enctype="multipart/form-data">
+                @csrf
+                <!-- Registry -->
+                <div id="SignupStepRegistry" class="tab-content-buyer">
+                    <div class="card mb-4">
+                        <div class="card-header border-bottom" style="background-color: #FFE000;">
+                            <h4 class="text-black m-0">Anagrafica</h4>
+                        </div>
+                        <div class="card-body pt-4">
+                            <div class="row g-4">
 
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="business_name">Ragione sociale *</label>
+                                <div class="col-sm-6 col-12">
+                                    <h6 class="text-black mb-2">Ragione sociale *</h6>
                                     <input type="text" name="business_name" id="business_name" class="form-control" placeholder="Inserisci ragione sociale" value="{{$user_detail?$user_detail->business_name:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="vat_number">Partita IVA *</label>
+                                    <h6 class="text-black mb-2">Partita IVA *</h6>
                                     <input type="text" name="vat_number" id="vat_number" class="form-control" placeholder="Inserisci numero di partita IVA" value="{{$user_detail?$user_detail->vat_number:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="contact_person">Cellulare referente *</label>
+                                    <h6 class="text-black mb-2" for="contact_person">Cellulare referente *</h6>
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text" id="basic-addon-search31">+39 </span>
                                         <input type="text" class="form-control" name="contact_person" id="contact_person" value="{{$user_detail?$user_detail->contact_person:''}}">
@@ -121,22 +146,22 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="pec">PEC *</label>
+                                    <h6 class="text-black mb-2" for="pec">PEC *</h6>
                                     <input type="text" name="pec" id="pec" class="form-control" placeholder="latuaemail@pec.it" value="{{$user_detail?$user_detail->pec:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="tax_id_code">Codice fiscale</label>
+                                    <h6 class="text-black mb-2" for="tax_id_code">Codice fiscale</h6>
                                     <input type="text" name="tax_id_code" id="tax_id_code" class="form-control" placeholder="Inserisci il codice fiscale" maxlength="16" value="{{$user_detail?$user_detail->tax_id_code:''}}" oninput="this.value = this.value.toUpperCase()" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="administrator_name">Nominativo amministratore *</label>
+                                    <h6 class="text-black mb-2" for="administrator_name">Nominativo amministratore *</h6>
                                     <input type="text" name="administrator_name" id="administrator_name" class="form-control" placeholder="Mario Rossi" value="{{$user_detail?$user_detail->administrator_name:''}}" />
                                 </div>
-                              
+                            
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="main_activity_ids">Attività principale *</label>
+                                    <h6 class="text-black mb-2" for="main_activity_ids">Attività principale *</h6>
                                     <select name="main_activity_ids" id="main_activity_ids" class="form-select select2" placeholder="Seleziona attività principale">
                                         <option value="{{$user_detail->main_activity_ids}}" selected>{{$user_detail->main_activity_ids}}</option>
                                     @foreach($main_activity as $_main_activity)
@@ -146,17 +171,17 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="address">Indirizzo *</label>
+                                    <h6 class="text-black mb-2" for="address">Indirizzo *</h6>
                                     <input type="text" name="address" id="address" class="form-control" placeholder="Via Battisti " value="{{$user_detail?$user_detail->address:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="house_no">Numero civico *</label>
+                                    <h6 class="text-black mb-2" for="house_no">Numero civico *</h6>
                                     <input type="text" name="house_no" id="house_no" class="form-control" placeholder="Inserisci il numero civico" value="{{$user_detail?$user_detail->house_no:''}}" />
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="region">Regione *</label>
+                                    <h6 class="text-black mb-2" for="region">Regione *</h6>
                                     <select name="region" id="region" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
                                     @foreach($region as $_region)
@@ -166,7 +191,7 @@ $configData = Helper::appClasses();
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="province">Provincia *</label>
+                                    <h6 class="text-black mb-2" for="province">Provincia *</h6>
                                     <select name="province" id="province" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
                                     @foreach($province as $_province)
@@ -176,7 +201,7 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="common">Comune *</label>
+                                    <h6 class="text-black mb-2" for="common">Comune *</h6>
                                     <select name="common" id="common" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
                                     @foreach($common as $_common)
@@ -186,28 +211,25 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="pincode">CAP *</label>
+                                    <h6 class="text-black mb-2" for="pincode">CAP *</h6>
                                     <input type="text" name="pincode" id="pincode" class="form-control" placeholder="Inserisci il CAP" value="{{$user_detail?$user_detail->pincode:''}}" />
-                                </div>
-
-                                <div class="col-12 d-flex justify-content-end mt-4">
-                                    <!-- <button class="btn btn-label-secondary btn-prev" disabled> <i class="ti ti-arrow-left ti-xs me-sm-1 me-0"></i>
-                                        <span class="align-middle d-sm-inline-block d-none">Indietro</span>
-                                    </button> -->
-                                    <button class="btn btn-dark btn-next"> <span class="align-middle d-sm-inline-block d-none me-sm-1 me-0">Avanti</span> <i class="ti ti-arrow-right ti-xs"></i></button>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Destination -->
-                        <div id="SignupStepDestination" class="content fv-plugins-bootstrap5 fv-plugins-framework">
-                            <div class="content-header mb-4">
-                                <h3 class="signup-wiz__name text-center">Informazioni destinazione</h3>
-                            </div>
-                            <div class="row g-3">
+                <!-- Destination -->
+                <div id="SignupStepDestination" class="content fv-plugins-bootstrap5 fv-plugins-framework">
+                    <div class="card mb-4">
+                        <div class="card-header border-bottom" style="background-color: #FF9300;">
+                            <h4 class="text-black m-0">Destinazione</h4>
+                        </div>
+                        <div class="card-body pt-4">
+                            <div class="row g-4">
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="ease_of_access">Facilità di accesso *</label>
+                                    <h6 class="text-black mb-2" for="ease_of_access">Facilità di accesso *</h6>
                                     <select name="ease_of_access" id="ease_of_access" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
                                     @foreach($ease_of_access as $_ease_of_access)
@@ -217,7 +239,7 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="mobile_unloading">Cellulare referente di scarico *</label>
+                                    <h6 class="text-black mb-2" for="mobile_unloading">Cellulare referente di scarico *</h6>
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text">+39 </span>
                                         <input type="text" class="form-control" id="mobile_unloading" name="mobile_unloading" value="{{$user_detail?$user_detail->mobile_unloading:''}}">
@@ -225,7 +247,7 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="destination_address">Indirizzo destinazione (se diverso da anagrafica)</label>
+                                    <h6 class="text-black mb-2" for="destination_address">Indirizzo destinazione (se diverso da anagrafica)</h6>
                                     <select name="destination_address" id="destination_address" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value="No">No</option>
                                         <option value="Si">Si</option>
@@ -233,17 +255,17 @@ $configData = Helper::appClasses();
                                 </div>
 
                                 <div class="col-sm-6 address-container hide">
-                                    <label class="form-label" for="destination_address_via">Indirizzo</label>
+                                    <h6 class="text-black mb-2" for="destination_address_via">Indirizzo</h6>
                                     <input type="text" name="destination_address_via" id="destination_address_via" class="form-control" placeholder="Via Battisti" value="{{$user_detail?$user_detail->destination_address_via:''}}" />
                                 </div>
                                 
                                 <div class="col-sm-6 address-container hide">
-                                    <label class="form-label" for="destination_house_no">Numero civico</label>
+                                    <h6 class="text-black mb-2" for="destination_house_no">Numero civico</h6>
                                     <input type="text" name="destination_house_no" id="destination_house_no" class="form-control" placeholder="Inserisci il numero civico" />
                                 </div>
                                 
                                 <div class="col-sm-6 address-container hide">
-                                    <label class="form-label" for="destination_region">Regione *</label>
+                                    <h6 class="text-black mb-2" for="destination_region">Regione *</h6>
                                     <select name="destination_region" id="destination_region" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
                                     @foreach($region as $_region)
@@ -253,7 +275,7 @@ $configData = Helper::appClasses();
                                 </div>
 
                                 <div class="col-sm-6 address-container hide">
-                                    <label class="form-label" for="destination_province">Provincia</label>
+                                    <h6 class="text-black mb-2" for="destination_province">Provincia</h6>
                                     <select name="destination_province" id="destination_province" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
                                     @foreach($province as $_province)
@@ -263,7 +285,7 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6 address-container hide">
-                                    <label class="form-label" for="destination_common">Comune</label>
+                                    <h6 class="text-black mb-2" for="destination_common">Comune</h6>
                                     <select name="destination_common" id="destination_common" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
                                     @foreach($common as $_common)
@@ -273,33 +295,30 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6 address-container hide">
-                                    <label class="form-label" for="destination_pincode">CAP</label>
+                                    <h6 class="text-black mb-2" for="destination_pincode">CAP</h6>
                                     <input type="text" name="destination_pincode" id="destination_pincode" class="form-control" placeholder="Inserisci il CAP" value="{{$user_detail?$user_detail->destination_pincode:''}}" />
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="minor_plant_code">Codice licenza cisterna</label>
+                                    <h6 class="text-black mb-2" for="minor_plant_code">Codice licenza cisterna</h6>
                                     <input type="text" name="minor_plant_code" id="minor_plant_code" class="form-control" placeholder="Codice licenza cisterna" value="{{$user_detail?$user_detail->minor_plant_code:''}}" />
-                                </div>
-
-                                <div class="col-12 d-flex justify-content-between mt-4">
-                                    <button class="btn btn-outline-dark btn-prev waves-effect"> <i class="ti ti-arrow-left ti-xs me-sm-1 me-0"></i>
-                                        <span class="align-middle d-sm-inline-block d-none">Indietro</span>
-                                    </button>
-                                    <button class="btn btn-dark btn-next waves-effect waves-light"> <span class="align-middle d-sm-inline-block d-none me-sm-1 me-0">Avanti</span> <i class="ti ti-arrow-right ti-xs"></i></button>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Billing -->
-                        <div id="SignupStepBilling" class="content fv-plugins-bootstrap5 fv-plugins-framework">
-                            <div class="content-header">
-                                <h3 class="signup-wiz__name text-center">Informazioni fatturazione</h3>
-                            </div>
+                <!-- Billing -->
+                <div id="SignupStepBilling" class="content fv-plugins-bootstrap5 fv-plugins-framework">
+                    <div class="card mb-4">
+                        <div class="card-header border-bottom" style="color: #FFFFFF; background-color: #941100;">
+                            <h4 class="m-0" style="color: #FFFFFF;">Fatturazione</h4>
+                        </div>
 
-                            <div class="row g-3">
+                        <div class="card-body pt-4">
+                            <div class="row g-4">
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="payment_extension">Dilazione di pagamento preferita *</label>
+                                    <h6 class="text-black mb-2" for="payment_extension">Dilazione di pagamento preferita *</h6>
                                     <select name="payment_extension" id="payment_extension" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value="{{$user_detail->destination_common}}" selected>{{$user_detail->destination_common}}</option>
                                     @foreach($payment_extension as $_payment_extension)
@@ -309,7 +328,7 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="payment_term">Modalità di pagamento * </label>
+                                    <h6 class="text-black mb-2" for="payment_term">Modalità di pagamento * </h6>
                                     <select name="payment_term" id="payment_term" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
                                     @foreach($payment_terms as $_payment_terms)
@@ -319,66 +338,62 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="reference_bank">Banca di riferimento (RIBA e RID) *</label>
+                                    <h6 class="text-black mb-2" for="reference_bank">Banca di riferimento (RIBA e RID) *</h6>
                                     <input type="text" name="reference_bank" id="reference_bank" class="form-control"  value="{{$user_detail->reference_bank ? $user_detail->reference_bank : ''}}" placeholder="Inserisci filiale" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="iban">IBAN (RIBA e RID)</label>
+                                    <h6 class="text-black mb-2" for="iban">IBAN (RIBA e RID)</h6>
                                     <input type="text" name="iban" id="iban" class="form-control" value="{{$user_detail->iban ? $user_detail->iban : ''}}" placeholder="ITxxxxxxxxxxxx" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="sdi">SDI *</label>
+                                    <h6 class="text-black mb-2" for="sdi">SDI *</h6>
                                     <input type="text" name="sdi" id="sdi" class="form-control" value="{{$user_detail->sdi ? $user_detail->sdi : ''}}" placeholder="Inserisci codice univoco" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="cig">CIG</label>
+                                    <h6 class="text-black mb-2" for="cig">CIG</h6>
                                     <input type="text" name="cig" id="cig" class="form-control"  value="{{$user_detail->cig ? $user_detail->cig : ''}}" placeholder="Inserisci CIG ove applicabile" />
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="cup">CUP</label>
+                                    <h6 class="text-black mb-2" for="cup">CUP</h6>
                                     <input type="text" name="cup" id="cup" class="form-control" value="{{$user_detail->cup ? $user_detail->cup : ''}}" placeholder="Inserisci CUP, ove applicabile" />
                                 </div>
                                 
                                 <!-- <div class="col-sm-6">
-                                    <label class="form-label" for="file_1">Esenzione IVA *</label>
+                                    <h6 class="text-black mb-2" for="file_1">Esenzione IVA *</h6>
                                     <input class="form-control" type="file" id="file_1" name="file_1">
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="file_2">Esenzione IVA *</label>
+                                    <h6 class="text-black mb-2" for="file_2">Esenzione IVA *</h6>
                                     <input class="form-control" type="file" id="file_2" name="file_2">
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="file_3">Esenzione IVA *</label>
+                                    <h6 class="text-black mb-2" for="file_3">Esenzione IVA *</h6>
                                     <input class="form-control" type="file" id="file_3" name="file_3">
                                 </div> -->
-
-                                <div class="col-12 d-flex justify-content-between mt-4">
-                                    <button class="btn btn-outline-dark btn-prev waves-effect"> <i class="ti ti-arrow-left ti-xs me-sm-1 me-0"></i>
-                                        <span class="align-middle d-sm-inline-block d-none">Indietro</span>
-                                    </button>
-                                    <button class="btn btn-dark btn-next waves-effect waves-light"> <span class="align-middle d-sm-inline-block d-none me-sm-1 me-0">Avanti</span> <i class="ti ti-arrow-right ti-xs"></i></button>
-                                    <!-- <button type="submit" class="btn btn-success btn-next btn-submit waves-effect waves-light">Submit</button> -->
-                                </div>
                             </div>
-                            <!--/ Credit Card Details -->
+                        </div>
+                    </div>
+                    <!--/ Credit Card Details -->
+                </div>
+
+                <!-- Profile -->
+                <div id="SignupStepProfile" class="content fv-plugins-bootstrap5 fv-plugins-framework">
+                    <div class="card mb-4">
+                        <div class="card-header border-bottom" style="background-color: #0433FF;">
+                            <h4 class="m-0" style="color: #FFFFFF;">Profilo</h4>
                         </div>
 
-                        <!-- Profile -->
-                        <div id="SignupStepProfile" class="content fv-plugins-bootstrap5 fv-plugins-framework">
-                            <div class="content-header">
-                                <h3 class="signup-wiz__name text-center">Final Step: Profilo Cliente</h3>
-                            </div>
-
-                            <div class="row g-3">
+                        <div class="card-body pt-4">
+                            <div class="row g-4">
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="products">Tipologia di prodotti consumati *</label>
+                                    <h6 class="text-black mb-2" for="products">Tipologia di prodotti consumati *</h6>
                                     <select name="products" id="products" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                                         <option value=""></option>
                                     @foreach($product as $_product)
@@ -388,7 +403,7 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="monthly_consumption">Consumi medi mensili *</label>
+                                    <h6 class="text-black mb-2" for="monthly_consumption">Consumi medi mensili *</h6>
                                     <select name="monthly_consumption" id="monthly_consumption" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value="{{$user_detail->monthly_consumption}}" selected>{{$user_detail->monthly_consumption}}</option>
                                     @foreach($consume_capacity as $_consume_capacity)
@@ -398,7 +413,7 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="is_private_distributer">Sei un distributore privato? *</label>
+                                    <h6 class="text-black mb-2" for="is_private_distributer">Sei un distributore privato? *</h6>
                                     <select name="is_private_distributer" id="is_private_distributer" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value="{{$user_detail->is_private_distributer}}" selected>{{$user_detail->is_private_distributer}}</option>
                                         <option value="Si">Si</option>
@@ -407,12 +422,12 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6 js-no-of-dis-container">
-                                    <label class="form-label" for="no_of_distributer">Numero di distributori *</label>
+                                    <h6 class="text-black mb-2" for="no_of_distributer">Numero di distributori *</h6>
                                     <input type="text" name="no_of_distributer" id="no_of_distributer" class="form-control" value="{{$user_detail->no_of_distributer?$user_detail->no_of_distributer:'' }}" placeholder="Inserisci numero di distributori" />
                                 </div>
                         
                                 <div class="col-sm-12">
-                                    <label class="form-label" for="">Flotta *</label>
+                                    <h6 class="text-black mb-2" for="">Flotta *</h6>
                                     <div class="card shadow-none bg-transparent border border-secondary mb-3">
                                         <div class="card-body p-3">
                                             <div class="row g-3">
@@ -654,31 +669,16 @@ $configData = Helper::appClasses();
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="col-12 d-flex justify-content-between mt-4">
-                                    <button class="btn btn-outline-dark btn-prev waves-effect"> <i class="ti ti-arrow-left ti-xs me-sm-1 me-0"></i>
-                                        <span class="align-middle d-sm-inline-block d-none">Indietro</span>
-                                    </button>
-                                    <button type="submit" class="btn btn-dark btn-next btn-submit waves-effect waves-light">Avanti</button>
-                                </div>
                             </div>
-                            <!--/ Credit Card Details -->
                         </div>
-                    </form>
+                    </div>
                 </div>
-                
-            </div>
-
-            <div class="signup-wiz__footer">
-                <p>Hai già un account? <a href="{{route('register')}}">Entra</a></p>    
-            </div>
-
+            </form>
+            <script>
+            // Check selected custom option
+            window.Helpers.initCustomOptionCheck();
+            </script>
         </div>
     </div>
-</div>
-<script>
-// Check selected custom option
-window.Helpers.initCustomOptionCheck();
-</script>
 </div>
 @endsection
