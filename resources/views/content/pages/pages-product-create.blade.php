@@ -32,6 +32,75 @@ $configData = Helper::appClasses();
 @else
 <script src="{{asset('assets/js/product-detail-add.js?version=1')}}"></script>
 @endif
+<script>
+    $("#days_off").on("change", function(elem){
+        let days_off_arr = [];
+        let days_off = $("#days_off").find(":selected");
+        let lisOfDays = ["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"];
+        if(days_off.length && days_off.length > 0){
+            for(let i = 0; i < days_off.length; i++){
+                days_off_arr.push(days_off[i].value);
+            }
+        }
+
+        let display_date = "";
+        if(days_off_arr.length == 7){
+            display_date = "NA";
+        } else {
+            var d = getNextDay(new Date()); //get next day by default
+            var day = lisOfDays[new Date(d).getDay()];
+            let _display_date = '';
+            if(jQuery.inArray(day, days_off_arr)>=0){
+                _display_date = new Date(getNextWorkingDay(d, days_off_arr, lisOfDays));
+            } else {
+                _display_date = new Date(d);
+            }
+
+            let year = _display_date.getFullYear();
+            let month = String(_display_date.getMonth() + 1);
+            let dayDate = String(_display_date.getDate());
+            month = month.length == 1 ?  
+            month.padStart('2', '0') : month; 
+        
+            dayDate = dayDate.length == 1 ?  
+            dayDate.padStart('2', '0') : dayDate; 
+
+            display_date = `${dayDate}-${month}-${year}`;
+        }
+        
+        $("#js-next-avail-date").text(display_date);
+    });
+
+    const getNextWorkingDay = (d, days_off_arr, lisOfDays) => {
+        var d = getNextDay(new Date(d)); //get next day by default
+        var day = lisOfDays[new Date(d).getDay()];
+        if(jQuery.inArray(day, days_off_arr)>=0){
+            return getNextWorkingDay(d, days_off_arr, lisOfDays)
+        } else {
+            return d;
+        }
+    }
+
+
+    const getNextDay = (dt) => { 
+      let d = new Date(dt);
+      d.setDate(d.getDate() + 1); 
+    
+      let year = d.getFullYear() 
+      let month = String(d.getMonth() + 1) 
+      let day = String(d.getDate()) 
+    
+      // Adding leading 0 if the day or month 
+      // is one digit value 
+      month = month.length == 1 ?  
+          month.padStart('2', '0') : month; 
+    
+      day = day.length == 1 ?  
+          day.padStart('2', '0') : day; 
+    
+        return `${year}-${month}-${day}`;
+  } 
+</script>
 @endsection
 
 @section('content')
@@ -95,9 +164,9 @@ $configData = Helper::appClasses();
                             @endif
                         </h5>
                         @if($product_detail)
-                        <span><strong>PREZZO PER IL: {{App\Helpers\Helpers::calculateEstimateShippingDate($product_detail->delivery_time, $product_detail->delivery_days, $product_detail->days_off)}}</strong></span>
+                        <span><strong>PREZZO PER IL: <span id="js-next-avail-date">{{App\Helpers\Helpers::calculateEstimateShippingDate($product_detail->delivery_time, $product_detail->delivery_days, $product_detail->days_off)}}</span></strong></span>
                         @else
-                        <span><strong>PREZZO PER IL: {{App\Helpers\Helpers::calculateEstimateShippingDate('00:01', null, '')}}</strong></span>
+                        <span><strong>PREZZO PER IL: <span id="js-next-avail-date">{{App\Helpers\Helpers::calculateEstimateShippingDate('00:01', null, '')}}</span></strong></span>
                         @endif
                     </div>
                 </div>

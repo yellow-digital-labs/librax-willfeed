@@ -116,7 +116,8 @@
                         @if($products)
                             @foreach($products as $product)
                             <li class="footer-menu__item">
-                                <a href="{{route("pages-buyer-home", ["search" => $product->name])}}" class="footer-menu__link">{{$product->name}}</a>
+                                <!-- <a href="{{route("pages-buyer-home", ["search" => $product->name])}}" class="footer-menu__link">{{$product->name}}</a> -->
+                                <a class="footer-menu__link">{{$product->name}}</a>
                             </li>
                             @endforeach
                         @endif
