@@ -128,25 +128,11 @@ $(function () {
 // --------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', function (e) {
     (function () {
-        const stepsValidation = document.querySelector('#multiStepsBuyerValidation');
-        if (typeof stepsValidation !== undefined && stepsValidation !== null) {
-            // Multi Steps form
-            const stepsValidationForm = stepsValidation.querySelector('#buyerEditForm');
-            // Form steps
-            const stepsValidationFormStep1 = stepsValidationForm.querySelector('#SignupStepRegistry');
-            const stepsValidationFormStep2 = stepsValidationForm.querySelector('#SignupStepDestination');
-            const stepsValidationFormStep3 = stepsValidationForm.querySelector('#SignupStepBilling');
-            const stepsValidationFormStep4 = stepsValidationForm.querySelector('#SignupStepProfile');
-            // Multi steps next prev button
-            const stepsValidationNext = [].slice.call(stepsValidationForm.querySelectorAll('.btn-next'));
-            const stepsValidationPrev = [].slice.call(stepsValidationForm.querySelectorAll('.btn-prev'));
-
-            let validationStepper = new Stepper(stepsValidation, {
-                linear: true
-            });
-
-            // Registry details
-            const multiSteps1 = FormValidation.formValidation(stepsValidationFormStep1, {
+        const productForm = document.querySelector('#buyerEditForm');
+        // Form validation for Add new record
+        if (productForm) {
+            console.log("...")
+            FormValidation.formValidation(productForm, {
                 fields: {
                     business_name: {
                         validators: {
@@ -250,92 +236,6 @@ document.addEventListener('DOMContentLoaded', function (e) {
                             }
                         }
                     },
-                },
-                plugins: {
-                    trigger: new FormValidation.plugins.Trigger(),
-                    bootstrap5: new FormValidation.plugins.Bootstrap5({
-                        // Use this for enabling/changing valid/invalid class
-                        // eleInvalidClass: '',
-                        eleValidClass: '',
-                        rowSelector: '.col-sm-6'
-                    }),
-                    autoFocus: new FormValidation.plugins.AutoFocus(),
-                    submitButton: new FormValidation.plugins.SubmitButton()
-                },
-                init: instance => {
-                    instance.on('plugins.message.placed', function (e) {
-                        if (e.element.parentElement.classList.contains('input-group')) {
-                            e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
-                        }
-                    });
-                }
-            }).on('core.form.valid', function () {
-                // Jump to the next step when all fields in the current step are valid
-                validationStepper.next();
-            });
-
-            // Destination details
-            let formTwoValidationFields = {
-                ease_of_access: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please enter facilità di accesso'
-                        }
-                    }
-                },
-                mobile_unloading: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please enter cellulare referente di scarico'
-                        },
-                        stringLength: {
-                            min: 10,
-                            max: 10,
-                            message: 'cellulare referente di scarico should be 10 digit long'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+$/,
-                            message: 'cellulare referente di scarico can only consist of number'
-                        }
-                    }
-                },
-                destination_region: {
-                    validators: {
-                        notEmpty: {
-                            enabled: false,
-                            message: 'Please enter regione'
-                        }
-                    }
-                }
-            };
-            const multiSteps2 = FormValidation.formValidation(stepsValidationFormStep2, {
-                fields: formTwoValidationFields,
-                plugins: {
-                    trigger: new FormValidation.plugins.Trigger(),
-                    bootstrap5: new FormValidation.plugins.Bootstrap5({
-                        // Use this for enabling/changing valid/invalid class
-                        // eleInvalidClass: '',
-                        eleValidClass: '',
-                        rowSelector: '.col-sm-6'
-                    }),
-                    autoFocus: new FormValidation.plugins.AutoFocus(),
-                    submitButton: new FormValidation.plugins.SubmitButton()
-                },
-                init: instance => {
-                    instance.on('plugins.message.placed', function (e) {
-                        if (e.element.parentElement.classList.contains('input-group')) {
-                            e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
-                        }
-                    });
-                }
-            }).on('core.form.valid', function () {
-                // Jump to the next step when all fields in the current step are valid
-                validationStepper.next();
-            });
-
-            // Billing details
-            const multiSteps3 = FormValidation.formValidation(stepsValidationFormStep3, {
-                fields: {
                     payment_extension: {
                         validators: {
                             notEmpty: {
@@ -384,34 +284,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                                 message: 'Please upload esenzione IVA'
                             }
                         }
-                    }
-                },
-                plugins: {
-                    trigger: new FormValidation.plugins.Trigger(),
-                    bootstrap5: new FormValidation.plugins.Bootstrap5({
-                        // Use this for enabling/changing valid/invalid class
-                        // eleInvalidClass: '',
-                        eleValidClass: '',
-                        rowSelector: '.col-sm-6'
-                    }),
-                    autoFocus: new FormValidation.plugins.AutoFocus(),
-                    submitButton: new FormValidation.plugins.SubmitButton()
-                },
-                init: instance => {
-                    instance.on('plugins.message.placed', function (e) {
-                        if (e.element.parentElement.classList.contains('input-group')) {
-                            e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
-                        }
-                    });
-                }
-            }).on('core.form.valid', function () {
-                // Jump to the next step when all fields in the current step are valid
-                validationStepper.next();
-            });
-
-            // Profile details
-            const multiSteps4 = FormValidation.formValidation(stepsValidationFormStep4, {
-                fields: {
+                    },
                     products: {
                         validators: {
                             notEmpty: {
@@ -432,32 +305,23 @@ document.addEventListener('DOMContentLoaded', function (e) {
                                 message: 'Please enter sei un distributore privato'
                             }
                         }
-                    }
+                    },
                 },
                 plugins: {
-                    trigger: new FormValidation.plugins.Trigger(),
-                    bootstrap5: new FormValidation.plugins.Bootstrap5({
-                        // Use this for enabling/changing valid/invalid class
-                        // eleInvalidClass: '',
-                        eleValidClass: '',
-                        rowSelector: '.col-sm-6'
-                    }),
-                    autoFocus: new FormValidation.plugins.AutoFocus(),
-                    submitButton: new FormValidation.plugins.SubmitButton()
-                },
-                init: instance => {
-                    instance.on('plugins.message.placed', function (e) {
-                        if (e.element.parentElement.classList.contains('input-group')) {
-                            e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
-                        }
-                    });
+                  trigger: new FormValidation.plugins.Trigger(),
+                  bootstrap5: new FormValidation.plugins.Bootstrap5({
+                    // Use this for enabling/changing valid/invalid class
+                    // eleInvalidClass: '',
+                    eleValidClass: '',
+                    rowSelector: '.col-12'
+                  }),
+                  submitButton: new FormValidation.plugins.SubmitButton(),
+                  // Submit the form when all fields are valid
+                  // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                  autoFocus: new FormValidation.plugins.AutoFocus()
                 }
-            }).on('core.form.valid', function () {
+              }).on('core.form.valid', function () {
                 // Jump to the next step when all fields in the current step are valid
-                validationStepper.next();
-                console.log('final submit');
-
-                // var formData = $("#sellerEditForm").serialize();
                 var formData = new FormData($("#buyerEditForm")[0]);
 
                 $.ajax({
@@ -494,63 +358,197 @@ document.addEventListener('DOMContentLoaded', function (e) {
                         })
                     }
                 });
-            });
-
-            stepsValidationNext.forEach(item => {
-                item.addEventListener('click', event => {
-                    // When click the Next button, we will validate the current step
-                    switch (validationStepper._currentIndex) {
-                        case 0:
-                            multiSteps1.validate();
-                            break;
-
-                        case 1:
-                            let destination_address = $("#destination_address").find(":selected").val();
-                            if (destination_address == "No") {
-                                multiSteps2.disableValidator('destination_region');
-                            } else {
-                                multiSteps2.enableValidator('destination_region');
-
-                            }
-                            multiSteps2.validate();
-                            break;
-
-                        case 2:
-                            multiSteps3.validate();
-                            break;
-
-                        case 3:
-                            multiSteps4.validate();
-                            break;
-
-                        default:
-                            break;
-                    }
-                });
-            });
-
-            stepsValidationPrev.forEach(item => {
-                item.addEventListener('click', event => {
-                    switch (validationStepper._currentIndex) {
-                        case 3:
-                            validationStepper.previous();
-                            break;
-
-                        case 2:
-                            validationStepper.previous();
-                            break;
-
-                        case 1:
-                            validationStepper.previous();
-                            break;
-
-                        case 0:
-
-                        default:
-                            break;
-                    }
-                });
-            });
+              });
         }
+
+        // const stepsValidation = document.querySelector('#multiStepsBuyerValidation');
+        // if (typeof stepsValidation !== undefined && stepsValidation !== null) {
+        //     // Multi Steps form
+        //     const stepsValidationForm = stepsValidation.querySelector('#buyerEditForm');
+        //     // Form steps
+        //     const stepsValidationFormStep1 = stepsValidationForm.querySelector('#SignupStepRegistry');
+        //     const stepsValidationFormStep2 = stepsValidationForm.querySelector('#SignupStepDestination');
+        //     const stepsValidationFormStep3 = stepsValidationForm.querySelector('#SignupStepBilling');
+        //     const stepsValidationFormStep4 = stepsValidationForm.querySelector('#SignupStepProfile');
+        //     // Multi steps next prev button
+        //     const stepsValidationNext = [].slice.call(stepsValidationForm.querySelectorAll('.btn-next'));
+        //     const stepsValidationPrev = [].slice.call(stepsValidationForm.querySelectorAll('.btn-prev'));
+
+        //     let validationStepper = new Stepper(stepsValidation, {
+        //         linear: true
+        //     });
+
+        //     // Registry details
+        //     const multiSteps1 = FormValidation.formValidation(stepsValidationFormStep1, {
+        //         fields: {
+                    
+        //         },
+        //         plugins: {
+        //             trigger: new FormValidation.plugins.Trigger(),
+        //             bootstrap5: new FormValidation.plugins.Bootstrap5({
+        //                 // Use this for enabling/changing valid/invalid class
+        //                 // eleInvalidClass: '',
+        //                 eleValidClass: '',
+        //                 rowSelector: '.col-sm-6'
+        //             }),
+        //             autoFocus: new FormValidation.plugins.AutoFocus(),
+        //             submitButton: new FormValidation.plugins.SubmitButton()
+        //         },
+        //         init: instance => {
+        //             instance.on('plugins.message.placed', function (e) {
+        //                 if (e.element.parentElement.classList.contains('input-group')) {
+        //                     e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
+        //                 }
+        //             });
+        //         }
+        //     }).on('core.form.valid', function () {
+        //         // Jump to the next step when all fields in the current step are valid
+        //         validationStepper.next();
+        //     });
+
+        //     // Destination details
+        //     let formTwoValidationFields = 
+        //     };
+        //     const multiSteps2 = FormValidation.formValidation(stepsValidationFormStep2, {
+        //         fields: formTwoValidationFields,
+        //         plugins: {
+        //             trigger: new FormValidation.plugins.Trigger(),
+        //             bootstrap5: new FormValidation.plugins.Bootstrap5({
+        //                 // Use this for enabling/changing valid/invalid class
+        //                 // eleInvalidClass: '',
+        //                 eleValidClass: '',
+        //                 rowSelector: '.col-sm-6'
+        //             }),
+        //             autoFocus: new FormValidation.plugins.AutoFocus(),
+        //             submitButton: new FormValidation.plugins.SubmitButton()
+        //         },
+        //         init: instance => {
+        //             instance.on('plugins.message.placed', function (e) {
+        //                 if (e.element.parentElement.classList.contains('input-group')) {
+        //                     e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
+        //                 }
+        //             });
+        //         }
+        //     }).on('core.form.valid', function () {
+        //         // Jump to the next step when all fields in the current step are valid
+        //         validationStepper.next();
+        //     });
+
+        //     // Billing details
+        //     const multiSteps3 = FormValidation.formValidation(stepsValidationFormStep3, {
+        //         fields: {
+                    
+        //         },
+        //         plugins: {
+        //             trigger: new FormValidation.plugins.Trigger(),
+        //             bootstrap5: new FormValidation.plugins.Bootstrap5({
+        //                 // Use this for enabling/changing valid/invalid class
+        //                 // eleInvalidClass: '',
+        //                 eleValidClass: '',
+        //                 rowSelector: '.col-sm-6'
+        //             }),
+        //             autoFocus: new FormValidation.plugins.AutoFocus(),
+        //             submitButton: new FormValidation.plugins.SubmitButton()
+        //         },
+        //         init: instance => {
+        //             instance.on('plugins.message.placed', function (e) {
+        //                 if (e.element.parentElement.classList.contains('input-group')) {
+        //                     e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
+        //                 }
+        //             });
+        //         }
+        //     }).on('core.form.valid', function () {
+        //         // Jump to the next step when all fields in the current step are valid
+        //         validationStepper.next();
+        //     });
+
+        //     // Profile details
+        //     const multiSteps4 = FormValidation.formValidation(stepsValidationFormStep4, {
+        //         fields: {
+                    
+        //         },
+        //         plugins: {
+        //             trigger: new FormValidation.plugins.Trigger(),
+        //             bootstrap5: new FormValidation.plugins.Bootstrap5({
+        //                 // Use this for enabling/changing valid/invalid class
+        //                 // eleInvalidClass: '',
+        //                 eleValidClass: '',
+        //                 rowSelector: '.col-sm-6'
+        //             }),
+        //             autoFocus: new FormValidation.plugins.AutoFocus(),
+        //             submitButton: new FormValidation.plugins.SubmitButton()
+        //         },
+        //         init: instance => {
+        //             instance.on('plugins.message.placed', function (e) {
+        //                 if (e.element.parentElement.classList.contains('input-group')) {
+        //                     e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
+        //                 }
+        //             });
+        //         }
+        //     }).on('core.form.valid', function () {
+        //         // Jump to the next step when all fields in the current step are valid
+        //         validationStepper.next();
+        //         console.log('final submit');
+
+        //         // var formData = $("#sellerEditForm").serialize();
+                
+        //     });
+
+        //     stepsValidationNext.forEach(item => {
+        //         item.addEventListener('click', event => {
+        //             // When click the Next button, we will validate the current step
+        //             switch (validationStepper._currentIndex) {
+        //                 case 0:
+        //                     multiSteps1.validate();
+        //                     break;
+
+        //                 case 1:
+        //                     let destination_address = $("#destination_address").find(":selected").val();
+        //                     if (destination_address == "No") {
+        //                         multiSteps2.disableValidator('destination_region');
+        //                     } else {
+        //                         multiSteps2.enableValidator('destination_region');
+
+        //                     }
+        //                     multiSteps2.validate();
+        //                     break;
+
+        //                 case 2:
+        //                     multiSteps3.validate();
+        //                     break;
+
+        //                 case 3:
+        //                     multiSteps4.validate();
+        //                     break;
+
+        //                 default:
+        //                     break;
+        //             }
+        //         });
+        //     });
+
+        //     stepsValidationPrev.forEach(item => {
+        //         item.addEventListener('click', event => {
+        //             switch (validationStepper._currentIndex) {
+        //                 case 3:
+        //                     validationStepper.previous();
+        //                     break;
+
+        //                 case 2:
+        //                     validationStepper.previous();
+        //                     break;
+
+        //                 case 1:
+        //                     validationStepper.previous();
+        //                     break;
+
+        //                 case 0:
+
+        //                 default:
+        //                     break;
+        //             }
+        //         });
+        //     });
+        // }
     })();
 });

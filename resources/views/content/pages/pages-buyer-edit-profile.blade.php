@@ -132,12 +132,12 @@ $configData = Helper::appClasses();
                                     <input type="text" name="business_name" id="business_name" class="form-control" placeholder="Inserisci ragione sociale" value="{{$user_detail?$user_detail->business_name:''}}" />
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2">Partita IVA *</h6>
                                     <input type="text" name="vat_number" id="vat_number" class="form-control" placeholder="Inserisci numero di partita IVA" value="{{$user_detail?$user_detail->vat_number:''}}" />
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="contact_person">Cellulare referente *</h6>
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text" id="basic-addon-search31">+39 </span>
@@ -145,22 +145,22 @@ $configData = Helper::appClasses();
                                     </div>
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="pec">PEC *</h6>
                                     <input type="text" name="pec" id="pec" class="form-control" placeholder="latuaemail@pec.it" value="{{$user_detail?$user_detail->pec:''}}" />
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="tax_id_code">Codice fiscale</h6>
                                     <input type="text" name="tax_id_code" id="tax_id_code" class="form-control" placeholder="Inserisci il codice fiscale" maxlength="16" value="{{$user_detail?$user_detail->tax_id_code:''}}" oninput="this.value = this.value.toUpperCase()" />
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="administrator_name">Nominativo amministratore *</h6>
                                     <input type="text" name="administrator_name" id="administrator_name" class="form-control" placeholder="Mario Rossi" value="{{$user_detail?$user_detail->administrator_name:''}}" />
                                 </div>
                             
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="main_activity_ids">Attività principale *</h6>
                                     <select name="main_activity_ids" id="main_activity_ids" class="form-select select2" placeholder="Seleziona attività principale">
                                         <option value="{{$user_detail->main_activity_ids}}" selected>{{$user_detail->main_activity_ids}}</option>
@@ -170,17 +170,17 @@ $configData = Helper::appClasses();
                                     </select>
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="address">Indirizzo *</h6>
                                     <input type="text" name="address" id="address" class="form-control" placeholder="Via Battisti " value="{{$user_detail?$user_detail->address:''}}" />
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="house_no">Numero civico *</h6>
                                     <input type="text" name="house_no" id="house_no" class="form-control" placeholder="Inserisci il numero civico" value="{{$user_detail?$user_detail->house_no:''}}" />
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="region">Regione *</h6>
                                     <select name="region" id="region" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
@@ -190,7 +190,7 @@ $configData = Helper::appClasses();
                                     </select>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="province">Provincia *</h6>
                                     <select name="province" id="province" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
@@ -200,7 +200,7 @@ $configData = Helper::appClasses();
                                     </select>
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="common">Comune *</h6>
                                     <select name="common" id="common" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
@@ -210,7 +210,7 @@ $configData = Helper::appClasses();
                                     </select>
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="pincode">CAP *</h6>
                                     <input type="text" name="pincode" id="pincode" class="form-control" placeholder="Inserisci il CAP" value="{{$user_detail?$user_detail->pincode:''}}" />
                                 </div>
@@ -228,7 +228,7 @@ $configData = Helper::appClasses();
                         <div class="card-body pt-4">
                             <div class="row g-4">
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="ease_of_access">Facilità di accesso *</h6>
                                     <select name="ease_of_access" id="ease_of_access" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
@@ -238,7 +238,7 @@ $configData = Helper::appClasses();
                                     </select>
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="mobile_unloading">Cellulare referente di scarico *</h6>
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text">+39 </span>
@@ -246,7 +246,7 @@ $configData = Helper::appClasses();
                                     </div>
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="destination_address">Indirizzo destinazione (se diverso da anagrafica)</h6>
                                     <select name="destination_address" id="destination_address" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value="No">No</option>
@@ -299,7 +299,7 @@ $configData = Helper::appClasses();
                                     <input type="text" name="destination_pincode" id="destination_pincode" class="form-control" placeholder="Inserisci il CAP" value="{{$user_detail?$user_detail->destination_pincode:''}}" />
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="minor_plant_code">Codice licenza cisterna</h6>
                                     <input type="text" name="minor_plant_code" id="minor_plant_code" class="form-control" placeholder="Codice licenza cisterna" value="{{$user_detail?$user_detail->minor_plant_code:''}}" />
                                 </div>
@@ -317,7 +317,7 @@ $configData = Helper::appClasses();
 
                         <div class="card-body pt-4">
                             <div class="row g-4">
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="payment_extension">Dilazione di pagamento preferita *</h6>
                                     <select name="payment_extension" id="payment_extension" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value="{{$user_detail->destination_common}}" selected>{{$user_detail->destination_common}}</option>
@@ -327,7 +327,7 @@ $configData = Helper::appClasses();
                                     </select>
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="payment_term">Modalità di pagamento * </h6>
                                     <select name="payment_term" id="payment_term" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value=""></option>
@@ -337,42 +337,42 @@ $configData = Helper::appClasses();
                                     </select>
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="reference_bank">Banca di riferimento (RIBA e RID) *</h6>
                                     <input type="text" name="reference_bank" id="reference_bank" class="form-control"  value="{{$user_detail->reference_bank ? $user_detail->reference_bank : ''}}" placeholder="Inserisci filiale" />
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="iban">IBAN (RIBA e RID)</h6>
                                     <input type="text" name="iban" id="iban" class="form-control" value="{{$user_detail->iban ? $user_detail->iban : ''}}" placeholder="ITxxxxxxxxxxxx" />
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="sdi">SDI *</h6>
                                     <input type="text" name="sdi" id="sdi" class="form-control" value="{{$user_detail->sdi ? $user_detail->sdi : ''}}" placeholder="Inserisci codice univoco" />
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="cig">CIG</h6>
                                     <input type="text" name="cig" id="cig" class="form-control"  value="{{$user_detail->cig ? $user_detail->cig : ''}}" placeholder="Inserisci CIG ove applicabile" />
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="cup">CUP</h6>
                                     <input type="text" name="cup" id="cup" class="form-control" value="{{$user_detail->cup ? $user_detail->cup : ''}}" placeholder="Inserisci CUP, ove applicabile" />
                                 </div>
                                 
-                                <!-- <div class="col-sm-6">
+                                <!-- <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="file_1">Esenzione IVA *</h6>
                                     <input class="form-control" type="file" id="file_1" name="file_1">
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="file_2">Esenzione IVA *</h6>
                                     <input class="form-control" type="file" id="file_2" name="file_2">
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="file_3">Esenzione IVA *</h6>
                                     <input class="form-control" type="file" id="file_3" name="file_3">
                                 </div> -->
@@ -392,7 +392,7 @@ $configData = Helper::appClasses();
                         <div class="card-body pt-4">
                             <div class="row g-4">
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="products">Tipologia di prodotti consumati *</h6>
                                     <select name="products" id="products" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                                         <option value=""></option>
@@ -402,7 +402,7 @@ $configData = Helper::appClasses();
                                     </select>
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="monthly_consumption">Consumi medi mensili *</h6>
                                     <select name="monthly_consumption" id="monthly_consumption" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value="{{$user_detail->monthly_consumption}}" selected>{{$user_detail->monthly_consumption}}</option>
@@ -412,7 +412,7 @@ $configData = Helper::appClasses();
                                     </select>
                                 </div>
                                 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="is_private_distributer">Sei un distributore privato? *</h6>
                                     <select name="is_private_distributer" id="is_private_distributer" class="form-select select2" data-minimum-results-for-search="Infinity">
                                         <option value="{{$user_detail->is_private_distributer}}" selected>{{$user_detail->is_private_distributer}}</option>
@@ -431,7 +431,7 @@ $configData = Helper::appClasses();
                                     <div class="card shadow-none bg-transparent border border-secondary mb-3">
                                         <div class="card-body p-3">
                                             <div class="row g-3">
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 col-12">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
@@ -449,7 +449,7 @@ $configData = Helper::appClasses();
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 col-12">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
@@ -467,7 +467,7 @@ $configData = Helper::appClasses();
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 col-12">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
@@ -485,7 +485,7 @@ $configData = Helper::appClasses();
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 col-12">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
@@ -503,7 +503,7 @@ $configData = Helper::appClasses();
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 col-12">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
@@ -521,7 +521,7 @@ $configData = Helper::appClasses();
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 col-12">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
@@ -539,7 +539,7 @@ $configData = Helper::appClasses();
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 col-12">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
@@ -557,7 +557,7 @@ $configData = Helper::appClasses();
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 col-12">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
@@ -575,7 +575,7 @@ $configData = Helper::appClasses();
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 col-12">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
@@ -593,7 +593,7 @@ $configData = Helper::appClasses();
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 col-12">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
@@ -611,7 +611,7 @@ $configData = Helper::appClasses();
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 col-12">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
@@ -629,7 +629,7 @@ $configData = Helper::appClasses();
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 col-12">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
@@ -647,7 +647,7 @@ $configData = Helper::appClasses();
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 col-12">
                                                     <div class="card shadow-none bg-transparent border border-secondary h-100">
                                                         <div class="card-body p-3">
                                                             <div class="row align-items-center">
@@ -672,6 +672,10 @@ $configData = Helper::appClasses();
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="m-3">
+                    <button type="submit" class="btn btn-primary" id="seller-edit-form-submit"> Submit</button>
                 </div>
             </form>
             <script>
