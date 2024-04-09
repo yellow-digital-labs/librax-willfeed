@@ -73,15 +73,11 @@ $(function () {
 // --------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', function (e) {
     (function () {
-        const stepsValidation = document.querySelector('#multiStepsValidation');
-        if (typeof stepsValidation !== undefined && stepsValidation !== null) {
-            const stepsValidationForm = stepsValidation.querySelector('#sellerEditForm');
-
-            const stepsValidationFormStep1 = stepsValidationForm.querySelector('#SignupStepRegistry');
-            const submitButton = stepsValidationForm.querySelector('#seller-edit-form-submit');
-
-            // Registry details
-            const multiSteps1 = FormValidation.formValidation(stepsValidationFormStep1, {
+        const productForm = document.querySelector('#sellerEditForm');
+        // Form validation for Add new record
+        if (productForm) {
+            console.log("...")
+            FormValidation.formValidation(productForm, {
                 fields: {
                     business_name: {
                         validators: {
@@ -229,13 +225,6 @@ document.addEventListener('DOMContentLoaded', function (e) {
                             }
                         }
                     },
-                    file_operating_license: {
-                        validators: {
-                            // notEmpty: {
-                            //     message: 'Please enter Licenza di esercizio'
-                            // }
-                        }
-                    },
                     bank_transfer: {
                         validators: {
                             notEmpty: {
@@ -266,22 +255,20 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     },
                 },
                 plugins: {
-                    trigger: new FormValidation.plugins.Trigger(),
-                    bootstrap5: new FormValidation.plugins.Bootstrap5({
-                        eleValidClass: '',
-                        rowSelector: '.col-sm-6'
-                    }),
-                    autoFocus: new FormValidation.plugins.AutoFocus(),
-                    submitButton: new FormValidation.plugins.SubmitButton()
-                },
-                init: instance => {
-                    instance.on('plugins.message.placed', function (e) {
-                        if (e.element.parentElement.classList.contains('input-group')) {
-                            e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
-                        }
-                    });
+                  trigger: new FormValidation.plugins.Trigger(),
+                  bootstrap5: new FormValidation.plugins.Bootstrap5({
+                    // Use this for enabling/changing valid/invalid class
+                    // eleInvalidClass: '',
+                    eleValidClass: '',
+                    rowSelector: '.col-12'
+                  }),
+                  submitButton: new FormValidation.plugins.SubmitButton(),
+                  // Submit the form when all fields are valid
+                  // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                  autoFocus: new FormValidation.plugins.AutoFocus()
                 }
-            }).on('core.form.valid', function () {
+              }).on('core.form.valid', function () {
+                // Jump to the next step when all fields in the current step are valid
                 console.log('form validated');
                 var formData = new FormData($("#sellerEditForm")[0]);
                 $.ajax({
@@ -293,17 +280,6 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     success: function (response) {
                         console.log(response);
                         window.location.href = `${baseUrl}profile`;
-
-                        // Swal.fire({
-                        //     text: "Richiesta di modifica inviata",
-                        //     icon: 'success',
-                        //     customClass: {
-                        //         confirmButton: 'btn btn-primary'
-                        //     },
-                        //     buttonsStyling: false
-                        // }).then(() => {
-                        //     window.location.href = `${baseUrl}profile`;
-                        // });
                     },
                     error: function (xhr, status, error) {
                         console.error(xhr.responseText);
@@ -318,11 +294,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                         })
                     }
                 });
-            });
-
-            submitButton.addEventListener('click', function (e) {
-                multiSteps1.validate();
-            })
+              });
         }
     })();
 });

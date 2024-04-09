@@ -41,7 +41,7 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/js/user-extend-free-trial.js?version=1')}}"></script>
 
 <script>
-let baseUrl ={{url('/')}};
+let baseUrl="{{url('/')}}";
 </script>
 
 <script src="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.js')}}"></script>
@@ -131,7 +131,7 @@ let baseUrl ={{url('/')}};
         </div>
     </div>
 
-    <div class="col-xl-8 col-lg-7 col-md-7" id="multiStepsValidation">
+    <div class="col-xl-8 col-lg-7 col-md-7">
         <div id="edit-seller-profile" tabindex="-1">
                <form id="sellerEditForm" action="{{ route('edit-seller-profile') }}" onsubmit="return false" class="">
                     @csrf
@@ -386,7 +386,7 @@ let baseUrl ={{url('/')}};
                 </div>
 
                 <div class="m-3">
-                    <button type="submit btn" class="btn btn-primary" id="seller-edit-form-submit"> Submit  </button>
+                    <button type="submit" class="btn btn-primary" id="seller-edit-form-submit"> Submit</button>
                 </div>
             </form>
         </div>
