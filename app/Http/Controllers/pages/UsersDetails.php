@@ -62,17 +62,17 @@ class UsersDetails extends Controller
     //   }
     // }
 
-    $main_activity = Helpers::clientActivityList();
-    $region = Region::orderBy('name', 'ASC')->get();
-    $common = Common::orderBy('name', 'ASC')->get();
-    $province = Province::orderBy('name', 'ASC')->get();
-    $storage_capacity = StorageCapacity::all();
-    $order_capacity = OrderCapacity::all();
-    $product = Product::all();
-    $ease_of_access = EaseOfAccess::all();
-    $payment_extension = PaymentExtension::all();
-    $payment_terms = PaymentTerms::all();
-    $consume_capacity = ConsumeCapacity::all();
+    // $main_activity = Helpers::clientActivityList();
+    // $region = Region::orderBy('name', 'ASC')->get();
+    // $common = Common::orderBy('name', 'ASC')->get();
+    // $province = Province::orderBy('name', 'ASC')->get();
+    // $storage_capacity = StorageCapacity::all();
+    // $order_capacity = OrderCapacity::all();
+    // $product = Product::all();
+    // $ease_of_access = EaseOfAccess::all();
+    // $payment_extension = PaymentExtension::all();
+    // $payment_terms = PaymentTerms::all();
+    // $consume_capacity = ConsumeCapacity::all();
 
     $user_detail = UserDetail::where(['user_id' => $user->id])->first();
     $new_user_detail = UserDetailOldData::where(['user_detail_id'=>$user->id, 'admin_approval'=>"pending"])->first();
@@ -92,18 +92,18 @@ class UsersDetails extends Controller
         //New Code
 
       'is_new_data' => $is_new_data,
-      "main_activity" => $main_activity,
-      "common" => $common,
-      "province" => $province,
-      "storage_capacity" => $storage_capacity,
-      "order_capacity" => $order_capacity,
-      "product" => $product,
-      "region" => $region,
-      "user_detail" => $user_detail,
-      "ease_of_access" => $ease_of_access,
-      "payment_terms" => $payment_terms,
-      "payment_extension" => $payment_extension,
-      "consume_capacity" => $consume_capacity,
+      // "main_activity" => $main_activity,
+      // "common" => $common,
+      // "province" => $province,
+      // "storage_capacity" => $storage_capacity,
+      // "order_capacity" => $order_capacity,
+      // "product" => $product,
+      // "region" => $region,
+      // "user_detail" => $user_detail,
+      // "ease_of_access" => $ease_of_access,
+      // "payment_terms" => $payment_terms,
+      // "payment_extension" => $payment_extension,
+      // "consume_capacity" => $consume_capacity,
     ]);
   }
 
@@ -143,18 +143,6 @@ class UsersDetails extends Controller
       // }
     }
 
-    // $main_activity = Helpers::clientActivityList();
-    // $region = Region::orderBy('name', 'ASC')->get();
-    // $common = Common::orderBy('name', 'ASC')->get();
-    // $province = Province::orderBy('name', 'ASC')->get();
-    // $storage_capacity = StorageCapacity::all();
-    // $order_capacity = OrderCapacity::all();
-    // $product = Product::all();
-    // $ease_of_access = EaseOfAccess::all();
-    // $payment_extension = PaymentExtension::all();
-    // $payment_terms = PaymentTerms::all();
-    // $consume_capacity = ConsumeCapacity::all();
-
     $new_user_detail = UserDetailOldData::where(['user_detail_id'=>$id,"admin_approval" => "pending"])->first();
     $is_new_data = false;
     if($new_user_detail){
@@ -173,26 +161,49 @@ class UsersDetails extends Controller
 
       //new Data
       'is_new_data' => $is_new_data,
-      // "main_activity" => $main_activity,
-      // "common" => $common,
-      // "province" => $province,
-      // "storage_capacity" => $storage_capacity,
-      // "order_capacity" => $order_capacity,
-      // "product" => $product,
-      // "region" => $region,
-      // "user_detail" => $user_detail,
-      // "ease_of_access" => $ease_of_access,
-      // "payment_terms" => $payment_terms,
-      // "payment_extension" => $payment_extension,
-      // "consume_capacity" => $consume_capacity,
+
     ]);
   }
 
   public function edit(){
-
     $id = Auth::user()->id;
+    $authUser = Auth::user();
+    $user_id = Auth::user()->id;
+    $user = User::where(['id' => $id])->first();
+    $isAdmin = Helpers::isAdmin();
+    $isSeller = Helpers::isSeller();
+    $isBuyer = Helpers::isBuyer();
+
+    $subscriptions = [];
+    $payment_methods = [];
+    $isOnlyProfile = true;
+    // if($user_id == $id){
+    //   $isOnlyProfile = false;
+    //   if($isSeller){
+    //     $subscriptions = Subscription::where(['status' => 'active', 'plan_for' => 'seller'])->get();
+    //   }
+    //   if($isBuyer){
+    //     $subscriptions = Subscription::where(['status' => 'active', 'plan_for' => 'buyer'])->get();
+    //   }
+    //   if($isAdmin){
+    //     $subscriptions = Subscription::where(['status' => 'active'])->get();
+    //   }
+
+    //   // if($user->stripe_customer_id){
+    //   //   $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+    //   //   $payment_methods_data = $stripe->customers->allPaymentMethods(
+    //   //     $user->stripe_customer_id,
+    //   //     ["type" => "card"]
+    //   //   );
+    //   //   if($payment_methods_data){
+    //   //     $payment_methods = $payment_methods_data->data;
+    //   //   }
+    //   // }
+    // }
+
 
     $user_detail_old = UserDetailOldData::where(['user_detail_id' =>  $id, "admin_approval"=>"pending"])->first();
+
     if($user_detail_old){
       return redirect()->route('profile');
     }
@@ -215,7 +226,6 @@ class UsersDetails extends Controller
 
       $user_detail = UserDetail::where(['user_id' => $user->id])->first();
 
-      // $pageConfigs = ['myLayout' => 'blank'];
         return view('content.pages.pages-buyer-edit-profile', [
         //new Data
         "user_detail"=>$user_detail,
@@ -245,10 +255,7 @@ class UsersDetails extends Controller
 
     $user_detail = UserDetail::where(['user_id' => $user->id])->first();
 
-    $pageConfigs = ["myLayout" => "blank"];
-
       return view('content.pages.pages-seller-edit-profile', [
-         "pageConfigs" => $pageConfigs,
       "main_activity" => $main_activity,
       "common" => $common,
       "province" => $province,
@@ -257,6 +264,15 @@ class UsersDetails extends Controller
       "product" => $product,
       "region" => $region,
       "user_detail" => $user_detail,
+
+      //Pages data
+      'user' => $user,
+      'subscriptions' => $subscriptions,
+      'isOnlyProfile' => $isOnlyProfile,
+      'authUser' => $authUser,
+      'payment_methods' => $payment_methods,
+      'is_expired' => null,
+
     ]);
    }
   }

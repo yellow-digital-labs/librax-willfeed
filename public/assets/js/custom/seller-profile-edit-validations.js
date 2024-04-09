@@ -67,7 +67,6 @@ $(function () {
         });
     });
 
-
 });
 
 // Multi Steps Validation
@@ -76,19 +75,10 @@ document.addEventListener('DOMContentLoaded', function (e) {
     (function () {
         const stepsValidation = document.querySelector('#multiStepsValidation');
         if (typeof stepsValidation !== undefined && stepsValidation !== null) {
-            // Multi Steps form
             const stepsValidationForm = stepsValidation.querySelector('#sellerEditForm');
-            // Form steps
-            const stepsValidationFormStep1 = stepsValidationForm.querySelector('#SignupStepRegistry');
-            const stepsValidationFormStep2 = stepsValidationForm.querySelector('#SignupStepDestination');
-            const stepsValidationFormStep3 = stepsValidationForm.querySelector('#SignupStepBilling');
-            // Multi steps next prev button
-            const stepsValidationNext = [].slice.call(stepsValidationForm.querySelectorAll('.btn-next'));
-            const stepsValidationPrev = [].slice.call(stepsValidationForm.querySelectorAll('.btn-prev'));
 
-            let validationStepper = new Stepper(stepsValidation, {
-                linear: true
-            });
+            const stepsValidationFormStep1 = stepsValidationForm.querySelector('#SignupStepRegistry');
+            const submitButton = stepsValidationForm.querySelector('#seller-edit-form-submit');
 
             // Registry details
             const multiSteps1 = FormValidation.formValidation(stepsValidationFormStep1, {
@@ -195,112 +185,57 @@ document.addEventListener('DOMContentLoaded', function (e) {
                             }
                         }
                     },
-                },
-                plugins: {
-                    trigger: new FormValidation.plugins.Trigger(),
-                    bootstrap5: new FormValidation.plugins.Bootstrap5({
-                        // Use this for enabling/changing valid/invalid class
-                        // eleInvalidClass: '',
-                        eleValidClass: '',
-                        rowSelector: '.col-sm-6'
-                    }),
-                    autoFocus: new FormValidation.plugins.AutoFocus(),
-                    submitButton: new FormValidation.plugins.SubmitButton()
-                },
-                init: instance => {
-                    instance.on('plugins.message.placed', function (e) {
-                        if (e.element.parentElement.classList.contains('input-group')) {
-                            e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
+                    storage_capacity: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter capacità di stoccaggio'
+                            }
                         }
-                    });
-                }
-            }).on('core.form.valid', function () {
-                // Jump to the next step when all fields in the current step are valid
-                validationStepper.next();
-            });
-
-            // Destination details
-            var formTwoValidationFields = {
-                storage_capacity: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please enter capacità di stoccaggio'
+                    },
+                    order_capacity_limits: {
+                        validators: {
+                            notEmpty: {
+                                enabled: false,
+                                message: 'Please enter limiti di capacità ordini min'
+                            }
                         }
-                    }
-                },
-                order_capacity_limits: {
-                    validators: {
-                        notEmpty: {
-                            enabled: false,
-                            message: 'Please enter limiti di capacità ordini min'
+                    },
+                    order_capacity_limits_new: {
+                        validators: {
+                            notEmpty: {
+                                enabled: false,
+                                message: 'Please enter limiti di capacità ordini max'
+                            }
                         }
-                    }
-                },
-                order_capacity_limits_new: {
-                    validators: {
-                        notEmpty: {
-                            enabled: false,
-                            message: 'Please enter limiti di capacità ordini max'
+                    },
+                    available_products: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter prodotti disponibili'
+                            }
                         }
-                    }
-                },
-                available_products: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please enter prodotti disponibili'
+                    },
+                    geographical_coverage_regions: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter copertura geografica regioni'
+                            }
                         }
-                    }
-                },
-                geographical_coverage_regions: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please enter copertura geografica regioni'
+                    },
+                    time_limit_daily_order: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter tempo limite accettazione ordine'
+                            }
                         }
-                    }
-                },
-                time_limit_daily_order: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please enter tempo limite accettazione ordine'
+                    },
+                    file_operating_license: {
+                        validators: {
+                            // notEmpty: {
+                            //     message: 'Please enter Licenza di esercizio'
+                            // }
                         }
-                    }
-                },
-                file_operating_license: {
-                    validators: {
-                        // notEmpty: {
-                        //     message: 'Please enter Licenza di esercizio'
-                        // }
-                    }
-                }
-            };
-            const multiSteps2 = FormValidation.formValidation(stepsValidationFormStep2, {
-                fields: formTwoValidationFields,
-                plugins: {
-                    trigger: new FormValidation.plugins.Trigger(),
-                    bootstrap5: new FormValidation.plugins.Bootstrap5({
-                        // Use this for enabling/changing valid/invalid class
-                        // eleInvalidClass: '',
-                        eleValidClass: '',
-                        rowSelector: '.col-sm-6'
-                    }),
-                    autoFocus: new FormValidation.plugins.AutoFocus(),
-                    submitButton: new FormValidation.plugins.SubmitButton()
-                },
-                init: instance => {
-                    instance.on('plugins.message.placed', function (e) {
-                        if (e.element.parentElement.classList.contains('input-group')) {
-                            e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
-                        }
-                    });
-                }
-            }).on('core.form.valid', function () {
-                // Jump to the next step when all fields in the current step are valid
-                validationStepper.next();
-            });
-
-            // Billing details
-            const multiSteps3 = FormValidation.formValidation(stepsValidationFormStep3, {
-                fields: {
+                    },
                     bank_transfer: {
                         validators: {
                             notEmpty: {
@@ -328,13 +263,11 @@ document.addEventListener('DOMContentLoaded', function (e) {
                                 message: 'Please enter RID'
                             }
                         }
-                    }
+                    },
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
                     bootstrap5: new FormValidation.plugins.Bootstrap5({
-                        // Use this for enabling/changing valid/invalid class
-                        // eleInvalidClass: '',
                         eleValidClass: '',
                         rowSelector: '.col-sm-6'
                     }),
@@ -349,13 +282,8 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     });
                 }
             }).on('core.form.valid', function () {
-                // stepsValidationForm.submit();
-                validationStepper.next();
-                console.log('final submit');
-
-                // var formData = $("#sellerEditForm").serialize();
+                console.log('form validated');
                 var formData = new FormData($("#sellerEditForm")[0]);
-
                 $.ajax({
                     url: $("#sellerEditForm").attr('action'),
                     method: 'POST',
@@ -364,21 +292,22 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     contentType: false,
                     success: function (response) {
                         console.log(response);
-                        $('#edit-seller-profile').modal('hide');
-                        Swal.fire({
-                            text: "Richiesta di modifica inviata",
-                            icon: 'success',
-                            customClass: {
-                                confirmButton: 'btn btn-primary'
-                            },
-                            buttonsStyling: false
-                        }).then(() => {
-                            window.location.href = `${baseUrl}profile`;
-                        });
+                        window.location.href = `${baseUrl}profile`;
+
+                        // Swal.fire({
+                        //     text: "Richiesta di modifica inviata",
+                        //     icon: 'success',
+                        //     customClass: {
+                        //         confirmButton: 'btn btn-primary'
+                        //     },
+                        //     buttonsStyling: false
+                        // }).then(() => {
+                        //     window.location.href = `${baseUrl}profile`;
+                        // });
                     },
                     error: function (xhr, status, error) {
                         console.error(xhr.responseText);
-                        $('#edit-seller-profile').modal('hide');
+
                         Swal.fire({
                             text: " Hai già inviato una richiesta di aggiornamento",
                             icon: 'error',
@@ -391,72 +320,9 @@ document.addEventListener('DOMContentLoaded', function (e) {
                 });
             });
 
-            stepsValidationNext.forEach(item => {
-                item.addEventListener('click', event => {
-                    // When click the Next button, we will validate the current step
-                    switch (validationStepper._currentIndex) {
-                        case 0:
-                            multiSteps1.validate();
-                            let main_activity_ids = $("#main_activity_ids").find(":selected").val();
-                            // delete formTwoValidationFields.order_capacity_limits;
-                            // delete formTwoValidationFields.order_capacity_limits_new;
-                            if (main_activity_ids == "Agenzia") {
-                                $(".order_capacity_limits_container").hide();
-                                multiSteps2.disableValidator('order_capacity_limits');
-                                multiSteps2.disableValidator('order_capacity_limits_new');
-                            } else {
-                                $(".order_capacity_limits_container").show();
-                                multiSteps2.enableValidator('order_capacity_limits');
-                                multiSteps2.enableValidator('order_capacity_limits_new');
-                                // formTwoValidationFields["order_capacity_limits"] = {
-                                //     validators: {
-                                //         notEmpty: {
-                                //             message: 'Please enter limiti di capacità ordini min'
-                                //         }
-                                //     }
-                                // };
-                                // formTwoValidationFields["order_capacity_limits_new"] = {
-                                //     validators: {
-                                //         notEmpty: {
-                                //             message: 'Please enter limiti di capacità ordini max'
-                                //         }
-                                //     }
-                                // };
-                            }
-                            break;
-
-                        case 1:
-                            multiSteps2.validate();
-                            break;
-
-                        case 2:
-                            multiSteps3.validate();
-                            break;
-
-                        default:
-                            break;
-                    }
-                });
-            });
-
-            stepsValidationPrev.forEach(item => {
-                item.addEventListener('click', event => {
-                    switch (validationStepper._currentIndex) {
-                        case 2:
-                            validationStepper.previous();
-                            break;
-
-                        case 1:
-                            validationStepper.previous();
-                            break;
-
-                        case 0:
-
-                        default:
-                            break;
-                    }
-                });
-            });
+            submitButton.addEventListener('click', function (e) {
+                multiSteps1.validate();
+            })
         }
     })();
 });
