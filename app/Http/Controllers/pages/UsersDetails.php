@@ -215,7 +215,7 @@ class UsersDetails extends Controller
 
       $user_detail = UserDetail::where(['user_id' => $user->id])->first();
 
-      $pageConfigs = ['myLayout' => 'blank'];
+      // $pageConfigs = ['myLayout' => 'blank'];
         return view('content.pages.pages-buyer-edit-profile', [
         //new Data
         "user_detail"=>$user_detail,

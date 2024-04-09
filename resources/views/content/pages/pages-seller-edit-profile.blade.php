@@ -1,3 +1,10 @@
+@php
+$configData = Helper::appClasses();
+// if($isOnlyProfile){
+//     $isMenu = false;
+//     $navbarHideToggle = false;
+// }
+@endphp
 
 @extends('layouts/layoutMaster')
 @section('title', 'Edit Profilo')
@@ -63,7 +70,7 @@ let baseUrl ={{url('/')}};
                         <button type="button" class="step-trigger signup-wiz__trigger" aria-selected="true">
                             <span class="bs-stepper-circle"><i class="ti ti-smart-home ti-sm"></i></span>
                             <span class="bs-stepper-label">
-                                <span class="bs-stepper-title">Anagrafica</span>
+                                <span class="bs-stepper-title">Anagrafic</span>
                             </span>
                         </button>
                     </div>

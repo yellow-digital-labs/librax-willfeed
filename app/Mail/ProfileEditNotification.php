@@ -42,7 +42,7 @@ class ProfileEditNotification extends Mailable
       public function build()
     {
         $subject = 'Profile Edit ' . ucfirst($this->status);
-        if($ths->staus == "rejected"){
+        if($this->status == "rejected"){
            $subject = 'La tua richiesta di aggiornamento del profilo è stata rifiutata';
         }
         

@@ -28,16 +28,17 @@ function validateAndSubmit(userId) {
     success: function (response) {
       console.log(response);
       $('#reject-user-data').modal('hide');
-      Swal.fire({
-        text: "Rejected Data submitted",
-        icon: 'success',
-        customClass: {
-          confirmButton: 'btn btn-primary'
-        },
-        buttonsStyling: false
-      }).then(() => {
-        window.location.reload();
-      });
+      window.location.reload();
+      // Swal.fire({
+      //   text: "Rejected Data submitted",
+      //   icon: 'success',
+      //   customClass: {
+      //     confirmButton: 'btn btn-primary'
+      //   },
+      //   buttonsStyling: false
+      // }).then(() => {
+      //   window.location.reload();
+      // });
     },
     error: function (xhr, status, error) {
       console.error(xhr.responseText);
@@ -77,18 +78,18 @@ document.addEventListener('DOMContentLoaded', function (e) {
             url: `${baseUrl}approve/${userId}/data`,
             method: 'POST',
             success: function (response) {
-              console.log(response);
+              window.location.reload();
               $('#edit-seller-profile').modal('hide');
-              Swal.fire({
-                text: "New Data Approved",
-                icon: 'success',
-                customClass: {
-                  confirmButton: 'btn btn-primary'
-                },
-                buttonsStyling: false
-              }).then(() => {
-                window.location.reload();
-              });
+              // Swal.fire({
+              //   text: "New Data Approved",
+              //   icon: 'success',
+              //   customClass: {
+              //     confirmButton: 'btn btn-primary'
+              //   },
+              //   buttonsStyling: false
+              // }).then(() => {
+              //   window.location.reload();
+              // });
             },
             error: function (xhr, status, error) {
               console.error(xhr.responseText);
