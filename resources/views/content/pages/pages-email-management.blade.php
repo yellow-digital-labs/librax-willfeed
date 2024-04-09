@@ -20,7 +20,7 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('page-script')
-<script src="{{asset('assets/js/app-email.js')}}"></script>
+<script src="{{asset('assets/js/app-email.js?version=1')}}"></script>
 @endsection
 
 @section('page-style')

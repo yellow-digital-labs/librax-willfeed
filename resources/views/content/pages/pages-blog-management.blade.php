@@ -29,7 +29,7 @@ $configData = Helper::appClasses();
     var urlCreateProductView = {!! "'".$urlCreateProductView."'" !!};
     var urlListProductData = {!! "'".$urlListProductData."'" !!};
 </script>
-<script src="{{asset('assets/js/blog-management.js')}}"></script>
+<script src="{{asset('assets/js/blog-management.js?version=1')}}"></script>
 @endsection
 
 @section('content')

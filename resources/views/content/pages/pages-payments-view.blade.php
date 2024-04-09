@@ -20,7 +20,7 @@ $configData = Helper::appClasses();
 
 @section('page-script')
 <!-- <script src="{{asset('assets/js/tables-datatables-advanced.js')}}"></script> -->
-<script src="{{asset('assets/js/payments-datatables.js')}}"></script>
+<script src="{{asset('assets/js/payments-datatables.js?version=1')}}"></script>
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>

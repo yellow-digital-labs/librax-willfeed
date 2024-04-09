@@ -38,8 +38,8 @@ $configData = Helper::appClasses();
     var completed_orders = {!! "'0.00'" !!};
 @endif
 </script>
-<script src="{{asset('assets/js/forms-pickers.js')}}"></script>
-<script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
+<script src="{{asset('assets/js/forms-pickers.js?version=1')}}"></script>
+<script src="{{asset('assets/js/dashboards-analytics.js?version=1')}}"></script>
 
 <script>
 $(document).ready(function(){

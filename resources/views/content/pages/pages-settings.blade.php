@@ -25,7 +25,7 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('page-script')
-<script src="{{asset('assets/js/settings.js')}}"></script>
+<script src="{{asset('assets/js/settings.js?version=1')}}"></script>
 @endsection
 
 @section('content')

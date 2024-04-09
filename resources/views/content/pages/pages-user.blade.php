@@ -25,7 +25,7 @@ $customizerHidden = 'customizer-hide';
 <script>
     var urlListCustomerData = {!! "'".$urlListCustomerData."'" !!};
 </script>
-<script src="{{asset('assets/js/approved-user-datatables.js')}}"></script>
+<script src="{{asset('assets/js/approved-user-datatables.js?version=1')}}"></script>
 @endsection
 
 @section('page-style')

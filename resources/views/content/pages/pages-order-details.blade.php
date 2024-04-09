@@ -44,7 +44,7 @@ $configData = Helper::appClasses();
         @endif
     @endif
 </script>
-<script src="{{asset('assets/js/order-detail.js')}}"></script>
+<script src="{{asset('assets/js/order-detail.js?version=1')}}"></script>
 @endsection
 
 @section('content')

@@ -25,11 +25,11 @@ $configData = Helper::appClasses();
     var urlListOrderData = {!! "'".$urlListOrderData."'" !!};
 </script>
 @if($isAdmin)
-<script src="{{asset('assets/js/approved-order-datatables-admin.js')}}"></script>
+<script src="{{asset('assets/js/approved-order-datatables-admin.js?version=1')}}"></script>
 @elseif($isBuyer)
-<script src="{{asset('assets/js/approved-order-datatables-buyer.js')}}"></script>
+<script src="{{asset('assets/js/approved-order-datatables-buyer.js?version=1')}}"></script>
 @else
-<script src="{{asset('assets/js/approved-order-datatables.js')}}"></script>
+<script src="{{asset('assets/js/approved-order-datatables.js?version=1')}}"></script>
 @endif
 @endsection
 

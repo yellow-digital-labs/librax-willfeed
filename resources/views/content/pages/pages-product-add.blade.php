@@ -26,8 +26,8 @@ $configData = Helper::appClasses();
     description = "{!!$product->description!!}";
     @endif
 </script>
-<script src="{{asset('assets/js/forms-editors.js')}}"></script>
-<script src="{{asset('assets/js/admin-product-add.js')}}"></script>
+<script src="{{asset('assets/js/forms-editors.js?version=1')}}"></script>
+<script src="{{asset('assets/js/admin-product-add.js?version=1')}}"></script>
 @endsection
 
 @section('page-style')

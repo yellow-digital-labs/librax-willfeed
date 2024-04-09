@@ -32,15 +32,15 @@ $configData = Helper::appClasses();
 
 @section('page-script')
 <!-- Edit Profle Modal js -->
- <script src="{{asset('assets/js/user-edit-profile.js')}}"></script> 
-<script src="{{asset('assets/js/modal-edit-user.js')}}"></script>
-<script src="{{asset('assets/js/modal-edit-cc.js')}}"></script>
-<script src="{{asset('assets/js/modal-add-new-cc.js')}}"></script>
-<script src="{{asset('assets/js/modal-add-new-address.js')}}"></script>
-<script src="{{asset('assets/js/app-user-view.js')}}"></script>
+ <script src="{{asset('assets/js/user-edit-profile.js?version=1')}}"></script> 
+<script src="{{asset('assets/js/modal-edit-user.js?version=1')}}"></script>
+<script src="{{asset('assets/js/modal-edit-cc.js?version=1')}}"></script>
+<script src="{{asset('assets/js/modal-add-new-cc.js?version=1')}}"></script>
+<script src="{{asset('assets/js/modal-add-new-address.js?version=1')}}"></script>
+<script src="{{asset('assets/js/app-user-view.js?version=1')}}"></script>
 <!-- Extend Free Trail js -->
-<script src="{{asset('assets/js/user-extend-free-trial.js')}}"></script>
-<script src="{{asset('assets/js/app-user-view-billing.js')}}"></script>
+<script src="{{asset('assets/js/user-extend-free-trial.js?version=1')}}"></script>
+<script src="{{asset('assets/js/app-user-view-billing.js?version=1')}}"></script>
 @if(!$isOnlyProfile)
 @php
 $remainingDays = App\Helpers\Helpers::getDaysBetweenDates(date('Y-m-d H:i:s', time()), $user->exp_datetime);

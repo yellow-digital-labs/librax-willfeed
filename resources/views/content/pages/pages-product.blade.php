@@ -30,9 +30,9 @@ $configData = Helper::appClasses();
     var urlListProductData = {!! "'".$urlListProductData."'" !!};
 </script>
 @if($isAdmin)
-<script src="{{asset('assets/js/admin-product-list.js')}}"></script>
+<script src="{{asset('assets/js/admin-product-list.js?version=1')}}"></script>
 @else
-<script src="{{asset('assets/js/seller-product-list.js')}}"></script>
+<script src="{{asset('assets/js/seller-product-list.js?version=1')}}"></script>
 @endif
 @endsection
 

@@ -244,6 +244,6 @@ dati.
 @section('footer-script')
 <script src="{{asset('assets/front/plugins/uikit-3.16.22/js/uikit.min.js')}}"></script>
 <script src="{{asset('assets/front/js/jquery-3.7.0.js')}}"></script>
-<script src="{{asset('assets/front/js/custom.js')}}"></script>
+<script src="{{asset('assets/front/js/custom.js?version=1')}}"></script>
 @endsection
 <!-- Scripts Ends -->

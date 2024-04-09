@@ -22,7 +22,7 @@ $configData = Helper::appClasses();
 <script>
     var urlList = {!! "'".$urlList."'" !!};
 </script>
-<script src="{{asset('assets/js/cookies-datatables.js')}}"></script>
+<script src="{{asset('assets/js/cookies-datatables.js?version=1')}}"></script>
 @endsection
 
 @section('page-style')

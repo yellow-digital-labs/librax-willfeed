@@ -97,7 +97,7 @@
                             <a href="{{route("register")}}" class="footer-links__action">COMPRATORI</a>
                         </li>
                         <li class="footer-links__item">
-                            <a href="{{route("pages-buyer-home")}}" class="footer-links__action">MARKET</a>
+                            <a href="{{route("register")}}" class="footer-links__action">MARKET</a>
                         </li>
                         <li class="footer-links__item">
                             <a href="{{route('pages-aboutus')}}" class="footer-links__action">CHI SIAMO</a>
@@ -116,7 +116,8 @@
                         @if($products)
                             @foreach($products as $product)
                             <li class="footer-menu__item">
-                                <a href="{{route("pages-buyer-home", ["search" => $product->name])}}" class="footer-menu__link">{{$product->name}}</a>
+                                <!-- <a href="{{route("pages-buyer-home", ["search" => $product->name])}}" class="footer-menu__link">{{$product->name}}</a> -->
+                                <a class="footer-menu__link">{{$product->name}}</a>
                             </li>
                             @endforeach
                         @endif

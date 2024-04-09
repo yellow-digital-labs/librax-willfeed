@@ -28,7 +28,7 @@ $configData = Helper::appClasses();
 <script>
     var urlListProductData = {!! "'".$urlListProductData."'" !!};
 </script>
-<script src="{{asset('assets/js/email-templates-list.js')}}"></script>
+<script src="{{asset('assets/js/email-templates-list.js?version=1')}}"></script>
 @endsection
 
 @section('content')

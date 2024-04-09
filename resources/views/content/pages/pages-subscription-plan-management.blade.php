@@ -25,7 +25,7 @@ $configData = Helper::appClasses();
 <script>
     var urlListSubscribeData = {!! "'".$urlListSubscribeData."'" !!};
 </script>
-<script src="{{asset('assets/js/subscription-datatables.js')}}"></script>
+<script src="{{asset('assets/js/subscription-datatables.js?version=1')}}"></script>
 @endsection
 
 @section('page-style')

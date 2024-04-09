@@ -25,7 +25,7 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('page-script')
-<script src="{{asset('assets/js/custom/simple-search-datatable.js')}}"></script>
+<script src="{{asset('assets/js/custom/simple-search-datatable.js?version=1')}}"></script>
 @endsection
 
 @section('content')

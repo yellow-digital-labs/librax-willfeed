@@ -23,7 +23,7 @@ $customizerHidden = 'customizer-hide';
 @endsection
 
 @section('page-script')
-<script src="{{asset('assets/js/pages-auth.js')}}"></script>
+<script src="{{asset('assets/js/pages-auth.js?version=1')}}"></script>
 @endsection
 
 @section('content')

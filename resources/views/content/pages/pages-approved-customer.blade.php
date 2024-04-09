@@ -27,7 +27,7 @@ $configData = Helper::appClasses();
     var isSeller = "{{$isSeller}}";
     var urlListCustomerData = {!! "'".$urlListCustomerData."'" !!};
 </script>
-<script src="{{asset('assets/js/approved-customer-datatables.js')}}"></script>
+<script src="{{asset('assets/js/approved-customer-datatables.js?version=1')}}"></script>
 @endsection
 
 @section('page-style')

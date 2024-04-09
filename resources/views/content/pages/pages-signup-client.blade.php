@@ -27,7 +27,7 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
 @endsection
 @section('page-script')
-<script src="{{asset('assets/js/custom/signup-client-validations.js')}}"></script>
+<script src="{{asset('assets/js/custom/signup-client-validations.js?version=1')}}"></script>
 @endsection
 @section('content')
     

@@ -21,8 +21,8 @@ $configData = Helper::appClasses();
 <script>
     var urlListRatingData = {!! "'".$urlListRatingData."'" !!};
 </script>
-<script src="{{asset('assets/js/extended-ui-star-ratings.js')}}"></script>
-<script src="{{asset('assets/js/customer-rating-datatables.js')}}"></script>
+<script src="{{asset('assets/js/extended-ui-star-ratings.js?version=1')}}"></script>
+<script src="{{asset('assets/js/customer-rating-datatables.js?version=1')}}"></script>
 @endsection
 
 @section('page-style')
