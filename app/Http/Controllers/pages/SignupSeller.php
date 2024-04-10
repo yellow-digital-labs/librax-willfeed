@@ -124,7 +124,7 @@ class SignupSeller extends Controller
       ],400);
     }
 
-    $userDetail = UserDetail::findOrFail(['user_id' => $id]);
+    $userDetail = UserDetail::where(['user_id' => $id])->first();
 
     $file_operating_license_path = $userDetail->file_operating_license;
 
