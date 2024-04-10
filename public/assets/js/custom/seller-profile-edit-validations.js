@@ -255,19 +255,19 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     },
                 },
                 plugins: {
-                  trigger: new FormValidation.plugins.Trigger(),
-                  bootstrap5: new FormValidation.plugins.Bootstrap5({
-                    // Use this for enabling/changing valid/invalid class
-                    // eleInvalidClass: '',
-                    eleValidClass: '',
-                    rowSelector: '.col-12'
-                  }),
-                  submitButton: new FormValidation.plugins.SubmitButton(),
-                  // Submit the form when all fields are valid
-                  // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
-                  autoFocus: new FormValidation.plugins.AutoFocus()
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap5: new FormValidation.plugins.Bootstrap5({
+                        // Use this for enabling/changing valid/invalid class
+                        // eleInvalidClass: '',
+                        eleValidClass: '',
+                        rowSelector: '.col-12'
+                    }),
+                    submitButton: new FormValidation.plugins.SubmitButton(),
+                    // Submit the form when all fields are valid
+                    // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                    autoFocus: new FormValidation.plugins.AutoFocus()
                 }
-              }).on('core.form.valid', function () {
+            }).on('core.form.valid', function () {
                 // Jump to the next step when all fields in the current step are valid
                 console.log('form validated');
                 var formData = new FormData($("#sellerEditForm")[0]);
@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                         })
                     }
                 });
-              });
+            });
         }
     })();
 });
