@@ -765,7 +765,7 @@ $(document).ready(function () {
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Esenzione IVA</h6>
-                                     @if($is_new_data && $user_detail->file_1 !== $new_user_detail->file_1 &&$new_user_detail->file_1 != '')
+                                     @if($is_new_data && $user_detail->file_1 !== $new_user_detail->file_1)
                                     <div class="d-flex">
                                         <p class="mb-0 strike-through"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_1)}}" target="_blank">View Document</a></p>
                                         <p class="ms-2"><a href="{{Illuminate\Support\Facades\Storage::url($new_user_detail->file_1)}}" target="_blank">View Document</a></p>
@@ -777,7 +777,7 @@ $(document).ready(function () {
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Esenzione IVA</h6>
-                                @if($is_new_data && $user_detail->file_2 !== $new_user_detail->file_2 && $new_user_detail->file_2 != '')
+                                @if($is_new_data && $user_detail->file_2 !== $new_user_detail->file_2 )
                             <div class="d-flex">
                                 <p class="mb-0 strike-through"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_2)}}" target="_blank">View Document</a></p>
                                 <p class="ms-2"><a href="{{Illuminate\Support\Facades\Storage::url($new_user_detail->file_2)}}" target="_blank">View Document</a></p>
@@ -789,7 +789,7 @@ $(document).ready(function () {
 
                             <div class="col-sm-6 col-12">
                                 <h6 class="text-black mb-2">Esenzione IVA</h6>
-                                  @if($is_new_data && $user_detail->file_3 !== $new_user_detail->file_3 && $new_user_detail->file_3 != '')
+                                  @if($is_new_data && $user_detail->file_3 !== $new_user_detail->file_3)
                                     <div class="d-flex">
                                         <p class="mb-0 strike-through"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_3)}}" target="_blank">View Document</a></p>
                                         <p class="ms-2"><a href="{{Illuminate\Support\Facades\Storage::url($new_user_detail->file_3)}}" target="_blank">View Document</a></p>

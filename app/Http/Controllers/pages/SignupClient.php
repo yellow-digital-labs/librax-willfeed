@@ -161,7 +161,7 @@ class SignupClient extends Controller
       ],400);
     }
 
-    $userDetail = UserDetail::findOrFail( $id);
+    $userDetail = UserDetail::where(["user_id" => $id])->first();
 
       $file_1 = $userDetail->file_1;
       $file_2 = $userDetail->file_2;

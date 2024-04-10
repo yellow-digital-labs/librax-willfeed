@@ -362,7 +362,7 @@ $configData = Helper::appClasses();
                                     <input type="text" name="cup" id="cup" class="form-control" value="{{$user_detail->cup ? $user_detail->cup : ''}}" placeholder="Inserisci CUP, ove applicabile" />
                                 </div>
                                 
-                                <!-- <div class="col-sm-6 col-12">
+                                 <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="file_1">Esenzione IVA *</h6>
                                     <input class="form-control" type="file" id="file_1" name="file_1">
                                 </div>
@@ -375,7 +375,7 @@ $configData = Helper::appClasses();
                                 <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="file_3">Esenzione IVA *</h6>
                                     <input class="form-control" type="file" id="file_3" name="file_3">
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>

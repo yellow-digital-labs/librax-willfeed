@@ -308,19 +308,19 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     },
                 },
                 plugins: {
-                  trigger: new FormValidation.plugins.Trigger(),
-                  bootstrap5: new FormValidation.plugins.Bootstrap5({
-                    // Use this for enabling/changing valid/invalid class
-                    // eleInvalidClass: '',
-                    eleValidClass: '',
-                    rowSelector: '.col-12'
-                  }),
-                  submitButton: new FormValidation.plugins.SubmitButton(),
-                  // Submit the form when all fields are valid
-                  // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
-                  autoFocus: new FormValidation.plugins.AutoFocus()
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap5: new FormValidation.plugins.Bootstrap5({
+                        // Use this for enabling/changing valid/invalid class
+                        // eleInvalidClass: '',
+                        eleValidClass: '',
+                        rowSelector: '.col-12'
+                    }),
+                    submitButton: new FormValidation.plugins.SubmitButton(),
+                    // Submit the form when all fields are valid
+                    // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                    autoFocus: new FormValidation.plugins.AutoFocus()
                 }
-              }).on('core.form.valid', function () {
+            }).on('core.form.valid', function () {
                 // Jump to the next step when all fields in the current step are valid
                 var formData = new FormData($("#buyerEditForm")[0]);
 
@@ -345,9 +345,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                         });
                     },
                     error: function (xhr, status, error) {
-                        console.error(xhr.responseText);
-                        $('#edit-seller-profile').modal('hide');
-                        var errorMessage = error.responseJSON.error
+                        console.error(error);
                         Swal.fire({
                             text: ` Hai già inviato una richiesta di aggiornamento`,
                             icon: 'error',
@@ -358,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                         })
                     }
                 });
-              });
+            });
         }
 
         // const stepsValidation = document.querySelector('#multiStepsBuyerValidation');
@@ -381,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
         //     // Registry details
         //     const multiSteps1 = FormValidation.formValidation(stepsValidationFormStep1, {
         //         fields: {
-                    
+
         //         },
         //         plugins: {
         //             trigger: new FormValidation.plugins.Trigger(),
@@ -437,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
         //     // Billing details
         //     const multiSteps3 = FormValidation.formValidation(stepsValidationFormStep3, {
         //         fields: {
-                    
+
         //         },
         //         plugins: {
         //             trigger: new FormValidation.plugins.Trigger(),
@@ -465,7 +463,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
         //     // Profile details
         //     const multiSteps4 = FormValidation.formValidation(stepsValidationFormStep4, {
         //         fields: {
-                    
+
         //         },
         //         plugins: {
         //             trigger: new FormValidation.plugins.Trigger(),
@@ -491,7 +489,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
         //         console.log('final submit');
 
         //         // var formData = $("#sellerEditForm").serialize();
-                
+
         //     });
 
         //     stepsValidationNext.forEach(item => {
