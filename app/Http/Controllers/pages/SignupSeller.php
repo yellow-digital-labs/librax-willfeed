@@ -114,7 +114,7 @@ class SignupSeller extends Controller
     $user = Auth::user();
     $id = $user->id;
 
-    $user_detail_old = UserDetailOldData::where(['user_detail_id' =>  $id, "admin_approval"=>"pending"])->first();
+    $user_detail_old = UserDetailOldData::where(['user_detail_id' => $id, "admin_approval" => "pending"])->first();
 
     if($user_detail_old){
         return response()->json([
@@ -124,9 +124,9 @@ class SignupSeller extends Controller
       ],400);
     }
 
-    $userDetail = UserDetail::findOrFail( $id);
+    $userDetail = UserDetail::findOrFail(['user_id' => $id]);
 
-    $file_operating_license_path = $userDetail->file_operating_license_path;
+    $file_operating_license_path = $userDetail->file_operating_license;
 
     if($request->hasFile('file_operating_license')){
         $file_operating_license_path = $request->file('file_operating_license')->store('storage');

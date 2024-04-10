@@ -151,7 +151,7 @@ class SignupClient extends Controller
     $user = Auth::user();
     $id = $user->id;
 
-    $user_detail_old = UserDetailOldData::where(['user_detail_id' =>  $id, "admin_approval"=>"pending"])->first();
+    $user_detail_old = UserDetailOldData::where(['user_detail_id' =>  $id, "admin_approval" => "pending"])->first();
 
     if($user_detail_old){
         return response()->json([
@@ -161,7 +161,7 @@ class SignupClient extends Controller
       ],400);
     }
 
-    $userDetail = UserDetail::findOrFail( $id);
+    $userDetail = UserDetail::findOrFail(['user_id' => $id]);
 
       $file_1 = $userDetail->file_1;
       $file_2 = $userDetail->file_2;
