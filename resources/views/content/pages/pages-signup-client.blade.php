@@ -342,7 +342,7 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="file_1">Visura comerale *</label>
+                                    <label class="form-label" for="file_1">Visura camerale *</label>
                                     <input class="form-control" type="file" id="file_1" name="file_1">
                                 </div>
                                 

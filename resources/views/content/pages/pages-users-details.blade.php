@@ -764,7 +764,7 @@ $(document).ready(function () {
                             </div>
 
                             <div class="col-sm-6 col-12">
-                                <h6 class="text-black mb-2">Visura comerale</h6>
+                                <h6 class="text-black mb-2">Visura camerale</h6>
                                      @if($is_new_data && $user_detail->file_1 !== $new_user_detail->file_1 &&$new_user_detail->file_1 != '')
                                     <div class="d-flex">
                                         <p class="mb-0 strike-through"><a href="{{Illuminate\Support\Facades\Storage::url($user_detail->file_1)}}" target="_blank">View Document</a></p>
