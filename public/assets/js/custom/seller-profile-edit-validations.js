@@ -282,8 +282,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                         window.location.href = `${baseUrl}profile`;
                     },
                     error: function (xhr, status, error) {
-                        console.error(xhr.responseText);
-
+                        console.error(error);
                         Swal.fire({
                             text: " Hai già inviato una richiesta di aggiornamento",
                             icon: 'error',

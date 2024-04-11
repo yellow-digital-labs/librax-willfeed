@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     contentType: false,
                     success: function (response) {
                         console.log(response);
-                        $('#edit-buyer-profile').modal('hide');
+
                         Swal.fire({
                             text: "Richiesta di modifica inviata",
                             icon: 'success',
