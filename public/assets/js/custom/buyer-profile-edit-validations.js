@@ -267,21 +267,14 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     file_1: {
                         validators: {
                             notEmpty: {
-                                message: 'Please upload esenzione IVA'
+                                message: 'Please upload visura camerale'
                             }
                         }
                     },
                     file_2: {
                         validators: {
                             notEmpty: {
-                                message: 'Please upload esenzione IVA'
-                            }
-                        }
-                    },
-                    file_3: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please upload esenzione IVA'
+                                message: 'Please upload documento di riconoscimento amministratore'
                             }
                         }
                     },
