@@ -2,14 +2,14 @@
     @foreach($products as $product)
         @php
             $price_diff = $product->amount_before_tax-$product->amount_before_tax_old;
-            $image_url = "decrease-graph.svg";
+            $image_url = "chart-sample.png";
             if($product->amount_before_tax_old==0){
                 $price_diff_per = "0.00";
             } else {
                 $price_diff_per = number_format($price_diff*100/$product->amount_before_tax_old, 2);
             }
             if($price_diff>0){
-                $image_url = "chart-sample.png";
+                $image_url = "decrease-graph.svg";
             }
             $price_diff = number_format($price_diff, 2);
             $price_diff_per = number_format($price_diff_per, 2);
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="dash-charts__perc">
-                            <div class="dash-charts__perc-count {{$price_diff>0?"uk-text-success":"uk-text-danger"}}">
+                            <div class="dash-charts__perc-count {{$price_diff>0?"uk-text-danger":"uk-text-success"}}">
                                 <span class="dash-charts__perc-arrow"></span>
                                 {{$price_diff>0?"+".$price_diff:$price_diff}} ({{$price_diff>0?"+".$price_diff_per:$price_diff_per}}%)
                             </div>

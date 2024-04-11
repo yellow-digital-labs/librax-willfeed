@@ -868,7 +868,7 @@ $configData = Helper::appClasses();
                         <span class="wf-icon wf-icon-call help__icon"></span>
                         <span class="help__time">7/7</span>
                         <div class="help__call">
-                            <a href="tel:+39 3334565118" class="help__call-num">+39 3334565118</a>
+                            <a href="tel:+39 3470412793" class="help__call-num">+39 3470412793</a>
                         </div>
                         <a href="#" class="uk-button uk-button-light help__action">Contact Us</a>
                     </div>
@@ -895,7 +895,7 @@ $configData = Helper::appClasses();
                                 <span class="wf-icon wf-icon-phone-call footer-contact__icon"></span>
                                 <div class="footer-contact__data">
                                     <h2 class="footer-contact__name">Call Us</h2>
-                                    <a href="tel:+39 3334565118" class="footer-contact__href">+39 3334565118</a>
+                                    <a href="tel:+39 3470412793" class="footer-contact__href">+39 3470412793</a>
                                 </div>
                             </div>
                         </div>

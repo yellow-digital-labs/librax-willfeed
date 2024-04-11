@@ -276,7 +276,7 @@ $configData = Helper::appClasses();
 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="minor_plant_code">Codice licenza cisterna</label>
-                                    <input type="text" name="minor_plant_code" id="minor_plant_code" class="form-control" placeholder="Codice licenza cisterna" value="{{$user_detail?$user_detail->minor_plant_code:''}}" />
+                                    <input class="form-control" type="file" id="minor_plant_code" name="minor_plant_code">
                                 </div>
 
                                 <div class="col-12 d-flex justify-content-between mt-4">
@@ -342,17 +342,17 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="file_1">Esenzione IVA *</label>
+                                    <label class="form-label" for="file_1">Visura camerale *</label>
                                     <input class="form-control" type="file" id="file_1" name="file_1">
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="file_2">Esenzione IVA *</label>
+                                    <label class="form-label" for="file_2">Documento di riconoscimento amministratore *</label>
                                     <input class="form-control" type="file" id="file_2" name="file_2">
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="file_3">Esenzione IVA *</label>
+                                    <label class="form-label" for="file_3">Esenzione IVA</label>
                                     <input class="form-control" type="file" id="file_3" name="file_3">
                                 </div>
 

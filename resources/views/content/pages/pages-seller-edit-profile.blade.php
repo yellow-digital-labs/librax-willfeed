@@ -169,7 +169,7 @@ let baseUrl="{{url('/')}}";
 
                                 <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2">Codice fiscale</h6>
-                                    <input type="text" name="tax_id_code" id="tax_id_code" class="form-control" placeholder="Inserisci il codice fiscale" maxlength="16" value="{{$user_detail?$user_detail->tax_id_code:''}}" oninput="this.value = this.value.toUpperCase()" />
+                                    <input class="form-control" type="file" id="tax_id_code" name="tax_id_code">
                                 </div>
 
                                 <div class="col-sm-6 col-12">
