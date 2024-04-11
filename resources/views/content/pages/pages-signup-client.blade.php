@@ -342,17 +342,17 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="file_1">Esenzione IVA *</label>
+                                    <label class="form-label" for="file_1">Visura comerale *</label>
                                     <input class="form-control" type="file" id="file_1" name="file_1">
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="file_2">Esenzione IVA *</label>
+                                    <label class="form-label" for="file_2">Documento di riconoscimento amministratore *</label>
                                     <input class="form-control" type="file" id="file_2" name="file_2">
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="file_3">Esenzione IVA *</label>
+                                    <label class="form-label" for="file_3">Esenzione IVA</label>
                                     <input class="form-control" type="file" id="file_3" name="file_3">
                                 </div>
 
