@@ -350,13 +350,6 @@ document.addEventListener('DOMContentLoaded', function (e) {
                             }
                         }
                     },
-                    reference_bank: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please enter banca di riferimento'
-                            }
-                        }
-                    },
                     sdi: {
                         validators: {
                             notEmpty: {

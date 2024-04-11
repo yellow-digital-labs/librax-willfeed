@@ -317,7 +317,7 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="reference_bank">Banca di riferimento (RIBA e RID) *</label>
+                                    <label class="form-label" for="reference_bank">Banca di riferimento (RIBA e RID)</label>
                                     <input type="text" name="reference_bank" id="reference_bank" class="form-control" placeholder="Inserisci filiale" />
                                 </div>
                                 
