@@ -276,7 +276,7 @@ $configData = Helper::appClasses();
 
                                 <div class="col-sm-6">
                                     <label class="form-label" for="minor_plant_code">Codice licenza cisterna</label>
-                                    <input type="text" name="minor_plant_code" id="minor_plant_code" class="form-control" placeholder="Codice licenza cisterna" value="{{$user_detail?$user_detail->minor_plant_code:''}}" />
+                                    <input class="form-control" type="file" id="minor_plant_code" name="minor_plant_code">
                                 </div>
 
                                 <div class="col-12 d-flex justify-content-between mt-4">

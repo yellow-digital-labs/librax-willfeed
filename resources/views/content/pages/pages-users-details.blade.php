@@ -658,7 +658,13 @@ $(document).ready(function () {
                                         <p class="ms-2">{{$new_user_detail->minor_plant_code?$new_user_detail->minor_plant_code:'NA'}}</p>
                                     </div>
                                 @else
-                                   <p class="mb-0">{{$user_detail->minor_plant_code?$user_detail->minor_plant_code:'NA'}}</p>
+                                    <p class="mb-0">
+                                    @if($user_detail->minor_plant_code)
+                                        <a href="{{Illuminate\Support\Facades\Storage::url($user_detail->minor_plant_code)}}" target="_blank">View Document</a>
+                                    @else
+                                        NA
+                                    @endif
+                                    </p>
                                 @endif 
                             </div>
                         </div>

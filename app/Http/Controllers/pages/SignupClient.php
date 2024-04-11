@@ -76,6 +76,10 @@ class SignupClient extends Controller
     $file_1 = $request->file('file_1')->store('storage');
     $file_2 = $request->file('file_2')->store('storage');
     $file_3 = $request->file('file_3')->store('storage');
+    $minor_plant_code = '';
+    if($request->hasFile('minor_plant_code')){
+      $minor_plant_code = $request->file('minor_plant_code')->store('storage');
+    }
 
     $users = UserDetail::updateOrCreate(
       ['user_id' => $authUser->id],
@@ -102,7 +106,7 @@ class SignupClient extends Controller
         'destination_province' => $request->destination_province,
         'destination_common' => $request->destination_common,
         'destination_pincode' => $request->destination_pincode,
-        'minor_plant_code' => $request->minor_plant_code,
+        'minor_plant_code' => $minor_plant_code,
         'payment_extension' => $request->payment_extension,
         'payment_term' => $request->payment_term,
         'reference_bank' => $request->reference_bank,
