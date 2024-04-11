@@ -264,20 +264,6 @@ document.addEventListener('DOMContentLoaded', function (e) {
                             }
                         }
                     },
-                    file_1: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please upload visura camerale'
-                            }
-                        }
-                    },
-                    file_2: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please upload documento di riconoscimento amministratore'
-                            }
-                        }
-                    },
                     products: {
                         validators: {
                             notEmpty: {

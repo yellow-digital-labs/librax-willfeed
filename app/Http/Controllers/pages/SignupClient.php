@@ -170,6 +170,7 @@ class SignupClient extends Controller
       $file_1 = $userDetail->file_1;
       $file_2 = $userDetail->file_2;
       $file_3 = $userDetail->file_3;
+      $minor_plant_code = $userDetail->minor_plant_code;
 
       if($request->hasFile('file_1')){
           $file_1 = $request->file('file_1')->store('storage');
@@ -179,6 +180,9 @@ class SignupClient extends Controller
       }
       if($request->hasFile('file_3')){
           $file_3 = $request->file('file_3')->store('storage');
+      }
+      if($request->hasFile('minor_plant_code')){
+          $minor_plant_code = $request->file('minor_plant_code')->store('storage');
       }
 
     UserDetailOldData::create([
@@ -205,7 +209,7 @@ class SignupClient extends Controller
         'destination_province' => $request->destination_province,
         'destination_common' => $request->destination_common,
         'destination_pincode' => $request->destination_pincode,
-        'minor_plant_code' => $request->minor_plant_code,
+        'minor_plant_code' => $minor_plant_code,
         'payment_extension' => $request->payment_extension,
         'payment_term' => $request->payment_term,
         'reference_bank' => $request->reference_bank,

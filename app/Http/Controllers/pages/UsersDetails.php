@@ -352,7 +352,7 @@ public function extendFreeTrial($id) {
     $user = User::where(['id' => $id])->first();
     $userDetail = UserDetail::where('user_id', $id)->first();
     $newData = UserDetailOldData::where('user_detail_id', $id)->where('admin_approval', 'pending')->first();
-    $excludedFields = ["created_at", "updated_at", "created_by", "updated_by", "id", "user_id", "file_operating_license","file_1","file_2","file_3"];
+    $excludedFields = ["created_at", "updated_at", "created_by", "updated_by", "id", "user_id", "file_operating_license","file_1","file_2","file_3","minor_plant_code"];
 
     if(!$newData){
       return response()->json([
@@ -392,6 +392,12 @@ public function extendFreeTrial($id) {
           Storage::delete($userDetail->file_3);
         }  
         $userDetail->file_3 = $newData->file_3;
+      }
+      if(isset($newData->minor_plant_code) &&  $userDetail->minor_plant_code != $newData->minor_plant_code){
+        if (Storage::exists($userDetail->minor_plant_code)) {
+          Storage::delete($userDetail->minor_plant_code);
+        }  
+        $userDetail->minor_plant_code = $newData->minor_plant_code;
       }
     }
   

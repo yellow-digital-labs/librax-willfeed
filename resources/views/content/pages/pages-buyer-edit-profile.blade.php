@@ -301,7 +301,7 @@ $configData = Helper::appClasses();
 
                                 <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="minor_plant_code">Codice licenza cisterna</h6>
-                                    <input type="text" name="minor_plant_code" id="minor_plant_code" class="form-control" placeholder="Codice licenza cisterna" value="{{$user_detail?$user_detail->minor_plant_code:''}}" />
+                                    <input class="form-control" type="file" id="minor_plant_code" name="minor_plant_code">
                                 </div>
                             </div>
                         </div>
@@ -320,9 +320,9 @@ $configData = Helper::appClasses();
                                 <div class="col-sm-6 col-12">
                                     <h6 class="text-black mb-2" for="payment_extension">Dilazione di pagamento preferita *</h6>
                                     <select name="payment_extension" id="payment_extension" class="form-select select2" data-minimum-results-for-search="Infinity">
-                                        <option value="{{$user_detail->destination_common}}" selected>{{$user_detail->destination_common}}</option>
+                                        <option value="{{$user_detail->payment_extension}}" selected>{{$user_detail->payment_extension}}</option>
                                     @foreach($payment_extension as $_payment_extension)
-                                        <option value="{{$_payment_extension->name}}" {{$user_detail?($user_detail->destination_common==$_payment_extension->name?'selected':''):''}}>{{$_payment_extension->name}}</option>
+                                        <option value="{{$_payment_extension->name}}" {{$user_detail?($user_detail->payment_extension==$_payment_extension->name?'selected':''):''}}>{{$_payment_extension->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
@@ -363,17 +363,17 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                  <div class="col-sm-6 col-12">
-                                    <h6 class="text-black mb-2" for="file_1">Esenzione IVA *</h6>
+                                    <h6 class="text-black mb-2" for="file_1">Visura camerale</h6>
                                     <input class="form-control" type="file" id="file_1" name="file_1">
                                 </div>
                                 
                                 <div class="col-sm-6 col-12">
-                                    <h6 class="text-black mb-2" for="file_2">Esenzione IVA *</h6>
+                                    <h6 class="text-black mb-2" for="file_2">Documento di riconoscimento amministratore</h6>
                                     <input class="form-control" type="file" id="file_2" name="file_2">
                                 </div>
                                 
                                 <div class="col-sm-6 col-12">
-                                    <h6 class="text-black mb-2" for="file_3">Esenzione IVA *</h6>
+                                    <h6 class="text-black mb-2" for="file_3">Esenzione IVA</h6>
                                     <input class="form-control" type="file" id="file_3" name="file_3">
                                 </div>
                             </div>
