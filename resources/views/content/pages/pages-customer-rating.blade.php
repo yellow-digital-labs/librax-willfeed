@@ -58,39 +58,38 @@ $configData = Helper::appClasses();
 <!-- Modal to add new record -->
 <div class="offcanvas offcanvas-end" id="add-new-record">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="exampleModalLabel">Ratings</h5>
+        <h5 class="offcanvas-title" id="exampleModalLabel">Feedback</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body flex-grow-1">
         <form class="add-new-record pt-0 row g-4" id="form-add-new-record" onsubmit="return false">
             <input type="hidden" id="edit-id">
             <div class="col-sm-12">
-                <label class="form-label" for="edit-review_by_name">Review By</label>
-                <input type="text" id="edit-review_by_name" class="form-control" placeholder="Enter customer name" readonly />
+                <label class="form-label" for="edit-review_by_name">Inviata da</label>
+                <input type="text" id="edit-review_by_name" class="form-control" placeholder="Enter inviata da" readonly />
             </div>
             <div class="col-sm-12">
-                <label class="form-label" for="edit-review_for_name">Review For</label>
-                <input type="text" id="edit-review_for_name" class="form-control" placeholder="Enter customer name" readonly />
+                <label class="form-label" for="edit-review_for_name">Ricevuta da</label>
+                <input type="text" id="edit-review_for_name" class="form-control" placeholder="Enter ricevuta da" readonly />
             </div>
             <div class="col-sm-12">
-                <label class="form-label" for="edit-star">Customer rating</label>
+                <label class="form-label" for="edit-star">Punteggio</label>
                 <div class="edit-star" data-rateyo-read-only="true" data-rateyo-star-width="20px"></div>
             </div>
             <div class="col-sm-12">
-                <label class="form-label" for="edit-review_text">Customer review</label>
-                <textarea class="form-control" placeholder="Enter review" id="edit-review_text" rows="4" readonly></textarea>
+                <label class="form-label" for="edit-review_text">Commenti</label>
+                <textarea class="form-control" placeholder="Enter commenti" id="edit-review_text" rows="4" readonly></textarea>
             </div>
             <div class="col-sm-12">
-                <label class="form-label" for="edit-status">Status</label>
                 <select id="edit-status" class="form-control" name="status">
-                    <option value="pending">Pending</option>
-                    <option value="approve">Approved</option>
-                    <option value="reject">Rejected</option>
+                    <option value="pending">In attesa di approvazione</option>
+                    <option value="approve">Approvata</option>
+                    <option value="reject">Respinto</option>
                 </select>
             </div>
             <div class="col-sm-12 mt-5">
-                <button type="button" class="btn btn-primary data-submit me-sm-3 me-1">Update Status</button>
-                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+                <button type="button" class="btn btn-primary data-submit me-sm-3 me-1">Approva</button>
+                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Indietro</button>
             </div>
         </form>
     </div>

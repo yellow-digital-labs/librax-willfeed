@@ -54,14 +54,14 @@ $customizerHidden = 'customizer-hide';
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Inserisci email">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="password">Password</label>
                             @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}">
-                                <small>Forgot Password?</small>
+                                <small>Password dimenticata?</small>
                             </a>
                             @endif
                             <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
@@ -81,7 +81,7 @@ $customizerHidden = 'customizer-hide';
                 <p class="text-center">
                     <span>Non hai un account?</span>
                     <a href="{{route('register')}}">
-                        <span>Entra</span>
+                        <span>Crea account</span>
                     </a>
                 </p>
             </div>

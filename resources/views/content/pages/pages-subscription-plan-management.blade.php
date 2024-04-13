@@ -61,7 +61,7 @@ $configData = Helper::appClasses();
 <!-- Modal to add new record -->
 <div class="offcanvas offcanvas-end" id="add-new-record">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="exampleModalLabel">Add plan</h5>
+        <h5 class="offcanvas-title" id="exampleModalLabel">Abbonamento</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body flex-grow-1">
@@ -69,30 +69,30 @@ $configData = Helper::appClasses();
             @csrf
             <input type="hidden" name="id" id="edit-id">
             <div class="col-sm-12">
-                <label class="form-label" for="edit-name">Plan name</label>
-                <input type="text" id="edit-name" class="form-control" name="name" placeholder="Enter plan name" />
+                <label class="form-label" for="edit-name">Nome abbonamento</label>
+                <input type="text" id="edit-name" class="form-control" name="name" placeholder="Enter nome abbonamento" />
             </div>
             <div class="col-sm-12">
-                <label class="form-label" for="edit-tagline">Tagline</label>
-                <input type="text" id="edit-tagline" class="form-control" name="tagline" placeholder="Enter tagline" />
+                <label class="form-label" for="edit-tagline">Nome versione</label>
+                <input type="text" id="edit-tagline" class="form-control" name="tagline" placeholder="Enter nome versione" />
             </div>
             <div class="col-sm-12">
-                <label class="form-label" for="edit-amount">Plan price</label>
+                <label class="form-label" for="edit-amount">Prezzo mensile</label>
                 <div class="input-group input-group-merge">
                     <span class="input-group-text">€</span>
                     <input type="mumber" id="edit-amount" name="amount" class="form-control dt-post" placeholder="0,00" step=".01" />
                 </div>
             </div>
             <div class="col-sm-12">
-                <label class="form-label" for="edit-description">Description</label>
+                <label class="form-label" for="edit-description">Descrizione</label>
                 <textarea class="form-control" placeholder="Enter description" id="edit-description" name="description" rows="4"></textarea>
             </div>
             <div class="col-sm-12">
-                <label class="form-label" for="edit-plan_for">Assign to</label>
+                <label class="form-label" for="edit-plan_for">Valido per</label>
                 <select class="form-control" id="edit-plan_for" name="plan_for">
                     <option value="">Please select</option>
-                    <option value="buyer">Buyer</option>
-                    <option value="seller">Seller</option>
+                    <option value="buyer">Venditori</option>
+                    <option value="seller">Compratori</option>
                 </select>
             </div>
             <div class="form-check form-switch col-sm-12">
@@ -100,8 +100,8 @@ $configData = Helper::appClasses();
                 <input class="form-check-input" type="checkbox" name="status" id="edit-status" value="active">
             </div>
             <div class="col-sm-12 mt-5">
-                <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Submit</button>
-                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+                <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Salva</button>
+                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Annulla</button>
             </div>
         </form>
     </div>
