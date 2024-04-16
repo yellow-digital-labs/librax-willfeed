@@ -61,7 +61,8 @@ $(function() {
                 responsivePriority: 4,
                 render: function render(data, type, full, meta) {
                     var $amount = full['amount'] ? full['amount'] : '';
-                    return '<span class="amount-name">' + $amount + '</span>';
+                    var $plan_validity = full['plan_validity'] ? full['plan_validity'] : '';
+                    return '<span class="amount-name">' + $amount + '/' + $plan_validity +'</span>';
                 }
             }, {
                 // status
@@ -126,6 +127,13 @@ $(function() {
                     message: 'Please select assign to'
                     }
                 }
+                },
+                plan_validity: {
+                validators: {
+                    notEmpty: {
+                    message: 'Please select validità'
+                    }
+                }
                 }
             },
             plugins: {
@@ -168,6 +176,7 @@ $(document).on('click', '.edit-record', function () {
       $('#edit-amount').val(data.amount);
       $('#edit-description').val(data.description);
       $('#edit-plan_for').val(data.plan_for);
+      $('#edit-plan_validity').val(data.plan_validity);
       $('#edit-status').prop("checked", data.status=="active"?true:false);
       $('#edit-image').val(data.image);
     });

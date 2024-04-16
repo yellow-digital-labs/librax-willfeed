@@ -1175,7 +1175,7 @@ $(document).ready(function () {
                                             <div class="d-flex justify-content-center">
                                                 <sup class="h6 pricing-currency mt-3 mb-0 me-1 text-primary">€</sup>
                                                 <h1 class="fw-semibold display-4 mb-0 text-primary">{{$subscription->amount}}</h1>
-                                                <sub class="h6 pricing-duration mt-auto mb-2 text-muted fw-normal">/mese</sub>
+                                                <sub class="h6 pricing-duration mt-auto mb-2 text-muted fw-normal">/{{$subscription->plan_validity}}</sub>
                                             </div>
                                         </div>
                                         <p>

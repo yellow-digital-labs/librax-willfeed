@@ -113,6 +113,7 @@ class SubscriptionPlanManagement extends Controller
         $nestedData["name"] = $customer->name;
         $nestedData["amount"] = "€".$customer->amount;
         $nestedData["status"] = $customer->status;
+        $nestedData["plan_validity"] = $customer->plan_validity;
 
         $data[] = $nestedData;
       }
@@ -195,6 +196,7 @@ class SubscriptionPlanManagement extends Controller
       "description" => $request->description,
       "status" => $request->status?'active':'inactive',
       "plan_for" => $request->plan_for,
+      "plan_validity" => $request->plan_validity,
     ]);
 
     return redirect()->back();
@@ -217,6 +219,7 @@ class SubscriptionPlanManagement extends Controller
       "description" => $request->description,
       "status" => $request->status?'active':'inactive',
       "plan_for" => $request->plan_for,
+      "plan_validity" => $request->plan_validity,
     ]);
 
     return redirect()->back();

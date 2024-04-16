@@ -4,7 +4,7 @@ $configData = Helper::appClasses();
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Subscription Plan')
+@section('title', 'Piano di abbonamento')
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
@@ -25,7 +25,7 @@ $configData = Helper::appClasses();
 <script>
     var urlListSubscribeData = {!! "'".$urlListSubscribeData."'" !!};
 </script>
-<script src="{{asset('assets/js/subscription-datatables.js?version=1')}}"></script>
+<script src="{{asset('assets/js/subscription-datatables.js?version=1.1')}}"></script>
 @endsection
 
 @section('page-style')
@@ -35,22 +35,22 @@ $configData = Helper::appClasses();
 
 @section('content')
 
-<h1 class="h3 text-black mb-4">Subscription Plan</h4>
+<h1 class="h3 text-black mb-4">Piano di abbonamento</h4>
 
 <div class="card">
     <div class="card-header d-flex justify-content-between border-bottom align-items-center">
         <div class="card-title mb-0">
-            <h5 class="mb-0 text-black">Plans list</h5>
+            <h5 class="mb-0 text-black">Elenco degli abbonamenti</h5>
         </div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#add-new-record"><i class="ti ti-plus me-sm-1"></i> Add new plan</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#add-new-record"><i class="ti ti-plus me-sm-1"></i> Aggiungi un nuovo abbonamento</button>
     </div>
     <div class="card-datatable text-nowrap">
         <table class="dt-column-search table">
             <thead>
                 <tr>
-                    <th>Plan name</th>
-                    <th>Price</th>
-                    <th>Description</th>
+                    <th>Nome abbonamento</th>
+                    <th>Prezzo mensile</th>
+                    <th>Descrizione</th>
                     <th>Azione</th>
                 </tr>
             </thead>
@@ -93,6 +93,15 @@ $configData = Helper::appClasses();
                     <option value="">Please select</option>
                     <option value="buyer">Venditori</option>
                     <option value="seller">Compratori</option>
+                </select>
+            </div>
+            <div class="col-sm-12">
+                <label class="form-label" for="edit-plan_validity">Validità</label>
+                <select class="form-control" id="edit-plan_validity" name="plan_validity">
+                    <option value="">Please select</option>
+                    <option value="mensile">Mensile</option>
+                    <option value="semestrale">Semestrale</option>
+                    <option value="annuale">Annuale</option>
                 </select>
             </div>
             <div class="form-check form-switch col-sm-12">
