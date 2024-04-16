@@ -1112,7 +1112,23 @@ $(document).ready(function () {
                                 <p>Riceverai una notifica alla scadenza del piano</p>
 
                                 <h6 class="mb-1">
-                                    €{{$user->subscription_amount}} al mese
+                                    €{{$user->subscription_amount}} al
+                                    @php
+                                    $is_printed = false;
+                                    @endphp
+                                    @foreach($subscriptions as $subscription)
+                                        @if($subscription->id == $user->subscription_id)
+                                            @php
+                                                $is_printed = true;
+                                            @endphp
+                                            {{$subscription->plan_validity}}
+                                        @endif
+                                    @endforeach
+
+                                    @if(!$is_printed)
+                                        mensile
+                                    @endif
+
                                     
                                     <span class="badge bg-label-{{$remainingDays>=0?'success':'danger'}} badge--{{$remainingDays>=0?'success':'danger'}}">{{$remainingDays>=0?'Active':'Expired'}}</span></h6>
                                 <p class="mb-3">Il piano standard per iniziare</p>
@@ -1182,11 +1198,15 @@ $(document).ready(function () {
                                             {!! nl2br($subscription->description) !!}
                                         </p>
                                         @if($subscription->id == $user->subscription_id && $remainingDays >= 0)
-                                            <a class="btn btn-label-success d-grid w-100">Your Current Plan</a>
+                                            <a class="btn btn-label-success d-grid w-100">Piano corrente</a>
                                         @else
-                                            <a href="{{route("plan-update", [
-                                                "planid" => $subscription->id
-                                            ])}}" class="btn btn-primary d-grid w-100">Change plan</a>
+                                            @if($remainingDays<0)
+                                                <a href="{{route("plan-update", [
+                                                    "planid" => $subscription->id
+                                                ])}}" class="btn btn-primary d-grid w-100">Cambia Piano</a>
+                                            @else
+                                                <button class="btn btn-primary d-grid w-100" style="color: #FFF;" disabled>Cambia Piano</button>
+                                            @endif
                                         @endif
                                     </div>
                                 </div>
