@@ -131,16 +131,16 @@ class UsersDetails extends Controller
         $subscriptions = Subscription::where(['status' => 'active'])->get();
       }
 
-      // if($user->stripe_customer_id){
-      //   $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
-      //   $payment_methods_data = $stripe->customers->allPaymentMethods(
-      //     $user->stripe_customer_id,
-      //     ["type" => "card"]
-      //   );
-      //   if($payment_methods_data){
-      //     $payment_methods = $payment_methods_data->data;
-      //   }
-      // }
+      if($user->stripe_customer_id){
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+        $payment_methods_data = $stripe->customers->allPaymentMethods(
+          $user->stripe_customer_id,
+          ["type" => "card"]
+        );
+        if($payment_methods_data){
+          $payment_methods = $payment_methods_data->data;
+        }
+      }
     }
 
     $new_user_detail = UserDetailOldData::where(['user_detail_id'=>$id,"admin_approval" => "pending"])->first();
