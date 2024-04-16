@@ -296,10 +296,17 @@ class DatabaseTriggers extends Command
         DB::unprepared('CREATE TRIGGER users_before_update BEFORE UPDATE ON `users` FOR EACH ROW
                 BEGIN
                     IF NEW.subscription_id <> OLD.subscription_id THEN
-                        SELECT name, amount INTO @subscription_name, @subscription_amount FROM subscriptions WHERE id=NEW.subscription_id;
+                        SELECT name, amount, plan_validity INTO @subscription_name, @subscription_amount, @plan_validity FROM subscriptions WHERE id=NEW.subscription_id;
 
                         SET NEW.subscription_name = @subscription_name;
                         SET NEW.subscription_amount = @subscription_amount;
+                        IF @plan_validity = "semestrale" THEN
+                            SET NEW.exp_datetime = DATE_ADD(CURDATE(), INTERVAL 6 MONTH);
+                        ELSEIF @plan_validity = "annuale" THEN
+                            SET NEW.exp_datetime = DATE_ADD(CURDATE(), INTERVAL 1 YEAR);
+                        ELSE
+                            SET NEW.exp_datetime = DATE_ADD(CURDATE(), INTERVAL 30 DAY);
+                        END IF;
                     END IF;
                 END');
 
