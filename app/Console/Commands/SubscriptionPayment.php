@@ -31,12 +31,15 @@ class SubscriptionPayment extends Command
     public function handle()
     {
         //get all users which is expiring Today and payment method available
-        $users = User::where("accountType", "<>", 0)
+        $users = User::select(["users.*", "subscriptions.plan_validity"])
+            ->leftJoin("subscriptions", "subscriptions.id", "=", "users.subscription_id")
+            ->where("users.accountType", "<>", 0)
             ->where([
-                "approved_by_admin" => "Yes"
+                "users.approved_by_admin" => "Yes",
+                "subscriptions.plan_validity" => "mensile"
             ])
-            ->where("stripe_customer_id", "<>", "")
-            ->where("exp_datetime", "<=", date("Y-m-d 00:00:00"))
+            ->where("users.stripe_customer_id", "<>", "")
+            ->where("users.exp_datetime", "<=", date("Y-m-d 00:00:00"))
             ->get();
         
         if($users){
@@ -56,7 +59,7 @@ class SubscriptionPayment extends Command
                     if($payment->status == "succeeded"){
                         $status = "success";
                     } else {
-                        $ststuc = "failed";
+                        $status = "failed";
                     }
 
                     //update database
@@ -68,7 +71,7 @@ class SubscriptionPayment extends Command
                         "transaction_no" => $payment->balance_transaction,
                         "transaction_amount" => $payment->amount_captured,
                         "card" => $payment->payment_method_details->card->last4,
-                        "status" => "success",
+                        "status" => $status,
                         "request_data" => json_encode($request),
                         "response_data" => json_encode($payment),
                         "transaction_datetime" => date('Y-m-d H:i:s', $payment->created)
