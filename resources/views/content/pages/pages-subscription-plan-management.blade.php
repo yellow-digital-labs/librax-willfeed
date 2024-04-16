@@ -91,8 +91,8 @@ $configData = Helper::appClasses();
                 <label class="form-label" for="edit-plan_for">Valido per</label>
                 <select class="form-control" id="edit-plan_for" name="plan_for">
                     <option value="">Please select</option>
-                    <option value="buyer">Venditori</option>
-                    <option value="seller">Compratori</option>
+                    <option value="seller">Venditori</option>
+                    <option value="buyer">Compratori</option>
                 </select>
             </div>
             <div class="col-sm-12">
