@@ -39,7 +39,7 @@ class Access
           return redirect()->route("reject-signup");
         }
 
-        if($request->route()->action['as'] != 'profile' && $request->route()->action['as'] != 'stripe.post' && $request->route()->action['as'] != 'stripe.payment.delete') {
+        if($request->route()->action['as'] != 'profile' && $request->route()->action['as'] != 'stripe.post' && $request->route()->action['as'] != 'stripe.payment.delete' && $request->route()->action['as'] != 'plan-update') {
           if(Auth::check()) {
             
             $exp_date = strtotime(Auth::user()->exp_datetime);

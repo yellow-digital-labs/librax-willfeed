@@ -23,11 +23,13 @@ use App\Models\PaymentTerms;
 use App\Models\PaymentExtension;
 use App\Models\ConsumeCapacity;
 use App\Models\UserDetailOldData;
+use App\Models\SubscriptionPayment AS SubscriptionPaymentModel;
 use App\Mail\UserRequest;
 use Auth;
 use Stripe;
 use Redirect;
 use Carbon\Carbon;
+use Stripe\Exception\CardException;
 
 class UsersDetails extends Controller
 {
@@ -51,16 +53,16 @@ class UsersDetails extends Controller
     $isOnlyProfile = false;
 
     $payment_methods = [];
-    // if($user->stripe_customer_id){
-    //   $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
-    //   $payment_methods_data = $stripe->customers->allPaymentMethods(
-    //     $user->stripe_customer_id,
-    //     ["type" => "card"]
-    //   );
-    //   if($payment_methods_data){
-    //     $payment_methods = $payment_methods_data->data;
-    //   }
-    // }
+    if($user->stripe_customer_id){
+      $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+      $payment_methods_data = $stripe->customers->allPaymentMethods(
+        $user->stripe_customer_id,
+        ["type" => "card"]
+      );
+      if($payment_methods_data){
+        $payment_methods = $payment_methods_data->data;
+      }
+    }
 
     // $main_activity = Helpers::clientActivityList();
     // $region = Region::orderBy('name', 'ASC')->get();
@@ -281,19 +283,50 @@ class UsersDetails extends Controller
     $isSeller = Helpers::isSeller();
     $isBuyer = Helpers::isBuyer();
     //check plan available
-    $subscriptions = [];
+    $subscription = [];
     if($isSeller){
-      $subscriptions = Subscription::where(['status' => 'active', 'plan_for' => 'seller', "id" => $planid])->first();
+      $subscription = Subscription::where(['status' => 'active', 'plan_for' => 'seller', "id" => $planid])->first();
     }
     if($isBuyer){
-      $subscriptions = Subscription::where(['status' => 'active', 'plan_for' => 'buyer', "id" => $planid])->first();
+      $subscription = Subscription::where(['status' => 'active', 'plan_for' => 'buyer', "id" => $planid])->first();
     }
 
-    if($subscriptions){
-      //update plan
-      $user_id = Auth::user()->id;
-      User::where(["id" => $user_id])->update([
-        "subscription_id" => $planid
+    if($subscription){
+      $user = Auth::user();
+      //charge the
+      Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+      $request = [
+          "customer" => $user->stripe_customer_id,
+          "amount" => $subscription->amount * 100,
+          "currency" => env('STRIPE_CURRENCY'),
+          "description" => "Subscription payment for WillFeed on ".date("Y-m-d H:i:s")
+      ];
+      $payment = Stripe\Charge::create($request);
+      $status = "pending";
+      if($payment->status == "succeeded"){
+          $status = "success";
+
+          //update plan
+          User::where(["id" => $user->id])->update([
+            "subscription_id" => $planid
+          ]);
+      } else {
+          $status = "failed";
+      }
+
+      //update database
+      SubscriptionPaymentModel::create([
+          "user_id" => $user->id,
+          "subscription_id" => $subscription->id,
+          "subscription_name" => $subscription->name,
+          "subscription_amount" => $subscription->amount,
+          "transaction_no" => $payment->balance_transaction,
+          "transaction_amount" => $payment->amount_captured,
+          "card" => $payment->payment_method_details->card->last4,
+          "status" => $status,
+          "request_data" => json_encode($request),
+          "response_data" => json_encode($payment),
+          "transaction_datetime" => date('Y-m-d H:i:s', $payment->created)
       ]);
 
       return redirect()->route("profile");
