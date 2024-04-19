@@ -75,10 +75,13 @@ class SignupClient extends Controller
 
     $file_1 = $request->file('file_1')->store('storage');
     $file_2 = $request->file('file_2')->store('storage');
-    $file_3 = $request->file('file_3')->store('storage');
     $minor_plant_code = '';
+    $file_3 = '';
     if($request->hasFile('minor_plant_code')){
       $minor_plant_code = $request->file('minor_plant_code')->store('storage');
+    }
+    if($request->hasFile('file_3')){
+      $file_3 = $request->file('file_3')->store('storage');
     }
 
     $users = UserDetail::updateOrCreate(
