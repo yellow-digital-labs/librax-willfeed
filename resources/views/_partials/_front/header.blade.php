@@ -16,7 +16,7 @@
                     <a href="{{route("pages-home")}}#vendor" class="navmenu__list-link">vendi</a>
                 </li>
                 <li class="navmenu__list-item">
-                    <a href="{{route("register")}}" class="navmenu__list-link">Market</a>
+                    <a href="{{route("pages-buyer-home")}}" class="navmenu__list-link">Market</a>
                 </li>
                 <li class="navmenu__list-item">
                     <a href="{{route("pages-aboutus")}}" class="navmenu__list-link">chi siamo</a>
