@@ -97,7 +97,7 @@
                             <a href="{{route("register")}}" class="footer-links__action">COMPRATORI</a>
                         </li>
                         <li class="footer-links__item">
-                            <a href="{{route("register")}}" class="footer-links__action">MARKET</a>
+                            <a href="{{route("pages-buyer-home")}}" class="footer-links__action">MARKET</a>
                         </li>
                         <li class="footer-links__item">
                             <a href="{{route('pages-aboutus')}}" class="footer-links__action">CHI SIAMO</a>
