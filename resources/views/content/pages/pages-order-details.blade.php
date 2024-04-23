@@ -135,7 +135,7 @@ $configData = Helper::appClasses();
                                     </div>
                                 </div>
                             </td>
-                            <td><span>€{{number_format($order->product_amount, 2)}}</span></td>
+                            <td><span>€{{number_format($order->product_amount, 5)}}</span></td>
                             <td><span class="text-body">{{$order->product_qty}} Litri</span></td>
                             <td>
                                 <h6 class="mb-0">€{{number_format($order->product_amount * $order->product_qty, 2)}}</h6>
@@ -151,7 +151,7 @@ $configData = Helper::appClasses();
                     <div class="order-calculations justify-content-end">
                         <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Subtotale:</span>
-                            <h6 class="mb-0">€{{number_format($order->product_amount * $order->product_qty, 2)}}</h6>
+                            <h6 class="mb-0">€{{number_format($order->product_amount * $order->product_qty, 5)}}</h6>
                         </div>
                         <!-- <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Discount:</span>
@@ -159,11 +159,11 @@ $configData = Helper::appClasses();
                         </div> -->
                         <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">IVA:</span>
-                            <h6 class="mb-0">€{{number_format($order->product_amount * $order->product_qty * 22 / 100, 2)}}</h6>
+                            <h6 class="mb-0">€{{number_format($order->product_amount * $order->product_qty * 22 / 100, 5)}}</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="w-px-100 mb-0">Totale:</h6>
-                            <h6 class="mb-0">€{{number_format(($order->product_amount * $order->product_qty) + ($order->product_amount * $order->product_qty * 22 / 100), 2)}}</h6>
+                            <h6 class="mb-0">€{{number_format(($order->product_amount * $order->product_qty) + ($order->product_amount * $order->product_qty * 22 / 100), 5)}}</h6>
                         </div>
                     </div>
                 </div>

@@ -69,15 +69,15 @@ $configData = Helper::appClasses();
                                 <h3 class="checkout-box__prlabel">Costo</h3>
                                 <h2 class="checkout-box__itemcost">
                                   <select class="uk-input checkout-box__qty-input" id="js-price-selector" name="product_price_type">
-                                    <option value="A vista" data-price="{{$product->amount_before_tax}}">€{{number_format($product->amount_before_tax, 2)}}/LITRO A vista</option>
+                                    <option value="A vista" data-price="{{$product->amount_before_tax}}">€{{number_format($product->amount_before_tax, 5)}}/LITRO A vista</option>
                                     @if($product->amount_30gg)
-                                    <option value="30gg" data-price="{{$product->amount_30gg}}">€{{number_format($product->amount_30gg, 2)}}/LITRO 30gg</option>
+                                    <option value="30gg" data-price="{{$product->amount_30gg}}">€{{number_format($product->amount_30gg, 5)}}/LITRO 30gg</option>
                                     @endif
                                     @if($product->amount_60gg)
-                                    <option value="60gg" data-price="{{$product->amount_60gg}}">€{{number_format($product->amount_60gg, 2)}}/LITRO 60gg</option>
+                                    <option value="60gg" data-price="{{$product->amount_60gg}}">€{{number_format($product->amount_60gg, 5)}}/LITRO 60gg</option>
                                     @endif
                                     @if($product->amount_90gg)
-                                    <option value="90gg" data-price="{{$product->amount_90gg}}">€{{number_format($product->amount_90gg, 2)}}/LITRO 90gg</option>
+                                    <option value="90gg" data-price="{{$product->amount_90gg}}">€{{number_format($product->amount_90gg, 5)}}/LITRO 90gg</option>
                                     @endif
                                   </select>
                                 </h2>
@@ -92,7 +92,7 @@ $configData = Helper::appClasses();
                             </div>
                             <div class="uk-width-auto checkout-box__prcol  checkout-box__prcol--price">
                                 <h3 class="checkout-box__prlabel">Prezzo</h3>
-                                <h2 class="checkout-box__price">€<span class="js-product-total">{{number_format($product->amount_before_tax*100, 2)}}</span></h2>
+                                <h2 class="checkout-box__price">€<span class="js-product-total">{{number_format($product->amount_before_tax*100, 5)}}</span></h2>
                             </div>
                         </div>
                         <div class="uk-grid checkout-box__ntgrid" data-uk-grid>
@@ -123,15 +123,15 @@ $configData = Helper::appClasses();
                                 <div class="checkout-box__total">
                                     <p class="checkout-box__total-item">
                                         <span class="checkout-box__total-label">Totale parziale:</span>
-                                        <span class="checkout-box__total-val">€<span class="js-order-subtotal">{{number_format($product->amount_before_tax*100, 2)}}</span></span>
+                                        <span class="checkout-box__total-val">€<span class="js-order-subtotal">{{number_format($product->amount_before_tax*100, 5)}}</span></span>
                                     </p>
                                     <p class="checkout-box__total-item">
                                         <span class="checkout-box__total-label">IVA (22,00%):</span>
-                                        <span class="checkout-box__total-val">€<span class="js-order-tax-amount">{{(number_format($product->amount_before_tax*100*22/100, 2))}}</span></span>
+                                        <span class="checkout-box__total-val">€<span class="js-order-tax-amount">{{(number_format($product->amount_before_tax*100*22/100, 5))}}</span></span>
                                     </p>
                                     <p class="checkout-box__total-item">
                                         <span class="checkout-box__total-label">Totale:</span>
-                                        <span class="checkout-box__total-val">€<span class="js-order-final-total">{{number_format(($product->amount_before_tax*100)+($product->amount_before_tax*100*22/100), 2)}}</span></span>
+                                        <span class="checkout-box__total-val">€<span class="js-order-final-total">{{number_format(($product->amount_before_tax*100)+($product->amount_before_tax*100*22/100), 5)}}</span></span>
                                     </p>
                                 </div>
                             </div>

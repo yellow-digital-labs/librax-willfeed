@@ -11,7 +11,7 @@
             if($price_diff>0){
                 $image_url = "decrease-graph.svg";
             }
-            $price_diff = number_format($price_diff, 2);
+            $price_diff = rtrim(rtrim(number_format($price_diff, 5), '0'), '.');
             $price_diff_per = number_format($price_diff_per, 2);
         @endphp
         <div class="uk-width-1-4 dash-charts__col">
@@ -32,7 +32,7 @@
                     <div class="dash-charts__down">
                         <div class="dash-charts__price">
                             <div class="dash-charts__price-text" style="color: #000;">
-                                €{{number_format($product->amount_before_tax, 2)}}
+                                €{{rtrim(rtrim(number_format($product->amount_before_tax, 5), '0'), '.')}}
                             </div>
                             <div class="dash-charts__price-type">
                                 {{ $product->seller_name }}
