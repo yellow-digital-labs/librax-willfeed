@@ -46,7 +46,7 @@ Route::get('/faqs', $controller_path . '\pages\PageFaqs@index')->name('pages-faq
 Route::get('/admin', $controller_path . '\Admin@login')->name('admin-login');
 
 //Buyer Home screen
-Route::get('/buyer-home', $controller_path . '\pages\BuyerHome@index')->name('pages-buyer-home');
+
 
 //Blog detail page
 Route::get('/blog/{slug}', $controller_path . '\pages\BlogsManagement@view')->name('blog-page');
@@ -82,6 +82,7 @@ Route::middleware([
     $controller_path = 'App\Http\Controllers';
 
     Route::get('/dashboard', $controller_path . '\pages\Dashboard@index')->name('dashboard');
+    Route::get('/buyer-home', $controller_path . '\pages\BuyerHome@index')->name('pages-buyer-home');
 
     //
     Route::get('/unverified-users', $controller_path . '\pages\UnverifiedUser@index')->name('unverified-users');
