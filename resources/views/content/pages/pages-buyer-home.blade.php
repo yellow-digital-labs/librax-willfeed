@@ -68,8 +68,7 @@ $configData = Helper::appClasses();
         @endif
         >
             <div class="uk-container dash-search__container">
-                <h2 class="title title--m dash-search__title">World’s first platform to buy more than 400+ petrochemical
-                    products online</h2>
+                <h2 class="title title--m dash-search__title">La prima piattaforma in Italia per acquistare prodotti petroliferi online.</h2>
                 <div class="dash-search__text">
                     <p>
                     @if($isSeller)
