@@ -152,6 +152,6 @@
         </div>
     </div>
     <div class="footer-copyright">
-        Copyright © 2024 WILLFEED. All rights reserved.
+        © Copyright 2024 | Over Fuel S.r.l. | Partita IVA: 04687890618
     </div>
 </footer>
