@@ -28,9 +28,9 @@ $configData = Helper::appClasses();
 
 @section('page-script')
 @if($product_detail)
-<script src="{{asset('assets/js/product-detail.js?version=1')}}"></script>
+<script src="{{asset('assets/js/product-detail.js?version=2')}}"></script>
 @else
-<script src="{{asset('assets/js/product-detail-add.js?version=1')}}"></script>
+<script src="{{asset('assets/js/product-detail-add.js?version=2')}}"></script>
 @endif
 <script>
     $("#days_off").on("change", function(elem){
@@ -209,7 +209,7 @@ $configData = Helper::appClasses();
                         </div>
 
                         <div class="col-12">
-                            <p class="small mb-0">IVA: 22%</p>
+                            <p class="small mb-0">IVA: <span id="js-tax-container">{{$product_detail->tax}}</span>%</p>
                             <p class="small">Prezzo incluso iva: €<span id="amount">{{$product_detail?number_format($product_detail->amount, 5, ',', '.'):'0,00'}}</span></p>
                         </div>
 

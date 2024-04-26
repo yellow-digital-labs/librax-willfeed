@@ -126,12 +126,12 @@ $configData = Helper::appClasses();
                                         <span class="checkout-box__total-val">€<span class="js-order-subtotal">{{number_format($product->amount_before_tax*100, 5)}}</span></span>
                                     </p>
                                     <p class="checkout-box__total-item">
-                                        <span class="checkout-box__total-label">IVA (22,00%):</span>
-                                        <span class="checkout-box__total-val">€<span class="js-order-tax-amount">{{(number_format($product->amount_before_tax*100*22/100, 5))}}</span></span>
+                                        <span class="checkout-box__total-label">IVA ({{$product->tax}}%):</span>
+                                        <span class="checkout-box__total-val">€<span class="js-order-tax-amount">{{(number_format($product->amount_before_tax*100*$product->tax/100, 5))}}</span></span>
                                     </p>
                                     <p class="checkout-box__total-item">
                                         <span class="checkout-box__total-label">Totale:</span>
-                                        <span class="checkout-box__total-val">€<span class="js-order-final-total">{{number_format(($product->amount_before_tax*100)+($product->amount_before_tax*100*22/100), 5)}}</span></span>
+                                        <span class="checkout-box__total-val">€<span class="js-order-final-total">{{number_format(($product->amount_before_tax*100)+($product->amount_before_tax*100*$product->tax/100), 5)}}</span></span>
                                     </p>
                                 </div>
                             </div>

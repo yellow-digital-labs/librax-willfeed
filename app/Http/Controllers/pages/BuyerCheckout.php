@@ -107,7 +107,7 @@ class BuyerCheckout extends Controller
             $payment_method = "Assegno";
           }
 
-          $total_payable_amount = ($amount_before_tax * $request->product_qty) + ($amount_before_tax * $request->product_qty*22/100);
+          $total_payable_amount = ($amount_before_tax * $request->product_qty) + ($amount_before_tax * $request->product_qty*$seller_product->tax/100);
           $order = Order::create([
             "user_id" => $user->id,
             "seller_id" => $seller_product->seller_id,

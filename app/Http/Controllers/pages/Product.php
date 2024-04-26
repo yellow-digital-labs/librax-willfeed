@@ -324,6 +324,7 @@ class Product extends Controller
           "id" => $id,
         ])->update([
             "name" => $request->name,
+            "tax" => $request->tax,
             "description" => $request->description,
             "active" => $request->active ? "yes" : "no",
             "today_price" => $request->today_price?$request->today_price:0,
@@ -332,6 +333,7 @@ class Product extends Controller
         try{
           Products::create([
               "name" => $request->name,
+              "tax" => $request->tax,
               "description" => $request->description,
               "active" => $request->active ? "yes" : "no",
               "today_price" => $request->today_price?$request->today_price:0,
@@ -457,6 +459,7 @@ class Product extends Controller
       "message" => "Product details fetched successfully",
       "code" => 200,
       "data" => $product->description,
+      "tax" => $product->tax,
     ]);
   }
 

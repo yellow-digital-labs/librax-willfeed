@@ -52,12 +52,21 @@ $(document).ready(function () {
         });
     });
 
-    $("#amount_before_tax").on("change", function(){
-        let amount_before_tax = $(this).val();
-        let amount = Number(+amount_before_tax + (amount_before_tax*22/100)).toLocaleString("es-ES", {minimumFractionDigits: 2});
+    $("#tax").on("change", function(){
+      caclulate_price();
+    });
 
-        $("#amount").text(amount);
-    })
+    $("#amount_before_tax").on("change", function(){
+      caclulate_price();
+    });
+
+    function caclulate_price(){
+      let amount_before_tax = $('#amount_before_tax').val();
+      let tax = $('#js-tax-container').text();
+      let amount = Number(+amount_before_tax + (amount_before_tax*tax/100)).toLocaleString("es-ES", {minimumFractionDigits: 2});
+
+      $("#amount").text(amount);
+    }
 
     $("#product_id").on("change", function(){
         let product_id = $("#product_id").find(":selected").val();
@@ -66,7 +75,10 @@ $(document).ready(function () {
             url: "".concat(baseUrl, "product/").concat(product_id, "/detail"),
             success: function success(res) {
                 let data = res.data;
+                let tax = res.tax;
                 $("#product-details-container").text(data);
+                $("#js-tax-container").text(tax);
+                caclulate_price();
             },
             error: function error(_error) {
                 console.log(_error);

@@ -64,6 +64,10 @@ class DatabaseTriggers extends Command
                             UPDATE product_price_histories SET date=NEW.price_updated_at, price=NEW.today_price WHERE product_id=NEW.id AND date=NEW.price_updated_at;
                         END IF;
                     END IF;
+
+                    IF NEW.tax <> OLD.tax THEN
+                        UPDATE product_sellers SET tax=NEW.tax WHERE product_id=NEW.id;
+                    END IF;
                 END');
 
         //product_sellers
@@ -72,7 +76,7 @@ class DatabaseTriggers extends Command
                 BEGIN
                     SET NEW.seller_name = (SELECT business_name FROM user_details WHERE user_id=NEW.seller_id);
                     SET NEW.product_name = (SELECT name FROM products WHERE id=NEW.product_id);
-                    SET NEW.tax = 22;
+                    SET NEW.tax = (SELECT tax FROM products WHERE id=NEW.product_id);
                     IF NEW.amount_before_tax IS NULL THEN
                         SET NEW.amount_before_tax = 0;
                     END IF;
@@ -94,7 +98,7 @@ class DatabaseTriggers extends Command
         DB::unprepared('DROP TRIGGER IF EXISTS `product_sellers_before_update`');
         DB::unprepared('CREATE TRIGGER product_sellers_before_update BEFORE UPDATE ON `product_sellers` FOR EACH ROW
                 BEGIN
-                    SET NEW.tax = 22;
+                    -- SET NEW.tax = 22;
 
                     IF NEW.seller_id<>OLD.seller_id THEN
                         SET NEW.seller_name = (SELECT business_name FROM user_details WHERE user_id=NEW.seller_id);
@@ -112,6 +116,10 @@ class DatabaseTriggers extends Command
                     END IF;
                     IF NEW.amount_90gg IS NULL THEN
                         SET NEW.amount_90gg = 0;
+                    END IF;
+
+                    IF NEW.tax <> OLD.tax THEN
+                        SET NEW.amount = NEW.amount_before_tax + (NEW.amount_before_tax*NEW.tax/100);
                     END IF;
 
                     IF NEW.amount_before_tax <> OLD.amount_before_tax THEN
