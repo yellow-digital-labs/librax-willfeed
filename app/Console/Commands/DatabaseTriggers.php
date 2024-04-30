@@ -372,5 +372,29 @@ class DatabaseTriggers extends Command
                     SELECT SUM(payment_amount) INTO @total_paid_amount FROM order_payments WHERE order_id=NEW.order_id;
                     UPDATE orders SET total_paid_amount=@total_paid_amount WHERE id=NEW.order_id;
                 END');
+
+        //user_details
+        DB::unprepared('DROP TRIGGER IF EXISTS `user_details_after_update`');
+        DB::unprepared('CREATE TRIGGER user_details_after_update AFTER UPDATE ON `user_details` FOR EACH ROW
+                BEGIN
+                    IF NEW.business_name <> OLD.business_name THEN
+                        UPDATE customer_verifieds SET seller_name = NEW.business_name WHERE seller_id=NEW.user_id;
+                        UPDATE customer_verifieds SET customer_name = NEW.business_name WHERE customer_id=NEW.user_id;
+
+                        UPDATE orders SET user_name = NEW.business_name WHERE user_id=NEW.user_id;
+                        UPDATE orders SET seller_name = NEW.business_name WHERE seller_id=NEW.user_id;
+
+                        UPDATE product_sellers SET seller_name = NEW.business_name WHERE seller_id=NEW.user_id;
+
+                        UPDATE subscription_payments SET user_name=NEW.business_name WHERE user_id=NEW.user_id;
+
+                        UPDATE ratings SET review_by_name=NEW.business_name WHERE review_by_id=NEW.user_id;
+                        UPDATE ratings SET review_for_name=NEW.business_name WHERE review_for_id=NEW.user_id;
+                    END IF;
+
+                    IF NEW.region <> OLD.region THEN
+                        UPDATE customer_verifieds SET customer_region = NEW.region WHERE customer_id=NEW.user_id;
+                    END IF;
+                END');
     }
 }
