@@ -209,7 +209,7 @@ $configData = Helper::appClasses();
                         </div>
 
                         <div class="col-12">
-                            <p class="small mb-0">IVA: <span id="js-tax-container">{{$product_detail->tax}}</span>%</p>
+                            <p class="small mb-0">IVA: <span id="js-tax-container">{{$product_detail?$product_detail->tax:'22.00'}}</span>%</p>
                             <p class="small">Prezzo incluso iva: €<span id="amount">{{$product_detail?number_format($product_detail->amount, 5, ',', '.'):'0,00'}}</span></p>
                         </div>
 
