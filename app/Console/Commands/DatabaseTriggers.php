@@ -377,7 +377,7 @@ class DatabaseTriggers extends Command
         DB::unprepared('DROP TRIGGER IF EXISTS `user_details_after_update`');
         DB::unprepared('CREATE TRIGGER user_details_after_update AFTER UPDATE ON `user_details` FOR EACH ROW
                 BEGIN
-                    IF NEW.business_name <> OLD.business_name THEN
+                    -- IF NEW.business_name <> OLD.business_name THEN
                         UPDATE customer_verifieds SET seller_name = NEW.business_name WHERE seller_id=NEW.user_id;
                         UPDATE customer_verifieds SET customer_name = NEW.business_name WHERE customer_id=NEW.user_id;
 
@@ -390,11 +390,11 @@ class DatabaseTriggers extends Command
 
                         UPDATE ratings SET review_by_name=NEW.business_name WHERE review_by_id=NEW.user_id;
                         UPDATE ratings SET review_for_name=NEW.business_name WHERE review_for_id=NEW.user_id;
-                    END IF;
+                    -- END IF;
 
-                    IF NEW.region <> OLD.region THEN
+                    -- IF NEW.region <> OLD.region THEN
                         UPDATE customer_verifieds SET customer_region = NEW.region WHERE customer_id=NEW.user_id;
-                    END IF;
+                    -- END IF;
                 END');
     }
 }
