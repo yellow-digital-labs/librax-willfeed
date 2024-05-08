@@ -571,7 +571,7 @@ body {
 
 @media (max-width: 767.98px) {
     .navmenu__left {
-        justify-content: center;
+        justify-content: left;
         padding-top: 15px;
         margin: 0;
     }

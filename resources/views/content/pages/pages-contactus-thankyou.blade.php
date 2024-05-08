@@ -20,7 +20,7 @@ $configData = Helper::appClasses();
 <!-- CSS: Layout Setup -->
 <link rel="stylesheet" href="{{asset('assets/front/css/layout/var.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/front/css/components/common.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/front/css/layout/header.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/front/css/layout/header.css?ver=1')}}" />
 <link rel="stylesheet" href="{{asset('assets/front/css/layout/footer.css')}}" />
 
 
