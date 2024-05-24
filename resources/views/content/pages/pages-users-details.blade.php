@@ -1271,6 +1271,9 @@ $(document).ready(function () {
                                                 <h1 class="fw-semibold display-4 mb-0 text-primary">{{$subscription->amount}}</h1>
                                                 <sub class="h6 pricing-duration mt-auto mb-2 text-muted fw-normal">/{{$subscription->plan_validity}}</sub>
                                             </div>
+                                            <div class="d-flex justify-content-center">
+                                                Verrà applicata l'IVA al 22%
+                                            </div>
                                         </div>
                                         <p>
                                             {!! nl2br($subscription->description) !!}
