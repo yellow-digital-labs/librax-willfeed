@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\ModifyEmailRequest;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Auth;
 
 class Settings extends Controller
@@ -40,4 +43,45 @@ class Settings extends Controller
       return redirect()->route("settings")->withErrors(["msg" => "Old password is wrong"]);
     }
   }
+
+    public function sendVerificationLink(Request $request)
+    {
+        $user = Auth::user();
+        
+         $request->validate([
+            'new_email' => 'required|email|unique:users,email',
+            'confirm_password' => 'required',
+        ]);
+
+      
+        if (!Hash::check($request->confirm_password, $user->password)) {
+            return back()->withErrors(['password' => 'The password is incorrect.']);
+        }
+
+        $token = Str::random(60);
+
+        ModifyEmailRequest::updateOrCreate(
+            ['user_id' => $user->id],
+            ['new_email' => $request->new_email, 'token' => $token]
+        );
+
+        Mail::to($request->new_email)->send(new ModifyEmailRequest([
+          "token" =>  $token
+        ]));
+
+        return back()->with('status', 'Verification link has been sent to your new email address.');
+    }
+
+    public function verifyEmail($token)
+    {
+        $verification = ModifyEmailRequest::where('token', $token)->firstOrFail();
+        $user = User::findOrFail($verification->user_id);
+
+        $user->email = $verification->email;
+        $user->save();
+
+        $verification->delete();
+
+        return redirect()->route('/profile')->with('status', 'Your email address has been successfully changed.');
+    }
 }
