@@ -152,7 +152,7 @@ Route::middleware([
     Route::get('/settings', $controller_path . '\pages\Settings@index')->name('settings'); //settings view
     Route::post('/settings', $controller_path . '\pages\Settings@store')->name('settings-store'); //settings update
     Route::post('/change-email',  $controller_path . '\pages\Settings@sendVerificationLink')->name('email.sendVerificationLink');
-    Route::get('/verifyyy-email/{token}', $controller_path . '\pages\Settings@verifyEmail')->name('modify.email-verification');
+    Route::get('/verify-modify-email/{token}', $controller_path . '\pages\Settings@verifyEmail')->name('modify.email-verification');
 
 
 

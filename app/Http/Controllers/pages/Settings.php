@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\ModifyEmailRequest;
+use App\Mail\ModifyEmailRequest as ModifyEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Auth;
@@ -53,6 +54,9 @@ class Settings extends Controller
             'confirm_password' => 'required',
         ]);
 
+        if($request->new_email === $user->email){
+          return back()->withError(["new_email"=>"Enter New  Email is Same as Present email"]);
+        }
       
         if (!Hash::check($request->confirm_password, $user->password)) {
             return back()->withErrors(['password' => 'The password is incorrect.']);
@@ -65,9 +69,11 @@ class Settings extends Controller
             ['new_email' => $request->new_email, 'token' => $token]
         );
 
-        Mail::to($request->new_email)->send(new ModifyEmailRequest([
-          "token" =>  $token
-        ]));
+        $mailData = [
+          "token" => $token
+        ];
+
+        Mail::to($request->new_email)->send(new ModifyEmail($mailData));
 
         return back()->with('status', 'Verification link has been sent to your new email address.');
     }
@@ -77,11 +83,11 @@ class Settings extends Controller
         $verification = ModifyEmailRequest::where('token', $token)->firstOrFail();
         $user = User::findOrFail($verification->user_id);
 
-        $user->email = $verification->email;
+        $user->email = $verification->new_email;
         $user->save();
 
         $verification->delete();
 
-        return redirect()->route('/profile')->with('status', 'Your email address has been successfully changed.');
+        return redirect()->route('settings')->with('status', 'Your email address has been successfully changed.');
     }
 }

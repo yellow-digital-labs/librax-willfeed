@@ -30,6 +30,12 @@
 
 @section('content')
 
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+
     <h1 class="h3 text-black mb-4">Account</h1>
 
     <div class="mb-4">
@@ -102,20 +108,12 @@
 
         </div>
 
-
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
-
         @if ($errors->any())
             @foreach ($errors->all() as $error)
                 <p class="text-danger text-center" role="alert">
                     {{ $error }}
                 </p>
             @endforeach
-
         @endif
 
         <form method="POST" action="{{ route('email.sendVerificationLink') }}">

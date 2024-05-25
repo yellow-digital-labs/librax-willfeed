@@ -18,39 +18,21 @@ class ModifyEmailRequest extends Mailable
      */
 
      
-    public $token;
+    public $mailData;
 
-    public function __construct($token)
+    public function __construct($mailData)
     {
-        $this->token = $token;
+        $this->mailData = $mailData;
     }
-
-    /**
-     * Get the message envelope.
-     */
-    // public function envelope(): Envelope
-    // {
-    //     return new Envelope(
-    //         subject: 'Modify Email Request Request',
-    //     );
-    // }
 
     /**
      * Get the message content definition.
      */
     public function build()
     {
-        return $this->view('emails.modify-email-request')
-                    ->with(['token' => $this->token]);
+
+        return $this->subject('Modify Email Request')->view('emails.modify-email-request');
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    // public function attachments(): array
-    // {
-    //     return [];
-    // }
+
 }
