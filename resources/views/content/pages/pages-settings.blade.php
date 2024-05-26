@@ -42,100 +42,38 @@
         @livewire('profile.update-password-form')
     </div>
 
-    {{-- <div class="card">
-    <div class="card-header d-flex justify-content-between border-bottom">
-        <div class="card-title mb-0">
-            <h5 class="mb-0 text-black">Cambia password</h5>
-        </div>
-    </div>
-    <div class="card-body pt-4">
-        @if ($errors->any())
-        <p class="text-danger text-center" role="alert">
-            @foreach ($errors->all() as $error)
-            {{ $error }}
-            @endforeach
-        </p>
-        @endif
+    <div class="card">
+        <h5 class="card-header"> Cambia email </h5>
+        <div class="card-body pt-4">
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <p class="text-danger text-center" role="alert">
+                        {{ $error }}
+                    </p>
+                @endforeach
+            @endif
 
-        <form method="POST" id="settingForm" onsubmit="return false">
-            @csrf
-            <div class="row g-3">
-
-                <div class="col-md-4">
-                    <label class="form-label" for="old_password">Password attuale</label>
-                    <input type="password" name="old_password" id="old_password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
-                </div>
-
-            </div>
-            <div class="row g-3 mt-2">
-
-                <div class="col-md-4">
-                    <label class="form-label" for="password">Nuova password</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
-                </div>
-
-                <div class="col-md-4">
-                    <label class="form-label" for="confirm_password">Conferma password</label>
-                    <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
-                </div>
-
-            </div>
-
-            <p class="text-black fw-semibold mt-4">Requisiti password:</p>
-            <ul class="mb-5">
-                <li>
-                    Minimum 8 characters long - the more, the better
-                </li>
-                <li>
-                    At least one uppercase character
-                </li>
-                <li>
-                    At least one number and symbol
-                </li>
-            </ul>
-
-            <button type="submit" class="btn btn-primary me-3">Aggiorna password</button>
-
-            <a href="#" class="btn btn-outline-dark">Annulla</a>
-        </form>
-    </div>
-</div> --}}
-
-    <div class="card-body pt-4" style="border:1px solid gray; padding:15px">
-
-        <div class="row">
-            <h3 class="text-primary p-2"> Change Email </h3>
-
-        </div>
-
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <p class="text-danger text-center" role="alert">
-                    {{ $error }}
-                </p>
-            @endforeach
-        @endif
-
-        <form method="POST" action="{{ route('email.sendVerificationLink') }}">
-            @csrf
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="email">New Email Address</label>
-                        <input type="email" name="new_email" id="email" class="form-control" required>
+            <form method="POST" action="{{ route('email.sendVerificationLink') }}">
+                @csrf
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="email">Nuova email</label>
+                            <input type="email" name="new_email" id="email" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label" for="password">Password attuale</label>
+                            <input type="password" name="confirm_password" id="password" class="form-control" required>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="password">Current Password</label>
-                        <input type="password" name="confirm_password" id="password" class="form-control" required>
-                    </div>
+                <div  class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">Aggiorna email</button>
                 </div>
-            </div>
-            <div  class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary">Change Email</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
 

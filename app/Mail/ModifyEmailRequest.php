@@ -8,6 +8,8 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\MailTemplate;
+use App\Helpers\Helpers;
 
 class ModifyEmailRequest extends Mailable
 {
@@ -31,7 +33,7 @@ class ModifyEmailRequest extends Mailable
     public function build()
     {
 
-        return $this->subject('Modify Email Request')->view('emails.modify-email-request');
+        return $this->subject('Modifica richiesta e-mail')->markdown('emails.modify-email-request');
     }
 
 

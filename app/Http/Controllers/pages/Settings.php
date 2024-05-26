@@ -55,11 +55,11 @@ class Settings extends Controller
         ]);
 
         if($request->new_email === $user->email){
-          return back()->withError(["new_email"=>"Enter New  Email is Same as Present email"]);
+          return back()->withError(["new_email"=>"La nuova email inserita è la stessa dell'email corrente"]); //Entered new email is same as current email
         }
       
         if (!Hash::check($request->confirm_password, $user->password)) {
-            return back()->withErrors(['password' => 'The password is incorrect.']);
+            return back()->withErrors(['password' => 'La password inserita non è corretta.']); //Entered password is incorrect.
         }
 
         $token = Str::random(60);
@@ -75,7 +75,7 @@ class Settings extends Controller
 
         Mail::to($request->new_email)->send(new ModifyEmail($mailData));
 
-        return back()->with('status', 'Verification link has been sent to your new email address.');
+        return back()->with('status', 'Il link di verifica è stato inviato al tuo nuovo indirizzo email. Dopo averla verificata, l\'e-mail verrà aggiornata nel sistema'); //Verification link has been sent to your new email address. After verifying it email will be updated to system
     }
 
     public function verifyEmail($token)
@@ -88,6 +88,6 @@ class Settings extends Controller
 
         $verification->delete();
 
-        return redirect()->route('settings')->with('status', 'Your email address has been successfully changed.');
+        return redirect()->route('settings')->with('status', 'Il tuo indirizzo email è stato modificato con successo'); //Your email address has been successfully changed
     }
 }
