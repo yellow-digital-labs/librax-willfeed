@@ -66,7 +66,7 @@ class BuyerHome extends Controller
       if(isset($request['region']) && count($request['region'])){
         $product_query->where(function($query) use ($request){
           foreach($request['region'] as $region){
-            $query->orWhere("user_details.destination_region", addslashes($region));
+            $query->orWhere("user_details.region", addslashes($region));
           }
         });
       }

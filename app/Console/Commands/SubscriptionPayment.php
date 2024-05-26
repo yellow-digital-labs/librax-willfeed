@@ -48,9 +48,10 @@ class SubscriptionPayment extends Command
             foreach($users as $user){
                 try{
                     //charge the card
+                    $stripe_amount = number_format(($subscription->amount + ($subscription->amount * 22 / 100)), 2, '.', '');
                     $request = [
                         "customer" => $user->stripe_customer_id,
-                        "amount" => $subscription->amount * 100,
+                        "amount" => $stripe_amount * 100,
                         "currency" => env('STRIPE_CURRENCY'),
                         "description" => "Subscription payment for WillFeed on ".date("Y-m-d H:i:s")
                     ];
@@ -67,7 +68,7 @@ class SubscriptionPayment extends Command
                         "user_id" => $user->id,
                         "subscription_id" => $subscription->id,
                         "subscription_name" => $subscription->name,
-                        "subscription_amount" => $subscription->amount,
+                        "subscription_amount" => $stripe_amount,
                         "transaction_no" => $payment->balance_transaction,
                         "transaction_amount" => $payment->amount_captured,
                         "card" => $payment->payment_method_details->card->last4,
