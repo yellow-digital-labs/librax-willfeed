@@ -53,16 +53,16 @@ class UsersDetails extends Controller
     $isOnlyProfile = false;
 
     $payment_methods = [];
-    if($user->stripe_customer_id){
-      $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
-      $payment_methods_data = $stripe->customers->allPaymentMethods(
-        $user->stripe_customer_id,
-        ["type" => "card"]
-      );
-      if($payment_methods_data){
-        $payment_methods = $payment_methods_data->data;
-      }
-    }
+    // if($user->stripe_customer_id){
+    //   $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+    //   $payment_methods_data = $stripe->customers->allPaymentMethods(
+    //     $user->stripe_customer_id,
+    //     ["type" => "card"]
+    //   );
+    //   if($payment_methods_data){
+    //     $payment_methods = $payment_methods_data->data;
+    //   }
+    // }
 
     // $main_activity = Helpers::clientActivityList();
     // $region = Region::orderBy('name', 'ASC')->get();
@@ -303,17 +303,17 @@ class UsersDetails extends Controller
           "description" => "Subscription payment for WillFeed on ".date("Y-m-d H:i:s")
       ];
       $payment = Stripe\Charge::create($request);
-      $status = "pending";
-      if($payment->status == "succeeded"){
-          $status = "success";
+      // $status = "pending";
+      // if($payment->status == "succeeded"){
+      //     $status = "success";
 
-          //update plan
-          User::where(["id" => $user->id])->update([
-            "subscription_id" => $planid
-          ]);
-      } else {
-          $status = "failed";
-      }
+      //     //update plan
+      //     User::where(["id" => $user->id])->update([
+      //       "subscription_id" => $planid
+      //     ]);
+      // } else {
+      //     $status = "failed";
+      // }
 
       //update database
       SubscriptionPaymentModel::create([
