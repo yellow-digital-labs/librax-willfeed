@@ -91,7 +91,7 @@ $configData = Helper::appClasses();
                     </div>
                     <a href="{{ route('register').'?type=seller' }}" class="uk-button uk-button-default" style="color: #fff;
     border-color: #000;
-    background: #000;">ISCRIVITI ORA</a>
+    background: #000;">ISCRIVITI GRATIS</a>
                     <a href="#" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #vendor; cls: is-active">SCOPRI DI PIU’</a>  
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
@@ -157,7 +157,7 @@ $configData = Helper::appClasses();
                     </div>
                     <a href="{{ route('register').'?type=buyer' }}" class="uk-button uk-button-default" style="color: #fff;
     border-color: #000;
-    background: #000;">ISCRIVITI ORA</a>
+    background: #000;">ISCRIVITI GRATIS</a>
                     <button type="button" class="uk-button uk-button-default landing-clrblock__action" data-uk-toggle="target: #comprare; cls: is-active">SCOPRI DI PIU’</button>
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
@@ -209,9 +209,10 @@ $configData = Helper::appClasses();
         <div class="uk-container landing-clrblock__container landing-clrblock__container--safe">
             <div class="uk-grid uk-flex-middle gutter-xxl landing-clrblock__maingrid" data-uk-grid>
                 <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
-                    <h1 class="title landing-clrblock__title">Willfeed, Sicuro e Conveniente</h1>
-                    <h2 class="landing-clrblock__text">Offriamo la possibilità di relazionarsi in <strong>Sicurezza</strong> e <strong>Convenienza</strong></h2>
-                    <h3 class="landing-clrblock__text">Creiamo un <strong>Ambiente Affidabile</strong> per venditori e acquirenti</h3>
+                    <h1 class="title landing-clrblock__title">Piani e tariffe</h1>
+                    
+                    <h3 class="landing-clrblock__text">Iscriviti ora gratuitamente e usufruisci subito di tutti i nostri servizi con il massimo dei vantaggi e convenienza. Potrai anche passare ad un piano a pagamento quando vuoi per funzioni premium. (ISCRIVITI GRATIS) button redirects to sign up page
+</h3>
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">

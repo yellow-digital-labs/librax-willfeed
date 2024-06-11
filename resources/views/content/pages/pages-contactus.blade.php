@@ -42,7 +42,7 @@ $configData = Helper::appClasses();
             <h1 class="title title--xl page-heading__title">CONTATTACI</h1>
             <div class="page-heading__text">
                 <p>Saremo felici di parlare con te!</p>
-                <p>Puoi chiamarci o inviarci una mail, fai come meglio preferisci Siamo disponibili 24H su 24</p>
+                <p>Se desideri parlare con noi, non esitare a contattarci! Puoi richiedere assistenza chiamando al numero indicato, scrivendo un email o inviare una richiesta ed essere contattato dal nostro team. Siamo disponibili tutti i giorni 24/24h</p>
             </div>
             <hr class="page-heading__hr">
         </div>
