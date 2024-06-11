@@ -30,6 +30,28 @@ $configData = Helper::appClasses();
 
 <!-- CSS: Pagevise CSS -->
 <link rel="stylesheet" href="{{asset('assets/front/css/pages/home.css')}}" />
+
+<style>
+/* Whatsapp Style */
+#whatsapp-button {
+    position: fixed;
+    bottom: 4%;
+    right: 2%;
+    background-color: #25D366;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index:20;
+}
+
+#whatsapp-button > img {
+    width: 60px;
+    height: 60px;
+}
+</style>
+
 @endsection
 <!-- CSS Ends -->
 
@@ -293,6 +315,10 @@ $configData = Helper::appClasses();
     </div>
 
 </main>
+
+<a href="https://wa.me/393470412793?text=Hi, need any Help"  id="whatsapp-button" target="_blank">
+    <img src="{{url('/assets/img/icons/whatsapp-icon.png')}}" alt="">
+</a>
 
 @include('_partials/_front/footer')
 
