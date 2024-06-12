@@ -53,16 +53,16 @@ class UsersDetails extends Controller
     $isOnlyProfile = false;
 
     $payment_methods = [];
-    // if($user->stripe_customer_id){
-    //   $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
-    //   $payment_methods_data = $stripe->customers->allPaymentMethods(
-    //     $user->stripe_customer_id,
-    //     ["type" => "card"]
-    //   );
-    //   if($payment_methods_data){
-    //     $payment_methods = $payment_methods_data->data;
-    //   }
-    // }
+    if($user->stripe_customer_id){
+      $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+      $payment_methods_data = $stripe->customers->allPaymentMethods(
+        $user->stripe_customer_id,
+        ["type" => "card"]
+      );
+      if($payment_methods_data){
+        $payment_methods = $payment_methods_data->data;
+      }
+    }
 
     // $main_activity = Helpers::clientActivityList();
     // $region = Region::orderBy('name', 'ASC')->get();
