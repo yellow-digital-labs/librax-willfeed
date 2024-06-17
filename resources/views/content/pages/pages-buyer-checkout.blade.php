@@ -91,15 +91,15 @@ $configData = Helper::appClasses();
                                 <h3 class="checkout-box__prlabel">Costo</h3>
                                 <h2 class="checkout-box__itemcost">
                                   <select class="uk-input checkout-box__qty-input" id="js-price-selector" name="product_price_type">
-                                    <option value="A vista" data-price="{{$product->amount_before_tax}}">€{{rtrim(rtrim(number_format($product->amount_before_tax, 5), '0'), '.')}}/LITRO A vista</option>
+                                    <option value="A vista" data-price="{{$product->amount_before_tax}}">€{{formatAmountForItaly($product->amount_before_tax)}}/LITRO A vista</option>
                                     @if($product->amount_30gg)
-                                    <option value="30gg" data-price="{{$product->amount_30gg}}">€{{rtrim(rtrim(number_format($product->amount_30gg, 5), '0'), '.')}}/LITRO 30gg</option>
+                                    <option value="30gg" data-price="{{$product->amount_30gg}}">€{{formatAmountForItaly($product->amount_30gg)}}/LITRO 30gg</option>
                                     @endif
                                     @if($product->amount_60gg)
-                                    <option value="60gg" data-price="{{$product->amount_60gg}}">€{{rtrim(rtrim(number_format($product->amount_60gg, 5), '0'), '.')}}/LITRO 60gg</option>
+                                    <option value="60gg" data-price="{{$product->amount_60gg}}">€{{formatAmountForItaly($product->amount_60gg)}}/LITRO 60gg</option>
                                     @endif
                                     @if($product->amount_90gg)
-                                    <option value="90gg" data-price="{{$product->amount_90gg}}">€{{rtrim(rtrim(number_format($product->amount_90gg, 5), '0'), '.')}}/LITRO 90gg</option>
+                                    <option value="90gg" data-price="{{$product->amount_90gg}}">€{{formatAmountForItaly($product->amount_90gg)}}/LITRO 90gg</option>
                                     @endif
                                   </select>
                                 </h2>
@@ -114,7 +114,7 @@ $configData = Helper::appClasses();
                             </div>
                             <div class="uk-width-auto checkout-box__prcol  checkout-box__prcol--price">
                                 <h3 class="checkout-box__prlabel">Prezzo</h3>
-                                <h2 class="checkout-box__price">€<span class="js-product-total">{{rtrim(rtrim(number_format($product->amount_before_tax*100, 5), '0'), '.')}}</span></h2>
+                                <h2 class="checkout-box__price">€<span class="js-product-total">{{formatAmountForItaly($product->amount_before_tax*100, false, "€", 2)}}</span></h2>
                             </div>
                         </div>
                         <div class="uk-grid checkout-box__ntgrid" data-uk-grid>
@@ -145,15 +145,15 @@ $configData = Helper::appClasses();
                                 <div class="checkout-box__total">
                                     <p class="checkout-box__total-item">
                                         <span class="checkout-box__total-label">Totale parziale:</span>
-                                        <span class="checkout-box__total-val">€<span class="js-order-subtotal">{{rtrim(rtrim(number_format($product->amount_before_tax*100, 5), '0'), '.')}}</span></span>
+                                        <span class="checkout-box__total-val">€<span class="js-order-subtotal">{{formatAmountForItaly($product->amount_before_tax*100)}}</span></span>
                                     </p>
                                     <p class="checkout-box__total-item">
                                         <span class="checkout-box__total-label">IVA ({{$product->tax}}%):</span>
-                                        <span class="checkout-box__total-val">€<span class="js-order-tax-amount">{{rtrim(rtrim(number_format($product->amount_before_tax*100*$product->tax/100, 5), '0'), '.')}}</span></span>
+                                        <span class="checkout-box__total-val">€<span class="js-order-tax-amount">{{formatAmountForItaly($product->amount_before_tax*100*$product->tax/100)}}</span></span>
                                     </p>
                                     <p class="checkout-box__total-item">
                                         <span class="checkout-box__total-label">Totale:</span>
-                                        <span class="checkout-box__total-val">€<span class="js-order-final-total">{{rtrim(rtrim(number_format(($product->amount_before_tax*100)+($product->amount_before_tax*100*$product->tax/100), 5), '0'), '.')}}</span></span>
+                                        <span class="checkout-box__total-val">€<span class="js-order-final-total">{{formatAmountForItaly(($product->amount_before_tax*100)+($product->amount_before_tax*100*$product->tax/100))}}</span></span>
                                     </p>
                                 </div>
                             </div>

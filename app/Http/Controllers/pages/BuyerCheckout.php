@@ -144,17 +144,17 @@ class BuyerCheckout extends Controller
           $order_details = Order::where("id", $order->id)->first();
           //send email
           $seller = User::where("id", $seller_product->seller_id)->first();
-          Mail::to($seller->email)->send(new OrderNewNotification([
-              "order_id" => $order->id,
-              "product_name" => $order_details->product_name,
-              "qty" => $request->product_qty,
-              "url" => route("orders"),
-              "buyerName" => $order->user_name,
-              "sellerName" => $order->seller_name,
-              "productAmount" => $order->product_amount,
-              "productQty" => $order->product_qty,
-              "payableAmount" => $order->total_payable_amount,
-          ]));
+          // Mail::to($seller->email)->send(new OrderNewNotification([
+          //     "order_id" => $order->id,
+          //     "product_name" => $order_details->product_name,
+          //     "qty" => $request->product_qty,
+          //     "url" => route("orders"),
+          //     "buyerName" => $order->user_name,
+          //     "sellerName" => $order->seller_name,
+          //     "productAmount" => $order->product_amount,
+          //     "productQty" => $order->product_qty,
+          //     "payableAmount" => $order->total_payable_amount,
+          // ]));
 
           return redirect()->route('pages-buyer-checkout-thanks', [
             "order_id" => $order->id

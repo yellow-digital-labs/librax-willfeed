@@ -148,7 +148,7 @@ class Payments extends Controller
         $nestedData["id"] = $customer->id;
         $nestedData["fake_id"] = ++$ids;
         $nestedData["transaction_datetime"] = date('d-m-Y H:i', strtotime($customer->transaction_datetime));
-        $nestedData["subscription_amount"] = "€".$customer->subscription_amount;
+        $nestedData["subscription_amount"] = "€".formatAmountForItaly($customer->subscription_amount);
         $nestedData["user_name"] = $customer->user_name;
         $nestedData["email"] = $customer->email;
         $nestedData["card"] = "xxxx xxxx xxxx ".$customer->card;

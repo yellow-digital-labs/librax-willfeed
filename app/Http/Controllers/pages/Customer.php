@@ -172,9 +172,9 @@ class Customer extends Controller
         $nestedData["status_on"] = $customer->status_on;
         $nestedData["customer_id"] = $customer->customer_id;
         $nestedData["seller_id"] = $customer->seller_id;
-        $nestedData["credit_limit"] = "€".number_format($customer->credit_limit, 2);
-        $nestedData["credit_used"] = "€".number_format($customer->credit_used, 2);
-        $nestedData["credit_avail"] = "€".number_format($customer->credit_avail, 2);
+        $nestedData["credit_limit"] = "€".formatAmountForItaly($customer->credit_limit);
+        $nestedData["credit_used"] = "€".formatAmountForItaly($customer->credit_used);
+        $nestedData["credit_avail"] = "€".formatAmountForItaly($customer->credit_avail);
 
         $data[] = $nestedData;
       }

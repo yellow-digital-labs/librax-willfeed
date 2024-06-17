@@ -49,7 +49,7 @@ $configData = Helper::appClasses();
                         <div>
                             <h6 class="mb-2 fw-normal">Totale prodotti</h6>
                             <h4 class="mb-2">{{$total_products}}</h4>
-                            <p class="mb-0"><span class="badge bg-label-success fw-normal">100,00%</span></p>
+                            <p class="mb-0"><span class="badge bg-label-success fw-normal">100%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti me-4 no-hover">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
@@ -62,7 +62,7 @@ $configData = Helper::appClasses();
                         <div>
                             <h6 class="mb-2 fw-normal">Prodotti attivi</h6>
                             <h4 class="mb-2">{{$active_products}}</h4>
-                            <p class="mb-0"><span class="badge bg-label-success fw-normal">{{$total_products>0?number_format($active_products*100/$total_products, 2, ',', '.'):0}}%</span></p>
+                            <p class="mb-0"><span class="badge bg-label-success fw-normal">{{$total_products>0?formatAmountForItaly($active_products*100/$total_products):0}}%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti me-4 no-hover">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
@@ -75,7 +75,7 @@ $configData = Helper::appClasses();
                         <div>
                             <h6 class="mb-2 fw-normal">Prodotti inattivi</h6>
                             <h4 class="mb-2">{{$inactive_products}}</h4>
-                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{$total_products>0?number_format($inactive_products*100/$total_products, 2, ',', '.'):0}}%</span></p>
+                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{$total_products>0?formatAmountForItaly($inactive_products*100/$total_products):0}}%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti p-2 me-4 no-hover">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>

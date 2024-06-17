@@ -355,7 +355,7 @@ class Helpers
         "seller_id" => $seller_id,
       ])->first();
 
-    return "€".number_format($record->credit_avail, 2);
+    return "€".formatAmountForItaly($record->credit_avail);
   }
 
   public static function updateEmailTemplateValues($data, $html){

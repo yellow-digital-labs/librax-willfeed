@@ -219,7 +219,7 @@ class Orders extends Controller
         $nestedData["seller_name"] = $customer->seller_name;
         $nestedData["user_name"] = $customer->user_name;
         $nestedData["product_name"] = $customer->product_name;
-        $nestedData["product_qty"] = $customer->product_qty." litri";
+        $nestedData["product_qty"] = formatAmountForItaly($customer->product_qty)." litri";
         $nestedData["order_date"] = date('d-m-Y H:i', strtotime($customer->order_date));
         $nestedData["order_status"] = $customer->order_status;
         $nestedData["payment_status"] = $customer->payment_status;

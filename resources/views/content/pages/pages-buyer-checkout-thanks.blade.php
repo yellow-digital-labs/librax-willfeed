@@ -64,7 +64,7 @@ $configData = Helper::appClasses();
                     <span class="thanks__item-bold">Qtyst:</span>  {{$order->product_qty}} LITRI
                 </div>
                 <div class="thanks__item">
-                    <span class="thanks__item-bold">Pagamento totale:</span>  €{{number_format($order->total_payable_amount, 2)}}
+                    <span class="thanks__item-bold">Pagamento totale:</span>  €{{formatAmountForItaly($order->total_payable_amount)}}
                 </div>
                 <div class="thanks__item">
                     <span class="thanks__item-bold">Modalità di pagamento:</span>  {{$order->payment_method_name}}
