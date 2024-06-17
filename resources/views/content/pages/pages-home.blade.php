@@ -211,8 +211,11 @@ $configData = Helper::appClasses();
                 <div class="uk-width-expand@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--content">
                     <h1 class="title landing-clrblock__title">Piani e tariffe</h1>
                     
-                    <h3 class="landing-clrblock__text">Iscriviti ora gratuitamente e usufruisci subito di tutti i nostri servizi con il massimo dei vantaggi e convenienza. Potrai anche passare ad un piano a pagamento quando vuoi per funzioni premium. (ISCRIVITI GRATIS) button redirects to sign up page
-</h3>
+                    <h3 class="landing-clrblock__text">Iscriviti ora gratuitamente e usufruisci subito di tutti i nostri servizi con il massimo dei vantaggi e convenienza. Potrai anche passare ad un piano a pagamento quando vuoi per funzioni premium.
+                    </h3>
+                    <a href="{{ route('register').'?type=buyer' }}" class="uk-button uk-button-default" style="color: #000;
+    border-color: #fff;
+    background: #fff;">ISCRIVITI GRATIS</a>
                 </div>
                 <div class="uk-width-auto@l uk-width-1-2@s landing-clrblock__maincol landing-clrblock__maincol--media">
                     <div class="landing-clrblock__media">
