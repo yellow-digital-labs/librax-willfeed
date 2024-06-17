@@ -31,6 +31,15 @@
             ]
         },
         {
+            "url": "/customer-group-management",
+            "name": "Lista prezzi personalizzati",
+            "icon": "menu-icon tf-icons ti ti-tags",
+            "slug": "customer",
+            "section": [
+                "seller"
+            ]
+        },
+        {
             "url": "/seller",
             "name": "Lista venditori",
             "icon": "menu-icon tf-icons ti ti-user-check",

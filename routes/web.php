@@ -126,6 +126,12 @@ Route::middleware([
     Route::get('/users/list/{type}', $controller_path . '\pages\User@list')->name('user-list'); //user list data ajax
     Route::post('/user/{id}/status/{status}', $controller_path . '\pages\User@status')->name('user-status'); //user status update ajax
 
+    //customer groups
+    Route::get('/customer-group-management', $controller_path . '\CustomerGroupManagementController@index')->name('customer-group-management');
+    Route::get('/customer-group-management/list', $controller_path . '\CustomerGroupManagementController@list')->name('customer-group-management-list'); //customer group list data ajax
+    Route::post('/customer-group-management', $controller_path . '\CustomerGroupManagementController@add')->name('customer-group-management-add');
+    Route::get('/customer-group-management/{id}/edit', $controller_path . '\CustomerGroupManagementController@edit')->name('customer-group-management-edit'); //customer group detail data ajax
+    Route::post('/customer-group-management/{id}/edit', $controller_path . '\CustomerGroupManagementController@store')->name('customer-group-management-store'); //customer group detail data ajax
 
     //orders
     Route::get('/orders', $controller_path . '\pages\Orders@index')->name('orders'); //order list view
