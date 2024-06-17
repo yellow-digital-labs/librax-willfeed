@@ -32,7 +32,7 @@
                     <div class="dash-charts__down">
                         <div class="dash-charts__price">
                             <div class="dash-charts__price-text" style="color: #000;">
-                                {{formatAmountForItaly($product->amount_before_tax)}}
+                                €{{rtrim(rtrim(number_format($product->amount_before_tax, 5), '0'), '.')}}
                             </div>
                             <div class="dash-charts__price-type">
                                 {{ $product->seller_name }}
@@ -40,7 +40,7 @@
                         </div>
                         <div class="dash-charts__perc">
                             <div class="dash-charts__perc-count {{$price_diff>0?"uk-text-danger":"uk-text-success"}}">
-                                {{$price_diff>0?"+".formatAmountForItaly($price_diff):formatAmountForItaly($price_diff)}} ({{$price_diff>0?"+".formatAmountForItaly($price_diff_per):formatAmountForItaly($price_diff_per)}}%)
+                                {{$price_diff>0?"+".$price_diff:$price_diff}} ({{$price_diff>0?"+".$price_diff_per:$price_diff_per}}%)
                             </div>
                             {{-- <div class="dash-charts__perc-text">
                                 Prezzo di mercato
