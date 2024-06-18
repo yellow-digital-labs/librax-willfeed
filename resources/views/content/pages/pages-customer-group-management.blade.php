@@ -10,6 +10,7 @@ $configData = Helper::appClasses();
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
 @endsection
 
 @section('vendor-script')
@@ -19,6 +20,7 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
 @endsection
 
 @section('page-script')
@@ -49,7 +51,6 @@ $configData = Helper::appClasses();
             <thead>
                 <tr>
                     <th>Nome abbonamento</th>
-                    <th>Stato</th>
                     <th>Azione</th>
                 </tr>
             </thead>
@@ -70,18 +71,6 @@ $configData = Helper::appClasses();
             <div class="col-sm-12">
                 <label class="form-label" for="edit-customer_group_name">Nome del gruppo personalizzato</label>
                 <input type="text" id="edit-customer_group_name" class="form-control" name="customer_group_name" placeholder="Enter nome del gruppo personalizzato" />
-            </div>
-            <div class="col-sm-12">
-                <label class="form-label" for="edit-plan_for">Users</label>
-                <select class="form-control" id="edit-plan_for" name="plan_for">
-                    <option value="">Please select</option>
-                    <option value="seller">Venditori</option>
-                    <option value="buyer">Compratori</option>
-                </select>
-            </div>
-            <div class="form-check form-switch col-sm-12">
-                <label class="form-check-label" for="edit-status">Disponibilità</label>
-                <input class="form-check-input" type="checkbox" name="status" id="edit-status" value="active">
             </div>
             <div class="col-sm-12 mt-5">
                 <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Salva</button>

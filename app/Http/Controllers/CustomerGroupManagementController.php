@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CustomerGroup;
+use App\Models\CustomerVerified;
 use App\Helpers\Helpers;
 use Auth;
 
@@ -36,7 +37,6 @@ class CustomerGroupManagementController extends Controller
 
         $columns = [
             0 => "customer_group_name",
-            1 => "status",
         ];
 
         $search = [];
@@ -83,8 +83,7 @@ class CustomerGroupManagementController extends Controller
 
             $q = CustomerGroup::where(function ($query) use ($search) {
                 return $query
-                ->where("customer_group_name", "LIKE", "%{$search}%")
-                ->orWhere("status", "LIKE", "%{$search}%");
+                ->where("customer_group_name", "LIKE", "%{$search}%");
             });
             $customers = $q
                 ->offset($start)
@@ -106,7 +105,6 @@ class CustomerGroupManagementController extends Controller
                 $nestedData["id"] = $customer->id;
                 $nestedData["fake_id"] = ++$ids;
                 $nestedData["customer_group_name"] = $customer->customer_group_name;
-                $nestedData["status"] = $customer->status;
 
                 $data[] = $nestedData;
             }
@@ -132,8 +130,8 @@ class CustomerGroupManagementController extends Controller
     public function add(Request $request)
     {
         $subscription = CustomerGroup::create([
+            "vendor_id" => $user_id = Auth::user()->id,
             "customer_group_name" => $request->customer_group_name,
-            "status" => $request->status?'active':'inactive',
         ]);
 
         return redirect()->back();
@@ -150,11 +148,37 @@ class CustomerGroupManagementController extends Controller
     public function store(Request $request, $id)
     {
         $subscription = CustomerGroup::where(['id' => $id])->update([
+            "vendor_id" => $user_id = Auth::user()->id,
             "customer_group_name" => $request->customer_group_name,
-            "status" => $request->status?'active':'inactive',
         ]);
 
         return redirect()->back();
         // return response()->json($subscription);
     }
+
+    public function delete($id){
+        $user = Auth::user();
+
+        $assigned = CustomerVerified::where([
+            'customer_group' => $id
+        ])->count();
+
+        if($assigned > 0){
+            return response()->json([
+                "message" => "Customer group is assigned to customer. You can not delete this",
+                "code" => 201,
+                "data" => [],
+            ]);
+        } else {
+            CustomerGroup::where([
+                "id" => $id,
+            ])->delete();
+        
+            return response()->json([
+                "message" => "Customer group deleted successfully",
+                "code" => 200,
+                "data" => [],
+            ]);
+        }
+      }
 }

@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customer_groups', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('vendor_id');
-            $table->string('customer_group_name');
-            $table->timestamps();
+        Schema::table('customer_verifieds', function (Blueprint $table) {
+            $table->float('customer_group')->after('customer_name')->default(null)->nullable();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customer_groups');
+        Schema::table('customer_verifieds', function (Blueprint $table) {
+            $table->dropColumn(['customer_group']);
+        });
     }
 };

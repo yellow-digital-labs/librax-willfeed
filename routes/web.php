@@ -132,6 +132,7 @@ Route::middleware([
     Route::post('/customer-group-management', $controller_path . '\CustomerGroupManagementController@add')->name('customer-group-management-add');
     Route::get('/customer-group-management/{id}/edit', $controller_path . '\CustomerGroupManagementController@edit')->name('customer-group-management-edit'); //customer group detail data ajax
     Route::post('/customer-group-management/{id}/edit', $controller_path . '\CustomerGroupManagementController@store')->name('customer-group-management-store'); //customer group detail data ajax
+    Route::delete('/customer-group-management/delete/{id}', $controller_path . '\CustomerGroupManagementController@delete')->name('customer-group-management-delete'); //customer management delete
 
     //orders
     Route::get('/orders', $controller_path . '\pages\Orders@index')->name('orders'); //order list view

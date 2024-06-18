@@ -1,8 +1,27 @@
 /**
  * DataTables Advanced (jquery)
  */
+(function webpackUniversalModuleDefinition(root, factory) {
+    if (typeof exports === 'object' && typeof module === 'object')
+        module.exports = factory();
+    else if (typeof define === 'function' && define.amd)
+        define([], factory);
+    else {
+        var a = factory();
+        for (var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+    }
+})(self, function () {
+    return /******/ (function () { // webpackBootstrap
 
 'use strict';
+var __webpack_exports__ = {};
+$(document).ready(function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+});
 
 $(function() {
     var dt_filter_table = $('.dt-column-search');
@@ -26,17 +45,15 @@ $(function() {
                     data: 'id'
                 }, {
                     data: 'customer_group_name'
-                }, {
-                    data: 'status'
                 }],
             columnDefs: [{
                 // Actions
-                targets: 2,
+                targets: 1,
                 searchable: false,
                 orderable: false,
                 render: function render(data, type, full, meta) {
                     return (
-                        '<a href="javascript:;" class="item-edit text-body edit-record" data-bs-toggle="offcanvas" data-bs-target="#add-new-record" data-id="'+full['id']+'"><i class="text-primary ti ti-pencil"></i></a>'
+                        '<a href="javascript:;" class="item-edit text-body edit-record" data-bs-toggle="offcanvas" data-bs-target="#add-new-record" data-id="'+full['id']+'"><i class="text-primary ti ti-pencil"></i></a>' + '<button class="btn btn-sm btn-icon delete-record" data-id="' + full['id'] + '"><i class=\"ti ti-trash\"></i></button>'
                     );
                 }
             }, {
@@ -49,17 +66,6 @@ $(function() {
                 render: function render(data, type, full, meta) {
                     var $name = full['customer_group_name'] ? full['customer_group_name'] : '';
                     return '<span class="name-id">' + $name + '</span>';
-                }
-            }, {
-                // status
-                targets: 1,
-                // visible: false,
-                searchable: true,
-                orderable: true,
-                responsivePriority: 4,
-                render: function render(data, type, full, meta) {
-                    var $status = full['status'] ? full['status'] : '';
-                    return '<span class="badge text-uppercase bg-label-'+($status=='active'?'success':'danger')+'">' + $status + '</span>';
                 }
             }],
             order: [[0, 'asc']],
@@ -140,9 +146,8 @@ $(function() {
                 productForm.submit();
             });
     }
-});
 
-// edit record
+    // edit record
 $(document).on('click', '.edit-record', function () {
     var user_id = $(this).data('id'),
       dtrModal = $('.dtr-bs-modal.show');
@@ -158,6 +163,70 @@ $(document).on('click', '.edit-record', function () {
     $.get("".concat(baseUrl, "customer-group-management/").concat(user_id, "/edit"), function (data) {
       $('#edit-id').val(data.id);
       $('#edit-customer_group_name').val(data.customer_group_name);
-      $('#edit-status').prop("checked", data.status=="active"?true:false);
     });
+});
+
+// Delete Record
+$(document).on('click', '.delete-record', function () {
+    var user_id = $(this).data('id'),
+        dtrModal = $('.dtr-bs-modal.show');
+
+    // hide responsive modal in small screen
+    if (dtrModal.length) {
+        dtrModal.modal('hide');
+    }
+
+    // sweetalert for confirmation of delete
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        customClass: {
+            confirmButton: 'btn btn-primary me-3',
+            cancelButton: 'btn btn-label-secondary'
+        },
+        buttonsStyling: false
+    }).then(function (result) {
+        if (result.value) {
+            // delete the data
+            $.ajax({
+                type: 'DELETE',
+                url: "".concat(baseUrl, "customer-group-management/delete/").concat(user_id),
+                success: function success() {
+                    dt_user.draw();
+                },
+                error: function error(_error) {
+                    console.log(_error);
+                }
+            });
+
+            // success sweetalert
+            Swal.fire({
+                icon: 'success',
+                title: 'Deleted!',
+                text: 'The product has been deleted!',
+                customClass: {
+                    confirmButton: 'btn btn-success'
+                }
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            Swal.fire({
+                title: 'Cancelled',
+                text: 'The product is not deleted!',
+                icon: 'error',
+                customClass: {
+                    confirmButton: 'btn btn-success'
+                }
+            });
+        }
+    });
+});
+});
+
+/******/ 	return __webpack_exports__;
+        /******/
+    })()
+    ;
 });
