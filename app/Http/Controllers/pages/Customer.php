@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Models\CustomerVerified;
 use App\Models\User;
+use App\Models\CustomerGroup;
 use App\Mail\CustomerRequestApprove;
 use App\Mail\CustomerRequestReject;
 use App\Mail\SellerRequestApprove;
@@ -20,9 +21,16 @@ class Customer extends Controller
   {
     $urlListCustomerData = route("customer-list");
 
+    $customer_groups = [];
+    if(Helpers::isSeller()){
+      $user_id = Auth::user()->id;
+      $customer_groups = CustomerGroup::where("vendor_id", "=", $user_id)->get();
+    }
+
     return view("content.pages.pages-approved-customer", [
       "urlListCustomerData" => $urlListCustomerData,
       "isSeller" => Helpers::isSeller(),
+      "customer_groups" => $customer_groups,
     ]);
   }
 
@@ -35,12 +43,13 @@ class Customer extends Controller
       2 => "customer_region",
       3 => "status_on",
       4 => "customer_since",
-      5 => "credit_limit",
-      6 => "credit_used",
-      7 => "credit_avail",
-      8 => "status",
-      9 => "customer_id",
-      10 => "seller_id",
+      5 => "customer_group",
+      6 => "credit_limit",
+      7 => "credit_used",
+      8 => "credit_avail",
+      9 => "status",
+      10 => "customer_id",
+      11 => "seller_id",
     ];
 
     $search = [];
@@ -170,6 +179,7 @@ class Customer extends Controller
         $nestedData["is_request_by_seller"] = $customer->is_request_by_seller;
         $nestedData["customer_since"] = $customer->customer_since;
         $nestedData["status_on"] = $customer->status_on;
+        $nestedData["customer_group"] = $customer->customer_group;
         $nestedData["customer_id"] = $customer->customer_id;
         $nestedData["seller_id"] = $customer->seller_id;
         $nestedData["credit_limit"] = "€".number_format($customer->credit_limit, 2);
@@ -192,6 +202,25 @@ class Customer extends Controller
       return response()->json([
         "message" => "Internal Server Error",
         "code" => 500,
+        "data" => [],
+      ]);
+    }
+  }
+
+  public function group(Request $request, $id, $status){
+    $user = Auth::user();
+    $user_id = $user->id;
+
+    if($user->accountType == "2"){ //seller login
+      $query = CustomerVerified::where("seller_id", "=", $user_id)
+        ->where("id",  "=", $id)
+        ->update([
+          "customer_group" => $status
+        ]);
+
+      return response()->json([
+        "message" => "customer group updated successfully!",
+        "code" => 200,
         "data" => [],
       ]);
     }

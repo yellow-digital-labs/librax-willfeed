@@ -26,6 +26,7 @@ $configData = Helper::appClasses();
 <script>
     var isSeller = "{{$isSeller}}";
     var urlListCustomerData = {!! "'".$urlListCustomerData."'" !!};
+    var customer_groups = JSON.parse({!! "'".$customer_groups."'" !!});
 </script>
 <script src="{{asset('assets/js/approved-customer-datatables.js?version=1')}}"></script>
 @endsection
@@ -67,6 +68,7 @@ $configData = Helper::appClasses();
                     <th class="js-add-search">Luogo</th>
                     <th>Data verificato</th>
                     <th>Data iscrizione</th>
+                    <th>Gruppo di clienti</th>
                     <th>Ammontare fido</th>
                     <th>Fido utilizzato</th>
                     <th>Fido disponibile</th>

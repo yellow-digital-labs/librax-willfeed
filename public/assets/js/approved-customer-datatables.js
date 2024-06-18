@@ -154,6 +154,7 @@ $(function () {
                 { data: 'status_on' },
                 { data: 'customer_since' },
                 { data: 'status' },
+                { data: 'customer_group' },
                 { data: '' }
             ],
             columnDefs: [{
@@ -212,8 +213,27 @@ $(function () {
                     return '<span class="user-customer_since">' + $customer_since + '</span>';
                 }
             }, {
-                // credit_limit
+                // customer_group
                 targets: 5,
+                visible: true,
+                searchable: true,
+                orderable: true,
+                responsivePriority: 4,
+                render: function render(data, type, full, meta) {
+                    console.log("FULL", data)
+                    var $customer_group = full['customer_group'] ? full['customer_group'] : '';
+                    // return '<span class="user-customer_group">' + $customer_group + '</span>';
+                    let selectOption = `<select class="select2 change-customer-group" data-id="${full['id']}">
+                        <option value="0">Primo prezzo</option>`;
+                    $.each(customer_groups, function(key, val){
+                        selectOption += `<option value="${val.id}" ${val.id == $customer_group?'selected':''}>${val.customer_group_name}</option>`
+                    });
+                    selectOption += `</select>`;
+                    return selectOption;
+                }
+            }, {
+                // credit_limit
+                targets: 6,
                 visible: true,
                 searchable: true,
                 orderable: true,
@@ -224,7 +244,7 @@ $(function () {
                 }
             }, {
                 // credit_used
-                targets: 6,
+                targets: 7,
                 visible: true,
                 searchable: true,
                 orderable: true,
@@ -235,7 +255,7 @@ $(function () {
                 }
             }, {
                 // credit_avail
-                targets: 7,
+                targets: 8,
                 visible: true,
                 searchable: true,
                 orderable: true,
@@ -246,7 +266,7 @@ $(function () {
                 }
             }, {
                 // Label
-                targets: 8,
+                targets: 9,
                 render: function (data, type, full, meta) {
                     var $status_number = full['status'];
                     var $status = {
@@ -264,7 +284,7 @@ $(function () {
             },
             {
                 // Actions
-                targets: 9,
+                targets: 10,
                 title: 'Actions',
                 searchable: false,
                 orderable: false,
@@ -394,6 +414,22 @@ $(function () {
         var id = $(this).data('id');
 
         updateStatus(id, 'pending');
+    });
+
+    $(document).on('click', '.change-customer-group', function () {
+        var id = $(this).data('id');
+        var status = $(this).find('option:selected').val();
+        $.ajax({
+            type: 'POST',
+            url: "".concat(baseUrl, `customer/${id}/group/${status}`),
+            data: {},
+            success: function success() {
+                dt_filter.draw();
+            },
+            error: function error(_error) {
+                console.log(_error);
+            }
+        });
     });
 
     function updateStatus(id, status, credit_limit = null){
