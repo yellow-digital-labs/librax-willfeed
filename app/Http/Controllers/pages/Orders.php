@@ -377,6 +377,15 @@ class Orders extends Controller
               "message" => $request->message,
             ])
         ]));
+      } else if($status == "4"){
+        SystemNotification::create([
+          "user_id" => $buyer->id,
+          "module" => "App/Model/Order",
+          "record_id" => $order->id,
+          "notification_title" => "Ordine consegnato",
+          "notification_desc" => "L'ordine n. {$order->id} consegnato",
+          "is_read" => false
+        ]);
       }
       
       return redirect()->route('order-details', ['id' => $id]);
