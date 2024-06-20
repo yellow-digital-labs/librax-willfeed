@@ -185,7 +185,7 @@ const budgetChartEl{{$count}} = document.querySelector('.budgetChart-{{$count}}'
                 <div class="row">
                     <div class="col-12 col-sm-4 col-md-12 col-lg-4">
                         <div class="mt-lg-4 mt-lg-2 mb-lg-4 mb-2 pt-1">
-                            <h1 class="mb-0 text-black">{{$total_orders}}</h1>
+                            <h1 class="mb-0 text-black">{{formatAmountForItaly($total_orders)}}</h1>
                             <p class="mb-0 fw-light">Ordini totali</p>
                         </div>
                         <ul class="p-0 m-0">
@@ -193,14 +193,14 @@ const budgetChartEl{{$count}} = document.querySelector('.budgetChart-{{$count}}'
                                 <div class="badge rounded bg-label-primary p-1 badge--primary"><i class="ti ti-ticket ti-sm"></i></div>
                                 <div>
                                     <h6 class="mb-0 text-nowrap">Completati</h6>
-                                    <small class="text-muted">{{$completed_orders}}</small>
+                                    <small class="text-muted">{{formatAmountForItaly($completed_orders)}}</small>
                                 </div>
                             </li>
                             <li class="d-flex gap-3 align-items-center mb-lg-3 pb-1">
                                 <div class="badge rounded bg-label-info p-1"><i class="ti ti-circle-check ti-sm"></i></div>
                                 <div>
                                     <h6 class="mb-0 text-nowrap">In corso</h6>
-                                    <small class="text-muted">{{$pending_orders}}</small>
+                                    <small class="text-muted">{{formatAmountForItaly($pending_orders)}}</small>
                                 </div>
                             </li>
                         </ul>

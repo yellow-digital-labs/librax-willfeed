@@ -48,7 +48,7 @@ $configData = Helper::appClasses();
                     <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-0 card-widget-heading">
                         <div>
                             <h6 class="mb-2 fw-normal">Totale prodotti</h6>
-                            <h4 class="mb-2">{{$total_products}}</h4>
+                            <h4 class="mb-2">{{formatAmountForItaly($total_products)}}</h4>
                             <p class="mb-0"><span class="badge bg-label-success fw-normal">100%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti me-4 no-hover">
@@ -88,7 +88,7 @@ $configData = Helper::appClasses();
                             <h6 class="mb-2 fw-normal">Best seller</h6>
                         @if($bestSeller)
                             <h4 class="mb-2">{{$bestSeller->product_name}}</h4>
-                            <p class="mb-0"><span class="text-muted me-2">{{$bestSeller->total_orders}} orders</span><!-- <span class="badge bg-label-danger">-3.5%</span> --></p>
+                            <p class="mb-0"><span class="text-muted me-2">{{formatAmountForItaly($bestSeller->total_orders)}} orders</span><!-- <span class="badge bg-label-danger">-3.5%</span> --></p>
                         @else
                             <h4 class="mb-2">NA</h4>
                         @endif

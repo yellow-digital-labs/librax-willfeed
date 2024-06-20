@@ -50,7 +50,7 @@ $configData = Helper::appClasses();
                     <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-0 card-widget-heading">
                         <div>
                             <h6 class="mb-2 fw-normal">Ordini totali</h6>
-                            <h4 class="mb-2">{{$total_orders, 2}}</h4>
+                            <h4 class="mb-2">{{formatAmountForItaly($total_orders)}}</h4>
                             <p class="mb-0"><span class="badge bg-label-success fw-normal">100,00%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti me-sm-4 no-hover">
