@@ -242,7 +242,7 @@ class Customer extends Controller
             "module" => "App/Model/User",
             "record_id" => $user_id,
             "notification_title" => "Profilo approvato dal venditore",
-            "notification_desc" => "Profilo approvato dal venditore",
+            "notification_desc" => "La collaborazione di richiesta inviata a {$user->name} è stata accettata",
             "is_read" => false
           ]);
           Mail::to($buyer->email)->send(new CustomerRequestApprove([
@@ -255,7 +255,7 @@ class Customer extends Controller
             "module" => "App/Model/User",
             "record_id" => $user_id,
             "notification_title" => "Profilo rifiutato dal venditore",
-            "notification_desc" => "Profilo rifiutato dal venditore",
+            "notification_desc" => "La collaborazione di richiesta inviata a {$user->name} è stata rifiutata",
             "is_read" => false
           ]);
           Mail::to($buyer->email)->send(new CustomerRequestReject([
@@ -286,8 +286,8 @@ class Customer extends Controller
             "user_id" => $CustomerVerified->seller_id,
             "module" => "App/Model/User",
             "record_id" => $CustomerVerified->customer_id,
-            "notification_title" => "Profilo approvato dal venditore",
-            "notification_desc" => "Profilo approvato dal venditore",
+            "notification_title" => "Profilo accettata dall'acquirente",
+            "notification_desc" => " La collaborazione di richiesta inviata a {$user->name} è stata accettata",
             "is_read" => false
           ]);
           Mail::to($seller->email)->send(new SellerRequestApprove([
@@ -298,8 +298,8 @@ class Customer extends Controller
             "user_id" => $CustomerVerified->seller_id,
             "module" => "App/Model/User",
             "record_id" => $CustomerVerified->customer_id,
-            "notification_title" => "Profilo rifiutato dal venditore",
-            "notification_desc" => "Profilo rifiutato dal venditore",
+            "notification_title" => "Profilo rifiutata dall'acquirente",
+            "notification_desc" => "La collaborazione di richiesta inviata a {$user->name} è stata rifiutata",
             "is_read" => false
           ]);
           Mail::to($seller->email)->send(new SellerRequestReject([

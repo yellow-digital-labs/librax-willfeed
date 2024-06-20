@@ -318,6 +318,7 @@ class Orders extends Controller
   }
 
   public function status(Request $request, $id, $status){
+    $user = Auth::user();
     $user_id = Auth::user()->id;
 
     $order = Order::where("id", "=", $id)
@@ -336,8 +337,8 @@ class Orders extends Controller
           "user_id" => $buyer->id,
           "module" => "App/Model/Order",
           "record_id" => $order->id,
-          "notification_title" => "Ordine approvato",
-          "notification_desc" => "L'ordine n. {$order->id} è stato approvato",
+          "notification_title" => "Ordine accettato",
+          "notification_desc" => "Il tuo ordine {$order->id} da {$user->name} è stato accettato",
           "is_read" => false
         ]);
         Mail::to($buyer->email)->send(new OrderApprove([
@@ -360,7 +361,7 @@ class Orders extends Controller
           "module" => "App/Model/Order",
           "record_id" => $order->id,
           "notification_title" => "Ordine rifiutato",
-          "notification_desc" => "L'ordine n. {$order->id} è stato rifiutato",
+          "notification_desc" => "Il tuo ordine {$order->id} da {$user->name} è stato rifiutato",
           "is_read" => false
         ]);
         Mail::to($buyer->email)->send(new OrderReject([
@@ -383,7 +384,7 @@ class Orders extends Controller
           "module" => "App/Model/Order",
           "record_id" => $order->id,
           "notification_title" => "Ordine consegnato",
-          "notification_desc" => "L'ordine n. {$order->id} consegnato",
+          "notification_desc" => "Il tuo ordine {$order->id} da {$user->name} è stato consegnato",
           "is_read" => false
         ]);
       }
@@ -415,8 +416,8 @@ class Orders extends Controller
         "user_id" => $order->user_id,
         "module" => "App/Model/Order",
         "record_id" => $order->id,
-        "notification_title" => "Ordine rifiutato",
-        "notification_desc" => "Pagamento dell'ordine n. {$order->id} completato",
+        "notification_title" => "Pagamento dell'ordine accettato",
+        "notification_desc" => "Il tuo ordine {$order->id} da {$user->name} è stato pagamento accettato",
         "is_read" => false
       ]);
 
