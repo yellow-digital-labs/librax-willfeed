@@ -29,12 +29,13 @@ $navbarDetached = ($navbarDetached ?? '');
                     @php
                         // $notifications = App\Models\SystemNotification::where(['user_id' => Auth::user()->id])->get();
                         $notifications = App\Models\SystemNotification::where([])->get();
+                        $notification_count = App\Models\SystemNotification::where(['is_read' => 0])->count();
                     @endphp
                     <!-- Notification -->
                     <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                         <i class="ti ti-bell ti-md"></i>
-                        {{-- <span class="badge bg-danger rounded-pill badge-notifications">5</span> --}}
+                        <span class="badge bg-danger rounded-pill badge-notifications">{{$notification_count}}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end py-0">
                         <li class="dropdown-menu-header border-bottom">
@@ -54,25 +55,24 @@ $navbarDetached = ($navbarDetached ?? '');
                                         ]);
                                     }
                                 @endphp
-                                <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                                    <a href="{{$href}}">
-                                        <div class="d-flex">
-                                            {{-- <div class="flex-shrink-0 me-3">
-                                                <div class="avatar">
-                                                <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="h-auto rounded-circle">
-                                                </div>
-                                            </div> --}}
-                                            <div class="flex-grow-1">
-                                                <h6 class="mb-1">{{$notification->notification_title}}</h6>
-                                                <p class="mb-0">{{$notification->notification_desc}}</p>
-                                                <small class="text-muted">{{ $notification->created_at }}</small>
+                                <li class="list-group-item list-group-item-action dropdown-notifications-item notification-click" data-id="{{$notification->id}}" data-href="{{$href}}">
+                                    <div class="d-flex">
+                                        {{-- <div class="flex-shrink-0 me-3">
+                                            <div class="avatar">
+                                            <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="h-auto rounded-circle">
                                             </div>
-                                            {{-- <div class="flex-shrink-0 dropdown-notifications-actions">
-                                                <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                                                <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="ti ti-x"></span></a>
-                                            </div> --}}
+                                        </div> --}}
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">{{$notification->notification_title}}</h6>
+                                            <p class="mb-0">{{$notification->notification_desc}}</p>
+                                            <small class="text-muted">{{ $notification->created_at }}</small>
                                         </div>
-                                    </a>
+                                        <div class="flex-shrink-0 dropdown-notifications-actions">
+                                            @if($notification->is_read == 0)
+                                            <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot" style="background-color: #FF0000;"></span></a>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </li>
                                 @endforeach
                             </ul>
