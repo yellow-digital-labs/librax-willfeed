@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Models\CustomerVerified;
 use App\Models\User;
+use App\Models\SystemNotification;
 use App\Mail\CustomerRequestApprove;
 use App\Mail\CustomerRequestReject;
 use App\Mail\SellerRequestApprove;
@@ -236,11 +237,27 @@ class Customer extends Controller
         }
     
         if($status == "approved"){ //Approved
+          SystemNotification::create([
+            "user_id" => $CustomerVerified->customer_id,
+            "module" => "App/Model/CustomerRequest",
+            "record_id" => $user_id,
+            "notification_title" => "Profilo approvato dal venditore",
+            "notification_desc" => "La collaborazione di richiesta inviata a {$user->name} è stata accettata",
+            "is_read" => false
+          ]);
           Mail::to($buyer->email)->send(new CustomerRequestApprove([
             "sellerName" => $seller->name,
             "url" => route("pages-buyer-home")
           ]));
         } else if($status == "rejected"){ //Rejected
+          SystemNotification::create([
+            "user_id" => $CustomerVerified->customer_id,
+            "module" => "App/Model/CustomerRequest",
+            "record_id" => $user_id,
+            "notification_title" => "Profilo rifiutato dal venditore",
+            "notification_desc" => "La collaborazione di richiesta inviata a {$user->name} è stata rifiutata",
+            "is_read" => false
+          ]);
           Mail::to($buyer->email)->send(new CustomerRequestReject([
             "sellerName" => $seller->name,
             "url" => route("pages-buyer-home")
@@ -265,10 +282,26 @@ class Customer extends Controller
         }
     
         if($status == "approved"){ //Approved
+          SystemNotification::create([
+            "user_id" => $CustomerVerified->seller_id,
+            "module" => "App/Model/SellerRequest",
+            "record_id" => $CustomerVerified->customer_id,
+            "notification_title" => "Profilo accettata dall'acquirente",
+            "notification_desc" => " La collaborazione di richiesta inviata a {$user->name} è stata accettata",
+            "is_read" => false
+          ]);
           Mail::to($seller->email)->send(new SellerRequestApprove([
             "buyerName" => $buyer->name,
           ]));
         } else if($status == "rejected"){ //Rejected
+          SystemNotification::create([
+            "user_id" => $CustomerVerified->seller_id,
+            "module" => "App/Model/SellerRequest",
+            "record_id" => $CustomerVerified->customer_id,
+            "notification_title" => "Profilo rifiutata dall'acquirente",
+            "notification_desc" => "La collaborazione di richiesta inviata a {$user->name} è stata rifiutata",
+            "is_read" => false
+          ]);
           Mail::to($seller->email)->send(new SellerRequestReject([
             "buyerName" => $buyer->name,
           ]));

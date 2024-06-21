@@ -14,6 +14,7 @@ use App\Models\CustomerVerified;
 use App\Models\Region;
 use App\Models\Common;
 use App\Models\Province;
+use App\Models\SystemNotification;
 use App\Mail\OrderNewNotification;
 use Auth;
 
@@ -144,17 +145,25 @@ class BuyerCheckout extends Controller
           $order_details = Order::where("id", $order->id)->first();
           //send email
           $seller = User::where("id", $seller_product->seller_id)->first();
-          // Mail::to($seller->email)->send(new OrderNewNotification([
-          //     "order_id" => $order->id,
-          //     "product_name" => $order_details->product_name,
-          //     "qty" => $request->product_qty,
-          //     "url" => route("orders"),
-          //     "buyerName" => $order->user_name,
-          //     "sellerName" => $order->seller_name,
-          //     "productAmount" => $order->product_amount,
-          //     "productQty" => $order->product_qty,
-          //     "payableAmount" => $order->total_payable_amount,
-          // ]));
+          SystemNotification::create([
+            "user_id" => $user->id,
+            "module" => "App/Model/Order",
+            "record_id" => $order->id,
+            "notification_title" => "Nuovo ordine ricevuto",
+            "notification_desc" => "Nuovo ordine {$order->id} ricevuto da {$user->name}",
+            "is_read" => false
+          ]);
+          Mail::to($seller->email)->send(new OrderNewNotification([
+              "order_id" => $order->id,
+              "product_name" => $order_details->product_name,
+              "qty" => $request->product_qty,
+              "url" => route("orders"),
+              "buyerName" => $order->user_name,
+              "sellerName" => $order->seller_name,
+              "productAmount" => $order->product_amount,
+              "productQty" => $order->product_qty,
+              "payableAmount" => $order->total_payable_amount,
+          ]));
 
           return redirect()->route('pages-buyer-checkout-thanks', [
             "order_id" => $order->id
@@ -186,6 +195,16 @@ class BuyerCheckout extends Controller
 
       $record_data = $record->first();
       if($record_data){
+
+        SystemNotification::create([
+          "user_id" => $seller_id,
+          "module" => "App/Model/SellerRequest",
+          "record_id" => $record_data->id,
+          "notification_title" => "Nuova richiesta di collaborazione ricevuta",
+          "notification_desc" => "Nuova richiesta di collaborazione da {$user->name}",
+          "is_read" => false
+        ]);
+
         //update
         if($record_data->status == "pending"){
           return redirect()->route('customer-request-to-seller-thanks', [
@@ -202,9 +221,18 @@ class BuyerCheckout extends Controller
         }
       } else {
         //insert
-        CustomerVerified::create([
+        $record = CustomerVerified::create([
           "seller_id" => $seller_id,
           "customer_id" => $user->id
+        ]);
+
+        SystemNotification::create([
+          "user_id" => $seller_id,
+          "module" => "App/Model/SellerRequest",
+          "record_id" => $record->id,
+          "notification_title" => "Nuova richiesta di collaborazione ricevuta",
+          "notification_desc" => "Nuova richiesta di collaborazione da {$user->name}",
+          "is_read" => false
         ]);
 
         return redirect()->route('customer-request-to-seller-thanks', [
@@ -259,6 +287,14 @@ class BuyerCheckout extends Controller
 
       $record_data = $record->first();
       if($record_data){
+        SystemNotification::create([
+          "user_id" => $buyer_id,
+          "module" => "App/Model/CustomerRequest",
+          "record_id" => $record->id,
+          "notification_title" => "Nuova richiesta di collaborazione ricevuta",
+          "notification_desc" => "Nuova richiesta di collaborazione da {$user->name}",
+          "is_read" => false
+        ]);
         //update
         if($record_data->status == "pending"){
           return redirect()->route('seller-request-to-buyer-thanks', [
@@ -277,11 +313,20 @@ class BuyerCheckout extends Controller
         }
       } else {
         //insert
-        CustomerVerified::create([
+        $record = CustomerVerified::create([
           "customer_id" => $buyer_id,
           "seller_id" => $user->id,
           "credit_limit" => $request->credit_limit,
           "is_request_by_seller" => 1,
+        ]);
+
+        SystemNotification::create([
+          "user_id" => $buyer_id,
+          "module" => "App/Model/CustomerRequest",
+          "record_id" => $record->id,
+          "notification_title" => "Nuova richiesta di collaborazione ricevuta",
+          "notification_desc" => "Nuova richiesta di collaborazione da {$user->name}",
+          "is_read" => false
         ]);
 
         return redirect()->route('seller-request-to-buyer-thanks', [

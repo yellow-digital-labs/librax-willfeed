@@ -11,6 +11,7 @@ use App\Models\PaymentOption;
 use App\Models\OrderPayment;
 use App\Models\User;
 use App\Models\Rating;
+use App\Models\SystemNotification;
 use App\Helpers\Helpers;
 use App\Mail\OrderApprove;
 use App\Mail\OrderReject;
@@ -317,6 +318,7 @@ class Orders extends Controller
   }
 
   public function status(Request $request, $id, $status){
+    $user = Auth::user();
     $user_id = Auth::user()->id;
 
     $order = Order::where("id", "=", $id)
@@ -331,6 +333,14 @@ class Orders extends Controller
 
       $buyer = User::where("id", $order->user_id)->first();
       if($status == "2"){ //Approved
+        SystemNotification::create([
+          "user_id" => $buyer->id,
+          "module" => "App/Model/Order",
+          "record_id" => $order->id,
+          "notification_title" => "Ordine accettato",
+          "notification_desc" => "Il tuo ordine {$order->id} da {$user->name} è stato accettato",
+          "is_read" => false
+        ]);
         Mail::to($buyer->email)->send(new OrderApprove([
             "order_id" => $order->id,
             "buyerName" => $order->user_name,
@@ -346,6 +356,14 @@ class Orders extends Controller
             ])
         ]));
       } else if($status == "3"){ // Rejected
+        SystemNotification::create([
+          "user_id" => $buyer->id,
+          "module" => "App/Model/Order",
+          "record_id" => $order->id,
+          "notification_title" => "Ordine rifiutato",
+          "notification_desc" => "Il tuo ordine {$order->id} da {$user->name} è stato rifiutato",
+          "is_read" => false
+        ]);
         Mail::to($buyer->email)->send(new OrderReject([
             "order_id" => $order->id,
             "buyerName" => $order->user_name,
@@ -360,6 +378,15 @@ class Orders extends Controller
               "message" => $request->message,
             ])
         ]));
+      } else if($status == "4"){
+        SystemNotification::create([
+          "user_id" => $buyer->id,
+          "module" => "App/Model/Order",
+          "record_id" => $order->id,
+          "notification_title" => "Ordine consegnato",
+          "notification_desc" => "Il tuo ordine {$order->id} da {$user->name} è stato consegnato",
+          "is_read" => false
+        ]);
       }
       
       return redirect()->route('order-details', ['id' => $id]);
@@ -376,13 +403,22 @@ class Orders extends Controller
       ->first();
 
     if($order){
-      OrderPayment::insert([
+      $orderPayment = OrderPayment::insert([
         "order_id" => $id,
         "user_id" => $user_id,
         "payment_amount" => $order->total_payable_amount,
         "description" => "Payment accepted",
         "payment_type_id" => 1,
         "created_at" => date("Y-m-d H:i:s"),
+      ]);
+
+      SystemNotification::create([
+        "user_id" => $order->user_id,
+        "module" => "App/Model/Order",
+        "record_id" => $order->id,
+        "notification_title" => "Pagamento dell'ordine accettato",
+        "notification_desc" => "Il tuo ordine {$order->id} da {$user->name} è stato pagamento accettato",
+        "is_read" => false
       ]);
 
       return redirect()->route('order-details', ['id' => $id]);
