@@ -27,9 +27,9 @@ $navbarDetached = ($navbarDetached ?? '');
             <div class="d-flex align-items-center">
                 <ul class="navbar-nav flex-row align-items-center ms-auto">
                     @php
-                        // $notifications = App\Models\SystemNotification::where(['user_id' => Auth::user()->id])->get();
-                        $notifications = App\Models\SystemNotification::where([])->get();
-                        $notification_count = App\Models\SystemNotification::where(['is_read' => 0])->count();
+                        $notifications = App\Models\SystemNotification::where(['user_id' => Auth::user()->id])->get();
+                        // $notifications = App\Models\SystemNotification::where([])->get();
+                        $notification_count = App\Models\SystemNotification::where(['is_read' => 0, 'user_id' => Auth::user()->id])->count();
                     @endphp
                     <!-- Notification -->
                     <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
@@ -46,35 +46,49 @@ $navbarDetached = ($navbarDetached ?? '');
                         </li>
                         <li class="dropdown-notifications-list scrollable-container">
                             <ul class="list-group list-group-flush">
-                                @foreach($notifications as $notification)
-                                @php
-                                    $href = '';
-                                    if($notification->module == "App/Model/Order"){
-                                        $href = route('order-details', [
-                                            'id' => $notification->record_id
-                                        ]);
-                                    }
-                                @endphp
-                                <li class="list-group-item list-group-item-action dropdown-notifications-item notification-click" data-id="{{$notification->id}}" data-href="{{$href}}">
-                                    <div class="d-flex">
-                                        {{-- <div class="flex-shrink-0 me-3">
-                                            <div class="avatar">
-                                            <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="h-auto rounded-circle">
+                                @if(count($notifications) > 0)
+                                    @foreach($notifications as $notification)
+                                    @php
+                                        $href = '';
+                                        if($notification->module == "App/Model/Order"){
+                                            $href = route('order-details', [
+                                                'id' => $notification->record_id
+                                            ]);
+                                        } elseif($notification->module == "App/Model/SellerRequest"){
+                                            $href = route('customer');
+                                        } elseif($notification->module == "App/Model/CustomerRequest"){
+                                            $href = route('seller');
+                                        }
+                                    @endphp
+                                    <li class="list-group-item list-group-item-action dropdown-notifications-item notification-click" data-id="{{$notification->id}}" data-href="{{$href}}">
+                                        <div class="d-flex">
+                                            {{-- <div class="flex-shrink-0 me-3">
+                                                <div class="avatar">
+                                                <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="h-auto rounded-circle">
+                                                </div>
+                                            </div> --}}
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1">{{$notification->notification_title}}</h6>
+                                                <p class="mb-0">{{$notification->notification_desc}}</p>
+                                                <small class="text-muted">{{ $notification->created_at }}</small>
                                             </div>
-                                        </div> --}}
-                                        <div class="flex-grow-1">
-                                            <h6 class="mb-1">{{$notification->notification_title}}</h6>
-                                            <p class="mb-0">{{$notification->notification_desc}}</p>
-                                            <small class="text-muted">{{ $notification->created_at }}</small>
+                                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                                                @if($notification->is_read == 0)
+                                                <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot" style="background-color: #FF0000;"></span></a>
+                                                @endif
+                                            </div>
                                         </div>
-                                        <div class="flex-shrink-0 dropdown-notifications-actions">
-                                            @if($notification->is_read == 0)
-                                            <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot" style="background-color: #FF0000;"></span></a>
-                                            @endif
+                                    </li>
+                                    @endforeach
+                                @else
+                                    <li class="list-group-item list-group-item-action dropdown-notifications-item" >
+                                        <div class="d-flex">
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1">Nessuna notifica trovata</h6>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                @endforeach
+                                    </li>
+                                @endif
                             </ul>
                         </li>
                         {{-- <li class="dropdown-menu-footer border-top">

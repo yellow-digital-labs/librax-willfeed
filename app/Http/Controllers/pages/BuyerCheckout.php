@@ -199,7 +199,7 @@ class BuyerCheckout extends Controller
         SystemNotification::create([
           "user_id" => $seller_id,
           "module" => "App/Model/SellerRequest",
-          "record_id" => $record->id,
+          "record_id" => $record_data->id,
           "notification_title" => "Nuova richiesta di collaborazione ricevuta",
           "notification_desc" => "Nuova richiesta di collaborazione da {$user->name}",
           "is_read" => false

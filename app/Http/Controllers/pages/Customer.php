@@ -239,7 +239,7 @@ class Customer extends Controller
         if($status == "approved"){ //Approved
           SystemNotification::create([
             "user_id" => $CustomerVerified->customer_id,
-            "module" => "App/Model/User",
+            "module" => "App/Model/CustomerRequest",
             "record_id" => $user_id,
             "notification_title" => "Profilo approvato dal venditore",
             "notification_desc" => "La collaborazione di richiesta inviata a {$user->name} è stata accettata",
@@ -252,7 +252,7 @@ class Customer extends Controller
         } else if($status == "rejected"){ //Rejected
           SystemNotification::create([
             "user_id" => $CustomerVerified->customer_id,
-            "module" => "App/Model/User",
+            "module" => "App/Model/CustomerRequest",
             "record_id" => $user_id,
             "notification_title" => "Profilo rifiutato dal venditore",
             "notification_desc" => "La collaborazione di richiesta inviata a {$user->name} è stata rifiutata",
@@ -284,7 +284,7 @@ class Customer extends Controller
         if($status == "approved"){ //Approved
           SystemNotification::create([
             "user_id" => $CustomerVerified->seller_id,
-            "module" => "App/Model/User",
+            "module" => "App/Model/SellerRequest",
             "record_id" => $CustomerVerified->customer_id,
             "notification_title" => "Profilo accettata dall'acquirente",
             "notification_desc" => " La collaborazione di richiesta inviata a {$user->name} è stata accettata",
@@ -296,7 +296,7 @@ class Customer extends Controller
         } else if($status == "rejected"){ //Rejected
           SystemNotification::create([
             "user_id" => $CustomerVerified->seller_id,
-            "module" => "App/Model/User",
+            "module" => "App/Model/SellerRequest",
             "record_id" => $CustomerVerified->customer_id,
             "notification_title" => "Profilo rifiutata dall'acquirente",
             "notification_desc" => "La collaborazione di richiesta inviata a {$user->name} è stata rifiutata",
