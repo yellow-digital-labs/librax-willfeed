@@ -357,10 +357,11 @@ $configData = Helper::appClasses();
     let tax = price_wo_tax*22/100;
     let total_price = price_wo_tax + tax;
 
-    $(".js-product-total").text((Math.round(price_wo_tax * 100) / 100).toFixed(2).replace(/0+$/,'').replace(/\.+$/,''));
-    $(".js-order-subtotal").text((Math.round(price_wo_tax * 100) / 100).toFixed(2).replace(/0+$/,'').replace(/\.+$/,''));
-    $(".js-order-tax-amount").text((Math.round(tax * 100) / 100).toFixed(2).replace(/0+$/,'').replace(/\.+$/,''));
-    $(".js-order-final-total").text((Math.round(total_price * 100) / 100).toFixed(2).replace(/0+$/,'').replace(/\.+$/,''));
+    // $(".js-product-total").text((Math.round(price_wo_tax * 100) / 100).toFixed(2).replace(/0+$/,'').replace(/\.+$/,''));
+    $(".js-product-total").text((Number(Math.round(price_wo_tax * 100) / 100).toLocaleString("es-ES", {minimumFractionDigits: 2})).replace(/0+$/,'').replace(/\,+$/,''));
+    $(".js-order-subtotal").text((Number(Math.round(price_wo_tax * 100) / 100).toLocaleString("es-ES", {minimumFractionDigits: 2})).replace(/0+$/,'').replace(/\,+$/,''));
+    $(".js-order-tax-amount").text((Number(Math.round(tax * 100) / 100).toLocaleString("es-ES", {minimumFractionDigits: 2})).replace(/0+$/,'').replace(/\,+$/,''));
+    $(".js-order-final-total").text((Number(Math.round(total_price * 100) / 100).toLocaleString("es-ES", {minimumFractionDigits: 2})).replace(/0+$/,'').replace(/\,+$/,''));
   }
 </script>
 

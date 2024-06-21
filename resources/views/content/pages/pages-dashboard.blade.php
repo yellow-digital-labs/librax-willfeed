@@ -33,9 +33,9 @@ $configData = Helper::appClasses();
 @section('page-script')
 <script>
 @if($total_orders>0)
-    var completed_orders = {!! "'".(formatAmountForItaly($completed_orders*100/$total_orders))."'" !!};
+    var completed_orders = {!! "'".number_format($completed_orders*100/$total_orders, 2)."'" !!};
 @else
-    var completed_orders = {!! "'0,00'" !!};
+    var completed_orders = {!! "'0.00'" !!};
 @endif
 </script>
 <script src="{{asset('assets/js/forms-pickers.js?version=1')}}"></script>
@@ -235,7 +235,7 @@ const budgetChartEl{{$count}} = document.querySelector('.budgetChart-{{$count}}'
                             <span class="badge bg-label-info p-1 rounded"><i class="ti ti-shopping-cart ti-xs"></i></span>
                             <p class="mb-0">Importo pagato</p>
                         </div>
-                        <h5 class="mb-0 pt-1 text-nowrap">{{formatAmountForItaly($approved_orders_paid_amount_per)}}%</h5>
+                        <h5 class="mb-0 pt-1 text-nowrap">{{formatAmountForItaly($approved_orders_paid_amount_per, false, '', 2)}}%</h5>
                         <small class="text-muted">€{{formatAmountForItaly($approved_orders_paid_amount)}}</small>
                     </div>
                     <div class="col-4">
@@ -250,7 +250,7 @@ const budgetChartEl{{$count}} = document.querySelector('.budgetChart-{{$count}}'
                             <p class="mb-0">Importo non pagato</p>
                             <span class="badge bg-label-primary p-1 rounded"><i class="ti ti-link ti-xs"></i></span>
                         </div>
-                        <h5 class="mb-0 pt-1 text-nowrap ms-lg-n3 ms-xl-0">{{formatAmountForItaly($approved_orders_unpaid_amount_per)}}%</h5>
+                        <h5 class="mb-0 pt-1 text-nowrap ms-lg-n3 ms-xl-0">{{formatAmountForItaly($approved_orders_unpaid_amount_per, false, '', 2)}}%</h5>
                         <small class="text-muted">€{{formatAmountForItaly($approved_orders_unpaid_amount)}}</small>
                     </div>
                 </div>
@@ -289,7 +289,7 @@ const budgetChartEl{{$count}} = document.querySelector('.budgetChart-{{$count}}'
                             <span class="badge bg-label-info p-1 rounded"><i class="ti ti-shopping-cart ti-xs"></i></span>
                             <p class="mb-0">Importo pagato</p>
                         </div>
-                        <h5 class="mb-0 pt-1 text-nowrap">{{formatAmountForItaly($approved_orders_paid_amount_per)}}%</h5>
+                        <h5 class="mb-0 pt-1 text-nowrap">{{formatAmountForItaly($approved_orders_paid_amount_per, false, '', 2)}}%</h5>
                         <small class="text-muted">€{{formatAmountForItaly($approved_orders_paid_amount)}}</small>
                     </div>
                     <div class="col-4">
@@ -304,7 +304,7 @@ const budgetChartEl{{$count}} = document.querySelector('.budgetChart-{{$count}}'
                             <p class="mb-0">Importo non pagato</p>
                             <span class="badge bg-label-primary p-1 rounded"><i class="ti ti-link ti-xs"></i></span>
                         </div>
-                        <h5 class="mb-0 pt-1 text-nowrap ms-lg-n3 ms-xl-0">{{formatAmountForItaly($approved_orders_unpaid_amount_per)}}%</h5>
+                        <h5 class="mb-0 pt-1 text-nowrap ms-lg-n3 ms-xl-0">{{formatAmountForItaly($approved_orders_unpaid_amount_per, false, '', 2)}}%</h5>
                         <small class="text-muted">€{{formatAmountForItaly($approved_orders_unpaid_amount)}}</small>
                     </div>
                 </div>
@@ -353,7 +353,7 @@ const budgetChartEl{{$count}} = document.querySelector('.budgetChart-{{$count}}'
                                 <p class="mb-0 fw-medium">€{{formatAmountForItaly($_top_selling_products->total_sales)}}</p>
                                 <p class="ms-3 text-success mb-0">
                                 @if($total_orders>0)
-                                    {{formatAmountForItaly($_top_selling_products->total_orders*100/$total_orders)}}%
+                                    {{formatAmountForItaly($_top_selling_products->total_orders*100/$total_orders, false, '', 2)}}%
                                 @else
                                     0,00%
                                 @endif
@@ -486,7 +486,7 @@ const budgetChartEl{{$count}} = document.querySelector('.budgetChart-{{$count}}'
                                 <p class="mb-0 fw-medium">{{$accept_vendor_conf_count}}</p>
                                 <p class="ms-3 text-success mb-0">
                                 @if($total_vendor_conf_count>0)
-                                    {{formatAmountForItaly($accept_vendor_conf_count * 100 / $total_vendor_conf_count)}}
+                                    {{formatAmountForItaly($accept_vendor_conf_count * 100 / $total_vendor_conf_count, false, '', 2)}}
                                 @else
                                     0,00
                                 @endif
@@ -503,7 +503,7 @@ const budgetChartEl{{$count}} = document.querySelector('.budgetChart-{{$count}}'
                                 <p class="mb-0 fw-medium">{{$pending_vendor_conf_count}}</p>
                                 <p class="ms-3 text-success mb-0">
                                 @if($total_vendor_conf_count>0)
-                                    {{formatAmountForItaly($pending_vendor_conf_count * 100 / $total_vendor_conf_count)}}
+                                    {{formatAmountForItaly($pending_vendor_conf_count * 100 / $total_vendor_conf_count, false, '', 2)}}
                                 @else
                                     0,00
                                 @endif
@@ -536,7 +536,7 @@ const budgetChartEl{{$count}} = document.querySelector('.budgetChart-{{$count}}'
                                 <p class="mb-0 fw-medium">{{$accept_vendor_conf_count}}</p>
                                 <p class="ms-3 text-success mb-0">
                                 @if($total_vendor_conf_count>0)
-                                    {{formatAmountForItaly($accept_vendor_conf_count * 100 / $total_vendor_conf_count)}}
+                                    {{formatAmountForItaly($accept_vendor_conf_count * 100 / $total_vendor_conf_count, false, '', 2)}}
                                 @else
                                     0,00
                                 @endif
@@ -553,7 +553,7 @@ const budgetChartEl{{$count}} = document.querySelector('.budgetChart-{{$count}}'
                                 <p class="mb-0 fw-medium">{{$pending_vendor_conf_count}}</p>
                                 <p class="ms-3 text-success mb-0">
                                 @if($total_vendor_conf_count>0)
-                                    {{formatAmountForItaly($pending_vendor_conf_count * 100 / $total_vendor_conf_count)}}
+                                    {{formatAmountForItaly($pending_vendor_conf_count * 100 / $total_vendor_conf_count, false, '', 2)}}
                                 @else
                                     0,00
                                 @endif

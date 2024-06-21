@@ -92,7 +92,7 @@ $configData = Helper::appClasses();
                     <div class="row g-2">
                         <div class="col mb-0">
                             <label for="credit_limit" class="form-label">Credit limit</label>
-                            <input type="number" id="credit_limit" name="credit_limit" class="form-control" placeholder="Enter credit limit">
+                            <input type="number" id="credit_limit" name="credit_limit" class="form-control" placeholder="Enter credit limit" lang="es-ES">
                         </div>
                     </div>
                 </div>

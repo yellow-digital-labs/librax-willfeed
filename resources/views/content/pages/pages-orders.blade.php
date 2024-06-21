@@ -77,7 +77,7 @@ $configData = Helper::appClasses();
                         <div>
                             <h6 class="mb-2 fw-normal">Ordini cancellati</h6>
                             <h4 class="mb-2">{{$rejected_orders}}</h4>
-                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{formatAmountForItaly($total_orders>0?100 * $rejected_orders / $total_orders:0)}}%</span></p>
+                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{formatAmountForItaly($total_orders>0?100 * $rejected_orders / $total_orders:0, false, '', 2)}}%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti p-2 me-sm-4 no-hover">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>
@@ -89,7 +89,7 @@ $configData = Helper::appClasses();
                         <div>
                             <h6 class="mb-2 fw-normal">Ordini completati</h6>
                             <h4 class="mb-2">{{$completed_orders}}</h4>
-                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{formatAmountForItaly($total_orders>0?100 * $completed_orders / $total_orders:0)}}%</span></p>
+                            <p class="mb-0"><span class="badge bg-label-danger fw-normal">{{formatAmountForItaly($total_orders>0?100 * $completed_orders / $total_orders:0, false, '', 2)}}%</span></p>
                         </div>
                         <span class="avatar avatar--prodotti p-2 no-hover">
                             <span class="avatar-initial bg-label-secondary rounded"><i class="ti-sm ti ti-smart-home text-body"></i></span>

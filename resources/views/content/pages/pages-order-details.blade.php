@@ -516,7 +516,7 @@ $configData = Helper::appClasses();
                     </div>
                     <div class="col-12">
                         <label class="form-label" for="payment_amount">Payment amount</label>
-                        <input type="number" id="payment_amount" class="form-select" name="payment_amount" />
+                        <input type="number" id="payment_amount" class="form-select" name="payment_amount" lang="es-ES"/>
                     </div>
                     <div class="col-12">
                         <label class="form-label" for="description">Payment note</label>

@@ -82,12 +82,12 @@ $configData = Helper::appClasses();
 
         <div class="mb-3">
             <label class="form-label" for="tax">IVA</label>
-            <input type="number" class="form-control" id="tax" placeholder="Inserisci platts odierno" name="tax" value="{{$isEdit?$product->tax:'22'}}" step=".01">
+            <input type="number" class="form-control" id="tax" placeholder="Inserisci platts odierno" name="tax" value="{{$isEdit?$product->tax:'22'}}" step=".01" lang="es-ES">
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="today_price">Platts <i>({{date('d/m/Y')}})</i></label>
-            <input type="number" class="form-control" id="today_price" placeholder="Inserisci platts odierno" name="today_price" value="{{$isEdit?$product->today_price:''}}" step=".01">
+            <input type="number" class="form-control" id="today_price" placeholder="Inserisci platts odierno" name="today_price" value="{{$isEdit?$product->today_price:''}}" step=".01" lang="es-ES">
         </div>
 
         <div class="form-check form-switch mb-3">
