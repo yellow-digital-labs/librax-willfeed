@@ -185,7 +185,7 @@ $configData = Helper::appClasses();
                             <label class="form-label" for="amount_30gg">Prezzo 30gg</label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
-                                <input type="number" name="amount_30gg" id="amount_30gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->amount_30gg:''}}" step=".01" />
+                                <input type="number" name="amount_30gg" id="amount_30gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->amount_30gg:''}}" lang="es-ES" step=".01" />
                                 <span class="input-group-text">/litri</span>
                             </div>
                         </div>
@@ -194,7 +194,7 @@ $configData = Helper::appClasses();
                             <label class="form-label" for="amount_60gg">Prezzo 60gg</label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
-                                <input type="number" name="amount_60gg" id="amount_60gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->amount_60gg:''}}" step=".01" />
+                                <input type="number" name="amount_60gg" id="amount_60gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->amount_60gg:''}}" lang="es-ES" step=".01" />
                                 <span class="input-group-text">/litri</span>
                             </div>
                         </div>
@@ -203,14 +203,14 @@ $configData = Helper::appClasses();
                             <label class="form-label" for="amount_90gg">Prezzo 90gg</label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
-                                <input type="number" name="amount_90gg" id="amount_90gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->amount_90gg:''}}" step=".01" />
+                                <input type="number" name="amount_90gg" id="amount_90gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->amount_90gg:''}}" lang="es-ES" step=".01" />
                                 <span class="input-group-text">/litri</span>
                             </div>
                         </div>
 
                         <div class="col-12">
                             <p class="small mb-0">IVA: <span id="js-tax-container">{{$product_detail?$product_detail->tax:'22.00'}}</span>%</p>
-                            <p class="small">Prezzo incluso iva: €<span id="amount">{{$product_detail?number_format($product_detail->amount, 5, ',', '.'):'0,00'}}</span></p>
+                            <p class="small">Prezzo incluso iva: €<span id="amount">{{$product_detail?formatAmountForItaly($product_detail->amount):'0,00'}}</span></p>
                         </div>
 
                         <!-- <div class="form-check mt-3">

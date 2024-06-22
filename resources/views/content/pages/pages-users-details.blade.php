@@ -1190,7 +1190,7 @@ $(document).ready(function () {
                                 <p>Riceverai una notifica alla scadenza del piano</p>
 
                                 <h6 class="mb-1">
-                                    €{{$user->subscription_amount}} al
+                                    €{{formatAmountForItaly($user->subscription_amount)}} al
                                     @php
                                     $is_printed = false;
                                     @endphp
@@ -1236,12 +1236,12 @@ $(document).ready(function () {
                                 @endif
                                 <div class="d-flex justify-content-between align-items-center mb-1 fw-semibold text-heading">
                                     <span>Giorni</span>
-                                    <span>{{$remainingDays}} giorni rimasti</span>
+                                    <span>{{formatAmountForItaly($remainingDays)}} giorni rimasti</span>
                                 </div>
                                 <div class="progress mb-1" style="height: 8px;">
                                     <div class="progress-bar" role="progressbar" style="width: {{$remainingDays * 100 /30}}%;" aria-valuenow="{{$remainingDays * 100 /30}}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <span>{{$remainingDays}} giorni rimasti alla scadenza.</span>
+                                <span>{{formatAmountForItaly($remainingDays)}} giorni rimasti alla scadenza.</span>
                             </div>
                         </div>
                     </div>
@@ -1268,7 +1268,7 @@ $(document).ready(function () {
                                         <div class="text-center">
                                             <div class="d-flex justify-content-center">
                                                 <sup class="h6 pricing-currency mt-3 mb-0 me-1 text-primary">€</sup>
-                                                <h1 class="fw-semibold display-4 mb-0 text-primary">{{$subscription->amount}}</h1>
+                                                <h1 class="fw-semibold display-4 mb-0 text-primary">{{formatAmountForItaly($subscription->amount)}}</h1>
                                                 <sub class="h6 pricing-duration mt-auto mb-2 text-muted fw-normal">/{{$subscription->plan_validity}}</sub>
                                             </div>
                                             <div class="d-flex justify-content-center">

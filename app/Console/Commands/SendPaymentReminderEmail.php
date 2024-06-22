@@ -57,7 +57,7 @@ class SendPaymentReminderEmail extends Command
                     "url" => $orderUrl,
                     "sellerName" => $order->seller_name,
                     "customerName" => $order->user_name,
-                    "amount" => $order->total_payable_amount,
+                    "amount" => formatAmountForItaly($order->total_payable_amount),
                     "paymentTerm" => $order->payment_option
                 ]));
 
@@ -66,7 +66,7 @@ class SendPaymentReminderEmail extends Command
                     "url" => $orderUrl,
                     "sellerName" => $order->seller_name,
                     "customerName" => $order->user_name,
-                    "amount" => $order->total_payable_amount,
+                    "amount" => formatAmountForItaly($order->total_payable_amount),
                     "paymentTerm" => $order->payment_option
                 ]));
             }

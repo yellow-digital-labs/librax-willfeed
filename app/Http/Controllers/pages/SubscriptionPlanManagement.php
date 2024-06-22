@@ -111,7 +111,7 @@ class SubscriptionPlanManagement extends Controller
         $nestedData["id"] = $customer->id;
         $nestedData["fake_id"] = ++$ids;
         $nestedData["name"] = $customer->name;
-        $nestedData["amount"] = "€".$customer->amount;
+        $nestedData["amount"] = "€".formatAmountForItaly($customer->amount);
         $nestedData["status"] = $customer->status;
         $nestedData["plan_validity"] = $customer->plan_validity;
 

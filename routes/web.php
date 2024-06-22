@@ -217,4 +217,7 @@ Route::middleware([
     //cookie list
     Route::get('/admin/cookie', $controller_path . '\CookieAdmin@index')->name('cookie-admin'); //order list view
     Route::get('/admin/cookie/list', $controller_path . '\CookieAdmin@list')->name('cookie-admin-list'); //order list data ajax
+
+    //notification
+    Route::post('/notification/read/{id}', $controller_path . '\Notification@read')->name('notification-read'); //notification read
 });

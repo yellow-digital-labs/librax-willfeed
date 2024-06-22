@@ -155,10 +155,10 @@ $configData = Helper::appClasses();
                                     </div>
                                 </div>
                             </td>
-                            <td><span>€{{number_format($order->product_amount)}}</span></td>
-                            <td><span class="text-body">{{$order->product_qty}} Litri</span></td>
+                            <td><span>€{{formatAmountForItaly($order->product_amount)}}</span></td>
+                            <td><span class="text-body">{{formatAmountForItaly($order->product_qty)}} Litri</span></td>
                             <td>
-                                <h6 class="mb-0">€{{number_format($order->product_amount * $order->product_qty, 2)}}</h6>
+                                <h6 class="mb-0">€{{formatAmountForItaly($order->product_amount * $order->product_qty)}}</h6>
                             </td>
                         </tr>
                     </tbody>
@@ -171,7 +171,7 @@ $configData = Helper::appClasses();
                     <div class="order-calculations justify-content-end">
                         <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Subtotale:</span>
-                            <h6 class="mb-0">€{{number_format($order->product_amount * $order->product_qty, 2)}}</h6>
+                            <h6 class="mb-0">€{{formatAmountForItaly($order->product_amount * $order->product_qty)}}</h6>
                         </div>
                         <!-- <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">Discount:</span>
@@ -179,11 +179,11 @@ $configData = Helper::appClasses();
                         </div> -->
                         <div class="d-flex justify-content-between mb-2">
                             <span class="w-px-100 text-heading">IVA:</span>
-                            <h6 class="mb-0">€{{number_format($order->total_payable_amount - ($order->product_amount * $order->product_qty), 2)}}</h6>
+                            <h6 class="mb-0">€{{formatAmountForItaly($order->total_payable_amount - ($order->product_amount * $order->product_qty))}}</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="w-px-100 mb-0">Totale:</h6>
-                            <h6 class="mb-0">€{{number_format(($order->total_payable_amount), 2)}}</h6>
+                            <h6 class="mb-0">€{{formatAmountForItaly(($order->total_payable_amount))}}</h6>
                         </div>
                     </div>
                 </div>
@@ -353,9 +353,9 @@ $configData = Helper::appClasses();
             </div>
             <div class="card-body pt-4">
                 <p class="d-flex justify-content-between">Dilazione di pagamento <span class="fw-semibold">{{$order->payment_option}}</span></p>
-                <p class="d-flex justify-content-between">Pagamento totale <span class="fw-semibold">€{{number_format($order->total_payable_amount, 2)}}</span></p>
-                <p class="d-flex justify-content-between">Pagamento fino ad ora <span class="fw-semibold text-success">€{{number_format($order->total_paid_amount, 2)}}</span></p>
-                <p class="d-flex justify-content-between">In attesa di Pagamento <span class="fw-semibold text-danger">€{{number_format($order->total_pending_amount, 2)}}</span></p>
+                <p class="d-flex justify-content-between">Pagamento totale <span class="fw-semibold">€{{formatAmountForItaly($order->total_payable_amount)}}</span></p>
+                <p class="d-flex justify-content-between">Pagamento fino ad ora <span class="fw-semibold text-success">€{{formatAmountForItaly($order->total_paid_amount)}}</span></p>
+                <p class="d-flex justify-content-between">In attesa di Pagamento <span class="fw-semibold text-danger">€{{formatAmountForItaly($order->total_pending_amount)}}</span></p>
             </div>
         </div>
     </div>
@@ -516,7 +516,7 @@ $configData = Helper::appClasses();
                     </div>
                     <div class="col-12">
                         <label class="form-label" for="payment_amount">Payment amount</label>
-                        <input type="number" id="payment_amount" class="form-select" name="payment_amount" />
+                        <input type="number" id="payment_amount" class="form-select" name="payment_amount" lang="es-ES"/>
                     </div>
                     <div class="col-12">
                         <label class="form-label" for="description">Payment note</label>

@@ -142,9 +142,9 @@ $configData = Helper::appClasses();
                                 <h3 class="filter__name">Prezzo</h3>
                                 <div class="mb-5 mt-4 noUi-primary" id="price-range"></div>
                                 <input type="hidden" id="price_min" name="price_min"
-                                    value="{{isset($request['price_min'])?$request['price_min']:''}}">
+                                    value="{{isset($request['price_min'])?formatAmountForItaly($request['price_min']):''}}">
                                 <input type="hidden" id="price_max" name="price_max"
-                                    value="{{isset($request['price_max'])?$request['price_max']:''}}">
+                                    value="{{isset($request['price_max'])?formatAmountForItaly($request['price_max']):''}}">
                             </div>
                             @endif
 
@@ -306,10 +306,10 @@ $configData = Helper::appClasses();
                                         <div class="product-prdata">
                                             <h2 class="product__name">{{$product->product_name}}</h2>
                                             <div class="product__fullprice">
-                                                €<span class="js-display-final-amount">{{$product->amount}}/LITRO</span> IVA inclusa
+                                                €<span class="js-display-final-amount">{{formatAmountForItaly($product->amount)}}/LITRO</span> IVA inclusa
                                             </div>
                                             <div class="product__price">
-                                                <span class="product__price-big">€<span class="js-display-without-tax">{{$product->amount_before_tax}}</span></span>/LITRO
+                                                <span class="product__price-big">€<span class="js-display-without-tax">{{formatAmountForItaly($product->amount_before_tax)}}</span></span>/LITRO
                                             </div>
                                             {{-- <div class="product__priceinfo">
                                                 (Inclusive Of all Tax)
@@ -509,7 +509,7 @@ $configData = Helper::appClasses();
                     <div class="row g-2">
                         <div class="col mb-0">
                             <label for="message" class="form-label">Limite di credito</label>
-                            <input type="number" id="credit_limit" name="credit_limit" class="form-control" placeholder="Inserisci il limite di credito">
+                            <input type="number" id="credit_limit" name="credit_limit" class="form-control" placeholder="Inserisci il limite di credito" lang="es-ES">
                         </div>
                     </div>
                 </div>

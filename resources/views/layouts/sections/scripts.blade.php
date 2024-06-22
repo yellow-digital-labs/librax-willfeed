@@ -20,6 +20,32 @@
 @yield('page-script')
 <!-- END: Page JS-->
 
+<script>
+    $(function () {
+        // ajax setup
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('.notification-click').on('click', function(){
+            let record_id = $(this).data("id");
+            let href = $(this).data("href");
+            $.ajax({
+                type: 'POST',
+                url: '/notification/read/'+record_id,
+                success: function success() {
+                    window.location.href = href;
+                },
+                error: function error(_error) {
+                    console.log(_error);
+                }
+            });
+        });
+    });
+</script>
+
 @stack('modals')
 @livewireScripts
 <script src="{{asset(mix('js/alpine.js'))}}"></script>
