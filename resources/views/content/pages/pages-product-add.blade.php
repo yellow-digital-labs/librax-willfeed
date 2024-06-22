@@ -86,6 +86,14 @@ $configData = Helper::appClasses();
         </div>
 
         <div class="mb-3">
+            <label class="form-label" for="price_type">Tipo di prezzo</label>
+            <select name="price_type" class="form-select select2">
+                <option value="PLATTS" {{$isEdit?($product->price_type == 'PLATTS' ? 'selected':''):''}}>PLATTS based</option>
+                <option value="NORMAL PRICING" {{$isEdit?($product->price_type == 'NORMAL PRICING' ? 'selected':''):''}}>NORMAL PRICING based</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
             <label class="form-label" for="today_price">Platts <i>({{date('d/m/Y')}})</i></label>
             <input type="number" class="form-control" id="today_price" placeholder="Inserisci platts odierno" name="today_price" value="{{$isEdit?$product->today_price:''}}" step=".01" lang="es-ES">
         </div>
