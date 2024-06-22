@@ -55,6 +55,13 @@ class DatabaseTriggers extends Command
         DB::unprepared('DROP TRIGGER IF EXISTS `products_after_update`');
         DB::unprepared('CREATE TRIGGER products_after_update AFTER UPDATE ON `products` FOR EACH ROW
                 BEGIN
+
+                    IF NEW.price_type <> OLD.price_type THEN
+                        UPDATE product_sellers SET price_type=NEW.price_type WHERE product_id=NEW.id;
+                    ELSEIF NEW.today_price <> OLD.today_price AND NEW.price_type = "PLATTS" THEN
+                        UPDATE product_sellers SET need_to_update = "1" WHERE product_id=NEW.id;
+                    END IF;
+
                     IF NEW.today_price<>OLD.today_price THEN
                         IF NEW.price_updated_at<>OLD.price_updated_at THEN
                             -- INSERT
@@ -75,7 +82,22 @@ class DatabaseTriggers extends Command
         DB::unprepared('CREATE TRIGGER product_sellers_before_insert BEFORE INSERT ON `product_sellers` FOR EACH ROW
                 BEGIN
                     SET NEW.seller_name = (SELECT business_name FROM user_details WHERE user_id=NEW.seller_id);
-                    SET NEW.product_name = (SELECT name FROM products WHERE id=NEW.product_id);
+                    (SELECT name, price_type, today_price INTO @product_name, @price_type, @base_price FROM products WHERE id=NEW.product_id);
+                    SET NEW.product_name = @product_name;
+                    SET NEW.price_type = @price_type;
+
+                    IF NEW.price_type = "NORMAL PRICING" THEN
+                        SET NEW.amount_before_tax = NEW.price_value;
+                        SET NEW.amount_30gg = NEW.price_value_30gg;
+                        SET NEW.amount_60gg = NEW.price_value_60gg;
+                        SET NEW.amount_90gg = NEW.price_value_90gg;
+                    ELSEIF NEW.price_type = "PLATTS" THEN
+                        SET NEW.amount_before_tax = @base_price + NEW.price_value;
+                        SET NEW.amount_30gg = @base_price + NEW.price_value_30gg;
+                        SET NEW.amount_60gg = @base_price + NEW.price_value_60gg;
+                        SET NEW.amount_90gg = @base_price + NEW.price_value_90gg;
+                    END IF;
+
                     SET NEW.tax = (SELECT tax FROM products WHERE id=NEW.product_id);
                     IF NEW.amount_before_tax IS NULL THEN
                         SET NEW.amount_before_tax = 0;
@@ -99,6 +121,66 @@ class DatabaseTriggers extends Command
         DB::unprepared('CREATE TRIGGER product_sellers_before_update BEFORE UPDATE ON `product_sellers` FOR EACH ROW
                 BEGIN
                     -- SET NEW.tax = 22;
+                    (SELECT today_price INTO @base_price FROM products WHERE id=NEW.product_id);
+                    IF NEW.need_to_update = "1" THEN
+                        IF NEW.price_type = "NORMAL PRICING" THEN
+                            SET NEW.amount_before_tax = NEW.price_value;
+                            SET NEW.amount_30gg = NEW.price_value_30gg;
+                            SET NEW.amount_60gg = NEW.price_value_60gg;
+                            SET NEW.amount_90gg = NEW.price_value_90gg;
+                        ELSEIF NEW.price_type = "PLATTS" THEN
+                            SET NEW.amount_before_tax = @base_price + NEW.price_value;
+                            SET NEW.amount_30gg = @base_price + NEW.price_value_30gg;
+                            SET NEW.amount_60gg = @base_price + NEW.price_value_60gg;
+                            SET NEW.amount_90gg = @base_price + NEW.price_value_90gg;
+                        END IF;
+                        SET NEW.need_to_update = "0";
+                    END IF;
+                    IF NEW.price_type <> OLD.price_type THEN
+                        IF NEW.price_type = "NORMAL PRICING" THEN
+                            SET NEW.amount_before_tax = NEW.price_value;
+                            SET NEW.amount_30gg = NEW.price_value_30gg;
+                            SET NEW.amount_60gg = NEW.price_value_60gg;
+                            SET NEW.amount_90gg = NEW.price_value_90gg;
+                        ELSEIF NEW.price_type = "PLATTS" THEN
+                            SET NEW.amount_before_tax = @base_price + NEW.price_value;
+                            SET NEW.amount_30gg = @base_price + NEW.price_value_30gg;
+                            SET NEW.amount_60gg = @base_price + NEW.price_value_60gg;
+                            SET NEW.amount_90gg = @base_price + NEW.price_value_90gg;
+                        END IF;
+                    END IF;
+
+                    IF NEW.price_value<>OLD.price_value THEN
+                        IF NEW.price_type = "NORMAL PRICING" THEN
+                            SET NEW.amount_before_tax = NEW.price_value;
+                        ELSEIF NEW.price_type = "PLATTS" THEN
+                            SET NEW.amount_before_tax = @base_price + NEW.price_value;
+                        END IF;
+                    END IF;
+
+                    IF NEW.price_value_30gg<>OLD.price_value_30gg THEN
+                        IF NEW.price_type = "NORMAL PRICING" THEN
+                            SET NEW.amount_30gg = NEW.price_value_30gg;
+                        ELSEIF NEW.price_type = "PLATTS" THEN
+                            SET NEW.amount_30gg = @base_price + NEW.price_value_30gg;
+                        END IF;
+                    END IF;
+
+                    IF NEW.price_value_60gg<>OLD.price_value_60gg THEN
+                        IF NEW.price_type = "NORMAL PRICING" THEN
+                            SET NEW.amount_60gg = NEW.price_value_60gg;
+                        ELSEIF NEW.price_type = "PLATTS" THEN
+                            SET NEW.amount_60gg = @base_price + NEW.price_value_60gg;
+                        END IF;
+                    END IF;
+
+                    IF NEW.price_value_90gg<>OLD.price_value_90gg THEN
+                        IF NEW.price_type = "NORMAL PRICING" THEN
+                            SET NEW.amount_90gg = NEW.price_value_90gg;
+                        ELSEIF NEW.price_type = "PLATTS" THEN
+                            SET NEW.amount_90gg = @base_price + NEW.price_value_90gg;
+                        END IF;
+                    END IF;
 
                     IF NEW.seller_id<>OLD.seller_id THEN
                         SET NEW.seller_name = (SELECT business_name FROM user_details WHERE user_id=NEW.seller_id);
