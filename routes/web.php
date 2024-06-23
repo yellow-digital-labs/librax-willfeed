@@ -130,6 +130,7 @@ Route::middleware([
     //customer groups
     Route::get('/customer-group-management', $controller_path . '\CustomerGroupManagementController@index')->name('customer-group-management');
     Route::get('/customer-group-management/list', $controller_path . '\CustomerGroupManagementController@list')->name('customer-group-management-list'); //customer group list data ajax
+    Route::get('/customer-group-management/create', $controller_path . '\CustomerGroupManagementController@create')->name('CustomerGroupManagementController-create'); //product create view
     Route::post('/customer-group-management', $controller_path . '\CustomerGroupManagementController@add')->name('customer-group-management-add');
     Route::get('/customer-group-management/{id}/edit', $controller_path . '\CustomerGroupManagementController@edit')->name('customer-group-management-edit'); //customer group detail data ajax
     Route::post('/customer-group-management/{id}/edit', $controller_path . '\CustomerGroupManagementController@store')->name('customer-group-management-store'); //customer group detail data ajax

@@ -138,6 +138,19 @@ class CustomerGroupManagementController extends Controller
         // return response()->json($subscription);
     }
 
+    public function create(){
+        $user_id = Auth::user()->id;
+        $customers = CustomerVerified::select(["users.*"])
+            ->join("users", "users.id", "=", "customer_verifieds.customer_id")
+            ->where("customer_verifieds.seller_id", "=", $user_id)
+            ->whereNotNull("customer_group")
+            ->get();
+            
+        return view('content.pages.pages-customer-group-management-create', [
+            "customers" => $customers,
+        ]);
+    }
+
     public function edit($id)
     {
         $subscription = CustomerGroup::where(['id' => $id])->first();
