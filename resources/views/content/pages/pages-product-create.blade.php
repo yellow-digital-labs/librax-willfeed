@@ -71,6 +71,50 @@ $configData = Helper::appClasses();
         $("#js-next-avail-date").text(display_date);
     });
 
+    $("#amount_before_tax").on("change", function(){
+        let amount_30gg = Number($('#amount_before_tax').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}); 
+        let price_type = $("#price-type-container").text();
+        if(price_type == "NORMAL PRICING") {
+            $("#vista-price-container").text(amount_30gg);
+        } else if(price_type == "PLATTS"){
+            let base_price = $("#base-price-container").text();
+            $("#vista-price-container").text(Number(+base_price + +$('#amount_before_tax').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}));
+        }
+    });
+
+    $("#amount_30gg").on("change", function(){
+      let amount_30gg = Number($('#amount_30gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}); 
+      let price_type = $("#price-type-container").text();
+      if(price_type == "NORMAL PRICING") {
+        $("#30gg-price-container").text(amount_30gg);
+      } else if(price_type == "PLATTS"){
+        let base_price = $("#base-price-container").text();
+        $("#30gg-price-container").text(Number(+base_price + +$('#amount_30gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}));
+      }      
+    });
+
+    $("#amount_60gg").on("change", function(){
+      let amount_60gg = Number($('#amount_60gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}); 
+      let price_type = $("#price-type-container").text();
+      if(price_type == "NORMAL PRICING") {
+        $("#60gg-price-container").text(amount_60gg);
+      } else if(price_type == "PLATTS"){
+        let base_price = $("#base-price-container").text();
+        $("#60gg-price-container").text(Number(+base_price + +$('#amount_60gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}));
+      }      
+    });
+
+    $("#amount_90gg").on("change", function(){
+      let amount_90gg = Number($('#amount_90gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}); 
+      let price_type = $("#price-type-container").text();
+      if(price_type == "NORMAL PRICING") {
+        $("#90gg-price-container").text(amount_90gg);
+      } else if(price_type == "PLATTS"){
+        let base_price = $("#base-price-container").text();
+        $("#90gg-price-container").text(Number(+base_price + +$('#amount_90gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}));
+      }      
+    });
+
     const getNextWorkingDay = (d, days_off_arr, lisOfDays) => {
         var d = getNextDay(new Date(d)); //get next day by default
         var day = lisOfDays[new Date(d).getDay()];
@@ -162,48 +206,51 @@ $configData = Helper::appClasses();
                                     <div class="badge rounded bg-label-danger">SCADUTO</div>
                                 @endif
                             @endif
+
+                            <div class="badge rounded bg-label-primary" id="price-type-container">{{$product_detail?$product_detail->price_type:''}}</div>
                         </h5>
                         @if($product_detail)
                         <span><strong>PREZZO PER IL: <span id="js-next-avail-date">{{App\Helpers\Helpers::calculateEstimateShippingDate($product_detail->delivery_time, $product_detail->delivery_days, $product_detail->days_off)}}</span></strong></span>
                         @else
                         <span><strong>PREZZO PER IL: <span id="js-next-avail-date">{{App\Helpers\Helpers::calculateEstimateShippingDate('00:01', null, '')}}</span></strong></span>
                         @endif
+                        <span>(€<span id="base-price-container">{{$_product->today_price}}</span>)</span>
                     </div>
                 </div>
                 <div class="card-body pt-4">
                     <div class="row g-3">
                         <div class="col-12">
-                            <label class="form-label" for="amount_before_tax">Prezzo a vista</label>
+                            <label class="form-label" for="amount_before_tax">Prezzo a vista €<span class="form-label" id="vista-price-container">{{$product_detail?formatAmountForItaly($product_detail->amount_before_tax):''}}</span></label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
-                                <input type="number" name="amount_before_tax" id="amount_before_tax" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->amount_before_tax:''}}" lang="es-ES" step=".01" />
+                                <input type="number" name="price_value" id="amount_before_tax" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value:''}}" lang="es-ES" step=".01" />
                                 <span class="input-group-text">/litri</span>
                             </div>
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label" for="amount_30gg">Prezzo 30gg</label>
+                            <label class="form-label" for="amount_30gg">Prezzo 30gg €<span class="form-label" id="30gg-price-container">{{$product_detail?formatAmountForItaly($product_detail->amount_30gg):''}}</span></label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
-                                <input type="number" name="amount_30gg" id="amount_30gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->amount_30gg:''}}" lang="es-ES" step=".01" />
+                                <input type="number" name="price_value_30gg" id="amount_30gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value_30gg:''}}" lang="es-ES" step=".01" />
                                 <span class="input-group-text">/litri</span>
                             </div>
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label" for="amount_60gg">Prezzo 60gg</label>
+                            <label class="form-label" for="amount_60gg">Prezzo 60gg €<span class="form-label" id="60gg-price-container">{{$product_detail?formatAmountForItaly($product_detail->amount_60gg):''}}</span></label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
-                                <input type="number" name="amount_60gg" id="amount_60gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->amount_60gg:''}}" lang="es-ES" step=".01" />
+                                <input type="number" name="price_value_60gg" id="amount_60gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value_60gg:''}}" lang="es-ES" step=".01" />
                                 <span class="input-group-text">/litri</span>
                             </div>
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label" for="amount_90gg">Prezzo 90gg</label>
+                            <label class="form-label" for="amount_90gg">Prezzo 90gg €<span class="form-label" id="90gg-price-container">{{$product_detail?formatAmountForItaly($product_detail->amount_90gg):''}}</span></label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
-                                <input type="number" name="amount_90gg" id="amount_90gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->amount_90gg:''}}" lang="es-ES" step=".01" />
+                                <input type="number" name="price_value_90gg" id="amount_90gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value_90gg:''}}" lang="es-ES" step=".01" />
                                 <span class="input-group-text">/litri</span>
                             </div>
                         </div>

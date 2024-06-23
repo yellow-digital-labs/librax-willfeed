@@ -62,10 +62,17 @@ $(document).ready(function () {
 
   function caclulate_price(){
     let amount_before_tax = $('#amount_before_tax').val();
-    let tax = $('#tax').val();
-    let amount = Number(+amount_before_tax + (amount_before_tax*tax/100)).toLocaleString("es-ES", {minimumFractionDigits: 2});
-
-    $("#amount").text(amount);
+    let tax = $('#js-tax-container').text();
+    console.log("tax", tax)
+    let amount = Number(+amount_before_tax + (amount_before_tax*tax/100)).toLocaleString("es-ES", {minimumFractionDigits: 5});
+    let price_type = $("#price-type-container").text();
+    if(price_type == "NORMAL PRICING") {
+      $("#amount").text(amount);
+    } else {
+      let base_price = $("#base-price-container").text();
+      let total = +amount_before_tax + +base_price;
+      $("#amount").text(Number(total + (total*tax/100)).toLocaleString("es-ES", {minimumFractionDigits: 5}));
+    }
   }
 
   $("#product_id").on("change", function () {

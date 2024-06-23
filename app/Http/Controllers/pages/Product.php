@@ -273,10 +273,10 @@ class Product extends Controller
         "product_id" => $request->product_id,
       ],
       [
-        "amount_before_tax" => $request->amount_before_tax,
-        "amount_30gg" => $request->amount_30gg,
-        "amount_60gg" => $request->amount_60gg,
-        "amount_90gg" => $request->amount_90gg,
+        "price_value" => $request->price_value,
+        "price_value_30gg" => $request->price_value_30gg,
+        "price_value_60gg" => $request->price_value_60gg,
+        "price_value_90gg" => $request->price_value_90gg,
         "delivery_time" => $request->delivery_time,
         "delivery_days" => 'Il giorno dopo',
         "days_off" => $request->days_off?implode(",",$request->days_off):"",
@@ -399,10 +399,10 @@ class Product extends Controller
         "product_id" => $request->product_id,
       ],
       [
-        "amount_before_tax" => $request->amount_before_tax,
-        "amount_30gg" => $request->amount_30gg,
-        "amount_60gg" => $request->amount_60gg,
-        "amount_90gg" => $request->amount_90gg,
+        "price_value" => $request->price_value,
+        "price_value_30gg" => $request->price_value_30gg,
+        "price_value_60gg" => $request->price_value_60gg,
+        "price_value_90gg" => $request->price_value_90gg,
         "delivery_time" => $request->delivery_time,
         "delivery_days" => 'Il giorno dopo',
         "days_off" => $request->days_off?implode(",",$request->days_off):"",
@@ -462,6 +462,8 @@ class Product extends Controller
       "code" => 200,
       "data" => $product->description,
       "tax" => $product->tax,
+      "price_type" => $product->price_type,
+      "today_price" => $product->today_price,
     ]);
   }
 

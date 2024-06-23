@@ -66,6 +66,14 @@ $(document).ready(function () {
       let amount = Number(+amount_before_tax + (amount_before_tax*tax/100)).toLocaleString("es-ES", {minimumFractionDigits: 2});
 
       $("#amount").text(amount);
+
+      let price_type = $("#price-type-container").text();
+      if(price_type == "NORMAL PRICING") {
+        $("#vista-price-container").text(Number(amount_before_tax).toLocaleString("es-ES", {minimumFractionDigits: 2}));
+      } else if(price_type == "PLATTS"){
+        let base_price = $("#base-price-container").text();
+        $("#vista-price-container").text(Number(+base_price + +amount_before_tax).toLocaleString("es-ES", {minimumFractionDigits: 2}));
+      }
     }
 
     $("#product_id").on("change", function(){
@@ -76,8 +84,10 @@ $(document).ready(function () {
             success: function success(res) {
                 let data = res.data;
                 let tax = res.tax;
-                $("#product-details-container").text(data);
+                $("#product-details-container").html(data);
+                $("#price-type-container").text(res.price_type);
                 $("#js-tax-container").text(tax);
+                $("#base-price-container").text(res.today_price);
                 caclulate_price();
             },
             error: function error(_error) {
