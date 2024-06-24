@@ -44,7 +44,7 @@ $configData = Helper::appClasses();
         <div class="card-title mb-0">
             <h5 class="mb-0 text-black">Elenco dei prezzi personalizzati</h5>
         </div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#add-new-record"><i class="ti ti-plus me-sm-1"></i> Aggiungi prezzo personalizzato</button>
+        <a href="/customer-group-management/create" class="btn btn-primary"><i class="ti ti-plus me-sm-1"></i> Aggiungi prezzo personalizzato</a>
     </div>
     <div class="card-datatable text-nowrap">
         <table class="dt-column-search table">

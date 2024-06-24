@@ -129,10 +129,20 @@ class CustomerGroupManagementController extends Controller
 
     public function add(Request $request)
     {
+        $user_id = Auth::user()->id;
         $subscription = CustomerGroup::create([
-            "vendor_id" => $user_id = Auth::user()->id,
+            "vendor_id" => Auth::user()->id,
             "customer_group_name" => $request->customer_group_name,
         ]);
+
+        foreach($request->customers as $customer){
+            CustomerVerified::where([
+                "seller_id" => $user_id,
+                "customer_id" => $customer,
+            ])->update([
+                "customer_group" => $subscription->id
+            ]);
+        }
 
         return redirect()->back();
         // return response()->json($subscription);
@@ -143,19 +153,35 @@ class CustomerGroupManagementController extends Controller
         $customers = CustomerVerified::select(["users.*"])
             ->join("users", "users.id", "=", "customer_verifieds.customer_id")
             ->where("customer_verifieds.seller_id", "=", $user_id)
-            ->whereNotNull("customer_group")
+            ->where("customer_group", "=", "0")
             ->get();
             
         return view('content.pages.pages-customer-group-management-create', [
             "customers" => $customers,
+            "customer_group" => 0,
         ]);
     }
 
     public function edit($id)
     {
+        $user_id = Auth::user()->id;
         $subscription = CustomerGroup::where(['id' => $id])->first();
 
-        return response()->json($subscription);
+        $customers = CustomerVerified::select(["users.*", "customer_verifieds.customer_group"])
+            ->join("users", "users.id", "=", "customer_verifieds.customer_id")
+            ->where("customer_verifieds.seller_id", "=", $user_id)
+            ->where(function ($query) use ($subscription) {
+                return $query
+                  ->where("customer_group", "=", "0")
+                  ->orWhere("customer_group", "=", $subscription->id);
+            })
+            ->get();
+
+        return view('content.pages.pages-customer-group-management-create', [
+            "subscription" => $subscription,
+            "customers" => $customers,
+            "customer_group" => $id,
+        ]);
     }
 
     public function store(Request $request, $id)
@@ -164,6 +190,15 @@ class CustomerGroupManagementController extends Controller
             "vendor_id" => $user_id = Auth::user()->id,
             "customer_group_name" => $request->customer_group_name,
         ]);
+
+        foreach($request->customers as $customer){
+            CustomerVerified::where([
+                "seller_id" => $user_id,
+                "customer_id" => $customer,
+            ])->update([
+                "customer_group" => $subscription->id
+            ]);
+        }
 
         return redirect()->back();
         // return response()->json($subscription);

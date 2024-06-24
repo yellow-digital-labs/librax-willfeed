@@ -214,7 +214,7 @@ $configData = Helper::appClasses();
                         @else
                         <span><strong>PREZZO PER IL: <span id="js-next-avail-date">{{App\Helpers\Helpers::calculateEstimateShippingDate('00:01', null, '')}}</span></strong></span>
                         @endif
-                        <span>(€<span id="base-price-container">{{$_product->today_price}}</span>)</span>
+                        <span>(€<span id="base-price-container">{{$_product?$_product->today_price:''}}</span>)</span>
                     </div>
                 </div>
                 <div class="card-body pt-4">

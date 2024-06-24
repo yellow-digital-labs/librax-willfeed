@@ -53,7 +53,7 @@ $(function() {
                 orderable: false,
                 render: function render(data, type, full, meta) {
                     return (
-                        '<a href="javascript:;" class="item-edit text-body edit-record" data-bs-toggle="offcanvas" data-bs-target="#add-new-record" data-id="'+full['id']+'"><i class="text-primary ti ti-pencil"></i></a>' + '<button class="btn btn-sm btn-icon delete-record" data-id="' + full['id'] + '"><i class=\"ti ti-trash\"></i></button>'
+                        '<a href="/customer-group-management/'+full['id']+'/edit" class="item-edit text-body edit-record" data-id="'+full['id']+'"><i class="text-primary ti ti-pencil"></i></a>' + '<button class="btn btn-sm btn-icon delete-record" data-id="' + full['id'] + '"><i class=\"ti ti-trash\"></i></button>'
                     );
                 }
             }, {
