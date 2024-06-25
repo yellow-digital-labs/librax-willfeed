@@ -93,6 +93,15 @@ class BuyerHome extends Controller
       $product_query = $product_query
         ->leftJoin('user_details', 'user_details.user_id', '=', 'product_sellers.seller_id')
         ->addSelect(["user_details.region", "user_details.main_activity_ids", "user_details.bank_transfer", "user_details.bank_check", "user_details.rib", "user_details.rid", "user_details.payment_extension"]);
+
+      if($user){
+        $product_query->join('customer_verifieds as cv', function($join) use ($user){
+          $join->where('cv.customer_id', '=', $user->id);
+          $join->on('cv.customer_group', '=', 'product_sellers.customer_groups_id');
+        });
+      } else {
+        $product_query->where(['customer_groups_id' => 0]);
+      }
       $is_user_details_joined = true;
 
       if($search){
