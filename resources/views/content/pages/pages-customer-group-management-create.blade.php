@@ -58,7 +58,7 @@ $configData = Helper::appClasses();
                     <div class="row g-3">
                         <div class="col-12">
                             <label class="form-label" for="customers">Customers</label>
-                            <select name="customers[]" class="form-select select2" data-minimum-results-for-search="Infinity" multiple required>
+                            <select name="customers[]" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                             @foreach($customers as $customer)
                                 <option value="{{$customer->id}}" {{$customer_group?($customer->customer_group==$customer_group?'selected':''):''}}>{{$customer->name}}</option>
                             @endforeach

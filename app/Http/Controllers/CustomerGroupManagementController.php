@@ -135,13 +135,15 @@ class CustomerGroupManagementController extends Controller
             "customer_group_name" => $request->customer_group_name,
         ]);
 
-        foreach($request->customers as $customer){
-            CustomerVerified::where([
-                "seller_id" => $user_id,
-                "customer_id" => $customer,
-            ])->update([
-                "customer_group" => $subscription->id
-            ]);
+        if($request->customers){
+            foreach($request->customers as $customer){
+                CustomerVerified::where([
+                    "seller_id" => $user_id,
+                    "customer_id" => $customer,
+                ])->update([
+                    "customer_group" => $subscription->id
+                ]);
+            }
         }
 
         return redirect()->back();
@@ -159,6 +161,7 @@ class CustomerGroupManagementController extends Controller
         return view('content.pages.pages-customer-group-management-create', [
             "customers" => $customers,
             "customer_group" => 0,
+            "subscription" => []
         ]);
     }
 
@@ -191,13 +194,15 @@ class CustomerGroupManagementController extends Controller
             "customer_group_name" => $request->customer_group_name,
         ]);
 
-        foreach($request->customers as $customer){
-            CustomerVerified::where([
-                "seller_id" => $user_id,
-                "customer_id" => $customer,
-            ])->update([
-                "customer_group" => $subscription->id
-            ]);
+        if($request->customers){
+            foreach($request->customers as $customer){
+                CustomerVerified::where([
+                    "seller_id" => $user_id,
+                    "customer_id" => $customer,
+                ])->update([
+                    "customer_group" => $subscription->id
+                ]);
+            }
         }
 
         return redirect()->back();

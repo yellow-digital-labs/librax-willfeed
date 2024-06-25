@@ -155,7 +155,7 @@ $configData = Helper::appClasses();
     </div>
   </div>
 @enderror
-<h1 class="h3 text-black mb-4">Aggiungi prodotto</h4>
+<h1 class="h3 text-black mb-4">Aggiungi prodotto ({{$customerGroupName}})</h4>
 <form id="productForm" onsubmit="return false" method="POST">
     @csrf
     <div class="row align-items-start g-4">
@@ -267,17 +267,16 @@ $configData = Helper::appClasses();
                             </label>
                         </div> -->
                         <hr/>
-
                         <div class="col-12">
                             <label class="form-label" for="delivery_time">Prezzi validi fino alle ore</label>
                             <div class="input-group">
-                                <input type="time" name="delivery_time" id="delivery_time" class="form-control" placeholder="" value="{{$product_detail?$product_detail->delivery_time:''}}" />
+                                <input type="time" name="delivery_time" id="delivery_time" class="form-control" placeholder="" value="{{$product_detail?$product_detail->delivery_time:''}}" {{$customerGroup==0?'':'disabled'}} />
                             </div>
                         </div>
 
                         <div class="col-12">
                             <label class="form-label" for="days_off">Giorni di chiusura</label>
-                            <select name="days_off[]" id="days_off" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
+                            <select name="days_off[]" id="days_off" class="form-select select2" data-minimum-results-for-search="Infinity" multiple {{$customerGroup==0?'':'disabled'}}>
                                 <option value="">Seleziona giorni non operativi </option>
                             @foreach ($days as $day)
                                 <option value="{{$day}}" {{$product_detail?(in_array($day, explode(",",$product_detail->days_off))?'selected':''):''}}>{{$day}}</option>
@@ -287,7 +286,7 @@ $configData = Helper::appClasses();
 
                         <div class="form-check form-switch mb-2">
                             <label class="form-check-label" for="status">Disponibilità</label>
-                            <input class="form-check-input" type="checkbox" name="status" id="status" value="active" {{$product_detail?($product_detail->status=='active'?'checked':''):'checked'}}>
+                            <input class="form-check-input" type="checkbox" name="status" id="status" value="active" {{$product_detail?($product_detail->status=='active'?'checked':''):'checked'}} {{$customerGroup==0?'':'disabled'}}>
                         </div>
 
                         {{-- @if($product_detail) --}}

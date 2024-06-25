@@ -15,6 +15,13 @@ $configData = Helper::appClasses();
 @section('page-style')
 <!-- Custom css -->
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+@if($customerGroup!=0)
+<style>
+.add-new, .delete-record-button {
+    display: none !important;
+}
+@endif
+</style>
 @endsection
 
 @section('vendor-script')
@@ -28,6 +35,13 @@ $configData = Helper::appClasses();
 <script>
     var urlCreateProductView = {!! "'".$urlCreateProductView."'" !!};
     var urlListProductData = {!! "'".$urlListProductData."'" !!};
+    var customerGroup = {{$customerGroup}};
+</script>
+<script>
+    function filterCustomerGroup(){
+        let option = $("#customerGroupSelection option:selected").val();
+        window.location.href="/products?customerGroup="+option;
+    }
 </script>
 @if($isAdmin)
 <script src="{{asset('assets/js/admin-product-list.js?version=1')}}"></script>
@@ -106,7 +120,21 @@ $configData = Helper::appClasses();
 <!-- Product List Table -->
 <div class="card">
     <div class="card-header">
-        <h5 class="card-title mb-0">Lista prodotti</h5>
+        <div class="row">
+            <div class="col-6">
+                <h5 class="card-title mb-0">Lista prodotti</h5>
+            </div>
+            @if(!$isAdmin)
+            <div class="col-6">
+                <select id="customerGroupSelection" class="form-select select2" placeholder="Select Cusromer Group" onchange="filterCustomerGroup();">
+                    <option value="0">Primo prezzo</option>
+                    @foreach($customerGroupsList as $_customerGroupsList)
+                        <option value="{{$_customerGroupsList->id}}" {{$customerGroup == $_customerGroupsList->id?'selected':''}}>{{$_customerGroupsList->customer_group_name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            @endif
+        </div>
     </div>
     <div class="card-datatable table-responsive">
         <table class="datatables-products table dt-column-search">

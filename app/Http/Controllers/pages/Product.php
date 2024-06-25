@@ -9,6 +9,7 @@ use App\Models\ProductSeller;
 use App\Models\Product as Products;
 use App\Models\ProductSellerInventoryHistory;
 use App\Models\Order;
+use App\Models\CustomerGroup;
 use App\Helpers\Helpers;
 use Auth;
 use DB;
@@ -16,18 +17,20 @@ use Redirect;
 
 class Product extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
     $isAdmin = Helpers::isAdmin();
     $user_id = Auth::user()->id;
+    $customerGroup = $request->customerGroup ?? 0;
 
     if($isAdmin){
       $urlCreateProductView = route("product-add");
     } else {
       $urlCreateProductView = route("product-create");
     }
-    $urlListProductData = route("product-list");
+    $urlListProductData = route("product-list")."?customerGroup=".$customerGroup;
 
+    $customerGroupsList = [];
     if($isAdmin){
       $total_products = Products::where([])->count();
       $active_products = Products::where(["active" => "yes"])->count();
@@ -48,6 +51,8 @@ class Product extends Controller
         ->orderBy('total_orders', 'DESC')
         ->orderBy('total_sales', 'DESC')
         ->first();
+
+      $customerGroupsList = CustomerGroup::where(["vendor_id" => $user_id, "status" => "active"])->get();
     }
 
     return view("content.pages.pages-product", [
@@ -58,6 +63,8 @@ class Product extends Controller
       "inactive_products" => $inactive_products,
       "bestSeller" => $bestSeller,
       "isAdmin" => $isAdmin,
+      "customerGroupsList" => $customerGroupsList,
+      "customerGroup" => $customerGroup,
     ]);
   }
 
@@ -65,6 +72,7 @@ class Product extends Controller
   {
     $isAdmin = Helpers::isAdmin();
     $user_id = Auth::user()->id;
+    $customerGroup = $request->customerGroup ?? 0;
     if($isAdmin){
       $columns = [
         1 => "id",
@@ -87,7 +95,8 @@ class Product extends Controller
     if($isAdmin){
       $f = Products::where([]);
     } else {
-      $f = ProductSeller::where("seller_id", "=", $user_id);
+      $f = ProductSeller::where("seller_id", "=", $user_id)
+        ->where("customer_groups_id", "=", $customerGroup);
     }
     $totalData = $f->count();
 
@@ -110,7 +119,8 @@ class Product extends Controller
         if($isAdmin){
           $productsObj = Products::where([]);
         } else {
-          $productsObj = ProductSeller::where("seller_id", "=", $user_id);
+          $productsObj = ProductSeller::where("seller_id", "=", $user_id)
+            ->where("customer_groups_id", "=", $customerGroup);
         }
 
         foreach ($applied_filters as $field => $search) {
@@ -126,7 +136,8 @@ class Product extends Controller
         if($isAdmin){
           $q = Products::where([]);
         } else {
-          $q = ProductSeller::where("seller_id", "=", $user_id);
+          $q = ProductSeller::where("seller_id", "=", $user_id)
+            ->where("customer_groups_id", "=", $customerGroup);
         }
         $products = $q
           ->offset($start)
@@ -159,7 +170,8 @@ class Product extends Controller
           })
           ->count();
       } else {
-        $q = ProductSeller::where("seller_id", "=", $user_id);
+        $q = ProductSeller::where("seller_id", "=", $user_id)
+          ->where("customer_groups_id", "=", $customerGroup);
 
         $products = $q
           ->where(function ($query) use ($search) {
@@ -226,24 +238,34 @@ class Product extends Controller
     }
   }
 
-  public function edit($id)
+  public function edit(Request $request, $id)
   {
     $user_id = Auth::user()->id;
+    $customerGroup = $request->customerGroup ?? 0;
+    $customerGroupName = "Primo prezzo";
     $products = Products::where(["active" => "yes"])->get();
     $product_detail = ProductSeller::where([
       "product_id" => $id,
       "seller_id" => $user_id,
+      "customer_groups_id" => $customerGroup,
     ])->first();
     $days = Helpers::listOfDays();
 
     $_product = Products::where(['id' => $id])->first();
+
+    if($customerGroup != 0){
+      $cg = CustomerGroup::where(["id" => $customerGroup])->first();
+      $customerGroupName = $cg->customer_group_name;
+    }
 
     if ($product_detail) {
       return view("content.pages.pages-product-create", [
         "products" => $products,
         "product_detail" => $product_detail,
         "_product" => $_product,
-        "days" => $days
+        "days" => $days,
+        "customerGroup" => $customerGroup,
+        "customerGroupName" => $customerGroupName,
       ]);
     } else {
       return Redirect::back()->withErrors([
@@ -255,6 +277,7 @@ class Product extends Controller
   public function update(Request $request, $id)
   {
     $user_id = Auth::user()->id;
+    $customerGroup = $request->customerGroup ?? 0;
 
     $product_avail = ProductSeller::where([
       "product_id" => $id,
@@ -271,18 +294,27 @@ class Product extends Controller
       [
         "seller_id" => $user_id,
         "product_id" => $request->product_id,
+        "customer_groups_id" => $customerGroup,
       ],
       [
         "price_value" => $request->price_value,
         "price_value_30gg" => $request->price_value_30gg,
         "price_value_60gg" => $request->price_value_60gg,
         "price_value_90gg" => $request->price_value_90gg,
+      ]
+    );
+
+    if($customerGroup == "0"){
+      ProductSeller::where([
+        "seller_id" => $user_id,
+        "product_id" => $request->product_id,
+      ])->update([
         "delivery_time" => $request->delivery_time,
         "delivery_days" => 'Il giorno dopo',
         "days_off" => $request->days_off?implode(",",$request->days_off):"",
         "status" => $request->status ? $request->status : "inactive",
-      ]
-    );
+      ]);
+    }
 
     return redirect()->route("product");
   }
@@ -397,6 +429,7 @@ class Product extends Controller
       [
         "seller_id" => $user_id,
         "product_id" => $request->product_id,
+        "customer_groups_id" => 0,
       ],
       [
         "price_value" => $request->price_value,
@@ -410,6 +443,28 @@ class Product extends Controller
         "current_stock" => $qty,
       ]
     );
+
+    $customer_groups = CustomerGroup::where(["vendor_id" => $user_id])->get();
+    foreach($customer_groups as $customer_group){
+      ProductSeller::updateOrCreate(
+        [
+          "seller_id" => $user_id,
+          "product_id" => $request->product_id,
+          "customer_groups_id" => $customer_group->id,
+        ],
+        [
+          "price_value" => $request->price_value,
+          "price_value_30gg" => $request->price_value_30gg,
+          "price_value_60gg" => $request->price_value_60gg,
+          "price_value_90gg" => $request->price_value_90gg,
+          "delivery_time" => $request->delivery_time,
+          "delivery_days" => 'Il giorno dopo',
+          "days_off" => $request->days_off?implode(",",$request->days_off):"",
+          "status" => $request->status ? $request->status : "inactive",
+          "current_stock" => $qty,
+        ]
+      );
+    }
 
     return redirect()->route("product");
   }

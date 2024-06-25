@@ -223,7 +223,7 @@ $(function () {
                     console.log("FULL", data)
                     var $customer_group = full['customer_group'] ? full['customer_group'] : '';
                     // return '<span class="user-customer_group">' + $customer_group + '</span>';
-                    let selectOption = `<select class="select2 change-customer-group" data-id="${full['id']}">
+                    let selectOption = `<select class="form-control select2 change-customer-group" data-id="${full['id']}">
                         <option value="0">Primo prezzo</option>`;
                     $.each(customer_groups, function(key, val){
                         selectOption += `<option value="${val.id}" ${val.id == $customer_group?'selected':''}>${val.customer_group_name}</option>`
