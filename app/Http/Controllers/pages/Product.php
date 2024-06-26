@@ -395,13 +395,17 @@ class Product extends Controller
 
   public function create()
   {
+    $customerGroup = 0;
+    $customerGroupName = "Primo prezzo";
     $products = Products::where(["active" => "yes"])->get();
     $days = Helpers::listOfDays();
     return view("content.pages.pages-product-create", [
       "products" => $products,
       "product_detail" => [],
       "_product" => [],
-      "days" => $days
+      "days" => $days,
+      "customerGroupName" => $customerGroupName,
+      "customerGroup" => $customerGroup,
     ]);
   }
 
