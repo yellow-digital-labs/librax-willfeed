@@ -28,7 +28,7 @@ $configData = Helper::appClasses();
     var urlListCustomerData = {!! "'".$urlListCustomerData."'" !!};
     var customer_groups = JSON.parse({!! "'".$customer_groups."'" !!});
 </script>
-<script src="{{asset('assets/js/approved-customer-datatables.js?version=2')}}"></script>
+<script src="{{asset('assets/js/approved-customer-datatables.js?version=3')}}"></script>
 @endsection
 
 @section('page-style')

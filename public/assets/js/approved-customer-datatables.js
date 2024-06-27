@@ -220,16 +220,14 @@ $(function () {
                 orderable: true,
                 responsivePriority: 4,
                 render: function render(data, type, full, meta) {
-                    console.log("FULL", data)
                     var $customer_group = full['customer_group'] ? full['customer_group'] : '';
-                    // return '<span class="user-customer_group">' + $customer_group + '</span>';
-                    let selectOption = `<select class="form-control select2 change-customer-group" data-id="${full['id']}">
-                        <option value="0">Primo prezzo</option>`;
+                    let customer_group_name = 'Primo prezzo';
                     $.each(customer_groups, function(key, val){
-                        selectOption += `<option value="${val.id}" ${val.id == $customer_group?'selected':''}>${val.customer_group_name}</option>`
+                        if(val.id == $customer_group){
+                            customer_group_name = val.customer_group_name;
+                        }
                     });
-                    selectOption += `</select>`;
-                    return selectOption;
+                    return '<span class="user-customer_group">' + customer_group_name + '</span>';
                 }
             }, {
                 // credit_limit
