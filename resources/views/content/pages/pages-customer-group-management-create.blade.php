@@ -58,11 +58,11 @@ $configData = Helper::appClasses();
             <div class="card">
                 <div class="card-header d-flex justify-content-between border-bottom">
                     <div class="card-title mb-0">
-                        <h5 class="mb-0 text-black">Scegli prodotto</h5>
+                        <h5 class="mb-0 text-black">Aggiungi clienti</h5>
                     </div>
                 </div>
                 <div class="card-body pt-4">
-                    <div class="row g-3">
+                    <div class="row g-3 mb-2">
                         <div class="col-12">
                             <label class="form-label" for="customer_group_name">Nome</label>
                             <input type="text" id="customer_group_name" name="customer_group_name" class="form-control" value="{{$subscription?$subscription->customer_group_name:''}}" required/>
@@ -70,7 +70,7 @@ $configData = Helper::appClasses();
                     </div>
                     <div class="row g-3">
                         <div class="col-12">
-                            <label class="form-label" for="customers">Customers</label>
+                            <label class="form-label" for="customers">Seleziona i clienti da aggiungere nella lista personalizzata</label>
                             <select name="customers[]" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                             @foreach($customers as $customer)
                                 <option value="{{$customer->id}}" {{$customer_group?($customer->customer_group==$customer_group?'selected':''):''}}>{{$customer->name}}</option>
