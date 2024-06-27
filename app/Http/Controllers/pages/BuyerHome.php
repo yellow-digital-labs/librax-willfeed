@@ -192,7 +192,17 @@ class BuyerHome extends Controller
     $products_list = $product_query->paginate(5);
 
     $products_filter = Product::where(["active" => "yes"])->get();
-    $products = ProductSeller::where(["status" => "active"])->orderBy("product_name", "ASC")->get();
+    $login_user_id = 0;
+    if(Auth::user()){
+      $login_user_id = Auth::user()->id;
+      $pSeller = ProductSeller::where(["product_sellers.status" => "active"])->orderBy("product_name", "ASC");
+      $products = $pSeller->join('customer_verifieds as cv', function($join) use ($login_user_id){
+        $join->where('cv.customer_id', '=', $login_user_id);
+        $join->on('cv.customer_group', '=', 'product_sellers.customer_groups_id');
+      })->get();
+    } else {
+      $products = ProductSeller::where(["status" => "active", "customer_groups_id" => 0])->orderBy("product_name", "ASC")->get();
+    }
     // $payment_options = PaymentOption::all();
     $payment_options = ["Bonifico Bancario", "Assegno Bancario", "RIBA", "RID"];
     $regions = Region::all();
