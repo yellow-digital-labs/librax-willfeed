@@ -121,11 +121,12 @@ $configData = Helper::appClasses();
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col-6">
+            <div class="col-8">
                 <h5 class="card-title mb-0">Lista prodotti</h5>
             </div>
             @if(!$isAdmin)
-            <div class="col-6">
+            <div class="col-4">
+                <label>Seleziona lista personalizzata</label>
                 <select id="customerGroupSelection" class="form-select select2" placeholder="Select Cusromer Group" onchange="filterCustomerGroup();">
                     <option value="0">Primo prezzo</option>
                     @foreach($customerGroupsList as $_customerGroupsList)

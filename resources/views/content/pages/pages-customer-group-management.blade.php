@@ -50,7 +50,7 @@ $configData = Helper::appClasses();
         <table class="dt-column-search table">
             <thead>
                 <tr>
-                    <th>Nome abbonamento</th>
+                    <th>Liste personalizzate</th>
                     <th>Azione</th>
                 </tr>
             </thead>
