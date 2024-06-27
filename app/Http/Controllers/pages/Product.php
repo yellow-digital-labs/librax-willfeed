@@ -549,9 +549,20 @@ class Product extends Controller
   }
 
   public function deleteAdmin($id){
-    Products::where([
-      "id" => $id
-    ])->delete();
+    $avail = ProductSeller::where([
+      "product_id" => $id,
+    ])->count();
+    if($avail>0){
+      return response()->json([
+        "message" => "Product is in use at seller side. Could not be able to delete.",
+        "code" => 201,
+        "data" => [],
+      ]);
+    } else {
+      Products::where([
+        "id" => $id
+      ])->delete();
+    }
 
     return response()->json([
       "message" => "Product deleted successfully",

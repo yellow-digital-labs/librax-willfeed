@@ -82,9 +82,11 @@ class DatabaseTriggers extends Command
         DB::unprepared('CREATE TRIGGER product_sellers_before_insert BEFORE INSERT ON `product_sellers` FOR EACH ROW
                 BEGIN
                     SET NEW.seller_name = (SELECT business_name FROM user_details WHERE user_id=NEW.seller_id);
-                    (SELECT name, price_type, today_price INTO @product_name, @price_type, @base_price FROM products WHERE id=NEW.product_id);
-                    SET NEW.product_name = @product_name;
-                    SET NEW.price_type = @price_type;
+                    IF NEW.product_name IS NULL THEN
+                        (SELECT name, price_type, today_price INTO @product_name, @price_type, @base_price FROM products WHERE id=NEW.product_id);
+                        SET NEW.product_name = @product_name;
+                        SET NEW.price_type = @price_type;
+                    END IF;
 
                     IF NEW.price_type = "NORMAL PRICING" THEN
                         SET NEW.amount_before_tax = NEW.price_value;

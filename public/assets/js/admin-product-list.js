@@ -251,21 +251,31 @@
                         $.ajax({
                             type: 'DELETE',
                             url: "".concat(baseUrl, "admin/product/").concat(user_id),
-                            success: function success() {
+                            success: function success(res) {
                                 dt_user.draw();
+                                if(res.code == 200){
+                                    // success sweetalert
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Deleted!',
+                                        text: res.message,
+                                        customClass: {
+                                            confirmButton: 'btn btn-success'
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Cancelled',
+                                        text: res.message,
+                                        customClass: {
+                                            confirmButton: 'btn btn-success'
+                                        }
+                                    });
+                                }
                             },
                             error: function error(_error) {
                                 console.log(_error);
-                            }
-                        });
-
-                        // success sweetalert
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Deleted!',
-                            text: 'The product has been deleted!',
-                            customClass: {
-                                confirmButton: 'btn btn-success'
                             }
                         });
                     } else if (result.dismiss === Swal.DismissReason.cancel) {
