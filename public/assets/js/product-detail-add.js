@@ -88,6 +88,14 @@ $(document).ready(function () {
                 $("#price-type-container").text(res.price_type);
                 $("#js-tax-container").text(tax);
                 $("#base-price-container").text(res.today_price);
+
+                if(res.price_type == "PLATTS"){
+                  $(".js-platts-price-container").show();
+                  $(".js-platts-price-container-not").hide();
+                } else {
+                  $(".js-platts-price-container").hide();
+                  $(".js-platts-price-container-not").show();
+                }
                 caclulate_price();
             },
             error: function error(_error) {

@@ -68,7 +68,7 @@ $configData = Helper::appClasses();
             display_date = `${dayDate}-${month}-${year}`;
         }
         
-        $("#js-next-avail-date").text(display_date);
+        $(".js-next-avail-date").text(display_date);
     });
 
     $("#amount_before_tax").on("change", function(){
@@ -210,17 +210,28 @@ $configData = Helper::appClasses();
                             <div class="badge rounded bg-label-primary" id="price-type-container">{{$product_detail?$product_detail->price_type:''}}</div>
                         </h5>
                         @if($product_detail)
-                        <span><strong>PREZZO PER IL: <span id="js-next-avail-date">{{App\Helpers\Helpers::calculateEstimateShippingDate($product_detail->delivery_time, $product_detail->delivery_days, $product_detail->days_off)}}</span></strong></span>
-                        @else
-                        <span><strong>PREZZO PER IL: <span id="js-next-avail-date">{{App\Helpers\Helpers::calculateEstimateShippingDate('00:01', null, '')}}</span></strong></span>
+                        <span><strong>PREZZO PER IL: <span class="js-next-avail-date">{{App\Helpers\Helpers::calculateEstimateShippingDate($product_detail->delivery_time, $product_detail->delivery_days, $product_detail->days_off)}}</span></strong></span>
+                        @if($product_detail->price_type == "PLATTS")
+                        <br>
+                        <strong>PLATTS DEL <span class="js-next-avail-date">{{App\Helpers\Helpers::calculateEstimateShippingDate($product_detail->delivery_time, $product_detail->delivery_days, $product_detail->days_off)}}:</span>
+                        <span id="base-price-container">{{$_product?$_product->today_price:''}}</span>€</strong>
                         @endif
-                        <span>(€<span id="base-price-container">{{$_product?$_product->today_price:''}}</span>)</span>
+                        @else
+                        <span><strong>PREZZO PER IL: <span class="js-next-avail-date">{{App\Helpers\Helpers::calculateEstimateShippingDate('00:01', null, '')}}</span></strong></span>
+                        <br>
+                        <span class="js-platts-price-container" style="display: none;"><strong>PLATTS DEL <span class="js-next-avail-date">{{App\Helpers\Helpers::calculateEstimateShippingDate('00:01', null, '')}}</span>: <span id="base-price-container">{{$_product?$_product->today_price:''}}</span>€</span></strong>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body pt-4">
                     <div class="row g-3">
+                        <div class="col-12 js-platts-price-container">
+                            <label class="form-label">
+                                Inserisci margine su PLATTS
+                            </label>
+                        </div>
                         <div class="col-12">
-                            <label class="form-label" for="amount_before_tax">Prezzo a vista €<span class="form-label" id="vista-price-container">{{$product_detail?formatAmountForItaly($product_detail->amount_before_tax):''}}</span></label>
+                            <label class="form-label" for="amount_before_tax">Prezzo a vista <span class="js-platts-price-container"><span class="form-label" id="vista-price-container">{{$product_detail?formatAmountForItaly($product_detail->amount_before_tax):''}}</span>€</span></label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
                                 <input type="number" name="price_value" id="amount_before_tax" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value:''}}" lang="es-ES" step=".01" />
@@ -229,7 +240,7 @@ $configData = Helper::appClasses();
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label" for="amount_30gg">Prezzo 30gg €<span class="form-label" id="30gg-price-container">{{$product_detail?formatAmountForItaly($product_detail->amount_30gg):''}}</span></label>
+                            <label class="form-label" for="amount_30gg">Prezzo 30gg <span class="js-platts-price-container"><span class="form-label" id="30gg-price-container">{{$product_detail?formatAmountForItaly($product_detail->amount_30gg):''}}</span>€</span></label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
                                 <input type="number" name="price_value_30gg" id="amount_30gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value_30gg:''}}" lang="es-ES" step=".01" />
@@ -238,7 +249,7 @@ $configData = Helper::appClasses();
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label" for="amount_60gg">Prezzo 60gg €<span class="form-label" id="60gg-price-container">{{$product_detail?formatAmountForItaly($product_detail->amount_60gg):''}}</span></label>
+                            <label class="form-label" for="amount_60gg">Prezzo 60gg <span class="js-platts-price-container"><span class="form-label" id="60gg-price-container">{{$product_detail?formatAmountForItaly($product_detail->amount_60gg):''}}</span>€</span></label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
                                 <input type="number" name="price_value_60gg" id="amount_60gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value_60gg:''}}" lang="es-ES" step=".01" />
@@ -247,7 +258,7 @@ $configData = Helper::appClasses();
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label" for="amount_90gg">Prezzo 90gg €<span class="form-label" id="90gg-price-container">{{$product_detail?formatAmountForItaly($product_detail->amount_90gg):''}}</span></label>
+                            <label class="form-label" for="amount_90gg">Prezzo 90gg <span class="js-platts-price-container"><span class="form-label" id="90gg-price-container">{{$product_detail?formatAmountForItaly($product_detail->amount_90gg):''}}</span>€</span></label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
                                 <input type="number" name="price_value_90gg" id="amount_90gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value_90gg:''}}" lang="es-ES" step=".01" />
@@ -257,7 +268,7 @@ $configData = Helper::appClasses();
 
                         <div class="col-12">
                             <p class="small mb-0">IVA: <span id="js-tax-container">{{$product_detail?$product_detail->tax:'22.00'}}</span>%</p>
-                            <p class="small">Prezzo incluso iva: €<span id="amount">{{$product_detail?formatAmountForItaly($product_detail->amount):'0,00'}}</span></p>
+                            <p class="small js-platts-price-container-not">Prezzo incluso iva: €<span id="amount">{{$product_detail?formatAmountForItaly($product_detail->amount):'0,00'}}</span></p>
                         </div>
 
                         <!-- <div class="form-check mt-3">
