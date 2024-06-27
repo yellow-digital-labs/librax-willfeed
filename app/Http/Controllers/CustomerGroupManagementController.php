@@ -195,9 +195,17 @@ class CustomerGroupManagementController extends Controller
 
     public function store(Request $request, $id)
     {
+        $user_id = Auth::user()->id;
         $subscription = CustomerGroup::where(['id' => $id])->update([
-            "vendor_id" => $user_id = Auth::user()->id,
+            "vendor_id" => $user_id,
             "customer_group_name" => $request->customer_group_name,
+        ]);
+
+        CustomerVerified::where([
+            "seller_id" => $user_id,
+            "customer_group" => $id,
+        ])->update([
+            "customer_group" => 0,
         ]);
 
         if($request->customers){
@@ -206,7 +214,7 @@ class CustomerGroupManagementController extends Controller
                     "seller_id" => $user_id,
                     "customer_id" => $customer,
                 ])->update([
-                    "customer_group" => $subscription->id
+                    "customer_group" => $id
                 ]);
             }
         }
