@@ -22,11 +22,11 @@ class Customer extends Controller
   {
     $urlListCustomerData = route("customer-list");
 
-    $customer_groups = [];
-    if(Helpers::isSeller()){
+    // $customer_groups = [];
+    // if(Helpers::isSeller()){
       $user_id = Auth::user()->id;
       $customer_groups = CustomerGroup::where("vendor_id", "=", $user_id)->get();
-    }
+    // }
 
     return view("content.pages.pages-approved-customer", [
       "urlListCustomerData" => $urlListCustomerData,
