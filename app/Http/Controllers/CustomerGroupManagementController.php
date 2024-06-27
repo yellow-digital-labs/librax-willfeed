@@ -152,7 +152,7 @@ class CustomerGroupManagementController extends Controller
             }
         }
 
-        return redirect()->back();
+        return redirect()->route('customer-group-management');
         // return response()->json($subscription);
     }
 
@@ -211,7 +211,7 @@ class CustomerGroupManagementController extends Controller
             }
         }
 
-        return redirect()->back();
+        return redirect()->route('customer-group-management');
         // return response()->json($subscription);
     }
 

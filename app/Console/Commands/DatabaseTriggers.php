@@ -478,5 +478,13 @@ class DatabaseTriggers extends Command
                         UPDATE customer_verifieds SET customer_region = NEW.region WHERE customer_id=NEW.user_id;
                     END IF;
                 END');
+
+        //customer_groups
+        DB::unprepared('DROP TRIGGER IF EXISTS `customer_groups_after_insert`');
+        DB::unprepared('CREATE TRIGGER customer_groups_after_insert AFTER INSERT ON `customer_groups` FOR EACH ROW
+                BEGIN
+                    SET @customer_groups_id = NEW.id;
+                    INSERT INTO product_sellers(customer_groups_id, seller_id, seller_name, product_id, product_name, price_type, price_value, price_value_30gg, price_value_60gg, need_to_update, price_value_90gg, amount_before_tax, amount_before_tax_old, amount_before_tax_old_date, amount_30gg, amount_60gg, amount_90gg, tax, amount, current_stock, stock_in_transit, stock_lifetime, stock_updated_at, add_vat_to_price, delivery_time, delivery_days, days_off, status, created_at, updated_at) SELECT @customer_groups_id, seller_id, seller_name, product_id, product_name, price_type, price_value, price_value_30gg, price_value_60gg, need_to_update, price_value_90gg, amount_before_tax, amount_before_tax_old, amount_before_tax_old_date, amount_30gg, amount_60gg, amount_90gg, tax, amount, current_stock, stock_in_transit, stock_lifetime, stock_updated_at, add_vat_to_price, delivery_time, delivery_days, days_off, status, created_at, updated_at FROM product_sellers WHERE seller_id=NEW.vendor_id AND customer_groups_id=0;
+                END');
     }
 }
