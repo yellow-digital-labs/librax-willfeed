@@ -32,7 +32,7 @@ $configData = Helper::appClasses();
     $(document).ready(function(){
         let price_type_val = $("#price_type-selection").find("option:selected").val();
         updateDisplayField(price_type_val);
-        
+
         $("#price_type-selection").on("change", function(){
             let price_type_val = $(this).find("option:selected").val();
             updateDisplayField(price_type_val);
@@ -110,8 +110,8 @@ $configData = Helper::appClasses();
         <div class="mb-3">
             <label class="form-label" for="price_type">Tipo di prezzo</label>
             <select name="price_type" id="price_type-selection" class="form-select select2">
-                <option value="PLATTS" {{$isEdit?($product->price_type == 'PLATTS' ? 'selected':''):''}}>PLATTS based</option>
-                <option value="NORMAL PRICING" {{$isEdit?($product->price_type == 'NORMAL PRICING' ? 'selected':''):''}}>NORMAL PRICING based</option>
+                <option value="PLATTS" {{$isEdit?($product->price_type == 'PLATTS' ? 'selected':''):''}}>Margine su Platts</option>
+                <option value="NORMAL PRICING" {{$isEdit?($product->price_type == 'NORMAL PRICING' ? 'selected':''):''}}>Prezzo fisso</option>
             </select>
         </div>
 
