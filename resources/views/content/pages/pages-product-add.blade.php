@@ -28,6 +28,28 @@ $configData = Helper::appClasses();
 </script>
 <script src="{{asset('assets/js/forms-editors.js?version=1')}}"></script>
 <script src="{{asset('assets/js/admin-product-add.js?version=1')}}"></script>
+<script>
+    $(document).ready(function(){
+        let price_type_val = $("#price_type-selection").find("option:selected").val();
+        updateDisplayField(price_type_val);
+        
+        $("#price_type-selection").on("change", function(){
+            let price_type_val = $(this).find("option:selected").val();
+            updateDisplayField(price_type_val);
+        });
+
+        function updateDisplayField(price_type_val){
+            $("#today_price-container").find("input").val("");
+            if(price_type_val == "PLATTS") {
+                $("#today_price-container").show();
+                $("#today_price-container").find("input").attr("required", "true");
+            } else {
+                $("#today_price-container").hide();
+                $("#today_price-container").find("input").removeAttr("required");
+            }
+        }
+    });
+</script>
 @endsection
 
 @section('page-style')
@@ -87,13 +109,13 @@ $configData = Helper::appClasses();
 
         <div class="mb-3">
             <label class="form-label" for="price_type">Tipo di prezzo</label>
-            <select name="price_type" class="form-select select2">
+            <select name="price_type" id="price_type-selection" class="form-select select2">
                 <option value="PLATTS" {{$isEdit?($product->price_type == 'PLATTS' ? 'selected':''):''}}>PLATTS based</option>
                 <option value="NORMAL PRICING" {{$isEdit?($product->price_type == 'NORMAL PRICING' ? 'selected':''):''}}>NORMAL PRICING based</option>
             </select>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3" id="today_price-container">
             <label class="form-label" for="today_price">Platts <i>({{date('d/m/Y')}})</i></label>
             <input type="number" class="form-control" id="today_price" placeholder="Inserisci platts odierno" name="today_price" value="{{$isEdit?$product->today_price:''}}" step=".01" lang="es-ES">
         </div>
