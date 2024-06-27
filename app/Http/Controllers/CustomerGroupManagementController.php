@@ -41,7 +41,9 @@ class CustomerGroupManagementController extends Controller
 
         $search = [];
 
-        $f = CustomerGroup::where([]);
+        $f = CustomerGroup::where([
+            "vendor_id" => $user_id,
+        ]);
         $totalData = $f->count();
 
         $totalFiltered = $totalData;
@@ -60,7 +62,9 @@ class CustomerGroupManagementController extends Controller
 
         if (empty($request->input("search.value"))) {
             if (count($applied_filters) > 0) {
-                $customersObj = CustomerGroup::where([]);
+                $customersObj = CustomerGroup::where([
+                    "vendor_id" => $user_id,
+                ]);
                 
                 foreach ($applied_filters as $field => $search) {
                 $customersObj->where($field, "LIKE", "%{$search}%");
@@ -72,7 +76,9 @@ class CustomerGroupManagementController extends Controller
                 ->orderBy($order, $dir)
                 ->get();
             } else {
-                $customers = CustomerGroup::where([])
+                $customers = CustomerGroup::where([
+                    "vendor_id" => $user_id,
+                ])
                 ->offset($start)
                 ->limit($limit)
                 ->orderBy($order, $dir)
