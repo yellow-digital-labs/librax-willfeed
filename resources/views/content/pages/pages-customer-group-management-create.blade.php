@@ -27,6 +27,19 @@ $configData = Helper::appClasses();
 <!-- Flat Picker -->
 <script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+
+<script>
+    $(document).ready(function(){
+        let select2 = $('.select2');
+        if (select2.length) {
+            var $this = select2;
+            $this.wrap('<div class="position-relative"></div>').select2({
+                placeholder: 'Select Country',
+                dropdownParent: $this.parent()
+            });
+        }
+    });
+</script>
 @endsection
 
 @section('content')
