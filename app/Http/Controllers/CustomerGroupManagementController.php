@@ -232,7 +232,7 @@ class CustomerGroupManagementController extends Controller
 
         if($assigned > 0){
             return response()->json([
-                "message" => "Customer group is assigned to customer. You can not delete this",
+                "message" => "Prima di eliminare la lista, rimuovi i clienti della lista",
                 "code" => 201,
                 "data" => [],
             ]);
@@ -242,7 +242,7 @@ class CustomerGroupManagementController extends Controller
             ])->delete();
         
             return response()->json([
-                "message" => "Customer group deleted successfully",
+                "message" => "Gruppo di clienti eliminato correttamente",
                 "code" => 200,
                 "data" => [],
             ]);

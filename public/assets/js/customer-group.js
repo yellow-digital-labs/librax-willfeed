@@ -178,11 +178,12 @@ $(document).on('click', '.delete-record', function () {
 
     // sweetalert for confirmation of delete
     Swal.fire({
-        title: 'Are you sure?',
+        title: 'Sei sicuro?',
         text: "You won't be able to revert this!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
+        confirmButtonText: 'Sì, cancellalo!',
+        cancelButtonText: 'Annulla',
         customClass: {
             confirmButton: 'btn btn-primary me-3',
             cancelButton: 'btn btn-label-secondary'
@@ -209,7 +210,7 @@ $(document).on('click', '.delete-record', function () {
                         });
                     } else {
                         Swal.fire({
-                            title: 'Cancelled',
+                            title: 'Impossibile cancellare lista',
                             text: res.message,
                             icon: 'error',
                             customClass: {
@@ -224,7 +225,7 @@ $(document).on('click', '.delete-record', function () {
             });
         } else if (result.dismiss === Swal.DismissReason.cancel) {
             Swal.fire({
-                title: 'Cancelled',
+                title: 'Annullata',
                 text: 'The product is not deleted!',
                 icon: 'error',
                 customClass: {
