@@ -35,11 +35,13 @@ $configData = Helper::appClasses();
 
         $("#price_type-selection").on("change", function(){
             let price_type_val = $(this).find("option:selected").val();
-            updateDisplayField(price_type_val);
+            updateDisplayField(price_type_val, true);
         });
 
-        function updateDisplayField(price_type_val){
-            $("#today_price-container").find("input").val("");
+        function updateDisplayField(price_type_val, isUpdateVal = false){
+            if(isUpdateVal){
+                $("#today_price-container").find("input").val("");
+            }
             if(price_type_val == "PLATTS") {
                 $("#today_price-container").show();
                 $("#today_price-container").find("input").attr("required", "true");
@@ -117,7 +119,7 @@ $configData = Helper::appClasses();
 
         <div class="mb-3" id="today_price-container">
             <label class="form-label" for="today_price">Platts <i>({{date('d/m/Y')}})</i></label>
-            <input type="number" class="form-control" id="today_price" placeholder="Inserisci platts odierno" name="today_price" value="{{$isEdit?$product->today_price:''}}" step=".01" lang="es-ES">
+            <input type="number" class="form-control" id="today_price" placeholder="Inserisci platts odierno" name="today_price" value="{{$isEdit?$product->today_price:''}}" step=".00001" lang="es-ES" autocomplete="off">
         </div>
 
         <div class="form-check form-switch mb-3">

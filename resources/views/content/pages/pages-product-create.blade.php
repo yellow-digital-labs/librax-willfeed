@@ -243,7 +243,7 @@ $configData = Helper::appClasses();
                             <label class="form-label js-platts-price-container-not" for="amount_before_tax">Prezzo a vista</label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
-                                <input type="number" name="price_value" id="amount_before_tax" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value:''}}" lang="es-ES" step=".01" />
+                                <input type="number" name="price_value" id="amount_before_tax" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value:''}}" lang="es-ES" step=".00001" />
                                 <span class="input-group-text">/litri</span>
                             </div>
                         </div>
@@ -253,7 +253,7 @@ $configData = Helper::appClasses();
                             <label class="form-label js-platts-price-container-not" for="amount_30gg">Prezzo 30gg</label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
-                                <input type="number" name="price_value_30gg" id="amount_30gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value_30gg:''}}" lang="es-ES" step=".01" />
+                                <input type="number" name="price_value_30gg" id="amount_30gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value_30gg:''}}" lang="es-ES" step=".00001" />
                                 <span class="input-group-text">/litri</span>
                             </div>
                         </div>
@@ -263,7 +263,7 @@ $configData = Helper::appClasses();
                             <label class="form-label js-platts-price-container-not" for="amount_60gg">Prezzo 60gg</label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
-                                <input type="number" name="price_value_60gg" id="amount_60gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value_60gg:''}}" lang="es-ES" step=".01" />
+                                <input type="number" name="price_value_60gg" id="amount_60gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value_60gg:''}}" lang="es-ES" step=".00001" />
                                 <span class="input-group-text">/litri</span>
                             </div>
                         </div>
@@ -273,7 +273,7 @@ $configData = Helper::appClasses();
                             <label class="form-label js-platts-price-container-not" for="amount_90gg">Prezzo 90gg</label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
-                                <input type="number" name="price_value_90gg" id="amount_90gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value_90gg:''}}" lang="es-ES" step=".01" />
+                                <input type="number" name="price_value_90gg" id="amount_90gg" class="form-control js-price-input" placeholder="0,00" value="{{$product_detail?$product_detail->price_value_90gg:''}}" lang="es-ES" step=".00001" />
                                 <span class="input-group-text">/litri</span>
                             </div>
                         </div>
