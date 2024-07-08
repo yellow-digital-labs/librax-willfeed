@@ -63,16 +63,16 @@ $(document).ready(function () {
     function caclulate_price(){
       let amount_before_tax = $('#amount_before_tax').val();
       let tax = $('#js-tax-container').text();
-      let amount = Number(+amount_before_tax + (amount_before_tax*tax/100)).toLocaleString("es-ES", {minimumFractionDigits: 2});
+      let amount = Number(+amount_before_tax + (amount_before_tax*tax/100)).toLocaleString("es-ES", {minimumFractionDigits: 5});
 
       $("#amount").text(amount);
 
       let price_type = $("#price-type-container").text();
       if(price_type == "NORMAL PRICING") {
-        $("#vista-price-container").text(Number(amount_before_tax).toLocaleString("es-ES", {minimumFractionDigits: 2}));
+        $("#vista-price-container").text(Number(amount_before_tax).toLocaleString("es-ES", {minimumFractionDigits: 5}));
       } else if(price_type == "PLATTS"){
         let base_price = $("#base-price-container").text();
-        $("#vista-price-container").text(Number(+base_price + +amount_before_tax).toLocaleString("es-ES", {minimumFractionDigits: 2}));
+        $("#vista-price-container").text(Number(+base_price + +amount_before_tax).toLocaleString("es-ES", {minimumFractionDigits: 5}));
       }
     }
 

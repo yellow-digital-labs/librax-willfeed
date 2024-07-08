@@ -89,15 +89,47 @@ class DatabaseTriggers extends Command
                     END IF;
 
                     IF NEW.price_type = "NORMAL PRICING" THEN
-                        SET NEW.amount_before_tax = NEW.price_value;
-                        SET NEW.amount_30gg = NEW.price_value_30gg;
-                        SET NEW.amount_60gg = NEW.price_value_60gg;
-                        SET NEW.amount_90gg = NEW.price_value_90gg;
+                        IF NEW.price_value IS NULL THEN
+                            SET NEW.amount_before_tax = 0;
+                        ELSE
+                            SET NEW.amount_before_tax = NEW.price_value;
+                        END IF;
+                        IF NEW.price_value_30gg IS NULL THEN
+                            SET NEW.amount_30gg = 0;
+                        ELSE
+                            SET NEW.amount_30gg = NEW.price_value_30gg;
+                        END IF;
+                        IF NEW.price_value_60gg IS NULL THEN
+                            SET NEW.amount_60gg = 0;
+                        ELSE
+                            SET NEW.amount_60gg = NEW.price_value_60gg;
+                        END IF;
+                        IF NEW.price_value_90gg IS NULL THEN
+                            SET NEW.amount_90gg = 0;
+                        ELSE
+                            SET NEW.amount_90gg = NEW.price_value_90gg;
+                        END IF;
                     ELSEIF NEW.price_type = "PLATTS" THEN
-                        SET NEW.amount_before_tax = @base_price + NEW.price_value;
-                        SET NEW.amount_30gg = @base_price + NEW.price_value_30gg;
-                        SET NEW.amount_60gg = @base_price + NEW.price_value_60gg;
-                        SET NEW.amount_90gg = @base_price + NEW.price_value_90gg;
+                        IF NEW.price_value IS NULL THEN
+                            SET NEW.amount_before_tax = 0;
+                        ELSE
+                            SET NEW.amount_before_tax = @base_price + NEW.price_value;
+                        END IF;
+                        IF NEW.price_value_30gg IS NULL THEN
+                            SET NEW.amount_30gg = 0;
+                        ELSE
+                            SET NEW.amount_30gg = @base_price + NEW.price_value_30gg;
+                        END IF;
+                        IF NEW.price_value_60gg IS NULL THEN
+                            SET NEW.amount_60gg = 0;
+                        ELSE
+                            SET NEW.amount_60gg = @base_price + NEW.price_value_60gg;
+                        END IF;
+                        IF NEW.price_value_90gg IS NULL THEN
+                            SET NEW.amount_90gg = 0;
+                        ELSE
+                            SET NEW.amount_90gg = @base_price + NEW.price_value_90gg;
+                        END IF;
                     END IF;
 
                     SET NEW.tax = (SELECT tax FROM products WHERE id=NEW.product_id);
@@ -126,61 +158,157 @@ class DatabaseTriggers extends Command
                     (SELECT today_price INTO @base_price FROM products WHERE id=NEW.product_id);
                     IF NEW.need_to_update = "1" THEN
                         IF NEW.price_type = "NORMAL PRICING" THEN
-                            SET NEW.amount_before_tax = NEW.price_value;
-                            SET NEW.amount_30gg = NEW.price_value_30gg;
-                            SET NEW.amount_60gg = NEW.price_value_60gg;
-                            SET NEW.amount_90gg = NEW.price_value_90gg;
+                            IF NEW.price_value IS NULL THEN
+                                SET NEW.amount_before_tax = 0;
+                            ELSE
+                                SET NEW.amount_before_tax = NEW.price_value;
+                            END IF;
+                            IF NEW.price_value_30gg IS NULL THEN
+                                SET NEW.amount_30gg = 0;
+                            ELSE
+                                SET NEW.amount_30gg = NEW.price_value_30gg;
+                            END IF;
+                            IF NEW.price_value_60gg IS NULL THEN
+                                SET NEW.amount_60gg = 0;
+                            ELSE
+                                SET NEW.amount_60gg = NEW.price_value_60gg;
+                            END IF;
+                            IF NEW.price_value_90gg IS NULL THEN
+                                SET NEW.amount_90gg = 0;
+                            ELSE
+                                SET NEW.amount_90gg = NEW.price_value_90gg;
+                            END IF;
                         ELSEIF NEW.price_type = "PLATTS" THEN
-                            SET NEW.amount_before_tax = @base_price + NEW.price_value;
-                            SET NEW.amount_30gg = @base_price + NEW.price_value_30gg;
-                            SET NEW.amount_60gg = @base_price + NEW.price_value_60gg;
-                            SET NEW.amount_90gg = @base_price + NEW.price_value_90gg;
+                            IF NEW.price_value IS NULL THEN
+                                SET NEW.amount_before_tax = 0;
+                            ELSE
+                                SET NEW.amount_before_tax = @base_price + NEW.price_value;
+                            END IF;
+                            IF NEW.price_value_30gg IS NULL THEN
+                                SET NEW.amount_30gg = 0;
+                            ELSE
+                                SET NEW.amount_30gg = @base_price + NEW.price_value_30gg;
+                            END IF;
+                            IF NEW.price_value_60gg IS NULL THEN
+                                SET NEW.amount_60gg = 0;
+                            ELSE
+                                SET NEW.amount_60gg = @base_price + NEW.price_value_60gg;
+                            END IF;
+                            IF NEW.price_value_90gg IS NULL THEN
+                                SET NEW.amount_90gg = 0;
+                            ELSE
+                                SET NEW.amount_90gg = @base_price + NEW.price_value_90gg;
+                            END IF;
                         END IF;
                         SET NEW.need_to_update = "0";
                     END IF;
                     IF NEW.price_type <> OLD.price_type THEN
                         IF NEW.price_type = "NORMAL PRICING" THEN
-                            SET NEW.amount_before_tax = NEW.price_value;
-                            SET NEW.amount_30gg = NEW.price_value_30gg;
-                            SET NEW.amount_60gg = NEW.price_value_60gg;
-                            SET NEW.amount_90gg = NEW.price_value_90gg;
+                            IF NEW.price_value IS NULL THEN
+                                SET NEW.amount_before_tax = 0;
+                            ELSE
+                                SET NEW.amount_before_tax = NEW.price_value;
+                            END IF;
+                            IF NEW.price_value_30gg IS NULL THEN
+                                SET NEW.amount_30gg = 0;
+                            ELSE
+                                SET NEW.amount_30gg = NEW.price_value_30gg;
+                            END IF;
+                            IF NEW.price_value_60gg IS NULL THEN
+                                SET NEW.amount_60gg = 0;
+                            ELSE
+                                SET NEW.amount_60gg = NEW.price_value_60gg;
+                            END IF;
+                            IF NEW.price_value_90gg IS NULL THEN
+                                SET NEW.amount_90gg = 0;
+                            ELSE
+                                SET NEW.amount_90gg = NEW.price_value_90gg;
+                            END IF;
                         ELSEIF NEW.price_type = "PLATTS" THEN
-                            SET NEW.amount_before_tax = @base_price + NEW.price_value;
-                            SET NEW.amount_30gg = @base_price + NEW.price_value_30gg;
-                            SET NEW.amount_60gg = @base_price + NEW.price_value_60gg;
-                            SET NEW.amount_90gg = @base_price + NEW.price_value_90gg;
+                            IF NEW.price_value IS NULL THEN
+                                SET NEW.amount_before_tax = 0;
+                            ELSE
+                                SET NEW.amount_before_tax = @base_price + NEW.price_value;
+                            END IF;
+                            IF NEW.price_value_30gg IS NULL THEN
+                                SET NEW.amount_30gg = 0;
+                            ELSE
+                                SET NEW.amount_30gg = @base_price + NEW.price_value_30gg;
+                            END IF;
+                            IF NEW.price_value_60gg IS NULL THEN
+                                SET NEW.amount_60gg = 0;
+                            ELSE
+                                SET NEW.amount_60gg = @base_price + NEW.price_value_60gg;
+                            END IF;
+                            IF NEW.price_value_90gg IS NULL THEN
+                                SET NEW.amount_90gg = 0;
+                            ELSE
+                                SET NEW.amount_90gg = @base_price + NEW.price_value_90gg;
+                            END IF;
                         END IF;
                     END IF;
 
                     IF NEW.price_value<>OLD.price_value THEN
                         IF NEW.price_type = "NORMAL PRICING" THEN
-                            SET NEW.amount_before_tax = NEW.price_value;
+                            IF NEW.price_value IS NULL THEN
+                                SET NEW.amount_before_tax = 0;
+                            ELSE
+                                SET NEW.amount_before_tax = NEW.price_value;
+                            END IF;
                         ELSEIF NEW.price_type = "PLATTS" THEN
-                            SET NEW.amount_before_tax = @base_price + NEW.price_value;
+                            IF NEW.price_value IS NULL THEN
+                                SET NEW.amount_before_tax = 0;
+                            ELSE
+                                SET NEW.amount_before_tax = @base_price + NEW.price_value;
+                            END IF;
                         END IF;
                     END IF;
 
                     IF NEW.price_value_30gg<>OLD.price_value_30gg THEN
                         IF NEW.price_type = "NORMAL PRICING" THEN
-                            SET NEW.amount_30gg = NEW.price_value_30gg;
+                            IF NEW.price_value_30gg IS NULL THEN
+                                SET NEW.amount_30gg = 0;
+                            ELSE
+                                SET NEW.amount_30gg = NEW.price_value_30gg;
+                            END IF;
                         ELSEIF NEW.price_type = "PLATTS" THEN
-                            SET NEW.amount_30gg = @base_price + NEW.price_value_30gg;
+                            IF NEW.price_value_30gg IS NULL THEN
+                                SET NEW.amount_30gg = 0;
+                            ELSE
+                                SET NEW.amount_30gg = @base_price + NEW.price_value_30gg;
+                            END IF;
                         END IF;
                     END IF;
 
                     IF NEW.price_value_60gg<>OLD.price_value_60gg THEN
                         IF NEW.price_type = "NORMAL PRICING" THEN
-                            SET NEW.amount_60gg = NEW.price_value_60gg;
+                            IF NEW.price_value_60gg IS NULL THEN
+                                SET NEW.amount_60gg = 0;
+                            ELSE
+                                SET NEW.amount_60gg = NEW.price_value_60gg;
+                            END IF;
                         ELSEIF NEW.price_type = "PLATTS" THEN
-                            SET NEW.amount_60gg = @base_price + NEW.price_value_60gg;
+                            IF NEW.price_value_60gg IS NULL THEN
+                                SET NEW.amount_60gg = 0;
+                            ELSE
+                                SET NEW.amount_60gg = @base_price + NEW.price_value_60gg;
+                            END IF;
                         END IF;
                     END IF;
 
                     IF NEW.price_value_90gg<>OLD.price_value_90gg THEN
                         IF NEW.price_type = "NORMAL PRICING" THEN
-                            SET NEW.amount_90gg = NEW.price_value_90gg;
+                            IF NEW.price_value_90gg IS NULL THEN
+                                SET NEW.amount_90gg = 0;
+                            ELSE
+                                SET NEW.amount_90gg = NEW.price_value_90gg;
+                            END IF;
                         ELSEIF NEW.price_type = "PLATTS" THEN
-                            SET NEW.amount_90gg = @base_price + NEW.price_value_90gg;
+                            IF NEW.price_value_90gg IS NULL THEN
+                                SET NEW.amount_90gg = 0;
+                            ELSE
+                                SET NEW.amount_90gg = @base_price + NEW.price_value_90gg;
+                            END IF;
                         END IF;
                     END IF;
 

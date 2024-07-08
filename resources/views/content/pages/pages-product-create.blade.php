@@ -80,46 +80,46 @@ $configData = Helper::appClasses();
     });
 
     $("#amount_before_tax").on("change", function(){
-        let amount_30gg = Number($('#amount_before_tax').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}); 
+        let amount_30gg = Number($('#amount_before_tax').val()).toLocaleString("es-ES", {minimumFractionDigits: 5}); 
         let price_type = $("#price-type-container").text();
         if(price_type == "NORMAL PRICING") {
             $("#vista-price-container").text(amount_30gg);
         } else if(price_type == "PLATTS"){
             let base_price = $("#base-price-container").text();
-            $("#vista-price-container").text(Number(+base_price + +$('#amount_before_tax').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}));
+            $("#vista-price-container").text(Number(+base_price + +$('#amount_before_tax').val()).toLocaleString("es-ES", {minimumFractionDigits: 5}));
         }
     });
 
     $("#amount_30gg").on("change", function(){
-      let amount_30gg = Number($('#amount_30gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}); 
+      let amount_30gg = Number($('#amount_30gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 5}); 
       let price_type = $("#price-type-container").text();
       if(price_type == "NORMAL PRICING") {
         $("#30gg-price-container").text(amount_30gg);
       } else if(price_type == "PLATTS"){
         let base_price = $("#base-price-container").text();
-        $("#30gg-price-container").text(Number(+base_price + +$('#amount_30gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}));
+        $("#30gg-price-container").text(Number(+base_price + +$('#amount_30gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 5}));
       }      
     });
 
     $("#amount_60gg").on("change", function(){
-      let amount_60gg = Number($('#amount_60gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}); 
+      let amount_60gg = Number($('#amount_60gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 5}); 
       let price_type = $("#price-type-container").text();
       if(price_type == "NORMAL PRICING") {
         $("#60gg-price-container").text(amount_60gg);
       } else if(price_type == "PLATTS"){
         let base_price = $("#base-price-container").text();
-        $("#60gg-price-container").text(Number(+base_price + +$('#amount_60gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}));
+        $("#60gg-price-container").text(Number(+base_price + +$('#amount_60gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 5}));
       }      
     });
 
     $("#amount_90gg").on("change", function(){
-      let amount_90gg = Number($('#amount_90gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}); 
+      let amount_90gg = Number($('#amount_90gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 5}); 
       let price_type = $("#price-type-container").text();
       if(price_type == "NORMAL PRICING") {
         $("#90gg-price-container").text(amount_90gg);
       } else if(price_type == "PLATTS"){
         let base_price = $("#base-price-container").text();
-        $("#90gg-price-container").text(Number(+base_price + +$('#amount_90gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 2}));
+        $("#90gg-price-container").text(Number(+base_price + +$('#amount_90gg').val()).toLocaleString("es-ES", {minimumFractionDigits: 5}));
       }      
     });
 

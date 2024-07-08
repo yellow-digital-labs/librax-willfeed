@@ -313,6 +313,7 @@ class Product extends Controller
         "delivery_days" => 'Il giorno dopo',
         "days_off" => $request->days_off?implode(",",$request->days_off):"",
         "status" => $request->status ? $request->status : "inactive",
+        "need_to_update" => 1
       ]);
     }
 
