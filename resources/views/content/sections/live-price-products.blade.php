@@ -15,8 +15,7 @@
             $price_diff_per = number_format($price_diff_per, 2);
         @endphp
         <div class="uk-width-1-4 dash-charts__col">
-            <!-- <a href="/buyer-home?search={{$product->product_name}}&price_min=&price_max="> -->
-            <a href="{{route("register")}}">
+            <a href="/buyer-home?search={{$product->product_name}}&price_min=&price_max=">
                 <div class="dash-charts__item">
                     <div class="dash-charts__upper">
                         <div class="dash-charts__icon">

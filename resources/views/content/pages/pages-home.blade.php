@@ -61,7 +61,6 @@ $configData = Helper::appClasses();
         </div>
     </div>
 
-    @if(Auth::user() && App\Helpers\Helpers::isBuyer())
     <div class="dash-charts uk-slider uk-slider-container" data-uk-slider="center: true; autoplay: true; pause-on-hover: true; autoplay-interval: 2000">
         <div class="uk-container">
             <div class="dash-charts__container">
@@ -72,7 +71,6 @@ $configData = Helper::appClasses();
             </div>
         </div>
     </div>
-    @endif
 
     <div class="landing-clrblock" id="vendor">
         <div class="uk-container landing-clrblock__container landing-clrblock__container--sell">

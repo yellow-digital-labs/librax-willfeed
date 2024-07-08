@@ -30,7 +30,7 @@ $configData = Helper::appClasses();
 @if($product_detail)
 <script src="{{asset('assets/js/product-detail.js?version=2')}}"></script>
 @else
-<script src="{{asset('assets/js/product-detail-add.js?version=2')}}"></script>
+<script src="{{asset('assets/js/product-detail-add.js?version=3')}}"></script>
 @endif
 <script>
     @if($product_detail)
