@@ -195,7 +195,7 @@ class BuyerHome extends Controller
     $login_user_id = 0;
     if(Auth::user()){
       $login_user_id = Auth::user()->id;
-      $pSeller = ProductSeller::where(["product_sellers.status" => "active"])->orderBy("product_name", "ASC");
+      $pSeller = ProductSeller::select("product_sellers.*")->where(["product_sellers.status" => "active"])->orderBy("product_name", "ASC");
       $products = $pSeller->join('customer_verifieds as cv', function($join) use ($login_user_id){
         $join->where('cv.customer_id', '=', $login_user_id);
         $join->on('cv.customer_group', '=', 'product_sellers.customer_groups_id');
