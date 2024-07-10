@@ -224,7 +224,7 @@
                     }, {
                         // price_validate
                         targets: 3,
-                        // visible: false,
+                        visible: false,
                         searchable: false,
                         orderable: true,
                         responsivePriority: 4,
@@ -240,8 +240,8 @@
                         orderable: true,
                         responsivePriority: 4,
                         render: function render(data, type, full, meta) {
-                            var $status = full['status'] ? full['status'] : '';
-                            return '<span class="badge text-uppercase bg-label-'+($status=='active'?'success':'danger')+'">' + $status + '</span>';
+                            var $status = full['status'] == 'active' ? 'ATTIVO' : 'DISATTIVATO';
+                            return '<span class="badge text-uppercase bg-label-'+($status=='ATTIVO'?'success':'danger')+'">' + $status + '</span>';
                         }
                     }],
                     order: [[2, 'desc']],

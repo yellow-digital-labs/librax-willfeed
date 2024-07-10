@@ -46,7 +46,7 @@ $configData = Helper::appClasses();
 @if($isAdmin)
 <script src="{{asset('assets/js/admin-product-list.js?version=2')}}"></script>
 @else
-<script src="{{asset('assets/js/seller-product-list.js?version=2')}}"></script>
+<script src="{{asset('assets/js/seller-product-list.js?version=3')}}"></script>
 @endif
 @endsection
 

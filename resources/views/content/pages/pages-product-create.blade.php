@@ -211,7 +211,11 @@ $configData = Helper::appClasses();
                                 @if(date('Y-m-d', strtotime($product_detail->updated_at)) == date('Y-m-d'))
                                     <div class="badge rounded bg-label-success">VALIDO</div>
                                 @else
-                                    <div class="badge rounded bg-label-danger">SCADUTO</div>
+                                    @if($product_detail->price_type == "PLATTS")
+                                        <div class="badge rounded bg-label-success">VALIDO</div>
+                                    @else
+                                        <div class="badge rounded bg-label-danger">SCADUTO</div>
+                                    @endif
                                 @endif
                             @endif
 

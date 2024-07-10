@@ -212,7 +212,11 @@ class Product extends Controller
           $nestedData["product_name"] = $product->product_name;
           $nestedData["amount_before_tax"] = "€" . formatAmountForItaly($product->amount_before_tax) . "/LITERS";
           $nestedData["updated_at"] = date("d-m-Y H:i", strtotime($product->updated_at));
-          $nestedData["price_validate"] = (date('Y-m-d', strtotime($product->updated_at)) == date('Y-m-d') ? true : false);
+          if($product->price_type == "PLATTS"){
+            $nestedData["price_validate"] = true;
+          } else {
+            $nestedData["price_validate"] = (date('Y-m-d', strtotime($product->updated_at)) == date('Y-m-d') ? true : false);
+          }
           $nestedData["status"] = $product->status;
           $nestedData["product_id"] = $product->product_id;
         }
