@@ -605,7 +605,7 @@ $configData = Helper::appClasses();
     </div>
 </div>
 
-<a href="https://wa.me/393470412793?text=Ciao, ho bisogno di aiuto per l'ordine"  id="whatsapp-button" target="_blank">
+<a href="https://wa.me/3492442269?text=Ciao, ho bisogno di aiuto per l'ordine"  id="whatsapp-button" target="_blank">
     <img src="{{url('/assets/img/icons/whatsapp-icon.png')}}" alt="">
 </a>
 

@@ -25,7 +25,7 @@
             <span class="wf-icon wf-icon-phone-call footer-info__icon"></span>
             <div class="footer-info__data">
                 <h2 class="footer-info__name">7/7</h2>
-                <a href="tel:+39 3470412793" class="footer-info__href">+39 3470412793</a>
+                <a href="tel:+39 3492442269" class="footer-info__href">+39 349 244 2269</a>
             </div>
         </div>
     </div>
