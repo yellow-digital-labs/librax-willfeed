@@ -347,13 +347,13 @@ public function extendFreeTrial($id) {
 
       $last_update_exp_date = $user->last_update_exp_datetime ? Carbon::parse($user->last_update_exp_datetime) : null;
 
-      if ($last_update_exp_date && $last_update_exp_date->addDays(30)->isFuture()) {
-        return response()->json([
-            "message" => "È possibile estendere la prova solo una volta ogni 30 giorni.",
-            "code" => 500,
-            "data" => [],
-        ], 500);
-      }
+      // if ($last_update_exp_date && $last_update_exp_date->addDays(30)->isFuture()) {
+      //   return response()->json([
+      //       "message" => "È possibile estendere la prova solo una volta ogni 30 giorni.",
+      //       "code" => 500,
+      //       "data" => [],
+      //   ], 500);
+      // }
 
         if ($exp_date > $today) {
             // Trial is still active, extend from expiry date
