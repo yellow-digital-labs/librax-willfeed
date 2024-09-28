@@ -46,7 +46,7 @@ Route::get('/faqs', $controller_path . '\pages\PageFaqs@index')->name('pages-faq
 Route::get('/admin', $controller_path . '\Admin@login')->name('admin-login');
 
 //Buyer Home screen
-
+Route::get('/landing', $controller_path . '\LandingPage@view')->name('landing-page');
 
 //Blog detail page
 Route::get('/blog/{slug}', $controller_path . '\pages\BlogsManagement@view')->name('blog-page');
