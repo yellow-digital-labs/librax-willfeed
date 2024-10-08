@@ -106,8 +106,8 @@
                 </li>
                 @foreach($products as $product)
                 <li>
-                    <button type="button" class="mapwrapp__btn js-map-filter is-active" data-type="{{$product}}"><span
-                            class="mapwrapp__btn-bar" style="background-color: #a3791f;"></span> {{$product}}</button>
+                    <button type="button" class="mapwrapp__btn js-map-filter {{$product->type=="Gasolio" ? "is-active" : ""}} " data-type="{{$product->type}}"><span
+                            class="mapwrapp__btn-bar" style="background-color: {{$product->productColor}};"></span> {{$product->type}}</button>
                 </li>
                 @endforeach
             </ul>
@@ -220,7 +220,7 @@
                 var container = am5.Container.new(root, {});
                 var color = colorSet.next();
                 var radius = 50;
-                var width = 70;
+                var width = 84;
                 var height = 32;
                 var circle = container.children.push(am5.RoundedRectangle.new(root, {
                     cornerRadiusBL: radius,
@@ -297,7 +297,7 @@
             // Ends
 
             // Initial display (optional: show all pins initially or filter by default type)
-            updateMap('gasoline');
+            updateMap('Gasolio');
             // updateMap();
 
             // ====================================

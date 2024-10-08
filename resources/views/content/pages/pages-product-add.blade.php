@@ -105,6 +105,11 @@ $configData = Helper::appClasses();
         </div>
 
         <div class="mb-3">
+            <label class="form-label" for="map_color">Colore</label>
+            <input type="color" class="form-control" id="map_color" placeholder="Inserisci platts odierno" name="map_color" value="{{$isEdit?$product->map_color:'#FFFFFF'}}" step=".01" lang="es-ES">
+        </div>
+
+        <div class="mb-3">
             <label class="form-label" for="tax">IVA</label>
             <input type="number" class="form-control" id="tax" placeholder="Inserisci platts odierno" name="tax" value="{{$isEdit?$product->tax:'22'}}" step=".01" lang="es-ES">
         </div>

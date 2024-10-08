@@ -361,6 +361,7 @@ class Product extends Controller
           "id" => $id,
         ])->update([
             "name" => $request->name,
+            "map_color" => $request->map_color,
             "tax" => $request->tax,
             "description" => $request->description,
             "active" => $request->active ? "yes" : "no",
@@ -371,6 +372,7 @@ class Product extends Controller
         try{
           Products::create([
               "name" => $request->name,
+              "map_color" => $request->map_color,
               "tax" => $request->tax,
               "description" => $request->description,
               "price_type" => $request->price_type,
