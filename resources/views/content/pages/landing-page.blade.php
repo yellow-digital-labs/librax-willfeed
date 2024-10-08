@@ -101,9 +101,9 @@
             <div id="chartdiv" class="mapwrapp__map"></div>
             <!-- type of items to be filtered -->
             <ul class="mapwrapp__list">
-                <li>
+                {{-- <li>
                     <button type="button" class="mapwrapp__btn js-map-filter" data-type="all">All</button>
-                </li>
+                </li> --}}
                 @foreach($products as $product)
                 <li>
                     <button type="button" class="mapwrapp__btn js-map-filter {{$product->type=="Gasolio" ? "is-active" : ""}} " data-type="{{$product->type}}"><span
@@ -250,8 +250,18 @@
 
                 // Add click event listener to the container
                 container.events.on("click", function() {
-                    alert(dataItem.dataContext.title + " clicked!");
+                    let prod = '';
+                    $('.js-map-filter').each(function(key, items){
+                        if($(items).hasClass('is-active')){
+                            prod = $(items).data('type');
+                        }
+                    });
                     // Perform other actions here, such as opening a modal or navigating to a URL
+                    if(prod == "all"){
+                        window.location = `/buyer-home?search=&region%5B%5D=${dataItem.dataContext.title}`;
+                    } else {
+                        window.location = `/buyer-home?search=&fuel_type%5B%5D=${prod}&region%5B%5D=${dataItem.dataContext.title}`;
+                    }
                 });
 
                 return am5.Bullet.new(root, {
