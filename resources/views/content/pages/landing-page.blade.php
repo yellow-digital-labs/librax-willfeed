@@ -104,10 +104,12 @@
                 <li>
                     <button type="button" class="mapwrapp__btn js-map-filter" data-type="all">All</button>
                 </li>
+                @foreach($products as $product)
                 <li>
-                    <button type="button" class="mapwrapp__btn js-map-filter is-active" data-type="gasoline"><span
-                            class="mapwrapp__btn-bar" style="background-color: #a3791f;"></span> Gasoline</button>
+                    <button type="button" class="mapwrapp__btn js-map-filter is-active" data-type="{{$product}}"><span
+                            class="mapwrapp__btn-bar" style="background-color: #a3791f;"></span> {{$product}}</button>
                 </li>
+                @endforeach
             </ul>
         </div>
 
@@ -143,9 +145,7 @@
             ]);
 
 
-            // ====================================
-            // Create map
-            // ====================================
+            // Create map - Starts
 
             var map = root.container.children.push(
                 am5map.MapChart.new(root, {
@@ -154,12 +154,53 @@
                 })
             );
 
-            // Create polygon series
+            // Ends
+
+            // Create curtain + message to show when wheel is used over chart without CTRL - Starts
+            var overlay = root.container.children.push(am5.Container.new(root, {
+                width: am5.p100,
+                height: am5.p100,
+                layer: 100,
+                visible: false
+            }));
+
+            var curtain = overlay.children.push(am5.Rectangle.new(root, {
+                width: am5.p100,
+                height: am5.p100,
+                fill: am5.color(0xffffff),
+                fillOpacity: 0.3
+            }));
+
+            var message = overlay.children.push(am5.Label.new(root, {
+                text: "Use CTRL + Scroll to zoom",
+                fontSize: 30,
+                x: am5.p50,
+                y: am5.p50,
+                centerX: am5.p50,
+                centerY: am5.p50
+            }));
+
+            map.events.on("wheel", function(ev) {
+                if (ev.originalEvent.ctrlKey) {
+                    ev.originalEvent.preventDefault();
+                    map.set("wheelY", "zoom");
+                } else {
+                    map.set("wheelY", "none");
+                    overlay.show();
+                    overlay.setTimeout(function() {
+                        overlay.hide()
+                    }, 800);
+                }
+            });
+
+            // Ends
+
+            // Create polygon series - Starts
             var polygonSeries = map.series.push(
                 am5map.MapPolygonSeries.new(root, {
                     geoJSON: am5geodata_italyLow,
                     exclude: ["FR-H", "MT", "SM", "VA", ],
-                    fill: '#f1f1f1',
+                    fill: '#eee',
                     stroke: '#000'
                 })
             );
@@ -178,40 +219,34 @@
 
                 var container = am5.Container.new(root, {});
                 var color = colorSet.next();
-                var radius = 32;
-                var circle = container.children.push(am5.Circle.new(root, {
-                    radius: radius,
+                var radius = 50;
+                var width = 70;
+                var height = 32;
+                var circle = container.children.push(am5.RoundedRectangle.new(root, {
+                    cornerRadiusBL: radius,
+                    cornerRadiusBR: radius,
+                    cornerRadiusTL: radius,
+                    cornerRadiusTR: radius,
                     fill: productColor,
-                    dy: -radius * 2
-                }));
-
-                var pole = container.children.push(am5.Line.new(root, {
-                    stroke: productColor,
-                    height: -35,
-                    strokeWidth: 1.5
+                    width: width,
+                    height: height,
+                    shadowColor: am5.color(0x000000),
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowOffsetY: 4,
+                    shadowOpacity: 0.35
                 }));
 
                 var label = container.children.push(am5.Label.new(root, {
                     text: value,
                     fill: '#fff',
-                    fontWeight: "400",
-                    centerX: am5.p50,
-                    centerY: am5.p50,
-                    dy: -radius * 2
+                    // fontWeight: "300",
+                    width: width,
+                    height: height,
+                    textAlign: "center",
+                    dy: -1.5,
+                    // dx: -2
                 }))
-
-                /*var titleLabel = container.children.push(am5.Label.new(root, {
-                    text: dataItem.dataContext.title,
-                    fill: '#fff',
-                    fontWeight: "500",
-                    fontSize: "1em",
-                    centerY: am5.p50,
-                    dy: -radius * 2,
-                    dx: radius
-                }))*/
-
-                // Add tooltip text
-                // container.set("tooltipText", dataItem.dataContext.title);
 
                 // Add click event listener to the container
                 container.events.on("click", function() {
@@ -224,6 +259,8 @@
                 });
             });
 
+            // Ends
+
 
 
 
@@ -231,58 +268,18 @@
             // Create pins
             // ====================================
 
-            var data = [{
-                    "title": "Florence",
-                    "latitude": 43.7799286,
-                    "longitude": 11.158567,
-                    "width": 100,
-                    "height": 100,
-                    "value": "1,29€/l",
-                    "type": "gasoline",
-                    "productColor": "#a3791f"
-                },
-                {
-                    "title": "Rome",
-                    "latitude": 41.9099533,
-                    "longitude": 12.371189,
-                    "width": 100,
-                    "height": 100,
-                    "value": "89€/l",
-                    "type": "gasoline",
-                    "productColor": "#a3791f"
-                },
-                {
-                    "title": "Milan",
-                    "latitude": 45.4627042,
-                    "longitude": 9.0953315,
-                    "width": 100,
-                    "height": 100,
-                    "value": "3,29€/l",
-                    "type": "diesal",
-                    "productColor": "green"
-                }
-            ];
+            var data = @json($product_price)
 
-            function showAll() {
-                for (var i = 0; i < data.length; i++) {
-                    var d = data[i];
-                    pointSeries.data.push({
-                        geometry: {
-                            type: "Point",
-                            coordinates: [d.longitude, d.latitude]
-                        },
-                        title: d.title,
-                        value: d.value,
-                        productColor: d.productColor
+            // Ends
+
+            // Function to update map with filtered data - Starts
+            function updateMap(filterType) {
+                var filteredData = data;
+                if (filterType) {
+                    filteredData = data.filter(function(item) {
+                        return item.type === filterType;
                     });
                 }
-            }
-
-            // Function to update map with filtered data
-            function updateMap(filterType) {
-                var filteredData = data.filter(function(item) {
-                    return item.type === filterType;
-                });
                 pointSeries.data.setAll(filteredData.map(function(item) {
                     return {
                         geometry: {
@@ -297,12 +294,14 @@
                 }));
             }
 
+            // Ends
+
             // Initial display (optional: show all pins initially or filter by default type)
             updateMap('gasoline');
-            // showAll()
+            // updateMap();
 
             // ====================================
-            // Filter pins by type on button click
+            // Filter pins by type on button click - Starts
             // ====================================
             $('.js-map-filter').on('click', function() {
                 var filterType = $(this).data('type');
@@ -311,11 +310,13 @@
                 $(this).addClass('is-active');
 
                 if (filterType === 'all') {
-                    showAll()
+                    updateMap();
                 } else {
                     updateMap(filterType);
                 }
             });
+
+            // Ends
 
 
         }); // end am5.ready()
