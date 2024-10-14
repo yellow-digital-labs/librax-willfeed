@@ -28,6 +28,12 @@ $configData = Helper::appClasses();
 <link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-user-view.css')}}" />
 <!-- Custom css -->
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+<style>
+    .sweetalert.btn-primary {
+        background-color: #000;
+        border-color: #000;
+    }
+</style>
 @endsection
 
 @section('page-script')
@@ -47,7 +53,7 @@ $remainingDays = App\Helpers\Helpers::getDaysBetweenDates(date('Y-m-d H:i:s', ti
 @endphp
 @if($remainingDays<0)
 <script>
-let baseUrl ={{url('/')}};
+let baseUrl="{{url('/')}}";
 $(document).ready(function () {
     Swal.fire({
         text: "Per continuare, acquista un abbonamento.",
@@ -61,6 +67,32 @@ $(document).ready(function () {
 });
 </script>
 @endif
+@endif
+
+@php
+    if($errors->any()){
+        $errortext = "";
+        foreach ($errors->all() as $error){
+            $errortext .= $error;
+        }
+    }
+@endphp
+
+@if ($errors->any())
+    <script>
+    $(document).ready(function () {
+        Swal.fire({
+            text: "{{ $errortext }}",
+            icon: 'warning',
+            showCancelButton: false,
+            customClass: {
+                cancelButton: 'btn btn-label-secondary',
+                confirmButton: 'btn btn-primary sweetalert'
+            },
+            buttonsStyling: true
+        });
+    });
+    </script>
 @endif
 @endsection
 

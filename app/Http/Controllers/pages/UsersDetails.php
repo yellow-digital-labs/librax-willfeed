@@ -282,6 +282,14 @@ class UsersDetails extends Controller
   public function updatePlan(Request $request, $planid){
     $isSeller = Helpers::isSeller();
     $isBuyer = Helpers::isBuyer();
+    //check card details added
+    $user = Auth::user();
+    if(!$user->stripe_customer_id){
+      return Redirect::back()->withErrors([
+        "msg" => "Aggiungi prima il metodo di pagamento",
+      ]);
+    }
+
     //check plan available
     $subscription = [];
     if($isSeller){
@@ -347,13 +355,13 @@ public function extendFreeTrial($id) {
 
       $last_update_exp_date = $user->last_update_exp_datetime ? Carbon::parse($user->last_update_exp_datetime) : null;
 
-      if ($last_update_exp_date && $last_update_exp_date->addDays(30)->isFuture()) {
+      /* if ($last_update_exp_date && $last_update_exp_date->addDays(30)->isFuture()) {
         return response()->json([
             "message" => "È possibile estendere la prova solo una volta ogni 30 giorni.",
             "code" => 500,
             "data" => [],
         ], 500);
-      }
+      } */
 
         if ($exp_date > $today) {
             // Trial is still active, extend from expiry date
