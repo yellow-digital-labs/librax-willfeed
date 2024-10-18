@@ -344,9 +344,11 @@ $configData = Helper::appClasses();
                                         </a>
                                         @endif
                                         @else
+                                        @if(!$isAdmin)
                                         <a href="{{route("pages-buyer-checkout", [ "csrf"=> csrf_token(),
                                             "seller_product_id" => $product->id
                                             ])}}" class="uk-button uk-button-primary product-actions__buy">Ordina</a>
+                                        @endif
                                         @endif
                                     </div>
                                 </div>
