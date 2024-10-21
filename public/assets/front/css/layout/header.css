@@ -175,6 +175,9 @@ body {
     .header {
         height: 90px;
     }
+    body {
+        padding-top: 90px;
+    }
 
     .navmenu__list-link {
         font-size: 9px;
