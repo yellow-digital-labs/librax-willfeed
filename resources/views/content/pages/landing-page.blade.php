@@ -135,6 +135,21 @@ top: 0px;
                     min-height: unset;
                 }
             }
+
+            @media (max-width: 1199.98px) {
+    .mapwrapp {
+        padding-top: 0;
+    }
+    ul.mapwrapp__list {
+        padding: 10px 20px 15px
+    }
+}
+
+@media (max-width: 959.98px) {
+    body {
+        padding-top: 90px;
+    }
+}
     </style>
 @endsection
 <!-- CSS Ends -->
