@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 
 class LandingPage extends Controller
 {
     public function view(Request $request)
     {
+        $user = Auth::user();
+        $isLoggedIn = false;
+        if($user){
+            $isLoggedIn = true;
+        }
         //get seller's active products by region and from minimum pricing
         $product_price = DB::table('product_sellers')
             ->select('regions.name as title', 'regions.lat as latitude', 'regions.long as longitude', 'product_sellers.product_name as type', 'products.map_color as productColor')
@@ -19,7 +25,7 @@ class LandingPage extends Controller
                 $join->whereRaw(DB::raw("FIND_IN_SET(regions.name, user_details.geographical_coverage_regions)"));
             })
             ->where('product_sellers.status', 'active')
-	    ->orderBy('product_sellers.amount', 'desc')
+	    ->orderBy('product_sellers.amount', 'asc')
             ->groupBy('product_sellers.product_name', 'regions.name')
             ->get()->toArray();
         
@@ -33,7 +39,7 @@ class LandingPage extends Controller
         $tempArr = array_unique(array_column($product_price, 'type'));
         $products = array_intersect_key($product_price, $tempArr);
 
-        return view("content.pages.landing-page", ['product_price' => $product_price, 'products' => $products]);
+        return view("content.pages.landing-page", ['product_price' => $product_price, 'products' => $products, 'isLoggedIn' => $isLoggedIn]);
     }
 }
 

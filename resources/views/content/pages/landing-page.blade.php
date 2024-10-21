@@ -309,11 +309,15 @@ cursorOverStyle: "pointer"
                         }
                     });
                     // Perform other actions here, such as opening a modal or navigating to a URL
+                @if($isLoggedIn)
                     if(prod == "all"){
                         window.location = `/buyer-home?search=&region%5B%5D=${dataItem.dataContext.title}`;
                     } else {
                         window.location = `/buyer-home?search=&fuel_type%5B%5D=${prod}&region%5B%5D=${dataItem.dataContext.title}`;
                     }
+                @else
+                    window.location = `/register`;
+                @endif
                 });
 
 container.setAll({
