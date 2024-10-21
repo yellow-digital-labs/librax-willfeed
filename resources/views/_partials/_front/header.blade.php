@@ -2,7 +2,7 @@
 
     <div class="uk-container header__container">
 
-        <a href="{{route("pages-home")}}" class="header__logo" style="z-index: 1;"><img src="{{asset('assets/front/images/weelfeed-brand-logo.svg')}}" class="header__logo-img" alt="Willfeed Brand Logo" height="39" width="99"></a>
+        <a href="{{route("landing-page")}}" class="header__logo" style="z-index: 1;"><img src="{{asset('assets/front/images/weelfeed-brand-logo.svg')}}" class="header__logo-img" alt="Willfeed Brand Logo" height="39" width="99"></a>
 
         <div class="header__collapsible navmenu js-header-collapse" id="navmenu">
             <ul class="navmenu__list">

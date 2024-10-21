@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 $controller_path = 'App\Http\Controllers';
 
 // Main Page Route
-Route::get('/', $controller_path . '\pages\HomePage@index')->name('pages-home');
+Route::get('/', $controller_path . '\LandingPage@view')->name('pages-home');
+
+//Buyer Home screen
+Route::get('/landing', $controller_path . '\pages\HomePage@index')->name('landing-page');
 
 Route::get('/test', $controller_path . '\Test@index')->name('test');
 
@@ -44,9 +47,6 @@ Route::get('/faqs', $controller_path . '\pages\PageFaqs@index')->name('pages-faq
 
 // Admin Pages
 Route::get('/admin', $controller_path . '\Admin@login')->name('admin-login');
-
-//Buyer Home screen
-Route::get('/landing', $controller_path . '\LandingPage@view')->name('landing-page');
 
 //Blog detail page
 Route::get('/blog/{slug}', $controller_path . '\pages\BlogsManagement@view')->name('blog-page');
