@@ -18,14 +18,14 @@ class LandingPage extends Controller
         //get seller's active products by region and from minimum pricing
         $product_price = DB::table('product_sellers')
             ->select('regions.name as title', 'regions.lat as latitude', 'regions.long as longitude', 'product_sellers.product_name as type', 'products.map_color as productColor')
-            ->selectRaw('MIN(product_sellers.amount) AS value')
+            ->selectRaw('MIN(product_sellers.amount_before_tax) AS value')
             ->leftJoin('user_details', 'user_details.user_id', 'product_sellers.seller_id')
             ->join('products', 'products.id', 'product_sellers.product_id')
             ->leftJoin('regions', function($join){
                 $join->whereRaw(DB::raw("FIND_IN_SET(regions.name, user_details.geographical_coverage_regions)"));
             })
             ->where('product_sellers.status', 'active')
-	    ->orderBy('product_sellers.amount', 'asc')
+	    ->orderBy('product_sellers.amount_before_tax', 'asc')
             ->groupBy('product_sellers.product_name', 'regions.name')
             ->get()->toArray();
         
