@@ -37,6 +37,8 @@ class LandingPage extends Controller
                 $join->where('cv.customer_id', '=', $user->id);
                 $join->on('cv.customer_group', '=', 'product_sellers.customer_groups_id');
             });
+        } else {
+            $product_query->where('product_sellers.customer_groups_id', '=', 0);
         }
 
         $product_price = $product_query->get()->toArray();
