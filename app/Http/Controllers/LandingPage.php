@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\Helpers;
 use DB;
 use Auth;
 
@@ -12,11 +13,14 @@ class LandingPage extends Controller
     {
         $user = Auth::user();
         $isLoggedIn = false;
+        $isBuyer = false;
         if($user){
             $isLoggedIn = true;
+            $isBuyer = Helpers::isBuyer();
         }
         //get seller's active products by region and from minimum pricing
-        $product_price = DB::table('product_sellers')
+
+        $product_query = DB::table('product_sellers')
             ->select('regions.name as title', 'regions.lat as latitude', 'regions.long as longitude', 'product_sellers.product_name as type', 'products.map_color as productColor')
             ->selectRaw('MIN(product_sellers.amount_before_tax) AS value')
             ->leftJoin('user_details', 'user_details.user_id', 'product_sellers.seller_id')
@@ -25,9 +29,17 @@ class LandingPage extends Controller
                 $join->whereRaw(DB::raw("FIND_IN_SET(regions.name, user_details.geographical_coverage_regions)"));
             })
             ->where('product_sellers.status', 'active')
-	    ->orderBy('product_sellers.amount_before_tax', 'asc')
-            ->groupBy('product_sellers.product_name', 'regions.name')
-            ->get()->toArray();
+            ->orderBy('product_sellers.amount_before_tax', 'asc')
+            ->groupBy('product_sellers.product_name', 'regions.name');
+
+        if($isBuyer){
+            $product_query->join('customer_verifieds as cv', function($join) use ($user){
+                $join->where('cv.customer_id', '=', $user->id);
+                $join->on('cv.customer_group', '=', 'product_sellers.customer_groups_id');
+            });
+        }
+
+        $product_price = $product_query->get()->toArray();
         
         foreach($product_price as $key => $_product_price){
             // $product_price[$key]->productColor = "#a3791f";
