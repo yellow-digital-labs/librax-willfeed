@@ -44,9 +44,10 @@
 
         ul.mapwrapp__list {
             list-style: none;
-            position: absolute;
-            bottom: 40px;
-            left: 70px;
+        }
+
+        ul.mapwrapp__list > li:nth-child(n+2) {
+            margin-top: 10px;
         }
 
         .mapwrapp__btn {
@@ -83,73 +84,165 @@
             color: #fff;
             border: 1px solid #000;
         }
-
-        ul.mapwrapp__list>li:nth-child(n+2) {
-            margin-top: 10px;
+    	.mapwrapp__btn {
+            font-size: 12px;
+            padding: 10px 10px;
         }
-	.mapwrapp__btn {
-    font-size: 12px;
-    padding: 10px 10px;
-}
 
-div[role="tooltip"] {
-    display: none !important;
-}
+        div[role="tooltip"] {
+            display: none !important;
+        }
 
-.mapwrapp__btn-bar {
-    width: 25px;
-    height: 5px;
-}
+        .mapwrapp__btn-bar {
+            width: 25px;
+            height: 5px;
+        }
 
-@media (max-width: 1199.98px) {
+        .mapwrapp__marquee {
+            font-weight: 500;
+            letter-spacing: .5px;
+            font-family: var(--text-fonts);
+            font-size: 15px;
+            line-height: 1.75;
+            background: transparent;
+            position: absolute;
+            top: 5px;
+            z-index: 1;
+        }
 
-    ul.mapwrapp__list {
-        left: 0;
-        display: flex;
-        align-items: stretch;
-        overflow: auto;
-        right: 0;
-        padding-right: 20px;
-        padding-left: 20px;
-bottom: auto;
-top: 0px;
-    }
-    ul.mapwrapp__list>li:nth-child(n+2) {
-        margin: 0 0 0 15px;
-    }
-    .mapwrapp__btn {
-        font-size: 12px;
-        padding: 10px 10px;
-        white-space: nowrap;
-    }
-}
-@media (max-width: 1199.98px) {
-                .mapwrapp {
-                    height: calc(100vh - 250px);
-                    min-height: 400px;
-                    padding-top: 50px;
-                }
+        .mapwrapp-signup {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
 
-                #chartdiv {
-                    height: 100%;
-                    min-height: unset;
-                }
+        .mapwrapp-signup__button {
+            display: inline-flex;
+            border-color: #000;
+            min-height: 40px;
+            border: 1px solid #000;
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        .mapwrapp-signup__button + .mapwrapp-signup__button {
+            margin-left: 5px;
+        }
+
+        @media (min-width: 1200px) {
+            .mapwrapp-products__toggler,
+            .mapwrapp-signup {
+                display: none !important;
+            }
+            ul.mapwrapp__list {
+                position: absolute;
+                bottom: 40px;
+                left: 70px;
+                display: block !important;
+                box-shadow: unset;
+                padding: 0;
+                background: transparent;
+            }
+        }
+
+        @media (max-width: 1199.98px) {
+            .mapwrapp__btn {
+                font-size: 12px;
+                padding: 10px 10px;
+                white-space: nowrap;
             }
 
-            @media (max-width: 1199.98px) {
-    .mapwrapp {
-        padding-top: 0;
-    }
-    ul.mapwrapp__list {
-        padding: 10px 20px 15px
-    }
-}
+            .mapwrapp {
+                height: calc(100vh - 250px);
+                min-height: 400px;
+                padding-top: 50px;
+            }
 
-@media (max-width: 959.98px) {
-    body {
-        padding-top: 90px;
-    }
-}
+            #chartdiv {
+                height: 100%;
+                min-height: unset;
+            }
+
+            .mapwrapp {
+                padding-top: 0;
+            }
+            ul.mapwrapp__list {
+                padding: 10px 20px 15px
+            }
+            .mapwrapp-products__toggler {
+                background: #000;
+                color: #fff;
+                min-height: 35px;
+                padding: 8px 17px;
+                font-size: 13px;
+            }
+            
+            .mapwrapp-products__toggler:after {
+                content: '\e92f';
+                font-family: var(--icon-fonts);
+                margin-left: 8px;
+                font-size: 12px;
+                transform: rotate(90deg);
+                transition: all .3s ease;
+            }
+
+            .mapwrapp-products.is-active > .mapwrapp-products__toggler:after {
+                transform: rotate(270deg);
+            }
+
+            .mapwrapp-products {
+                position: absolute;
+                top: 75px;
+                right: 15px;
+            }
+
+            ul.mapwrapp__list {
+                height: 170px;
+                overflow: auto;
+                padding: 5px 0;
+                z-index: 10;
+                width: 280px !important;
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                box-shadow: 0 5px 12px rgba(0, 0, 0, .15);
+                background: #fff;
+            }
+
+            ul.mapwrapp__list > li:nth-child(n+2) {
+                margin: 0;
+                border-top: 1px solid #ccc;
+            }
+
+            .mapwrapp__btn {
+                border: 0;
+                display: flex;
+                width: 100%;
+                padding: 10px 15px;
+                white-space: normal;
+                text-align: left;
+                line-height: 1.3;
+            }
+
+            .mapwrapp__btn.is-active {
+                background: #fff;
+                color: #000;
+                text-decoration: underline;
+                border: 0;
+            }
+
+            .mapwrapp-products.is-active .mapwrapp__list {
+                display: block;
+            }
+        }
+
+        @media (max-width: 959.98px) {
+            body {
+                padding-top: 90px;
+            }
+        }
     </style>
 @endsection
 <!-- CSS Ends -->
@@ -161,19 +254,28 @@ top: 0px;
     <main id="main-content" class="wrapper">
 
         <div class="mapwrapp">
+            <marquee class="mapwrapp__marquee">QUOTAZIONE PREZZI IN TEMPO REALE</marquee>
             <div id="chartdiv" class="mapwrapp__map"></div>
             <!-- type of items to be filtered -->
-            <ul class="mapwrapp__list">
-                {{-- <li>
-                    <button type="button" class="mapwrapp__btn js-map-filter" data-type="all">All</button>
-                </li> --}}
-                @foreach($products as $key => $product)
-                <li>
-                    <button type="button" class="mapwrapp__btn js-map-filter {{$key=="0" ? "is-active" : ""}} " data-type="{{$product->type}}"><span
-                            class="mapwrapp__btn-bar" style="background-color: {{$product->productColor}};"></span> {{$product->type}}</button>
-                </li>
-                @endforeach
-            </ul>
+            <div class="mapwrapp-products js-map-products-list">
+                <button type="button" class="uk-button mapwrapp-products__toggler js-map-products-toggler">scegli prodotti</button>
+                <ul class="mapwrapp__list">
+                    {{-- <li>
+                        <button type="button" class="mapwrapp__btn js-map-filter" data-type="all">All</button>
+                    </li> --}}
+                    @foreach($products as $key => $product)
+                    <li>
+                        <button type="button" class="mapwrapp__btn js-map-filter {{$key=="0" ? "is-active" : ""}} " data-type="{{$product->type}}"><span
+                                class="mapwrapp__btn-bar" style="background-color: {{$product->productColor}};"></span> {{$product->type}}</button>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <div class="mapwrapp-signup">
+                <a href="https://willfeed.it/register" class="uk-button mapwrapp-signup__button">Acquista</a>
+                <a href="https://willfeed.it/register" class="uk-button mapwrapp-signup__button">Vendi</a>
+            </div>
         </div>
 
     </main>
@@ -201,8 +303,8 @@ top: 0px;
 
             // Create root and chart
             var root = am5.Root.new("chartdiv", {
-  useSafeResolution: false
-});
+              useSafeResolution: false
+            });
 
             // Set themes
             root.setThemes([
@@ -305,13 +407,13 @@ top: 0px;
                 var label = container.children.push(am5.Label.new(root, {
                     text: value,
                     fill: '#fff',
-fontSize: 14,
+                    fontSize: 14,
                     // fontWeight: "300",
                     width: width,
                     height: height,
                     textAlign: "center",
-cursorOverStyle: "pointer"
-//                    dy: -1.5,
+                    cursorOverStyle: "pointer"
+                    // dy: -1.5,
                     // dx: -2
                 }))
 
@@ -335,9 +437,9 @@ cursorOverStyle: "pointer"
                 @endif
                 });
 
-container.setAll({
-            cursorOverStyle: "pointer"
-        });
+                container.setAll({
+                    cursorOverStyle: "pointer"
+                });
 
                 return am5.Bullet.new(root, {
                     sprite: container
@@ -354,7 +456,7 @@ container.setAll({
             // ====================================
 
             var data = @json($product_price);
-	    var selectedProd = data[0]?.type;
+	       var selectedProd = data[0]?.type;
 
             // Ends
 
@@ -394,6 +496,7 @@ container.setAll({
 
                 $('.js-map-filter').removeClass('is-active');
                 $(this).addClass('is-active');
+                $('.js-map-products-list').removeClass('is-active');
 
                 if (filterType === 'all') {
                     updateMap();
@@ -403,6 +506,13 @@ container.setAll({
             });
 
             // Ends
+
+
+
+            $('.js-map-products-toggler').on('click', function() {
+                var selElm = $(this);
+                $('.js-map-products-list').toggleClass('is-active')
+            });
 
 
         }); // end am5.ready()
