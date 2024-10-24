@@ -101,6 +101,53 @@ div[role="tooltip"] {
     height: 5px;
 }
 
+.mapwrapp__marquee {
+            font-weight: 500;
+            letter-spacing: .5px;
+            font-family: var(--text-fonts);
+            font-size: 15px;
+            line-height: 1.75;
+            background: transparent;
+            position: absolute;
+            top: 5px;
+            z-index: 1;
+        }
+        .mapwrapp-signup {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        .mapwrapp-signup__button {
+            display: inline-flex;
+            border-color: #000;
+            min-height: 40px;
+            border: 1px solid #000;
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        .mapwrapp-signup__button + .mapwrapp-signup__button {
+            margin-left: 5px;
+        }
+
+        @media (min-width: 1200px) {
+            .mapwrapp-products__toggler,
+            .mapwrapp-signup {
+                display: none !important;
+            }
+            ul.mapwrapp__list {
+                position: absolute;
+                bottom: 40px;
+                left: 70px;
+                display: block !important;
+                box-shadow: unset;
+                padding: 0;
+                background: transparent;
+            }
+        }
+
 @media (max-width: 1199.98px) {
 
     ul.mapwrapp__list {
@@ -112,7 +159,7 @@ div[role="tooltip"] {
         padding-right: 20px;
         padding-left: 20px;
 bottom: auto;
-top: 0px;
+top: 25px;
     }
     ul.mapwrapp__list>li:nth-child(n+2) {
         margin: 0 0 0 15px;
@@ -161,6 +208,7 @@ top: 0px;
     <main id="main-content" class="wrapper">
 
         <div class="mapwrapp">
+            <marquee class="mapwrapp__marquee">QUOTAZIONE PREZZI IN TEMPO REALE</marquee>
             <div id="chartdiv" class="mapwrapp__map"></div>
             <!-- type of items to be filtered -->
             <ul class="mapwrapp__list">
@@ -174,6 +222,11 @@ top: 0px;
                 </li>
                 @endforeach
             </ul>
+            <div class="mapwrapp-signup">
+                <a href="/register?type=buyer" class="uk-button mapwrapp-signup__button">Acquista</a>
+                <a href="/register?type=seller" class="uk-button mapwrapp-signup__button">Vendi</a>
+            </div>
+
         </div>
 
     </main>
