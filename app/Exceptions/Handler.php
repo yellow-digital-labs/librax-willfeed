@@ -49,7 +49,7 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception){
         if ($exception instanceof AuthenticationException) {
-            return redirect('/login');
+            return redirect('/register');
         }
         return parent::render($request, $exception);
     }

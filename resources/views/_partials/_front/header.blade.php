@@ -2,18 +2,18 @@
 
     <div class="uk-container header__container">
 
-        <a href="{{route("landing-page")}}" class="header__logo" style="z-index: 1;"><img src="{{asset('assets/front/images/weelfeed-brand-logo.svg')}}" class="header__logo-img" alt="Willfeed Brand Logo" height="39" width="99"></a>
+        <a href="{{route("pages-home")}}" class="header__logo" style="z-index: 1;"><img src="{{asset('assets/front/images/weelfeed-brand-logo.svg')}}" class="header__logo-img" alt="Willfeed Brand Logo" height="39" width="99"></a>
 
         <div class="header__collapsible navmenu js-header-collapse" id="navmenu">
             <ul class="navmenu__list">
                 <li class="navmenu__list-item">
-                    <a href="{{route("pages-home")}}" class="navmenu__list-link">Home</a>
+                    <a href="{{route("landing-page")}}" class="navmenu__list-link">Home</a>
                 </li>
                 <li class="navmenu__list-item">
-                    <a href="{{route("pages-home")}}#comprare" class="navmenu__list-link">Acquista</a>
+                    <a href="{{route("landing-page")}}#comprare" class="navmenu__list-link">Acquista</a>
                 </li>
                 <li class="navmenu__list-item has-megamenu">
-                    <a href="{{route("pages-home")}}#vendor" class="navmenu__list-link">vendi</a>
+                    <a href="{{route("landing-page")}}#vendor" class="navmenu__list-link">vendi</a>
                 </li>
                 <li class="navmenu__list-item">
                     <a href="{{route("pages-buyer-home")}}" class="navmenu__list-link">Market</a>
