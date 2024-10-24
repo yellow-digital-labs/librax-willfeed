@@ -29,7 +29,7 @@ class LandingPage extends Controller
                 $join->whereRaw(DB::raw("FIND_IN_SET(regions.name, user_details.geographical_coverage_regions)"));
             })
             ->where('product_sellers.status', 'active')
-            ->orderBy('product_sellers.amount_before_tax', 'asc')
+            ->orderBy('products.seq', 'asc')
             ->groupBy('product_sellers.product_name', 'regions.name');
 
         if($isBuyer){
