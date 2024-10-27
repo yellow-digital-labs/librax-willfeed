@@ -111,6 +111,7 @@ div[role="tooltip"] {
             position: absolute;
             top: 5px;
             z-index: 1;
+            width: 100%;
         }
         .mapwrapp-signup {
             position: absolute;
