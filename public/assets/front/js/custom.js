@@ -57,6 +57,7 @@ $('.js-header-toggler').on('click', function(e){
 $('#navmenu a').on('click', function(e){
     $('.js-header-collapse').hide();
     $('body').removeClass('is-header-active');
+    $('.js-header-toggler').toggleClass('is-active');
 });
 
 
