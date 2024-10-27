@@ -54,6 +54,11 @@ $('.js-header-toggler').on('click', function(e){
     $(sel).toggleClass('is-active');
 });
 
+$('#navmenu a').on('click', function(e){
+    $('.js-header-collapse').hide();
+    $('body').removeClass('is-header-active');
+});
+
 
 // Basic Ratings
 // --------------------------------------------------------------------
