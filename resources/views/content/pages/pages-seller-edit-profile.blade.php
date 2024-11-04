@@ -265,7 +265,7 @@ let baseUrl="{{url('/')}}";
                                 </div>
 
                                 <div class="col-sm-6 col-12">
-                                    <h6 class="text-black mb-2">Prodotti disponibili</h6>
+                                    <h6 class="text-black mb-2">Prodotti venduti</h6>
                                     <select name="available_products[]" id="available_products" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                                                     <option value="">Seleziona prodotti</option>
                                                 @foreach($product as $_product)

@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     available_products: {
                         validators: {
                             notEmpty: {
-                                message: 'Please enter prodotti disponibili'
+                                message: 'Please enter prodotti venduti'
                             }
                         }
                     },

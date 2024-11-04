@@ -222,7 +222,7 @@ $configData = Helper::appClasses();
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <label class="form-label" for="available_products">Prodotti disponibili *</label>
+                                    <label class="form-label" for="available_products">Prodotti venduti *</label>
                                     <select name="available_products[]" id="available_products" class="form-select select2" data-minimum-results-for-search="Infinity" multiple>
                                         <option value="">Seleziona prodotti</option>
                                     @foreach($product as $_product)

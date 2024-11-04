@@ -429,7 +429,7 @@ $(document).ready(function () {
                             </div>
 
                             <div class="col-sm-6 col-12">
-                                <h6 class="text-black mb-2">Prodotti disponibili</h6>
+                                <h6 class="text-black mb-2">Prodotti venduti</h6>
                                   @if($is_new_data && $user_detail->available_products !== $new_user_detail->available_products)
                                 <div class="d-flex">
                                     <p class="mb-0 strike-through">{{$user_detail->available_products?$user_detail->available_products:'NA'}}</p>
